@@ -64,7 +64,7 @@
               </div>
               <div style="margin-bottom: 10px;" v-if="teacherProfile.research_direction">
                 <span><svg-icon icon-class="rearch-direction"/></span>
-                <label class="font-one">研究方向：</label>{{teacherProfile.research_direction}}
+                <label class="font-one">研究方向：</label>{{teacherProfile.research_diection}}
               </div>
               <div style="margin-bottom: 10px;">
                 <span><svg-icon icon-class="email"/></span>
@@ -77,9 +77,9 @@
                   http://www.scholat.com/{{teacherProfile.scholat_username}}
                 </a>
               </div>
-              <div class="show-persona" v-if="teacherProfile.scholat_username">
-              <a @click="routeTo()">查看学者画像</a>
-            </div>
+<!--              <div class="show-persona" v-if="teacherProfile.scholat_username">-->
+<!--              <a @click="routeTo()">查看学者画像</a>-->
+<!--            </div>-->
             </div>
           </div>
         </el-card>

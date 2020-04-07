@@ -114,6 +114,8 @@
                         console.log("QAQ........没有找到学院Id")
                     })
 
+                }else if (window.location.href.indexOf('unitApply') != -1){
+
                 }
                 //是主頁
                 else {
