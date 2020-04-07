@@ -1,0 +1,64 @@
+import Vue from 'vue'
+import 'normalize.css/normalize.css'// A modern alternative to CSS resets
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
+import locale from 'element-ui/lib/locale/lang/zh-CN'
+import App from './App'
+import router from './router'
+import store from './store'
+import '@/icons' // icon
+import '@/permission' // 权限
+import {default as api} from './utils/api'
+import {hasPermission} from "./utils/hasPermission";
+import {hasScholatPermission} from "./utils/hasScholatPermission";
+import VueCropper from 'vue-cropper'
+import md5 from 'js-md5';
+import axios from 'axios'
+import echarts from "echarts"
+import VueClipboard from 'vue-clipboard2'
+Vue.use(VueClipboard);
+Vue.use(echarts);
+Vue.prototype.$echarts = echarts;
+Vue.prototype.axios = axios;
+Vue.use(VueCropper);
+Vue.use(ElementUI, {locale});
+Vue.prototype.api = api;
+Vue.prototype.md5 = md5;
+Vue.prototype.salt = 'teacherHome';
+
+
+
+//全局的常量
+Vue.prototype.hasPerm = hasPermission;
+Vue.prototype.hasScholatPerm = hasScholatPermission;
+//生产环境时自动设置为 false 以阻止 vue 在启动时生成生产提示。
+Vue.config.productionTip = (process.env.NODE_ENV != 'production')
+new Vue({
+  el: '#app',
+  router,
+  store,
+  template: '<App/>',
+  components: {App}
+});
+Date.prototype.format = function(format) {
+  var date = {
+    "M+": this.getMonth() + 1,
+    "d+": this.getDate(),
+    "h+": this.getHours(),
+    "m+": this.getMinutes(),
+    "s+": this.getSeconds(),
+    "q+": Math.floor((this.getMonth() + 3) / 3),
+    "S+": this.getMilliseconds()
+  };
+  if (/(y+)/i.test(format)) {
+    format = format.replace(RegExp.$1, (this.getFullYear() + '').substr(4 - RegExp.$1.length));
+  }
+  for (var k in date) {
+    if (new RegExp("(" + k + ")").test(format)) {
+      format = format.replace(RegExp.$1, RegExp.$1.length == 1
+        ? date[k] : ("00" + date[k]).substr(("" + date[k]).length));
+    }
+  }
+  return format;
+};
+

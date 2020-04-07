@@ -1,0 +1,344 @@
+<template>
+  <header class="top-container">
+
+    <!--两种模式：模式 1 -->
+    <div class="background" v-if="unit.state == 0 && dataDone">
+      <div @click="goToCollege" style="display: inline-block;height: 100%;margin-left: 8px;width: auto;min-width: 93px">
+        <img :src="getPic" :onerror="defaultLogo"
+             style="height: auto;width: 93px;bottom: 0;"/>
+      </div>
+      <div @click="goToCollege"
+           style="height: 100%;max-width: 900px;display: flex;justify-content: center;align-items: center;
+           margin: 0 18px;cursor: pointer">
+       <div style="color: steelblue">
+         <a class="university" style="white-space: nowrap;font-weight: bold;">{{unit.schoolName}}</a>
+         <span class="unitName" style="color:steelblue;font-weight: bold;">{{unit.unitName}}</span>
+       </div>
+      </div>
+      <div class="font-jsgrzy" style="display: inline-block;min-width: 208px;">
+        教师个人主页
+      </div>
+
+      <div class="search bar6">
+        <div class="formDiv" style="min-width:200px;float: right">
+          <input @keyup.enter="keySend" type="text" v-model="searchKey" placeholder="请输入您要搜索的教师" name="cname"
+                 style="color: gray;background-color: white;">
+          <button @click="keySend"></button>
+        </div>
+      </div>
+    </div>
+
+    <!--两种模式：模式 2 -->
+
+    <div v-else class="background2">
+      <div @click="goToCollege" style="display: inline-block;height: 100%;margin-left: 8px;width: auto;min-width: 93px">
+        <img :src="getPic" :onerror="defaultLogo" style="height: auto;width: 93px;bottom: 0;"/>
+      </div>
+      <div @click="goToCollege"
+           style="height: 100%;max-width: 900px;margin-left: 14px;">
+        <img :src="'http://47.106.132.95:2333/images/background/' + unit.backgroundUrl" :onerror="defaultBack"
+             style="height: 100%;width: auto;cursor: pointer"/>
+      </div>
+      <div class="font-jsgrzy" style="display: inline-block;min-width: 208px;">
+        <span>教师个人主页</span>
+      </div>
+      <div class="search bar6" v-if="dataDone && this.$route.path.indexOf('teacher')==-1">
+        <div class="formDiv" style="min-width:200px;float: right">
+          <input @keyup.enter="keySend" type="text" v-model="searchKey" placeholder="请输入您要搜索的教师" name="cname"
+                 style="color: gray;background-color: white;">
+          <button @click="keySend"></button>
+        </div>
+      </div>
+    </div>
+
+
+  </header>
+</template>
+
+<script>
+    import Img from '@/assets/img/home.png'
+    import bus from '@/utils/eventBus'
+
+    export default {
+        data() {
+            return {
+                defaultLogo: 'this.src="http://www.scholat.com/images/uni_logo/nologo.png"',
+                img: Img,
+                searchKey: '',
+                unitQuery: {unitId: ''},
+                defaultBack: 'this.src="http://47.106.132.95:2333/vue/img/title.png"',
+                unit: {
+                    schoolName: '',
+                    unitName: '',
+                    collegeUrl: '',
+                    logoUrl: '',
+                    state: '',
+                    backgroundUrl: ''
+                },
+                listLoading: '',
+                dataDone: false
+            }
+        },
+        created() {
+            this.getUnitInfo();
+        },
+        ready() {
+        },
+        methods: {
+            routerToAdmin() {
+                console.log("=========================================")
+                this.$router.push({
+                    name: 'managerTeacher'
+                })
+            },
+            getUnitInfo() {
+                //如果是教師的頁面
+                if (window.location.href.indexOf('teacher') != -1) {
+                    var teacherId = this.GetUrlRelativePath_id();
+                    console.log("head教师id为:........" + teacherId);
+                    this.api({
+                        url: "/unit/getUnitBytId",
+                        method: "get",
+                        params: {id: teacherId}
+                    }).then(data => {
+                        console.log("学院Id为:" + JSON.stringify(data))
+                        console.log("================================")
+                        this.listLoading = false;
+                        this.unit = data;
+                        this.dataDone = true;
+                    }).catch(error => {
+                        console.log("QAQ........没有找到学院Id")
+                    })
+
+                }
+                //是主頁
+                else {
+                    this.unitQuery.unitId = this.$route.params.unitId
+                    this.api({
+                        url: "/homepage/getUnitInfo",
+                        method: "get",
+                        params: this.unitQuery
+                    }).then(data => {
+                        console.log("查询学院信息为:" + JSON.stringify(data))
+                        console.log("================================")
+                        this.listLoading = false;
+                        this.unit = data;
+                        this.dataDone = true;
+                    }).catch(error => {
+                        console.log("QAQ........没有找到学院信息")
+                    })
+                }
+            },
+            GetUrlRelativePath_id() {
+                var url = document.location.toString();
+                var arrUrl = url.split("//");
+
+                var start = arrUrl[1].indexOf("teacher/");
+                var relUrl_id = arrUrl[1].substring(start + 8);//stop省略，截取从start开始到结尾的所有字符
+
+                if (relUrl_id.indexOf("?") != -1) {
+                    relUrl_id = relUrl_id.split("?")[0];
+                }
+                return relUrl_id;
+            },
+            goToCollege() {
+                if (this.unit.collegeUrl) {
+                    window.location.href = (this.unit.collegeUrl);
+                } else {
+                    console.log("this.unit.collegeUrl" + this.unit.collegeUrl)
+                }
+            },
+            searchTeacher() {
+                if (this.$store.state != null) {
+                    this.api({
+                        url: "/teacher/searchTeacher",
+                        method: "get",
+                        params: {
+                            unitId: this.$store.state.user.unitId,
+                            key: this.searchKey
+                        }
+                    }).then(data => {
+                        console.log(JSON.stringify(data.list));
+                    }).catch(error => {
+                        console.log("QAQ........获取教师失败")
+                    })
+                }
+            },
+            keySend: function () {
+                console.log("send++++" + this.searchKey)
+                bus.$emit("key", this.searchKey);
+            },
+        },
+        computed: {
+            getPic() {
+                if (this.unit.logoUrl) {
+                    if (this.unit.logoUrl.indexOf('scholat') == -1) {
+                        return 'http://47.106.132.95:2333/images/unit_logo/' + this.unit.logoUrl
+                    } else {
+                        return this.unit.logoUrl;
+                    }
+                } else {
+                    return this.defaultLogo;
+                }
+            }
+        },
+        components: {}
+    }
+</script>
+
+<style scoped>
+
+  input::-webkit-input-placeholder {
+    /* placeholder颜色  */
+    color: white;
+  }
+
+  .background {
+    padding: 0px 0px 5px 0px;
+    width: 100%;
+    height: 100%;
+    max-width: 1400px;
+    text-align: center;
+    margin: auto;
+    display: flex;
+    align-items: center;
+  }
+
+  .background2 {
+    padding: 0px 0px 5px 0px;
+    width: 100%;
+    height: 100%;
+    background-color: #f1f2f6;
+    max-width: 1400px;
+    text-align: center;
+    margin: auto;
+    display: flex;
+    align-items: center;
+  }
+
+  @media screen and (max-width: 1200px) {
+    .background2 {
+      max-width: 980px;
+    }
+
+    .background {
+      max-width: 980px;
+    }
+  }
+
+
+  /*@media screen and  (max-width: 1200px) {*/
+  /*  .background2 {*/
+  /*    width: 100%;*/
+
+  /*    min-width: 900px;*/
+  /*    overflow-x:hidden;*/
+  /*    overflow-y:hidden;*/
+  /*  }*/
+  /*  .background2_1{*/
+  /*    display:inline-block;min-width:900px;*/
+  /*    width: 100%;*/
+  /*    overflow-x:hidden;*/
+
+  /*  }*/
+  /*  div.search {*/
+  /*    float: right;*/
+  /*    padding-top: 30px;*/
+  /*  }*/
+
+  /*}*/
+
+  .university {
+    display: inline-block;
+    letter-spacing: 3.5px;
+    font-size: 21px;
+    color: steelblue;
+    padding-bottom: 3px;
+    border-bottom: 2px solid steelblue;
+
+  }
+
+  .unitName {
+    padding-top: 3px;
+    font-size: 20px;
+    letter-spacing: 3.5px;
+    color: white;
+    display: block;
+  }
+
+  div.search {
+    width: 100%;
+  }
+
+  .formDiv {
+    position: relative;
+    width: 300px;
+    margin: 0 auto;
+  }
+
+  input, button {
+    border: none;
+    outline: none;
+  }
+
+  input {
+    width: 95%;
+    height: 37px;
+    padding-left: 13px;
+  }
+
+  button {
+    height: 37px;
+    width: 42px;
+    cursor: pointer;
+    position: absolute;
+  }
+
+  .bar6 input {
+    border: 2px solid white;
+    border-radius: 46px;
+    background: transparent;
+    top: 0;
+    right: 0;
+  }
+
+  .bar6 button {
+    background: white;
+    border-radius: 0 46px 46px 0;
+    width: 60px;
+    top: 0;
+    right: 0;
+  }
+
+  .bar6 button:before {
+    content: "搜索";
+    font-size: 13px;
+    font-weight: bold;
+    color: #3399CC;
+  }
+
+  li {
+    display: inline
+  }
+
+  .top-container {
+    width: 100%;
+    height: 98px;
+    background: #f1f2f6;
+    min-width: 980px;
+    background-color: #f1f2f6;
+    /*background: url('../../assets/img/home.png') no-repeat;*/
+    /*background-size: cover;*/
+  }
+
+  .font-jsgrzy {
+    font-family: '等线 Light';
+    font-weight: bold;
+    letter-spacing: 3.5px;
+    line-height: 98px;
+    font-size: 30px;
+    color: steelblue;
+    white-space: nowrap;
+    margin-left: 18px;
+  }
+</style>
