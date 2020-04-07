@@ -1,6 +1,6 @@
 <template>
   <div>
-    <top-header></top-header>
+    <top-header :titleFlag="titleFlag"></top-header>
     <div class="apply-container">
       <el-form
         autoComplete="on"
@@ -254,6 +254,7 @@
                     ],
                 },
                 loading: false,
+              titleFlag:true,
             }
         },
         components: {
@@ -265,6 +266,7 @@
             this.testSetForm();
         },
         created() {
+            this.reminder();
             var token = this.$route.params.token;
             console.log(token)
             if (token != undefined && token != "") {
@@ -390,7 +392,21 @@
             },
             previous() {
                 this.active--;
-            }
+            },
+
+          //上传所需文件提示框
+            reminder() {
+            this.$alert('<span><strong>1:身份证正反面照片</strong></span><br/><span><strong>2:在职证明文件照片</strong></span>', '注册所需准备文件', {
+              dangerouslyUseHTMLString: true,
+              confirmButtonText: '确定',
+              callback: action => {
+                this.$message({
+                  type: 'info',
+                  message: `action: ${ action }`
+                });
+              }
+            });
+          },
         }
     }
 </script>

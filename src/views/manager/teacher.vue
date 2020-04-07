@@ -35,7 +35,8 @@
     </div>
     <el-table :data="list"
               v-loading.body="listLoading" element-loading-text="拼命加载中" border fit
-              highlight-current-row>
+              highlight-current-row
+              @sort-change='sortChange'>
       <el-table-column align="center" label="序号" width="60">
         <template slot-scope="scope">
           <span v-text="getIndex(scope.$index)"> </span>
@@ -57,7 +58,7 @@
         </template>
 
       </el-table-column>
-      <el-table-column align="center" label="姓名" width="130">
+      <el-table-column align="center" label="姓名" width="130" sortable='custom' prop="pinyin">
         <template slot-scope="scope">
           <span class="teacher-homepage" @click="routerTo(scope.row)" style="cursor:pointer;">{{scope.row.name}}</span>
           <span></span>
@@ -82,7 +83,7 @@
           <span>{{scope.row.post}}</span>
         </template>
       </el-table-column>
-      <el-table-column align="center" label="更新时间" width="170">
+      <el-table-column align="center" label="更新时间" width="170" sortable='custom' prop="update_time">
         <template slot-scope="scope">
           <span>{{scope.row.update_time}}</span>
         </template>
@@ -215,7 +216,9 @@
                     pageNum: 1,//页码
                     pageRow: 10,//每页条数
                     unitId: '',
-                    key: ''
+                    key: '',//排序关键字
+                  sort:'', //升降序标记
+                  state:1 //在岗状态
                 },
                 currentSearch: 'false',
                 dialogStatus: 'create',
@@ -240,7 +243,7 @@
                 showMask: false,
                 showRoleAssigment: false,
                 roleId: '',//角色分配id
-                teacherState:1,//教师是否在岗
+                teacherState:'1',//教师是否在岗
             }
         },
         created() {
@@ -326,12 +329,7 @@
                         }
                     }).then((data) => {
                         this.$message.success("删除该教师成功")
-                      if(this.teacherState===1){
                         this.getList();
-                      }else {
-                        this.getNoStateList();
-                      }
-
                     }).catch(e => {
                         this.$message.error("QAQ.....")
                     })
@@ -373,14 +371,16 @@
                   })*/
             },
             getList() {
-              this.teacherState='1';
+
                 //查询列表
                 if (!this.hasPerm('teacher:list')) {
                     return
                 }
                 this.listQuery.pageNum = 1;
+              // this.listQuery.key="update_time";
+              // this.listQuery.sort="desc";
                 this.listQuery.unitId = this.$store.state.user.unitId;
-                console.log('unitId==' + this.listQuery.unitId);
+                console.log('unitId==' + JSON.stringify(this.listQuery));
                 this.listLoading = true;
                 console.log("### 开始查询教师成员列表")
                 this.api({
@@ -404,37 +404,37 @@
                     console.log("QAQ........没有找到教师列表")
                 })
             },
-          getNoStateList() {
-            //查询列表
-            if (!this.hasPerm('teacher:list')) {
-              return
-            }
-            this.listQuery.pageNum = 1;
-            this.listQuery.unitId = this.$store.state.user.unitId;
-            console.log('unitId==' + this.listQuery.unitId);
-            this.listLoading = true;
-            console.log("### 开始查询教师成员列表")
-            this.api({
-              url: "/manager/listTeacherNoState",
-              method: "get",
-              params: this.listQuery
-            }).then(data => {
-              console.log("查询未在岗教师信息为:" + data.totalUpdate)
-              console.log("=================展示未在岗教师列表信息===============")
-              this.listLoading = false;
-              this.list = data.list;
-              console.log(data.list);
-              this.list.forEach((v, k) => {
-                let t = v.update_time.replace(/\./g, '-').slice(0, 16);
-                v.update_time = t;
-              });
-              this.totalCount = data.totalCount;
-              this.totalUpdate = data.totalUpdate;
-              this.currentSearch = false
-            }).catch(error => {
-              console.log("QAQ........没有找到未在岗教师列表")
-            })
-          },
+          // getNoStateList() {
+          //   //查询列表
+          //   if (!this.hasPerm('teacher:list')) {
+          //     return
+          //   }
+          //   this.listQuery.pageNum = 1;
+          //   this.listQuery.unitId = this.$store.state.user.unitId;
+          //   console.log('unitId==' + this.listQuery.unitId);
+          //   this.listLoading = true;
+          //   console.log("### 开始查询教师成员列表")
+          //   this.api({
+          //     url: "/manager/listTeacherNoState",
+          //     method: "get",
+          //     params: this.listQuery
+          //   }).then(data => {
+          //     console.log("查询未在岗教师信息为:" + data.totalUpdate)
+          //     console.log("=================展示未在岗教师列表信息===============")
+          //     this.listLoading = false;
+          //     this.list = data.list;
+          //     console.log(data.list);
+          //     this.list.forEach((v, k) => {
+          //       let t = v.update_time.replace(/\./g, '-').slice(0, 16);
+          //       v.update_time = t;
+          //     });
+          //     this.totalCount = data.totalCount;
+          //     this.totalUpdate = data.totalUpdate;
+          //     this.currentSearch = false
+          //   }).catch(error => {
+          //     console.log("QAQ........没有找到未在岗教师列表")
+          //   })
+          // },
             changeList() {
                 //查询列表
                 if (!this.hasPerm('teacher:list')) {
@@ -530,13 +530,37 @@
 
           //教师状态改变
           teacherStateChange(){
-            if(parseInt(this.teacherState)===1){
-              this.getList();
-            }else{
-              this.getNoStateList();
+            if(parseInt(this.teacherState)===2){
+              this.teacherState="2";
             }
-          }
+            if(parseInt(this.teacherState)===1){
+              this.teacherState="1";
+            }
+            if(this.listQuery.state===1){
+              this.listQuery.state='';
+            }else{
+              this.listQuery.state=1;
+            }
+            this.getList();
+            // if(parseInt(this.teacherState)===1){
+            //   this.getList();
+            // }else{
+            //   this.getNoStateList();
+            // }
+          },
 
+          //姓名排序
+          sortChange(column){
+            this.listQuery.key=column.prop;
+            if(column.order==='descending'){
+              this.listQuery.sort='desc';
+            }else {
+              this.listQuery.sort='';
+            }
+            console.log(this.listQuery.key+" "+this.listQuery.sort);
+            this.getList();
+            //console.log(JSON.stringify(column) + '-' + column.prop + '-' + column.order)
+          }
         }
     }
 </script>
