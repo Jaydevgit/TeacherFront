@@ -39,7 +39,8 @@
         <img :src="'http://47.106.132.95:2333/images/background/' + unit.backgroundUrl" :onerror="defaultBack"
              style="height: 100%;width: auto;cursor: pointer"/>
       </div>
-      <div class="font-jsgrzy" style="display: inline-block;min-width: 208px;">
+      <div v-if="titleFlag"></div>
+      <div v-else class="font-jsgrzy" style="display: inline-block;min-width: 208px;">
         <span>教师个人主页</span>
       </div>
       <div class="search bar6" v-if="dataDone && this.$route.path.indexOf('teacher')==-1">
@@ -76,9 +77,12 @@
                     backgroundUrl: ''
                 },
                 listLoading: '',
-                dataDone: false
+                dataDone: false,
             }
         },
+      props:{
+        titleFlag:'',
+      },
         created() {
             this.getUnitInfo();
         },
