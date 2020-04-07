@@ -11,7 +11,7 @@
         label-width="150px"
 
         class="card-box apply-form">
-        <div class="apply-title">教师个人主页申请</div>
+        <div class="apply-title">学院管理员申请</div>
         <el-steps :active="active" align-center>
           <el-step title="步骤1" description="填写机构信息"></el-step>
           <el-step title="步骤2" description="填写管理员信息"></el-step>
@@ -400,10 +400,10 @@
               dangerouslyUseHTMLString: true,
               confirmButtonText: '确定',
               callback: action => {
-                this.$message({
+                /*this.$message({
                   type: 'info',
                   message: `action: ${ action }`
-                });
+                });*/
               }
             });
           },
