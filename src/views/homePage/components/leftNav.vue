@@ -87,11 +87,17 @@
                     console.log("QAQ........没有找到栏目信息")
                 })
             },
-            cIdSend: function (cId, name) {
+            cIdSend: function (cId, name,modelId) {
                 this.currentCat = cId;
                 console.log("send++++" + this.currentCat);
-                if (cId == 0) name = "师资队伍";
-                this.$emit("toList", name);
+                if (cId == 0) {
+                  name = "师资队伍";
+                  modelId=3;
+                }
+                else{
+                  modelId=2;
+                }
+                this.$emit("toList", name,modelId);
                 bus.$emit("cId", this.currentCat);
             }
         },

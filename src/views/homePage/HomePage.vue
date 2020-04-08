@@ -15,13 +15,13 @@
           <div style="margin-top: -4px;" v-if="showLetterList">
             <a class="letterList" v-for="letter in Letters"   @click="jumper(letter)"><span>{{letter}}</span></a>
           </div>
-          <div class="list-style" style="margin-top: -4px;">
-            <el-button @click="defaultSort" type="info" round style="padding: inherit;margin-right: -5px;width: 70px">
-              默认排序
-            </el-button>
-            <el-button @click="showSort" type="info" round style="padding: inherit;margin-right: 5px;width: 70px">
-              姓名排序
-            </el-button>
+          <div class="list-style" style="margin-top: -4px;" v-if="detailShow!=3">
+<!--            <el-button @click="defaultSort" type="info" round style="padding: inherit;margin-right: -5px;width: 70px">-->
+<!--              默认排序-->
+<!--            </el-button>-->
+<!--            <el-button @click="showSort" type="info" round style="padding: inherit;margin-right: 5px;width: 70px">-->
+<!--              姓名排序-->
+<!--            </el-button>-->
             <i @click="simpleList" class="el-icon-menu" style="font-size:20px;margin-right: 10px;opacity: 0.7;cursor: pointer"></i>
             <i @click="detailList" class="el-icon-tickets" style="font-size:20px;margin-right: 10px;opacity: 0.7;cursor: pointer"></i>
 
@@ -56,7 +56,7 @@
                 letter: 'A',
                 showLetterList: false,
                 showSortList: false,
-                detailShow:false,
+                detailShow:3,
             }
         },
         ready() {
@@ -85,8 +85,10 @@
                     console.log("QAQ........没有找到教师信息")
                 })
             },
-            toList(name) {
-                this.componentName = "teacherList";
+            toList(name,modelId) {
+              this.detailShow=modelId;
+              console.log("detailShow"+this.detailShow);
+              this.componentName = "teacherList";
                 document.getElementsByClassName('middle-nav')[0].style.display = "flex";
                 let node = document.getElementById('middle-nav');
                 node.children[1].children[0].innerText = name;
@@ -109,14 +111,14 @@
                 this.$refs.teacherList1.getLetter(letter);
             },
             simpleList(){
-                this.detailShow=false;
+                this.detailShow=2;
                 this.showList = false;
                 this.showSortList = false;
                 this.showLetterList = false;
                 this.$refs.teacherList1.getLetter(0);//发送0过去，则恢复默认
             },
             detailList(){
-                this.detailShow=!this.detailShow;
+                this.detailShow=1;
             }
 
         },
