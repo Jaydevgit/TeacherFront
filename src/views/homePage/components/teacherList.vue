@@ -235,7 +235,7 @@
               console.log("=================aa===============")
              // this.listLoading = false;
               this.teacherListAll = data.list;
-              console.log(this.teacherListAll);
+              //console.log(this.teacherListAll);
               this.totalCount = data.totalCount;
             }).catch(error => {
               console.log("QAQ........没有找到教师列表")
@@ -260,7 +260,7 @@
               console.log("================================")
               this.listLoading = false;
               this.teacherList = data.list;
-              console.log(this.teacherList);
+             // console.log(this.teacherList);
               this.totalCount = data.totalCount;
             }).catch(error => {
               console.log("QAQ........没有找到教师列表")
