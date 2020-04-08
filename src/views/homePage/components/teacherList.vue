@@ -1,6 +1,6 @@
 <template>
   <!--两种模式：模式1 详细显示 -->
-  <div v-if="detail===true" class="teacherList-container">
+  <div v-if="detail===1" class="teacherList-container">
     <div style="float: left;position: relative;width: 100%;padding: 0px 5px;height: 100%;">
       <ul class="ul-page" style="width: 100%;">
         <li v-for="teacher in teacherList" :key="teacher.tId" class="teacherLi">
@@ -50,7 +50,7 @@
   </div>
 
   <!--两种模式：模式2 简易显示 -->
-  <div v-else class="teacherList-container2">
+  <div v-else-if="detail===2" class="teacherList-container2">
     <div style="float: left;position: relative;width: 100%;padding: 14px 5px;height: 100%;">
       <ul class="ul-page2">
         <li v-for="teacher in teacherList" :key="teacher.tId" class="teacherLi2"
@@ -75,8 +75,22 @@
       </div>
     </div>
 
-  </div>
 
+
+  </div>
+  <!--    师资只显示姓名模式-->
+  <div v-else-if="detail===3" class="teacherList-container3">
+    <div style="float: left;position: relative;width: 100%;padding: 14px 5px;height: 100%;">
+      <ul class="ul-page3" >
+        <li v-for="teacher in teacherListAll" :key="teacher.tId"
+            @click="routerTo(teacher.tId)" style="cursor: pointer;float: left;margin: 10px">
+            <span style="font-size: 16px;color: #0099CC;" class="teacherLi3">
+              {{teacher.tName}}
+            </span>
+        </li>
+      </ul>
+    </div>
+  </div>
 
 </template>
 
@@ -105,6 +119,7 @@
                 },
                 searchKey: '',
                 teacherList: [],
+              teacherListAll: [],
                 catalogueList: [],
                 teacherProfile: {},//教师数据
 
@@ -131,7 +146,8 @@
                 })
         },
         created() {
-            this.getList()
+          //  this.getList();
+            this.getListAll();
         },
         ready() {
         }
@@ -206,6 +222,25 @@
                     return "http://47.106.132.95:2333/images/avatar/" + imgName;
                 }
             },
+          getListAll(){
+            this.currentCat = 0
+            this.listQuery.unitId = this.$route.params.unitId
+            this.listLoading = true;
+            this.api({
+              url: "/homepage/listTeacherAll",
+              method: "get",
+              params: this.listQuery
+            }).then(data => {
+              console.log("查询所有教师信息为:" + data.totalUpdate)
+              console.log("=================aa===============")
+             // this.listLoading = false;
+              this.teacherListAll = data.list;
+              console.log(this.teacherListAll);
+              this.totalCount = data.totalCount;
+            }).catch(error => {
+              console.log("QAQ........没有找到教师列表")
+            })
+          },
           //此方法与下一个方法changeXXX的区别是，让页码变为1。 区别：change方法可以在任意页码跳转，下面的方法也一样
             getList() {
               this.listQuery.pageNum = 1
@@ -225,6 +260,7 @@
               console.log("================================")
               this.listLoading = false;
               this.teacherList = data.list;
+              console.log(this.teacherList);
               this.totalCount = data.totalCount;
             }).catch(error => {
               console.log("QAQ........没有找到教师列表")
@@ -366,6 +402,15 @@
     padding: 10px 5px 5px 5px;
     height: 224px;
   }
+  .teacherLi2 {
+    float: left;
+    padding: 10px 5px 5px 5px;
+    height: 224px;
+  }
+  .teacherLi3:hover{
+    padding-bottom: 2px;
+    border-bottom:  2px solid #0099CC;
+  }
 
   .bigText {
     font-size: 24px;
@@ -396,6 +441,18 @@
     align-items: center;
     height: calc(100% - 36px);
     min-height: 736px;
+    margin: 0 auto;
+    width: 100%;
+    background: #fff;
+  }
+  .teacherList-container3{
+    position: relative;
+    flex-flow: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    height: calc(100% - 36px);
+    min-height: 520px;
     margin: 0 auto;
     width: 100%;
     background: #fff;
