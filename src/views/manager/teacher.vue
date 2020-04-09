@@ -3,16 +3,25 @@
     <div class="filter-container">
       <el-form>
         <el-form-item>
-          <el-radio-group v-model="teacherState" @change="teacherStateChange">
+          <el-radio-group v-model="teacherState" @change="teacherStateChange" style="margin-top: -30px">
             <el-radio style="margin-left: 15px;"  label="1" size="small" border>在岗</el-radio>
             <el-radio  label="2" size="small" border>其他</el-radio>
           </el-radio-group>
-          <el-switch style="margin-left: 15px;"
-            v-model="flagScholat"
-            active-text="已关联学者网"
-            inactive-text="未关联学者网"
-          @change="changeScholat">
-          </el-switch>
+          <el-card style="display: inline-block;margin-left: 15px;padding: 3px 0;height: 36px;line-height: 32px" shadow="never">
+            <el-switch style="margin:0 5px 5px 5px"
+                       v-model="flagScholat"
+                       active-text="已关联学者网"
+                       inactive-text="未关联学者网"
+                       @change="changeScholat" >
+            </el-switch>
+          </el-card>
+<!--          可以通过选择(在岗/其他)，关联学者网等功能快速添加、查询、修改教师基本信息-->
+          <el-card style="display: inline-block;margin-left: 15px;padding: 3px 0;height: 36px;line-height: 36px " shadow="never">
+            <div style="margin:0 5px 15px 5px">
+              <el-tooltip class="item" effect="dark" content="可以通过选择(在岗/其他)，关联学者网等功能快速添加、查询、修改教师基本信息" placement="bottom">
+                <el-button size="small">功能提示</el-button>
+              </el-tooltip></div>
+          </el-card>
           <el-button style="float: right;margin-top: 3px;" size="small"type="primary" icon="plus" @click="showCreate" v-if="hasPerm('teacher:add')">添加
           </el-button>
           <!--          <el-button style="float: left" type="primary" icon="plus" @click="openQuery" >筛选-->
@@ -590,5 +599,8 @@
   .el-badge__content.is-dot {
     width: 15px;
     height: 15px;
+  }
+  .el-switch{
+    border: 1px !important;
   }
 </style>
