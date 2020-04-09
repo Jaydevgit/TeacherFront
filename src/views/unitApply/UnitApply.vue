@@ -96,6 +96,9 @@
                     <img :src="certificate_front_url" :onerror="cerLogo" class="certificate-img"/>
 
                   </div>
+                  <div>
+                    <el-button @click="uploadImage('front')" size="small" type="primary" style="margin-left: 50px">上传正面身份证</el-button>
+                  </div>
                 </el-form-item>
               </el-col>
               <el-col :span="10">
@@ -104,15 +107,14 @@
                   <div>
                     <img :src="certificate_back_url" :onerror="cerLogo" style="margin-left: -45px" class="certificate-img"/>
                   </div>
+                  <div>
+                    <el-button @click="uploadImage('back')" size="small" type="primary" >上传背面身份证</el-button>
+                  </div>
                 </el-form-item>
               </el-col>
               <el-col :span="4">
-                  <el-button @click="uploadImage('front')" size="small" type="primary" style="position: absolute;
-    top: 15px;
-    right: -65px;">上传正面身份证</el-button>
-                  <el-button @click="uploadImage('back')" size="small" type="primary" style="position: absolute;
-    top: 60px;
-    right: -65px;">上传背面身份证</el-button>
+
+
               </el-col>
             </el-row>
 
@@ -125,7 +127,7 @@
                 <img :src="certificate_working_url" :onerror="cerLogo" class="certificate-img"/>
                 <div class="upload-btn">
                   <el-button @click="uploadImage('working')" size="small" type="primary"
-                  style="position: absolute;left: 86px;top: -21px;">上传在职证明</el-button>
+                  style="position: absolute;left: 86px;top: 25px;">上传在职证明</el-button>
                 </div>
               </div>
 
