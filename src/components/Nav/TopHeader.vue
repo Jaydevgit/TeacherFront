@@ -31,13 +31,13 @@
     <!--两种模式：模式 2 -->
 
     <div v-else class="background2">
-      <div @click="goToCollege" style="display: inline-block;height: 100%;margin-left: 8px;width: auto;min-width: 93px">
-        <img :src="getPic" :onerror="defaultLogo" style="height: auto;width: 93px;bottom: 0;"/>
+      <div @click="goToCollege" style="display: inline-block;height: 90%;margin-left: 8px;width: auto;min-width: 93px">
+        <img :src="getPic" :onerror="defaultLogo" style="height: auto;width: 75px;bottom: 0;"/>
       </div>
       <div @click="goToCollege"
            style="height: 100%;max-width: 900px;margin-left: 14px;">
         <img :src="'http://47.106.132.95:2333/images/background/' + unit.backgroundUrl" :onerror="defaultBack"
-             style="height: 100%;width: auto;cursor: pointer"/>
+             style="height: 90%;width: auto;cursor: pointer"/>
       </div>
       <div v-if="titleFlag"></div>
       <div v-else class="font-jsgrzy" style="display: inline-block;min-width: 208px;">

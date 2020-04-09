@@ -7,6 +7,11 @@
             <el-radio style="margin-left: 15px;"  label="1" size="small" border>在岗</el-radio>
             <el-radio  label="2" size="small" border>其他</el-radio>
           </el-radio-group>
+          <el-switch style="margin-left: 15px;"
+            v-model="flagScholat"
+            active-text="已关联学者网"
+            inactive-text="未关联学者网">
+          </el-switch>
           <el-button style="float: right;margin-top: 3px;" size="small"type="primary" icon="plus" @click="showCreate" v-if="hasPerm('teacher:add')">添加
           </el-button>
           <!--          <el-button style="float: left" type="primary" icon="plus" @click="openQuery" >筛选-->
@@ -244,6 +249,7 @@
                 showRoleAssigment: false,
                 roleId: '',//角色分配id
                 teacherState:'1',//教师是否在岗
+              flagScholat:true //是否关联学者网
             }
         },
         created() {
