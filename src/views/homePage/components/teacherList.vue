@@ -82,7 +82,7 @@
   <div v-else-if="detail===3" class="teacherList-container3">
     <div style="float: left;position: relative;width: 100%;padding: 14px 5px;height: 100%;">
       <ul class="ul-page3" >
-        <li v-for="teacher in teacherListAll" :key="teacher.tId"
+        <li v-for="teacher in teacherList" :key="teacher.tId"
             @click="routerTo(teacher.tId)" style="cursor: pointer;float: left;margin: 10px">
             <span style="font-size: 16px;color: #0099CC;" class="teacherLi3">
               {{teacher.tName}}
@@ -119,13 +119,18 @@
                 },
                 searchKey: '',
                 teacherList: [],
-              teacherListAll: [],
+             // teacherListAll: [],
                 catalogueList: [],
                 teacherProfile: {},//教师数据
+              detailModel:''
 
             }
         },
-
+      watch: {
+        detail: function(newVal,oldVal){
+          this.detailModel = newVal;  //newVal即是chartData
+        }
+      },
         props: ['msgLetter','detail'],
         mounted() {
             let self = this;
@@ -137,7 +142,7 @@
                     self.getTeacherByCatalogue(self.currentCat)
                 //cId为0,指师资队伍
                 else
-                    self.getList()
+                    self.getListAll()
             }),
                 bus.$on("key", function (msg) {
                     self.searchKey = msg
@@ -146,7 +151,7 @@
                 })
         },
         created() {
-          //  this.getList();
+           // this.getList();
             this.getListAll();
         },
         ready() {
@@ -234,7 +239,7 @@
               console.log("查询所有教师信息为:" + data.totalUpdate)
               console.log("=================aa===============")
              // this.listLoading = false;
-              this.teacherListAll = data.list;
+              this.teacherList = data.list;
               //console.log(this.teacherListAll);
               this.totalCount = data.totalCount;
             }).catch(error => {
@@ -251,20 +256,23 @@
             this.listQuery.unitId = this.$route.params.unitId
             this.listLoading = true;
             console.log("### 开始查询教师成员列表")
-            this.api({
-              url: "/homepage/listTeacher",
-              method: "get",
-              params: this.listQuery
-            }).then(data => {
-              console.log("查询教师信息为:" + data.totalUpdate)
-              console.log("================================")
-              this.listLoading = false;
-              this.teacherList = data.list;
-             // console.log(this.teacherList);
-              this.totalCount = data.totalCount;
-            }).catch(error => {
-              console.log("QAQ........没有找到教师列表")
-            })
+
+                this.api({
+                  url: "/homepage/listTeacher",
+                  method: "get",
+                  params: this.listQuery
+                }).then(data => {
+                  console.log("查询教师信息为:" + data.totalUpdate)
+                  console.log("================================")
+                  this.listLoading = false;
+                  this.teacherList = data.list;
+                  // console.log(this.teacherList);
+                  this.totalCount = data.totalCount;
+                }).catch(error => {
+                  console.log("QAQ........没有找到教师列表")
+                })
+
+
           },
           getAllByLetter(){
             this.listQuery.pageNum = 1;

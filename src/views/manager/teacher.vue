@@ -10,7 +10,8 @@
           <el-switch style="margin-left: 15px;"
             v-model="flagScholat"
             active-text="已关联学者网"
-            inactive-text="未关联学者网">
+            inactive-text="未关联学者网"
+          @change="changeScholat">
           </el-switch>
           <el-button style="float: right;margin-top: 3px;" size="small"type="primary" icon="plus" @click="showCreate" v-if="hasPerm('teacher:add')">添加
           </el-button>
@@ -223,7 +224,8 @@
                     unitId: '',
                     key: '',//排序关键字
                   sort:'', //升降序标记
-                  state:1 //在岗状态
+                  state:1 ,//在岗状态
+                  scholatUsernameFlag:true,
                 },
                 currentSearch: 'false',
                 dialogStatus: 'create',
@@ -398,7 +400,7 @@
                     console.log("=================展示教师列表信息===============")
                     this.listLoading = false;
                     this.list = data.list;
-                    console.log(data.list);
+                    console.log(data);
                     this.list.forEach((v, k) => {
                         let t = v.update_time.replace(/\./g, '-').slice(0, 16);
                         v.update_time = t;
@@ -406,6 +408,7 @@
                     this.totalCount = data.totalCount;
                     this.totalUpdate = data.totalUpdate;
                     this.currentSearch = false
+                  console.log(this.totalCount+"  "+this.totalUpdate+" "+this.listQuery.pageNum);
                 }).catch(error => {
                     console.log("QAQ........没有找到教师列表")
                 })
@@ -566,6 +569,19 @@
             console.log(this.listQuery.key+" "+this.listQuery.sort);
             this.getList();
             //console.log(JSON.stringify(column) + '-' + column.prop + '-' + column.order)
+          },
+
+          //学者网关联状态改变
+          changeScholat(){
+
+            console.log(this.flagScholat);
+            if(this.flagScholat===true){
+              this.listQuery.scholatUsernameFlag=true
+            }
+            if(this.flagScholat===false){
+              this.listQuery.scholatUsernameFlag=false
+            }
+            this.getList();
           }
         }
     }
