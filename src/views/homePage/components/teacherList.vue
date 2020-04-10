@@ -83,7 +83,7 @@
     <div style="float: left;position: relative;width: 100%;padding: 14px 5px;height: 100%;">
       <ul class="ul-page3" >
         <li v-for="teacher in teacherList" :key="teacher.tId"
-            @click="routerTo(teacher.tId)" style="cursor: pointer;float: left;margin: 10px">
+            @click="routerTo(teacher.tId)" style="cursor: pointer;float: left;margin: 15px;width: 50px">
             <span style="font-size: 16px;color: #0099CC;" class="teacherLi3">
               {{teacher.tName}}
             </span>
