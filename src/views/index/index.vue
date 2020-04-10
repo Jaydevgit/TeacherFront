@@ -14,12 +14,15 @@
     font-weight: bold;
     color: rgb(123, 186, 186);">SCHOLAT+应用服务</span>
         </div>
-        <div class="nav-inner-login">
+        <div class="nav-inner-login" >
           <a href="https://www.yuque.com/vd7ii9/dvybyk/na3nsf" style="color: #fff;
     font-size: 18px;
     letter-spacing: 2px;
     cursor: pointer;
-    margin-right: 24px;">帮助文档</a>
+    margin-right: 24px;margin-top: 10px;
+    min-width: 80px;height: 30px;
+    display: table-cell;
+            vertical-align:middle">帮助文档</a>
           <el-button><a href="/login">登录/LOGIN</a></el-button>
           <el-button><a href="/unitApply">注册/REGISTER</a></el-button>
         </div>
@@ -151,6 +154,11 @@
     align-items: center;
     width: 100%;
     margin: 0 20px;
+  }
+
+  .nav-inner-login{
+    display: flex;
+    align-content: center;
   }
 
   .shuffling-img {
