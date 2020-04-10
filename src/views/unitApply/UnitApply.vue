@@ -118,8 +118,7 @@
               </el-col>
             </el-row>
 
-
-
+<!--            aaaa-->
 
             <el-form-item prop="certificate_working" label="在职证明：">
               <input type="hidden" v-model="applyForm.certificate_working"/>
