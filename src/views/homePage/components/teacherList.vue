@@ -414,6 +414,8 @@
   }
   .teacherLi2:hover{
     float: left;
+
+
     padding: 10px 5px 5px 5px;
     height: 150px;  /*224*/
     display: flex;
