@@ -33,7 +33,7 @@ export const constantRouterMap = [
     }
   },
   {
-    path: '/#/:domainName',
+    path: '/homepage/:domainName',
     name: 'homepage',
     component: HomePage,
     hidden: true,
