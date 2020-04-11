@@ -229,7 +229,7 @@
             },
           getListAll(){
             this.currentCat = 0
-            this.listQuery.unitId = this.$route.params.unitId
+            this.listQuery.unitId = this.$store.state.user.unitId
             this.listLoading = true;
             this.api({
               url: "/homepage/listTeacherAll",
@@ -253,7 +253,7 @@
             },
             changeList() {
             this.currentCat = 0
-            this.listQuery.unitId = this.$route.params.unitId
+            this.listQuery.unitId = this.$store.state.user.unitId
             this.listLoading = true;
             console.log("### 开始查询教师成员列表")
 
