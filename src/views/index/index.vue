@@ -77,7 +77,7 @@
                     </a>
                   </el-button>
                   <div class="font-1" style="margin-top: 20px;">
-                    示例:<a style="color: orange;margin-left: 15px;cursor: pointer" href="/homepage/1">华南师范大学·计算机学院</a>
+                    示例:<a style="color: orange;margin-left: 15px;cursor: pointer" href="/homepage/scnu">华南师范大学·计算机学院</a>
                   </div>
                 </div>
               </div>

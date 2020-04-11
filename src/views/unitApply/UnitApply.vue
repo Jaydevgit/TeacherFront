@@ -435,7 +435,7 @@
     /*height: 100vh;*/
     background-color: $light_gray;
     padding-top: 30px;
-    min-height: calc(100vh - 98px);
+    min-height: calc(100vh - 60px);
     padding-bottom: 30px;
     background: url(../../assets/img/bg.png);
     background-size: cover;

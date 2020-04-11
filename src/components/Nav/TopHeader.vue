@@ -16,7 +16,7 @@
        </div>
       </div>
       <div class="font-jsgrzy" style="display: inline-block;min-width: 208px;">
-        教师个人主页
+<!--        教师个人主页-->
       </div>
 
       <div class="search bar6">
@@ -31,8 +31,8 @@
     <!--两种模式：模式 2 -->
 
     <div v-else class="background2">
-      <div @click="goToCollege" style="display: inline-block;height: 90%;margin-left: 8px;width: auto;min-width: 93px">
-        <img :src="getPic" :onerror="defaultLogo" style="height: auto;width: 75px;bottom: 0;"/>
+      <div @click="goToCollege" style="display: inline-block;height: 90%;width: auto;">
+        <img :src="getPic" :onerror="defaultLogo" style="height: 100%;width: auto;bottom: 0;"/>
       </div>
       <div @click="goToCollege"
            style="height: 100%;max-width: 900px;margin-left: 14px;">
@@ -41,7 +41,7 @@
       </div>
       <div v-if="titleFlag"></div>
       <div v-else class="font-jsgrzy" style="display: inline-block;min-width: 208px;">
-        <span>教师个人主页</span>
+<!--        <span>教师个人主页</span>-->
       </div>
       <div class="search bar6" v-if="dataDone && this.$route.path.indexOf('teacher')==-1">
         <div class="formDiv" style="min-width:200px;float: right">
@@ -209,7 +209,7 @@
     padding: 0px 0px 5px 0px;
     width: 100%;
     height: 100%;
-    max-width: 1400px;
+    max-width: 960px;
     text-align: center;
     margin: auto;
     display: flex;
@@ -221,7 +221,7 @@
     width: 100%;
     height: 100%;
     background-color: #f1f2f6;
-    max-width: 1400px;
+    max-width: 960px;
     text-align: center;
     margin: auto;
     display: flex;
@@ -335,9 +335,9 @@
 
   .top-container {
     width: 100%;
-    height: 98px;
+    height: 60px;
     background: #f1f2f6;
-    min-width: 980px;
+    min-width: 960px;
     background-color: #f1f2f6;
     /*background: url('../../assets/img/home.png') no-repeat;*/
     /*background-size: cover;*/

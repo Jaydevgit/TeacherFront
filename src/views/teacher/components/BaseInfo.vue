@@ -37,7 +37,7 @@
                 </div>
               </div>
             </div>
-            <div class="name-right-bg" style="width:300px;float: right;height:310px;margin-top: -90px"></div>
+            <div class="name-right-bg" style="float: right;height:310px;margin-top: -90px"></div>
             <div class="name-bottom">
               <div v-if="teacherProfile.label" style="margin-bottom: 10px;">
                 <span class="personal-describe">{{teacherProfile.label}}</span>
@@ -159,12 +159,10 @@
     }
 
     .personal-info {
-
-
       position: relative;
       width: 100%;
       height: auto;
-      min-width: 767px;
+      /*min-width: 767px;*/
       .left {
 
         display: flex;
@@ -302,9 +300,6 @@
       background-color: #99a9bf;
       background-image: none;
       color: #000;
-    }
-    @media screen and (max-width:1400px){
-
     }
     .show-persona{
       position: absolute;

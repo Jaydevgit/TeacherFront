@@ -430,7 +430,7 @@
 
   .login-container {
     @include relative;
-    height: calc(100vh - 98px);
+    height: calc(100vh - 60px);
     min-width: 980px;
 /*    min-height: calc(100vh - 98px);
     max-height: calc(100vh - 50px);*/
