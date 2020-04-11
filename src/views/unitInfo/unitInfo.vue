@@ -10,6 +10,9 @@
       <el-form-item label="学校英文名称：">
         <el-input v-model="applyForm.schoolEng" disabled="" style="width: 50%"></el-input>
       </el-form-item>
+      <el-form-item label="学校域名：">
+        <el-input v-model="applyForm.domainName" disabled="" style="width: 50%"></el-input>
+      </el-form-item>
       <el-form-item label="学院名称：">
         <el-input v-model="applyForm.unitName" disabled="" style="width: 50%"></el-input>
       </el-form-item>
@@ -79,7 +82,8 @@
           logoUrl:'1',
           unitId : '',
           state : '',
-          backgroundUrl:''
+          backgroundUrl:'',
+          domainName:''
           },
         showLogo : '',
         showBack : '',
