@@ -27,7 +27,7 @@
             <el-form-item prop="school_eng" label="学校英文名称：">
               <el-input class="apply-input" v-model="applyForm.school_eng" auto-complete="off" placeholder="请输入学校英文名称"/>
             </el-form-item>
-            <el-form-item prop="domain_name" label="学院域名设置：">
+            <el-form-item prop="domain_name" label="学院域名设置：" style="color: red">
               <el-input class="apply-input" v-model="applyForm.domain_name" auto-complete="off" placeholder="请输入学院域名英文简写，用作域名，申请成功后不可修改"/>
               <!--              <div style="position: absolute;top:30px;color: red;font-size:12px;">学院英文简写，用作域名，申请成功后不可修改</div>-->
             </el-form-item>
@@ -439,6 +439,7 @@
     background: url(../../assets/img/bg.png);
     background-size: cover;
 
+
     input {
       background-color: #F4F4F4;
       border-radius: 5px;
@@ -458,7 +459,7 @@
 
     .apply-form {
       height: auto;
-      width: 1000px;
+      width: 960px;
       background-color: #ffffff;
       margin: 0 auto;
       border-radius: 5px;
