@@ -121,7 +121,7 @@
                   this.unitQuery.domainName=this.$route.params.domainName;
                     this.unitQuery.unitId = this.$route.params.unitId
                     this.api({
-                        url: "/homepage/getUnitInfo",
+                        url: "/homepage/getUnitInfo2",
                         method: "get",
                         params: this.unitQuery
                     }).then(data => {
