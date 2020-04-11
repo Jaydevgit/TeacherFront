@@ -85,9 +85,14 @@
             <el-input type="password" @keyup.enter.native="handleLogin" v-model="loginForm.password"
                       autoComplete="on" placeholder="请输入密码"></el-input>
           </el-form-item>
+          <el-form-item prop="picLyanzhengma">
+            <el-button @click="createCode"   v-model="checkCode">{{checkCode}}</el-button>
+            <el-input type="picLyanzhengma" @keyup.enter.native="handleLogin" v-model="picLyanzhengma"
+                      autoComplete="on" placeholder="请输入验证码"></el-input>
+          </el-form-item>
           <el-form-item>
 
-            <el-button type="primary" style="width:100%;" :loading="loading"  @click="visible = !visible">
+            <el-button type="primary" style="width:100%;" :loading="loading"  @click="handleLogin">
               登录
             </el-button><!--@click.native.prevent="handleLogin"-->
           </el-form-item>
@@ -95,37 +100,37 @@
         <!--<el-button type="success" style="width:100%;" @click="toUnitApply()">-->
         <!--注册-->
         <!--</el-button>-->
-        <el-popover
-          popper-class="slidingPictures"
-          ref="popover"
-          trigger="manual"
-          v-model="visible"
-          style="position: absolute;z-index: 999;margin-top: -55%;margin-left: 23%">
-          <div class="sliding-pictures">
-            <div class="vimg">
-              <canvas id="sliderBlock"></canvas>
-              <canvas id="codeImg"></canvas>
-            </div>
-            <div class="slider">
-              <div class="track" :class="{ pintuTrue: puzzle }">
-                {{ tips }}
-              </div>
-              <div class="button el-icon-s-grid" @mousedown.prevent="drag"></div>
-            </div>
-            <div class="operation">
- <span
-   title="关闭验证码"
-   @click="visible = false"
-   class="el-icon-circle-close"
- ></span>
-              <span
-                title="刷新验证码"
-                @click="canvasInit"
-                class="el-icon-refresh-left"
-              ></span>
-            </div>
-          </div>
-        </el-popover>
+<!--        <el-popover-->
+<!--          popper-class="slidingPictures"-->
+<!--          ref="popover"-->
+<!--          trigger="manual"-->
+<!--          v-model="visible"-->
+<!--          style="position: absolute;z-index: 999;margin-top: -55%;margin-left: 23%">-->
+<!--          <div class="sliding-pictures">-->
+<!--            <div class="vimg">-->
+<!--              <canvas id="sliderBlock"></canvas>-->
+<!--              <canvas id="codeImg"></canvas>-->
+<!--            </div>-->
+<!--            <div class="slider">-->
+<!--              <div class="track" :class="{ pintuTrue: puzzle }">-->
+<!--                {{ tips }}-->
+<!--              </div>-->
+<!--              <div class="button el-icon-s-grid" @mousedown.prevent="drag"></div>-->
+<!--            </div>-->
+<!--            <div class="operation">-->
+<!-- <span-->
+<!--   title="关闭验证码"-->
+<!--   @click="visible = false"-->
+<!--   class="el-icon-circle-close"-->
+<!-- ></span>-->
+<!--              <span-->
+<!--                title="刷新验证码"-->
+<!--                @click="canvasInit"-->
+<!--                class="el-icon-refresh-left"-->
+<!--              ></span>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </el-popover>-->
       </el-form>
 
     </div>
@@ -163,6 +168,8 @@
               bx: 0
           },
           puzzle: false,
+        picLyanzhengma:'',
+        checkCode:''
       }
 
     },
@@ -175,29 +182,57 @@
               }
           }
       },
+    created(){
+      this.createCode()
+    },
     methods: {
+
       handleLogin() {
-        this.$refs.loginForm.validate(valid => {
-          if (valid&&this.puzzle ) {
-            this.loading = true
-            this.loginForm.host = 'unit'
-            this.$store.dispatch('Login', this.loginForm).then(data => {
-              this.loading = false
-              if ("success" === data.result) {
-                this.$router.push({path: '/'})
-              } else {
-                this.$message.error("账号/密码错误");
-              }
-            }).catch(() => {
-              this.loading = false
-            })
-          } else {
-            return false
-          }
-        })
+       if(this.picLyanzhengma.toUpperCase() !==this.checkCode.toUpperCase() ){
+         this.$message.error('验证码输入错误，请重新输入！');
+       }else{
+          this.$refs.loginForm.validate(valid => {
+            if (valid ) {
+              this.loading = true
+              this.loginForm.host = 'unit'
+              this.$store.dispatch('Login', this.loginForm).then(data => {
+                this.loading = false
+                if ("success" === data.result) {
+                  this.$router.push({path: '/'})
+                } else {
+                  this.$message.error("账号/密码错误");
+                }
+              }).catch(() => {
+                this.loading = false
+              })
+            } else {
+              return false
+            }
+          })
+        }
       },
       toUnitApply() {
         this.$router.push({name: 'unitApply'});
+      },
+
+      // 图片验证码
+      createCode(){
+        //先清空验证码的输入
+        this.code = "";
+        this.checkCode = "";
+        this.picLyanzhengma = "";
+        //验证码的长度
+        var codeLength = 4;
+        //随机数
+        var random = new Array(0,1,2,3,4,5,6,7,8,9,'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z');
+        for(var i = 0; i < codeLength; i++) {
+          //取得随机数的索引（0~35）
+          var index = Math.floor(Math.random()*36);
+          //根据索引取得随机数加到code上
+          this.code += random[index];
+        }
+        //把code值赋给验证码
+        this.checkCode = this.code;
       },
 
         canvasInit() {
