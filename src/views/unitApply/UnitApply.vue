@@ -29,6 +29,10 @@
             <el-form-item prop="school_eng" label="学校英文名称：">
               <el-input class="apply-input" v-model="applyForm.school_eng" auto-complete="off" placeholder="请输入学校英文名称"/>
             </el-form-item>
+            <el-form-item prop="domain_name" label="学院域名设置：">
+              <el-input class="apply-input" v-model="applyForm.domain_name" auto-complete="off" placeholder="请输入学院域名英文简写，用作域名，申请成功后不可修改"/>
+              <!--              <div style="position: absolute;top:30px;color: red;font-size:12px;">学院英文简写，用作域名，申请成功后不可修改</div>-->
+            </el-form-item>
 
             <el-form-item prop="school_name" label="学院名称：">
               <el-input class="apply-input" v-model="applyForm.unit_name" auto-complete="off" placeholder="请输入学院名称"/>
@@ -242,6 +246,11 @@
                         {max: 50, message: "长度小于50字符"},
                         {validator: isEnglish, trigger: 'blur'}
                     ],
+                  domain_name: [
+                    {required: true, trigger: 'blur', message: "学校域名不能为空"},
+                    {max: 50, message: "长度小于50字符"},
+                    {validator: isEnglish, trigger: 'blur'}
+                  ],
                     certificate_front: {required: true, message: "身份证证明不能为空"},//身份证明正面
                     certificate_back: {required: true, message: "身份证证明不能为空"},//身份证明反面
                     certificate_working: {required: true, message: "在职证明不能为空"},//在职证明
@@ -341,7 +350,7 @@
                 this.$refs.cropImage.dialogVisible = true
             },
             testSetForm() {
-                /*this.applyForm.username = 'lsc',
+                this.applyForm.username = 'lsc',
                 this.applyForm.chinese_name = '连善淳',
                 this.applyForm.password = '123456',
                 this.applyForm.repassword = '123456',
@@ -351,7 +360,7 @@
                 this.applyForm.certificate_back = '',//身份证明反面
                 this.applyForm.certificate_working = '',//在职证明
                 this.applyForm.phone = '13003922029',
-                this.applyForm.email = '489572627@qq.com'*/
+                this.applyForm.email = '489572627@qq.com'
             },
             handleApply(applyForm) {
                 this.$refs['applyForm'].validate((valid) => {
