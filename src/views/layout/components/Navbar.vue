@@ -75,10 +75,12 @@ export default {
 
     },
     enterHomepage(){
+      let domainName=this.$store.state.user.domainName;
       let unitId = this.$store.state.user.unitId;
       this.$router.push(
         { name:'homepage',
-          params: { unitId:unitId }})
+          params: { domainName:domainName,
+            unitId:unitId}})
     }
   }
 }

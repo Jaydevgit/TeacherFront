@@ -10,6 +10,7 @@ const getters = {
   role: state => state.user.role, // 单位的角色权限名称
   menus: state => state.user.menus, // 单位所拥有的菜单
   permissions: state => state.user.permissions, // 单位所拥有的权限
+  domainName: state => state.user.domainName, // 单位域名
 
 
 
@@ -20,6 +21,7 @@ const getters = {
   scholatRole: state => state.scholat.role, // 学者网管理员的角色权限名称
   scholatMenus: state => state.scholat.menus, // 学者网管理员所拥有的菜单
   scholatPermissions: state => state.scholat.permissions, // 学者网管理员所拥有的权限
+  scholatDomainName: state => state.scholat.DomainName, // 学者网管理员所拥有的权限
 
   // -------------------路由---------------------
   permission_routers: state => state.permission.routers,

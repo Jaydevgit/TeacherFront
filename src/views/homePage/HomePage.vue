@@ -63,7 +63,8 @@
         },
         computed: {
             unitId: function () {
-                console.log(this.$route.params.unitId + '  aa');
+
+                console.log(this.$route.params.unitId + '  aa'+this.$route.params.domainName);
                 return this.$route.params.unitId;
             },
         },
