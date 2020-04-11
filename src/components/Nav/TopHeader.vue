@@ -66,7 +66,7 @@
                 defaultLogo: 'this.src="http://www.scholat.com/images/uni_logo/nologo.png"',
                 img: Img,
                 searchKey: '',
-                unitQuery: {unitId: ''},
+                unitQuery: {unitId: '',domainName:''},
                 defaultBack: 'this.src="http://47.106.132.95:2333/vue/img/title.png"',
                 unit: {
                     schoolName: '',
@@ -119,9 +119,11 @@
                 }
                 //是主頁
                 else {
+                 // console.log("bbbb"+this.$route.params.domainName);
+                  this.unitQuery.domainName=this.$route.params.domainName;
                     this.unitQuery.unitId = this.$route.params.unitId
                     this.api({
-                        url: "/homepage/getUnitInfo",
+                        url: "/homepage/getUnitInfo2",
                         method: "get",
                         params: this.unitQuery
                     }).then(data => {
@@ -129,6 +131,10 @@
                         console.log("================================")
                         this.listLoading = false;
                         this.unit = data;
+                   //   console.log("cccc"+JSON.stringify(data));
+                      this.$store.state.user.unitId=data.unitId
+                     console.log("dddddd"+this.$route.params.unitId+"vvv"+this.$store.state.user.unitId);
+                      this.unitQuery.unitId=data.unitId
                         this.dataDone = true;
                     }).catch(error => {
                         console.log("QAQ........没有找到学院信息")

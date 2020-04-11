@@ -57,17 +57,25 @@
                 showLetterList: false,
                 showSortList: false,
                 detailShow:3,
+              NavName:'师资队伍'
             }
         },
         ready() {
         },
+
         computed: {
             unitId: function () {
 
-                console.log(this.$route.params.unitId + '  aa'+this.$route.params.domainName);
-                return this.$route.params.unitId;
+                //console.log(this.$route.params.unitId + '  aa'+this.$route.params.domainName);
+                return this.$store.state.user.unitId;
             },
         },
+      mounted(){
+          // if(this.unitId){
+          //   this.changeToTeacherInfo()
+          //
+          // }
+      },
         methods: {
             changeToTeacherInfo(id) {
                 console.log("### 开始查询教师的个人信息")
@@ -87,6 +95,7 @@
                 })
             },
             toList(name,modelId) {
+              console.log("qqqq"+name+this.detailShow);
               this.detailShow=modelId;
               console.log("detailShow"+this.detailShow);
               this.componentName = "teacherList";

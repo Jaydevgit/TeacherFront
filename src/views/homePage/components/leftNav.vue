@@ -55,18 +55,26 @@
             return {
                 //变量
                 isActive: '',
-                currentCat: '',
+                currentCat: 0,
                 listLoading: false,//数据加载等待动画
                 catalogueList: [],
             }
         },
         props: ['unitId','sendName','sendSubName'],
+      watch:{
+        unitId:function (newValue) {
+          console.log(newValue+"4564654");
+          this.cIdSend()
+          this.getCatalogues()
+        },
+      },
         created() {
+          this.cIdSend()
             this.getCatalogues()
         },
-        ready() {
-        }
-        ,
+        mounted() {
+          this.cIdSend()
+        },
         computed: {
             currentUnitId: function () {
                 return this.unitId;
@@ -87,9 +95,9 @@
                     console.log("QAQ........没有找到栏目信息")
                 })
             },
-            cIdSend: function (cId, name,modelId) {
-                this.currentCat = cId;
-                console.log("send++++" + this.currentCat);
+            cIdSend: function (cId=0, name,modelId) {
+              this.currentCat=cId
+                console.log("send++++" + this.currentCat+modelId);
                 if (cId == 0) {
                   name = "师资队伍";
                   modelId=3;
