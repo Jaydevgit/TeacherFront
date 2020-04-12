@@ -52,7 +52,7 @@
   <!--两种模式：模式2 简易显示 -->
   <div v-else-if="detail===2" class="teacherList-container2">
     <div style="float: left;position: relative;width: 100%;padding: 14px 5px;height: 100%;">
-      <ul class="ul-page2">
+      <ul class="ul-page2" style="display: flex;justify-content: center;flex-wrap: wrap">
         <li v-for="teacher in teacherList" :key="teacher.tId" class="teacherLi2"
             @click="routerTo(teacher.tId)" style="cursor: pointer">
           <img style="cursor: pointer" :src="getImgUrl(teacher.tAvatar)" :onerror="defaultImage" class="list-img" >
