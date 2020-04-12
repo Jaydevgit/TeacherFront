@@ -48,6 +48,10 @@
             <div style="margin-top: 38px;" v-if="ruleForm.qrcode">
               <img :src="'http://www.scholat.com/'+ruleForm.qrcode" style="width: 120px;height: 120px;">
             </div>
+
+            <el-form-item label="域名设定" prop="domain_name" style="margin-top: 60px;">
+              <el-input v-model="ruleForm.domain_name"  style="margin-left: -50px" ></el-input>
+            </el-form-item>
           </div>
 
         </el-col>
@@ -326,6 +330,7 @@
     import cropAvatarImage from './cropAvatarImage'
     import Editor from 'wangeditor'
     import {filterXSS} from 'xss'
+    import Pinyin from '@/utils/pinyin'
 
     export default {
         name: "modifyTeacherPage",
@@ -349,6 +354,15 @@
                 this.routePage = 'modify';
             }
         },
+      watch:{
+        // 'ruleForm.username':function(newVal,oldVal){
+        //   if(newVal!==oldVal){
+        //     this.ruleForm.domain_name=Pinyin.chineseToPinYin(newVal);
+        //     console.log(">>>>"+this.ruleForm.domain_name);
+        //   }
+        // }
+
+      },
         mounted() {
             var teacherid = this.GetUrlRelativePath_id()
             console.log("教師id為:" + teacherid)
@@ -488,6 +502,21 @@
                 })
 
             };
+            var validatedomainName=(rule, value, callback) => {
+                console.log(".......进入到验证信息部分, 输入部分为:" + rule.field + " 输入值为: " + value)
+                this.axios.post('/api/manager/judgeDomainExist', {
+                  domain_name: value
+                }).then(res => {
+                  if (res.data === 0) {
+                    callback()
+                  } else {
+                    return callback(new Error("该域名已存在"))
+                  }
+                }).catch(err => {
+                  callback(new Error("该域名已被使用"))
+                })
+
+            }
             var checkPhone = (rule, value, callback) => {
                 const reg = /^\d+-*\d+$/g;
                 if (value == '') {
@@ -565,7 +594,8 @@
                     views: '0', // 访问量
                     scholat_username: '', // 学者网用户名
                     scholat_update_time: '', // 学者网更新日期
-                    unit_id: ''// 单位编号
+                    unit_id: '',// 单位编号
+                  domain_name:''//域名
                 },
 
                 rules: {
@@ -580,6 +610,10 @@
                         {validator: validateEmail, required: true, message: '该邮箱已存在', trigger: 'blur'},
                         {required: true, type: 'email', message: '请输入正确的邮箱地址', trigger: ['blur', 'change']}
                     ],
+                  domain_name: [
+                    {validator: validatedomainName, required: true, message: '该域名已存在', trigger: ['blur' ]},
+                    {required: true,  message: '请输入正确的域名地址', trigger: ['blur', 'change',]}
+                  ],
                     phone: [
                         {validator: checkPhone, trigger: 'blur'}
                     ],
@@ -746,6 +780,7 @@
                 this.ruleForm.scholat_username = filterXSS(data.scholat_username); // 学者网用户名
                 this.ruleForm.scholat_update_time = filterXSS(data.scholat_update_time); // 学者网更新日期
                 this.ruleForm.unit_id = filterXSS(this.$store.state.user.unitId);// 单位编号
+              this.ruleForm.domain_name = filterXSS(data.domain_name); // 姓名
             },
             // 本页面最开始的会调用的函数,获取教师信息
             getTeacherInfoById(teacherId) {
@@ -952,7 +987,7 @@
                 }
                 console.log(this.ruleForm);
                 this.setTeacherInfo(this.ruleForm);
-                console.log("提交----------------------表单信息为: ")
+                console.log("提交----------------------表单信息为: "+JSON.stringify(this.ruleForm)+">>>>>>>>>>")
                 console.log(this.ruleForm)
                 // 待做 : 实现scholat关联
                 // 创建新教师成员
@@ -1016,7 +1051,8 @@
                  var time = str.slice(0, 10) + " " + str.slice(11, 19);*/
                 let time = new Date();
                 this.ruleForm.create_time = time.format('yyyy-MM-dd h:m:s');
-                console.log("................................." + this.ruleForm)
+               // this.ruleForm.domain_name=Pinyin.chineseToPinYin(this.ruleForm.username)
+                console.log("................................." + JSON.stringify(this.ruleForm)+">>>>>>>>>>")
                 // 创建新教师成员
                 this.api({
                     url: "/manager/updateTeacher",
