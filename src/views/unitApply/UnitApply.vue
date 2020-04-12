@@ -241,14 +241,14 @@
                     }],
                     unit_name: [{required: true, trigger: 'blur', message: "学院名称不能为空"}, {max: 30, message: "长度小于30字符"}],
                     school_eng: [
-                        {required: true, trigger: 'blur', message: "学校英文名称不能为空"},
-                        {max: 50, message: "长度小于50字符"},
-                        {validator: isEnglish, trigger: 'blur'}
+                        // {required: true, trigger: 'blur', message: "学校英文名称不能为空"},
+                        // {max: 50, message: "长度小于50字符"},
+                        // {validator: isEnglish, trigger: 'blur'}
                     ],
                     unit_eng: [
-                        {required: true, trigger: 'blur', message: "学院英文名称不能为空"},
-                        {max: 50, message: "长度小于50字符"},
-                        {validator: isEnglish, trigger: 'blur'}
+                        // {required: true, trigger: 'blur', message: "学院英文名称不能为空"},
+                        // {max: 50, message: "长度小于50字符"},
+                        // {validator: isEnglish, trigger: 'blur'}
                     ],
                   domain_name: [
                     {required: true, trigger: 'blur', message: "学校域名不能为空"},
@@ -402,8 +402,8 @@
                     this.$message.error("提交失败");
                 })
             },
-            next() {
-                if (this.applyForm.school_name.length != 0 & this.applyForm.school_eng.length != 0 & this.applyForm.unit_name.length != 0 & this.applyForm.unit_eng.length != 0) {
+            next() {//& this.applyForm.unit_eng.length != 0& this.applyForm.school_eng.length != 0
+                if (this.applyForm.school_name.length != 0  & this.applyForm.unit_name.length != 0 & this.applyForm.domain_name.length!=0 ) {
                     if (this.active++ > 2) this.active = 0;
                     console.log(this.applyForm.school_name)
                 } else {

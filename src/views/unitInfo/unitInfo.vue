@@ -8,7 +8,7 @@
         <el-input v-model="applyForm.schoolName" disabled="" style="width: 50%"></el-input>
       </el-form-item>
       <el-form-item label="学校英文名称：">
-        <el-input v-model="applyForm.schoolEng" disabled="" style="width: 50%"></el-input>
+        <el-input v-model="applyForm.schoolEng"  style="width: 50%"></el-input>
       </el-form-item>
       <el-form-item label="学校域名：">
         <el-input v-model="applyForm.domainName" disabled="" style="width: 50%"></el-input>
@@ -17,7 +17,7 @@
         <el-input v-model="applyForm.unitName" disabled="" style="width: 50%"></el-input>
       </el-form-item>
       <el-form-item label="学院英文名称：">
-        <el-input v-model="applyForm.unitEng" disabled="" style="width: 50%"></el-input>
+        <el-input v-model="applyForm.unitEng"  style="width: 50%"></el-input>
       </el-form-item>
       <el-form-item label="学院链接：" prop="collegeUrl">
         <el-input v-model="applyForm.collegeUrl" style="width: 50%"></el-input>
