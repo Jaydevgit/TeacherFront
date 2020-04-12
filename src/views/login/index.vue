@@ -74,13 +74,13 @@
         <div class="input-row">
           <el-form-item prop="username">
         <span class="svg-container svg-container_login">
-          <svg-icon icon-class="user"/>
+         账号 <svg-icon icon-class="user"/>
         </span>
             <el-input v-model="loginForm.username" autoComplete="on" placeholder="请输入用户名"/>
           </el-form-item>
           <el-form-item prop="password">
-        <span class="svg-container">
-          <svg-icon icon-class="password"></svg-icon>
+        <span class="svg-container ">
+            <span style="font-size: 20px;margin-right: 5px">密码</span><svg-icon icon-class="password"/>
         </span>
             <el-input type="password" @keyup.enter.native="handleLogin" v-model="loginForm.password"
                       autoComplete="on" placeholder="请输入密码"></el-input>
@@ -92,8 +92,11 @@
 <!--          </el-form-item>-->
 
           <el-form-item prop="Codes" >
+            <span class="svg-container svg-container_login">
+         验证码
+        </span>
             <s-identify :identifyCode="identifyCode" @click.native="newCode" style=" cursor:pointer;width:80px;height:43px;display: inline-block;float: right;margin-top: 2px"></s-identify>
-            <el-input type="Codes" @keyup.enter.native="handleLogin" v-model="picLyanzhengma"
+            <el-input style="width: 380px" type="Codes" @keyup.enter.native="handleLogin" v-model="picLyanzhengma"
                       autoComplete="on" placeholder="请输入右侧验证码"></el-input>
           </el-form-item>
 
@@ -497,7 +500,7 @@
     .el-input {
       display: inline-block;
       height: 47px;
-      width: 85%;
+      width: 470px;
     }
 
     .tips {
@@ -510,7 +513,7 @@
       padding: 6px 5px 6px 15px;
       color: $dark_gray;
       vertical-align: middle;
-      width: 30px;
+      width: 90px;
       display: inline-block;
 
       &_login {
