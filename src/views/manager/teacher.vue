@@ -122,11 +122,11 @@
         </template>
       </el-table-column>
 
-<!--            <el-table-column fixed="right" align="center" label="教师分配" width="110">-->
-<!--              <template slot-scope="scope">-->
-<!--                <el-button type="primary" icon="el-icon-star-off" circle @click="openAssignment(scope.row.id)"></el-button>-->
-<!--              </template>-->
-<!--            </el-table-column>-->
+            <el-table-column fixed="right" align="center" label="教师分配" width="110">
+              <template slot-scope="scope">
+                <el-button type="primary" icon="el-icon-star-off" circle @click="openAssignment(scope.row.id)"></el-button>
+              </template>
+            </el-table-column>
       <el-table-column fixed="right" align="center" label="管理" width="200" v-if="hasPerm('teacher:update')">
         <template slot-scope="scope">
           <template v-if="scope.row.scholat_update_time > scope.row.update_time">
