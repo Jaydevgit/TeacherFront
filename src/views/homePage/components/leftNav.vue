@@ -17,7 +17,7 @@
                         v-if="Object.keys(item.subCatalogueList).length!=0"
                         :key="'cId'+item.id" :index="flag+3 +''">
 
-              <div slot="title" @click="cIdSend(item.id,item.name)" >
+              <div slot="title"  >
                 <i class="el-icon-menu"></i>
                 <span class="parentCatalogue">{{item.name}}</span>
               </div>
