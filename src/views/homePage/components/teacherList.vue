@@ -56,7 +56,7 @@
         <li v-for="teacher in teacherList" :key="teacher.tId" class="teacherLi2"
             @click="routerTo(teacher.tId)" style="cursor: pointer">
           <img style="cursor: pointer" :src="getImgUrl(teacher.tAvatar)" :onerror="defaultImage" class="list-img" >
-          <div style="width: 130px;text-align: center;padding-top: 10px;">
+          <div style="width: 150px;text-align: center;padding-top: 40px">
             <div style="font-size: 16px;font-weight: bold;padding: 0px 0px 10px 0px;">
               {{teacher.tName}}
             </div>
@@ -64,7 +64,7 @@
           </div>
         </li>
       </ul>
-      <div v-if="totalCount >21" style="clear: both;text-align:center;width: 100%;margin-bottom: 18px;position: absolute;bottom: 0;">
+      <div v-if="totalCount >16" style="clear: both;text-align:center;width: 100%;margin-bottom: 18px;position: absolute;bottom: 0;">
         <el-pagination style=""
                        @current-change="handleCurrentChange"
                        :current-page="listQuery.pageNum"
@@ -83,8 +83,8 @@
     <div style="float: left;position: relative;width: 100%;padding: 14px 5px;height: 100%;">
       <ul class="ul-page3" >
         <li v-for="teacher in teacherList" :key="teacher.tId"
-            @click="routerTo(teacher.tId)" style="cursor: pointer;float: left;margin: 15px;width: 100px;padding-left: 30px">
-            <span style="font-size: 16px;color: #0099CC;" class="teacherLi3">
+            @click="routerTo(teacher.tId)" style="cursor: pointer;float: left;margin: 15px;width: 150px;padding-left: 60px">
+            <span style="font-size: 16px;color: #0099CC;letter-spacing: 3px" class="teacherLi3">
               {{teacher.tName}}
             </span>
         </li>
@@ -111,7 +111,7 @@
                 flag: 0,// 0：默认显示目录，1：字母显示目录
                 listQuery: {
                     pageNum: 1,//页码
-                    pageRow: 21,//每页条数
+                    pageRow: 16,//每页条数
                     unitId: '',
                     cId: '',
                     key: '',
@@ -408,12 +408,21 @@
   .teacherLi2 {
     float: left;
     padding: 10px 5px 5px 5px;
-    height: 224px;
+    height: 150px;  /*224*/
+    display: flex;
+    margin: 0 10px 10px 10px;
   }
-  .teacherLi2 {
+  .teacherLi2:hover{
     float: left;
+
+
     padding: 10px 5px 5px 5px;
-    height: 224px;
+    height: 150px;  /*224*/
+    display: flex;
+    margin: 0 10px 10px 10px;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+    transition: box-shadow 0.5s;
+    background-color: #F7F7F7;
   }
   .teacherLi3:hover{
     padding-bottom: 2px;
