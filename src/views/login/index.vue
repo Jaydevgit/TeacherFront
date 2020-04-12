@@ -74,22 +74,32 @@
         <div class="input-row">
           <el-form-item prop="username">
         <span class="svg-container svg-container_login">
-          <svg-icon icon-class="user"/>
+         账号 <svg-icon icon-class="user"/>
         </span>
             <el-input v-model="loginForm.username" autoComplete="on" placeholder="请输入用户名"/>
           </el-form-item>
           <el-form-item prop="password">
-        <span class="svg-container">
-          <svg-icon icon-class="password"></svg-icon>
+        <span class="svg-container ">
+            <span style="font-size: 20px;margin-right: 5px">密码</span><svg-icon icon-class="password"/>
         </span>
             <el-input type="password" @keyup.enter.native="handleLogin" v-model="loginForm.password"
                       autoComplete="on" placeholder="请输入密码"></el-input>
           </el-form-item>
-          <el-form-item prop="picLyanzhengma">
-            <el-button @click="createCode"   v-model="checkCode">{{checkCode}}</el-button>
-            <el-input type="picLyanzhengma" @keyup.enter.native="handleLogin" v-model="picLyanzhengma"
-                      autoComplete="on" placeholder="请输入验证码"></el-input>
+<!--          <el-form-item prop="picLyanzhengma">-->
+<!--            <el-button @click="createCode"   v-model="checkCode">{{checkCode}}</el-button>-->
+<!--            <el-input type="picLyanzhengma" @keyup.enter.native="handleLogin" v-model="picLyanzhengma"-->
+<!--                      autoComplete="on" placeholder="请输入验证码"></el-input>-->
+<!--          </el-form-item>-->
+
+          <el-form-item prop="Codes" >
+            <span class="svg-container svg-container_login">
+         验证码
+        </span>
+            <s-identify :identifyCode="identifyCode" @click.native="newCode" style=" cursor:pointer;width:80px;height:43px;display: inline-block;float: right;margin-top: 2px"></s-identify>
+            <el-input style="width: 380px" type="Codes" @keyup.enter.native="handleLogin" v-model="picLyanzhengma"
+                      autoComplete="on" placeholder="请输入右侧验证码"></el-input>
           </el-form-item>
+
           <el-form-item>
 
             <el-button type="primary" style="width:100%;" :loading="loading"  @click="handleLogin">
@@ -141,6 +151,7 @@
   import logo from '@/assets/img/logo.png'
   // import canvas from "@/assets/js/canvas.js"
   import bg from '@/assets/img/bg.png'
+  import SIdentify from '@/components/Identify'
 
   export default {
     name: 'login',
@@ -169,10 +180,13 @@
           },
           puzzle: false,
         picLyanzhengma:'',
-        checkCode:''
+        checkCode:'',
+        identifyCode:"",
+        identifyCodes:"1234567890"
       }
 
     },
+    components:{SIdentify},
       watch: {
           visible(e) {
               if (e === true) {
@@ -182,13 +196,34 @@
               }
           }
       },
+    mounted(){
+      this.identifyCode = "";
+  this.makeCode(this.identifyCodes, 4);
+    },
     created(){
       this.createCode()
     },
     methods: {
+      newCode(){
+        this.refreshCode()
+      },
+      randomNum(min, max) {
+        return Math.floor(Math.random() * (max - min) + min);
+      },
+      refreshCode() {
+        this.identifyCode = "";
+        this.makeCode(this.identifyCodes, 4);
+      },
+      makeCode(o, l) {
+        for (let i = 0; i < l; i++) {
+          this.identifyCode += this.identifyCodes[
+            this.randomNum(0, this.identifyCodes.length)
+            ];
+        }
+      },
 
       handleLogin() {
-       if(this.picLyanzhengma.toUpperCase() !==this.checkCode.toUpperCase() ){
+       if(this.picLyanzhengma.toUpperCase() !==this.identifyCode.toUpperCase() ){
          this.$message.error('验证码输入错误，请重新输入！');
        }else{
           this.$refs.loginForm.validate(valid => {
@@ -434,7 +469,7 @@
     min-width: 980px;
 /*    min-height: calc(100vh - 98px);
     max-height: calc(100vh - 50px);*/
-    margin-top: 100px;
+
     /*background-color: #f1f1f1;*/
     /*background-color: #d4d5d6;*/
     background-image: url(../../assets/img/bg.png);
@@ -465,7 +500,7 @@
     .el-input {
       display: inline-block;
       height: 47px;
-      width: 85%;
+      width: 470px;
     }
 
     .tips {
@@ -478,7 +513,7 @@
       padding: 6px 5px 6px 15px;
       color: $dark_gray;
       vertical-align: middle;
-      width: 30px;
+      width: 90px;
       display: inline-block;
 
       &_login {
@@ -517,7 +552,7 @@
       }
 
       .input-row {
-        height: 220px;
+        height: 300px;
         background: white;
         padding: 14px;
         border-radius: 0 0 15px 15px;

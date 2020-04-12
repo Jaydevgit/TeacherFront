@@ -4,23 +4,23 @@
     <div style="float: left;position: relative;width: 100%;padding: 0px 5px;height: 100%;">
       <ul class="ul-page" style="width: 100%;">
         <li v-for="teacher in teacherList" :key="teacher.tId" class="teacherLi">
-          <el-row  :gutter="10" style="height: 90px;">
-            <el-col :span="6"><div class="grid-content bg-purple" @click="routerTo(teacher.tId)" style="cursor: pointer; overflow: hidden;text-overflow: ellipsis;">
-              <img :src="getImgUrl(teacher.tAvatar)" :onerror="defaultImage" class="list-img" style="float: left;width: 80px;height: 80px">
-              <div style="width: 210px;text-align: center;padding-top: 10px;">
-                <div style="font-size: 16px;font-weight: bold;padding: 0px 0px 10px 0px;">
+          <el-row  :gutter="10" style="height: 60px;padding-top: 15px">
+            <el-col :span="7"><div class="grid-content bg-purple" @click="routerTo(teacher.tId)" style="cursor: pointer; overflow: hidden;text-overflow: ellipsis;padding-left: 60px;">
+              <!--<img :src="getImgUrl(teacher.tAvatar)" :onerror="defaultImage" class="list-img" style="float: left;width: 80px;height: 80px">-->
+              <div style="width: 210px;padding-top: 10px;display: flex">
+                <div style="width: 100px;font-size: 16px;font-weight: bold;padding: 0px 0px 10px 0px;">
                   {{teacher.tName}}
                 </div>
-                <div class="smallText">{{teacher.tPost}}</div>
+                <div class="smallText" style="">{{teacher.tPost}}</div>
               </div>
             </div></el-col>
-            <el-col :span="6"><div class="grid-content bg-purple" style="font-size: medium;overflow: hidden;text-overflow: ellipsis;height: 90px">
+            <el-col :span="8"><div class="grid-content bg-purple" style="font-size: medium;overflow: hidden;text-overflow: ellipsis;height: 90px">
               <div v-if="!!teacher.tEmail" style="margin: 12px 0 12px 0"><i class="el-icon-message"></i> 邮箱 : {{teacher.tEmail}}</div>
               <div v-if="!!teacher.tWork_place" style="margin: 12px 0 12px 0"><i class="el-icon-location-outline"></i> 办公地点 : {{teacher.tWork_place}}</div>
             </div></el-col>
             <el-col :span="5"><div class="grid-content bg-purple" style="font-size:medium;height: 90px">
             <div v-if="!!teacher.tDegree" style="margin: 12px 0 12px 0">学历 : {{teacher.tDegree}}</div>
-            <div v-if="!!teacher.tDepartment_name" style="margin: 12px 0 12px 0">所在部门 : {{teacher.tDepartment_name}}</div>
+            <!--<div v-if="!!teacher.tDepartment_name" style="margin: 12px 0 12px 0">所在部门 : {{teacher.tDepartment_name}}</div>-->
           </div></el-col>
             <el-col :span="4"><div class="grid-content bg-purple" style="font-size:large;height: 90px;overflow: hidden;text-overflow: ellipsis;">
               <div style="margin-top: 10px;" v-if="teacher.tScholat_username">
@@ -32,7 +32,7 @@
 
             </div></el-col>
             <el-col :span="3"><div class="grid-content bg-purple" style="font-size:medium;height: 90px">
-              <div style="width: 70px;height: 70px;margin-top: 10px;"><img :src="'http://www.scholat.com/'+teacher.tQrcode" v-if="teacher.tQrcode" style="border-radius: 5px;"/></div>
+              <div style="width: 70px;height: 70px;margin-top: 10px;"><!--<img :src="'http://www.scholat.com/'+teacher.tQrcode" v-if="teacher.tQrcode" style="border-radius: 5px;"/>--></div>
             </div></el-col>
           </el-row>
         </li>
@@ -83,8 +83,8 @@
     <div style="float: left;position: relative;width: 100%;padding: 14px 5px;height: 100%;">
       <ul class="ul-page3" >
         <li v-for="teacher in teacherList" :key="teacher.tId"
-            @click="routerTo(teacher.tId)" style="cursor: pointer;float: left;margin: 15px;width: 100px;padding-left: 30px">
-            <span style="font-size: 16px;color: #0099CC;" class="teacherLi3">
+            @click="routerTo(teacher.tId)" style="cursor: pointer;float: left;margin: 15px;width: 150px;padding-left: 60px">
+            <span style="font-size: 16px;color: #0099CC;letter-spacing: 3px" class="teacherLi3">
               {{teacher.tName}}
             </span>
         </li>
@@ -402,8 +402,9 @@
   .teacherLi {
     float: left;
     padding: 5px 5px 0px 5px;
-    height: 90px;
+    height: 60px;
     min-width: calc(100% - 36px);
+    border-bottom: thin solid #EAEAEA;
   }
   .teacherLi2 {
     float: left;
