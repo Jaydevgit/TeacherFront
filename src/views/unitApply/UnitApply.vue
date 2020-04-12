@@ -28,7 +28,7 @@
               <el-input class="apply-input" v-model="applyForm.school_eng" auto-complete="off" placeholder="请输入学校英文名称"/>
             </el-form-item>
             <el-form-item prop="domain_name" label="学院域名设置：" style="color: red">
-              <el-input class="apply-input" v-model="applyForm.domain_name" auto-complete="off" placeholder="请输入学院域名英文简写，用作域名，申请成功后不可修改"/>
+              <el-input class="apply-input" v-model.trim="applyForm.domain_name" auto-complete="off" placeholder="请输入学院域名英文简写，用作域名，申请成功后不可修改" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')"/>
               <!--              <div style="position: absolute;top:30px;color: red;font-size:12px;">学院英文简写，用作域名，申请成功后不可修改</div>-->
             </el-form-item>
 
