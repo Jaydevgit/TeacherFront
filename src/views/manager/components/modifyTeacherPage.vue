@@ -49,7 +49,7 @@
               <img :src="'http://www.scholat.com/'+ruleForm.qrcode" style="width: 120px;height: 120px;">
             </div>
 
-            <el-form-item label="域名设定" prop="domain_name" style="margin-top: 60px;">
+            <el-form-item label="域名设定" prop="domain_name" style="margin-top: 40px;">
               <el-input v-model="ruleForm.domain_name"  style="margin-left: -50px" ></el-input>
             </el-form-item>
           </div>
@@ -361,6 +361,7 @@
             console.log(">>>>"+this.ruleForm.domain_name);
           }
         }
+
       },
         mounted() {
             var teacherid = this.GetUrlRelativePath_id()
@@ -506,13 +507,15 @@
                 this.axios.post('/api/manager/judgeDomainExist', {
                   domain_name: value
                 }).then(res => {
-                  if (res.data === 0) {
+                  console.log(res);
+                  console.log(res.data[0].id+"===="+this.GetUrlRelativePath_id());
+                  if ((res.data[0].flag === 1 && res.data[0].id===parseInt(this. GetUrlRelativePath_id()))||res.data[0].flag === 0) {
                     callback()
                   } else {
                     return callback(new Error("该域名已存在"))
                   }
                 }).catch(err => {
-                  callback(new Error("该域名已被使用"))
+                  callback(new Error("网络请求有误"))
                 })
 
             }
