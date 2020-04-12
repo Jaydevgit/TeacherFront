@@ -355,13 +355,12 @@
             }
         },
       watch:{
-        // 'ruleForm.username':function(newVal,oldVal){
-        //   if(newVal!==oldVal){
-        //     this.ruleForm.domain_name=Pinyin.chineseToPinYin(newVal);
-        //     console.log(">>>>"+this.ruleForm.domain_name);
-        //   }
-        // }
-
+        'ruleForm.username':function(newVal,oldVal){
+          if(newVal!==oldVal){
+            this.ruleForm.domain_name=Pinyin.chineseToPinYin(newVal);
+            console.log(">>>>"+this.ruleForm.domain_name);
+          }
+        }
       },
         mounted() {
             var teacherid = this.GetUrlRelativePath_id()
@@ -611,7 +610,7 @@
                         {required: true, type: 'email', message: '请输入正确的邮箱地址', trigger: ['blur', 'change']}
                     ],
                   domain_name: [
-                    {validator: validatedomainName, required: true, message: '该域名已存在', trigger: ['blur' ]},
+                    {validator: validatedomainName, required: true, message: '该域名已存在', trigger: ['change' ]},
                     {required: true,  message: '请输入正确的域名地址', trigger: ['blur', 'change',]}
                   ],
                     phone: [
