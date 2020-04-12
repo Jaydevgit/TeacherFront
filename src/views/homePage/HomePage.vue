@@ -147,7 +147,7 @@
   @import '../../assets/css/base.css';
 
   .middle-container {
-    max-width: 1400px;
+    max-width: 1000px;
     margin: 0 auto;
     height: 100%;
     width: 100%;

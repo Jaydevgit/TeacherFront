@@ -207,7 +207,7 @@
     padding: 0px 0px 5px 0px;
     width: 100%;
     height: 100%;
-    max-width: 1400px;
+    max-width: 1000px;
     text-align: center;
     margin: auto;
     display: flex;
@@ -219,7 +219,7 @@
     width: 100%;
     height: 100%;
     background-color: #f1f2f6;
-    max-width: 1400px;
+    max-width: 1000px;
     text-align: center;
     margin: auto;
     display: flex;
