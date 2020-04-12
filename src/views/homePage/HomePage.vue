@@ -152,11 +152,10 @@
     height: 100%;
     width: 100%;
     display: flex;
-    padding: 6px;
   }
 
   .left {
-    width: 21%;
+    width: 25%;
   }
 
   .middle {
@@ -192,13 +191,6 @@
   }
 
 
-  @media screen and (max-width: 1200px) {
-    .middle-container {
-      max-width: 980px;
-    }
-  }
-
-
   .dynamic-page {
     border-radius: 0 0 8px 8px;
   }
@@ -207,7 +199,7 @@
     background-color: #1f2d3d;
     background: url("../../assets/img/bg.png");
     width: 100%;
-    min-width: 980px;
+    min-width: 1000px;
     height: 100%;
     min-height: calc(100vh - 60px);
   }

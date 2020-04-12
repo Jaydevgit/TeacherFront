@@ -7,21 +7,20 @@
           <el-row  :gutter="10" style="height: 60px;padding-top: 15px;min-width: 758px">
             <el-col :span="6"><div class="grid-content bg-purple" @click="routerTo(teacher.tId)" style="cursor: pointer; overflow: hidden;text-overflow: ellipsis;padding-left: 10px;">
               <!--<img :src="getImgUrl(teacher.tAvatar)" :onerror="defaultImage" class="list-img" style="float: left;width: 80px;height: 80px">-->
-              <div style="width: 150px;padding-top: 10px;display: flex">
+              <div style="padding-top: 10px;display: flex">
                 <div style="width: 75px;font-size: 16px;font-weight: bold;padding: 0px 0px 10px 0px;">
                   {{teacher.tName}}
                 </div>
                 <div class="smallText" style="font-size: small">{{teacher.tPost}}</div>
               </div>
             </div></el-col>
-            <el-col :span="8"><div class="grid-content bg-purple" style="font-size: small;overflow: hidden;text-overflow: ellipsis;height: 90px;min-width: 280px">
-              <div v-if="!!teacher.tEmail" style="margin: 12px 0 12px 0"><i class="el-icon-message"></i> 邮箱 : {{teacher.tEmail}}</div>
-              <!--<div v-if="!!teacher.tWork_place" style="margin: 12px 0 12px 0"><i class="el-icon-location-outline"></i> 办公地点 : {{teacher.tWork_place}}</div>-->
-            </div></el-col>
+
             <el-col :span="5"><div class="grid-content bg-purple" style="font-size:medium;height: 90px;margin-left: 2px">
-            <div v-if="!!teacher.tDegree" style="margin: 12px 0 12px 0">学历 : {{teacher.tDegree}}</div>
-            <!--<div v-if="!!teacher.tDepartment_name" style="margin: 12px 0 12px 0">所在部门 : {{teacher.tDepartment_name}}</div>-->
+              <div v-if="!!teacher.tDegree" style="margin: 12px 0 12px 0">{{teacher.tDegree}}</div>
           </div></el-col>
+            <el-col :span="8"><div class="grid-content bg-purple" style="font-size: small;overflow: hidden;text-overflow: ellipsis;height: 90px;min-width: 280px">
+              <div v-if="!!teacher.tEmail" style="margin: 12px 0 12px 0">{{teacher.tEmail}}</div>
+            </div></el-col>
             <el-col :span="4"><div class="grid-content bg-purple" style="font-size:large;height: 90px;overflow: hidden;text-overflow: ellipsis;">
               <div style="margin-top: 10px;" v-if="teacher.tScholat_username">
                 <span><svg-icon icon-class="S"/></span>
@@ -31,9 +30,9 @@
               </div>
 
             </div></el-col>
-            <el-col :span="3"><div class="grid-content bg-purple" style="font-size:medium;height: 90px">
-              <div style="width: 70px;height: 70px;margin-top: 10px;"><!--<img :src="'http://www.scholat.com/'+teacher.tQrcode" v-if="teacher.tQrcode" style="border-radius: 5px;"/>--></div>
-            </div></el-col>
+            <el-col :span="3">
+
+            </el-col>
           </el-row>
         </li>
       </ul>

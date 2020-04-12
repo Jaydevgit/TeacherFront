@@ -31,7 +31,7 @@
     <!--两种模式：模式 2 -->
 
     <div v-else class="background2">
-      <div @click="goToCollege" style="display: inline-block;height: 90%;margin-left: 8px;width: auto;">
+      <div @click="goToCollege" style="display: inline-block;height: 90%;width: auto;">
         <img :src="getPic" :onerror="defaultLogo" style="height:100%;width:auto;bottom: 0;"/>
       </div>
       <div @click="goToCollege"
@@ -226,15 +226,6 @@
     align-items: center;
   }
 
-  @media screen and (max-width: 1200px) {
-    .background2 {
-      max-width: 980px;
-    }
-
-    .background {
-      max-width: 980px;
-    }
-  }
 
 
   /*@media screen and  (max-width: 1200px) {*/

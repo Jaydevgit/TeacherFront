@@ -468,11 +468,6 @@
     @include relative;
     height: calc(100vh - 60px);
     min-width: 980px;
-/*    min-height: calc(100vh - 98px);
-    max-height: calc(100vh - 50px);*/
-
-    /*background-color: #f1f1f1;*/
-    /*background-color: #d4d5d6;*/
     background-image: url(../../assets/img/bg.png);
     background-size: cover;
     margin: 0 auto;

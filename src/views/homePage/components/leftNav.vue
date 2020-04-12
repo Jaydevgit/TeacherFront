@@ -22,7 +22,7 @@
                 <span class="parentCatalogue">{{item.name}}</span>
               </div>
 
-              <el-menu-item-group>
+              <el-menu-item-group style="margin-top: -14px;">
                 <el-menu-item
                   v-for="(sub, index) in item.subCatalogueList" :key="'subId'+sub.id" :index="flag + 3 + '-'+ index"
                   @click="cIdSend(sub.id,sub.name)">
