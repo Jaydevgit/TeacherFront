@@ -550,7 +550,6 @@
     margin: auto;
     border-radius: 50%;
     width: 100px;
-    height: 100px;
     border: 3px solid #efefef;
     background-color: #f5f5f5;
   }

@@ -15,7 +15,7 @@
          <span class="unitName" style="color:steelblue;font-weight: bold;">{{unit.unitName}}</span>
        </div>
       </div>
-      <div class="font-jsgrzy" style="display: inline-block;min-width: 208px;">
+      <div class="font-jsgrzy" style="display: inline-block;min-width: 180px;">
         教师个人主页
       </div>
 
@@ -32,7 +32,7 @@
 
     <div v-else class="background2">
       <div @click="goToCollege" style="display: inline-block;height: 90%;margin-left: 8px;width: auto;min-width: 93px">
-        <img :src="getPic" :onerror="defaultLogo" style="height: auto;width: 75px;bottom: 0;"/>
+        <img :src="getPic" :onerror="defaultLogo" style="height:100%;width:auto;bottom: 0;"/>
       </div>
       <div @click="goToCollege"
            style="height: 100%;max-width: 900px;margin-left: 14px;">
@@ -40,7 +40,7 @@
              style="height: 90%;width: auto;cursor: pointer"/>
       </div>
       <div v-if="titleFlag"></div>
-      <div v-else class="font-jsgrzy" style="display: inline-block;min-width: 208px;">
+      <div v-else class="font-jsgrzy" style="display: inline-block;min-width: 180px;">
         <span>教师个人主页</span>
       </div>
       <div class="search bar6" v-if="dataDone && this.$route.path.indexOf('teacher')==-1">
@@ -333,7 +333,7 @@
 
   .top-container {
     width: 100%;
-    height: 98px;
+    height: 60px;
     background: #f1f2f6;
     min-width: 980px;
     background-color: #f1f2f6;
@@ -345,10 +345,9 @@
     font-family: '等线 Light';
     font-weight: bold;
     letter-spacing: 3.5px;
-    line-height: 98px;
-    font-size: 30px;
+    line-height: 60px;
+    font-size: 22px;
     color: steelblue;
     white-space: nowrap;
-    margin-left: 18px;
   }
 </style>
