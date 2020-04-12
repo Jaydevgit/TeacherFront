@@ -49,7 +49,7 @@
               <img :src="'http://www.scholat.com/'+ruleForm.qrcode" style="width: 120px;height: 120px;">
             </div>
 
-            <el-form-item label="域名设定" prop="domain_name" style="margin-top: 60px;">
+            <el-form-item label="域名设定" prop="domain_name" style="margin-top: 40px;">
               <el-input v-model="ruleForm.domain_name"  style="margin-left: -50px" ></el-input>
             </el-form-item>
           </div>
@@ -355,12 +355,12 @@
             }
         },
       watch:{
-        // 'ruleForm.username':function(newVal,oldVal){
-        //   if(newVal!==oldVal){
-        //     this.ruleForm.domain_name=Pinyin.chineseToPinYin(newVal);
-        //     console.log(">>>>"+this.ruleForm.domain_name);
-        //   }
-        // }
+        'ruleForm.username':function(newVal,oldVal){
+          if(newVal!==oldVal){
+            this.ruleForm.domain_name=Pinyin.chineseToPinYin(newVal);
+            console.log(">>>>"+this.ruleForm.domain_name);
+          }
+        }
 
       },
         mounted() {
@@ -507,13 +507,15 @@
                 this.axios.post('/api/manager/judgeDomainExist', {
                   domain_name: value
                 }).then(res => {
-                  if (res.data === 0) {
+                  console.log(res);
+                  console.log(res.data[0].id+"===="+this.GetUrlRelativePath_id());
+                  if ((res.data[0].flag === 1 && res.data[0].id===parseInt(this. GetUrlRelativePath_id()))||res.data[0].flag === 0) {
                     callback()
                   } else {
                     return callback(new Error("该域名已存在"))
                   }
                 }).catch(err => {
-                  callback(new Error("该域名已被使用"))
+                  callback(new Error("网络请求有误"))
                 })
 
             }
@@ -611,7 +613,7 @@
                         {required: true, type: 'email', message: '请输入正确的邮箱地址', trigger: ['blur', 'change']}
                     ],
                   domain_name: [
-                    {validator: validatedomainName, required: true, message: '该域名已存在', trigger: ['blur' ]},
+                    {validator: validatedomainName, required: true, message: '该域名已存在', trigger: ['change' ]},
                     {required: true,  message: '请输入正确的域名地址', trigger: ['blur', 'change',]}
                   ],
                     phone: [
