@@ -464,6 +464,7 @@
   }
 
   .login-container {
+
     @include relative;
     height: calc(100vh - 60px);
     min-width: 980px;
@@ -533,7 +534,7 @@
       width: 100%;
       max-width:600px;
       margin: auto;
-      transform: translate(0, 38%);
+      transform: translate(0, 24%);
       background-color: #fff;
       border-radius: 15px;
       box-shadow: 0 0 7px 1px #c5c5c5;

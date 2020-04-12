@@ -4,21 +4,21 @@
     <div style="float: left;position: relative;width: 100%;padding: 0px 5px;height: 100%;">
       <ul class="ul-page" style="width: 100%;">
         <li v-for="teacher in teacherList" :key="teacher.tId" class="teacherLi">
-          <el-row  :gutter="10" style="height: 60px;padding-top: 15px">
-            <el-col :span="7"><div class="grid-content bg-purple" @click="routerTo(teacher.tId)" style="cursor: pointer; overflow: hidden;text-overflow: ellipsis;padding-left: 60px;">
+          <el-row  :gutter="10" style="height: 60px;padding-top: 15px;min-width: 758px">
+            <el-col :span="6"><div class="grid-content bg-purple" @click="routerTo(teacher.tId)" style="cursor: pointer; overflow: hidden;text-overflow: ellipsis;padding-left: 10px;">
               <!--<img :src="getImgUrl(teacher.tAvatar)" :onerror="defaultImage" class="list-img" style="float: left;width: 80px;height: 80px">-->
-              <div style="width: 210px;padding-top: 10px;display: flex">
-                <div style="width: 100px;font-size: 16px;font-weight: bold;padding: 0px 0px 10px 0px;">
+              <div style="width: 150px;padding-top: 10px;display: flex">
+                <div style="width: 75px;font-size: 16px;font-weight: bold;padding: 0px 0px 10px 0px;">
                   {{teacher.tName}}
                 </div>
-                <div class="smallText" style="">{{teacher.tPost}}</div>
+                <div class="smallText" style="font-size: small">{{teacher.tPost}}</div>
               </div>
             </div></el-col>
-            <el-col :span="8"><div class="grid-content bg-purple" style="font-size: medium;overflow: hidden;text-overflow: ellipsis;height: 90px">
+            <el-col :span="8"><div class="grid-content bg-purple" style="font-size: small;overflow: hidden;text-overflow: ellipsis;height: 90px;min-width: 280px">
               <div v-if="!!teacher.tEmail" style="margin: 12px 0 12px 0"><i class="el-icon-message"></i> 邮箱 : {{teacher.tEmail}}</div>
-              <div v-if="!!teacher.tWork_place" style="margin: 12px 0 12px 0"><i class="el-icon-location-outline"></i> 办公地点 : {{teacher.tWork_place}}</div>
+              <!--<div v-if="!!teacher.tWork_place" style="margin: 12px 0 12px 0"><i class="el-icon-location-outline"></i> 办公地点 : {{teacher.tWork_place}}</div>-->
             </div></el-col>
-            <el-col :span="5"><div class="grid-content bg-purple" style="font-size:medium;height: 90px">
+            <el-col :span="5"><div class="grid-content bg-purple" style="font-size:medium;height: 90px;margin-left: 2px">
             <div v-if="!!teacher.tDegree" style="margin: 12px 0 12px 0">学历 : {{teacher.tDegree}}</div>
             <!--<div v-if="!!teacher.tDepartment_name" style="margin: 12px 0 12px 0">所在部门 : {{teacher.tDepartment_name}}</div>-->
           </div></el-col>
@@ -64,7 +64,7 @@
           </div>
         </li>
       </ul>
-      <div v-if="totalCount >16" style="clear: both;text-align:center;width: 100%;margin-bottom: 18px;position: absolute;bottom: 0;">
+      <div v-if="totalCount >12" style="clear: both;text-align:center;width: 100%;margin-bottom: 18px;position: absolute;bottom: 0;">
         <el-pagination style=""
                        @current-change="handleCurrentChange"
                        :current-page="listQuery.pageNum"
@@ -83,7 +83,7 @@
     <div style="float: left;position: relative;width: 100%;padding: 14px 5px;height: 100%;">
       <ul class="ul-page3" >
         <li v-for="teacher in teacherList" :key="teacher.tId"
-            @click="routerTo(teacher.tId)" style="cursor: pointer;float: left;margin: 15px;width: 150px;padding-left: 60px">
+            @click="routerTo(teacher.tId)" style="cursor: pointer;float: left;margin: 15px;width: 95px;padding-left: 30px">
             <span style="font-size: 16px;color: #0099CC;letter-spacing: 3px" class="teacherLi3">
               {{teacher.tName}}
             </span>
@@ -111,7 +111,7 @@
                 flag: 0,// 0：默认显示目录，1：字母显示目录
                 listQuery: {
                     pageNum: 1,//页码
-                    pageRow: 16,//每页条数
+                    pageRow: 12,//每页条数
                     unitId: '',
                     cId: '',
                     key: '',
@@ -410,6 +410,7 @@
     float: left;
     padding: 10px 5px 5px 5px;
     height: 150px;  /*224*/
+    width: 220px;
     display: flex;
     margin: 0 10px 10px 10px;
   }
