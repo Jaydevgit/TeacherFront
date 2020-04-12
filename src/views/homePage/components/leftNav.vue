@@ -234,6 +234,7 @@
 
   .parentCatalogue {
     font-size: 16px;
+    letter-spacing: 3px;
   }
 
 
