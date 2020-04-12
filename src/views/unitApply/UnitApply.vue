@@ -382,14 +382,21 @@
                     method: 'post',
                     data: this.applyForm
                 }).then(data => {
-                    if (data.exist == null) {
-                        this.$message.success("提交成功");
-                        this.applyForm.password = ""
-                        this.applyForm.repassword = ""
-                    } else {
-                        this.$message.error("该学院已发起过申请");
-                        this.applyForm.password = ""
-                        this.applyForm.repassword = ""
+                  console.log("+++++++"+JSON.stringify(data));
+                  if (data.exist != null) {
+
+                      this.applyForm.password = ""
+                      this.applyForm.repassword = ""
+                   return  this.$message.error("该学院已发起过申请,请重新申请");
+
+                    } else if(data.existName!=null){
+
+                      this.applyForm.username = ""
+                    return this.$message.error("该用户名已存在,请重新申请");
+                    }else {
+                      this.$message.success("提交成功");
+                      this.applyForm.password = ""
+                      this.applyForm.repassword = ""
                     }
                 }).catch(e => {
                     this.$message.error("提交失败");
