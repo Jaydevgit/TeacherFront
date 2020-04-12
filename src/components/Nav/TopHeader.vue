@@ -31,7 +31,7 @@
     <!--两种模式：模式 2 -->
 
     <div v-else class="background2">
-      <div @click="goToCollege" style="display: inline-block;height: 90%;margin-left: 8px;width: auto;min-width: 93px">
+      <div @click="goToCollege" style="display: inline-block;height: 90%;margin-left: 8px;width: auto;">
         <img :src="getPic" :onerror="defaultLogo" style="height:100%;width:auto;bottom: 0;"/>
       </div>
       <div @click="goToCollege"
