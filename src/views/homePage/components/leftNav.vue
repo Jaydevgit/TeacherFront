@@ -25,7 +25,7 @@
               <el-menu-item-group style="margin-top: -14px;">
                 <el-menu-item
                   v-for="(sub, index) in item.subCatalogueList" :key="'subId'+sub.id" :index="flag + 3 + '-'+ index"
-                  @click="cIdSend(sub.id,sub.name)">
+                  @click="cIdSend(sub.id,sub.name)" style="padding: 0;padding-left: 12px">
                   <span class="subcatalogueName">{{sub.name}}</span>
                 </el-menu-item>
 
