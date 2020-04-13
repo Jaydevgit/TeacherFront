@@ -1,14 +1,14 @@
 <template>
   <!--两种模式：模式1 详细显示 -->
   <div v-if="detail===1" class="teacherList-container">
-    <div style="float: left;position: relative;width: 100%;padding: 0px 5px;height: 100%;">
+    <div style="float: left;position: relative;width: 100%;padding: 0 5px;height: 100%;">
       <ul class="ul-page" style="width: 100%;">
         <li v-for="teacher in teacherList" :key="teacher.tId" class="teacherLi">
           <el-row  :gutter="10" style="height: 60px;padding-top: 15px;min-width: 758px">
             <el-col :span="6"><div class="grid-content bg-purple" @click="routerTo(teacher.tId)" style="cursor: pointer; overflow: hidden;text-overflow: ellipsis;padding-left: 10px;">
               <!--<img :src="getImgUrl(teacher.tAvatar)" :onerror="defaultImage" class="list-img" style="float: left;width: 80px;height: 80px">-->
               <div style="width: 150px;padding-top: 10px;display: flex">
-                <div style="width: 75px;font-size: 16px;font-weight: bold;padding: 0px 0px 10px 0px;">
+                <div style="width: 75px;font-size: 16px;font-weight: bold;padding: 0 0 10px 0;">
                   {{teacher.tName}}
                 </div>
                 <div class="smallText" style="font-size: small">{{teacher.tPost}}</div>
@@ -57,7 +57,7 @@
             @click="routerTo(teacher.tId)" style="cursor: pointer">
           <img style="cursor: pointer" :src="getImgUrl(teacher.tAvatar)" :onerror="defaultImage" class="list-img" >
           <div style="width: 150px;text-align: center;padding-top: 40px">
-            <div style="font-size: 16px;font-weight: bold;padding: 0px 0px 10px 0px;">
+            <div style="font-size: 16px;font-weight: bold;padding: 0 0 10px 0;">
               {{teacher.tName}}
             </div>
             <div class="smallText">{{teacher.tPost}}</div>
@@ -122,13 +122,14 @@
              // teacherListAll: [],
                 catalogueList: [],
                 teacherProfile: {},//教师数据
-              detailModel:''
-
+                detailModel:'',
+                isSendSuccessful:false
             }
         },
       watch: {
         detail: function(newVal,oldVal){
           this.detailModel = newVal;  //newVal即是chartData
+          console.log("teacherList的watch检测到detail变化")
         }
       },
         props: ['msgLetter','detail'],
@@ -143,11 +144,11 @@
                 //cId为0,指师资队伍
                 else
                     self.getListAll()
-            }),
+            });
                 bus.$on("key", function (msg) {
-                    self.searchKey = msg
-                    console.log("key++++" + msg)
-                    self.searchTeacher()
+                    self.searchKey = msg;
+                    console.log("key++++" + msg);
+                    self.searchTeacher();
                 })
         },
         created() {
@@ -173,7 +174,8 @@
                 else {
                   this.listQuery.letter = 'A';
                   this.flag = 0;
-                  this.getTeacherByCatalogue(this.currentCat)
+                  this.getTeacherByCatalogue(this.currentCat);
+                  console.log("--------执行了methons内的getLetter的getTeacherByCatalogue方法------------");
                 }
               }
               //letter不为0 跳到字母
@@ -237,7 +239,7 @@
               params: this.listQuery
             }).then(data => {
               console.log("查询所有教师信息为:" + data.totalUpdate)
-              console.log("=================aa===============")
+              console.log("=================getListAll===============")
              // this.listLoading = false;
               this.teacherList = data.list;
               //console.log(this.teacherListAll);
@@ -263,7 +265,7 @@
                   params: this.listQuery
                 }).then(data => {
                   console.log("查询教师信息为:" + data.totalUpdate)
-                  console.log("================================")
+                  console.log("==================getList方法==============")
                   this.listLoading = false;
                   this.teacherList = data.list;
                   // console.log(this.teacherList);
@@ -289,7 +291,7 @@
               params: this.listQuery
             }).then(data => {
               console.log("查询教师信息为:" + data.totalUpdate)
-              console.log("================================")
+              console.log("================getAllByLetter方法================")
               this.listLoading = false;
               this.teacherList = data.list;
               this.totalCount = data.totalCount;
@@ -301,7 +303,8 @@
             getTeacherByCatalogue(cId) {
 
                 this.listQuery.pageNum = 1
-                this.changeTeacherByCatalogue(cId)
+                this.changeTeacherByCatalogue(cId);
+                console.log("===============getTeacherByCatalogue=================")
             },
             changeTeacherByCatalogue(cId) {
                 this.currentCat = cId
@@ -314,13 +317,16 @@
                     params: this.listQuery
                 }).then(data => {
                     console.log("查询教师信息为:" + JSON.stringify(data))
-                    console.log("================================")
+                    console.log("===============changeTeacherByCatalogue=================")
                     this.listLoading = false;
                     this.teacherList = data.list;
                     this.totalCount = data.totalCount;
+                    this.isSendSuccessful=true;
+                    this.$emit("detailShow",2);
+                    console.log("emit***********************");
                 }).catch(error => {
                     console.log("QAQ........没有找到教师列表")
-                })
+                });
             },
           //此方法与下一个方法changeXXX的区别是，让页码变为1。 区别：change方法可以在任意页码跳转，下面的方法也一样
           getTeacherByLetter(cId) {
@@ -339,7 +345,7 @@
               params: this.listQuery
             }).then(data => {
               console.log("查询教师信息为:" + JSON.stringify(data))
-              console.log("================================")
+              console.log("================getTeacherByLetter================")
               this.listLoading = false;
               this.teacherList = data.list;
               this.totalCount = data.totalCount;
@@ -388,7 +394,7 @@
 
   .newsLi {
     height: 76px;
-    padding: 5px 5px 5px 0px;
+    padding: 5px 5px 5px 0;
   }
 
   .is-active {
@@ -401,7 +407,7 @@
   }
   .teacherLi {
     float: left;
-    padding: 5px 5px 0px 5px;
+    padding: 5px 5px 0 5px;
     height: 60px;
     min-width: calc(100% - 36px);
     border-bottom: thin solid #EAEAEA;
@@ -434,7 +440,7 @@
   .bigText {
     font-size: 24px;
     font-weight: bold;
-    padding: 5px 10px 5px 0px;
+    padding: 5px 10px 5px 0;
   }
 
   .smallText {

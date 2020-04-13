@@ -88,7 +88,7 @@
                     params: {unitId: this.currentUnitId}
                 }).then(data => {
                     console.log("this.$route.params.unitId is " + this.currentUnitId);
-                    console.log(JSON.stringify(data))
+                    console.log(JSON.stringify(data));
                     this.catalogueList = data.list;
 
                 }).catch(error => {
@@ -96,7 +96,7 @@
                 })
             },
             cIdSend: function (cId=0, name,modelId) {
-              this.currentCat=cId
+              this.currentCat=cId;
                 console.log("send++++" + this.currentCat+modelId);
                 if (cId == 0) {
                   name = "师资队伍";
