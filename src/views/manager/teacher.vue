@@ -377,6 +377,7 @@
                 let routeData = this.$router.resolve({
                     name: 'teacherPersonlHomePage',
                     params: {
+                      domainName:this.$store.state.user.domainName,
                         id: teacher.id
                     }
                 });

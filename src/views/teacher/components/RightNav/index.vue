@@ -27,7 +27,7 @@
         },
         created() {
             this._getAllTeachers();
-            this.listQuery.tId = this.$route.path.split('/')[2];
+            this.listQuery.tId = this.$route.path.split('/')[3];
         },
         components: {
             relateTeacher
