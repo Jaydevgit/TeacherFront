@@ -597,7 +597,8 @@
                     scholat_username: '', // 学者网用户名
                     scholat_update_time: '', // 学者网更新日期
                     unit_id: '',// 单位编号
-                  domain_name:''//域名
+                  domain_name:'',//域名
+                  edit_name:'',//编辑用户名
                 },
 
                 rules: {
@@ -782,7 +783,8 @@
                 this.ruleForm.scholat_username = filterXSS(data.scholat_username); // 学者网用户名
                 this.ruleForm.scholat_update_time = filterXSS(data.scholat_update_time); // 学者网更新日期
                 this.ruleForm.unit_id = filterXSS(this.$store.state.user.unitId);// 单位编号
-              this.ruleForm.domain_name = filterXSS(data.domain_name); // 姓名
+              this.ruleForm.domain_name = filterXSS(data.domain_name); // 域名
+              this.ruleForm.edit_name = filterXSS(this.$store.state.user.nickname); // 姓名
             },
             // 本页面最开始的会调用的函数,获取教师信息
             getTeacherInfoById(teacherId) {
@@ -1054,7 +1056,7 @@
                 let time = new Date();
                 this.ruleForm.create_time = time.format('yyyy-MM-dd h:m:s');
                // this.ruleForm.domain_name=Pinyin.chineseToPinYin(this.ruleForm.username)
-                console.log("................................." + JSON.stringify(this.ruleForm)+">>>>>>>>>>")
+                console.log("................................." + JSON.stringify(this.ruleForm)+">>>>>>>>>>"+this.ruleForm.edit_name)
                 // 创建新教师成员
                 this.api({
                     url: "/manager/updateTeacher",
