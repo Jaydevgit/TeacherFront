@@ -70,8 +70,8 @@
           <el-input type="password" v-model="tempUser.password" placeholder="不填则表示不修改">
           </el-input>
         </el-form-item>
-        <el-form-item label="角色" required>
-          <el-select v-model="tempUser.roleId" placeholder="请选择">
+        <el-form-item label="角色" required style="width: 420px">
+          <el-select v-model="tempUser.roleId" :disabled="roles.length===0" :placeholder="roleMessage" style="float: left;width: 220px;">
             <el-option
               v-for="item in roles"
               :key="item.roleId"
@@ -79,6 +79,8 @@
               :value="item.roleId">
             </el-option>
           </el-select>
+          <el-button v-if="roles.length===0" type="success" @click="addRole" style="float: left;margin-left: 10px">添加角色</el-button>
+          <span v-if="roles.length===0" style="color: red;float: left;">暂无权限角色，请先添加</span>
         </el-form-item>
         <el-form-item label="昵称" required>
           <el-input type="text" v-model="tempUser.nickname">
@@ -122,14 +124,18 @@
           userId: '',
           unitId:''
         },
-        adminName: '高级管理员'
+        adminName: '高级管理员',
+        roleIf:'',
+        roleMessage:'请选择'
       }
     },
+
     created() {
       this.getList();
       if (this.hasPerm('user:add') || this.hasPerm('user:update')) {
         this.getRolesByUnitId();
       }
+
     },
     computed: {
       ...mapGetters([
@@ -137,6 +143,9 @@
       ])
     },
     methods: {
+      addRole(){
+        this.$router.push("/user/role");
+      },
       getRolesByUnitId() {
 
         this.listQuery.unitId= this.$store.state.user.unitId;
