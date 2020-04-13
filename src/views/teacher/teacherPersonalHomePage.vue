@@ -53,10 +53,11 @@
       GetUrlRelativePath_id(){
         var url = document.location.toString();
         var arrUrl = url.split("//");
-
-        var start = arrUrl[1].indexOf("teacher/");
-        var relUrl_id = arrUrl[1].substring(start+8);//stop省略，截取从start开始到结尾的所有字符
-
+        var domainUrl=this.$store.state.user.domainName
+        var start = arrUrl[1].indexOf(domainUrl+"/");
+       // console.log("&&&&-----&&&&"+start+"==="+arrUrl[1]);
+        var relUrl_id = arrUrl[1].substring(start+5);//stop省略，截取从start开始到结尾的所有字符
+      //  console.log("&&&&-----"+relUrl_id);
         if(relUrl_id.indexOf("?") != -1){
           relUrl_id = relUrl_id.split("?")[0];
         }

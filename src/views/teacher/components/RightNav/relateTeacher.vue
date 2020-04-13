@@ -32,6 +32,7 @@
           this.$router.push({
             name: 'teacherPersonlHomePage',
             params: {
+              domainName:this.$store.state.user.domainName,
               id: tId,
             }
           })

@@ -53,7 +53,7 @@ export const constantRouterMap = [
     }
   },
   {
-    path: '/teacher/:id',
+    path: '/teacher/:domainName/:id',
     component: teacherPersonalHomePage,
     name: 'teacherPersonlHomePage',
     meta: {

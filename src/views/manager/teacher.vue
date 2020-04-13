@@ -101,6 +101,7 @@
       <el-table-column align="center" label="更新时间" width="170" sortable='custom' prop="update_time">
         <template slot-scope="scope">
           <span>{{scope.row.update_time}}</span>
+          <div style="margin-top: 7px;"><el-tag v-if="scope.row.editName" type="success" effect="plain" >编辑者:{{ scope.row.editName }} </el-tag></div>
         </template>
       </el-table-column>
       <el-table-column align="center" label="学者网关联">
@@ -376,6 +377,7 @@
                 let routeData = this.$router.resolve({
                     name: 'teacherPersonlHomePage',
                     params: {
+                      domainName:this.$store.state.user.domainName,
                         id: teacher.id
                     }
                 });
