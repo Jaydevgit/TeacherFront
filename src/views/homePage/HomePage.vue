@@ -15,7 +15,7 @@
           <div style="margin-top: -4px;" v-if="showLetterList">
             <a class="letterList" v-for="letter in Letters"   @click="jumper(letter)"><span>{{letter}}</span></a>
           </div>
-          <div class="list-style" style="margin-top: -4px;" v-if="detailShow!=3">
+          <div class="list-style" style="margin-top: -4px;" v-if="detailShow!=3" @detailShow="detailShowChange">
 <!--            <el-button @click="defaultSort" type="info" round style="padding: inherit;margin-right: -5px;width: 70px">-->
 <!--              默认排序-->
 <!--            </el-button>-->
@@ -28,7 +28,7 @@
           </div>
         </div>
         <component :is="componentName" @toInfo="changeToTeacherInfo" class="dynamic-page"
-                   :teacherProfile="teacherProfile" :msgLetter="letter" :showList="showSortList" :detail="detailShow"
+                   :teacherProfile="teacherProfile" :msgLetter="letter" :showList="showSortList" :detail="detailShow" @detailShow="detailShowChange"
                    ref="teacherList1"></component>
       </div>
 
@@ -43,7 +43,7 @@
     import LeftNav from './components/leftNav'
     import RightNav from './components/RightNav/index'
     import TeacherInfo from '../teacher/components/BaseInfo'
-
+    import bus from '../../utils/eventBus'
 
     export default {
 
@@ -96,12 +96,15 @@
             },
             toList(name,modelId) {
               console.log("qqqq"+name+this.detailShow);
-              this.detailShow=modelId;
+              /*this.detailShow=modelId;*/
               console.log("detailShow"+this.detailShow);
               this.componentName = "teacherList";
-                document.getElementsByClassName('middle-nav')[0].style.display = "flex";
-                let node = document.getElementById('middle-nav');
-                node.children[1].children[0].innerText = name;
+              document.getElementsByClassName('middle-nav')[0].style.display = "flex";
+              let node = document.getElementById('middle-nav');
+              node.children[1].children[0].innerText = name;
+            },
+            detailShowChange(){
+              this.detailShow=2;
             },
             defaultSort() {
 
