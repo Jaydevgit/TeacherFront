@@ -155,7 +155,8 @@
           nickname: '',
           roleId: '',
           userId: '',
-          unitId:''
+          unitId:'',
+          domainName:'',
         },
         userRules:{
           username: [
@@ -208,6 +209,7 @@
         }).then(data => {
           this.listLoading = false;
           this.list = data.list;
+          console.log("======list"+JSON.stringify(this.list));
           this.totalCount = data.totalCount;
         })
       },
@@ -253,7 +255,8 @@
       },
       createUser() {
         //添加新用户
-
+        this.tempUser.domainName=this.$store.state.user.domainName
+        console.log("===this.tempUser.domainName==="+this.tempUser.domainName);
         this.tempUser.unitId= this.$store.state.user.unitId;
         console.log("加密后的密码为："+this.md5(this.tempUser.password+this.salt));
         this.tempUser.password = this.md5(this.tempUser.password+this.salt);
