@@ -75,7 +75,7 @@
             </el-button>
             <el-form-item prop="username" label="用户名：">
               <el-input class="apply-input" v-model="applyForm.username" auto-complete="off"
-                        placeholder="请输入您的用户名（全英文）"/>
+                        placeholder="请输入您的用户名（支持数字、下划线_和英文）"/>
             </el-form-item>
 
             <el-form-item prop="chinese_name" label="管理员姓名：">
@@ -169,22 +169,36 @@
     export default {
         name: "UnitApply",
         data() {
-            var validateUserName = (rule, value, callback) => {
-                console.log("申请表.......进入到验证信息部分, 输入部分为:" + rule.field + " 输入值为: " + value)
-                this.axios.post('/api/scholat/apply/validate', {
-                    username: this.applyForm.username,
-                }).then(res => {
-                    console.log(res)
-                    if (res.data.info.exist == null) {
-                        // 说明没有找到同名的username
-                        callback()
-                    } else {
-                        callback(new Error("该用户名已存在,请重新输入")) // 不填入信息的话表示正确返回
+          var validateUserName = (rule, value, callback) => {
+            let _self = this;
+            if (!value) {
+              return callback(new Error('请正确填写用户名'));
+            } else {
+              if (value !== '') {
+                var pattern = /^[0-9a-zA-Z_]{1,}$/;
+                if (!pattern.test(value)) {
+                  return callback(new Error("请输入有效的用户名(支持数字、下划线_和英文)"));
+                } else {
+                  this.api({
+                    url: '/register/judgeUserNameExist',
+                    method: 'post',
+                    data: {
+                      "username": value
                     }
-                }).catch(err => {
-                    console.log(err)
-                    callback(new Error("该用户名已存在,请重新输入")) // 不填入信息的话表示正确返回
-                })
+                  }).then(res => {
+                    // console.log("=====" + JSON.stringify(res));
+                    if (res.UserName === true) {
+                      console.log("该用户名已注册");
+                      _self.ifCollegeDomainExist = false;
+                      return callback(new Error("该用户名已注册"));
+                    } else {
+                      _self.ifCollegeDomainExist = true;
+                      return callback();
+                    }
+                  }).catch();
+                }
+              }
+            }
             };
 
             let validatePassword = (rule, value, callback) => {
@@ -257,7 +271,7 @@
                 },
                 applyRules: {
                     username: [
-                        {validator: isEnglish, trigger: 'blur'},
+                        {validator: validateUserName, trigger: 'blur'},
                         {required: true, min: 1, max: 25, message: '请输入用户名', trigger: 'blur'}
                     ],
                     chinese_name: [{required: true, trigger: 'blur', message: "姓名不能为空"}, {
