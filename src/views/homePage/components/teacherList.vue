@@ -307,10 +307,10 @@
                 console.log("===============getTeacherByCatalogue=================")
             },
             changeTeacherByCatalogue(cId) {
-                this.currentCat = cId
-                this.listQuery.cId = cId
+                this.currentCat = cId;
+                this.listQuery.cId = cId;
                 this.listLoading = true;
-                console.log("### 开始查询教师成员列表")
+                console.log("### 开始查询教师成员列表");
                 this.api({
                     url: "/catalogue/getTeacherByCatalogueAndPage",
                     method: "get",
@@ -557,6 +557,7 @@
     margin: auto;
     border-radius: 50%;
     width: 100px;
+    height: 100px;
     border: 3px solid #efefef;
     background-color: #f5f5f5;
   }
