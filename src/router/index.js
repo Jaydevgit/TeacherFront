@@ -53,7 +53,7 @@ export const constantRouterMap = [
     }
   },
   {
-    path: '/teacher/:domainName/:id',
+    path: '/teacher/:facultyDomainName/:teacherDomainName',
     component: teacherPersonalHomePage,
     name: 'teacherPersonlHomePage',
     meta: {
@@ -122,11 +122,11 @@ export const asyncRouterMap = [
       name:'modifyTeacher',
       component:_import('manager/updateTeacher'),
     },*/
-  {
+/*  {
     path: '/teacher/:id',
     component: teacherPersonalHomePage,
     name: 'teacherPersonlHomePage'
-  },
+  },*/
   {
     path: '/unitInfo',
     component: Layout,

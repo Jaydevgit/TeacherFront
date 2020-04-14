@@ -21,13 +21,13 @@
                 listQuery: {
                     pageNum: 1,//页码
                     pageRow: 8,//每页条数
-                    tId: ''
+                    tDomainName: ''
                 },
             }
         },
         created() {
             this._getAllTeachers();
-            this.listQuery.tId = this.$route.path.split('/')[3];
+            this.listQuery.tDomainName = this.$route.path.split('/')[3];
         },
         components: {
             relateTeacher

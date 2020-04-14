@@ -373,11 +373,12 @@
             },
             routerTo(teacher) {
                 console.log("=========================================")
-                console.log("点击跳转........" + teacher.name);
-                let routeData = this.$router.resolve({
+                console.log("点击跳转........" + teacher.domainName);
+                let routeData = this.$router.push({
                     name: 'teacherPersonlHomePage',
                     params: {
-                      domainName:this.$store.state.user.domainName,
+                        facultyDomainName:this.$store.state.user.domainName,
+                        teacherDomainName:teacher.domainName,
                         id: teacher.id
                     }
                 });
