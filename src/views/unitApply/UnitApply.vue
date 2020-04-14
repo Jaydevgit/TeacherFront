@@ -169,7 +169,8 @@
     export default {
         name: "UnitApply",
         data() {
-          var validateUserName = (rule, value, callback) => {
+          let validateUserName = (rule, value, callback) => {
+            console.log('validateName,value:', value)
             let _self = this;
             if (!value) {
               return callback(new Error('请正确填写用户名'));

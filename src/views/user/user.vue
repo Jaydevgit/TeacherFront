@@ -56,9 +56,9 @@
       layout="total, sizes, prev, pager, next, jumper">
     </el-pagination>
     <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible">
-      <el-form class="small-space" :model="tempUser" label-position="left" label-width="80px"
+      <el-form class="small-space" ref="tempUser" :model="tempUser"  :rules="userRules" label-position="left" label-width="80px"
                style='width: 300px; margin-left:50px;'>
-        <el-form-item label="用户名" required v-if="dialogStatus=='create'">
+        <el-form-item label="用户名" prop="username" required v-if="dialogStatus=='create'">
           <el-input type="text" v-model="tempUser.username">
           </el-input>
         </el-form-item>
@@ -100,6 +100,39 @@
 
   export default {
     data() {
+
+      let validateUserName = (rule, value, callback) => {
+        let _self = this;
+        if (!value) {
+          return callback(new Error('请正确填写用户名'));
+        } else {
+          if (value !== '') {
+            var pattern = /^[0-9a-zA-Z_]{1,}$/;
+            if (!pattern.test(value)) {
+              return callback(new Error("请输入有效的用户名(支持数字、下划线_和英文)"));
+            } else {
+              this.api({
+                url: '/register/judgeUserNameExist',
+                method: 'post',
+                data: {
+                  "username": value
+                }
+              }).then(res => {
+                // console.log("=====" + JSON.stringify(res));
+                if (res.UserName === true) {
+                  console.log("该用户名已注册");
+                  _self.ifCollegeDomainExist = false;
+                  return callback(new Error("该用户名已注册"));
+                } else {
+                  _self.ifCollegeDomainExist = true;
+                  return callback();
+                }
+              }).catch();
+            }
+          }
+        }
+      };
+
       return {
         totalCount: 0, //分页组件--数据总条数
         list: [],//表格的数据
@@ -123,6 +156,12 @@
           roleId: '',
           userId: '',
           unitId:''
+        },
+        userRules:{
+          username: [
+            {validator: validateUserName, trigger: 'blur'},
+            {required: true, min: 1, max: 25, message: '请输入用户名', trigger: 'blur'}
+          ],
         },
         adminName: '高级管理员',
         roleIf:'',
