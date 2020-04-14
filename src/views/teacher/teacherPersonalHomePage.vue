@@ -1,5 +1,5 @@
 <template>
-  <div class="app-container" style="padding: 0;min-height: calc(100vh - 98px);height: 100%">
+  <div class="app-container" style="padding: 0;min-height: calc(100vh - 60px);height: 100%">
     <div class="container" style="padding-top: 26px">
         <base-info :teacherProfile="teacherProfile" class="left" style="width: 78%"></base-info>
         <rightNav class="right"></rightNav>
@@ -69,10 +69,10 @@
 
 <style  rel="stylesheet/scss" lang="scss" scoped>
   .container {
-    max-width: 1400px;
+    max-width: 960px;
     margin: 0 auto;
     position: relative;
-    min-width: 1000px;
+    min-width: 960px;
     height: 100%;
     display: flex;
     .left{

@@ -74,13 +74,13 @@
         <div class="input-row">
           <el-form-item prop="username">
         <span class="svg-container svg-container_login">
-         账号 <svg-icon icon-class="user"/>
+         <span style="font-size: 16px;font-weight: bold;opacity: 0.4;">账号</span> <svg-icon icon-class="user" style="opacity: 0.5;"/>
         </span>
             <el-input v-model="loginForm.username" autoComplete="on" placeholder="请输入用户名"/>
           </el-form-item>
           <el-form-item prop="password">
         <span class="svg-container ">
-            <span style="font-size: 20px;margin-right: 5px">密码</span><svg-icon icon-class="password"/>
+            <span style="font-size: 16px;margin-right: 5px;font-weight: bold;opacity: 0.4;">密码</span><svg-icon icon-class="password" style="opacity: 0.5;"/>
         </span>
             <el-input type="password" @keyup.enter.native="handleLogin" v-model="loginForm.password"
                       autoComplete="on" placeholder="请输入密码"></el-input>
@@ -93,11 +93,11 @@
 
           <el-form-item prop="Codes" >
             <span class="svg-container svg-container_login">
-         验证码
+         <span style="font-size: 16px;margin-right: 5px;font-weight: bold;opacity: 0.4;">验证码</span>
         </span>
             <s-identify :identifyCode="identifyCode" @click.native="newCode" style=" cursor:pointer;width:80px;height:43px;display: inline-block;float: right;margin-top: 2px"></s-identify>
             <el-input style="width: 380px" type="Codes" @keyup.enter.native="handleLogin" v-model="picLyanzhengma"
-                      autoComplete="on" placeholder="请输入右侧验证码"></el-input>
+                      autoComplete="on" placeholder="请输入右侧数字验证码"></el-input>
           </el-form-item>
 
           <el-form-item>
@@ -466,13 +466,8 @@
   .login-container {
 
     @include relative;
-    height: calc(100vh - 98px);
+    height: calc(100vh - 60px);
     min-width: 980px;
-/*    min-height: calc(100vh - 98px);
-    max-height: calc(100vh - 50px);*/
-
-    /*background-color: #f1f1f1;*/
-    /*background-color: #d4d5d6;*/
     background-image: url(../../assets/img/bg.png);
     background-size: cover;
     margin: 0 auto;
@@ -512,7 +507,7 @@
 
     .svg-container {
       padding: 6px 5px 6px 15px;
-      color: $dark_gray;
+      color: #015692;
       vertical-align: middle;
       width: 90px;
       display: inline-block;

@@ -22,10 +22,10 @@
                 <span class="parentCatalogue">{{item.name}}</span>
               </div>
 
-              <el-menu-item-group>
+              <el-menu-item-group style="margin-top: -14px;">
                 <el-menu-item
                   v-for="(sub, index) in item.subCatalogueList" :key="'subId'+sub.id" :index="flag + 3 + '-'+ index"
-                  @click="cIdSend(sub.id,sub.name)">
+                  @click="cIdSend(sub.id,sub.name)" style="padding: 0;padding-left: 12px">
                   <span class="subcatalogueName">{{sub.name}}</span>
                 </el-menu-item>
 
@@ -88,7 +88,7 @@
                     params: {unitId: this.currentUnitId}
                 }).then(data => {
                     console.log("this.$route.params.unitId is " + this.currentUnitId);
-                    console.log(JSON.stringify(data))
+                    console.log(JSON.stringify(data));
                     this.catalogueList = data.list;
 
                 }).catch(error => {
@@ -96,7 +96,7 @@
                 })
             },
             cIdSend: function (cId=0, name,modelId) {
-              this.currentCat=cId
+              this.currentCat=cId;
                 console.log("send++++" + this.currentCat+modelId);
                 if (cId == 0) {
                   name = "师资队伍";
@@ -106,7 +106,9 @@
                   modelId=2;
                 }
                 this.$emit("toList", name,modelId);
+                console.log("leftNav的ModelId="+modelId);
                 bus.$emit("cId", this.currentCat);
+                console.log("leftNav的cId="+cId);
             }
         },
         components: {}
@@ -165,7 +167,6 @@
     display: flex;
     align-items: center;
     width: 100%;
-    padding: 0 8px;
   }
 
 

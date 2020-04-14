@@ -1,7 +1,9 @@
 <template>
   <div>
     <top-header :titleFlag="titleFlag"></top-header>
+
     <div class="apply-container">
+      <crop-image ref="cropImage" @crop-url-callback="cropImageCallback"></crop-image>
       <el-form
         autoComplete="on"
         :model="applyForm"
@@ -50,7 +52,8 @@
                 <!--如果logo链接不为空，则从学者网拉取图标-->
                 <img v-if="certificate_logo_url != ''"
                      :src="certificate_logo_url"
-                     :onerror="defaultLogo"/>
+                     :onerror="defaultLogo"
+                width="120" height="120"/>
                 <!--提交完后显示这个-->
                 <img v-else :src="'http://www.scholat.com/images/uni_logo/'+applyForm.school_name+'.png'"
                      :onerror="defaultLogo"/>
@@ -140,8 +143,6 @@
               </div>
 
             </el-form-item>
-
-            <crop-image ref="cropImage" @crop-url-callback="cropImageCallback"></crop-image>
 
           </div>
 
@@ -323,25 +324,29 @@
                     this.applyForm.email = data.email
             },
             cropImageCallback(imageName, msg) {
-                this.$message.success("上传" + imageName + "成功")
-                console.log('上传图片成功,并返回图片文件名:' + imageName)
-                console.log("上传完图片后返回的msg为：" + msg)
-                if (msg.indexOf('front') != -1) {
-                    this.certificate_front_url = this.$refs.cropImage.attach.laterUrl;
-                    console.log("显示的图片路径为：" + this.certificate_front_url)
-                    this.applyForm.certificate_front = imageName
-                } else if (msg.indexOf('back') != -1) {
-                    this.certificate_back_url = this.$refs.cropImage.attach.laterUrl;
-                    console.log("显示的图片路径为：" + this.certificate_back_url)
-                    this.applyForm.certificate_back = imageName
-                } else if (msg.indexOf('working') != -1) {
-                    this.certificate_working_url = this.$refs.cropImage.attach.laterUrl;
-                    console.log("显示的图片路径为：" + this.certificate_working_url)
-                    this.applyForm.certificate_working = imageName
-                } else if (msg.indexOf('logo') != -1) {
-                    this.certificate_logo_url = this.$refs.cropImage.attach.laterUrl;
-                    console.log("显示的图片路径为：" + this.certificate_logo_url)
-                    this.applyForm.certificate_logo = imageName
+                if(imageName === "false" || imageName == undefined)
+                    this.$message.error("上传失败")
+                else{
+                    this.$message.success("上传成功")
+                    console.log('上传图片成功,并返回图片文件名:' + imageName)
+                    console.log("上传完图片后返回的msg为：" + msg)
+                    if (msg.indexOf('front') != -1) {
+                        this.certificate_front_url = this.$refs.cropImage.attach.laterUrl;
+                        console.log("显示的图片路径为：" + this.certificate_front_url)
+                        this.applyForm.certificate_front = imageName
+                    } else if (msg.indexOf('back') != -1) {
+                        this.certificate_back_url = this.$refs.cropImage.attach.laterUrl;
+                        console.log("显示的图片路径为：" + this.certificate_back_url)
+                        this.applyForm.certificate_back = imageName
+                    } else if (msg.indexOf('working') != -1) {
+                        this.certificate_working_url = this.$refs.cropImage.attach.laterUrl;
+                        console.log("显示的图片路径为：" + this.certificate_working_url)
+                        this.applyForm.certificate_working = imageName
+                    } else if (msg.indexOf('logo') != -1) {
+                        this.certificate_logo_url = this.$refs.cropImage.attach.laterUrl;
+                        console.log("显示的图片路径为：" + this.certificate_logo_url)
+                        this.applyForm.certificate_logo = imageName
+                    }
                 }
             },
             uploadImage(type) {
@@ -422,10 +427,6 @@
               dangerouslyUseHTMLString: true,
               confirmButtonText: '确定',
               callback: action => {
-                this.$message({
-                  type: 'info',
-                  message: `action: ${ action }`
-                });
               }
             });
           },
@@ -446,7 +447,7 @@
     /*height: 100vh;*/
     background-color: $light_gray;
     padding-top: 30px;
-    min-height: calc(100vh - 98px);
+    min-height: calc(100vh - 60px);
     padding-bottom: 30px;
     background: url(../../assets/img/bg.png);
     background-size: cover;

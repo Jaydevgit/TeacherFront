@@ -2,15 +2,15 @@
   <div style="height: 100vh;">
     <nav>
       <div class="nav-inner">
-        <div style="height: 60px;display: flex;align-items: center;width: 960px;">
+        <div style="height: 60px;display: flex;align-items: center;">
           <img src="../../assets/img/logo-white.png" height="100%">
-          <span style="font-size: 36px;
+          <span style="font-size: 24px;
     font-family: initial;
     font-weight: bold;
     letter-spacing: 9px;
     margin-left: 21px;
     color: #fff;">学院师资栏目</span>
-          <span style="font-size: 28px;
+          <span style="font-size: 22px;
     font-weight: bold;
     color: rgb(123, 186, 186);">SCHOLAT+应用服务</span>
         </div>
@@ -28,7 +28,9 @@
         </div>
       </div>
     </nav>
-    <article>
+    <article style="display: flex;
+    align-items: center;
+    justify-content: center;">
       <el-row style="height: calc(100vh - 160px);">
         <el-col :span="14" class="main-inner">
           <div class="main-inner-left">
@@ -54,14 +56,16 @@
           <div class="main-inner-right">
             <div class="intro">
               <div>
-                <span style="font-size: 48px;font-weight: bold;color: rgb(85, 85, 85)">
+                <span style="font-size: 28px;
+    font-weight: bold;
+    color: rgb(57, 119, 119);">
                   学院师资栏目管理系统
                 </span>
-                <div style="display: inline-block">
+                <div style="display: inline-block;margin-top: 12px;">
 <!--                  <span class="font-1" style="display: block">版本: 1.0-beta-1</span>-->
                   <span class="font-1" style="display: block">发布日期: 2020年01月12日</span>
                 </div>
-                <div class="font-1" style="margin: 42px 50px 42px 0;text-indent: 40px;line-height: 34px;">
+                <div class="font-1" style="margin: 7px 50px 42px 0;text-indent: 40px;line-height: 34px;">
                   学院师资栏目系统是
                   <a href="http://www.scholat.com" style="color: orange">学者网</a>
                   推出的一个学院教师信息管理的通用平台，
@@ -77,7 +81,7 @@
                     </a>
                   </el-button>
                   <div class="font-1" style="margin-top: 20px;">
-                    示例:<a style="color: orange;margin-left: 15px;cursor: pointer" href="/homepage/1">华南师范大学·计算机学院</a>
+                    示例:<a style="color: orange;margin-left: 15px;cursor: pointer" href="/homepage/scnu">华南师范大学·计算机学院</a>
                   </div>
                 </div>
               </div>
@@ -135,12 +139,14 @@
 
   .main-inner-left {
     height: 100%;
-    padding-top: 80px;
+    display: flex;
+    align-items: center;
   }
 
   .main-inner-right {
     height: 100%;
-    padding-top: 88px;
+    display: flex;
+    align-items: center;
   }
 
   .main-inner {
@@ -162,8 +168,6 @@
   }
 
   .shuffling-img {
-    max-height: 600px;
-    height: 600px;
     width: 100%;
     display: flex;
     align-items: center;
@@ -172,7 +176,7 @@
   .intro {
     height: 600px;
     width: 100%;
-    padding: 0 8px 0 16px;
+    padding: 30px 8px 0 16px;
   }
 
   .font-1 {

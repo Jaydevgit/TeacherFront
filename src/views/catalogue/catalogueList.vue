@@ -718,7 +718,7 @@
     width: 100%;
     height: 100%;
     margin: 0 auto;
-    min-width: 1400px;
+    min-width: 960px;
 
   }
 
