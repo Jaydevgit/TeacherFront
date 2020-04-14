@@ -39,32 +39,42 @@
         </template>
       </el-table-column>
 
-      <el-table-column align="left" label="单位" width="320">
+      <el-table-column align="left" label="单位" width="450">
         <template slot-scope="scope">
-          <div>
-            <span class="label-describe">学校</span><span>{{scope.row.school_name}}</span>
-          </div>
-          <div>
-            <span class="label-describe">学院</span><span>{{scope.row.unit_name}}</span>
-          </div>
+
           <div>
             <span class="label-describe">school</span><span>{{scope.row.school_eng}}</span>
           </div>
           <div>
             <span class="label-describe">unit</span><span>{{scope.row.unit_eng}}</span>
           </div>
-        </template>
-      </el-table-column>
-
-      <el-table-column align="left" label="官网" width="200">
-        <template slot-scope="scope">
           <div>
-            <a style="color: deepskyblue;" :href="scope.row.college_url">{{scope.row.college_url}}</a>
+            <span class="label-describe">学校</span><span>{{scope.row.school_name}}</span>
+          </div>
+          <div>
+          <span class="label-describe">学院</span><span>{{scope.row.unit_name}}</span>
+        </div>
+          <div>
+          <span class="label-describe">域名</span><span>{{scope.row.domain_name}}</span>
+        </div>
+          <div>
+          <span class="label-describe">官网</span><span><a style="color: deepskyblue;" :href="scope.row.college_url">{{scope.row.college_url}}</a></span>
+        </div>
+          <div>
+            <span class="label-describe">师资主页</span><span><a style="color: deepskyblue;" :href="'http://faculty.scholat.com/homepage/'+scope.row.domain_name">http://faculty.scholat.com/homepage/{{scope.row.domain_name}}</a></span>
           </div>
         </template>
       </el-table-column>
 
-      <el-table-column align="left" label="高级管理员信息" width="180">
+<!--      <el-table-column align="left" label="官网" width="200">-->
+<!--        <template slot-scope="scope">-->
+<!--          <div>-->
+<!--            <a style="color: deepskyblue;" :href="scope.row.college_url">{{scope.row.college_url}}</a>-->
+<!--          </div>-->
+<!--        </template>-->
+<!--      </el-table-column>-->
+
+      <el-table-column align="left" label="高级管理员信息" width="220">
         <template slot-scope="scope">
           <div>
             <span class="label-describe">用户名</span><span>{{scope.row.username}}</span>
@@ -84,14 +94,14 @@
         <template slot-scope="scope">
           <div>
             <span class="label-describe">高级管理员</span><span>{{scope.row.username}}</span>
-            <el-button  @click="subUser(scope.row.unitId)">查看子账号</el-button>
+            <el-button  type="primary" size="small" @click="subUser(scope.row.unitId)" plain>查看子账号</el-button>
           </div>
 
         </template>
       </el-table-column>
 
 
-      <el-table-column align="center" label="申请时间" width="130">
+      <el-table-column align="center" label="申请时间" width="180">
         <template slot-scope="scope">
           <span>{{scope.row.update_time}}</span>
         </template>
@@ -117,13 +127,13 @@
 
       <el-dialog title="该学院账号信息为" :visible.sync="dialogTableVisible">
         <el-table :data="allSubUnitName">
-          <el-table-column property="userName" label="账号">
+          <el-table-column property="userName" label="账号" width="160">
             <template slot-scope="scope">
               <div><span>{{scope.row.userName}}</span></div>
             </template>
           </el-table-column>
-<!--          <el-table-column property="name" label="姓名" width="200"></el-table-column>-->
-<!--          <el-table-column property="address" label="地址"></el-table-column>-->
+          <el-table-column property="nickName" label="用户名" width="220"></el-table-column>
+          <el-table-column property="email" label="邮箱"></el-table-column>
         </el-table>
       </el-dialog></div>
   </div>
