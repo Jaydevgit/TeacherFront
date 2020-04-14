@@ -26,12 +26,14 @@
               <el-input class="apply-input" v-model="applyForm.school_name" auto-complete="off" placeholder="请输入学校名称"/>
             </el-form-item>
 
-<!--            <el-form-item prop="school_eng" label="学校英文名称：">-->
-<!--              <el-input class="apply-input" v-model="applyForm.school_eng" auto-complete="off" placeholder="请输入学校英文名称"/>-->
-<!--            </el-form-item>-->
+            <!--            <el-form-item prop="school_eng" label="学校英文名称：">-->
+            <!--              <el-input class="apply-input" v-model="applyForm.school_eng" auto-complete="off" placeholder="请输入学校英文名称"/>-->
+            <!--            </el-form-item>-->
             <div class="form-domain-name">
               <el-form-item prop="domain_name" label="学院域名设置：">
-                <el-input class="apply-input" v-model.trim="applyForm.domain_name" auto-complete="off" placeholder="请输入学院域名英文简写，用作域名，申请成功后不可修改" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')"/>
+                <el-input class="apply-input" v-model.trim="applyForm.domain_name" auto-complete="off"
+                          placeholder="请输入学院域名英文简写，用作域名，申请成功后不可修改"
+                          onkeyup="this.value=this.value.replace(/^ +| +$/g,'')"/>
                 <!--              <div style="position: absolute;top:30px;color: red;font-size:12px;">学院英文简写，用作域名，申请成功后不可修改</div>-->
               </el-form-item>
             </div>
@@ -39,9 +41,9 @@
               <el-input class="apply-input" v-model="applyForm.unit_name" auto-complete="off" placeholder="请输入学院名称"/>
             </el-form-item>
 
-<!--            <el-form-item prop="unit_eng" label="学院英文名称：">-->
-<!--              <el-input class="apply-input" v-model="applyForm.unit_eng" auto-complete="off" placeholder="请输入学院英文名称"/>-->
-<!--            </el-form-item>-->
+            <!--            <el-form-item prop="unit_eng" label="学院英文名称：">-->
+            <!--              <el-input class="apply-input" v-model="applyForm.unit_eng" auto-complete="off" placeholder="请输入学院英文名称"/>-->
+            <!--            </el-form-item>-->
 
             <el-form-item label="学校图标：">
               <div>
@@ -49,7 +51,7 @@
                 <img v-if="certificate_logo_url != ''"
                      :src="certificate_logo_url"
                      :onerror="defaultLogo"
-                width="120" height="120"/>
+                     width="120" height="120"/>
                 <!--提交完后显示这个-->
                 <img v-else :src="'http://www.scholat.com/images/uni_logo/'+applyForm.school_name+'.png'"
                      :onerror="defaultLogo"/>
@@ -67,8 +69,10 @@
           <div class="top-title">管理员信息</div>
           <div class="top">
             <el-button type="success" v-if="!modifyBtnFlag" @click="handleApply('applyForm')"
-            style="position: absolute;right: 0;top: -180px;">提交申请</el-button>
-            <el-button type="warning" style="position: absolute;right: 110px;top: -180px" @click="previous">上一步</el-button>
+                       style="position: absolute;right: 0;top: -180px;">提交申请
+            </el-button>
+            <el-button type="warning" style="position: absolute;right: 110px;top: -180px" @click="previous">上一步
+            </el-button>
             <el-form-item prop="username" label="用户名：">
               <el-input class="apply-input" v-model="applyForm.username" auto-complete="off"
                         placeholder="请输入您的用户名（全英文）"/>
@@ -105,7 +109,9 @@
 
                   </div>
                   <div>
-                    <el-button @click="uploadImage('front')" size="small" type="primary" style="margin-left: 50px">上传正面身份证</el-button>
+                    <el-button @click="uploadImage('front')" size="small" type="primary" style="margin-left: 50px">
+                      上传正面身份证
+                    </el-button>
                   </div>
                 </el-form-item>
               </el-col>
@@ -113,10 +119,11 @@
                 <el-form-item prop="certificate_back">
                   <input type="hidden" v-model="applyForm.certificate_back"/>
                   <div>
-                    <img :src="certificate_back_url" :onerror="cerLogo" style="margin-left: -45px" class="certificate-img"/>
+                    <img :src="certificate_back_url" :onerror="cerLogo" style="margin-left: -45px"
+                         class="certificate-img"/>
                   </div>
                   <div>
-                    <el-button @click="uploadImage('back')" size="small" type="primary" >上传背面身份证</el-button>
+                    <el-button @click="uploadImage('back')" size="small" type="primary">上传背面身份证</el-button>
                   </div>
                 </el-form-item>
               </el-col>
@@ -126,7 +133,7 @@
               </el-col>
             </el-row>
 
-<!--            aaaa-->
+            <!--            aaaa-->
 
             <el-form-item prop="certificate_working" label="在职证明：">
               <input type="hidden" v-model="applyForm.certificate_working"/>
@@ -134,7 +141,8 @@
                 <img :src="certificate_working_url" :onerror="cerLogo" class="certificate-img"/>
                 <div class="upload-btn">
                   <el-button @click="uploadImage('working')" size="small" type="primary"
-                  style="position: absolute;left: 86px;top: 25px;">上传在职证明</el-button>
+                             style="position: absolute;left: 86px;top: 25px;">上传在职证明
+                  </el-button>
                 </div>
               </div>
 
@@ -175,7 +183,6 @@
                     }
                 }).catch(err => {
                     console.log(err)
-                    //this.$message.error(err.message)
                     callback(new Error("该用户名已存在,请重新输入")) // 不填入信息的话表示正确返回
                 })
             };
@@ -188,38 +195,37 @@
                 }
                 return callback();
             };
-          let validatorDomain = (rule, value, callback) => {
-            console.log("this.applyForm.domainName===="+value);
-            if (!value){
-              return callback(new Error('请正确填写英文名'));
-            }
-            else{
-              if (value !== ''){
-                var pattern = /^[a-zA-Z\s]{1,50}$/;
-                if (!pattern.test(value)){
-                  return callback(new Error("请输入有效的英文名"));
-                }else{
-                  this.api({
-                    url: '/register/judgeDomainNameExist',
-                    method: 'post',
-                    data: {
-                      "domain_name": value
+            let validatorDomain = (rule, value, callback) => {
+                let _self = this;
+                if (!value) {
+                    return callback(new Error('请正确填写英文名'));
+                } else {
+                    if (value !== '') {
+                        var pattern = /^[a-zA-Z\s]{1,50}$/;
+                        if (!pattern.test(value)) {
+                            return callback(new Error("请输入有效的英文名"));
+                        } else {
+                            this.api({
+                                url: '/register/judgeDomainNameExist',
+                                method: 'post',
+                                data: {
+                                    "domain_name": value
+                                }
+                            }).then(res => {
+                                // console.log("=====" + JSON.stringify(res));
+                                if (res.existDomain === true) {
+                                    console.log("该域名已注册");
+                                    _self.ifCollegeDomainExist = false;
+                                    return callback(new Error("该域名已注册"));
+                                } else {
+                                    _self.ifCollegeDomainExist = true;
+                                    return callback();
+                                }
+                            }).catch();
+                        }
                     }
-                  }).then(res => {
-                    console.log("====="+JSON.stringify(res));
-                    if (res.existDomain === true) {
-                      console.log("该域名已注册");
-                      this.applyForm.domain_name=''
-                      return callback(new Error("该域名已注册"));
-                    }
-                  }).catch()
                 }
-              }
-              return callback();
-            }
-
-            return callback();
-          };
+            };
 
 
             return {
@@ -246,7 +252,8 @@
                     certificate_logo: '',//申请学院logo
                     phone: '',
                     email: '',
-                  domain_name:''
+                    domain_name: '',
+                    ifCollegeDomainExist: true
                 },
                 applyRules: {
                     username: [
@@ -281,11 +288,11 @@
                         // {max: 50, message: "长度小于50字符"},
                         // {validator: isEnglish, trigger: 'blur'}
                     ],
-                  domain_name: [
-                    {required: true, trigger: 'blur', message: "学校域名不能为空"},
-                    {max: 50, message: "长度小于50字符"},
-                    {validator: validatorDomain,  required: true,trigger: 'blur',}
-                  ],
+                    domain_name: [
+                        {required: true, trigger: 'blur', message: "学校域名不能为空"},
+                        {max: 50, message: "长度小于50字符"},
+                        {validator: validatorDomain, required: true, trigger: 'blur',}
+                    ],
                     certificate_front: {required: true, message: "身份证证明不能为空"},//身份证明正面
                     certificate_back: {required: true, message: "身份证证明不能为空"},//身份证明反面
                     certificate_working: {required: true, message: "在职证明不能为空"},//在职证明
@@ -300,7 +307,7 @@
                     ],
                 },
                 loading: false,
-              titleFlag:true,
+                titleFlag: true,
             }
         },
         components: {
@@ -354,9 +361,9 @@
                     this.applyForm.email = data.email
             },
             cropImageCallback(imageName, msg) {
-                if(imageName === "false" || imageName == undefined)
+                if (imageName === "false" || imageName == undefined)
                     this.$message.error("上传失败")
-                else{
+                else {
                     this.$message.success("上传成功")
                     console.log('上传图片成功,并返回图片文件名:' + imageName)
                     console.log("上传完图片后返回的msg为：" + msg)
@@ -386,16 +393,16 @@
             },
             testSetForm() {
                 this.applyForm.username = 'lsc',
-                this.applyForm.chinese_name = '连善淳',
-                this.applyForm.password = '123456',
-                this.applyForm.repassword = '123456',
-                this.applyForm.school_name = 'scnu',
-                this.applyForm.unit_name = 'computer science',
-                this.applyForm.certificate_front = '',//身份证明正面
-                this.applyForm.certificate_back = '',//身份证明反面
-                this.applyForm.certificate_working = '',//在职证明
-                this.applyForm.phone = '13003922029',
-                this.applyForm.email = '489572627@qq.com'
+                    this.applyForm.chinese_name = '连善淳',
+                    this.applyForm.password = '123456',
+                    this.applyForm.repassword = '123456',
+                    this.applyForm.school_name = 'scnu',
+                    this.applyForm.unit_name = 'computer science',
+                    this.applyForm.certificate_front = '',//身份证明正面
+                    this.applyForm.certificate_back = '',//身份证明反面
+                    this.applyForm.certificate_working = '',//在职证明
+                    this.applyForm.phone = '13003922029',
+                    this.applyForm.email = '489572627@qq.com'
             },
             handleApply(applyForm) {
                 this.$refs['applyForm'].validate((valid) => {
@@ -417,32 +424,35 @@
                     method: 'post',
                     data: this.applyForm
                 }).then(data => {
-                  console.log("+++++++"+JSON.stringify(data));
-                  if (data.exist != null) {
+                    console.log("+++++++" + JSON.stringify(data));
+                    if (data.exist != null) {
 
-                      this.applyForm.password = ""
-                      this.applyForm.repassword = ""
-                   return  this.$message.error("该学院已发起过申请,请重新申请");
+                        this.applyForm.password = ""
+                        this.applyForm.repassword = ""
+                        return this.$message.error("该学院已发起过申请,请重新申请");
 
-                    } else if(data.existName!=null){
+                    } else if (data.existName != null) {
 
-                      this.applyForm.username = ""
-                    return this.$message.error("该用户名已存在,请重新申请");
-                    }else if(data.existDomainName!=null){
+                        this.applyForm.username = ""
+                        return this.$message.error("该用户名已存在,请重新申请");
+                    } else if (data.existDomainName != null) {
 
-                    this.applyForm.domain_name = ""
-                    return this.$message.error("该域名已存在,请重新申请");
-                  }else {
-                      this.$message.success("提交成功");
-                      this.applyForm.password = ""
-                      this.applyForm.repassword = ""
+                        this.applyForm.domain_name = ""
+                        return this.$message.error("该域名已存在,请重新申请");
+                    } else {
+                        this.$message.success("提交成功");
+                        this.applyForm.password = ""
+                        this.applyForm.repassword = ""
                     }
                 }).catch(e => {
                     this.$message.error("提交失败");
                 })
             },
-            next() {//& this.applyForm.unit_eng.length != 0& this.applyForm.school_eng.length != 0
-                if (this.applyForm.school_name.length != 0  & this.applyForm.unit_name.length != 0 & this.applyForm.domain_name.length!=0 ) {
+            next() {
+                if (this.applyForm.school_name.length != 0
+                    & this.applyForm.unit_name.length != 0
+                    & this.applyForm.domain_name.length != 0
+                    & this.ifCollegeDomainExist) {
                     if (this.active++ > 2) this.active = 0;
                     console.log(this.applyForm.school_name)
                 } else {
@@ -455,15 +465,15 @@
                 this.active--;
             },
 
-          //上传所需文件提示框
+            //上传所需文件提示框
             reminder() {
-            this.$alert('<span><strong>1:身份证正反面照片</strong></span><br/><span><strong>2:在职证明文件照片</strong></span>', '注册所需准备文件', {
-              dangerouslyUseHTMLString: true,
-              confirmButtonText: '确定',
-              callback: action => {
-              }
-            });
-          },
+                this.$alert('<span><strong>1:身份证正反面照片</strong></span><br/><span><strong>2:在职证明文件照片</strong></span>', '注册所需准备文件', {
+                    dangerouslyUseHTMLString: true,
+                    confirmButtonText: '确定',
+                    callback: action => {
+                    }
+                });
+            },
         }
     }
 </script>
@@ -503,7 +513,6 @@
       width: 80%;
       height: 45px;
     }
-
 
 
     .apply-form {
@@ -606,7 +615,7 @@
 </style>
 <style>
 
-  .form-domain-name .el-form-item__label{
+  .form-domain-name .el-form-item__label {
     color: red;
   }
 
