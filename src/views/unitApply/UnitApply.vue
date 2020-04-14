@@ -188,6 +188,39 @@
                 }
                 return callback();
             };
+          let validatorDomain = (rule, value, callback) => {
+            console.log("this.applyForm.domainName===="+value);
+            if (!value){
+              return callback(new Error('请正确填写英文名'));
+            }
+            else{
+              if (value !== ''){
+                var pattern = /^[a-zA-Z\s]{1,50}$/;
+                if (!pattern.test(value)){
+                  return callback(new Error("请输入有效的英文名"));
+                }else{
+                  this.api({
+                    url: '/register/judgeDomainNameExist',
+                    method: 'post',
+                    data: {
+                      "domain_name": value
+                    }
+                  }).then(res => {
+                    console.log("====="+JSON.stringify(res));
+                    if (res.existDomain === true) {
+                      console.log("该域名已注册");
+                      this.applyForm.domain_name=''
+                      return callback(new Error("该域名已注册"));
+                    }
+                  }).catch()
+                }
+              }
+              return callback();
+            }
+
+            return callback();
+          };
+
 
             return {
                 active: 0,
@@ -251,7 +284,7 @@
                   domain_name: [
                     {required: true, trigger: 'blur', message: "学校域名不能为空"},
                     {max: 50, message: "长度小于50字符"},
-                    {validator: isEnglish, trigger: 'blur'}
+                    {validator: validatorDomain,  required: true,trigger: 'blur',}
                   ],
                     certificate_front: {required: true, message: "身份证证明不能为空"},//身份证明正面
                     certificate_back: {required: true, message: "身份证证明不能为空"},//身份证明反面
