@@ -106,7 +106,9 @@
                   modelId=2;
                 }
                 this.$emit("toList", name,modelId);
+                console.log("leftNav的ModelId="+modelId);
                 bus.$emit("cId", this.currentCat);
+                console.log("leftNav的cId="+cId);
             }
         },
         components: {}

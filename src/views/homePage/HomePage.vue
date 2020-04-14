@@ -103,9 +103,10 @@
               let node = document.getElementById('middle-nav');
               node.children[1].children[0].innerText = name;
             },
-            detailShowChange(){
-              this.detailShow=2;
+            detailShowChange(num){
+              this.detailShow=num;
             },
+
             defaultSort() {
 
                 this.showList = false;

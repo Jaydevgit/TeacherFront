@@ -243,6 +243,7 @@
               this.teacherList = data.list;
               //console.log(this.teacherListAll);
               this.totalCount = data.totalCount;
+              this.$emit("detailShow",3);
             }).catch(error => {
               console.log("QAQ........没有找到教师列表")
             })
