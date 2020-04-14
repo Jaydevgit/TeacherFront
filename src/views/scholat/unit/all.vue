@@ -80,6 +80,16 @@
           </div>
         </template>
       </el-table-column>
+      <el-table-column align="center" label="账号信息" width="130">
+        <template slot-scope="scope">
+          <div>
+            <span class="label-describe">高级管理员</span><span>{{scope.row.username}}</span>
+            <el-button  @click="subUser(scope.row.unitId)">查看子账号</el-button>
+          </div>
+
+        </template>
+      </el-table-column>
+
 
       <el-table-column align="center" label="申请时间" width="130">
         <template slot-scope="scope">
@@ -103,7 +113,19 @@
       :page-sizes="[10, 20, 50, 100]"
       layout="total, sizes, prev, pager, next, jumper">
     </el-pagination>
+    <div >
 
+      <el-dialog title="该学院账号信息为" :visible.sync="dialogTableVisible">
+        <el-table :data="allSubUnitName">
+          <el-table-column property="userName" label="账号">
+            <template slot-scope="scope">
+              <div><span>{{scope.row.userName}}</span></div>
+            </template>
+          </el-table-column>
+<!--          <el-table-column property="name" label="姓名" width="200"></el-table-column>-->
+<!--          <el-table-column property="address" label="地址"></el-table-column>-->
+        </el-table>
+      </el-dialog></div>
   </div>
 </template>
 
@@ -135,14 +157,24 @@
           phone: "",
           state: "",
           update_time: ''
-        }
+        },
+        allUnitId:{
+          id:'',
+        },
+        allSubUnitName:[],
+        dialogTableVisible:false
       }
     },
     created() {
       console.log("进入到了wait_____开始查询管理员权限和列表信息")
       this.getList();
+    // this.getListSubUser()
     },
     methods: {
+      subUser(id){
+        this.dialogTableVisible = true;
+        this.getListSubUser(id);
+      },
       getImgUrl(msg, imageName) {
         if (msg == 'front') {
           return "http://47.106.132.95:2333/images/certificate_front/" + imageName;
@@ -161,6 +193,23 @@
         if (logoUrl !== null && logoUrl !== '' )
           return 'http://47.106.132.95:2333/images/unit_logo/' + logoUrl
         return "http://www.scholat.com/images/uni_logo/" + schoolName + ".png";
+      },
+      /* ---------------------------------------
+      * 获取该学院所有账号信息
+      * =======================
+      * */
+      getListSubUser(id){
+        this.allUnitId.id=id;
+        console.log("++++++++allUnitId"+this.allUnitId);
+        this.api({
+          url: "/unit/getUnitInfoByUnitId",
+          method: "get",
+          params: this.allUnitId
+        }).then(res => {
+            console.log("++++++++getUnitInfoByUnitId"+JSON.stringify(res.listSubName));
+          this.allSubUnitName=res.listSubName;
+        }).catch(error => {
+          console.log("查询账号信息列表失败")})
       },
 
       /* ---------------------------------------
