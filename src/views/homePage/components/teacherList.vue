@@ -419,6 +419,7 @@
     width: 220px;
     display: flex;
     margin: 0 10px 10px 10px;
+    flex-direction: row;
   }
   .teacherLi2:hover{
     float: left;
