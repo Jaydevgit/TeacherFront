@@ -23,16 +23,22 @@
         <el-input v-model="applyForm.collegeUrl" style="width: 50%"></el-input>
       </el-form-item>
       <el-form-item label="学院图标：">
-        <div style="margin-left: 15px;">
-          <!--提交完后显示这个-->
-          <img :src="showLogo"
-               :onerror="defaultLogo" style="width: 120px;"/>
+        <div style="display: flex">
+          <div style="margin-left: 15px;">
+            <!--提交完后显示这个-->
+            <img :src="showLogo"
+                 :onerror="defaultLogo" style="width: 120px;"/>
+          </div>
+          <div style="margin-left: 50px">
+            <div style="color: red;margin-top: 10px">提示：如左图显示的不是贵校的图标，可点击下方按钮自行上传图标</div>
+            <div style="margin-top: 40px">
+              <el-button @click="uploadImage('unit')" size="mini" type="primary" style="margin-top:7px;float: left">上传学校LOGO</el-button>
+              <el-button @click="restoreImage(1)" size="mini"  style="margin-left: 35px;">恢复系统默认</el-button>
+            </div>
+          </div>
         </div>
-        <div style="color: red">提示：如上方显示的不是贵校的图标，可点击下方按钮自行上传图标</div>
-        <div>
-          <el-button @click="uploadImage('unit')" size="mini" type="primary" style="margin-top:7px;float: left">上传学校LOGO</el-button>
-          <el-button @click="restoreImage(1)" size="mini"  style="margin-left: 35px;">恢复系统默认</el-button>
-        </div>
+
+
       </el-form-item>
 
       <el-form-item label="背景模式" >
@@ -42,6 +48,13 @@
         </el-radio-group>
       </el-form-item>
 
+      <el-form-item v-if="applyForm.state == 0" label="默认模式："  >
+        <div style="margin-left: 15px;">
+          <!--提交完后显示这个-->
+          <img :src="http://47.106.132.95:2333/images/background/1569738575202258.png"  style="width: 420px; height: 72px;"/>
+        </div>
+
+      </el-form-item>
       <el-form-item v-if="applyForm.state == 1" label="自定义背景："  >
         <div style="margin-left: 15px;">
           <!--提交完后显示这个-->
