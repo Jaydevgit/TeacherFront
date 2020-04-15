@@ -51,7 +51,7 @@
       <el-form-item v-if="applyForm.state == 0" label="默认模式："  >
         <div style="margin-left: 15px;">
           <!--提交完后显示这个-->
-          <img :src="http://47.106.132.95:2333/images/background/1569738575202258.png"  style="width: 420px; height: 72px;"/>
+          <img src="http://47.106.132.95:2333/images/background/1569738575202258.png"  style="width: 420px; height: 72px;"/>
         </div>
 
       </el-form-item>
