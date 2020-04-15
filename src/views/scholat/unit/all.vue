@@ -34,7 +34,7 @@
 
       <el-table-column align="center" label="图标" width="140" >
         <template slot-scope="scope" >
-          <img :src="getPic(scope.row.logo_url , scope.row.school_name)" :onerror="defaultLogo" height="86"
+          <img :src="getPic(scope.row.logo_url)" :onerror="defaultLogo" height="86"
                />
         </template>
       </el-table-column>
@@ -209,11 +209,20 @@
       },
       //获取学院LOGO
       getPic(logoUrl,schoolName){
-
-        console.log("logo..." +  JSON.stringify(logoUrl) + "schoolName" +schoolName)
-        if (logoUrl !== null && logoUrl !== '' )
-          return 'http://47.106.132.95:2333/images/unit_logo/' + logoUrl
-        return "http://www.scholat.com/images/uni_logo/" + schoolName + ".png";
+        let s=JSON.stringify(logoUrl)
+        if(s!=null){
+          s=s.substring(1,2)
+        }
+       // console.log("logo..." +  JSON.stringify(logoUrl) + "schoolName" +schoolName+s)
+        if (s==='h' ){
+          console.log("true");
+          return logoUrl;
+        }else{
+          console.log("false");
+          return 'http://47.106.132.95:2333/images/certificate_logo/' + logoUrl
+        }
+          // return 'http://47.106.132.95:2333/images/unit_logo/' + logoUrl
+        // return "http://www.scholat.com/images/uni_logo/" + schoolName + ".png";
       },
       /* ---------------------------------------
       * 获取该学院所有账号信息

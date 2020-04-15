@@ -420,6 +420,10 @@
                     this.applyForm.email = '489572627@qq.com'
             },
             handleApply(applyForm) {
+              if(this.applyForm.certificate_logo===''){
+                this.applyForm.certificate_logo='http://www.scholat.com/images/uni_logo/'+this.applyForm.school_name+'.png'
+                console.log("this.applyForm.certificate_logo===="+this.applyForm.certificate_logo);
+              }
                 this.$refs['applyForm'].validate((valid) => {
                     if (valid) {
                         this.submitForm();
