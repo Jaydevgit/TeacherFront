@@ -118,10 +118,10 @@
         </template>
       </el-table-column>
 
-      <el-table-column fixed="right" align="center" label="管理" v-if="hasScholatPerm('unit:update')">
+      <el-table-column fixed="right" align="center" label="管理" min-width="120" v-if="hasScholatPerm('unit:update')">
         <template slot-scope="scope">
           <el-button type="warning" size="mini" @click="showDetail(scope.row.id)">设置有效期</el-button>
-          <el-button type="danger" size="mini" @click="showDetail(scope.row.id)">加入黑名单</el-button>
+          <el-button type="danger" style="margin-left: 0;margin-top: 10px" size="mini" @click="showDetail(scope.row.id)">加入黑名单</el-button>
         </template>
       </el-table-column>
     </el-table>
