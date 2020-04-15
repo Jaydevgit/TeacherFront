@@ -54,7 +54,7 @@
       <ul class="ul-page2" style="display: flex;justify-content: space-between;flex-wrap: wrap">
         <li v-for="teacher in teacherList" :key="teacher.tId" class="teacherLi2"
             @click="routerTo(teacher.tId)" style="cursor: pointer">
-          <img style="cursor: pointer" :src="getImgUrl(teacher.tAvatar)" :onerror="defaultImage" class="list-img" >
+          <img style="cursor: pointer" :src="getImgUrl(teacher.tAvatar)" :onerror="imgErrorFun()" class="list-img" >
           <div style="width: 150px;text-align: center;padding-top: 40px">
             <div style="font-size: 16px;font-weight: bold;padding: 0px 0px 10px 0px;">
               {{teacher.tName}}
@@ -100,7 +100,7 @@
         data() {
             return {
                 //变量
-                defaultImage: 'this.src="../src/assets/img/defaultAvatar.png"',
+                defaultImage: 'http://47.106.132.95:2333/images/avatar/default.png',
                 isActive: '',
                 sourceUrl: 'http://47.106.132.95:2333/images/avatar/',
                 listName: '最新更新',
@@ -221,13 +221,19 @@
             },
             getImgUrl(imgName) {
                 if (imgName == null) {
-                    return ""
+                    return this.defaultImage;
                 } else if (imgName.indexOf("resources") != "-1") {
                     return "http://www.scholat.com/" + imgName;
                 } else {
                     return "http://47.106.132.95:2333/images/avatar/" + imgName;
                 }
             },
+          imgErrorFun(){
+            var img=event.srcElement;
+            img.src=this.defaultImage;
+            img.onerror=null;
+            console.log("执行了imgErrorFun函数，onerror="+img.onerror+"，img.src="+img.src);
+          },
           getListAll(){
             this.currentCat = 0
             this.listQuery.unitId = this.$store.state.user.unitId
