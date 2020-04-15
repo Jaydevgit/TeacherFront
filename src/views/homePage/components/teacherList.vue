@@ -55,7 +55,7 @@
         <li v-for="teacher in teacherList" :key="teacher.tId" class="teacherLi2"
             @click="routerTo(teacher.tId)" style="cursor: pointer">
           <img style="cursor: pointer" :src="getImgUrl(teacher.tAvatar)" :onerror="imgErrorFun()" class="list-img" >
-          <div style="width: 150px;text-align: center;padding-top: 40px">
+          <div style="width: 120px;text-align: center;padding-top: 40px">
             <div style="font-size: 16px;font-weight: bold;padding: 0px 0px 10px 0px;">
               {{teacher.tName}}
             </div>
