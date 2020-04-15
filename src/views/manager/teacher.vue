@@ -63,7 +63,7 @@
           <template v-if="scope.row.scholat_update_time > scope.row.update_time">
             <el-badge is-dot aria-setsize="14px" class="item" style="margin-top: 10px;">
               <img class="preview" @click="routerTo(scope.row)" :src="getImgUrl(scope.row.avatar)"
-                   :onerror="defaultImage" style="width:60px;height:60px;cursor:pointer;"/>
+                   :onerror="imgErrorFun" style="width:60px;height:60px;cursor:pointer;"/>
             </el-badge>
           </template>
           <template v-else>
@@ -222,7 +222,7 @@
         },
         data() {
             return {
-                defaultImage: 'this.src="../../src/assets/img/defaultAvatar.png"',
+                defaultImage: 'http://47.106.132.95:2333/images/avatar/default.png',
                 searchKey: '',
                 totalCount: 0, //分页组件--数据总条数
                 totalUpdate: 0,// 学者网更新总数
@@ -364,13 +364,19 @@
             },
             getImgUrl(imgName) {
                 if (imgName == null) {
-                    return ""
+                    return this.defaultImage;
                 } else if (imgName.indexOf("resources") != "-1") {
                     return "http://www.scholat.com/" + imgName;
                 } else {
                     return "http://47.106.132.95:2333/images/avatar/" + imgName;
                 }
             },
+          imgErrorFun(){
+            var img=event.srcElement;
+            img.src=this.defaultImage;
+            img.onerror=null;
+            console.log("执行了imgErrorFun函数，onerror="+img.onerror+"，img.src="+img.src);
+          },
             routerTo(teacher) {
                 console.log("=========================================")
                 console.log("点击跳转........" + teacher.domainName);

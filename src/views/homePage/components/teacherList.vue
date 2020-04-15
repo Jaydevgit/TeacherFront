@@ -54,8 +54,8 @@
       <ul class="ul-page2" style="display: flex;justify-content: space-between;flex-wrap: wrap">
         <li v-for="teacher in teacherList" :key="teacher.tId" class="teacherLi2"
             @click="routerTo(teacher.tId)" style="cursor: pointer">
-          <img style="cursor: pointer" :src="getImgUrl(teacher.tAvatar)" :onerror="defaultImage" class="list-img" >
-          <div style="width: 150px;text-align: center;padding-top: 40px">
+          <img style="cursor: pointer" :src="getImgUrl(teacher.tAvatar)" :onerror="imgErrorFun()" class="list-img" >
+          <div style="width: 120px;text-align: center;padding-top: 40px">
             <div style="font-size: 16px;font-weight: bold;padding: 0px 0px 10px 0px;">
               {{teacher.tName}}
             </div>
@@ -100,7 +100,7 @@
         data() {
             return {
                 //变量
-                defaultImage: 'this.src="../src/assets/img/defaultAvatar.png"',
+                defaultImage: 'http://47.106.132.95:2333/images/avatar/default.png',
                 isActive: '',
                 sourceUrl: 'http://47.106.132.95:2333/images/avatar/',
                 listName: '最新更新',
@@ -221,13 +221,19 @@
             },
             getImgUrl(imgName) {
                 if (imgName == null) {
-                    return ""
+                    return this.defaultImage;
                 } else if (imgName.indexOf("resources") != "-1") {
                     return "http://www.scholat.com/" + imgName;
                 } else {
                     return "http://47.106.132.95:2333/images/avatar/" + imgName;
                 }
             },
+          imgErrorFun(){
+            var img=event.srcElement;
+            img.src=this.defaultImage;
+            img.onerror=null;
+            console.log("执行了imgErrorFun函数，onerror="+img.onerror+"，img.src="+img.src);
+          },
           getListAll(){
             this.currentCat = 0
             this.listQuery.unitId = this.$store.state.user.unitId
@@ -307,10 +313,10 @@
                 console.log("===============getTeacherByCatalogue=================")
             },
             changeTeacherByCatalogue(cId) {
-                this.currentCat = cId
-                this.listQuery.cId = cId
+                this.currentCat = cId;
+                this.listQuery.cId = cId;
                 this.listLoading = true;
-                console.log("### 开始查询教师成员列表")
+                console.log("### 开始查询教师成员列表");
                 this.api({
                     url: "/catalogue/getTeacherByCatalogueAndPage",
                     method: "get",
@@ -557,6 +563,7 @@
     margin: auto;
     border-radius: 50%;
     width: 100px;
+    height: 100px;
     border: 3px solid #efefef;
     background-color: #f5f5f5;
   }
