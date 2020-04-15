@@ -36,7 +36,7 @@
           <div class="main-inner-left">
             <div class="shuffling-img">
               <div style="height: 100%;width:100%;padding: 16px;">
-                <el-carousel indicator-position="outside" height="500px">
+                <el-carousel indicator-position="outside" height="400px">
                   <el-carousel-item v-for="item in 3" :key="item">
                     <div style="height: 100%;width: 100%;display: flex;justify-content: center">
                       <el-card>
@@ -168,13 +168,14 @@
   }
 
   .shuffling-img {
+    height: 77%;
     width: 100%;
     display: flex;
     align-items: center;
   }
 
   .intro {
-    height: 600px;
+    height: 77%;
     width: 100%;
     padding: 30px 8px 0 16px;
   }
