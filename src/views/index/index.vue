@@ -14,7 +14,7 @@
     font-weight: bold;
     color: rgb(123, 186, 186);">SCHOLAT+应用服务</span>
         </div>
-        <div class="nav-inner-login" >
+        <div class="nav-inner-login">
           <a href="https://www.yuque.com/vd7ii9/dvybyk/na3nsf" style="color: #fff;
     font-size: 18px;
     letter-spacing: 2px;
@@ -35,14 +35,15 @@
         <el-col :span="14" class="main-inner">
           <div class="main-inner-left">
             <div class="shuffling-img">
-              <div style="height: 100%;width:100%;padding: 16px;">
-                <el-carousel indicator-position="outside" height="400px">
+              <div id="zouma" style="height: 77%;width:100%;display: flex;align-items: center;">
+                <el-carousel indicator-position="outside"
+                              style="width: 100%;height:100%;">
                   <el-carousel-item v-for="item in 3" :key="item">
                     <div style="height: 100%;width: 100%;display: flex;justify-content: center">
                       <el-card>
-                      <img :src="'http://47.106.132.95:2333/images/index/index-show-'+item+'.png'"
-                                style="height: 480px;display: inline-block;margin: 10px"
-                                lazy>
+                        <img :src="'http://47.106.132.95:2333/images/index/index-show-'+item+'.png'"
+                             style="width: 100%;display: inline-block;"
+                             lazy>
                       </el-card>
                     </div>
                   </el-carousel-item>
@@ -55,17 +56,22 @@
         <el-col :span="10" class="main-inner">
           <div class="main-inner-right">
             <div class="intro">
-              <div>
+              <div style="height: 100%">
                 <span style="font-size: 28px;
     font-weight: bold;
     color: rgb(57, 119, 119);">
                   学院师资栏目管理系统
                 </span>
                 <div style="display: inline-block;margin-top: 12px;">
-<!--                  <span class="font-1" style="display: block">版本: 1.0-beta-1</span>-->
+                  <!--                  <span class="font-1" style="display: block">版本: 1.0-beta-1</span>-->
                   <span class="font-1" style="display: block">发布日期: 2020年01月12日</span>
                 </div>
-                <div class="font-1" style="margin: 7px 50px 42px 0;text-indent: 40px;line-height: 34px;">
+                <div class="font-1" style="margin: 7px 50px 42px 0;
+                text-indent: 40px;
+                line-height: 34px;
+                height: 40%;
+                text-overflow: ellipsis;
+                overflow: auto;">
                   学院师资栏目系统是
                   <a href="http://www.scholat.com" style="color: orange">学者网</a>
                   推出的一个学院教师信息管理的通用平台，
@@ -114,7 +120,13 @@
         name: "entry"
     }
 </script>
-
+<style lang="scss">
+  #zouma{
+    .el-carousel .el-carousel__container{
+      height: calc(100% - 32px);
+    }
+  }
+</style>
 <style scoped lang="scss">
 
   header, section, footer, aside, nav, article, figure {
@@ -162,7 +174,7 @@
     margin: 0 20px;
   }
 
-  .nav-inner-login{
+  .nav-inner-login {
     display: flex;
     align-content: center;
   }
@@ -171,13 +183,13 @@
     height: 77%;
     width: 100%;
     display: flex;
-    align-items: center;
+    align-items: end;
   }
 
   .intro {
     height: 77%;
     width: 100%;
-    padding: 30px 8px 0 16px;
+    padding: 0px 8px 0 16px;
   }
 
   .font-1 {

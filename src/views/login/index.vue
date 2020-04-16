@@ -97,7 +97,7 @@
         </span>
             <s-identify :identifyCode="identifyCode" @click.native="newCode" style=" cursor:pointer;width:80px;height:43px;display: inline-block;float: right;margin-top: 2px"></s-identify>
             <el-input style="width: 380px" type="Codes" @keyup.enter.native="handleLogin" v-model="picLyanzhengma"
-                      autoComplete="on" placeholder="请输入右侧数字验证码"></el-input>
+                      autoComplete="on" placeholder="请输入右侧四位数数字验证码"></el-input>
           </el-form-item>
 
           <el-form-item>
