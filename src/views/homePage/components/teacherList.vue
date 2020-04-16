@@ -152,6 +152,7 @@
         },
         created() {
            // this.getList();
+          console.log("created的getListAll被调用");
             this.getListAll();
         },
         ready() {
@@ -220,19 +221,13 @@
                 this.$emit("toInfo", tId)
             },
             getImgUrl(imgName) {
-                if (imgName == null) {
-                    return this.defaultImage;
-                } else if (imgName.indexOf("resources") != "-1") {
-                    return "http://www.scholat.com/" + imgName;
-                } else {
-                    return "http://47.106.132.95:2333/images/avatar/" + imgName;
-                }
+                return 'http://www.scholat.com/'+imgName;
             },
           imgErrorFun(){
-            var img=event.srcElement;
-            img.src=this.defaultImage;
+            let img=event.srcElement;
             img.onerror=null;
             console.log("执行了imgErrorFun函数，onerror="+img.onerror+"，img.src="+img.src);
+            return 'this.src="http://47.106.132.95:2333/images/avatar/default.png"';
           },
           getListAll(){
             this.currentCat = 0

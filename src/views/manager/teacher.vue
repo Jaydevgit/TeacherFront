@@ -63,11 +63,11 @@
           <template v-if="scope.row.scholat_update_time > scope.row.update_time">
             <el-badge is-dot aria-setsize="14px" class="item" style="margin-top: 10px;">
               <img class="preview" @click="routerTo(scope.row)" :src="getImgUrl(scope.row.avatar)"
-                   :onerror="imgErrorFun" style="width:60px;height:60px;cursor:pointer;"/>
+                   :onerror="imgErrorFun()" style="width:60px;height:60px;cursor:pointer;"/>
             </el-badge>
           </template>
           <template v-else>
-            <img class="preview" @click="routerTo(scope.row)" :src="getImgUrl(scope.row.avatar)"
+            <img class="preview" @click="routerTo(scope.row)" :src="getImgUrl(scope.row.avatar)" :onerror="imgErrorFun()"
                  style="width:60px;height:60px;cursor:pointer;"/>
           </template>
         </template>
@@ -363,19 +363,20 @@
                 }
             },
             getImgUrl(imgName) {
-                if (imgName == null) {
+                /*if (imgName == null) {
                     return this.defaultImage;
                 } else if (imgName.indexOf("resources") != "-1") {
                     return "http://www.scholat.com/" + imgName;
                 } else {
                     return "http://47.106.132.95:2333/images/avatar/" + imgName;
-                }
+                }*/
+              return 'http://www.scholat.com/'+imgName;
             },
           imgErrorFun(){
             var img=event.srcElement;
-            img.src=this.defaultImage;
             img.onerror=null;
             console.log("执行了imgErrorFun函数，onerror="+img.onerror+"，img.src="+img.src);
+            return 'this.src="http://47.106.132.95:2333/images/avatar/default.png"';
           },
             routerTo(teacher) {
                 console.log("=========================================")
