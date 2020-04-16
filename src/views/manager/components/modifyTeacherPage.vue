@@ -142,7 +142,7 @@
               </el-col>
             </el-row>
             <el-form-item label="教师分配" prop="label">
-              <el-button type="primary" size="small" @click="openAssignment(ruleForm.id)">选择分配</el-button>
+              <el-button type="primary" size="small" @click="openAssignment">选择分配</el-button>
             </el-form-item>
 
             <el-form-item label="状态" prop="state" required >
@@ -186,8 +186,10 @@
       <el-card class="box-card scholat-card">
         <div slot="header" class="clearfix">
           <img src="@/assets/defaultLogo.png" style="width: 25px;height: 25px;float: left">
-          <span class="scholat_span"
-                style="margin-left: 14px;">输入邮箱或姓名后开始查询</span>
+          <el-input v-model="scholat_email" placeholder="建议输入学者网邮箱进行学者网账号查询" size="small" style="margin-left:10px;width: 320px;float: left;"></el-input>
+          <el-button type="primary" size="small" style="margin-left:10px;" @click="scholatInfoSearch">查询</el-button>
+<!--          <span class="scholat_span"-->
+<!--                style="margin-left: 14px;">输入邮箱或姓名后开始查询</span>-->
           <span v-if="list.length" class="scholat_span"
                 style="float: right;margin-left: 14px;">搜索到{{this.list.length}}位学者网用户</span>
           <span v-if="ruleForm.scholat_username" class="scholat_span"
@@ -582,6 +584,7 @@
                     pageRow: 10,
                     upcreate_time: ''
                 },
+              scholat_email:"",//学者网关联邮箱
                 ruleForm: {
                     id: '',
                     username: '', // 姓名
@@ -610,6 +613,7 @@
                     unit_id: '',// 单位编号
                   domain_name:'',//域名
                   edit_name:'',//编辑用户名
+
                 },
 
                 rules: {
@@ -621,7 +625,7 @@
                         {required: true, message: '请选择性别', trigger: 'change'}
                     ],
                     email: [
-                        {validator: validateEmail, required: true, message: '该邮箱已存在', trigger: 'blur'},
+                        // {validator: validateEmail, required: true, message: '该邮箱已存在', trigger: 'blur'},
                         {required: true, type: 'email', message: '请输入正确的邮箱地址', trigger: ['blur', 'change']}
                     ],
                   domain_name: [
@@ -643,9 +647,82 @@
                     ]*/
                 },
               showRoleAssigment: false,
+              roleId: '',//角色分配id
             }
         },
         methods: {
+          //学者关联信息查询
+          scholatInfoSearch(){
+            this.axios.post('/api/manager/validate', {
+           //   username: this.scholat_email,
+            //  key: rule.field,
+            //  name: this.scholat.name,
+              email:  this.scholat_email,
+              pageRow: this.scholat.pageRow
+            }).then(res => {
+              console.log("验证邮箱有成功的返回结果:" + res.data.err)
+              console.log(res.data.info.list)
+              if (res.data.err !== undefined) {
+                if (this.$route.path.indexOf("modifyTeacher")) {
+                  this.list = res.data.info.list;
+                  console.log("-------------根据邮箱获取到的学者网数据------------------")
+                  console.log(this.list);
+                  if (this.list != "" && this.list != null) {
+                    this.showScholatDiv = true
+                    this.$message({
+                      message: '查询学者网账号成功，但该邮箱已存在',
+                      type: 'warning'
+                    });
+                  } else {
+                    this.showScholatDiv = false
+                    this.$message({
+                      message: '查询学者网账号失败',
+                      type: 'error'
+                    });
+                  }
+                } else {
+                  this.list = res.data.info.list;
+                  console.log("-------------根据邮箱获取到的学者网数据------------------")
+                  console.log(this.list);
+                  if (this.list != "" && this.list != null) {
+                    this.showScholatDiv = true
+                    this.$message({
+                      message: '查询学者网账号成功',
+                      type: 'success'
+                    });
+                  } else {
+                    this.showScholatDiv = false
+                    this.$message({
+                      message: '查询学者网账号失败',
+                      type: 'error'
+                    });
+                  }
+                }
+              }else {
+                this.list = res.data.info.list;
+                console.log("-------------根据邮箱获取到的学者网数据------------------")
+                console.log(this.list);
+                if (this.list != "" && this.list != null) {
+                  this.showScholatDiv = true
+                  this.$message({
+                    message: '查询学者网账号成功',
+                    type: 'success'
+                  });
+                } else {
+                  this.showScholatDiv = false
+                  this.$message({
+                    message: '查询学者网账号失败',
+                    type: 'error'
+                  });
+                }
+              }
+            }).catch(err => {
+              this.$message({
+                message: '查询学者网账号失败',
+                type: 'error'
+              });
+            })
+          },
             // 获取学者网二维码
             getScholatQrUrl() {
                 alert("hey")
@@ -1086,17 +1163,19 @@
                 })
             },
           // 教师分配
-          openAssignment(id) {
+          openAssignment() {
+
             this.showRoleAssigment = true;
-            this.roleId = id;
-            console.log("当前分栏目标教师Id:" + id)
+            this.roleId = this.GetUrlRelativePath_id();
+           // console.log("id==="+id);
+           // console.log("当前分栏目标教师Id:" + id)
             this.$notify({
               title: '提示',
               message: '本页面教师分配只展示未分配栏目。若需要管理教师已分配栏目，请到教师分配页面进行管理。',
               type: 'info',
               position: 'bottom-left'
             });
-            this.$refs.childRole.getTeacherAllCatalogues(id);
+            this.$refs.childRole.getTeacherAllCatalogues(this.roleId);
           },
         }
     }
