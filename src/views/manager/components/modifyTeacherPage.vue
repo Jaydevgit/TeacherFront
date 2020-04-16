@@ -77,20 +77,20 @@
                 <el-radio label="1">女</el-radio>
               </el-radio-group>
             </el-form-item>
-            <el-form-item class="font-one" label="邮箱" prop="email">
-              <!--显示更新提示-->
-              <el-tooltip placement="top" v-if="showUpdateInfo.emailScholat">
-                <div slot="content" style="font-size: 16px">
-                  <span v-html="showUpdateInfo.email"></span>
-                  &nbsp;➡️&nbsp;
-                  <span v-html="showUpdateInfo.emailScholat"></span>
-                </div>
-                <el-input v-model="ruleForm.email" class="change-input-background"></el-input>
-              </el-tooltip>
-              <el-input v-model="ruleForm.email" v-if="!showUpdateInfo.emailScholat"
-                        placeholder="请输入邮箱地址"></el-input>
-            </el-form-item>
-            <el-form-item label="职称" prop="post">
+<!--            <el-form-item class="font-one" label="邮箱" prop="email">-->
+<!--              &lt;!&ndash;显示更新提示&ndash;&gt;-->
+<!--              <el-tooltip placement="top" v-if="showUpdateInfo.emailScholat">-->
+<!--                <div slot="content" style="font-size: 16px">-->
+<!--                  <span v-html="showUpdateInfo.email"></span>-->
+<!--                  &nbsp;➡️&nbsp;-->
+<!--                  <span v-html="showUpdateInfo.emailScholat"></span>-->
+<!--                </div>-->
+<!--                <el-input v-model="ruleForm.email" class="change-input-background"></el-input>-->
+<!--              </el-tooltip>-->
+<!--              <el-input v-model="ruleForm.email" v-if="!showUpdateInfo.emailScholat"-->
+<!--                        placeholder="请输入邮箱地址"></el-input>-->
+<!--            </el-form-item>-->
+            <el-form-item label="职称" prop="post" >
               <!--显示更新提示-->
               <el-tooltip placement="top" v-if="showUpdateInfo.postScholat">
                 <div slot="content" style="font-size: 16px">
@@ -103,6 +103,9 @@
               </el-tooltip>
               <el-input v-model="ruleForm.post" v-if="!showUpdateInfo.postScholat"
                         placeholder="例如：博士生导师、硕士生导师等"></el-input>
+            </el-form-item>
+            <el-form-item label="头衔" prop="label">
+              <el-input v-model="ruleForm.label" placeholder="例如：国务院特殊津贴专家等头衔"></el-input>
             </el-form-item>
 
             <el-row>
@@ -138,11 +141,11 @@
                 </el-form-item>-->
               </el-col>
             </el-row>
-            <el-form-item label="毕业学校" prop="graduateFrom">
-              <el-input v-model="ruleForm.graduateFrom"
-                        placeholder=""></el-input>
+            <el-form-item label="教师分配" prop="label">
+              <el-button type="primary" size="small" @click="openAssignment(ruleForm.id)">选择分配</el-button>
             </el-form-item>
-            <el-form-item label="状态" prop="state" required>
+
+            <el-form-item label="状态" prop="state" required >
               <el-radio-group v-model="ruleForm.state">
                 <el-radio label="1">在岗</el-radio>
                 <el-radio label="0">调出</el-radio>
@@ -153,10 +156,12 @@
         </el-col>
         <el-col :span="10">
           <div class="grid-content bg-purple">
-            <el-form-item label="头衔" prop="label">
-              <el-input v-model="ruleForm.label" placeholder="例如：国务院特殊津贴专家等头衔"></el-input>
+            <el-form-item label="毕业学校" prop="graduateFrom">
+              <el-input v-model="ruleForm.graduateFrom"
+                        placeholder=""></el-input>
             </el-form-item>
-            <el-form-item label="学科" prop="subject">
+
+            <el-form-item label="学科专业" prop="subject">
               <el-input v-model="ruleForm.subject" placeholder="例如：软件工程"></el-input>
             </el-form-item>
             <el-form-item label="研究方向" prop="research_direction">
@@ -170,6 +175,9 @@
             </el-form-item>
             <el-form-item label="办公电话" prop="phone">
               <el-input v-model="ruleForm.phone" placeholder="建议输入办公固定电话，可以用'-'分隔"></el-input>
+            </el-form-item>
+            <el-form-item label="办公邮箱" prop="email">
+              <el-input v-model="ruleForm.email" placeholder="建议输入办公请输入邮箱地址"></el-input>
             </el-form-item>
           </div>
         </el-col>
@@ -217,7 +225,7 @@
                         <span></span>
                       </template>
                     </el-table-column>
-                    <el-table-column align="center" label="职位" width="160">
+                    <el-table-column align="center" label="职位" width="160" >
                       <template slot-scope="scope">
                         <span class="teacher-homepage">{{scope.row.post}}</span>
                       </template>
@@ -322,7 +330,8 @@
       </el-row>
 
     </el-form>
-
+    <v-role-assignment-bar v-model="showRoleAssigment" :RoleId="roleId" ref="childRole"
+                           title="教师分配"></v-role-assignment-bar>
   </div>
 </template>
 
@@ -331,12 +340,14 @@
     import Editor from 'wangeditor'
     import {filterXSS} from 'xss'
     import Pinyin from '@/utils/pinyin'
+    import roleAssignmentBar from ".//roleAssignment";
 
     export default {
         name: "modifyTeacherPage",
 
         components: {
-            cropAvatarImage
+            cropAvatarImage,
+          'v-role-assignment-bar': roleAssignmentBar
         },
         created() {
             console.log("@@@@@@@@@@@@@@@@@@@@@@@");
@@ -620,17 +631,18 @@
                     phone: [
                         {validator: checkPhone, trigger: 'blur'}
                     ],
-                    post: [
-                        {required: true, message: '请输入职位', trigger: 'blur'},
-                        {min: 1, max: 30, message: '长度在 1 到 30 个字符', trigger: ['blur', 'change']}
-                    ],
-                    degree: [
-                        {required: true, message: '请输入学历', trigger: ['blur', 'change']}
-                    ],
+                    // post: [
+                    //     {required: true, message: '请输入职位', trigger: 'blur'},
+                    //     {min: 1, max: 30, message: '长度在 1 到 30 个字符', trigger: ['blur', 'change']}
+                    // ],
+                    // degree: [
+                    //     {required: true, message: '请输入学历', trigger: ['blur', 'change']}
+                    // ],
                     /*create_time: [
                         {required: true, message: '请选择加入日期', trigger: 'change'}
                     ]*/
-                }
+                },
+              showRoleAssigment: false,
             }
         },
         methods: {
@@ -1073,6 +1085,19 @@
 
                 })
             },
+          // 教师分配
+          openAssignment(id) {
+            this.showRoleAssigment = true;
+            this.roleId = id;
+            console.log("当前分栏目标教师Id:" + id)
+            this.$notify({
+              title: '提示',
+              message: '本页面教师分配只展示未分配栏目。若需要管理教师已分配栏目，请到教师分配页面进行管理。',
+              type: 'info',
+              position: 'bottom-left'
+            });
+            this.$refs.childRole.getTeacherAllCatalogues(id);
+          },
         }
     }
 </script>
