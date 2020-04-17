@@ -151,6 +151,7 @@
 
   .main-inner-left {
     height: 100%;
+    padding: 0 16px;
     display: flex;
     align-items: center;
   }

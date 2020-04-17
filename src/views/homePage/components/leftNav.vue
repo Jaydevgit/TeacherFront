@@ -105,9 +105,9 @@
                 else{
                   modelId=2;
                 }
-                this.$emit("toList", name,modelId);
+                this.$emit("toList", name,modelId,cId);
                 console.log("leftNav的ModelId="+modelId);
-                bus.$emit("cId", this.currentCat);
+                //bus.$emit("cId", this.currentCat);
                 console.log("leftNav的cId="+cId);
             }
         },

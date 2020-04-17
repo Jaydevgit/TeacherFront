@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="homePage-body" >
+  <div id="app" class="homePage-body">
     <div class="middle-container">
       <div class="left">
         <left-nav :unitId="unitId" @toList="toList"></left-nav>
@@ -13,22 +13,28 @@
           </el-breadcrumb>
           <div v-if="showLetter" class="centerLetter"><strong>{{letter}}</strong></div>
           <div style="margin-top: -4px;" v-if="showLetterList">
-            <a class="letterList" v-for="letter in Letters"   @click="jumper(letter)"><span>{{letter}}</span></a>
+            <a class="letterList" v-for="letter in Letters" @click="jumper(letter)"><span>{{letter}}</span></a>
           </div>
           <div class="list-style" style="margin-top: -4px;" v-if="detailShow!=3" @detailShow="detailShowChange">
-<!--            <el-button @click="defaultSort" type="info" round style="padding: inherit;margin-right: -5px;width: 70px">-->
-<!--              默认排序-->
-<!--            </el-button>-->
-<!--            <el-button @click="showSort" type="info" round style="padding: inherit;margin-right: 5px;width: 70px">-->
-<!--              姓名排序-->
-<!--            </el-button>-->
-            <i @click="simpleList" class="el-icon-menu" style="font-size:20px;margin-right: 10px;opacity: 0.7;cursor: pointer"></i>
-            <i @click="detailList" class="el-icon-tickets" style="font-size:20px;margin-right: 10px;opacity: 0.7;cursor: pointer"></i>
+            <!--            <el-button @click="defaultSort" type="info" round style="padding: inherit;margin-right: -5px;width: 70px">-->
+            <!--              默认排序-->
+            <!--            </el-button>-->
+            <!--            <el-button @click="showSort" type="info" round style="padding: inherit;margin-right: 5px;width: 70px">-->
+            <!--              姓名排序-->
+            <!--            </el-button>-->
+            <i @click="simpleList" class="el-icon-menu"
+               style="font-size:20px;margin-right: 10px;opacity: 0.7;cursor: pointer"></i>
+            <i @click="detailList" class="el-icon-tickets"
+               style="font-size:20px;margin-right: 10px;opacity: 0.7;cursor: pointer"></i>
 
           </div>
         </div>
         <component :is="componentName" @toInfo="changeToTeacherInfo" class="dynamic-page"
-                   :teacherProfile="teacherProfile" :msgLetter="letter" :showList="showSortList" :detail="detailShow" @detailShow="detailShowChange"
+                   :teacherProfile="teacherProfile" :msgLetter="letter"
+                   :showList="showSortList" :detail="detailShow"
+                   :cId='cId'
+                   :unitId = 'unitId'
+                   @detailShow="detailShowChange"
                    ref="teacherList1"></component>
       </div>
 
@@ -51,31 +57,28 @@
             return {
                 componentName: 'teacherList',
                 teacherProfile: {},//教师数据
+                cId: '',
                 Letters: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'],
                 showLetter: false,
                 letter: 'A',
                 showLetterList: false,
                 showSortList: false,
-                detailShow:3,
-              NavName:'师资队伍'
+                detailShow: 3,
+                NavName: '师资队伍',
             }
         },
         ready() {
         },
+        created(){
 
+        },
         computed: {
             unitId: function () {
-
-                //console.log(this.$route.params.unitId + '  aa'+this.$route.params.domainName);
                 return this.$store.state.user.unitId;
             },
         },
-      mounted(){
-          // if(this.unitId){
-          //   this.changeToTeacherInfo()
-          //
-          // }
-      },
+        mounted() {
+        },
         methods: {
             changeToTeacherInfo(id) {
                 console.log("### 开始查询教师的个人信息")
@@ -94,17 +97,20 @@
                     console.log("QAQ........没有找到教师信息")
                 })
             },
-            toList(name,modelId) {
-              console.log("qqqq"+name+this.detailShow);
-              /*this.detailShow=modelId;*/
-              console.log("detailShow"+this.detailShow);
-              this.componentName = "teacherList";
-              document.getElementsByClassName('middle-nav')[0].style.display = "flex";
-              let node = document.getElementById('middle-nav');
-              node.children[1].children[0].innerText = name;
+            toList(name, modelId, cId) {
+                this.cId = cId;
+                if (cId == 0) {
+                    this.detailShow = 3;
+                } else {
+                    this.detailShow = 2;
+                }
+                this.componentName = "teacherList";
+                document.getElementsByClassName('middle-nav')[0].style.display = "flex";
+                let node = document.getElementById('middle-nav');
+                node.children[1].children[0].innerText = name;
             },
-            detailShowChange(num){
-              this.detailShow=num;
+            detailShowChange(num) {
+                this.detailShow = num;
             },
 
             defaultSort() {
@@ -124,15 +130,15 @@
                 this.letter = letter;
                 this.$refs.teacherList1.getLetter(letter);
             },
-            simpleList(){
-                this.detailShow=2;
+            simpleList() {
+                this.detailShow = 2;
                 this.showList = false;
                 this.showSortList = false;
                 this.showLetterList = false;
                 this.$refs.teacherList1.getLetter(0);//发送0过去，则恢复默认
             },
-            detailList(){
-                this.detailShow=1;
+            detailList() {
+                this.detailShow = 1;
             }
 
         },
@@ -184,12 +190,17 @@
     justify-content: space-between;
     border-radius: 8px 8px 0 0;
   }
-  .letterList{
-  font-size: 16px;letter-spacing: 7px;margin-top: -4px;
+
+  .letterList {
+    font-size: 16px;
+    letter-spacing: 7px;
+    margin-top: -4px;
   }
+
   @media screen and (max-width: 1024px) {
     .letterList {
-      font-size: 14px;letter-spacing: 4px;
+      font-size: 14px;
+      letter-spacing: 4px;
 
     }
   }
@@ -207,12 +218,12 @@
     height: 100%;
     min-height: calc(100vh - 60px);
   }
+
   @media screen and (max-width: 768px) {
-    .homePage-body{
-     min-height: 1220px;
+    .homePage-body {
+      min-height: 1220px;
     }
   }
-
 
 
 </style>
