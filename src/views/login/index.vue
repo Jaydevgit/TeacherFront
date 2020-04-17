@@ -95,7 +95,7 @@
             <span class="svg-container svg-container_login">
          <span style="font-size: 16px;margin-right: 5px;font-weight: bold;opacity: 0.4;">验证码</span>
         </span>
-            <s-identify :identifyCode="identifyCode" @click.native="newCode" style=" cursor:pointer;width:80px;height:43px;display: inline-block;float: right;margin-top: 2px"></s-identify>
+            <s-identify :identifyCode="identifyCode" @click.native="newCode" style=" cursor:pointer;width:90px;height:45px;display: inline-block;float: right;margin-top: 4px"></s-identify>
             <el-input style="width: 380px" type="Codes" @keyup.enter.native="handleLogin" v-model="picLyanzhengma"
                       autoComplete="on" placeholder="请输入右侧四位数数字验证码"></el-input>
           </el-form-item>
