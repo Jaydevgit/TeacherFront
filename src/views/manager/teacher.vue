@@ -57,7 +57,7 @@
           <span v-text="getIndex(scope.$index)"> </span>
         </template>
       </el-table-column>
-      <el-table-column align="center" label="头像" width="150">
+      <el-table-column align="center" label="头像" style="text-overflow: clip">
 
         <template slot-scope="scope">
           <template v-if="scope.row.scholat_update_time > scope.row.update_time">
@@ -73,13 +73,13 @@
         </template>
 
       </el-table-column>
-      <el-table-column align="center" label="姓名" width="130" sortable='custom' prop="pinyin">
+      <el-table-column align="center" label="姓名"  sortable='custom' prop="pinyin">
         <template slot-scope="scope">
           <span class="teacher-homepage" @click="routerTo(scope.row)" style="cursor:pointer;">{{scope.row.name}}</span>
           <span></span>
         </template>
       </el-table-column>
-      <el-table-column align="center" label="学历" width="180">
+      <el-table-column align="center" label="学历" >
         <template slot-scope="scope">
           <span>{{scope.row.degree}}</span>
         </template>
@@ -93,18 +93,18 @@
 <!--          </el-tag>-->
 <!--        </template>-->
 <!--      </el-table-column>-->
-      <el-table-column align="center" label="职称" width="180">
+      <el-table-column align="center" label="职称" >
         <template slot-scope="scope">
           <span>{{scope.row.post}}</span>
         </template>
       </el-table-column>
-      <el-table-column align="center" label="更新时间" width="170" sortable='custom' prop="update_time">
+      <el-table-column align="center" label="更新时间"  min-width="160" sortable='custom' prop="update_time">
         <template slot-scope="scope">
           <span>{{scope.row.update_time}}</span>
           <div style="margin-top: 7px;"><el-tag v-if="scope.row.editName" type="success" effect="plain" >编辑者:{{ scope.row.editName }} </el-tag></div>
         </template>
       </el-table-column>
-      <el-table-column align="center" label="学者网关联">
+      <el-table-column align="center" label="学者网关联" min-width="110">
         <template slot-scope="scope">
           <a style="color: #399;
     text-decoration: underline;
@@ -123,12 +123,12 @@
         </template>
       </el-table-column>
 
-            <el-table-column fixed="right" align="center" label="教师分配" width="110">
+            <el-table-column fixed="right" align="center" label="教师分配" width="90">
               <template slot-scope="scope">
                 <el-button type="primary" icon="el-icon-star-off" circle @click="openAssignment(scope.row.id)"></el-button>
               </template>
             </el-table-column>
-      <el-table-column fixed="right" align="center" label="管理" width="200" v-if="hasPerm('teacher:update')">
+      <el-table-column fixed="right" align="center" label="管理" width="120" v-if="hasPerm('teacher:update')">
         <template slot-scope="scope">
           <template v-if="scope.row.scholat_update_time > scope.row.update_time">
             <el-button type="warning" icon="el-icon-edit" circle @click="showUpdate(scope.row)"></el-button>
