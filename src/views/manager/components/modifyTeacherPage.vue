@@ -142,15 +142,24 @@
               </el-col>
             </el-row>
             <el-form-item label="教师分配" prop="label">
-              <el-button type="primary" size="small" @click="openAssignment">选择分配</el-button>
+              <el-tag v-if="flagAssignment">添加教师完成后方可进行教师分配</el-tag>
+              <el-button v-else type="primary" size="small" @click="openAssignment">选择分配</el-button>
             </el-form-item>
 
             <el-form-item label="状态" prop="state" required >
-              <el-radio-group v-model="ruleForm.state">
-                <el-radio label="1">在岗</el-radio>
-                <el-radio label="0">调出</el-radio>
-                <el-radio label="-1">退休</el-radio>
-              </el-radio-group>
+              <el-select v-model="ruleForm.state" placeholder="请选择">
+                <el-option
+                  v-for="item in options"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value">
+                </el-option>
+              </el-select>
+<!--              <el-radio-group v-model="ruleForm.state">-->
+<!--                <el-radio label="1">在岗</el-radio>-->
+<!--                <el-radio label="0">调出</el-radio>-->
+<!--                <el-radio label="-1">退休</el-radio>-->
+<!--              </el-radio-group>-->
             </el-form-item>
           </div>
         </el-col>
@@ -362,8 +371,10 @@
                   this.ruleForm.degree = '0'
                   this.ruleForm.post = '教授'*/
             if(this.$route.path.split('/')[2] == 'addTeacher'){
+              this.flagAssignment=true;
                 this.routePage = 'add';
             }else {
+              this.flagAssignment=false;
                 this.routePage = 'modify';
             }
         },
@@ -584,7 +595,23 @@
                     pageRow: 10,
                     upcreate_time: ''
                 },
+              flagAssignment:'',
               scholat_email:"",//学者网关联邮箱
+              options:[
+                {
+                  value: '1',
+                  label: '全职'
+                }, {
+                  value: '2',
+                  label: '兼职'
+                }, {
+                  value: '-1',
+                  label: '退休'
+                }, {
+                  value: '0',
+                  label: '调离'
+                }
+              ],
                 ruleForm: {
                     id: '',
                     username: '', // 姓名
