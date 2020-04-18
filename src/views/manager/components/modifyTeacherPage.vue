@@ -839,8 +839,8 @@
                     this.showUpdateInfo.avatar = "http://47.106.132.95:2333/images/avatar/" + this.showUpdateInfo.avatar;
                 }
                 // email
-                this.showUpdateInfo.email = data.teacher.email;
-                this.showUpdateInfo.emailScholat = data.scholat.email;
+                // this.showUpdateInfo.email = data.teacher.email;
+                // this.showUpdateInfo.emailScholat = data.scholat.email;
                 // update_time
                 this.showUpdateInfo.update_time = data.teacher.update_time;
                 this.showUpdateInfo.update_timeScholat = data.scholat.update_time;
@@ -848,8 +848,8 @@
                 this.showUpdateInfo.degree = data.teacher.degree;
                 this.showUpdateInfo.degreeScholat = data.scholat.degree;
                 // 职位
-                this.showUpdateInfo.post = data.teacher.post;
-                this.showUpdateInfo.postScholat = data.scholat.post;
+                // this.showUpdateInfo.post = data.teacher.post;
+                // this.showUpdateInfo.postScholat = data.scholat.post;
             },
             // 根据传入的数据比较不同
             showDifferent(scholat) {
@@ -1017,33 +1017,49 @@
                     cancelButtonText: '取消',
                     type: 'warning'
                 }).then(() => {
+                  if( this.ruleForm.avatar===''){
                     if(scholat.avatar.indexOf('/images/default.png')!=-1){
-                        this.ruleForm.avatar ='default.png';
+                      this.ruleForm.avatar ='default.png';
                     }else {
-                        this.ruleForm.avatar = filterXSS(scholat.avatar);
+                      this.ruleForm.avatar = filterXSS(scholat.avatar);
                     }
+                  }
+
                     if (this.ruleForm.avatar.indexOf("resources") != -1) {
                         this.$refs.cropAvatarImage.attach.laterUrl = "http://www.scholat.com/" + this.ruleForm.avatar;
                     } else {
                         this.$refs.cropAvatarImage.attach.laterUrl = "http://47.106.132.95:2333/images/avatar/" + this.ruleForm.avatar;
                     }
-                    this.ruleForm.scholat_username = filterXSS(scholat.scholat_username); // 关联为学者网账号
+                    if(this.ruleForm.scholat_username===''){
+                      this.ruleForm.scholat_username = filterXSS(scholat.scholat_username);
+                    } // 关联为学者网账号
                     this.ruleForm.scholat_update_time = filterXSS(scholat.update_time);
+                  if(this.ruleForm.username===''){
                     this.ruleForm.username = filterXSS(scholat.username);
+                  }
+                  if(this.ruleForm.email===''){
                     this.ruleForm.email = filterXSS(scholat.email);
+                  }
+                  if(this.ruleForm.intro===''){
                     this.ruleForm.intro = filterXSS(scholat.intro);
+                  }
+                  if(this.ruleForm.post===''){
                     this.ruleForm.post = filterXSS(scholat.post);
+                  }
                     this.ruleForm.qrcode = filterXSS(scholat.qrcode + '.png');
                     this.editor.txt.html(this.ruleForm.intro);
                     // 学历
+                  if(this.ruleForm.degree===''){
                     var str = scholat.degree;
                     if (str.indexOf("博士") || str.indexOf("doctor")) {
-                        this.ruleForm.degree = "博士研究生"
+                      this.ruleForm.degree = "博士研究生"
                     } else if (str.indexOf("硕士")) {
-                        this.ruleForm.degree = "硕士研究生"
+                      this.ruleForm.degree = "硕士研究生"
                     } else if (str.indexOf("学士")) {
-                        this.ruleForm.degree = "本科"
+                      this.ruleForm.degree = "本科"
                     }
+                  }
+
                     this.$message.success("关联学者网成功, 部分信息已自动填入")
                 }).catch(() => {
                     this.$message({
