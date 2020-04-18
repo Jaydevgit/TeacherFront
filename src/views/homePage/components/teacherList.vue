@@ -18,24 +18,24 @@
               </div>
             </el-col>
 
-            <el-col :span="5">
-              <div class="grid-content bg-purple" style="font-size:medium;height: 90px;margin-left: 2px">
+            <el-col :span="4">
+              <div class="grid-content bg-purple" style="font-size:medium;height: 60px;margin-left: 2px">
                 <div v-if="!!teacher.tDegree" style="margin: 12px 0 12px 0">{{teacher.tDegree}}</div>
               </div>
             </el-col>
-            <el-col :span="8">
+            <el-col :span="6">
               <div class="grid-content bg-purple"
-                   style="font-size: small;overflow: hidden;text-overflow: ellipsis;height: 90px;min-width: 280px">
+                   style="font-size: small;overflow: hidden;text-overflow: ellipsis;height: 60px;min-width: 180px">
                 <div v-if="!!teacher.tEmail" style="margin: 12px 0 12px 0">{{teacher.tEmail}}</div>
               </div>
             </el-col>
-            <el-col :span="4">
+            <el-col :span="7">
               <div class="grid-content bg-purple"
-                   style="font-size:large;height: 90px;overflow: hidden;text-overflow: ellipsis;">
-                <div style="margin-top: 10px;" v-if="teacher.tScholat_username">
-                  <span><svg-icon icon-class="S"/></span>
-                  <a :href="'http://www.scholat.com/'+teacher.tScholat_username" style="color: #399;">
-                    学者主页
+                   style="font-size:large;height: 60px;overflow: hidden;text-overflow: ellipsis;">
+                <div style="margin-top: 10px;font-size: small" v-if="teacher.tScholat_username">
+                  <!--<span><svg-icon icon-class="S"/></span>-->
+                  <a target="_blank" :href="'http://www.scholat.com/'+teacher.tScholat_username" style="color: #399;">
+                    http://www.scholat.com/{{teacher.tScholat_username}}
                   </a>
                 </div>
 
