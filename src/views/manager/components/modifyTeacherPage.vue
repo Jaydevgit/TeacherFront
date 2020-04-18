@@ -90,19 +90,19 @@
 <!--              <el-input v-model="ruleForm.email" v-if="!showUpdateInfo.emailScholat"-->
 <!--                        placeholder="请输入邮箱地址"></el-input>-->
 <!--            </el-form-item>-->
-            <el-form-item label="职称" prop="post" >
+            <el-form-item label="职务" prop="duty" >
               <!--显示更新提示-->
-              <el-tooltip placement="top" v-if="showUpdateInfo.postScholat">
-                <div slot="content" style="font-size: 16px">
-                  <span v-html="showUpdateInfo.post"></span>
-                  &nbsp;➡️&nbsp;
-                  <span v-html="showUpdateInfo.postScholat"></span>
-                </div>
-                <el-input v-model="ruleForm.post" class="change-input-background"
-                          placeholder="例如：博士生导师、硕士生导师等"></el-input>
-              </el-tooltip>
-              <el-input v-model="ruleForm.post" v-if="!showUpdateInfo.postScholat"
-                        placeholder="例如：博士生导师、硕士生导师等"></el-input>
+<!--              <el-tooltip placement="top" v-if="showUpdateInfo.postScholat">-->
+<!--                <div slot="content" style="font-size: 16px">-->
+<!--                  <span v-html="showUpdateInfo.post"></span>-->
+<!--                  &nbsp;➡️&nbsp;-->
+<!--                  <span v-html="showUpdateInfo.postScholat"></span>-->
+<!--                </div>-->
+<!--                <el-input v-model="ruleForm.post" class="change-input-background"-->
+<!--                          placeholder="例如：博士生导师、硕士生导师等"></el-input>-->
+<!--              </el-tooltip>-->
+              <el-input v-model="ruleForm.duty"
+                        placeholder="例如：院长、书记、老师、辅导员等"></el-input>
             </el-form-item>
             <el-form-item label="头衔" prop="label">
               <el-input v-model="ruleForm.label" placeholder="例如：国务院特殊津贴专家等头衔"></el-input>
@@ -166,15 +166,10 @@
             <el-input v-model="ruleForm.post" v-if="!showUpdateInfo.postScholat"
                       placeholder="例如：博士生导师、硕士生导师等"></el-input>
           </el-form-item>
-          <el-form-item label="最高学位" prop="degree" style="margin-top: 85px">
-            <!-- <el-select v-model="ruleForm.degree">
-               <el-option label="博士研究生" value="博士研究生"></el-option>
-               <el-option label="硕士研究生" value="硕士研究生"></el-option>
-               <el-option label="本科" value="本科"></el-option>
-               <el-option label="专科" value="专科"></el-option>
-             </el-select>-->
-            <el-input v-model="ruleForm.degree"
-                      placeholder=""></el-input>
+          <el-form-item label="最高学位" prop="degreeMax" style="margin-top: 85px">
+
+            <el-input v-model="ruleForm.degreeMax"
+                      placeholder="博士、硕士、学士"></el-input>
           </el-form-item>
           <el-form-item label="研究方向" prop="research_direction">
             <el-input v-model="ruleForm.research_direction" placeholder="例如：数据挖掘、知识图谱、图像识别等"></el-input>
@@ -649,6 +644,8 @@
                     unit_id: '',// 单位编号
                   domain_name:'',//域名
                   edit_name:'',//编辑用户名
+                  degreeMax:'',//最高学位
+                  duty:'',//职务
 
                 },
 
@@ -910,6 +907,8 @@
                 this.ruleForm.unit_id = filterXSS(this.$store.state.user.unitId);// 单位编号
               this.ruleForm.domain_name = filterXSS(data.domain_name); // 域名
               this.ruleForm.edit_name = filterXSS(this.$store.state.user.nickname); // 姓名
+              this.ruleForm.duty = filterXSS(data.duty); // 职务
+              this.ruleForm.degreeMax = filterXSS(data.degreeMax); // 最高学位
             },
             // 本页面最开始的会调用的函数,获取教师信息
             getTeacherInfoById(teacherId) {
