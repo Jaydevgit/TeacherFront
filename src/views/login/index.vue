@@ -73,17 +73,23 @@
         <!--<h3 class="title">教师主页管理系统</h3>-->
         <div class="input-row">
           <el-form-item prop="username">
-        <span class="svg-container svg-container_login">
-         <span style="font-size: 16px;font-weight: bold;opacity: 0.4;">账号</span> <svg-icon icon-class="user" style="opacity: 0.5;"/>
-        </span>
-            <el-input v-model="loginForm.username" autoComplete="on" placeholder="请输入用户名"/>
+            <div style="display: flex">
+              <span class="svg-container svg-container_login">
+                <span style="font-size: 16px;font-weight: bold;opacity: 0.4;">账号</span>
+                <svg-icon icon-class="user" style="opacity: 0.5;"/>
+              </span>
+              <el-input v-model="loginForm.username" style="flex: 1" autoComplete="on" placeholder="请输入用户名"/>
+            </div>
+
           </el-form-item>
           <el-form-item prop="password">
-        <span class="svg-container ">
-            <span style="font-size: 16px;margin-right: 5px;font-weight: bold;opacity: 0.4;">密码</span><svg-icon icon-class="password" style="opacity: 0.5;"/>
-        </span>
+            <div style="display: flex">
+            <span class="svg-container ">
+                <span style="font-size: 16px;margin-right: 5px;font-weight: bold;opacity: 0.4;">密码</span><svg-icon icon-class="password" style="opacity: 0.5;"/>
+            </span>
             <el-input type="password" @keyup.enter.native="handleLogin" v-model="loginForm.password"
-                      autoComplete="on" placeholder="请输入密码"></el-input>
+                          style="flex: 1" autoComplete="on" placeholder="请输入密码"></el-input>
+            </div>
           </el-form-item>
 <!--          <el-form-item prop="picLyanzhengma">-->
 <!--            <el-button @click="createCode"   v-model="checkCode">{{checkCode}}</el-button>-->
@@ -92,12 +98,14 @@
 <!--          </el-form-item>-->
 
           <el-form-item prop="Codes" >
-            <span class="svg-container svg-container_login">
-         <span style="font-size: 16px;margin-right: 5px;font-weight: bold;opacity: 0.4;">验证码</span>
-        </span>
-            <s-identify :identifyCode="identifyCode" @click.native="newCode" style=" cursor:pointer;width:90px;height:45px;display: inline-block;float: right;margin-top: 4px"></s-identify>
-            <el-input style="width: 380px" type="Codes" @keyup.enter.native="handleLogin" v-model="picLyanzhengma"
-                      autoComplete="on" placeholder="请输入右侧四位数数字验证码"></el-input>
+            <div style="display: flex">
+              <span class="svg-container svg-container_login">
+                <span style="font-size: 16px;margin-right: 5px;font-weight: bold;opacity: 0.4;">验证码</span>
+              </span>
+              <el-input style="flex: 1" type="Codes" @keyup.enter.native="handleLogin" v-model="picLyanzhengma"
+                        autoComplete="on" placeholder="请输入右侧四位数数字验证码"></el-input>
+              <s-identify :identifyCode="identifyCode" @click.native="newCode" style=" cursor:pointer;width:90px;height:45px;display: inline-block;margin-top: 4px"></s-identify>
+            </div>
           </el-form-item>
 
           <el-form-item>
@@ -510,7 +518,7 @@
       color: #015692;
       vertical-align: middle;
       width: 90px;
-      display: inline-block;
+
 
       &_login {
         font-size: 20px;
@@ -526,8 +534,9 @@
     }
 
     .login-form {
-      width: 100%;
-      max-width:600px;
+      width: 35%;
+      min-width: 350px;
+      /*max-width:600px;*/
       margin: auto;
       transform: translate(0, 24%);
       background-color: #fff;
