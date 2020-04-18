@@ -16,7 +16,7 @@
     <el-form :model="ruleForm" label-position="left" status-icon :rules="rules" ref="ruleForm" label-width="80px"
              class="demo-ruleForm">
 
-      <el-row type="flex" class="row-bg first-card" justify="center">
+      <el-row type="flex" class="row-bg first-card" justify="center" :gutter="20">
         <el-col :span="5">
           <div class="grid-content bg-purple" style="text-align: center">
 
@@ -49,15 +49,15 @@
               <img :src="'http://www.scholat.com/'+ruleForm.qrcode" style="width: 120px;height: 120px;">
             </div>
 
-            <el-form-item label="域名" prop="domain_name" style="margin-top: 40px;">
-              <el-input v-model="ruleForm.domain_name"  style="margin-left: -40px;" ></el-input>
+            <el-form-item label="域名" prop="domain_name" style="margin-top: 40px;"  class="redItem">
+              <el-input v-model="ruleForm.domain_name"  style="margin-left: -40px;" size="small"></el-input>
             </el-form-item>
           </div>
 
         </el-col>
         <el-col :span="7">
 <!--          <div class="grid-content bg-purple-light">-->
-            <el-form-item label="姓名" prop="username">
+            <el-form-item label="姓名" prop="username" class="redItem">
 
               <!--显示更新提示-->
               <el-tooltip placement="top" v-if="showUpdateInfo.usernameScholat">
@@ -71,7 +71,7 @@
               <el-input v-model="ruleForm.username" v-if="!showUpdateInfo.usernameScholat"></el-input>
 
             </el-form-item>
-            <el-form-item label="性别" prop="sex">
+            <el-form-item label="性别" prop="sex" class="redItem">
               <el-radio-group v-model="ruleForm.sex">
                 <el-radio label="0">男</el-radio>
                 <el-radio label="1">女</el-radio>
@@ -130,7 +130,7 @@
 
 
 
-            <el-form-item label="状态" prop="state" required >
+            <el-form-item label="状态" prop="state" required class="redItem">
               <el-select v-model="ruleForm.state" placeholder="请选择">
                 <el-option
                   v-for="item in options"
@@ -151,7 +151,7 @@
           </div>
 <!--          </div>-->
         </el-col>
-        <el-col :span="5" :offset="1">
+        <el-col :span="6" >
           <el-form-item label="职称" prop="post" style="margin-top:125px" >
             <!--显示更新提示-->
             <el-tooltip placement="top" v-if="showUpdateInfo.postScholat">
@@ -182,13 +182,13 @@
             <el-button v-else type="primary" size="small" @click="openAssignment">选择分配</el-button>
           </el-form-item>
         </el-col>
-        <el-col :span="5" :offset="1">
+        <el-col :span="6">
           <el-form-item label="毕业学校" prop="graduateFrom" style="margin-top: 250px">
             <el-input v-model="ruleForm.graduateFrom"
                       placeholder=""></el-input>
           </el-form-item>
-          <el-form-item label="办公邮箱" prop="email" style="margin-top: 150px">
-            <el-input v-model="ruleForm.email" placeholder="建议输入办公请输入邮箱地址"></el-input>
+          <el-form-item label="办公邮箱" prop="email" style="margin-top: 150px" class="redItem">
+            <el-input v-model="ruleForm.email" placeholder="建议输入办公邮箱地址"></el-input>
           </el-form-item>
         </el-col>
       </el-row>
@@ -199,7 +199,7 @@
       <el-card class="box-card scholat-card">
         <div slot="header" class="clearfix">
           <img src="@/assets/defaultLogo.png" style="width: 25px;height: 25px;float: left">
-          <el-input v-model="scholat_email" placeholder="建议输入学者网邮箱进行学者网账号查询" size="small" style="margin-left:10px;width: 320px;float: left;"></el-input>
+          <el-input v-model="scholat_emailORname" placeholder="建议输入学者网邮箱或姓名进行学者网账号查询" @keyup.enter.native="scholatInfoSearch" size="small" style="margin-left:10px;width: 320px;float: left;"></el-input>
           <el-button type="primary" size="small" style="margin-left:10px;" @click="scholatInfoSearch">查询</el-button>
 <!--          <span class="scholat_span"-->
 <!--                style="margin-left: 14px;">输入邮箱或姓名后开始查询</span>-->
@@ -600,7 +600,7 @@
                     upcreate_time: ''
                 },
               flagAssignment:'',
-              scholat_email:"",//学者网关联邮箱
+              scholat_emailORname:"",//学者网关联邮箱
               options:[
                 {
                   value: '1',
@@ -686,11 +686,20 @@
         methods: {
           //学者关联信息查询
           scholatInfoSearch(){
+            let email='';
+            let name='';
+            if(this.scholat_emailORname.indexOf('@')!=-1){
+              email=this.scholat_emailORname
+              console.log("email"+email);
+            }else{
+              name=this.scholat_emailORname
+              console.log("name"+name);
+            }
             this.axios.post('/api/manager/validate', {
            //   username: this.scholat_email,
             //  key: rule.field,
-            //  name: this.scholat.name,
-              email:  this.scholat_email,
+              name: name,
+              email:  email,
               pageRow: this.scholat.pageRow
             }).then(res => {
               console.log("验证邮箱有成功的返回结果:" + res.data.err)
@@ -1467,5 +1476,8 @@
 
   .el-table__body-wrapper {
     height: 100%;
+  }
+  .redItem .el-form-item__label{
+    color:red
   }
 </style>
