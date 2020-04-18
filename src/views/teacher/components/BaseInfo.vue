@@ -5,7 +5,7 @@
         <el-card class="box-card" >
 
           <div class="left" >
-            <img :src="getImgUrl(teacherProfile.avatar)" width="200" height="200"
+            <img :src="getImgUrl(teacherProfile.avatar)" width="120" height="120"
                  style="border-radius: 12%; overflow: hidden; border: 3px solid #efefef;">
           </div>
           <div class="right" >
@@ -166,19 +166,19 @@
       .left {
 
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         /*justify-content: space-around;*/
-        margin-top: 30px;
+        margin-top: 20px;
+        margin-left: 20px;
         align-items: center;
-        width: 250px;
+        width: 30%;
         float: left;
-        min-height: 220px;
         height: inherit
         /*background-color: burlywood;*/
       }
 
       .right {
-
+        width: 70%;
         height: 100%;
         /*background-color: aquamarine;*/
       }
