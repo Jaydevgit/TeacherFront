@@ -3,16 +3,16 @@
 
     <!--两种模式：模式 1 -->
     <div class="background" v-if="unit.state == 0 && dataDone">
-      <div @click="goToCollege" style="display: inline-block;height: 100%;margin-left: 8px;width: auto;min-width: 93px">
+      <div @click="goToCollege" style="display: inline-block;height: 90%;width: auto;min-width: 93px">
         <img :src="getPic" :onerror="defaultLogo"
-             style="height: auto;width: 93px;bottom: 0;"/>
+             style="height: 100%;width: auto;bottom: 0;"/>
       </div>
       <div @click="goToCollege"
            style="height: 100%;max-width: 900px;display: flex;justify-content: center;align-items: center;
            margin: 0 18px;cursor: pointer">
        <div style="color: steelblue">
          <a class="university" style="white-space: nowrap;font-weight: bold;">{{unit.schoolName}}</a>
-         <span class="unitName" style="color:steelblue;font-weight: bold;">{{unit.unitName}}</span>
+         <span class="unitName" style="color:steelblue;font-weight: bold;white-space:nowrap;">{{unit.unitName}}</span>
        </div>
       </div>
       <div class="font-jsgrzy" style="display: inline-block;min-width: 180px;">
@@ -226,31 +226,8 @@
     align-items: center;
   }
 
-
-
-  /*@media screen and  (max-width: 1200px) {*/
-  /*  .background2 {*/
-  /*    width: 100%;*/
-
-  /*    min-width: 900px;*/
-  /*    overflow-x:hidden;*/
-  /*    overflow-y:hidden;*/
-  /*  }*/
-  /*  .background2_1{*/
-  /*    display:inline-block;min-width:900px;*/
-  /*    width: 100%;*/
-  /*    overflow-x:hidden;*/
-
-  /*  }*/
-  /*  div.search {*/
-  /*    float: right;*/
-  /*    padding-top: 30px;*/
-  /*  }*/
-
-  /*}*/
-
   .university {
-    display: inline-block;
+
     letter-spacing: 3.5px;
     font-size: 21px;
     color: steelblue;
@@ -264,7 +241,7 @@
     font-size: 20px;
     letter-spacing: 3.5px;
     color: white;
-    display: block;
+
   }
 
   div.search {
