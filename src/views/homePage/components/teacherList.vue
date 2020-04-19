@@ -406,7 +406,13 @@
                     method: "get",
                     params: this.listQuery
                 }).then(data => {
+
+                    this.teacherListAll=data.list
+
                     this.teacherList = data.list
+
+
+
                     this.totalCount = data.totalCount;
                 }).catch(error => {
                     console.log("QAQ........获取教师失败")
