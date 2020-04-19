@@ -43,14 +43,14 @@
       <div v-else class="font-jsgrzy" style="display: inline-block;min-width: 180px;">
         <a href="/index"><span >SCHOLAT+学院教师主页系统</span></a>
       </div>
-      <div class="search bar6" v-if="dataDone && this.$route.path.indexOf('teacher')==-1">
+      <div class="search bar6" v-if="dataDone && this.$route.path.indexOf('teacher')===-1">
         <div class="formDiv" style="min-width:200px;float: right;">
           <input @keyup.enter="keySend" type="text" v-model="searchKey" placeholder="请输入您要搜索的教师" name="cname"
                  style="color: gray;background-color: white;">
           <button @click="keySend"></button>
         </div>
       </div>
-      <div class="linkScholat" style="margin: 40px 0 0 350px;color: #7e8c8d"><a href="http://www.scholat.com/">scholat.com</a></div>
+      <div v-if="this.$route.path.indexOf('login')!==-1" class="linkScholat" style="position: relative;width: 300px;margin: 0 auto;color: #7e8c8d;padding-top: 40px"><a href="http://www.scholat.com/">scholat.com</a></div>
     </div>
 
   </header>
