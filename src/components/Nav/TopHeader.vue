@@ -34,24 +34,24 @@
       <div @click="goToCollege" style="display: inline-block;height: 90%;width: auto;">
         <img :src="getPic" :onerror="defaultLogo" style="height:100%;width:auto;bottom: 0;"/>
       </div>
-      <div @click="goToCollege"
-           style="height: 100%;max-width: 900px;margin-left: 14px;">
-        <img :src="'http://47.106.132.95:2333/images/background/' + unit.backgroundUrl" :onerror="defaultBack"
-             style="height: 90%;width: auto;cursor: pointer"/>
-      </div>
+<!--      <div @click="goToCollege"-->
+<!--           style="height: 100%;max-width: 900px;margin-left: 14px;">-->
+<!--        <img :src="'http://47.106.132.95:2333/images/background/' + unit.backgroundUrl" :onerror="defaultBack"-->
+<!--             style="height: 90%;width: auto;cursor: pointer"/>-->
+<!--      </div>-->
       <div v-if="titleFlag"></div>
       <div v-else class="font-jsgrzy" style="display: inline-block;min-width: 180px;">
-        <span>教师个人主页</span>
+        <a href="/index"><span >SCHOLAT+学院教师主页系统</span></a>
       </div>
       <div class="search bar6" v-if="dataDone && this.$route.path.indexOf('teacher')==-1">
-        <div class="formDiv" style="min-width:200px;float: right">
+        <div class="formDiv" style="min-width:200px;float: right;">
           <input @keyup.enter="keySend" type="text" v-model="searchKey" placeholder="请输入您要搜索的教师" name="cname"
                  style="color: gray;background-color: white;">
           <button @click="keySend"></button>
         </div>
       </div>
+      <div class="linkScholat" style="margin: 40px 0 0 350px;color: #7e8c8d"><a href="http://www.scholat.com/">scholat.com</a></div>
     </div>
-
 
   </header>
 </template>
@@ -317,5 +317,9 @@
     font-size: 22px;
     color: steelblue;
     white-space: nowrap;
+    margin-left: 30px;
+  }
+  .linkScholat a:hover {
+    text-decoration:underline;
   }
 </style>

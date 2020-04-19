@@ -59,8 +59,8 @@
                label-width="0px"
                class="card-box login-form">
         <div class="login-top login-row">
-          <a class="boardtop-left" href="/index">
-            <div>首 页</div>
+          <a class="boardtop-left" href="/login">
+            <div>登 录</div>
           </a>
           <div class="login-logo">
             <img :src="logo" alt="学者网">
