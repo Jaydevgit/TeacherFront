@@ -668,7 +668,7 @@
 
 
 <style rel="stylesheet/scss" lang="scss" scoped>
-  @import '../../styles/catalogueVariables.scss';
+  @import '../../../styles/catalogueVariables';
 
   .newsLi {
     height: 76px;

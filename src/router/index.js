@@ -189,21 +189,27 @@ export const asyncRouterMap = [
     ]
   },
   {
-    path: '/catalogue',
+    path: '/homeSet',
     component: Layout,
-    redirect: '/catalogue',
-    name: '首页栏目',
-    meta: {title: '首页栏目', icon: 'tree'},
+    redirect: '/homeSet/teacherSet',
+    name: '主页设置',
+    meta: {title: '主页设置', icon: 'tree'},
     children: [
       {
-
-        path: '',
+        path: 'teacherSet',
+        name: '教师主页设置',
+        component: _import('homeSet/teacher/teacherSet'),
+        meta: {title: '教师主页设置', icon: 'user'},
+        menu: 'user'
+      },
+      {
+        path: 'catalogueList',
         name: '栏目管理',
-        component: _import('catalogue/catalogueList'),
+        component: _import('homeSet/catalogue/catalogueList'),
         meta: {title: '栏目列表', icon: 'user'},
         menu: 'user'
+      },
 
-      }
     ]
   },
   {
