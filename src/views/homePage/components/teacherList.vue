@@ -5,11 +5,11 @@
       <ul class="ul-page" style="width: 100%;">
         <li v-for="teacher in teacherList" :key="teacher.tId" class="teacherLi">
           <el-row :gutter="10" style="height: 60px;padding-top: 15px;min-width: 758px">
-            <el-col :span="6">
+            <el-col :span="10">
               <div class="grid-content bg-purple" @click="routerTo(teacher.tId)"
                    style="cursor: pointer; overflow: hidden;text-overflow: ellipsis;padding-left: 10px;">
-                <!--<img :src="getImgUrl(teacher.tAvatar)" :onerror="defaultImage" class="list-img" style="float: left;width: 80px;height: 80px">-->
-                <div style="padding-top: 10px;display: flex">
+                <img :src="getImgUrl(teacher.tAvatar)" :onerror="imgErrorFun()" class="list-img" style="float: left;width: 40px;height: 40px">
+                <div style="padding-top: 10px;display: flex;margin-left: 20px;flex-direction: row;justify-content: space-around">
                   <div style="width: 75px;font-size: 16px;font-weight: bold;padding: 0px 0px 10px 0px;">
                     {{teacher.tName}}
                   </div>
@@ -17,12 +17,12 @@
                 </div>
               </div>
             </el-col>
-
-            <el-col :span="4">
+            <!--显示学历-->
+            <!--<el-col :span="4">
               <div class="grid-content bg-purple" style="font-size:medium;height: 60px;margin-left: 2px">
                 <div v-if="!!teacher.tDegree" style="margin: 12px 0 12px 0">{{teacher.tDegree}}</div>
               </div>
-            </el-col>
+            </el-col>-->
             <el-col :span="6">
               <div class="grid-content bg-purple"
                    style="font-size: small;overflow: hidden;text-overflow: ellipsis;height: 60px;min-width: 180px">
@@ -457,6 +457,8 @@
     height: 60px;
     min-width: calc(100% - 36px);
     border-bottom: thin solid #EAEAEA;
+    display: flex;
+    flex-direction: row;
   }
 
   .teacherLi2 {
