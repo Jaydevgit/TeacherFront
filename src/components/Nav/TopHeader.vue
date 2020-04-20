@@ -41,7 +41,15 @@
 <!--      </div>-->
       <div v-if="titleFlag"></div>
       <div v-else class="font-jsgrzy" style="display: inline-block;min-width: 180px;">
-        <a href="/index"><span >SCHOLAT+学院教师主页系统</span></a>
+        <a href="/index">
+          <span style="font-size: 24px;
+    font-family: initial;
+    font-weight: bold;
+    letter-spacing: 9px;">SCHOLAT+</span>
+          <span style="">
+            学院教师主页系统
+          </span>
+        </a>
       </div>
       <div class="search bar6" v-if="dataDone && this.$route.path.indexOf('teacher')===-1">
         <div class="formDiv" style="min-width:200px;float: right;">
