@@ -14,7 +14,8 @@
               <div class="name-left">
                 <div class="name">
                   {{teacherProfile.username}}
-                  <span class="prodile-second" style="margin-left: 14px;" v-if="teacherProfile.post">{{teacherProfile.post}}</span>
+                  <span class="prodile-second" style="margin-left: 14px;" v-if="teacherProfile.duty&&tagFlag[2]==='c'">{{teacherProfile.duty}}</span>
+                  <span class="prodile-second" style="margin-left: 14px;" v-if="teacherProfile.post&&tagFlag[3]==='d'">{{teacherProfile.post}}</span>
                   <!--                  <span class="prodile-second" v-if="teacherProfile.degree">/&nbsp{{teacherProfile.degree}}</span>-->
                 </div>
                 <!--                <div style="margin: 20px 0;">
@@ -39,36 +40,44 @@
             </div>
             <div class="name-right-bg" style="float: right;height:310px;margin-top: -90px"></div>
             <div class="name-bottom">
-              <div v-if="teacherProfile.label" style="margin-bottom: 10px;">
+              <div v-if="teacherProfile.label&&tagFlag[4]==='e'" style="margin-bottom: 10px;">
                 <span class="personal-describe">{{teacherProfile.label}}</span>
               </div>
-              <div style="margin-bottom: 10px;" v-if="teacherProfile.degree">
+              <div style="margin-bottom: 10px;" v-if="teacherProfile.degree&&tagFlag[5]==='f'">
                 <span><svg-icon icon-class="degree"/></span>
-                <label class="font-one">学历学位：</label>{{teacherProfile.degree}}
+                <label class="font-one">最后学历：</label>{{teacherProfile.degree}}
               </div>
-              <div style="margin-bottom: 10px;" v-if="teacherProfile.department_name">
+              <div style="margin-bottom: 10px;" v-if="teacherProfile.degreeMax&&tagFlag[6]==='g'">
+                <span><svg-icon icon-class="degree"/></span>
+                <label class="font-one">最高学位：</label>{{teacherProfile.degreeMax}}
+              </div>
+              <div style="margin-bottom: 10px;" v-if="teacherProfile.graduateFrom&&tagFlag[7]==='h'">
                 <span><svg-icon icon-class="department"/></span>
-                <label class="font-one">所在部门：</label>{{teacherProfile.department_name}}
+                <label class="font-one">毕业学校：</label>{{teacherProfile.graduateFrom}}
               </div>
-              <div style="margin-bottom: 10px;" v-if="teacherProfile.work_place">
-                <span><svg-icon icon-class="maps-and-flags"/></span>
-                <label class="font-one">办公地点：</label>{{teacherProfile.work_place}}
-              </div>
-              <div style="margin-bottom: 10px;" v-if="teacherProfile.phone">
-                <span><svg-icon icon-class="mobile-phone"/></span>
-                <label class="font-one">办公电话：</label>{{teacherProfile.phone}}
-              </div>
-              <div style="margin-bottom: 10px;" v-if="teacherProfile.subject">
-                <span><svg-icon icon-class="subject"/></span>
-                <label class="font-one">学科：</label>{{teacherProfile.subject}}
+              <div style="margin-bottom: 10px;" v-if="teacherProfile.subject&&tagFlag[8]==='i'">
+                <span><svg-icon icon-class="department"/></span>
+                <label class="font-one">学科专业：</label>{{teacherProfile.subject}}
               </div>
               <div style="margin-bottom: 10px;" v-if="teacherProfile.research_direction">
                 <span><svg-icon icon-class="rearch-direction"/></span>
                 <label class="font-one">研究方向：</label>{{teacherProfile.research_diection}}
               </div>
+              <div style="margin-bottom: 10px;" v-if="teacherProfile.department_name&&tagFlag[10]==='k'">
+                <span><svg-icon icon-class="department"/></span>
+                <label class="font-one">所在部门：</label>{{teacherProfile.department_name}}
+              </div>
+              <div style="margin-bottom: 10px;" v-if="teacherProfile.work_place&&tagFlag[11]==='l'">
+                <span><svg-icon icon-class="maps-and-flags"/></span>
+                <label class="font-one">办公地点：</label>{{teacherProfile.work_place}}
+              </div>
+              <div style="margin-bottom: 10px;" v-if="teacherProfile.phone&&tagFlag[12]==='m'">
+                <span><svg-icon icon-class="mobile-phone"/></span>
+                <label class="font-one">办公电话：</label>{{teacherProfile.phone}}
+              </div>
               <div style="margin-bottom: 10px;">
                 <span><svg-icon icon-class="email"/></span>
-                <label class="font-one">邮箱：</label>{{teacherProfile.email}}
+                <label class="font-one">办公邮箱：</label>{{teacherProfile.email}}
               </div>
               <div style="margin-bottom: 10px;" v-if="teacherProfile.scholat_username">
                 <span><svg-icon icon-class="S"/></span>
@@ -100,7 +109,9 @@
         name: "BaseInfo",
         created() {
             this.personal.avatar = this.logo;
-            console.log(this.teacherProfile);
+            console.log(this.teacherProfile );
+            this.tagFlag=this.$store.state.user.tagState.split('')
+          console.log(" this.tagFlag="+ this.tagFlag );
         },
         data() {
             return {
@@ -118,7 +129,8 @@
                     research: [],
                     introduction: "",
                     matrixCode: ""
-                }
+                },
+              tagFlag:''
             }
         },
         props: ['teacherProfile'],

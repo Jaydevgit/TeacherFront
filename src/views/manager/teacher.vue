@@ -272,7 +272,11 @@
                 showRoleAssigment: false,
                 roleId: '',//角色分配id
                 teacherState:'1',//教师是否在岗
-              flagScholat:true //是否关联学者网
+              flagScholat:true, //是否关联学者网
+              unitQuery:{
+                domainName:'',
+                unitId:''
+              }
             }
         },
         created() {
@@ -320,7 +324,8 @@
                         params: this.listQuery
                     }).then(data => {
                         this.list = data.list;
-                        this.totalCount = data.totalCount;
+                      console.log(" this.list"+ JSON.stringify(this.list));
+                      this.totalCount = data.totalCount;
                         this.totalUpdate = data.totalUpdate;
                         this.currentSearch = true;
                     }).catch(error => {

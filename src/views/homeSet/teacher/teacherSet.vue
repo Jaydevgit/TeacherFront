@@ -36,7 +36,7 @@
       value:'e',
     },
     {
-      label:'最高学历',
+      label:'最后学历',
       value:'f',
     },
     {
@@ -141,7 +141,7 @@
             // console.log(JSON.stringify(data))
             var a = data.tagState;
             this.tagState = a.split('');
-            console.log("this.tagState==" + this.tagState + this.tagState[0]);
+         //   console.log("this.tagState==" + this.tagState);
             return new Promise(this.compareState);
           }).catch(error => {
             console.log("QAQ........没有找到学院信息")

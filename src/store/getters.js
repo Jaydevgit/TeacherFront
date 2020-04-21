@@ -11,7 +11,7 @@ const getters = {
   menus: state => state.user.menus, // 单位所拥有的菜单
   permissions: state => state.user.permissions, // 单位所拥有的权限
   domainName: state => state.user.domainName, // 单位域名
-
+  tagState: state => state.user.tagState, // 学院教师主页信息显示标记字段
 
 
   // -------------------学者网用户---------------------

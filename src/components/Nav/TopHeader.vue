@@ -125,7 +125,7 @@
                 }
                 //是主頁
                 else {
-                 // console.log("bbbb"+this.$route.params.domainName);
+                 // console.log("bbbb"+this.$route.params.domainName+"this.$route.params.unitId"+this.$route.params.unitId);
                   this.unitQuery.domainName=this.$route.params.domainName;
                     this.unitQuery.unitId = this.$route.params.unitId
                     this.api({
@@ -139,6 +139,7 @@
                         this.unit = data;
                    //   console.log("cccc"+JSON.stringify(data));
                       this.$store.state.user.unitId=data.unitId
+                      this.$store.state.user.tagState=data.tagState
                      console.log("dddddd"+this.$route.params.unitId+"vvv"+this.$store.state.user.unitId);
                       this.unitQuery.unitId=data.unitId
                         this.dataDone = true;

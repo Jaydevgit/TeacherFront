@@ -14,7 +14,8 @@ const user = {
     unitname:'',
     unitId: '',
     permissions: [],
-    domainName:''
+    domainName:'',
+    tagState:''
   },
   mutations: {
     SET_USER: (state, userInfo) => {
@@ -26,6 +27,7 @@ const user = {
       state.permissions = userInfo.permissionList;
       state.unitId = userInfo.unitId;
       state.domainName = userInfo.domainName;
+      state.tagState = userInfo.tagState;
     },
     RESET_USER: (state) => {
       state.nickname = "";
