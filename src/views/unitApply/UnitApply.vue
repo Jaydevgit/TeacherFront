@@ -25,26 +25,6 @@
             <el-form-item prop="school_name" label="学校名称：">
               <el-input class="apply-input" v-model="applyForm.school_name" auto-complete="off" placeholder="请输入学校名称"/>
             </el-form-item>
-
-            <!--            <el-form-item prop="school_eng" label="学校英文名称：">-->
-            <!--              <el-input class="apply-input" v-model="applyForm.school_eng" auto-complete="off" placeholder="请输入学校英文名称"/>-->
-            <!--            </el-form-item>-->
-            <div class="form-domain-name">
-              <el-form-item prop="domain_name" label="学院域名设置：">
-                <el-input class="apply-input" v-model.trim="applyForm.domain_name" auto-complete="off"
-                          placeholder="请输入学院域名英文简写，用作域名，申请成功后不可修改"
-                          onkeyup="this.value=this.value.replace(/^ +| +$/g,'')"/>
-                <!--              <div style="position: absolute;top:30px;color: red;font-size:12px;">学院英文简写，用作域名，申请成功后不可修改</div>-->
-              </el-form-item>
-            </div>
-            <el-form-item prop="school_name" label="学院名称：">
-              <el-input class="apply-input" v-model="applyForm.unit_name" auto-complete="off" placeholder="请输入学院名称"/>
-            </el-form-item>
-
-            <!--            <el-form-item prop="unit_eng" label="学院英文名称：">-->
-            <!--              <el-input class="apply-input" v-model="applyForm.unit_eng" auto-complete="off" placeholder="请输入学院英文名称"/>-->
-            <!--            </el-form-item>-->
-
             <el-form-item label="学校图标：">
               <div>
                 <!--如果logo链接不为空，则从学者网拉取图标-->
@@ -62,6 +42,28 @@
               </div>
 
             </el-form-item>
+
+            <!--            <el-form-item prop="school_eng" label="学校英文名称：">-->
+            <!--              <el-input class="apply-input" v-model="applyForm.school_eng" auto-complete="off" placeholder="请输入学校英文名称"/>-->
+            <!--            </el-form-item>-->
+
+            <el-form-item prop="school_name" label="学院名称：">
+              <el-input class="apply-input" v-model="applyForm.unit_name" auto-complete="off" placeholder="请输入学院名称"/>
+            </el-form-item>
+            <div class="form-domain-name">
+              <el-form-item prop="domain_name" label="学院域名设置：">
+                <el-input class="apply-input" v-model.trim="applyForm.domain_name" auto-complete="off"
+                          placeholder="请输入学院域名英文简写，用作域名，申请成功后不可修改"
+                          onkeyup="this.value=this.value.replace(/^ +| +$/g,'')"/>
+                <!--              <div style="position: absolute;top:30px;color: red;font-size:12px;">学院英文简写，用作域名，申请成功后不可修改</div>-->
+              </el-form-item>
+            </div>
+
+            <!--            <el-form-item prop="unit_eng" label="学院英文名称：">-->
+            <!--              <el-input class="apply-input" v-model="applyForm.unit_eng" auto-complete="off" placeholder="请输入学院英文名称"/>-->
+            <!--            </el-form-item>-->
+
+
             <el-button type="success" style="position: absolute;top: -180px;right: 0;" @click="next()">下一步</el-button>
           </div>
         </div>
@@ -73,10 +75,7 @@
             </el-button>
             <el-button type="warning" style="position: absolute;right: 110px;top: -180px" @click="previous">上一步
             </el-button>
-            <el-form-item prop="username" label="用户名：">
-              <el-input class="apply-input" v-model="applyForm.username" auto-complete="off"
-                        placeholder="请输入您的用户名（支持数字、下划线_和英文）"/>
-            </el-form-item>
+
 
             <el-form-item prop="chinese_name" label="管理员姓名：">
               <el-input class="apply-input" v-model="applyForm.chinese_name" auto-complete="off"
@@ -89,6 +88,10 @@
 
             <el-form-item prop="phone" label="管理员电话：">
               <el-input class="apply-input" v-model="applyForm.phone" auto-complete="off" placeholder="请输入您的电话"/>
+            </el-form-item>
+            <el-form-item prop="username" label="管理员账号：">
+              <el-input class="apply-input" v-model="applyForm.username" auto-complete="off"
+                        placeholder="请输入您的用户名（支持数字、下划线_和英文）"/>
             </el-form-item>
 
             <el-form-item prop="password" label="密码：">
@@ -406,19 +409,19 @@
                 this.$refs.cropImage.transportMessage(type)
                 this.$refs.cropImage.dialogVisible = true
             },
-            testSetForm() {
-                this.applyForm.username = 'lsc',
-                    this.applyForm.chinese_name = '连善淳',
-                    this.applyForm.password = '123456',
-                    this.applyForm.repassword = '123456',
-                    this.applyForm.school_name = 'scnu',
-                    this.applyForm.unit_name = 'computer science',
-                    this.applyForm.certificate_front = '',//身份证明正面
-                    this.applyForm.certificate_back = '',//身份证明反面
-                    this.applyForm.certificate_working = '',//在职证明
-                    this.applyForm.phone = '13003922029',
-                    this.applyForm.email = '489572627@qq.com'
-            },
+            // testSetForm() {
+            //     this.applyForm.username = 'lsc',
+            //         this.applyForm.chinese_name = '连善淳',
+            //         this.applyForm.password = '123456',
+            //         this.applyForm.repassword = '123456',
+            //         this.applyForm.school_name = 'scnu',
+            //         this.applyForm.unit_name = 'computer science',
+            //         this.applyForm.certificate_front = '',//身份证明正面
+            //         this.applyForm.certificate_back = '',//身份证明反面
+            //         this.applyForm.certificate_working = '',//在职证明
+            //         this.applyForm.phone = '13003922029',
+            //         this.applyForm.email = '489572627@qq.com'
+            // },
             handleApply(applyForm) {
               if(this.applyForm.certificate_logo===''){
                 this.applyForm.certificate_logo='http://www.scholat.com/images/uni_logo/'+this.applyForm.school_name+'.png'
