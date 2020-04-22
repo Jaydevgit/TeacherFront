@@ -177,9 +177,9 @@
           <el-form-item label="办公电话" prop="phone" style="margin-top: 85px">
             <el-input v-model="ruleForm.phone" placeholder="建议输入办公固定电话，可以用'-'分隔"></el-input>
           </el-form-item>
-          <el-form-item label="教师分配" prop="label">
-            <el-tag v-if="flagAssignment" style="width: 100%;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">添加教师完成后方可进行教师分配</el-tag>
-            <el-button v-else type="primary" size="small" @click="openAssignment">选择分配</el-button>
+          <el-form-item v-if="!flagAssignment"label="教师分配" prop="label">
+<!--            <el-tag v-if="flagAssignment" style="width: 100%;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">添加教师完成后方可进行教师分配</el-tag>-->
+            <el-button  type="primary" size="small" @click="openAssignment">选择分配</el-button>
           </el-form-item>
         </el-col>
         <el-col :span="6">
