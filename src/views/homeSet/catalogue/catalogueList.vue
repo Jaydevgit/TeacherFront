@@ -1,9 +1,9 @@
 <template>
-  <div class="container" style="padding-top: 30px;min-height: calc(100vh - 50px);height: 100%">
-    <div style="clear: both;width: 480px;">
-    </div>
-    <div>
-      <el-card class="box-card" style="width: 480px;float: left;margin-left:40px;margin-right: 20px">
+  <div class="container" style="padding-top: 30px;min-height: calc(100vh - 50px);height: 100%;display:flex;align-items: center;">
+<!--    <div style="clear: both;width: 480px;">-->
+<!--    </div>-->
+    <div style="min-height: 600px;width:500px;display: inline-block;margin-left:40px;margin-bottom: 40px">
+      <el-card class="box-card" style="width:460px;float: left;margin-right: 20px">
         <el-collapse   style="padding: 10px 10px">
           <el-collapse-item title="功能说明" name="1" style="font-size: 16px" >
             <div >该页面主要功能为：通过栏目分配不同的栏目对教师进行合理的管理</div>
@@ -14,9 +14,15 @@
           <el-collapse-item title="如何自定义栏目列表" name="3">
             <div>通过对主栏目和子栏目的添加与删除实现自定义功能</div>
           </el-collapse-item>
-
         </el-collapse>
       </el-card>
+      <el-tag style="display: inline-block;float: left;margin-top: 40px">实例分类展示如下</el-tag>
+      <el-carousel  height="350px" style="display: inline-block;float: left;width: 460px;height:100%;margin-top: 40px;box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1)">
+        <el-carousel-item v-for="item in 2" :key="item" interval="5000">
+        </el-carousel-item>
+      </el-carousel>
+    </div>
+    <div style="min-height: 600px;width: 700px;display: inline-block;margin-bottom: 40px">
       <el-card class="box-card" style="width: 600px;float: left;margin-left: 40px">
         <div style=" height: 50px;text-align: center;margin-top: 40px">
           <el-button type="primary"  style=""
@@ -60,7 +66,7 @@
             <!--假如有子列表-->
             <el-submenu v-for="(item, flag) in catalogueList" v-if="Object.keys(item.subCatalogueList).length!=0"
                         :key="'cId'+item.id" :index="flag +'1'">
-              <div slot="title" @click="addTeacherVisible=false">
+              <div slot="title" @click="addTeacherVisible=false" style="">
                 <el-checkbox v-if="sortVisualable" :label="item.id">&nbsp</el-checkbox>
                 <span :id="'seq'+item.id" style="display: none" v-if="sortVisualable" class="seq"></span>
                 <i class="el-icon-menu"></i>
@@ -69,7 +75,7 @@
                 <!--<el-button type="success" class="threeButton" size="small"    @click="topCatalogue(item.id)" >置顶</el-button>-->
                 <el-button type="warning" class="threeButton"  @click="showEdit(item.id,item.name)">修改
                 </el-button>
-                <el-button type="danger" class="threeButton" @click="showDelete(item.id)">删除</el-button>
+                <div style="display: inline-block;float: right;margin-top: 20px;margin-right: 10px"><el-button type="danger" class="threeButton" @click="showDelete(item.id)">删除</el-button></div>
 
                 <!--<i class="el-icon-school" v-if="item.state == 0"></i>
                 <i class="el-icon-reading" v-else-if="item.state == 1"></i>
@@ -107,6 +113,7 @@
                 <el-button type="warning" class="threeButton" @click="showEdit(item.id,item.name)">修改
                 </el-button>
                 <el-button type="danger" class="threeButton"  @click="showDelete(item.id)">删除</el-button>
+<!--                <div style="display: inline-block;float: right;margin-top: 20px;margin-right: 10px"> <el-button type="danger" class="threeButton"  @click="showDelete(item.id)">删除</el-button></div>-->
 
               </div>
             </el-menu-item>
@@ -793,5 +800,16 @@
     height: 55px;
     text-align: center;
   }
+  .el-carousel__item:nth-child(2n) {
+    background-image: url(../../../assets/catalogue/ca2.png);
+    background-size: 100% 100%;
+  }
 
+  .el-carousel__item:nth-child(2n+1) {
+    background-image: url(../../../assets/catalogue/ca1.png);
+    background-size: 100% 100%;
+  }
+  /*.el-submenu>>>.el-submenu__title *{*/
+  /*  vertical-align: auto;*/
+  /*}*/
 </style>
