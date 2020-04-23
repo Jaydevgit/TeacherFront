@@ -73,7 +73,7 @@
         <!--<h3 class="title">教师主页管理系统</h3>-->
         <div class="input-row">
           <el-form-item prop="username">
-            <div style="display: flex">
+            <div style="display: flex;height: 47px">
               <span class="svg-container svg-container_login">
                 <span style="font-size: 16px;font-weight: bold;opacity: 0.4;">账号</span>
                 <svg-icon icon-class="user" style="opacity: 0.5;"/>
@@ -83,7 +83,7 @@
 
           </el-form-item>
           <el-form-item prop="password">
-            <div style="display: flex">
+            <div style="display: flex;height: 47px">
             <span class="svg-container ">
                 <span style="font-size: 16px;margin-right: 5px;font-weight: bold;opacity: 0.4;">密码</span><svg-icon icon-class="password" style="opacity: 0.5;"/>
             </span>
@@ -97,12 +97,12 @@
 <!--                      autoComplete="on" placeholder="请输入验证码"></el-input>-->
 <!--          </el-form-item>-->
 
-          <el-form-item prop="Codes" >
-            <div style="display: flex">
+          <el-form-item prop="Codes">
+            <div style="display: flex;height: 47px">
               <span class="svg-container svg-container_login">
                 <span style="font-size: 16px;margin-right: 5px;font-weight: bold;opacity: 0.4;">验证码</span>
               </span>
-              <el-input style="flex: 1" type="Codes" @keyup.enter.native="handleLogin" v-model="picLyanzhengma"
+              <el-input style="flex: 1" size="large" type="Codes" @keyup.enter.native="handleLogin" v-model="picLyanzhengma"
                         autoComplete="on" placeholder="请输入右侧四位数数字验证码"></el-input>
               <s-identify :identifyCode="identifyCode" @click.native="newCode" style=" cursor:pointer;width:90px;height:45px;display: inline-block;margin-top: 4px"></s-identify>
             </div>
@@ -514,7 +514,7 @@
     }
 
     .svg-container {
-      padding: 6px 5px 6px 15px;
+      padding: 4px 5px 6px 15px;
       color: #015692;
       vertical-align: middle;
       width: 90px;
