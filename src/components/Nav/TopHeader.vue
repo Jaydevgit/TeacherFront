@@ -58,7 +58,7 @@
           <button @click="keySend"></button>
         </div>
       </div>
-      <div v-if="this.$route.path.indexOf('login')!==-1" class="linkScholat" style="position: relative;width: 300px;margin: 0 auto;color: #7e8c8d;padding-top: 40px"><a href="http://www.scholat.com/">scholat.com</a></div>
+      <div v-if="this.$route.path.indexOf('login')!==-1" class="linkScholat" style="position: relative;width: 245px;text-align:right; color: #7e8c8d;padding-top: 40px"><a href="http://www.scholat.com/">scholat.com</a></div>
     </div>
 
   </header>

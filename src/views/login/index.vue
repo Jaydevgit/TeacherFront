@@ -104,7 +104,7 @@
               </span>
               <el-input style="flex: 1" size="large" type="Codes" @keyup.enter.native="handleLogin" v-model="picLyanzhengma"
                         autoComplete="on" placeholder="请输入右侧四位数数字验证码"></el-input>
-              <s-identify :identifyCode="identifyCode" @click.native="newCode" style=" cursor:pointer;width:90px;height:45px;display: inline-block;margin-top: 4px"></s-identify>
+              <s-identify :identifyCode="identifyCode" @click.native="newCode" style=" cursor:pointer;width:90px;height:48px;display: inline-block;"></s-identify>
             </div>
           </el-form-item>
 
@@ -535,7 +535,7 @@
 
     .login-form {
       width: 35%;
-      min-width: 350px;
+      min-width: 490px;
       /*max-width:600px;*/
       margin: auto;
       transform: translate(0, 24%);
