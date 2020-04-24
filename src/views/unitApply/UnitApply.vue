@@ -409,19 +409,19 @@
                 this.$refs.cropImage.transportMessage(type)
                 this.$refs.cropImage.dialogVisible = true
             },
-            testSetForm() {
-                this.applyForm.username = 'qqq',
-                    this.applyForm.chinese_name = '连善淳',
-                    this.applyForm.password = '123456',
-                    this.applyForm.repassword = '123456',
-                    this.applyForm.school_name = 'scnu',
-                    this.applyForm.unit_name = 'computer science',
-                    this.applyForm.certificate_front = '',//身份证明正面
-                    this.applyForm.certificate_back = '',//身份证明反面
-                    this.applyForm.certificate_working = '',//在职证明
-                    this.applyForm.phone = '13003922029',
-                    this.applyForm.email = '495102181@qq.com'
-            },
+            // testSetForm() {
+            //     this.applyForm.username = 'lsc',
+            //         this.applyForm.chinese_name = '连善淳',
+            //         this.applyForm.password = '123456',
+            //         this.applyForm.repassword = '123456',
+            //         this.applyForm.school_name = 'scnu',
+            //         this.applyForm.unit_name = 'computer science',
+            //         this.applyForm.certificate_front = '',//身份证明正面
+            //         this.applyForm.certificate_back = '',//身份证明反面
+            //         this.applyForm.certificate_working = '',//在职证明
+            //         this.applyForm.phone = '13003922029',
+            //         this.applyForm.email = '489572627@qq.com'
+            // },
             handleApply(applyForm) {
               if(this.applyForm.certificate_logo===''){
                 this.applyForm.certificate_logo='http://www.scholat.com/images/uni_logo/'+this.applyForm.school_name+'.png'
