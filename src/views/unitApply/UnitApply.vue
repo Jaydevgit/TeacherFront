@@ -489,7 +489,7 @@
 
             //上传所需文件提示框
             reminder() {
-                this.$alert('<span><strong>1:身份证正反面照片</strong></span><br/><span><strong>2:在职证明文件照片</strong></span>', '注册所需准备文件', {
+                this.$alert('<span><strong>1:身份证正反面照片</strong></span><br/><span><strong>2:在职证明文件照片</strong></span><br/><br/><span style="color: red"><strong>注意： 这是公共账号，一个学院只能申请一次</strong></span>', '注册所需准备文件', {
                     dangerouslyUseHTMLString: true,
                     confirmButtonText: '确定',
                     callback: action => {
