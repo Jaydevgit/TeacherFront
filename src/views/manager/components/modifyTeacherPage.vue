@@ -166,9 +166,9 @@
             <el-input v-model="ruleForm.post" v-if="!showUpdateInfo.postScholat"
                       placeholder="例如：博士生导师、硕士生导师等"></el-input>
           </el-form-item>
-          <el-form-item label="最高学位" prop="degreeMax" style="margin-top: 85px">
+          <el-form-item label="最高学位" prop="degree_max" style="margin-top: 85px">
 
-            <el-input v-model="ruleForm.degreeMax"
+            <el-input v-model="ruleForm.degree_max"
                       placeholder="博士、硕士、学士"></el-input>
           </el-form-item>
           <el-form-item label="研究方向" prop="research_direction">
@@ -644,7 +644,7 @@
                     unit_id: '',// 单位编号
                   domain_name:'',//域名
                   edit_name:'',//编辑用户名
-                  degreeMax:'',//最高学位
+                  degree_max:'',//最高学位
                   duty:'',//职务
 
                 },
@@ -917,7 +917,7 @@
               this.ruleForm.domain_name = filterXSS(data.domain_name); // 域名
               this.ruleForm.edit_name = filterXSS(this.$store.state.user.nickname); // 姓名
               this.ruleForm.duty = filterXSS(data.duty); // 职务
-              this.ruleForm.degreeMax = filterXSS(data.degreeMax); // 最高学位
+              this.ruleForm.degree_max = filterXSS(data.degree_max); // 最高学位
             },
             // 本页面最开始的会调用的函数,获取教师信息
             getTeacherInfoById(teacherId) {
