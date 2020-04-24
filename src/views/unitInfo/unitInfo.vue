@@ -27,6 +27,8 @@
           <div style="margin-left: 15px;">
             <!--提交完后显示这个-->
             <img :src="showLogo"
+                 :onerror="defaultLogo" v-if="this.showLogo" style="width: 120px;"/>
+            <img v-else src="http://www.scholat.com/images/uni_logo/华南师范大学.png"
                  :onerror="defaultLogo" style="width: 120px;"/>
           </div>
           <div style="margin-left: 50px">
@@ -48,14 +50,14 @@
         </el-radio-group>
       </el-form-item>
 
-      <el-form-item v-if="applyForm.state == 0" label="默认模式："  >
+      <el-form-item v-if="applyForm.state === 0" label="默认模式："  >
         <div style="margin-left: 15px;">
           <!--提交完后显示这个-->
           <img src="http://47.106.132.95:2333/images/background/1569738575202258.png"  style="width: 420px; height: 72px;"/>
         </div>
 
       </el-form-item>
-      <el-form-item v-if="applyForm.state == 1" label="自定义背景："  >
+      <el-form-item v-if="applyForm.state === 1" label="自定义背景："  >
         <div style="margin-left: 15px;">
           <!--提交完后显示这个-->
           <img :src="showBack"
@@ -159,6 +161,7 @@
         if (type == 1) {
           this.applyForm.logoUrl = 'http://www.scholat.com/images/uni_logo/' + this.applyForm.schoolName + '.png'
           this.showLogo = 'http://www.scholat.com/images/uni_logo/' + this.applyForm.schoolName + '.png'
+          console.log(" this.showLogo="+ this.showLogo);
         }
         else {
           this.applyForm.backgroundUrl = 'http://47.106.132.95:2333/images/background/1569738575202258.png'
