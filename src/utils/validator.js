@@ -3,7 +3,7 @@ export function isPhone(rule, value, callback) {
   if (!value) {
     return callback(new Error("电话号码不能为空"));
   }
-  var pattern = /^1[34578]\d{9}$/;
+  var pattern = /^1[345789]\d{9}$/;
   if (pattern.test(value)){
     return callback();
   }
