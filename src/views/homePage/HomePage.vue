@@ -8,8 +8,8 @@
       <div class="middle">
         <div class="middle-nav">
           <el-breadcrumb separator-class="el-icon-arrow-right" id="middle-nav">
-            <el-breadcrumb-item>教师列表</el-breadcrumb-item>
-            <el-breadcrumb-item v-if="">师资队伍</el-breadcrumb-item>
+            <el-breadcrumb-item>师资队伍</el-breadcrumb-item>
+            <el-breadcrumb-item v-if="">教师名录</el-breadcrumb-item>
           </el-breadcrumb>
           <div v-if="showLetter" class="centerLetter"><strong>{{letter}}</strong></div>
           <div style="margin-top: -4px;" v-if="showLetterList">

@@ -10,7 +10,7 @@
             style="overflow: hidden">
             <el-menu-item index="0" @click="cIdSend(0)">
               <i class="el-icon-menu"></i>
-              <span slot="title" class="parentCatalogue">师资队伍</span>
+              <span slot="title" class="parentCatalogue">教师名录</span>
             </el-menu-item>
             <!--假如有子列表-->
             <el-submenu style="background-color: white;" v-for="(item, flag) in catalogueList"
