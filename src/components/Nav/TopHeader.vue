@@ -19,6 +19,7 @@
         教师个人主页
       </div>
 
+
       <div class="search bar6">
         <div class="formDiv" style="min-width:200px;float: right">
           <input @keyup.enter="keySend" type="text" v-model="searchKey" placeholder="请输入您要搜索的教师" name="cname"
