@@ -45,9 +45,9 @@
           <span style="font-size: 24px;
     font-family: initial;
     font-weight: bold;
-    letter-spacing: 9px;">SCHOLAT+</span>
+    letter-spacing: 9px;">{{unit.schoolName}}</span>
           <span style="">
-            学院教师主页系统
+            {{unit.unitName}}
           </span>
         </a>
       </div>
