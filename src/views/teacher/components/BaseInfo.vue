@@ -15,7 +15,7 @@
 
                 <div class="name-right" >
                 <div>
-                  <img :src="getImgUrl(teacherProfile.avatar)" width="120" height="120"/>
+                  <img :src="getImgUrl(teacherProfile.avatar)" :onerror="imgErrorFun()" width="120" height="120"/>
                 </div>
                 <div style="margin: 10px 0 0 10px">
                   <img :src="'http://www.scholat.com/'+teacherProfile.qrcode" width="100" height="100"
@@ -45,30 +45,29 @@
             </div>
             <div class="name-right-bg" style="float: right;height:210px;margin-top: -90px"></div>
             <div class="name-bottom">
-             <div style="flex: 3">
-               <div style="margin-bottom: 10px;" v-if="teacherProfile.degree&&tagFlag[5]==='f'">
+
+               <div style="margin-bottom: 10px;" v-if="teacherProfile.degree&&tagFlag[5]==='f'" class="name-bottom-item">
                  <span ><svg-icon icon-class="degree" /></span>
                  <label class="font-one">最后学历：</label>{{teacherProfile.degree}}
                </div>
-               <div style="margin-bottom: 10px;" v-if="teacherProfile.degreeMax&&tagFlag[6]==='g'">
+               <div style="margin-bottom: 10px;" v-if="teacherProfile.degreeMax&&tagFlag[6]==='g'" class="name-bottom-item">
                  <span><svg-icon icon-class="degree"/></span>
                  <label class="font-one">最高学位：</label>{{teacherProfile.degreeMax}}
                </div>
-               <div style="margin-bottom: 10px;" v-if="teacherProfile.graduateFrom&&tagFlag[7]==='h'">
+               <div class="name-bottom-item" style="margin-bottom: 10px;" v-if="teacherProfile.graduateFrom&&tagFlag[7]==='h'">
                  <span><svg-icon icon-class="department"/></span>
                  <label class="font-one">毕业学校：</label>{{teacherProfile.graduateFrom}}
                </div>
-               <div style="margin-bottom: 10px;" v-if="teacherProfile.subject&&tagFlag[8]==='i'">
+               <div class="name-bottom-item" style="margin-bottom: 10px;" v-if="teacherProfile.subject&&tagFlag[8]==='i'">
                  <span><svg-icon icon-class="department"/></span>
                  <label class="font-one">学科专业：</label>{{teacherProfile.subject}}
                </div>
-               <div style="margin-bottom: 10px;" v-if="teacherProfile.research_direction">
+               <div class="name-bottom-item" style="margin-bottom: 10px;" v-if="teacherProfile.research_direction">
                  <span><svg-icon icon-class="rearch-direction"/></span>
                  <label class="font-one">研究方向：</label>{{teacherProfile.research_direction}}
                </div>
-             </div>
-              <div style="flex: 4;">
-                <div style="margin-bottom: 10px;" v-if="teacherProfile.department_name&&tagFlag[10]==='k'">
+
+                <div class="name-bottom-item" style="margin-bottom: 10px;" v-if="teacherProfile.department_name&&tagFlag[10]==='k'">
                   <span><svg-icon icon-class="department"/></span>
                   <label class="font-one">所在部门：</label>{{teacherProfile.department_name}}
                 </div>
@@ -76,22 +75,22 @@
                   <span><svg-icon icon-class="maps-and-flags"/></span>
                   <label class="font-one">办公地点：</label>{{teacherProfile.work_place}}
                 </div>
-                <div style="margin-bottom: 10px;" v-if="teacherProfile.phone&&tagFlag[12]==='m'">
+                <div class="name-bottom-item" style="margin-bottom: 10px;" v-if="teacherProfile.phone&&tagFlag[12]==='m'">
                   <span><svg-icon icon-class="mobile-phone"/></span>
                   <label class="font-one">办公电话：</label>{{teacherProfile.phone}}
                 </div>
-                <div style="margin-bottom: 10px;">
+                <div class="name-bottom-item" style="margin-bottom: 10px;">
                   <span><svg-icon icon-class="email"/></span>
                   <label class="font-one">办公邮箱：</label>{{teacherProfile.email}}
                 </div>
-                <div style="margin-bottom: 10px;" v-if="teacherProfile.scholat_username">
+                <div class="name-bottom-item" style="margin-bottom: 10px;" v-if="teacherProfile.scholat_username">
                   <span><svg-icon icon-class="S"/></span>
                   <label class="font-one">学者网：</label>
                   <a :href="'http://www.scholat.com/'+teacherProfile.scholat_username" style="color: #399;">
                     http://www.scholat.com/{{teacherProfile.scholat_username}}
                   </a>
                 </div>
-              </div>
+
 <!--              <div class="show-persona" v-if="teacherProfile.scholat_username">-->
 <!--              <a @click="routeTo()">查看学者画像</a>-->
 <!--            </div>-->
@@ -155,6 +154,12 @@
                     return "http://47.106.132.95:2333/images/avatar/" + imgName;
                 }
             },
+            imgErrorFun() {
+              let img = event.srcElement;
+              img.onerror = null;
+              console.log("执行了imgErrorFun函数，onerror=" + img.onerror + "，img.src=" + img.src);
+              return 'this.src="http://47.106.132.95:2333/images/avatar/default.png"';
+            },
             routeTo(){
                 this.$router.push({
                     name: 'persona',
@@ -178,7 +183,7 @@
 
     .personal-info {
       position: relative;
-      width: 100%;
+      width: 784px;
       height: auto;
       /*min-width: 767px;*/
       .left {
@@ -298,6 +303,10 @@
         /*padding: 15px 0px 0px;*/
        margin-left: 10px;
         display: flex;
+        flex-wrap: wrap;
+      }
+      .name-bottom-item{
+        width: 305px;
       }
 
       .font-one {
