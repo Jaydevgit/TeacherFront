@@ -99,7 +99,7 @@
               this.currentCat=cId;
                 console.log("send++++" + this.currentCat+modelId);
                 if (cId == 0) {
-                  name = "师资队伍";
+                  name = "教师名录";
                   modelId=3;
                 }
                 else{

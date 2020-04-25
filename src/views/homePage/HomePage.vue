@@ -9,7 +9,7 @@
         <div class="middle-nav">
           <el-breadcrumb separator-class="el-icon-arrow-right" id="middle-nav">
             <el-breadcrumb-item>师资队伍</el-breadcrumb-item>
-            <el-breadcrumb-item v-if="">教师名录</el-breadcrumb-item>
+            <el-breadcrumb-item>教师名录</el-breadcrumb-item>
           </el-breadcrumb>
           <div v-if="showLetter" class="centerLetter"><strong>{{letter}}</strong></div>
           <div style="margin-top: -4px;" v-if="showLetterList">
@@ -108,6 +108,7 @@
                 document.getElementsByClassName('middle-nav')[0].style.display = "flex";
                 let node = document.getElementById('middle-nav');
                 node.children[1].children[0].innerText = name;
+                console.log("node.children[1].children[0].innerText ="+name);
             },
             detailShowChange(num) {
                 this.detailShow = num;
