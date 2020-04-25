@@ -10,9 +10,9 @@
       <el-form-item label="学校英文名称：">
         <el-input v-model="applyForm.schoolEng"  style="width: 50%"></el-input>
       </el-form-item>
-      <el-form-item label="学校域名：">
+      <!--<el-form-item label="学校域名：">
         <el-input v-model="applyForm.domainName" disabled="" style="width: 50%"></el-input>
-      </el-form-item>
+      </el-form-item>-->
       <el-form-item label="学院名称：">
         <el-input v-model="applyForm.unitName" disabled="" style="width: 50%"></el-input>
       </el-form-item>
@@ -22,10 +22,10 @@
       <el-form-item label="学院链接：" prop="collegeUrl">
         <el-input v-model="applyForm.collegeUrl" style="width: 50%"></el-input>
       </el-form-item>
-      <el-form-item label="学院图标：">
+      <!--<el-form-item label="学院图标：">
         <div style="display: flex">
           <div style="margin-left: 15px;">
-            <!--提交完后显示这个-->
+            &lt;!&ndash;提交完后显示这个&ndash;&gt;
             <img :src="showLogo"
                  :onerror="defaultLogo" v-if="this.showLogo" style="width: 120px;"/>
             <img v-else src="http://www.scholat.com/images/uni_logo/华南师范大学.png"
@@ -41,9 +41,9 @@
         </div>
 
 
-      </el-form-item>
+      </el-form-item>-->
 
-      <el-form-item label="背景模式" >
+      <!--<el-form-item label="背景模式" >
         <el-radio-group v-model="applyForm.state" >
           <el-radio :label="0">默认模式</el-radio>
           <el-radio :label="1">自定义背景</el-radio>
@@ -52,12 +52,12 @@
 
       <el-form-item v-if="applyForm.state === 0" label="默认模式："  >
         <div style="margin-left: 15px;">
-          <!--提交完后显示这个-->
+          &lt;!&ndash;提交完后显示这个&ndash;&gt;
           <img src="http://47.106.132.95:2333/images/background/1569738575202258.png"  style="width: 420px; height: 72px;"/>
         </div>
 
-      </el-form-item>
-      <el-form-item v-if="applyForm.state === 1" label="自定义背景："  >
+      </el-form-item>-->
+      <el-form-item label="自定义背景："  >
         <div style="margin-left: 15px;">
           <!--提交完后显示这个-->
           <img :src="showBack"
@@ -65,8 +65,8 @@
         </div>
         <div style="color: red">提示：点击下方按钮自行上传背景图片</div>
         <div>
-          <el-button @click="uploadImage('background')" size="mini" type="primary" style="margin-top:7px;float: left">上传背景图片</el-button>
-          <el-button @click="restoreImage(0)" size="mini"  style="margin-left: 35px;">恢复系统默认</el-button>
+          <el-button @click="uploadImage('background')" size="mini" type="primary" style="margin-top:7px;float: left">上传</el-button>
+          <el-button @click="restoreImage(0)" size="mini"  style="margin-left: 35px;">取消</el-button>
         </div>
       </el-form-item>
 
@@ -110,7 +110,8 @@
       }
     },
     created () {
-      this.getUnitInfo()
+      this.applyForm.state=1;
+      this.getUnitInfo();
     },
     ready(){
     }
@@ -191,6 +192,7 @@
         });
       },
       submitForm(){
+        this.applyForm.state=1;
         this.applyForm.unitId = this.$store.getters.unitId
         console.log(this.applyForm)
         this.api({
