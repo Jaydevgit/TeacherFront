@@ -93,7 +93,7 @@
                 </div>
                 <div class="name-bottom-item" style="margin-bottom: 10px;" v-if="teacherProfile.scholat_username">
                   <!--<span><svg-icon icon-class="S"/></span>-->
-                  <label class="font-one" >学者网：</label>
+                  <label class="font-one" >学者主页：</label>
                   <a :href="'http://www.scholat.com/'+teacherProfile.scholat_username" style="color: #399;text-overflow: ellipsis;white-space: nowrap;">
                     http://www.scholat.com/{{teacherProfile.scholat_username}}
                   </a>
@@ -310,11 +310,11 @@
       .name-bottom {
         /*padding: 15px 0px 0px;*/
        margin-left: 10px;
-        display: flex;
+        /*display: flex;*/
         flex-wrap: wrap;
       }
       .name-bottom-item{
-        width: 305px;
+        /*width: 305px;*/
       }
 
       .font-one {

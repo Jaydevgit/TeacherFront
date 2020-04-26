@@ -539,7 +539,7 @@
 
     .apply-form {
       height: auto;
-      width: 960px;
+      width: 1000px;
       background-color: #ffffff;
       margin: 0 auto;
       border-radius: 5px;

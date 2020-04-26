@@ -40,8 +40,20 @@
 <!--        <img :src="'http://47.106.132.95:2333/images/background/' + unit.backgroundUrl" :onerror="defaultBack"-->
 <!--             style="height: 90%;width: auto;cursor: pointer"/>-->
 <!--      </div>-->
+      <div class="apply-nav" v-if="$route.path.indexOf('unitApply')!=-1">
+        <div style="color: steelblue;white-space: nowrap;font-weight: bold;font-size: 22px;">
+          SCHOLAT+学院师资管理平台 申请程序
+        </div>
+        <div style="font-size: 22px">
+          <span><svg-icon icon-class="S"/></span>
+          <a href="http://www.scholat.com/" style="color: #399;text-overflow: ellipsis;white-space: nowrap;">
+            学者网
+          </a>
+        </div>
+      </div>
+
       <div v-if="titleFlag"></div>
-      <div v-else class="font-jsgrzy" style="display: inline-block;min-width: 180px;">
+      <div v-else class="font-jsgrzy" style="display: inline-block;">
         <a href="/index">
           <!--学校名称-->
           <!--<span style="font-size: 24px;
@@ -63,7 +75,15 @@
           <button @click="keySend"></button>
         </div>
       </div>
-      <div v-if="this.$route.path.indexOf('login')!==-1" class="linkScholat" style="position: relative;width: 245px;text-align:right; color: #7e8c8d;padding-top: 40px"><a href="http://www.scholat.com/">scholat.com</a></div>
+
+        <div style="font-size: 22px;display: flex;width: 100%;justify-content: flex-end"
+             v-if="$route.path.indexOf('login')!=-1">
+          <span><svg-icon icon-class="S"/></span>
+          <a href="http://www.scholat.com/" style="color: #399;margin-left: 4px ;
+          text-overflow: ellipsis;white-space: nowrap;">
+            学者网
+          </a>
+        </div>
     </div>
 
   </header>
@@ -335,9 +355,16 @@
     font-size: 22px;
     color: steelblue;
     white-space: nowrap;
-    margin-left: 30px;
+    margin-left: 14px;
   }
   .linkScholat a:hover {
     text-decoration:underline;
+  }
+  .apply-nav{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 4px;
+    padding-left: 14px;
   }
 </style>
