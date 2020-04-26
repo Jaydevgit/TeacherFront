@@ -78,7 +78,7 @@
             </el-badge>
           </template>
           <template v-else>
-            <img class="preview" @click="routerTo(scope.row)" :src="getImgUrl(scope.row.avatar)" :onerror="imgErrorFun()"
+            <img class="preview" @click="routerTo(scope.row)" :src="getImgUrl(scope.row.avatar)" :onerror="imgErrorFun(this)"
                  style="width:60px;height:60px;cursor:pointer;"/>
           </template>
         </template>
@@ -388,10 +388,7 @@
                 }*/
               return 'http://www.scholat.com/'+imgName;
             },
-          imgErrorFun(){
-            var img=event.srcElement;
-            img.onerror=null;
-            console.log("执行了imgErrorFun函数，onerror="+img.onerror+"，img.src="+img.src);
+          imgErrorFun(e){
             return 'this.src="http://47.106.132.95:2333/images/avatar/default.png"';
           },
             routerTo(teacher) {
