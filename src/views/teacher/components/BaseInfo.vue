@@ -1,23 +1,23 @@
 <template>
   <div style="height:100%; " class="baseInfo-body">
-    <div class="personal-info" >
-      <div  v-if="teacherProfile!=undefined " style="position:relative;">
-        <el-card class="box-card" >
+    <div class="personal-info">
+      <div v-if="teacherProfile!=undefined " style="position:relative;">
+        <el-card class="box-card">
 
-          <div class="right" >
+          <div class="right">
             <div class="name-top">
-                <!--              <div class="name-left">-->
+              <!--              <div class="name-left">-->
 
-                <!--                &lt;!&ndash;                <div style="margin: 20px 0;">-->
-                <!--                                  <span class="personal-describe">{{teacherProfile.post}}</span>-->
-                <!--                                </div>&ndash;&gt;-->
-                <!--              </div>-->
+              <!--                &lt;!&ndash;                <div style="margin: 20px 0;">-->
+              <!--                                  <span class="personal-describe">{{teacherProfile.post}}</span>-->
+              <!--                                </div>&ndash;&gt;-->
+              <!--              </div>-->
 
-                <div class="name-right" >
+              <div class="name-right">
                 <div>
-                  <img :src="getImgUrl(teacherProfile.avatar)" :onerror="imgErrorFun()" width="120" height="120"/>
+                  <img :src="getImgUrl(teacherProfile.avatar)" :onerror="imgErrorFun(this)" width="120" height="120"/>
                 </div>
-                  <!--显示二维码-->
+                <!--显示二维码-->
                 <!--<div style="margin: 10px 0 0 10px">
                   <img :src="'http://www.scholat.com/'+teacherProfile.qrcode" width="100" height="100"
                        v-if="teacherProfile.qrcode" :onerror="defaultQrImg" style="border-radius: 5px;">
@@ -30,7 +30,7 @@
                                       <label class="font-one">单位</label>{{teacherProfile.department_name}}
                                     </div>&ndash;&gt;
                 </div>-->
-                  <!--显示二维码结束-->
+                <!--显示二维码结束-->
 
               </div>
             </div>
@@ -48,67 +48,77 @@
             <div class="name-right-bg" style="float: right;height:210px;margin-top: -90px"></div>
             <div class="name-bottom">
 
-               <div style="margin-bottom: 10px;" v-if="teacherProfile.degree&&tagFlag[5]==='f'" class="name-bottom-item">
-<!--
-                 <span ><svg-icon icon-class="degree" /></span>
--->
-                 <label class="font-one">最后学历：</label>{{teacherProfile.degree}}
-               </div>
-               <div style="margin-bottom: 10px;" v-if="teacherProfile.degreeMax&&tagFlag[6]==='g'" class="name-bottom-item">
-<!--
-                 <span><svg-icon icon-class="degree"/></span>
--->
-                 <label class="font-one">最高学位：</label>{{teacherProfile.degreeMax}}
-               </div>
-               <div class="name-bottom-item" style="margin-bottom: 10px;" v-if="teacherProfile.graduateFrom&&tagFlag[7]==='h'">
-<!--
-                 <span><svg-icon icon-class="department"/></span>
--->
-                 <label class="font-one">毕业学校：</label>{{teacherProfile.graduateFrom}}
-               </div>
-               <div class="name-bottom-item" style="margin-bottom: 10px;" v-if="teacherProfile.subject&&tagFlag[8]==='i'">
-                 <!--<span><svg-icon icon-class="department"/></span>-->
-                 <label class="font-one">学科专业：</label>{{teacherProfile.subject}}
-               </div>
-               <div class="name-bottom-item" style="margin-bottom: 10px;" v-if="teacherProfile.research_direction">
-                 <!--<span><svg-icon icon-class="rearch-direction"/></span>-->
-                 <label class="font-one">研究方向：</label>{{teacherProfile.research_direction}}
-               </div>
+              <div style="margin-bottom: 10px;" v-if="teacherProfile.degree&&tagFlag[5]==='f'" class="name-bottom-item">
+                <!--
+                                 <span ><svg-icon icon-class="degree" /></span>
+                -->
+                <label class="font-one">最后学历：</label>{{teacherProfile.degree}}
+              </div>
+              <div style="margin-bottom: 10px;" v-if="teacherProfile.degreeMax&&tagFlag[6]==='g'"
+                   class="name-bottom-item">
+                <!--
+                                 <span><svg-icon icon-class="degree"/></span>
+                -->
+                <label class="font-one">最高学位：</label>{{teacherProfile.degreeMax}}
+              </div>
+              <div class="name-bottom-item" style="margin-bottom: 10px;"
+                   v-if="teacherProfile.graduateFrom&&tagFlag[7]==='h'">
+                <!--
+                                 <span><svg-icon icon-class="department"/></span>
+                -->
+                <label class="font-one">毕业学校：</label>{{teacherProfile.graduateFrom}}
+              </div>
+              <div class="name-bottom-item" style="margin-bottom: 10px;"
+                   v-if="teacherProfile.subject&&tagFlag[8]==='i'">
+                <!--<span><svg-icon icon-class="department"/></span>-->
+                <label class="font-one">学科专业：</label>{{teacherProfile.subject}}
+              </div>
+              <div class="name-bottom-item" style="margin-bottom: 10px;" v-if="teacherProfile.research_direction">
+                <!--<span><svg-icon icon-class="rearch-direction"/></span>-->
+                <label class="font-one">研究方向：</label>{{teacherProfile.research_direction}}
+              </div>
 
-                <div class="name-bottom-item" style="margin-bottom: 10px;" v-if="teacherProfile.department_name&&tagFlag[10]==='k'">
-                  <!--<span><svg-icon icon-class="department"/></span>-->
-                  <label class="font-one">所在部门：</label>{{teacherProfile.department_name}}
-                </div>
-                <div style="margin-bottom: 10px;" v-if="teacherProfile.work_place&&tagFlag[11]==='l'">
-                  <!--<span><svg-icon icon-class="maps-and-flags"/></span>-->
-                  <label class="font-one">办公地点：</label>{{teacherProfile.work_place}}
-                </div>
-                <div class="name-bottom-item" style="margin-bottom: 10px;" v-if="teacherProfile.phone&&tagFlag[12]==='m'">
-                  <!--<span><svg-icon icon-class="mobile-phone"/></span>-->
-                  <label class="font-one">办公电话：</label>{{teacherProfile.phone}}
-                </div>
-                <div class="name-bottom-item" style="margin-bottom: 10px;">
-                  <!--<span><svg-icon icon-class="email"/></span>-->
-                  <label class="font-one">办公邮箱：</label>{{teacherProfile.email}}
-                </div>
-                <div class="name-bottom-item" style="margin-bottom: 10px;" v-if="teacherProfile.scholat_username">
-                  <!--<span><svg-icon icon-class="S"/></span>-->
-                  <label class="font-one" >学者主页：</label>
-                  <a :href="'http://www.scholat.com/'+teacherProfile.scholat_username" style="color: #399;text-overflow: ellipsis;white-space: nowrap;">
-                    http://www.scholat.com/{{teacherProfile.scholat_username}}
-                  </a>
-                </div>
+              <div class="name-bottom-item" style="margin-bottom: 10px;"
+                   v-if="teacherProfile.department_name&&tagFlag[10]==='k'">
+                <!--<span><svg-icon icon-class="department"/></span>-->
+                <label class="font-one">所在部门：</label>{{teacherProfile.department_name}}
+              </div>
+              <div style="margin-bottom: 10px;" v-if="teacherProfile.work_place&&tagFlag[11]==='l'">
+                <!--<span><svg-icon icon-class="maps-and-flags"/></span>-->
+                <label class="font-one">办公地点：</label>{{teacherProfile.work_place}}
+              </div>
+              <div class="name-bottom-item" style="margin-bottom: 10px;" v-if="teacherProfile.phone&&tagFlag[12]==='m'">
+                <!--<span><svg-icon icon-class="mobile-phone"/></span>-->
+                <label class="font-one">办公电话：</label>{{teacherProfile.phone}}
+              </div>
+              <div class="name-bottom-item" style="margin-bottom: 10px;">
+                <!--<span><svg-icon icon-class="email"/></span>-->
+                <label class="font-one">办公邮箱：</label>{{teacherProfile.email}}
+              </div>
+              <div class="name-bottom-item" style="margin-bottom: 10px;" v-if="teacherProfile.scholat_username">
+                <!--<span><svg-icon icon-class="S"/></span>-->
+                <label class="font-one">学者主页：</label>
+                <a :href="'http://www.scholat.com/'+teacherProfile.scholat_username"
+                   style="color: #399;text-overflow: ellipsis;white-space: nowrap;">
+                  http://www.scholat.com/{{teacherProfile.scholat_username}}
+                </a>
+              </div>
 
-<!--              <div class="show-persona" v-if="teacherProfile.scholat_username">-->
-<!--              <a @click="routeTo()">查看学者画像</a>-->
-<!--            </div>-->
+              <!--              <div class="show-persona" v-if="teacherProfile.scholat_username">-->
+              <!--              <a @click="routeTo()">查看学者画像</a>-->
+              <!--            </div>-->
             </div>
           </div>
         </el-card>
       </div>
       <div class="box-card-two" v-if="!!teacherProfile.intro && teacherProfile.intro!='<p><br></p>'">
-        <el-card  style="overflow: auto;margin-bottom: 17px;">
-          <div v-html="teacherProfile.intro" style="padding: 36px 32px 39px"></div>
+        <el-card style="overflow: auto;margin-bottom: 17px;">
+          <div style="color: steelblue;
+font-size: 16px;
+font-weight: bold;
+padding: 12px 5px 0 5px;">个人简介</div>
+          <hr style="margin: 4px">
+          <div v-html="teacherProfile.intro" style="padding: 20px 20px 39px"></div>
         </el-card>
       </div>
     </div>
@@ -118,19 +128,20 @@
 
 <script>
     import logo from '@/assets/defaultLogo.png'
+
     export default {
         name: "BaseInfo",
         created() {
-          this.personal.avatar = this.logo;
-          console.log(this.teacherProfile );
-          this.tagFlag=this.$store.state.user.tagState.split('')
-          console.log("（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（ this.tagFlag="+ this.tagFlag );
+            this.personal.avatar = this.logo;
+            this.teacherProfile.intro = this.teacherProfile.intro.replace("个人简介", '');
+            this.tagFlag = this.$store.state.user.tagState.split('')
+            console.log("（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（ this.tagFlag=" + this.tagFlag);
         },
         data() {
             return {
                 logo,
                 // defaultQrImg:'this.src="' + require('../../../assets/img/logo.png') + '"',
-                defaultQrImg:'this.style="display:none"',
+                defaultQrImg: 'this.style="display:none"',
                 personal: {
                     name: "汤庸",
                     avatar: 'http://localhost:8080/avatar/' + this.teacherProfile.avatar,
@@ -143,7 +154,7 @@
                     introduction: "",
                     matrixCode: ""
                 },
-              tagFlag:''
+                tagFlag: ''
             }
         },
         props: ['teacherProfile'],
@@ -162,18 +173,18 @@
                     return "http://47.106.132.95:2333/images/avatar/" + imgName;
                 }
             },
-            imgErrorFun() {
-              let img = event.srcElement;
-              img.onerror = null;
-              console.log("执行了imgErrorFun函数，onerror=" + img.onerror + "，img.src=" + img.src);
-              return 'this.src="http://47.106.132.95:2333/images/avatar/default.png"';
+            imgErrorFun(e) {
+                let img = e;
+                img.onerror = null;
+                console.log("执行了imgErrorFun函数，onerror=" + img.onerror + "，img.src=" + img.src);
+                return 'this.src="http://47.106.132.95:2333/images/avatar/default.png"';
             },
-            routeTo(){
+            routeTo() {
                 this.$router.push({
                     name: 'persona',
                     params: {
                         scholat_username: this.teacherProfile.scholat_username,
-                        user_id:this.teacherProfile.id
+                        user_id: this.teacherProfile.id
                     }
                 })
             }
@@ -182,11 +193,12 @@
 </script>
 
 <style rel="stylesheet/scss" lang="scss">
-  .baseInfo-body{
+  .baseInfo-body {
     $bg: #003f88;
-    .prodile-second{
+
+    .prodile-second {
       font-size: 22px;
-      color:gray;
+      color: gray;
     }
 
     .personal-info {
@@ -233,8 +245,8 @@
       }
 
       .box-card {
-     //   background:url('../../../assets/img/bg8.png');
-        background-repeat:no-repeat;
+        //   background:url('../../../assets/img/bg8.png');
+        background-repeat: no-repeat;
         background-size: auto 100%;
         height: 300px;
         width: 100%;
@@ -285,13 +297,13 @@
         margin-top: 10px;
       }
 
-      .name-right
-      {
+      .name-right {
         position: absolute;
         right: 30px;
         top: 30px;
 
       }
+
       .name-qr {
         width: 70px;
         height: 70px;
@@ -309,17 +321,18 @@
 
       .name-bottom {
         /*padding: 15px 0px 0px;*/
-       margin-left: 10px;
+        margin-left: 10px;
         /*display: flex;*/
         flex-wrap: wrap;
       }
-      .name-bottom-item{
+
+      .name-bottom-item {
         /*width: 305px;*/
       }
 
       .font-one {
         line-height: 25px;
-       // padding-right: 7px;
+        // padding-right: 7px;
         margin-left: 7px;
 
       }
@@ -340,7 +353,8 @@
       background-image: none;
       color: #000;
     }
-    .show-persona{
+
+    .show-persona {
       position: absolute;
       bottom: 0;
       right: 0;
