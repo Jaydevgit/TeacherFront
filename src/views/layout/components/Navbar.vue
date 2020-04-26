@@ -1,7 +1,7 @@
 <template>
   <el-menu class="navbar" mode="horizontal">
     <hamburger class="hamburger-container" :toggleClick="toggleSideBar" :isActive="sidebar.opened"></hamburger>
-    <breadcrumb></breadcrumb>
+    <breadcrumb :unit="this.unit"></breadcrumb>
     <el-dropdown class="avatar-container" trigger="click">
 
 
@@ -32,6 +32,7 @@ import logo from '@/assets/defaultLogo.png'
 export default {
   created(){
     console.log("+++++++++++++++++进入到管理页面+++++++++++++++++")
+    this.getUnitInfo();
     if(this.$route.path.indexOf("scholat")!=-1){
       this.backTOHome = false
     }else {
@@ -44,7 +45,20 @@ export default {
     return{
       img_404,
       logo,
-      backTOHome:true
+      backTOHome:true,
+      unit: {
+        schoolName: '',
+        unitName: '',
+        schoolEng: '',
+        unitEng: '',
+        collegeUrl: '',
+        logoUrl: '',
+        state:'',
+        domainName:'',
+        tagState:'',
+        backgroundUrl:'',
+        unitId:''
+      },
     }
   },
   components: {
@@ -58,6 +72,26 @@ export default {
     ]),
   },
   methods: {
+    getUnitInfo() {
+        this.unit.unitId = this.$store.state.user.unitId;
+        console.log("unitId为:........" + this.unit.unitId);
+        this.api({
+          url: "/unit/getUnitInfo",
+          method: "get",
+          params: {unitId: this.unit.unitId}
+        }).then(data => {
+          console.log("学院Id为:" + JSON.stringify(data))
+          console.log("================================")
+          this.listLoading = false;
+          this.unit = data;
+          console.log("unit="+this.unit);
+          this.dataDone = true;
+        }).catch(error => {
+          console.log("QAQ........没有找到学院Id")
+        })
+
+
+    },
     toggleSideBar() {
       this.$store.dispatch('ToggleSideBar')
     },

@@ -16,9 +16,10 @@ export default {
   },
   data() {
     return {
-      levelList: null
+      levelList: null,
     }
   },
+  props:['unit'],
   watch: {
     $route() {
       this.getBreadcrumb()
@@ -27,9 +28,10 @@ export default {
   methods: {
     getBreadcrumb() {
       let matched = this.$route.matched.filter(item => item.name)
-      const first = matched[0]
+      const first = matched[0];
+      console.log("///////////////////"+matched+"///////////////////////////////");
       if (first && first.name !== '/manager/teacher') {
-        matched = [{ path: '/', meta: { title: '后台管理' }}].concat(matched)
+        matched = [{ path: '/', meta: { title: this.unit.schoolName+this.unit.unitName+'后台管理' }}].concat(matched)
       }
       this.levelList = matched
     }

@@ -244,9 +244,9 @@
                     pageRow: 10,//每页条数
                     unitId: '',
                     key: '',//排序关键字
-                  sort:'', //升降序标记
-                  state:1 ,//在岗状态
-                  scholatUsernameFlag:true,
+                    sort:'', //升降序标记
+                    state:1 ,//在岗状态
+                    scholatUsernameFlag:true,
                 },
                 currentSearch: 'false',
                 dialogStatus: 'create',
