@@ -17,25 +17,27 @@
                 <div>
                   <img :src="getImgUrl(teacherProfile.avatar)" :onerror="imgErrorFun()" width="120" height="120"/>
                 </div>
-                <div style="margin: 10px 0 0 10px">
+                  <!--显示二维码-->
+                <!--<div style="margin: 10px 0 0 10px">
                   <img :src="'http://www.scholat.com/'+teacherProfile.qrcode" width="100" height="100"
                        v-if="teacherProfile.qrcode" :onerror="defaultQrImg" style="border-radius: 5px;">
-                  <!--                  <div>
+                  &lt;!&ndash;                  <div>
                                       <span><svg-icon icon-class="subject"/></span>
                                       <label class="font-one">学科</label>{{personal.subject}}
                                     </div>
                                     <div>
                                       <span><svg-icon icon-class="unit"/></span>
                                       <label class="font-one">单位</label>{{teacherProfile.department_name}}
-                                    </div>-->
-                </div>
+                                    </div>&ndash;&gt;
+                </div>-->
+                  <!--显示二维码结束-->
 
               </div>
             </div>
             <div class="name">
               {{teacherProfile.username}}
-              <span class="prodile-second" style="margin-left: 14px;" v-if="teacherProfile.duty&&tagFlag[2]==='c'">{{teacherProfile.duty}}</span>
               <span class="prodile-second" style="margin-left: 14px;" v-if="teacherProfile.post&&tagFlag[3]==='d'">{{teacherProfile.post}}</span>
+              <span class="prodile-second" style="margin-left: 14px;" v-if="teacherProfile.duty&&tagFlag[2]==='c'">、{{teacherProfile.duty}}</span>
               <!--                  <span class="prodile-second" v-if="teacherProfile.degree">/&nbsp{{teacherProfile.degree}}</span>-->
             </div>
             <div v-if="teacherProfile.label&&tagFlag[4]==='e'" style="margin-bottom: 10px;margin-left: 20px">
@@ -47,46 +49,52 @@
             <div class="name-bottom">
 
                <div style="margin-bottom: 10px;" v-if="teacherProfile.degree&&tagFlag[5]==='f'" class="name-bottom-item">
+<!--
                  <span ><svg-icon icon-class="degree" /></span>
+-->
                  <label class="font-one">最后学历：</label>{{teacherProfile.degree}}
                </div>
                <div style="margin-bottom: 10px;" v-if="teacherProfile.degreeMax&&tagFlag[6]==='g'" class="name-bottom-item">
+<!--
                  <span><svg-icon icon-class="degree"/></span>
+-->
                  <label class="font-one">最高学位：</label>{{teacherProfile.degreeMax}}
                </div>
                <div class="name-bottom-item" style="margin-bottom: 10px;" v-if="teacherProfile.graduateFrom&&tagFlag[7]==='h'">
+<!--
                  <span><svg-icon icon-class="department"/></span>
+-->
                  <label class="font-one">毕业学校：</label>{{teacherProfile.graduateFrom}}
                </div>
                <div class="name-bottom-item" style="margin-bottom: 10px;" v-if="teacherProfile.subject&&tagFlag[8]==='i'">
-                 <span><svg-icon icon-class="department"/></span>
+                 <!--<span><svg-icon icon-class="department"/></span>-->
                  <label class="font-one">学科专业：</label>{{teacherProfile.subject}}
                </div>
                <div class="name-bottom-item" style="margin-bottom: 10px;" v-if="teacherProfile.research_direction">
-                 <span><svg-icon icon-class="rearch-direction"/></span>
+                 <!--<span><svg-icon icon-class="rearch-direction"/></span>-->
                  <label class="font-one">研究方向：</label>{{teacherProfile.research_direction}}
                </div>
 
                 <div class="name-bottom-item" style="margin-bottom: 10px;" v-if="teacherProfile.department_name&&tagFlag[10]==='k'">
-                  <span><svg-icon icon-class="department"/></span>
+                  <!--<span><svg-icon icon-class="department"/></span>-->
                   <label class="font-one">所在部门：</label>{{teacherProfile.department_name}}
                 </div>
                 <div style="margin-bottom: 10px;" v-if="teacherProfile.work_place&&tagFlag[11]==='l'">
-                  <span><svg-icon icon-class="maps-and-flags"/></span>
+                  <!--<span><svg-icon icon-class="maps-and-flags"/></span>-->
                   <label class="font-one">办公地点：</label>{{teacherProfile.work_place}}
                 </div>
                 <div class="name-bottom-item" style="margin-bottom: 10px;" v-if="teacherProfile.phone&&tagFlag[12]==='m'">
-                  <span><svg-icon icon-class="mobile-phone"/></span>
+                  <!--<span><svg-icon icon-class="mobile-phone"/></span>-->
                   <label class="font-one">办公电话：</label>{{teacherProfile.phone}}
                 </div>
                 <div class="name-bottom-item" style="margin-bottom: 10px;">
-                  <span><svg-icon icon-class="email"/></span>
+                  <!--<span><svg-icon icon-class="email"/></span>-->
                   <label class="font-one">办公邮箱：</label>{{teacherProfile.email}}
                 </div>
                 <div class="name-bottom-item" style="margin-bottom: 10px;" v-if="teacherProfile.scholat_username">
-                  <span><svg-icon icon-class="S"/></span>
-                  <label class="font-one">学者网：</label>
-                  <a :href="'http://www.scholat.com/'+teacherProfile.scholat_username" style="color: #399;">
+                  <!--<span><svg-icon icon-class="S"/></span>-->
+                  <label class="font-one" >学者网：</label>
+                  <a :href="'http://www.scholat.com/'+teacherProfile.scholat_username" style="color: #399;text-overflow: ellipsis;white-space: nowrap;">
                     http://www.scholat.com/{{teacherProfile.scholat_username}}
                   </a>
                 </div>
@@ -113,10 +121,10 @@
     export default {
         name: "BaseInfo",
         created() {
-            this.personal.avatar = this.logo;
-            console.log(this.teacherProfile );
-            this.tagFlag=this.$store.state.user.tagState.split('')
-          console.log(" this.tagFlag="+ this.tagFlag );
+          this.personal.avatar = this.logo;
+          console.log(this.teacherProfile );
+          this.tagFlag=this.$store.state.user.tagState.split('')
+          console.log("（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（ this.tagFlag="+ this.tagFlag );
         },
         data() {
             return {
@@ -313,6 +321,7 @@
         line-height: 25px;
        // padding-right: 7px;
         margin-left: 7px;
+
       }
 
       .personal-describe {
