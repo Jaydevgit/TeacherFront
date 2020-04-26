@@ -4,7 +4,7 @@
     <!--两种模式：模式 1 -->
     <div class="background" v-if="unit.state == 0 && dataDone">
       <div @click="goToCollege" style="display: inline-block;height: 90%;width: auto;min-width: 93px">
-        <img :src="getPic" :onerror="defaultLogo"
+        <img :src="'http://www.scholat.com/images/uni_logo/'+this.unit.schoolName+'.png'" :onerror="defaultLogo"
              style="height: 100%;width: auto;bottom: 0;"/>
       </div>
       <div @click="goToCollege"
@@ -33,7 +33,7 @@
 
     <div v-else class="background2">
       <div @click="goToCollege" style="display: inline-block;height: 90%;width: auto;">
-        <img :src="getPic" :onerror="defaultLogo" style="height:100%;width:auto;bottom: 0;"/>
+        <img :src="'http://www.scholat.com/images/uni_logo/'+this.unit.schoolName+'.png'" :onerror="defaultLogo" style="height:100%;width:auto;bottom: 0;"/>
       </div>
 <!--      <div @click="goToCollege"-->
 <!--           style="height: 100%;max-width: 900px;margin-left: 14px;">-->
@@ -43,12 +43,16 @@
       <div v-if="titleFlag"></div>
       <div v-else class="font-jsgrzy" style="display: inline-block;min-width: 180px;">
         <a href="/index">
-          <span style="font-size: 24px;
+          <!--学校名称-->
+          <!--<span style="font-size: 24px;
     font-family: initial;
     font-weight: bold;
-    letter-spacing: 9px;">{{unit.schoolName}}</span>
+    letter-spacing: 9px;">{{unit.schoolName}}
+          </span>-->
+          <!--学校图标-->
+
           <span style="">
-            {{unit.unitName}}
+            {{unit.unitName}} 师资队伍
           </span>
         </a>
       </div>
@@ -118,6 +122,7 @@
                         console.log("================================")
                         this.listLoading = false;
                         this.unit = data;
+                        console.log("unit="+this.unit);
                         this.dataDone = true;
                     }).catch(error => {
                         console.log("QAQ........没有找到学院Id")
@@ -142,6 +147,7 @@
                       this.$store.state.user.unitId=data.unitId
                       this.$store.state.user.tagState=data.tagState
                      console.log("dddddd"+this.$route.params.unitId+"vvv"+this.$store.state.user.unitId);
+                      console.log("学校图标是："+"http://www.scholat.com/images/uni_logo/"+data.schoolName+".png");
                       this.unitQuery.unitId=data.unitId
                         this.dataDone = true;
                     }).catch(error => {
@@ -190,17 +196,19 @@
             },
         },
         computed: {
-            getPic() {
+            /*getPic() {
                 if (this.unit.logoUrl) {
                     if (this.unit.logoUrl.indexOf('scholat') == -1) {
-                        return 'http://47.106.132.95:2333/images/unit_logo/' + this.unit.logoUrl
+                        /!*return 'http://47.106.132.95:2333/images/unit_logo/' + this.unit.logoUrl*!/
+                      console.log("******学校图片为"+this.unit.logoUrl+"******");
+                      return '"http://www.scholat.com/images/uni_logo/"+data.schoolName+".png"';
                     } else {
                         return this.unit.logoUrl;
                     }
                 } else {
                     return this.defaultLogo;
                 }
-            }
+            }*/
         },
         components: {}
     }
