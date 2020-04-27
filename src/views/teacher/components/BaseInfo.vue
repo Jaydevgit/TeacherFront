@@ -15,7 +15,7 @@
 
               <div class="name-right">
                 <div>
-                  <img :src="getImgUrl(teacherProfile.avatar)" :onerror="imgErrorFun(this)" width="120" height="120"/>
+                  <img :src="getImgUrl(teacherProfile.avatar)" :onerror="imgErrorFun(this)" width="140" height="140"/>
                 </div>
                 <!--显示二维码-->
                 <!--<div style="margin: 10px 0 0 10px">
@@ -116,7 +116,7 @@
           <div style="color: steelblue;
 font-size: 16px;
 font-weight: bold;
-padding: 12px 5px 0 5px;">个人简介</div>
+padding: 12px 20px 0 5px;">个人简介</div>
           <hr style="margin: 4px">
           <div v-html="teacherProfile.intro" style="padding: 20px 20px 39px"></div>
         </el-card>
@@ -313,7 +313,7 @@ padding: 12px 5px 0 5px;">个人简介</div>
 
       .name {
         margin-top: 20px;
-        margin-left: 20px;
+        margin-left: 25px;
         font-size: 34px;
         font-weight: 800;
         color: $bg;
@@ -321,7 +321,7 @@ padding: 12px 5px 0 5px;">个人简介</div>
 
       .name-bottom {
         /*padding: 15px 0px 0px;*/
-        margin-left: 10px;
+        margin-left: 20px;
         /*display: flex;*/
         flex-wrap: wrap;
       }

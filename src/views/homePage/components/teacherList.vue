@@ -9,11 +9,11 @@
               <div class="grid-content bg-purple" @click="routerTo(teacher.tId)"
                    style="cursor: pointer; overflow: hidden;text-overflow: ellipsis;padding-left: 10px;">
                 <img :src="getImgUrl(teacher.tAvatar)" :onerror="imgErrorFun()" class="list-img" style="float: left;width: 40px;height: 40px">
-                <div style="padding-top: 10px;display: flex;margin-left: 20px;flex-direction: row;justify-content: space-around">
-                  <div style="width: 75px;font-size: 16px;font-weight: bold;padding: 0px 0px 10px 0px;">
+                <div style="padding-top: 10px;display: flex;margin-left: 20px;flex-direction: row;justify-content: space-between">
+                  <div style="width: 75px;font-size: 16px;font-weight: bold;padding: 0px 0px 10px 0px;margin-left: 28px">
                     {{teacher.tName}}
                   </div>
-                  <div class="smallText" style="font-size: small">{{teacher.tPost}}</div>
+                  <div class="smallText" style="width:100px;font-size: small;">{{teacher.tPost}}</div>
                 </div>
               </div>
             </el-col>
