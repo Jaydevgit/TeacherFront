@@ -49,33 +49,29 @@
       </div>
 
       <div v-if="titleFlag"></div>
-
-      <!--如果有背景图，则显示学院背景图片+文字-->
-<!--      <div @click="goToCollege" v-if="unit.backgroundUrl!='http://47.106.132.95:2333/images/background/1569738575202258.png'"-->
-<!--           style="height: 100%;max-width: 900px;margin-left: 14px;display: flex;">-->
-<!--        <img :src="'http://47.106.132.95:2333/images/background/' + unit.backgroundUrl" :onerror="defaultBack"-->
-<!--             style="height: 90%;width: auto;cursor: pointer"/>-->
-<!--        <span class="font-jsgrzy">-->
-<!--            师资队伍-->
-<!--        </span>-->
-<!--      </div>-->
-      <!--显示学院背景图片结束-->
-      <!--如果没有背景图，则显示学校LOGO+文字-->
       <div v-else style="display: flex;align-items: center;height: 100%;width: 100%" @click="goToCollege">
-        <div @click="goToCollege" style="height: 90%;width: auto;bottom: 0;cursor: pointer">
-          <img :src="'http://www.scholat.com/images/uni_logo/'+this.unit.schoolName+'.png'" :onerror="defaultLogo" style="height: 55px;width:auto;"/>
-        </div>
-        <div @click="goToCollege" style="height: 100%;padding-left: 15px">
-          <img :src="'http://47.106.132.95:2333/images/background/' + unit.backgroundUrl"
-               style="height: 100%"
-               :onerror="defaultBack"/>
-        </div>
-        <span style="" class="font-jsgrzy">
-          师资队伍
-        </span>
-
+        <!--如果有背景图，则显示学院背景图片+文字-->
+        <template v-if="unit.backgroundUrl">
+          <div @click="goToCollege" style="height: 100%;padding-left: 15px">
+            <img :src="'http://47.106.132.95:2333/images/background/' + unit.backgroundUrl"
+                 style="height: 100%"
+                 :onerror="defaultBack"/>
+          </div>
+          <span style="" class="font-jsgrzy">
+            师资队伍
+          </span>
+        </template>
+        <!--如果没有背景图，则显示学校LOGO+xx学院+文字-->
+        <template v-else>
+          <div @click="goToCollege" style="height: 90%;width: auto;bottom: 0;cursor: pointer">
+            <img :src="'http://www.scholat.com/images/uni_logo/'+this.unit.schoolName+'.png'" :onerror="defaultLogo" style="height: 55px;width:auto;"/>
+          </div>
+          <span style="" class="font-jsgrzy">
+          {{unit.unitName}}师资队伍
+          </span>
+        </template>
       </div>
-      <!--显示学院文字结束-->
+
       <div class="search bar6" v-if="dataDone && this.$route.path.indexOf('teacher')===-1">
         <div class="formDiv" style="min-width:200px;float: right;">
           <input @keyup.enter="keySend" type="text" v-model="searchKey" placeholder="请输入您要搜索的教师" name="cname"
