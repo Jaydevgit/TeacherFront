@@ -49,6 +49,11 @@
       </div>
 
       <div v-if="titleFlag"></div>
+      <div v-else-if="$route.path.indexOf('login')!=-1">
+        <span style="padding-left: 0" class="font-jsgrzy">
+          SCHOLAT+ 学院师资信息管理平台
+          </span>
+      </div>
       <div v-else style="display: flex;align-items: center;height: 100%;width: 100%" @click="goToCollege">
         <!--如果有背景图，则显示学院背景图片+文字-->
         <template v-if="unit.backgroundUrl">

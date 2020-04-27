@@ -35,7 +35,7 @@
 
     </template>
     <!-- 科研栏目入口（注释即关闭入口）：开始 -->
-    <el-submenu index="1">
+    <!--<el-submenu index="1">
       <template slot="title">
         <svg-icon icon-class="table"></svg-icon>
         <span>科研信息管理</span>
@@ -43,7 +43,7 @@
         <el-menu-item index="1-1">正在开发中...</el-menu-item>
 
 
-    </el-submenu>
+    </el-submenu>-->
     <!-- 科研栏目入口（注释即关闭入口）：结束 -->
   </div>
 </template>
