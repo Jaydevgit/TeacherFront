@@ -61,13 +61,14 @@
             师资队伍
           </span>
         </template>
-        <!--如果没有背景图，则显示学校LOGO+xx学院+文字-->
+        <!--如果没有背景图，则显示学校LOGO+xx学院+文字，登录页面按照逻辑会跳到这里，所以要判断-->
         <template v-else>
           <div @click="goToCollege" style="height: 90%;width: auto;bottom: 0;cursor: pointer">
             <img :src="'http://www.scholat.com/images/uni_logo/'+this.unit.schoolName+'.png'" :onerror="defaultLogo" style="height: 55px;width:auto;"/>
           </div>
           <span style="" class="font-jsgrzy">
-          {{unit.unitName}}师资队伍
+            <span v-if="$route.path.indexOf('login')!=-1">SCHOLAT+学院师资信息管理平台</span>
+            <span v-else>{{unit.unitName}}师资队伍</span>
           </span>
         </template>
       </div>
