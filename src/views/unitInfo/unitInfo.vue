@@ -60,7 +60,7 @@
       <el-form-item label="自定义背景："  >
         <div style="margin-left: 15px;">
           <!--提交完后显示这个-->
-          <img :src="showBack"
+          <img :src="showBack" v-if="showBack!=''"
                :onerror="defaultBack" style="width: 420px; height: 72px;"/>
         </div>
         <div style="color: red">提示：点击下方按钮自行上传背景图片</div>
@@ -87,7 +87,8 @@
     data () {
       return {
         defaultLogo: 'this.src="http://www.scholat.com/images/uni_logo/nologo.png"',
-        defaultBack: 'this.src="http://47.106.132.95:2333/images/background/1569738575202258.png"',
+        // defaultBack: 'this.src="http://47.106.132.95:2333/images/background/1569738575202258.png"',
+        defaultBack: '',
         applyForm : {
           schoolName:'',
           unitName:'',
@@ -165,8 +166,10 @@
           console.log(" this.showLogo="+ this.showLogo);
         }
         else {
-          this.applyForm.backgroundUrl = 'http://47.106.132.95:2333/images/background/1569738575202258.png'
-          this.showBack = 'http://47.106.132.95:2333/images/background/1569738575202258.png'
+          // this.applyForm.backgroundUrl = 'http://47.106.132.95:2333/images/background/1569738575202258.png'
+          this.applyForm.backgroundUrl = ''
+          // this.showBack = 'http://47.106.132.95:2333/images/background/1569738575202258.png'
+          this.showBack = ''
         }
         },
       handleApply(applyForm) {

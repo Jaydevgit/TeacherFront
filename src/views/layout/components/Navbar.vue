@@ -16,7 +16,7 @@
 
       <el-dropdown-menu class="user-dropdown" slot="dropdown">
         <el-dropdown-item divided>
-          <span @click="logout" style="display:block;">退出登录</span>
+          <span @click="logout" style=" display:block;">退出登录</span>
         </el-dropdown-item>
       </el-dropdown-menu>
     </el-dropdown>

@@ -98,7 +98,7 @@
         switch (msg) {
           case 'front':
             this.titleName = '上传身份证正面'
-            this.options.autoCropWidth = 428
+            this.options.autoCropWidth = 400
             this.options.autoCropHeight = 270
             break;
           case 'back':
