@@ -73,7 +73,8 @@
           </div>
           <span style="" class="font-jsgrzy">
             <span v-if="$route.path.indexOf('login')!=-1">SCHOLAT+学院师资信息管理平台</span>
-            <span v-else>{{unit.unitName}}师资队伍</span>
+            <span v-else><span style="font-family: 华文新魏;font-size: 38px">{{unit.unitName}}|</span>
+              <span style="font-family: 华文行楷 ;font-size: 36px;margin-left: -10px">师资队伍</span></span>
           </span>
         </template>
       </div>
@@ -361,7 +362,7 @@
     font-weight: bold;
     letter-spacing: 3.5px;
     line-height: 60px;
-    font-size: 22px;
+    font-size: 28px;
     color: steelblue;
     white-space: nowrap;
     margin-left: 14px;
