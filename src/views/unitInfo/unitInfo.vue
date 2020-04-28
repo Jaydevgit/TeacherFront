@@ -60,7 +60,7 @@
       <el-form-item label="自定义背景："  >
         <div style="margin-left: 15px;">
           <!--提交完后显示这个-->
-          <img :src="showBack" v-if="showBack!=''"
+          <img :src="showBack" v-if="showBack!==''"
                :onerror="defaultBack" style="width: 420px; height: 72px;"/>
         </div>
         <div style="color: red">提示：点击下方按钮自行上传背景图片</div>
@@ -87,8 +87,8 @@
     data () {
       return {
         defaultLogo: 'this.src="http://www.scholat.com/images/uni_logo/nologo.png"',
-        // defaultBack: 'this.src="http://47.106.132.95:2333/images/background/1569738575202258.png"',
-        defaultBack: '',
+       //  defaultBack: 'this.src="http://47.106.132.95:2333/images/background/1569738575202258.png"',
+       defaultBack: '',
         applyForm : {
           schoolName:'',
           unitName:'',
@@ -130,7 +130,7 @@
         }).then(data => {
           console.log(JSON.stringify(data))
           this.applyForm = data
-          if (data.logoUrl != null && data.logoUrl.indexOf('scholat') == -1)
+          if (data.logoUrl != null && data.logoUrl.indexOf('scholat') === -1)
             this.showLogo = 'http://47.106.132.95:2333/images/unit_logo/' + data.logoUrl
           else
             this.showLogo = data.logoUrl;
