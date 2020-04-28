@@ -49,9 +49,7 @@
               <img :src="'http://www.scholat.com/'+ruleForm.qrcode" style="width: 120px;height: 120px;">
             </div>
 
-            <el-form-item label="域名" prop="domain_name" style="margin-top: 40px;"  class="redItem">
-              <el-input v-model="ruleForm.domain_name"  style="margin-left: -40px;" size="small"></el-input>
-            </el-form-item>
+
           </div>
 
         </el-col>
@@ -152,7 +150,10 @@
 <!--          </div>-->
         </el-col>
         <el-col :span="6" >
-          <el-form-item label="职称" prop="post" style="margin-top:125px" >
+          <el-form-item label="域名" prop="domain_name" >
+            <el-input v-model="ruleForm.domain_name"  disabled></el-input>
+          </el-form-item>
+          <el-form-item label="职称" prop="post" style="margin-top:85px" >
             <!--显示更新提示-->
             <el-tooltip placement="top" v-if="showUpdateInfo.postScholat">
               <div slot="content" style="font-size: 16px">
@@ -388,6 +389,7 @@
             this.ruleForm.domain_name=Pinyin.chineseToPinYin(newVal);
             console.log(">>>>"+this.ruleForm.domain_name);
           }
+
         }
 
       },
@@ -460,6 +462,7 @@
                 }).then(res => {
                     console.log("res.data.info.list:")
                     console.log(res.data.info.list)
+
                     this.list = res.data.info.list
                     if (this.list != "" && this.list != null) {
                         this.showScholatDiv = true
@@ -536,11 +539,16 @@
                   domain_name: value
                 }).then(res => {
                   console.log(res);
-                  console.log(res.data[0].id+"===="+this.GetUrlRelativePath_id());
+                  this.domainCount=res.data[0].count;
+                  console.log("this.domainCount="+this.domainCount);
+
+                  console.log(res.data[0].id+"===="+this.GetUrlRelativePath_id()+"this.domainCount="+this.domainCount);
                   if ((res.data[0].flag === 1 && res.data[0].id===parseInt(this. GetUrlRelativePath_id()))||res.data[0].flag === 0) {
                     callback()
                   } else {
-                    return callback(new Error("该域名已存在"))
+                    this.ruleForm.domain_name=value+this.domainCount;
+                    console.log("this.ruleForm.domain_name="+this.ruleForm.domain_name);
+                  //  return callback(new Error("该域名已存在"))
                   }
                 }).catch(err => {
                   callback(new Error("网络请求有误"))
@@ -681,6 +689,7 @@
                 },
               showRoleAssigment: false,
               roleId: '',//角色分配id
+              domainCount:'',//相同域名个数
             }
         },
         methods: {
