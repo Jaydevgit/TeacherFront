@@ -2,7 +2,8 @@
   <div class="container" style="padding-top: 30px;min-height: calc(100vh - 50px);height: 100%;display:flex;align-items: center;">
 <!--    <div style="clear: both;width: 480px;">-->
 <!--    </div>-->
-    <div style="min-height: 600px;width:500px;display: inline-block;margin-left:40px;margin-bottom: 40px">
+    <!--以下注释的要求在帮助文件内提供-->
+    <!--<div style="min-height: 600px;width:500px;display: inline-block;margin-left:40px;margin-bottom: 40px">
       <el-card class="box-card" style="width:460px;float: left;margin-right: 20px">
         <el-collapse   style="padding: 10px 10px">
           <el-collapse-item title="功能说明" name="1" style="font-size: 16px" >
@@ -21,7 +22,7 @@
         <el-carousel-item v-for="item in 2" :key="item" interval="5000">
         </el-carousel-item>
       </el-carousel>
-    </div>
+    </div>-->
     <div style="min-height: 600px;width: 700px;display: inline-block;margin-bottom: 40px">
       <el-card class="box-card" style="width: 600px;float: left;margin-left: 40px">
         <div style=" height: 50px;text-align: center;margin-top: 40px">
