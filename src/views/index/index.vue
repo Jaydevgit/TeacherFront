@@ -9,22 +9,19 @@
     font-weight: bold;
     letter-spacing: 9px;
     margin-left: 21px;
-    color: #fff;">学院师资栏目</span>
+    color: #fff;">SCHOLAT+</span>
           <span style="font-size: 22px;
     font-weight: bold;
-    color: rgb(123, 186, 186);">SCHOLAT+应用服务</span>
+    color: rgb(123, 186, 186);">学院师资信息管理平台</span>
         </div>
         <div class="nav-inner-login">
-          <a href="https://www.yuque.com/vd7ii9/dvybyk/na3nsf" style="color: #fff;
-    font-size: 18px;
-    letter-spacing: 2px;
-    cursor: pointer;
-    margin-right: 24px;margin-top: 10px;
-    min-width: 80px;height: 30px;
-    display: table-cell;
-            vertical-align:middle">帮助文档</a>
-          <el-button><a href="/login">登录/LOGIN</a></el-button>
-          <el-button><a href="/unitApply">注册/REGISTER</a></el-button>
+          <a href="/index" class="title" style="flex: 1;min-width: 40px">首页</a>
+          <a href="https://www.yuque.com/vd7ii9/dvybyk/na3nsf" class="title" style="min-width: 80px">帮助文档</a>
+         <a href="/login" class="title" style="flex: 1;min-width: 40px">登录</a>
+         <a href="/unitApply" class="title" style="flex: 1;min-width: 40px">注册</a>
+          <a href="http://www.scholat.com/"  class="title" style="flex: 1;min-width: 60px">
+            学者网
+          </a>
         </div>
       </div>
     </nav>
@@ -202,5 +199,19 @@
   article {
     background: url("../../assets/img/bg2.png") no-repeat;
     background-size: 100% 100%;
+  }
+  .title{
+
+    color: #fff;
+    font-size: 18px;
+    letter-spacing: 2px;
+    cursor: pointer;
+    margin-right: 24px;margin-top: 10px;
+    height: 30px;
+    display: table-cell;
+    vertical-align:middle
+  }
+  .title:hover{
+   border-bottom:2px solid #fff;
   }
 </style>

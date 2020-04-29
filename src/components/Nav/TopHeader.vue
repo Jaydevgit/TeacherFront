@@ -40,11 +40,14 @@
         <div style="color: steelblue;white-space: nowrap;font-weight: bold;font-size: 22px;">
           SCHOLAT+学院师资管理平台 申请程序
         </div>
-        <div style="font-size: 22px">
-          <span><svg-icon icon-class="S"/></span>
-          <a href="http://www.scholat.com/" style="color: #399;text-overflow: ellipsis;white-space: nowrap;">
-            学者网
-          </a>
+        <div style=" display: flex;align-content: center;margin-left: 120px">
+        <a href="/index" class="title" style="flex: 1;min-width: 40px">首页</a>
+        <a href="https://www.yuque.com/vd7ii9/dvybyk/na3nsf" class="title" style="min-width: 80px">帮助文档</a>
+        <a href="/login" class="title" style="flex: 1;min-width: 40px">登录</a>
+        <a href="/unitApply" class="title" style="flex: 1;min-width: 40px">注册</a>
+        <a href="http://www.scholat.com/"  class="title" style="flex: 1;min-width: 60px">
+          学者网
+        </a>
         </div>
       </div>
 
@@ -87,13 +90,21 @@
         </div>
       </div>
 
-        <div style="font-size: 22px;display: flex;width: 100%;justify-content: flex-end"
+        <div style=" display: flex;
+    align-content: center;margin-left: 120px"
              v-if="$route.path.indexOf('login')!=-1">
-          <span><svg-icon icon-class="S"/></span>
-          <a href="http://www.scholat.com/" style="color: #399;margin-left: 4px ;
-          text-overflow: ellipsis;white-space: nowrap;">
+          <a href="/index" class="title" style="flex: 1;min-width: 40px">首页</a>
+          <a href="https://www.yuque.com/vd7ii9/dvybyk/na3nsf" class="title" style="min-width: 80px">帮助文档</a>
+          <a href="/login" class="title" style="flex: 1;min-width: 40px">登录</a>
+          <a href="/unitApply" class="title" style="flex: 1;min-width: 40px">注册</a>
+          <a href="http://www.scholat.com/"  class="title" style="flex: 1;min-width: 60px">
             学者网
           </a>
+<!--          <span><svg-icon icon-class="S"/></span>-->
+<!--          <a href="http://www.scholat.com/" style="color: #399;margin-left: 4px ;-->
+<!--          text-overflow: ellipsis;white-space: nowrap;">-->
+<!--            学者网-->
+<!--          </a>-->
         </div>
     </div>
 
@@ -376,5 +387,19 @@
     width: 100%;
     padding: 4px;
     padding-left: 14px;
+  }
+  .title{
+
+    color: steelblue;
+    font-size: 18px;
+    letter-spacing: 2px;
+    cursor: pointer;
+    margin-right: 24px;margin-top: 10px;
+    height: 30px;
+    display: table-cell;
+    vertical-align:middle
+  }
+  .title:hover{
+    border-bottom:2px solid steelblue;
   }
 </style>
