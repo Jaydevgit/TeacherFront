@@ -122,8 +122,8 @@
           <el-form-item label="所在部门" prop="department_name"  >
             <el-input v-model="ruleForm.department_name" placeholder="例如：网络工程系" ></el-input>
           </el-form-item>
-          <el-form-item label="办公地点">
-            <el-input v-model="ruleForm.work_place" placeholder="" ></el-input>
+          <el-form-item label="办公邮箱" prop="email"  class="redItem">
+            <el-input v-model="ruleForm.email" placeholder="建议输入办公邮箱地址"></el-input>
           </el-form-item>
 
 
@@ -178,19 +178,21 @@
           <el-form-item label="办公电话" prop="phone" style="margin-top: 85px">
             <el-input v-model="ruleForm.phone" placeholder="建议输入办公固定电话，可以用'-'分隔"></el-input>
           </el-form-item>
-          <el-form-item v-if="!flagAssignment"label="教师分配" prop="label">
-<!--            <el-tag v-if="flagAssignment" style="width: 100%;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">添加教师完成后方可进行教师分配</el-tag>-->
-            <el-button  type="primary" size="small" @click="openAssignment">选择分配</el-button>
-          </el-form-item>
+<!--          <el-form-item v-if="!flagAssignment"label="教师分配" prop="label">-->
+<!--&lt;!&ndash;            <el-tag v-if="flagAssignment" style="width: 100%;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">添加教师完成后方可进行教师分配</el-tag>&ndash;&gt;-->
+<!--            <el-button  type="primary" size="small" @click="openAssignment">选择分配</el-button>-->
+<!--          </el-form-item>-->
         </el-col>
         <el-col :span="6">
           <el-form-item label="毕业学校" prop="graduateFrom" style="margin-top: 250px">
             <el-input v-model="ruleForm.graduateFrom"
                       placeholder=""></el-input>
           </el-form-item>
-          <el-form-item label="办公邮箱" prop="email" style="margin-top: 150px" class="redItem">
-            <el-input v-model="ruleForm.email" placeholder="建议输入办公邮箱地址"></el-input>
+          <el-form-item label="办公地点" style="margin-top: 150px">
+            <el-input v-model="ruleForm.work_place" placeholder="" ></el-input>
           </el-form-item>
+
+
         </el-col>
       </el-row>
       <el-row>
