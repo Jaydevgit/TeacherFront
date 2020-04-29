@@ -192,8 +192,8 @@ export const asyncRouterMap = [
     path: '/homeSet',
     component: Layout,
     redirect: '/homeSet/teacherSet',
-    name: '主页设置',
-    meta: {title: '师资栏目设置', icon: 'tree'},
+    name: '师资栏目主页',
+    meta: {title: '师资栏目主页', icon: 'tree'},
     children: [
       {
         path: 'teacherSet',
@@ -204,9 +204,9 @@ export const asyncRouterMap = [
       },
       {
         path: 'catalogueList',
-        name: '栏目管理',
+        name: '师资栏目设置',
         component: _import('homeSet/catalogue/catalogueList'),
-        meta: {title: '栏目列表', icon: 'user'},
+        meta: {title: '师资栏目设置', icon: 'user'},
         menu: 'user'
       },
 
