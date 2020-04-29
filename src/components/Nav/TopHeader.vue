@@ -37,8 +37,8 @@
       </div>-->
 
       <div class="apply-nav" v-if="$route.path.indexOf('unitApply')!=-1">
-        <div style="color: steelblue;white-space: nowrap;font-weight: bold;font-size: 22px;">
-          SCHOLAT+学院师资管理平台 申请程序
+        <div style="color: steelblue;white-space: nowrap;font-weight: bold;font-size: 26px;">
+          SCHOLAT+ 学院师资信息管理平台
         </div>
         <div style=" display: flex;align-content: center;margin-left: 120px">
         <a href="/index" class="title" style="flex: 1;min-width: 40px">首页</a>
