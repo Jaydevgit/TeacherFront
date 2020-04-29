@@ -14,6 +14,10 @@ export default {
   created() {
     this.getBreadcrumb()
   },
+    mounted(){
+      // alert(this.unit)
+        this.getBreadcrumb()
+    },
   data() {
     return {
       levelList: null,
@@ -21,6 +25,9 @@ export default {
   },
   props:['unit'],
   watch: {
+      unit:function(oldVal,newVal){
+          this.getBreadcrumb()
+      },
     $route() {
       this.getBreadcrumb()
     }
@@ -31,9 +38,10 @@ export default {
       const first = matched[0];
       console.log("///////////////////"+matched+"///////////////////////////////");
       if (first && first.name !== '/manager/teacher') {
-        matched = [{ path: '/', meta: { title: this.unit.schoolName+this.unit.unitName+'后台管理' }}].concat(matched)
+          matched = [{ path: '/', meta: { title: this.unit.schoolName+this.unit.unitName+'后台管理' }}].concat(matched)
       }
-      this.levelList = matched
+        this.levelList = matched
+        console.log(this.levelList);
     }
   }
 }

@@ -1,10 +1,8 @@
 <template>
   <el-menu class="navbar" mode="horizontal">
     <hamburger class="hamburger-container" :toggleClick="toggleSideBar" :isActive="sidebar.opened"></hamburger>
-    <breadcrumb :unit="this.unit"></breadcrumb>
+    <breadcrumb :unit="this.unit" v-if="this.unit.schoolName!=''"></breadcrumb>
     <el-dropdown class="avatar-container" trigger="click">
-
-
       <div class="avatar-wrapper" style="float: right">
         <img class="user-avatar" :src="logo">
         <i class="el-icon-caret-bottom"></i>
