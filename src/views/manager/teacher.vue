@@ -18,7 +18,7 @@
                   <el-dropdown-item @click.native="teacherStateChange(2)">其他</el-dropdown-item>
                 </el-dropdown-menu>
               </el-dropdown>
-              <el-card style="display: inline-block;margin-left: 15px;padding: 3px 0;height: 36px;line-height: 32px;min-width: 240px" shadow="never">
+              <!--<el-card style="display: inline-block;margin-left: 15px;padding: 3px 0;height: 36px;line-height: 32px;min-width: 240px" shadow="never">
                 <el-switch style="margin:0 5px 5px 5px"
                            v-model="flagScholat"
                            active-text="已关联学者网"
@@ -26,13 +26,13 @@
                            @change="changeScholat" >
                 </el-switch>
               </el-card>
-              <!--          可以通过选择(在岗/其他)，关联学者网等功能快速添加、查询、修改教师基本信息-->
+              &lt;!&ndash;          可以通过选择(在岗/其他)，关联学者网等功能快速添加、查询、修改教师基本信息&ndash;&gt;
               <div style="margin-left: 15px;padding: 3px 0;height: 36px;line-height: 36px " shadow="never">
                 <div style="margin:0 5px 15px 5px">
                   <el-tooltip class="item" effect="dark" content="可以通过选择(在岗/其他)，关联学者网等功能快速添加、查询、修改教师基本信息" placement="bottom">
                     <el-button style="height: 34px">功能提示</el-button>
                   </el-tooltip></div>
-              </div>
+              </div>-->
             </div>
 
 
@@ -44,8 +44,8 @@
             <!--                     @click="getList">教师列表-->
             <!--          </el-button>-->
             <div style="display: flex;float: right;max-height: 36px">
-              <el-button style="margin-top: 3px;max-height: 36px" size="small"type="primary" icon="plus" @click="showCreate" v-if="hasPerm('teacher:add')">添加
-              </el-button>
+              <!--<el-button style="margin-top: 3px;max-height: 36px" size="small"type="primary" icon="plus" @click="showCreate" v-if="hasPerm('teacher:add')">添加
+              </el-button>-->
               <el-button type="primary" size="small" style="float:right;margin-right: 15px;margin-top: 3px;max-height: 36px"
                          @click="searchTeahcer">教师搜索
               </el-button>
@@ -93,7 +93,7 @@
         </template>
 
       </el-table-column>
-      <el-table-column align="center" label="姓名"  sortable='custom' prop="pinyin">
+      <!--<el-table-column align="center" label="姓名"  sortable='custom' prop="pinyin">
         <template slot-scope="scope">
           <span class="teacher-homepage" @click="routerTo(scope.row)" style="cursor:pointer;">{{scope.row.name}}</span>
           <span></span>
@@ -103,7 +103,7 @@
         <template slot-scope="scope">
           <span>{{scope.row.degree}}</span>
         </template>
-      </el-table-column>
+      </el-table-column>-->
 <!--      <el-table-column align="center" label="状态" width="100">-->
 <!--        <template slot-scope="scope">-->
 <!--          <el-tag-->
@@ -130,25 +130,25 @@
     text-decoration: underline;
     font-weight: bold;"
              :href="'http://www.scholat.com/'+scope.row.scholat_username">{{scope.row.scholat_username}}</a>
-          <template v-if="scope.row.scholat_update_time > scope.row.update_time">
+          <!--<template v-if="scope.row.scholat_update_time > scope.row.update_time">
             <div style="color: #e6a23b;
     font-weight: bold;">学者网有更新信息</div>
-          </template>
-          <template v-if="!scope.row.scholat_update_time && scope.row.scholat_username">
+          </template>-->
+          <!--<template v-if="!scope.row.scholat_update_time && scope.row.scholat_username">
             <div style="color:#848484;font-weight: bold;">已绑定学者网账号，但未查询到学者网更新日期</div>
-          </template>
+          </template>-->
           <el-button type="success" @click="inviteToScholat(scope.row)" size="small"
                      v-if="!scope.row.scholat_username">邀请加入学者网
           </el-button>
         </template>
       </el-table-column>
-      <!--域名修改-->
+      <!----------------域名修改------------->
       <el-table-column fixed="right" align="center" label="域名修改" width="90">
         <template slot-scope="scope">
-          <el-button type="primary" icon="el-icon-star-off" circle @click="openAssignment(scope.row.id)"></el-button>
+          <el-button type="primary" icon="el-icon-edit" circle @click="openAssignment(scope.row.id)"></el-button>
         </template>
       </el-table-column>
-      <!--域名修改结束-->
+      <!----------------域名修改结束----------->
             <el-table-column fixed="right" align="center" label="教师分配" width="90">
               <template slot-scope="scope">
                 <el-button type="primary" icon="el-icon-star-off" circle @click="openAssignment(scope.row.id)"></el-button>
