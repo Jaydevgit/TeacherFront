@@ -5,10 +5,19 @@
         <el-form-item >
           <div style="display: flex;justify-content: space-between">
             <div style="display: flex;justify-content: flex-start;flex-wrap: wrap">
-              <el-radio-group v-model="teacherState" @change="teacherStateChange" >
+              <!--<el-radio-group v-model="teacherState" @change="teacherStateChange" >
                 <el-radio style="margin-left: 15px;height: 36px"  label="1" border>在岗</el-radio>
                 <el-radio  label="2" style="height: 36px" border>其他</el-radio>
-              </el-radio-group>
+              </el-radio-group>-->
+              <el-dropdown placement="bottom-end">
+                <el-button type="primary" size="small">
+                  教师分类<i class="el-icon-arrow-down el-icon--right"></i>
+                </el-button>
+                <el-dropdown-menu slot="dropdown">
+                  <el-dropdown-item @click.native="teacherStateChange(1)">在岗</el-dropdown-item>
+                  <el-dropdown-item @click.native="teacherStateChange(2)">其他</el-dropdown-item>
+                </el-dropdown-menu>
+              </el-dropdown>
               <el-card style="display: inline-block;margin-left: 15px;padding: 3px 0;height: 36px;line-height: 32px;min-width: 240px" shadow="never">
                 <el-switch style="margin:0 5px 5px 5px"
                            v-model="flagScholat"
@@ -133,7 +142,13 @@
           </el-button>
         </template>
       </el-table-column>
-
+      <!--域名修改-->
+      <el-table-column fixed="right" align="center" label="域名修改" width="90">
+        <template slot-scope="scope">
+          <el-button type="primary" icon="el-icon-star-off" circle @click="openAssignment(scope.row.id)"></el-button>
+        </template>
+      </el-table-column>
+      <!--域名修改结束-->
             <el-table-column fixed="right" align="center" label="教师分配" width="90">
               <template slot-scope="scope">
                 <el-button type="primary" icon="el-icon-star-off" circle @click="openAssignment(scope.row.id)"></el-button>
@@ -570,18 +585,20 @@
             },
 
           //教师状态改变
-          teacherStateChange(){
-            if(parseInt(this.teacherState)===2){
-              this.teacherState="2";
-            }
-            if(parseInt(this.teacherState)===1){
+          teacherStateChange(value){
+            if (value===1){
               this.teacherState="1";
+              this.listQuery.state='1'
             }
-            if(this.listQuery.state===1){
+            if (value===2){
+              this.teacherState="2";
+              this.listQuery.state=''
+            }
+            /*if(this.listQuery.state===1){
               this.listQuery.state='';
             }else{
               this.listQuery.state=1;
-            }
+            }*/
             this.getList();
             // if(parseInt(this.teacherState)===1){
             //   this.getList();
