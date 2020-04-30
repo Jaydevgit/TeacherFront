@@ -3,6 +3,7 @@
 -->
 <template>
   <div class="modify-page">
+    <!--简化页面注释开始-->
     <el-button type="primary" icon="plus" @click="backToManager">返回</el-button>
     <el-alert
       style="width:300px;float: right"
@@ -10,13 +11,14 @@
       description="所有修改只在提交后生效"
       type="error">
     </el-alert>
+    <!--简化页面注释结束-->
 
     <div style="clear: both;"></div>
 
     <el-form :model="ruleForm" label-position="left" status-icon :rules="rules" ref="ruleForm" label-width="80px"
              class="demo-ruleForm">
 
-      <el-row type="flex" class="row-bg first-card" justify="center" :gutter="20">
+      <el-row type="flex" class="row-bg first-card" justify="center" :gutter="20" v-show="!simpleModel">
         <el-col :span="5">
           <div class="grid-content bg-purple" style="text-align: center">
 
@@ -45,9 +47,9 @@
             <el-button @click="uploadAvatar()" type="primary" style="margin-top: 23px;">
               上传头像
             </el-button>
-            <div style="margin-top: 38px;" v-if="ruleForm.qrcode">
+            <!--<div style="margin-top: 38px;" v-if="ruleForm.qrcode">
               <img :src="'http://www.scholat.com/'+ruleForm.qrcode" style="width: 120px;height: 120px;">
-            </div>
+            </div>-->
 
 
           </div>
@@ -178,8 +180,8 @@
           <el-form-item label="办公电话" prop="phone" style="margin-top: 85px">
             <el-input v-model="ruleForm.phone" placeholder="建议输入办公固定电话，可以用'-'分隔"></el-input>
           </el-form-item>
-          <el-button @click="updateTeacher"  type="success" >保存</el-button>
-          <el-button type="primary" icon="plus" @click="backToManager">返回</el-button>
+          <el-button @click="saveTeacher"  type="success" >保存</el-button>
+          <!--<el-button type="primary" icon="plus" @click="backToManager">返回</el-button>-->
 <!--          <el-form-item v-if="!flagAssignment"label="教师分配" prop="label">-->
 <!--&lt;!&ndash;            <el-tag v-if="flagAssignment" style="width: 100%;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">添加教师完成后方可进行教师分配</el-tag>&ndash;&gt;-->
 <!--            <el-button  type="primary" size="small" @click="openAssignment">选择分配</el-button>-->
@@ -197,11 +199,14 @@
 
         </el-col>
       </el-row>
-      <el-row>
+
+      <el-row type="flex" class="row-bg first-card" justify="center" :gutter="20" v-show="simpleModel">
+        <el-button type="primary" size="small" style="margin-left:10px;" @click="openRuleForm">展开</el-button>
 
       </el-row>
 
       <el-card class="box-card scholat-card">
+        <!--查询功能-->
         <div slot="header" class="clearfix">
           <img src="@/assets/defaultLogo.png" style="width: 25px;height: 25px;float: left">
           <el-input v-model="scholat_emailORname" placeholder="建议输入学者网邮箱或姓名进行学者网账号查询" @keyup.enter.native="scholatInfoSearch" size="small" style="margin-left:10px;width: 320px;float: left;"></el-input>
@@ -212,9 +217,9 @@
                 style="float: right;margin-left: 14px;">搜索到{{this.list.length}}位学者网用户</span>
           <span v-if="ruleForm.scholat_username" class="scholat_span"
                 style="float: right;">已绑定学者网账号&nbsp{{ruleForm.scholat_username}}</span>
-          <el-button type="success" @click="inviteToScholat(ruleForm)" style="float: right; padding: 3px 3px"
+          <!--<el-button type="success" @click="inviteToScholat(ruleForm)" style="float: right; padding: 3px 3px"
                      v-if="!ruleForm.scholat_username">邀请该用户加入学者网
-          </el-button>
+          </el-button>-->
         </div>
         <el-row type="flex" justify="center">
           <el-col :span="24">
@@ -245,7 +250,7 @@
                         <span></span>
                       </template>
                     </el-table-column>
-                    <el-table-column align="center" label="职位" width="160" >
+                    <!--<el-table-column align="center" label="职位" width="160" >
                       <template slot-scope="scope">
                         <span class="teacher-homepage">{{scope.row.post}}</span>
                       </template>
@@ -254,7 +259,7 @@
                       <template slot-scope="scope">
                         <span class="teacher-homepage">{{scope.row.degree}}</span>
                       </template>
-                    </el-table-column>
+                    </el-table-column>-->
                     <el-table-column align="center" label="更新时间" width="160">
                       <template slot-scope="scope">
                         <span>{{scope.row.update_time}}</span>
@@ -654,11 +659,10 @@
                     scholat_username: '', // 学者网用户名
                     scholat_update_time: '', // 学者网更新日期
                     unit_id: '',// 单位编号
-                  domain_name:'',//域名
-                  edit_name:'',//编辑用户名
-                  degree_max:'',//最高学位
-                  duty:'',//职务
-
+                    domain_name:'',//域名
+                    edit_name:'',//编辑用户名
+                    degree_max:'',//最高学位
+                    duty:'',//职务
                 },
 
                 rules: {
@@ -694,6 +698,7 @@
               showRoleAssigment: false,
               roleId: '',//角色分配id
               domainCount:'',//相同域名个数
+              simpleModel:false
             }
         },
         methods: {
@@ -1195,8 +1200,9 @@
                         var filterHtml = filterXSS(html)
                         this.ruleForm.intro = filterHtml*/
                 var html = this.editor.txt.html()
-                var filterHtml = filterXSS(html)
-                this.ruleForm.intro = filterHtml
+                var filterHtml = filterXSS(html);
+                this.ruleForm.intro = filterHtml;
+                console.log("filterHtml="+filterHtml);
                 this.$refs.ruleForm.validate((valid) => {
                     if (valid) {
                         console.log("验证表单信息成功")
@@ -1212,6 +1218,7 @@
                 // 进行xss攻击处理
                 this.setTeacherInfo(this.ruleForm);
                 this.ruleForm.id = this.$route.params.id;
+                console.log("this.ruleForm.id ="+this.ruleForm.id );
                 /* console.log("``````` " + this.ruleForm.create_time)
                  var str = this.ruleForm.create_time;
                  var time = str.slice(0, 10) + " " + str.slice(11, 19);*/
@@ -1235,6 +1242,32 @@
 
                 })
             },
+          /*添加功能中保存教师信息*/
+          saveTeacher(){
+            var html = this.editor.txt.html()
+            var filterHtml = filterXSS(html)
+            this.ruleForm.intro = filterHtml
+            this.$refs.ruleForm.validate((valid) => {
+              if (valid) {
+                console.log("验证表单信息成功")
+                /*完成save teacher功能*/
+                this.$message.success("验证表单信息成功");
+              } else {
+                console.log("验证表单信息失败")
+                return false;
+              }
+            });
+            if (this.ruleForm.avatar == null || this.ruleForm.avatar == '') {
+              this.$message.error("请先上传头像")
+              return
+            }
+            console.log(this.ruleForm);
+            this.setTeacherInfo(this.ruleForm);
+            console.log("提交----------------------表单信息为: "+JSON.stringify(this.ruleForm)+">>>>>>>>>>")
+            console.log(this.ruleForm);
+            console.log("完成save teacher功能");
+            this.simpleModel=true;
+          },
           // 教师分配
           openAssignment() {
 
@@ -1250,6 +1283,10 @@
             });
             this.$refs.childRole.getTeacherAllCatalogues(this.roleId);
           },
+          openRuleForm(){
+            console.log("openRuleForm")
+            this.simpleModel=false;
+          }
         }
     }
 </script>
