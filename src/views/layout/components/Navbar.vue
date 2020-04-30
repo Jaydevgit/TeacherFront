@@ -123,6 +123,7 @@ export default {
   height: 50px;
   line-height: 50px;
   border-radius: 0px !important;
+  display: flex;
   .hamburger-container {
     line-height: 58px;
     height: 50px;
@@ -140,6 +141,7 @@ export default {
     display: inline-block;
     position: absolute;
     right: 35px;
+    float: right;
     .avatar-wrapper {
       cursor: pointer;
       margin-top: 5px;
