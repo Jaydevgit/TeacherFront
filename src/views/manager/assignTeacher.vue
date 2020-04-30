@@ -1,10 +1,10 @@
 <template>
   <div class="container" style="padding-top: 30px;">
     <div class="main-content">
-      <el-row type="flex" class="row-bg" justify="center">
-        <el-col :span="10">
+      <el-row type="flex" class="row-bg" justify="start">
+        <el-col :span="9">
           <div
-            style="height: calc(100vh - 80px);margin-right: 14px;display: flex;justify-content: flex-end;">
+            style="height: calc(100vh - 80px);margin-right: 14px;display: flex;justify-content: center;">
             <div>
               <el-card class="box-card" style="width: fit-content">
                 <el-menu
@@ -63,8 +63,8 @@
             </div>
           </div>
         </el-col>
-        <el-col :span="14">
-          <el-card class="box-card" style="width: fit-content">
+        <el-col :span="13">
+          <el-card class="box-card" style="width: 600px">
             <div style="height: 60px;width: 100%" class="teacher-nav">
               <div style="margin-left: 8px;">
                 <el-button type="success" size="small"
