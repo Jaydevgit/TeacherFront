@@ -207,7 +207,7 @@
             <div style="display: flex;align-items: center">
               <img  class="preview" :src="getImgUrl(scholatProfile.avatar)"
                     style="width:70px;height:70px;border-radius: 50%;"/>
-              <el-button size="small" @click="chooseScholatAvatar()">选择该头像</el-button>
+              <el-button size="small" style="margin-left: 8px" @click="chooseScholatAvatar()">选择该头像</el-button>
             </div>
             <div style="display: flex;align-items: center">已绑定学者网账号:{{ruleForm.scholat_username}}</div>
             <div class="teacher-homepage" style="display: flex;align-items: center">{{scholatProfile.username}}</div>
@@ -383,7 +383,8 @@
           </el-col>
         </el-row>
 
-        <el-button @click="createTeacher" type="success" style="margin-left: 20px;">创建</el-button>
+        <el-button v-if="$route.path.indexOf('modifyTeacher')==-1"
+          @click="createTeacher" type="success" style="margin-left: 20px;">创建</el-button>
       </template>
 
 
