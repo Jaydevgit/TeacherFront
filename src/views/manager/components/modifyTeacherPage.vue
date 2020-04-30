@@ -54,106 +54,105 @@
 
         </el-col>
         <el-col :span="7">
-<!--          <div class="grid-content bg-purple-light">-->
-            <el-form-item label="姓名" prop="username" class="redItem">
+          <!--          <div class="grid-content bg-purple-light">-->
+          <el-form-item label="姓名" prop="username" class="redItem">
 
-              <!--显示更新提示-->
-              <el-tooltip placement="top" v-if="showUpdateInfo.usernameScholat">
-                <div slot="content" style="font-size: 16px">
-                  <span v-html="showUpdateInfo.username"></span>
-                  &nbsp;➡️&nbsp;
-                  <span v-html="showUpdateInfo.usernameScholat"></span>
-                </div>
-                <el-input v-model="ruleForm.username" class="change-input-background"></el-input>
-              </el-tooltip>
-              <el-input v-model="ruleForm.username" v-if="!showUpdateInfo.usernameScholat"></el-input>
+            <!--显示更新提示-->
+            <el-tooltip placement="top" v-if="showUpdateInfo.usernameScholat">
+              <div slot="content" style="font-size: 16px">
+                <span v-html="showUpdateInfo.username"></span>
+                &nbsp;➡️&nbsp;
+                <span v-html="showUpdateInfo.usernameScholat"></span>
+              </div>
+              <el-input v-model="ruleForm.username" class="change-input-background"></el-input>
+            </el-tooltip>
+            <el-input v-model="ruleForm.username" v-if="!showUpdateInfo.usernameScholat"></el-input>
 
-            </el-form-item>
-            <el-form-item label="性别" prop="sex" class="redItem">
-              <el-radio-group v-model="ruleForm.sex">
-                <el-radio label="0">男</el-radio>
-                <el-radio label="1">女</el-radio>
-              </el-radio-group>
-            </el-form-item>
-<!--            <el-form-item class="font-one" label="邮箱" prop="email">-->
-<!--              &lt;!&ndash;显示更新提示&ndash;&gt;-->
-<!--              <el-tooltip placement="top" v-if="showUpdateInfo.emailScholat">-->
-<!--                <div slot="content" style="font-size: 16px">-->
-<!--                  <span v-html="showUpdateInfo.email"></span>-->
-<!--                  &nbsp;➡️&nbsp;-->
-<!--                  <span v-html="showUpdateInfo.emailScholat"></span>-->
-<!--                </div>-->
-<!--                <el-input v-model="ruleForm.email" class="change-input-background"></el-input>-->
-<!--              </el-tooltip>-->
-<!--              <el-input v-model="ruleForm.email" v-if="!showUpdateInfo.emailScholat"-->
-<!--                        placeholder="请输入邮箱地址"></el-input>-->
-<!--            </el-form-item>-->
-            <el-form-item label="职务" prop="duty" >
-              <!--显示更新提示-->
-<!--              <el-tooltip placement="top" v-if="showUpdateInfo.postScholat">-->
-<!--                <div slot="content" style="font-size: 16px">-->
-<!--                  <span v-html="showUpdateInfo.post"></span>-->
-<!--                  &nbsp;➡️&nbsp;-->
-<!--                  <span v-html="showUpdateInfo.postScholat"></span>-->
-<!--                </div>-->
-<!--                <el-input v-model="ruleForm.post" class="change-input-background"-->
-<!--                          placeholder="例如：博士生导师、硕士生导师等"></el-input>-->
-<!--              </el-tooltip>-->
-              <el-input v-model="ruleForm.duty"
-                        placeholder="例如：院长、书记、老师、辅导员等"></el-input>
-            </el-form-item>
-            <el-form-item label="头衔" prop="label">
-              <el-input v-model="ruleForm.label" placeholder="例如：国务院特殊津贴专家等头衔"></el-input>
-            </el-form-item>
+          </el-form-item>
+          <el-form-item label="性别" prop="sex" class="redItem">
+            <el-radio-group v-model="ruleForm.sex">
+              <el-radio label="0">男</el-radio>
+              <el-radio label="1">女</el-radio>
+            </el-radio-group>
+          </el-form-item>
+          <!--            <el-form-item class="font-one" label="邮箱" prop="email">-->
+          <!--              &lt;!&ndash;显示更新提示&ndash;&gt;-->
+          <!--              <el-tooltip placement="top" v-if="showUpdateInfo.emailScholat">-->
+          <!--                <div slot="content" style="font-size: 16px">-->
+          <!--                  <span v-html="showUpdateInfo.email"></span>-->
+          <!--                  &nbsp;➡️&nbsp;-->
+          <!--                  <span v-html="showUpdateInfo.emailScholat"></span>-->
+          <!--                </div>-->
+          <!--                <el-input v-model="ruleForm.email" class="change-input-background"></el-input>-->
+          <!--              </el-tooltip>-->
+          <!--              <el-input v-model="ruleForm.email" v-if="!showUpdateInfo.emailScholat"-->
+          <!--                        placeholder="请输入邮箱地址"></el-input>-->
+          <!--            </el-form-item>-->
+          <el-form-item label="职务" prop="duty">
+            <!--显示更新提示-->
+            <!--              <el-tooltip placement="top" v-if="showUpdateInfo.postScholat">-->
+            <!--                <div slot="content" style="font-size: 16px">-->
+            <!--                  <span v-html="showUpdateInfo.post"></span>-->
+            <!--                  &nbsp;➡️&nbsp;-->
+            <!--                  <span v-html="showUpdateInfo.postScholat"></span>-->
+            <!--                </div>-->
+            <!--                <el-input v-model="ruleForm.post" class="change-input-background"-->
+            <!--                          placeholder="例如：博士生导师、硕士生导师等"></el-input>-->
+            <!--              </el-tooltip>-->
+            <el-input v-model="ruleForm.duty"
+                      placeholder="例如：院长、书记、老师、辅导员等"></el-input>
+          </el-form-item>
+          <el-form-item label="头衔" prop="label">
+            <el-input v-model="ruleForm.label" placeholder="例如：国务院特殊津贴专家等头衔"></el-input>
+          </el-form-item>
 
-                <el-form-item label="最后学历" prop="degree">
-                  <!-- <el-select v-model="ruleForm.degree">
-                     <el-option label="博士研究生" value="博士研究生"></el-option>
-                     <el-option label="硕士研究生" value="硕士研究生"></el-option>
-                     <el-option label="本科" value="本科"></el-option>
-                     <el-option label="专科" value="专科"></el-option>
-                   </el-select>-->
-                  <el-input v-model="ruleForm.degree"
-                            placeholder=""></el-input>
-                </el-form-item>
+          <el-form-item label="最后学历" prop="degree">
+            <!-- <el-select v-model="ruleForm.degree">
+               <el-option label="博士研究生" value="博士研究生"></el-option>
+               <el-option label="硕士研究生" value="硕士研究生"></el-option>
+               <el-option label="本科" value="本科"></el-option>
+               <el-option label="专科" value="专科"></el-option>
+             </el-select>-->
+            <el-input v-model="ruleForm.degree"
+                      placeholder=""></el-input>
+          </el-form-item>
           <el-form-item label="学科专业" prop="subject">
             <el-input v-model="ruleForm.subject" placeholder="例如：软件工程"></el-input>
           </el-form-item>
-          <el-form-item label="所在部门" prop="department_name"  >
-            <el-input v-model="ruleForm.department_name" placeholder="例如：网络工程系" ></el-input>
+          <el-form-item label="所在部门" prop="department_name">
+            <el-input v-model="ruleForm.department_name" placeholder="例如：网络工程系"></el-input>
           </el-form-item>
-          <el-form-item label="办公邮箱" prop="email"  class="redItem">
+          <el-form-item label="办公邮箱" prop="email" class="redItem">
             <el-input v-model="ruleForm.email" placeholder="建议输入办公邮箱地址"></el-input>
           </el-form-item>
 
 
-
-            <el-form-item label="状态" prop="state" required class="redItem">
-              <el-select v-model="ruleForm.state" placeholder="请选择">
-                <el-option
-                  v-for="item in options"
-                  :key="item.value"
-                  :label="item.label"
-                  :value="item.value">
-                </el-option>
-              </el-select>
-<!--              <el-radio-group v-model="ruleForm.state">-->
-<!--                <el-radio label="1">在岗</el-radio>-->
-<!--                <el-radio label="0">调出</el-radio>-->
-<!--                <el-radio label="-1">退休</el-radio>-->
-<!--              </el-radio-group>-->
-            </el-form-item>
+          <el-form-item label="状态" prop="state" required class="redItem">
+            <el-select v-model="ruleForm.state" placeholder="请选择">
+              <el-option
+                v-for="item in options"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value">
+              </el-option>
+            </el-select>
+            <!--              <el-radio-group v-model="ruleForm.state">-->
+            <!--                <el-radio label="1">在岗</el-radio>-->
+            <!--                <el-radio label="0">调出</el-radio>-->
+            <!--                <el-radio label="-1">退休</el-radio>-->
+            <!--              </el-radio-group>-->
+          </el-form-item>
           <div class="grid-content bg-purple">
 
 
           </div>
-<!--          </div>-->
+          <!--          </div>-->
         </el-col>
-        <el-col :span="6" >
-          <el-form-item label="域名" prop="domain_name" >
-            <el-input v-model="ruleForm.domain_name"  disabled></el-input>
+        <el-col :span="6">
+          <el-form-item label="域名" prop="domain_name">
+            <el-input v-model="ruleForm.domain_name" disabled></el-input>
           </el-form-item>
-          <el-form-item label="职称" prop="post" style="margin-top:85px" >
+          <el-form-item label="职称" prop="post" style="margin-top:85px">
             <!--显示更新提示-->
             <el-tooltip placement="top" v-if="showUpdateInfo.postScholat">
               <div slot="content" style="font-size: 16px">
@@ -178,12 +177,10 @@
           <el-form-item label="办公电话" prop="phone" style="margin-top: 85px">
             <el-input v-model="ruleForm.phone" placeholder="建议输入办公固定电话，可以用'-'分隔"></el-input>
           </el-form-item>
-          <el-button @click="updateTeacher"  type="success" >保存</el-button>
-          <el-button type="primary" icon="plus" @click="backToManager">返回</el-button>
-<!--          <el-form-item v-if="!flagAssignment"label="教师分配" prop="label">-->
-<!--&lt;!&ndash;            <el-tag v-if="flagAssignment" style="width: 100%;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">添加教师完成后方可进行教师分配</el-tag>&ndash;&gt;-->
-<!--            <el-button  type="primary" size="small" @click="openAssignment">选择分配</el-button>-->
-<!--          </el-form-item>-->
+          <!--          <el-form-item v-if="!flagAssignment"label="教师分配" prop="label">-->
+          <!--&lt;!&ndash;            <el-tag v-if="flagAssignment" style="width: 100%;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">添加教师完成后方可进行教师分配</el-tag>&ndash;&gt;-->
+          <!--            <el-button  type="primary" size="small" @click="openAssignment">选择分配</el-button>-->
+          <!--          </el-form-item>-->
         </el-col>
         <el-col :span="6">
           <el-form-item label="毕业学校" prop="graduateFrom" style="margin-top: 250px">
@@ -191,163 +188,204 @@
                       placeholder=""></el-input>
           </el-form-item>
           <el-form-item label="办公地点" style="margin-top: 150px">
-            <el-input v-model="ruleForm.work_place" placeholder="" ></el-input>
+            <el-input v-model="ruleForm.work_place" placeholder=""></el-input>
           </el-form-item>
-
-
+          <el-form-item style="display: flex;justify-content: flex-end;">
+            <el-button @click="createTeacher_one" type="success" v-if="$route.path.indexOf('addTeacher')!=-1">保存</el-button>
+          </el-form-item>
         </el-col>
       </el-row>
       <el-row>
 
       </el-row>
 
-      <el-card class="box-card scholat-card">
-        <div slot="header" class="clearfix">
-          <img src="@/assets/defaultLogo.png" style="width: 25px;height: 25px;float: left">
-          <el-input v-model="scholat_emailORname" placeholder="建议输入学者网邮箱或姓名进行学者网账号查询" @keyup.enter.native="scholatInfoSearch" size="small" style="margin-left:10px;width: 320px;float: left;"></el-input>
-          <el-button type="primary" size="small" style="margin-left:10px;" @click="scholatInfoSearch">查询</el-button>
-<!--          <span class="scholat_span"-->
-<!--                style="margin-left: 14px;">输入邮箱或姓名后开始查询</span>-->
-          <span v-if="list.length" class="scholat_span"
-                style="float: right;margin-left: 14px;">搜索到{{this.list.length}}位学者网用户</span>
-          <span v-if="ruleForm.scholat_username" class="scholat_span"
-                style="float: right;">已绑定学者网账号&nbsp{{ruleForm.scholat_username}}</span>
-          <el-button type="success" @click="inviteToScholat(ruleForm)" style="float: right; padding: 3px 3px"
-                     v-if="!ruleForm.scholat_username">邀请该用户加入学者网
-          </el-button>
-        </div>
-        <el-row type="flex" justify="center">
+      <!-- 当已绑定学者网时 -->
+      <template v-if="secondPage || $route.path.indexOf('modifyTeacher')!=-1">
+<!--      <template>-->
+        <el-card class="box-card scholat-card" v-if="ruleForm.scholat_username">
+          <div slot="header" style="display: flex;justify-content: space-between;">
+            <div style="display: flex;align-items: center">
+              <img  class="preview" :src="getImgUrl(scholatProfile.avatar)"
+                    style="width:70px;height:70px;border-radius: 50%;"/>
+              <el-button size="small" @click="chooseScholatAvatar()">选择该头像</el-button>
+            </div>
+            <div style="display: flex;align-items: center">已绑定学者网账号:{{ruleForm.scholat_username}}</div>
+            <div class="teacher-homepage" style="display: flex;align-items: center">{{scholatProfile.username}}</div>
+            <span class="teacher-homepage" style="display: flex;align-items: center">{{scholatProfile.email}}</span>
+           <!-- <span class="teacher-homepage" >{{scholatProfile.unit_name}}</span>
+            <span class="teacher-homepage" >{{scholatProfile.department_name}}</span>
+            <span class="teacher-homepage">{{scholatProfile.post}}</span>
+            <span class="teacher-homepage">{{scholatProfile.degree}}</span>-->
+<!--            <span>{{scholatProfile.update_time}}</span>-->
+          <div style="display: flex;align-items: center">
+            <el-button @click="viewScholat(scholatProfile)" type="warning" size="small"
+                       style="margin-left:10px;width: 60px;height:30px;">查看
+            </el-button>
+            <el-button type="danger" @click="unlockScholat()" size="small"
+                       style="margin-left:10px;width: 80px;height:30px;">解除绑定
+            </el-button>
+          </div>
+
+          </div>
+        </el-card>
+
+        <el-card class="box-card scholat-card" v-if="!ruleForm.scholat_username">
+          <div slot="header" class="clearfix">
+            <img src="@/assets/defaultLogo.png" style="width: 25px;height: 25px;float: left">
+            <el-input v-model="scholat_emailORname" placeholder="建议输入学者网邮箱或姓名进行学者网账号查询"
+                      @keyup.enter.native="scholatInfoSearch" size="small"
+                      style="margin-left:10px;width: 320px;float: left;"></el-input>
+            <el-button type="primary" size="small" style="margin-left:10px;" @click="scholatInfoSearch">查询</el-button>
+            <!--          <span class="scholat_span"-->
+            <!--                style="margin-left: 14px;">输入邮箱或姓名后开始查询</span>-->
+            <span v-if="list.length" class="scholat_span"
+                  style="float: right;margin-left: 14px;">搜索到{{this.list.length}}位学者网用户</span>
+            <span v-if="ruleForm.scholat_username" class="scholat_span"
+                  style="float: right;">已绑定学者网账号&nbsp{{ruleForm.scholat_username}}</span>
+            <el-button type="success" @click="inviteToScholat(ruleForm)" style="float: right; padding: 3px 3px"
+                       v-if="!ruleForm.scholat_username">邀请该用户加入学者网
+            </el-button>
+          </div>
+          <el-row type="flex" justify="center" v-if="list.length!=0">
+            <el-col :span="24">
+              <el-row>
+                <transition name="el-fade-in-linear">
+                  <div v-show="showScholatDiv" class="transition-box  bg-purple-light">
+                    <el-table :data="list" v-loading.body="listLoading" element-loading-text="拼命加载中" border
+                              fit
+                              highlight-current-row>
+                      <el-table-column fixed align="center" label="学者网用户" width="140">
+                        <template slot-scope="scope">
+                          <img id="avatar-id" class="preview" :src="getImgUrl(scope.row.avatar)"
+                               style="width:70px;height:70px;border-radius: 50%;"/>
+                          <div class="teacher-homepage" @click="routerTo(scope.row)">{{scope.row.username}}</div>
+                        </template>
+                      </el-table-column>
+                      <el-table-column align="center" label="邮箱" width="160">
+                        <template slot-scope="scope">
+                          <span class="teacher-homepage" @click="routerTo(scope.row)">{{scope.row.email}}</span>
+                          <span></span>
+                        </template>
+                      </el-table-column>
+                      <el-table-column align="center" label="工作单位">
+                        <template slot-scope="scope">
+                          <span class="teacher-homepage" @click="routerTo(scope.row)">{{scope.row.unit_name}}</span>
+                          <br/>
+                          <span class="teacher-homepage" @click="routerTo(scope.row)">{{scope.row.department_name}}</span>
+                          <span></span>
+                        </template>
+                      </el-table-column>
+                      <el-table-column align="center" label="职位" width="160">
+                        <template slot-scope="scope">
+                          <span class="teacher-homepage">{{scope.row.post}}</span>
+                        </template>
+                      </el-table-column>
+                      <el-table-column align="center" label="学历" width="80">
+                        <template slot-scope="scope">
+                          <span class="teacher-homepage">{{scope.row.degree}}</span>
+                        </template>
+                      </el-table-column>
+                      <el-table-column align="center" label="更新时间" width="160">
+                        <template slot-scope="scope">
+                          <span>{{scope.row.update_time}}</span>
+                          <!--                        <template v-if="(scope.row.scholat_username === ruleForm.scholat_username)&&scholatHasUpdate!=null">-->
+                          <!--                        <template v-if="scope.row.update_time > ruleForm.update_time">-->
+                          <!--                          <el-button type="success" @click="showDifferent(scope.row)" size="small"-->
+                          <!--                                     style="margin-left: 0;margin-bottom: 4px;">对比更新-->
+                          <!--                          </el-button>-->
+                          <!--                        </template>-->
+                          <el-button type="success" @click="showDifferent(scope.row)" size="small"
+                                     style="margin-left: 0;margin-bottom: 4px;">信息对比
+                          </el-button>
+                        </template>
+                      </el-table-column>
+                      <el-table-column
+                        fixed="right"
+                        label="操作"
+                        width="170">
+                        <template slot-scope="scope">
+                          <el-button @click="viewScholat(scope.row)" type="warning" size="small"
+                                     style="width: 60%;margin-left: 0;margin-bottom:4px;">查看
+                          </el-button>
+                          <template v-if="scope.row.scholat_username === ruleForm.scholat_username">
+                            <el-button type="danger" @click="unlockScholat(scope.row)" size="small"
+                                       style="width: 60%;margin-left: 0;">解除绑定
+                            </el-button>
+                          </template>
+                          <template v-else>
+                            <el-button v-if="routePage == 'modify' || !scope.row.email_exist" type="success"
+                                       @click="importFromScholat(scope.row)" size="small"
+                                       style="width: 60%;margin-left: 0;">一键关联
+                            </el-button>
+                            <div v-if="routePage == 'add' && scope.row.email_exist"
+                                 style="color: gray;font-weight: bold;">已存在该教师
+                            </div>
+                          </template>
+                        </template>
+                      </el-table-column>
+                    </el-table>
+                    <el-pagination
+                      @size-change="handleSizeChange"
+                      @current-change="handleCurrentChange"
+                      :current-page="listQuery.pageNum"
+                      :page-size="listQuery.pageRow"
+                      :total="totalCount"
+                      :page-sizes="[10, 20, 50, 100]"
+                      layout="total, sizes, prev, pager, next, jumper">
+                    </el-pagination>
+                  </div>
+                </transition>
+              </el-row>
+            </el-col>
+          </el-row>
+
+        </el-card>
+
+
+        <el-row type="flex" class="row-bg" justify="center">
           <el-col :span="24">
-            <el-row>
-              <transition name="el-fade-in-linear">
-                <div v-show="showScholatDiv" class="transition-box  bg-purple-light">
-                  <el-table :data="list" v-loading.body="listLoading" element-loading-text="拼命加载中" border
-                            fit
-                            highlight-current-row>
-                    <el-table-column fixed align="center" label="学者网用户" width="140">
-                      <template slot-scope="scope">
-                        <img id="avatar-id" class="preview" :src="getImgUrl(scope.row.avatar)"
-                             style="width:70px;height:70px;border-radius: 50%;"/>
-                        <div class="teacher-homepage" @click="routerTo(scope.row)">{{scope.row.username}}</div>
-                      </template>
-                    </el-table-column>
-                    <el-table-column align="center" label="邮箱" width="160">
-                      <template slot-scope="scope">
-                        <span class="teacher-homepage" @click="routerTo(scope.row)">{{scope.row.email}}</span>
-                        <span></span>
-                      </template>
-                    </el-table-column>
-                    <el-table-column align="center" label="工作单位">
-                      <template slot-scope="scope">
-                        <span class="teacher-homepage" @click="routerTo(scope.row)">{{scope.row.unit_name}}</span>
-                        <br/>
-                        <span class="teacher-homepage" @click="routerTo(scope.row)">{{scope.row.department_name}}</span>
-                        <span></span>
-                      </template>
-                    </el-table-column>
-                    <el-table-column align="center" label="职位" width="160" >
-                      <template slot-scope="scope">
-                        <span class="teacher-homepage">{{scope.row.post}}</span>
-                      </template>
-                    </el-table-column>
-                    <el-table-column align="center" label="学历" width="80">
-                      <template slot-scope="scope">
-                        <span class="teacher-homepage">{{scope.row.degree}}</span>
-                      </template>
-                    </el-table-column>
-                    <el-table-column align="center" label="更新时间" width="160">
-                      <template slot-scope="scope">
-                        <span>{{scope.row.update_time}}</span>
-                        <!--                        <template v-if="(scope.row.scholat_username === ruleForm.scholat_username)&&scholatHasUpdate!=null">-->
-                        <!--                        <template v-if="scope.row.update_time > ruleForm.update_time">-->
-                        <!--                          <el-button type="success" @click="showDifferent(scope.row)" size="small"-->
-                        <!--                                     style="margin-left: 0;margin-bottom: 4px;">对比更新-->
-                        <!--                          </el-button>-->
-                        <!--                        </template>-->
-                        <el-button type="success" @click="showDifferent(scope.row)" size="small"
-                                   style="margin-left: 0;margin-bottom: 4px;">信息对比
-                        </el-button>
-                      </template>
-                    </el-table-column>
-                    <el-table-column
-                      fixed="right"
-                      label="操作"
-                      width="170">
-                      <template slot-scope="scope">
-                        <el-button @click="viewScholat(scope.row)" type="warning" size="small"
-                                   style="width: 60%;margin-left: 0;margin-bottom:4px;">查看
-                        </el-button>
-                        <template v-if="scope.row.scholat_username === ruleForm.scholat_username">
-                          <el-button type="danger" @click="unlockScholat(scope.row)" size="small"
-                                     style="width: 60%;margin-left: 0;">解除绑定
-                          </el-button>
-                        </template>
-                        <template v-else>
-                          <el-button v-if="routePage == 'modify' || !scope.row.email_exist" type="success" @click="importFromScholat(scope.row)" size="small"
-                                     style="width: 60%;margin-left: 0;">一键关联
-                          </el-button>
-                          <div v-if="routePage == 'add' && scope.row.email_exist" style="color: gray;font-weight: bold;">已存在该教师</div>
-                        </template>
-                      </template>
-                    </el-table-column>
-                  </el-table>
-                  <el-pagination
-                    @size-change="handleSizeChange"
-                    @current-change="handleCurrentChange"
-                    :current-page="listQuery.pageNum"
-                    :page-size="listQuery.pageRow"
-                    :total="totalCount"
-                    :page-sizes="[10, 20, 50, 100]"
-                    layout="total, sizes, prev, pager, next, jumper">
-                  </el-pagination>
-                </div>
-              </transition>
-            </el-row>
+            <div class="grid-content">
+              <div id="div1" class="toolbar"></div>
+              <!--<div id="editor" class="editor" v-model="ruleForm.intro"></div>-->
+
+              <el-row style="border-radius: 5px;">
+                <el-col :span="compareArea">
+                  <div style="padding: 5px 0; color: #ccc" v-if="compareArea">初始文字区域</div>
+                  <div class="grid-content" style="">
+                    <div id="editor2" class="editor"
+                         style="height: 270px;background-color: rgb(236, 245, 255);overflow-y: scroll;"
+                         v-html="showUpdateInfo.updateTeacherInfo"></div>
+                  </div>
+                </el-col>
+                <el-col :span="compareArea">
+                  <div style="padding: 5px 0; color: #ccc">文字更新区域</div>
+                  <div class="grid-content ">
+                    <div v-html="showUpdateInfo.updateScholatInfo"
+                         style="height: 270px;overflow: auto;background-color: antiquewhite"></div>
+                  </div>
+                </el-col>
+              </el-row>
+              <el-row>
+                <el-col :span="24">
+                  <div class="grid-content" style="">
+                    <div style="display: flex;justify-content: space-between;padding: 4px 0">
+                      <div style="color: rgb(245, 108, 108);font-weight: 800;">▶ 编辑区域</div>
+                      <div style="color: rgb(245, 108, 108);font-weight: 800;cursor: pointer" @click="clearIntro()">清空简介
+                      </div>
+                    </div>
+                    <div id="editor" class="editor" style="height: 360px;background-color: #e5e9f2;padding-top: 10px;"
+                         v-model="ruleForm.intro"></div>
+                  </div>
+                </el-col>
+              </el-row>
+
+            </div>
           </el-col>
         </el-row>
 
-      </el-card>
+        <el-button @click="createTeacher" type="success" style="margin-left: 20px;">创建</el-button>
+      </template>
 
-
-      <el-row type="flex" class="row-bg" justify="center">
-        <el-col :span="24">
-          <div class="grid-content">
-            <div id="div1" class="toolbar"></div>
-            <!--<div id="editor" class="editor" v-model="ruleForm.intro"></div>-->
-
-            <el-row style="border-radius: 5px;">
-              <el-col :span="compareArea">
-                <div style="padding: 5px 0; color: #ccc" v-if="compareArea">初始文字区域</div>
-                <div class="grid-content" style="">
-                  <div id="editor2" class="editor"
-                       style="height: 270px;background-color: rgb(236, 245, 255);overflow-y: scroll;"
-                       v-html="showUpdateInfo.updateTeacherInfo"></div>
-                </div>
-              </el-col>
-              <el-col :span="compareArea">
-                <div style="padding: 5px 0; color: #ccc">文字更新区域</div>
-                <div class="grid-content ">
-                  <div v-html="showUpdateInfo.updateScholatInfo"
-                       style="height: 270px;overflow: auto;background-color: antiquewhite"></div>
-                </div>
-              </el-col>
-            </el-row>
-            <el-row>
-              <el-col :span="24">
-                <div class="grid-content" style="">
-                  <div style="display: flex;justify-content: space-between;padding: 4px 0">
-                    <div style="color: rgb(245, 108, 108);font-weight: 800;">▶ 编辑区域</div>
-                    <div style="color: rgb(245, 108, 108);font-weight: 800;cursor: pointer" @click="clearIntro()">清空简介</div>
-                  </div>
-                  <div id="editor" class="editor" style="height: 360px;background-color: #e5e9f2;padding-top: 10px;"
-                       v-model="ruleForm.intro"></div>
-                </div>
-              </el-col>
-            </el-row>
-
-          </div>
-        </el-col>
-      </el-row>
 
     </el-form>
     <v-role-assignment-bar v-model="showRoleAssigment" :RoleId="roleId" ref="childRole"
@@ -367,41 +405,35 @@
 
         components: {
             cropAvatarImage,
-          'v-role-assignment-bar': roleAssignmentBar
+            'v-role-assignment-bar': roleAssignmentBar
         },
         created() {
             console.log("@@@@@@@@@@@@@@@@@@@@@@@");
             console.log(this.hasPerm('teacher:list'));
             console.log(this.$store.state.user.userId);
             console.log(this.$store.state.user.nickname);
-            console.log("@@@@@@@@@@@@@@@@@@@@@@@");
-            /*      this.ruleForm.username = '邮箱唯一性测试'
-                  this.ruleForm.email = 'ytang@qq.com'
-                  this.ruleForm.degree = '0'
-                  this.ruleForm.post = '教授'*/
-            if(this.$route.path.split('/')[2] == 'addTeacher'){
-              this.flagAssignment=true;
+            if (this.$route.path.split('/')[2] == 'addTeacher') {
+                this.flagAssignment = true;
                 this.routePage = 'add';
-            }else {
-              this.flagAssignment=false;
+            } else {
+                this.flagAssignment = false;
                 this.routePage = 'modify';
             }
         },
-      watch:{
-        'ruleForm.username':function(newVal,oldVal){
-          if(newVal!==oldVal){
-            this.ruleForm.domain_name=Pinyin.chineseToPinYin(newVal);
-            console.log(">>>>"+this.ruleForm.domain_name);
-          }
+        watch: {
+            'ruleForm.username': function (newVal, oldVal) {
+                if (newVal !== oldVal) {
+                    this.ruleForm.domain_name = Pinyin.chineseToPinYin(newVal);
+                    console.log(">>>>" + this.ruleForm.domain_name);
+                }
 
-        }
+            }
 
-      },
+        },
         mounted() {
             var teacherid = this.GetUrlRelativePath_id()
             console.log("教師id為:" + teacherid)
-
-
+            this.ruleForm.id=teacherid
             this.editor = new Editor('#div1', '#editor');
             // 关闭粘贴内容中的样式
             this.editor.customConfig.pasteFilterStyle = false
@@ -537,25 +569,25 @@
                 })
 
             };
-            var validatedomainName=(rule, value, callback) => {
+            var validatedomainName = (rule, value, callback) => {
                 console.log(".......进入到验证信息部分, 输入部分为:" + rule.field + " 输入值为: " + value)
                 this.axios.post('/api/manager/judgeDomainExist', {
-                  domain_name: value
+                    domain_name: value
                 }).then(res => {
-                  console.log(res);
-                  this.domainCount=res.data[0].count;
-                  console.log("this.domainCount="+this.domainCount);
+                    console.log(res);
+                    this.domainCount = res.data[0].count;
+                    console.log("this.domainCount=" + this.domainCount);
 
-                  console.log(res.data[0].id+"===="+this.GetUrlRelativePath_id()+"this.domainCount="+this.domainCount);
-                  if ((res.data[0].flag === 1 && res.data[0].id===parseInt(this. GetUrlRelativePath_id()))||res.data[0].flag === 0) {
-                    callback()
-                  } else {
-                    this.ruleForm.domain_name=value+this.domainCount;
-                    console.log("this.ruleForm.domain_name="+this.ruleForm.domain_name);
-                  //  return callback(new Error("该域名已存在"))
-                  }
+                    console.log(res.data[0].id + "====" + this.GetUrlRelativePath_id() + "this.domainCount=" + this.domainCount);
+                    if ((res.data[0].flag === 1 && res.data[0].id === parseInt(this.GetUrlRelativePath_id())) || res.data[0].flag === 0) {
+                        callback()
+                    } else {
+                        this.ruleForm.domain_name = value + this.domainCount;
+                        console.log("this.ruleForm.domain_name=" + this.ruleForm.domain_name);
+                        //  return callback(new Error("该域名已存在"))
+                    }
                 }).catch(err => {
-                  callback(new Error("网络请求有误"))
+                    callback(new Error("网络请求有误"))
                 })
 
             }
@@ -571,7 +603,9 @@
                 }
             };
             return {
-                routePage:'',
+                scholatProfile:'',
+                secondPage:false,
+                routePage: '',
                 editorArea: 24, // 真实的编辑区域宽度
                 compareArea: 0,// 对比的编辑区域宽度
                 showUpdateInfo: {
@@ -611,23 +645,23 @@
                     pageRow: 10,
                     upcreate_time: ''
                 },
-              flagAssignment:'',
-              scholat_emailORname:"",//学者网关联邮箱
-              options:[
-                {
-                  value: '1',
-                  label: '全职'
-                }, {
-                  value: '2',
-                  label: '兼职'
-                }, {
-                  value: '-1',
-                  label: '退休'
-                }, {
-                  value: '0',
-                  label: '调离'
-                }
-              ],
+                flagAssignment: '',
+                scholat_emailORname: "",//学者网关联邮箱
+                options: [
+                    {
+                        value: '1',
+                        label: '全职'
+                    }, {
+                        value: '2',
+                        label: '兼职'
+                    }, {
+                        value: '-1',
+                        label: '退休'
+                    }, {
+                        value: '0',
+                        label: '调离'
+                    }
+                ],
                 ruleForm: {
                     id: '',
                     username: '', // 姓名
@@ -654,10 +688,10 @@
                     scholat_username: '', // 学者网用户名
                     scholat_update_time: '', // 学者网更新日期
                     unit_id: '',// 单位编号
-                  domain_name:'',//域名
-                  edit_name:'',//编辑用户名
-                  degree_max:'',//最高学位
-                  duty:'',//职务
+                    domain_name: '',//域名
+                    edit_name: '',//编辑用户名
+                    degree_max: '',//最高学位
+                    duty: '',//职务
 
                 },
 
@@ -670,13 +704,13 @@
                         {required: true, message: '请选择性别', trigger: 'change'}
                     ],
                     email: [
-                        // {validator: validateEmail, required: true, message: '该邮箱已存在', trigger: 'blur'},
+                        {validator: validateEmail, required: true, message: '该邮箱已存在', trigger: 'blur'},
                         {required: true, type: 'email', message: '请输入正确的邮箱地址', trigger: ['blur', 'change']}
                     ],
-                  domain_name: [
-                    {validator: validatedomainName, required: true, message: '该域名已存在', trigger: ['change' ]},
-                    {required: true,  message: '请输入正确的域名地址', trigger: ['blur', 'change',]}
-                  ],
+                    domain_name: [
+                        {validator: validatedomainName, required: true, message: '该域名已存在', trigger: ['change']},
+                        {required: true, message: '请输入正确的域名地址', trigger: ['blur', 'change',]}
+                    ],
                     phone: [
                         {validator: checkPhone, trigger: 'blur'}
                     ],
@@ -691,96 +725,96 @@
                         {required: true, message: '请选择加入日期', trigger: 'change'}
                     ]*/
                 },
-              showRoleAssigment: false,
-              roleId: '',//角色分配id
-              domainCount:'',//相同域名个数
+                showRoleAssigment: false,
+                roleId: '',//角色分配id
+                domainCount: '',//相同域名个数
             }
         },
         methods: {
-          //学者关联信息查询
-          scholatInfoSearch(){
-            let email='';
-            let name='';
-            if(this.scholat_emailORname.indexOf('@')!=-1){
-              email=this.scholat_emailORname
-              console.log("email"+email);
-            }else{
-              name=this.scholat_emailORname
-              console.log("name"+name);
-            }
-            this.axios.post('/api/manager/validate', {
-           //   username: this.scholat_email,
-            //  key: rule.field,
-              name: name,
-              email:  email,
-              pageRow: this.scholat.pageRow
-            }).then(res => {
-              console.log("验证邮箱有成功的返回结果:" + res.data.err)
-              console.log(res.data.info.list)
-              if (res.data.err !== undefined) {
-                if (this.$route.path.indexOf("modifyTeacher")) {
-                  this.list = res.data.info.list;
-                  console.log("-------------根据邮箱获取到的学者网数据------------------")
-                  console.log(this.list);
-                  if (this.list != "" && this.list != null) {
-                    this.showScholatDiv = true
-                    this.$message({
-                      message: '查询学者网账号成功，但该邮箱已存在',
-                      type: 'warning'
-                    });
-                  } else {
-                    this.showScholatDiv = false
-                    this.$message({
-                      message: '查询学者网账号失败',
-                      type: 'error'
-                    });
-                  }
+            chooseScholatAvatar(){
+                this.$refs.cropAvatarImage.attach.laterUrl = 'http://www.scholat.com/'+this.scholatProfile.avatar;
+                this.ruleForm.avatar = this.scholatProfile.avatar;
+            },
+            //学者关联信息查询
+            scholatInfoSearch() {
+                let email = '';
+                let name = '';
+                if (this.scholat_emailORname.indexOf('@') != -1) {
+                    email = this.scholat_emailORname
+                    console.log("email" + email);
                 } else {
-                  this.list = res.data.info.list;
-                  console.log("-------------根据邮箱获取到的学者网数据------------------")
-                  console.log(this.list);
-                  if (this.list != "" && this.list != null) {
-                    this.showScholatDiv = true
-                    this.$message({
-                      message: '查询学者网账号成功',
-                      type: 'success'
-                    });
-                  } else {
-                    this.showScholatDiv = false
-                    this.$message({
-                      message: '查询学者网账号失败',
-                      type: 'error'
-                    });
-                  }
+                    name = this.scholat_emailORname
+                    console.log("name" + name);
                 }
-              }else {
-                this.list = res.data.info.list;
-                console.log("-------------根据邮箱获取到的学者网数据------------------")
-                console.log(this.list);
-                if (this.list != "" && this.list != null) {
-                  this.showScholatDiv = true
-                  this.$message({
-                    message: '查询学者网账号成功',
-                    type: 'success'
-                  });
-                } else {
-                  this.showScholatDiv = false
-                  this.$message({
-                    message: '查询学者网账号失败',
-                    type: 'error'
-                  });
-                }
-              }
-            }).catch(err => {
-              this.$message({
-                message: '查询学者网账号失败',
-                type: 'error'
-              });
-            })
-          },
-            // 获取学者网二维码
-            getScholatQrUrl() {
-                alert("hey")
+                this.axios.post('/api/manager/validate', {
+                    //   username: this.scholat_email,
+                    //  key: rule.field,
+                    name: name,
+                    email: email,
+                    pageRow: this.scholat.pageRow
+                }).then(res => {
+                    console.log("验证邮箱有成功的返回结果:" + res.data.err)
+                    console.log(res.data.info.list)
+                    if (res.data.err !== undefined) {
+                        if (this.$route.path.indexOf("modifyTeacher")) {
+                            this.list = res.data.info.list;
+                            console.log("-------------根据邮箱获取到的学者网数据------------------")
+                            console.log(this.list);
+                            if (this.list != "" && this.list != null) {
+                                this.showScholatDiv = true
+                                this.$message({
+                                    message: '查询学者网账号成功，但该邮箱已存在',
+                                    type: 'warning'
+                                });
+                            } else {
+                                this.showScholatDiv = false
+                                this.$message({
+                                    message: '查询学者网账号失败',
+                                    type: 'error'
+                                });
+                            }
+                        } else {
+                            this.list = res.data.info.list;
+                            console.log("-------------根据邮箱获取到的学者网数据------------------")
+                            console.log(this.list);
+                            if (this.list != "" && this.list != null) {
+                                this.showScholatDiv = true
+                                this.$message({
+                                    message: '查询学者网账号成功',
+                                    type: 'success'
+                                });
+                            } else {
+                                this.showScholatDiv = false
+                                this.$message({
+                                    message: '查询学者网账号失败',
+                                    type: 'error'
+                                });
+                            }
+                        }
+                    } else {
+                        this.list = res.data.info.list;
+                        console.log("-------------根据邮箱获取到的学者网数据------------------")
+                        console.log(this.list);
+                        if (this.list != "" && this.list != null) {
+                            this.showScholatDiv = true
+                            this.$message({
+                                message: '查询学者网账号成功',
+                                type: 'success'
+                            });
+                        } else {
+                            this.showScholatDiv = false
+                            this.$message({
+                                message: '查询学者网账号失败',
+                                type: 'error'
+                            });
+                        }
+                    }
+                }).catch(err => {
+                    this.$message({
+                        message: '查询学者网账号失败',
+                        type: 'error'
+                    });
+                })
             },
             // 邀请加入学者网
             inviteToScholat(Form) {
@@ -927,10 +961,19 @@
                 this.ruleForm.scholat_username = filterXSS(data.scholat_username); // 学者网用户名
                 this.ruleForm.scholat_update_time = filterXSS(data.scholat_update_time); // 学者网更新日期
                 this.ruleForm.unit_id = filterXSS(this.$store.state.user.unitId);// 单位编号
-              this.ruleForm.domain_name = filterXSS(data.domain_name); // 域名
-              this.ruleForm.edit_name = filterXSS(this.$store.state.user.nickname); // 姓名
-              this.ruleForm.duty = filterXSS(data.duty); // 职务
-              this.ruleForm.degree_max = filterXSS(data.degree_max); // 最高学位
+                this.ruleForm.domain_name = filterXSS(data.domain_name); // 域名
+                this.ruleForm.edit_name = filterXSS(this.$store.state.user.nickname); // 姓名
+                this.ruleForm.duty = filterXSS(data.duty); // 职务
+                this.ruleForm.degree_max = filterXSS(data.degree_max); // 最高学位
+            },
+            // 通过用户名查询学者网用户信息
+            getScholatProfileByUserName(username){
+                this.axios.post('/api/manager/getScholatProfileByUserName', {
+                    username: username,
+                }).then(res => {
+                    this.scholatProfile = res.data.info
+                }).catch(err => {
+                })
             },
             // 本页面最开始的会调用的函数,获取教师信息
             getTeacherInfoById(teacherId) {
@@ -946,6 +989,7 @@
                         this.setTeacherInfo(data);
                         // 如果学者网信息不为空, 代表已经关联了, 所以要显示关联的信息
                         if (this.ruleForm.scholat_username !== "" || this.ruleForm.scholat_username !== null) {
+                            this.getScholatProfileByUserName(this.ruleForm.scholat_username)
                             // 去根据学者username查询学者信息
                             this.axios.post('/api/manager/validate', {
                                 username: this.ruleForm.scholat_username,
@@ -991,29 +1035,35 @@
                 }).then(() => {
                     this.ruleForm.scholat_username = '';
                     this.ruleForm.scholat_update_time = '';
-                    // 去根据学者username查询学者信息
-                    this.axios.post('/api/manager/validate', {
-                        username: this.ruleForm.scholat_username,
-                        name: '',
-                        email: '',
-                        pageRow: this.scholat.pageRow
+                    this.axios.post('/api/manager/bindScholat', {
+                        id: this.ruleForm.id,
+                        state:'unlock',
+                        scholat_username:'',
                     }).then(res => {
-                        this.$message.success("该教师已关联" + this.ruleForm.scholat_username + "学者网")
-                        this.list = res.data.info.list
-                        callback(!res || undefined)
+                        this.$message.success("取消绑定成功")
                     }).catch(err => {
-                        callback(false)
-                    })
-                    this.$message({
-                        type: 'success',
-                        message: '解除绑定成功!'
+                        this.$message.error("取消绑定失败")
                     });
+                    // 去根据学者username查询学者信息
+                    /* this.axios.post('/api/manager/validate', {
+                         username: this.ruleForm.scholat_username,
+                         name: '',
+                         email: '',
+                         pageRow: this.scholat.pageRow
+                     }).then(res => {
+                         this.$message.success("该教师已关联" + this.ruleForm.scholat_username + "学者网")
+                         this.list = res.data.info.list
+                         callback(!res || undefined)
+                     }).catch(err => {
+                         callback(false)
+                     })*/
                 }).catch(() => {
                     this.$message({
                         type: 'info',
                         message: '已取消解除绑定'
                     });
                 });
+                this.list=[];
             },
             handleSizeChange(val) {
                 //改变每页数量
@@ -1033,60 +1083,77 @@
                 window.open(url, '_blank');
             },
             importFromScholat(scholat) {
-                this.$confirm('此操作将覆盖写入信息, 是否继续?', '提示', {
-                    confirmButtonText: '确定',
-                    cancelButtonText: '取消',
-                    type: 'warning'
-                }).then(() => {
-                  if( this.ruleForm.avatar===''){
-                    if(scholat.avatar.indexOf('/images/default.png')!=-1){
-                      this.ruleForm.avatar ='default.png';
-                    }else {
-                      this.ruleForm.avatar = filterXSS(scholat.avatar);
-                    }
-                  }
+                /*    this.$confirm('此操作将覆盖写入信息, 是否继续?', '提示', {
+                        confirmButtonText: '确定',
+                        cancelButtonText: '取消',
+                        type: 'warning'
+                    }).then(() => {
+                        if (this.ruleForm.avatar === '') {
+                            if (scholat.avatar.indexOf('/images/default.png') != -1) {
+                                this.ruleForm.avatar = 'default.png';
+                            } else {
+                                this.ruleForm.avatar = filterXSS(scholat.avatar);
+                            }
+                        }
 
-                    if (this.ruleForm.avatar.indexOf("resources") != -1) {
-                        this.$refs.cropAvatarImage.attach.laterUrl = "http://www.scholat.com/" + this.ruleForm.avatar;
-                    } else {
-                        this.$refs.cropAvatarImage.attach.laterUrl = "http://47.106.132.95:2333/images/avatar/" + this.ruleForm.avatar;
-                    }
-                    if(this.ruleForm.scholat_username===''){
-                      this.ruleForm.scholat_username = filterXSS(scholat.scholat_username);
-                    } // 关联为学者网账号
-                    this.ruleForm.scholat_update_time = filterXSS(scholat.update_time);
-                  if(this.ruleForm.username===''){
-                    this.ruleForm.username = filterXSS(scholat.username);
-                  }
-                  if(this.ruleForm.email===''){
-                    this.ruleForm.email = filterXSS(scholat.email);
-                  }
-                  if(this.ruleForm.intro===''){
+                        if (this.ruleForm.avatar.indexOf("resources") != -1) {
+                            this.$refs.cropAvatarImage.attach.laterUrl = "http://www.scholat.com/" + this.ruleForm.avatar;
+                        } else {
+                            this.$refs.cropAvatarImage.attach.laterUrl = "http://47.106.132.95:2333/images/avatar/" + this.ruleForm.avatar;
+                        }
+                        if (this.ruleForm.scholat_username === '') {
+                            this.ruleForm.scholat_username = filterXSS(scholat.scholat_username);
+                        } // 关联为学者网账号
+                        this.ruleForm.scholat_update_time = filterXSS(scholat.update_time);
+                        if (this.ruleForm.username === '') {
+                            this.ruleForm.username = filterXSS(scholat.username);
+                        }
+                        if (this.ruleForm.email === '') {
+                            this.ruleForm.email = filterXSS(scholat.email);
+                        }
+                        if (this.ruleForm.intro === '') {
+                            this.ruleForm.intro = filterXSS(scholat.intro);
+                        }
+                        if (this.ruleForm.post === '') {
+                            this.ruleForm.post = filterXSS(scholat.post);
+                        }
+                        this.ruleForm.qrcode = filterXSS(scholat.qrcode + '.png');
+                        this.editor.txt.html(this.ruleForm.intro);
+                        // 学历
+                        if (this.ruleForm.degree === '') {
+                            var str = scholat.degree;
+                            if (str.indexOf("博士") || str.indexOf("doctor")) {
+                                this.ruleForm.degree = "博士研究生"
+                            } else if (str.indexOf("硕士")) {
+                                this.ruleForm.degree = "硕士研究生"
+                            } else if (str.indexOf("学士")) {
+                                this.ruleForm.degree = "本科"
+                            }
+                        }
+
+                        this.$message.success("关联学者网成功, 部分信息已自动填入")
+                    }).catch(() => {
+                        this.$message({
+                            type: 'info',
+                            message: '已取消关联'
+                        });
+                    });*/
+
+                if (this.ruleForm.scholat_username === '') {
+                    this.ruleForm.scholat_username = filterXSS(scholat.scholat_username);
+                }
+                if (this.ruleForm.intro === '') {
                     this.ruleForm.intro = filterXSS(scholat.intro);
-                  }
-                  if(this.ruleForm.post===''){
-                    this.ruleForm.post = filterXSS(scholat.post);
-                  }
-                    this.ruleForm.qrcode = filterXSS(scholat.qrcode + '.png');
-                    this.editor.txt.html(this.ruleForm.intro);
-                    // 学历
-                  if(this.ruleForm.degree===''){
-                    var str = scholat.degree;
-                    if (str.indexOf("博士") || str.indexOf("doctor")) {
-                      this.ruleForm.degree = "博士研究生"
-                    } else if (str.indexOf("硕士")) {
-                      this.ruleForm.degree = "硕士研究生"
-                    } else if (str.indexOf("学士")) {
-                      this.ruleForm.degree = "本科"
-                    }
-                  }
-
-                    this.$message.success("关联学者网成功, 部分信息已自动填入")
-                }).catch(() => {
-                    this.$message({
-                        type: 'info',
-                        message: '已取消关联'
-                    });
+                }
+                this.axios.post('/api/manager/bindScholat', {
+                    id: this.ruleForm.id,
+                    state:'lock',
+                    scholat_username: this.ruleForm.scholat_username,
+                }).then(res => {
+                    this.getScholatProfileByUserName(this.ruleForm.scholat_username);
+                    this.$message.success("关联学者网成功")
+                }).catch(err => {
+                    this.$message.error("关联学者网失败")
                 });
 
             },
@@ -1153,7 +1220,7 @@
                 }
                 console.log(this.ruleForm);
                 this.setTeacherInfo(this.ruleForm);
-                console.log("提交----------------------表单信息为: "+JSON.stringify(this.ruleForm)+">>>>>>>>>>")
+                console.log("提交----------------------表单信息为: " + JSON.stringify(this.ruleForm) + ">>>>>>>>>>")
                 console.log(this.ruleForm)
                 // 待做 : 实现scholat关联
                 // 创建新教师成员
@@ -1172,7 +1239,7 @@
 
             },
             // 清空简介
-            clearIntro(){
+            clearIntro() {
                 this.$confirm('此操作将会清除简介信息, 是否继续?', '提示', {
                     confirmButtonText: '确定',
                     cancelButtonText: '取消',
@@ -1186,14 +1253,39 @@
                     });
                 });
             },
+            validateBaseInfo(){
+                this.$refs.ruleForm.validate((valid) => {
+                    if (valid) {
+                        console.log("验证表单信息成功")
+                    } else {
+                        console.log("验证表单信息失败")
+                        return false;
+                    }
+                });
+                if (this.ruleForm.avatar == null || this.ruleForm.avatar == '') {
+                    this.$message.error("请先上传头像")
+                    return
+                }
+            },
             // 更新教师成员信息
+            createTeacher_one() {
+                var html = this.editor.txt.html()
+                var filterHtml = filterXSS(html)
+                this.ruleForm.intro = filterHtml
+                this.setTeacherInfo(this.ruleForm);
+                this.validateBaseInfo();
+                this.api({
+                    url: "/manager/addTeacher",
+                    method: "post",
+                    data: this.ruleForm
+                }).then((res) => {
+                    this.$message.success("添加教师信息成功");
+                    this.ruleForm.id = res.teacher_id;
+                    this.secondPage = true;
+                }).catch(e => {
+                })
+            },
             updateTeacher() {
-                /*        this.ruleForm.id = this.$route.params.id
-                        var str = this.ruleForm.create_time;
-
-                        var html = this.editor.txt.html()
-                        var filterHtml = filterXSS(html)
-                        this.ruleForm.intro = filterHtml*/
                 var html = this.editor.txt.html()
                 var filterHtml = filterXSS(html)
                 this.ruleForm.intro = filterHtml
@@ -1217,8 +1309,8 @@
                  var time = str.slice(0, 10) + " " + str.slice(11, 19);*/
                 let time = new Date();
                 this.ruleForm.create_time = time.format('yyyy-MM-dd h:m:s');
-               // this.ruleForm.domain_name=Pinyin.chineseToPinYin(this.ruleForm.username)
-                console.log("................................." + JSON.stringify(this.ruleForm)+">>>>>>>>>>"+this.ruleForm.edit_name)
+                // this.ruleForm.domain_name=Pinyin.chineseToPinYin(this.ruleForm.username)
+                console.log("................................." + JSON.stringify(this.ruleForm) + ">>>>>>>>>>" + this.ruleForm.edit_name)
                 // 创建新教师成员
                 this.api({
                     url: "/manager/updateTeacher",
@@ -1235,21 +1327,21 @@
 
                 })
             },
-          // 教师分配
-          openAssignment() {
+            // 教师分配
+            openAssignment() {
 
-            this.showRoleAssigment = true;
-            this.roleId = this.GetUrlRelativePath_id();
-           // console.log("id==="+id);
-           // console.log("当前分栏目标教师Id:" + id)
-            this.$notify({
-              title: '提示',
-              message: '本页面教师分配只展示未分配栏目。若需要管理教师已分配栏目，请到教师分配页面进行管理。',
-              type: 'info',
-              position: 'bottom-left'
-            });
-            this.$refs.childRole.getTeacherAllCatalogues(this.roleId);
-          },
+                this.showRoleAssigment = true;
+                this.roleId = this.GetUrlRelativePath_id();
+                // console.log("id==="+id);
+                // console.log("当前分栏目标教师Id:" + id)
+                this.$notify({
+                    title: '提示',
+                    message: '本页面教师分配只展示未分配栏目。若需要管理教师已分配栏目，请到教师分配页面进行管理。',
+                    type: 'info',
+                    position: 'bottom-left'
+                });
+                this.$refs.childRole.getTeacherAllCatalogues(this.roleId);
+            },
         }
     }
 </script>
@@ -1490,7 +1582,8 @@
   .el-table__body-wrapper {
     height: 100%;
   }
-  .redItem .el-form-item__label{
-    color:red
+
+  .redItem .el-form-item__label {
+    color: red
   }
 </style>

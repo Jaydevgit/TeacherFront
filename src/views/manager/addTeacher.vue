@@ -1,9 +1,9 @@
 <template>
   <div class="app-container">
     <modify-page ref="modifyPage"></modify-page>
-    <div slot="footer" class="dialog-footer">
+    <!--<div slot="footer" class="dialog-footer">
       <el-button @click="createTeacher" type="success" style="margin-left: 20px;">创建</el-button>
-    </div>
+    </div>-->
   </div>
 </template>
 
