@@ -37,7 +37,10 @@
             <div class="name">
               {{teacherProfile.username}}
               <span class="prodile-second" style="margin-left: 14px;" v-if="teacherProfile.post&&tagFlag[3]==='d'">{{teacherProfile.post}}</span>
-              <span class="prodile-second" style="margin-left: 14px;" v-if="teacherProfile.duty&&tagFlag[2]==='c'">、{{teacherProfile.duty}}</span>
+              <span class="prodile-second" style="margin-left: 14px;" v-if="teacherProfile.duty&&tagFlag[2]==='c'">
+                <span v-if="teacherProfile.post&&teacherProfile.duty">、</span>
+                {{teacherProfile.duty}}
+              </span>
               <!--                  <span class="prodile-second" v-if="teacherProfile.degree">/&nbsp{{teacherProfile.degree}}</span>-->
             </div>
             <div v-if="teacherProfile.label&&tagFlag[4]==='e'" style="margin-bottom: 10px;margin-left: 20px">
