@@ -38,6 +38,7 @@
               <crop-avatar-image ref="cropAvatarImage" class="update-crop-avatar" :scholatAvatar="ruleForm.avatar"
                                  @crop-avatar="cropAvatarImageName"></crop-avatar-image>
             </el-tooltip>
+            <!--上传头像组件-->
             <crop-avatar-image ref="cropAvatarImage"
                                v-if="!showUpdateInfo.avatarScholat"
                                @crop-avatar="cropAvatarImageName"></crop-avatar-image>
@@ -192,6 +193,8 @@
           </el-form-item>
           <el-form-item style="display: flex;justify-content: flex-end;">
             <el-button @click="createTeacher_one" type="success" v-if="$route.path.indexOf('addTeacher')!=-1">保存</el-button>
+            <el-button @click="saveTeacher" type="success" v-if="$route.path.indexOf('modifyTeacher')!=-1">保存</el-button>
+
           </el-form-item>
         </el-col>
       </el-row>
@@ -259,6 +262,9 @@
                           <img id="avatar-id" class="preview" :src="getImgUrl(scope.row.avatar)"
                                style="width:70px;height:70px;border-radius: 50%;"/>
                           <div class="teacher-homepage" @click="routerTo(scope.row)">{{scope.row.username}}</div>
+                          <el-button type="success" @click="uploadAvatar" size="small"
+                                     style="margin-left: 0;margin-bottom: 4px;">上传头像
+                          </el-button>
                         </template>
                       </el-table-column>
                       <el-table-column align="center" label="邮箱" width="160">
@@ -1286,6 +1292,45 @@
                 }).catch(e => {
                 })
             },
+          saveTeacher() {
+            var html = this.editor.txt.html()
+            var filterHtml = filterXSS(html)
+            this.ruleForm.intro = filterHtml
+            this.$refs.ruleForm.validate((valid) => {
+              if (valid) {
+                console.log("验证表单信息成功")
+              } else {
+                console.log("验证表单信息失败")
+                return false;
+              }
+            });
+            if (this.ruleForm.avatar == null || this.ruleForm.avatar == '') {
+              this.$message.error("请先上传头像")
+              return
+            }
+            // 进行xss攻击处理
+            this.setTeacherInfo(this.ruleForm);
+            this.ruleForm.id = this.$route.params.id;
+            /* console.log("``````` " + this.ruleForm.create_time)
+             var str = this.ruleForm.create_time;
+             var time = str.slice(0, 10) + " " + str.slice(11, 19);*/
+            let time = new Date();
+            this.ruleForm.create_time = time.format('yyyy-MM-dd h:m:s');
+            // this.ruleForm.domain_name=Pinyin.chineseToPinYin(this.ruleForm.username)
+            console.log("................................." + JSON.stringify(this.ruleForm) + ">>>>>>>>>>" + this.ruleForm.edit_name)
+            // 创建新教师成员
+            this.api({
+              url: "/manager/updateTeacher",
+              method: "post",
+              data: this.ruleForm
+            }).then((res) => {
+              this.$message.success("保存教师信息成功");
+              console.log("------------------------");
+              console.log(this.ruleForm);
+            }).catch(e => {
+
+            })
+          },
             updateTeacher() {
                 var html = this.editor.txt.html()
                 var filterHtml = filterXSS(html)
