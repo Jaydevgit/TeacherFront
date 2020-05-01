@@ -97,9 +97,11 @@
       <div style="height: 100%;
       width:100%;display: flex;
       justify-content: space-between;margin: 0 20px;">
-        <div style="display: flex;align-items: center;width: 450px;flex-wrap: wrap">
-          <div style="color: #eee;display: block">联系我们: 华南师范大学计算机学院232实验室</div>
-          <div style="color: #eee;display: block">邮箱: help@scholat.com</div>
+        <div style="display: flex;align-items: center;width: 350px;flex-wrap: wrap;">
+          <!--<div style="color: #eee;display: block">联系我们: 华南师范大学计算机学院232实验室</div>
+          <div style="color: #eee;display: block">邮箱: help@scholat.com</div>-->
+          <div style="color: #eee;display: block">© 2020-2022 SCHOLAT + LAB</div>
+
         </div>
         <div style="display: flex;align-items:center;height: 100%;margin-left: 16px">
           <img src="http://47.106.132.95:2333/images/index/QR.png" style="height: 50px">
