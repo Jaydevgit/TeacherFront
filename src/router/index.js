@@ -169,14 +169,7 @@ export const asyncRouterMap = [
         menu: 'teacher',// 这里的menu和权限有关，如果权限menu没有返回对应的menu就不会显示，所以要写上menu
         hidden: false
       },
-      {
-        path: 'assignTeacher',
-        name: 'assignTeacher',
-        component: _import('manager/assignTeacher'),
-        meta: {title: '分配教师', icon: 'example'},
-        menu: 'teacher',// 这里的menu和权限有关，如果权限menu没有返回对应的menu就不会显示，所以要写上menu
-        hidden: false
-      },
+
       {
         path: '/modifyTeacher/:id',
         name: 'modifyTeacher',
@@ -192,8 +185,8 @@ export const asyncRouterMap = [
     path: '/homeSet',
     component: Layout,
     redirect: '/homeSet/teacherSet',
-    name: '师资栏目主页',
-    meta: {title: '师资栏目主页', icon: 'tree'},
+    name: '师资队伍主页',
+    meta: {title: '师资队伍主页', icon: 'tree'},
     children: [
       {
         path: 'teacherSet',
@@ -209,7 +202,14 @@ export const asyncRouterMap = [
         meta: {title: '师资栏目设置', icon: 'user'},
         menu: 'user'
       },
-
+      {
+        path: 'assignTeacher',
+        name: 'assignTeacher',
+        component: _import('manager/assignTeacher'),
+        meta: {title: '教师分类设置', icon: 'example'},
+        menu: 'teacher',// 这里的menu和权限有关，如果权限menu没有返回对应的menu就不会显示，所以要写上menu
+        hidden: false
+      },
     ]
   },
   {
