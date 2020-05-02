@@ -240,6 +240,7 @@
               this.loginForm.host = 'unit'
               this.$store.dispatch('Login', this.loginForm).then(data => {
                 this.loading = false
+                console.log(JSON.stringify(data));
                 if ("success" === data.result) {
                   this.$router.push({path: '/'})
                 } else {

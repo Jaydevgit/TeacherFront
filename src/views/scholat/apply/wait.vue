@@ -332,24 +332,24 @@
       },
       showDetail(id) {
         var _vue = this;
-        this.$confirm('确定?', '提示', {
+        this.$confirm('确定加入黑名单?', '提示', {
           confirmButtonText: '确定',
           showCancelButton: false,
-          type: 'warning'
+          type: 'danger'
         }).then(() => {
-          this.$message.warning("id是:" + id + " ...但是还没写哦，需要等等QAQ")
-          /*  _vue.api({
-              url: "/manager/deleteTeacher",
-              method: "post",
-              data: {
-                "teacherId":teacherId
-              }
-            }).then((data) => {
-              this.$message.success("删除该教师成功")
-              this.getList();
-            }).catch(e => {
-              this.$message.error("QAQ.....")
-            })*/
+          this.$message.warning("申请的id是:" + id)
+          _vue.api({
+            url: "/scholat/apply/blackApply",
+            method: "post",
+            data: {
+              "apply_id":id
+            }
+          }).then((data) => {
+            this.$message.success("加入黑名单成功")
+            this.getList();
+          }).catch(e => {
+            this.$message.error("加入黑名单失败")
+          })
         })
       }
     }
