@@ -229,8 +229,13 @@
               <img  class="preview" :src="getImgUrl(scholatProfile.avatar)"
                     style="width:70px;height:70px;border-radius: 50%;"/>
               <el-button size="small" style="margin-left: 8px" @click="chooseScholatAvatar()">选择该头像</el-button>
+
             </div>
+
             <div style="display: flex;align-items: center">
+              <el-button type="success" @click="showDifferent(scholatProfile)" size="small"
+                         style="margin-left:10px;width: 90px;height:30px;">信息对比
+              </el-button>
             <el-button @click="viewScholat(scholatProfile)" type="warning" size="small"
                        style="margin-left:10px;width: 60px;height:30px;">查看
             </el-button>
@@ -361,7 +366,7 @@
 
         <!--个人简介区域-->
         <div class="row-bg">
-          <div style="font-family: 微软雅黑;font-weight: bold;margin-bottom: 20px;font-size: 24px">编辑个人简介</div>
+<!--          <div style="font-family: 微软雅黑;font-weight: bold;margin-bottom: 20px;font-size: 24px">编辑个人简介</div>-->
           <el-row type="flex"  justify="center">
             <el-col :span="24">
               <div class="grid-content">
@@ -389,7 +394,7 @@
                   <el-col :span="24">
                     <div class="grid-content" style="">
                       <div style="display: flex;justify-content: space-between;padding: 4px 0">
-                        <div style="color: rgb(245, 108, 108);font-weight: 800;">▶ 编辑区域</div>
+                        <div style="color: rgb(245, 108, 108);font-weight: 800;">▶编辑个人简介</div>
                         <div style="color: rgb(245, 108, 108);font-weight: 800;cursor: pointer" @click="clearIntro()">清空简介
                         </div>
                       </div>
@@ -745,15 +750,15 @@
                 }
                 // 創建一个富文本编辑器
                 this.editor.customConfig.menus = [
-                    'head',  // 标题
-                    'bold',  // 粗体
-                    'italic',  // 斜体
-                    'underline',  // 下划线
-                    'strikeThrough',  // 删除线
-                    'link',  // 插入链接
-                    'justify',  // 对齐方式
-                    'undo',  // 撤销
-                    'redo'  // 重复
+                    // 'head',  // 标题
+                    // 'bold',  // 粗体
+                    // 'italic',  // 斜体
+                    // 'underline',  // 下划线
+                    // 'strikeThrough',  // 删除线
+                    // 'link',  // 插入链接
+                    // 'justify',  // 对齐方式
+                    // 'undo',  // 撤销
+                    // 'redo'  // 重复
                 ]
                 this.editor.create();
             },
@@ -933,7 +938,8 @@
             // 根据传入的数据比较不同
             showDifferent(scholat) {
                 this.$message.success("查找更新成功，黄色区域表示更新区域")
-                this.setScholat(scholat)
+             // console.log("+scholat.log"+JSON.stringify(scholat));
+              this.setScholat(scholat)
                 this.api({
                     url: "/manager/compare",
                     method: 'post',
