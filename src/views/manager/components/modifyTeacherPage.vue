@@ -183,6 +183,7 @@
                   </div>
 
                 </div>
+                <!--上传头像对话框-->
                 <crop-avatar-image ref="cropAvatarImage" class="update-crop-avatar" :scholatAvatar="ruleForm.avatar"
                                    @crop-avatar="cropAvatarImageName"></crop-avatar-image>
               </el-tooltip>
