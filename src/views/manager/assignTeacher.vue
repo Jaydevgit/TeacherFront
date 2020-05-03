@@ -37,7 +37,7 @@
                         <span :id="'seq_child'+sub.id" style="display: none" v-if="sortSubVisualable"
                               class="seq"></span>
                         <span style="margin-right: 20px;margin-left: 8px;">{{sub.name}}</span>
-                        <el-button type="primary" size="small" @click="showListTeahcer" style="height: fit-content;">
+                        <el-button type="primary" size="small" @click="showListTeacher(sub.id)" style="height: fit-content;">
                           添加教师
                         </el-button>
                       </el-menu-item>
@@ -54,7 +54,7 @@
                       </div>
 
                       <el-button type="primary" size="small" style="float:left;margin-left: 145px;"
-                                 @click="showListTeahcer">添加教师
+                                 @click="showListTeacher(item.id)">添加教师
                       </el-button>
                     </div>
                   </el-menu-item>
@@ -184,7 +184,7 @@
             <span></span>
           </template>
         </el-table-column>
-        <el-table-column align="center" label="状态">
+        <!--<el-table-column align="center" label="状态">
           <template slot-scope="scope">
             <span v-if="checkTeacherList(scope.row.tId)== true"
                   size="mini" type="success" style="color: green">可添加
@@ -193,7 +193,7 @@
                   size="mini">已添加
             </span>
           </template>
-        </el-table-column>
+        </el-table-column>-->
       </el-table>
     </el-dialog>
 
@@ -451,14 +451,28 @@
                     console.log("QAQ........获取教师失败")
                 })
             },
-            showListTeahcer() {
+            showListTeacher(cId) {
+                this.api({
+                  url: "/catalogue/getTeacherByCatalogue",
+                  method: "get",
+                  params: {id: cId}
+                }).then(data => {
+                  console.log("CatalogueTeachers+++++" + JSON.stringify(data));
+                  this.teacherList = data.list;
+                }).catch(error => {
+                  console.log("QAQ........没有找到教师列表")
+                });
                 this.api({
                     url: "/catalogue/listTeacherAll",
                     method: "get",
                     params: {unitId: this.$store.getters.unitId}
                 }).then(data => {
                     console.log(JSON.stringify(data.list))
-                    this.searchList = data.list;
+                    this.searchList = data.list.filter((item)=>{
+                      console.log("item.tId="+item.tId);
+                      return this.checkTeacherList(item.tId) != false;
+                    });
+                    console.log(JSON.stringify(this.searchList))
                     this.dialogFormVisible = true;
                 }).catch(error => {
                     console.log("QAQ........添加学科失败")
@@ -490,6 +504,7 @@
                 this.currentName = value
                 return true
             },
+
             checkTeacherList(value) {
                 for (let a = 0; a < this.teacherList.length; a++) {
                     if (this.teacherList[a].tId == value) {
@@ -524,7 +539,7 @@
                     method: "get",
                     params: this.listQuery
                 }).then(data => {
-                    console.log(JSON.stringify(data))
+                    console.log("getCatalogues得到的数据："+JSON.stringify(data))
                     this.catalogueList = data.list;
 
                 }).catch(error => {
