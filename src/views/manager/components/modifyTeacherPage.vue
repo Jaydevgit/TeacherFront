@@ -392,7 +392,7 @@
                         <div style="color: rgb(245, 108, 108);font-weight: 800;cursor: pointer" @click="clearIntro()">清空简介
                         </div>
                       </div>
-                      <div id="editor" class="editor" style="height: 360px;background-color: #e5e9f2;padding-top: 10px;"
+                      <div  id="editor" class="editor" style="height: 360px;background-color: #e5e9f2;padding-top: 10px;"
                            v-model="ruleForm.intro"></div>
                     </div>
                   </el-col>
@@ -404,7 +404,7 @@
         </div>
 
 
-        <el-button v-if="$route.path.indexOf('modifyTeacher')==-1"
+        <el-button v-if="$route.path.indexOf('modifyTeacher')===-1"
           @click="createTeacher" type="success" style="margin-left: 20px;">创建</el-button>
       </template>
 
@@ -1247,7 +1247,7 @@
                 // 待做 : 实现scholat关联
                 // 创建新教师成员
                 this.api({
-                    url: "/manager/addTeacher",
+                    url: "/manager/updateTeacher",
                     method: "post",
                     data: this.ruleForm
                 }).then((res) => {

@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <modify-page ref="modifyPage"></modify-page>
+    <modify-page></modify-page>
     <!--<div slot="footer" class="dialog-footer">
       <el-button @click="createTeacher" type="success" style="margin-left: 20px;">创建</el-button>
     </div>-->
@@ -9,17 +9,20 @@
 
 <script>
   import {filterXSS} from 'xss'
-  import modifyPage from './components/modifyTeacherPage'
+  import ModifyPage from './components/modifyTeacherPage'
 
   export default {
     name: "addTeacher",
     components: {
-      modifyPage
+      modifyPage:ModifyPage
+    },
+    data() {
+      return {}
     },
     methods:{
-      createTeacher(){
-        this.$refs.modifyPage.createTeacher();
-      }
+      // createTeacher(){
+      //   this.$refs.modifyPage.createTeacher();
+      // }
     }
   }
 </script>
