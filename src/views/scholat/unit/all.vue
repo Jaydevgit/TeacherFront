@@ -9,7 +9,7 @@
             size="mini"
             style="width:250px"
             placeholder="输入关键字搜索"/>
-          <el-button type="primary" icon="plus" @click="search" >搜索</el-button>
+          <el-button type="primary" icon="plus" @click="searchUnit" >搜索</el-button>
           <div style="clear: both;"></div>
         </el-form-item>
       </el-form>
@@ -165,7 +165,8 @@
         listQuery: {
           pageNum: 1,//页码
           pageRow: 10,//每页条数
-          state: 3 //1代表申请列表,-1代表黑名单，0代表已经通过，2代表需要修改,3代表全部学院
+          state: 3 ,//1代表申请列表,-1代表黑名单，0代表已经通过，2代表需要修改,3代表全部学院
+          key: '',//排序关键字
         },
         applyUnit: {
           id: "",
@@ -269,6 +270,33 @@
           console.log("查询学院信息列表失败")
         })
       },
+      searchUnit(){
+        //查询列表
+        // if (!this.hasScholatPerm('unit:list')) {
+        //   this.$message.error("没有list权限")
+        //   return
+        // }
+        this.listLoading = true;
+        console.log("### 开始查询关键学院")
+        this.listQuery.key = this.search
+        console.log(JSON.stringify(this.listQuery))
+        if (this.search != null && this.search != "") {
+          this.api({
+            url: "/scholat/apply/search",
+            method: "get",
+            params: this.listQuery
+          }).then(data => {
+            console.log("查询全部学院的信息为:")
+            console.log(data.list)
+            this.listLoading = false;
+            this.list = data.list;
+            this.totalCount = data.totalCount;
+            this.totalUpdate = data.totalUpdate;
+          }).catch(error => {
+            console.log("查询学院信息列表失败")
+          })
+        }
+      },
       handleSizeChange(val) {
         //改变每页数量
         this.listQuery.pageRow = val
@@ -277,7 +305,12 @@
       handleCurrentChange(val) {
         //改变页码
         this.listQuery.pageNum = val
-        this.getList();
+        if(this.search!= null && this.search != ""){
+          this.searchUnit()
+        }else{
+          this.getList();
+        }
+
       },
       getIndex($index) {
         //表格序号
