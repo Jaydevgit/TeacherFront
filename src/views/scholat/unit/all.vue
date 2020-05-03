@@ -271,31 +271,33 @@
         })
       },
       searchUnit(){
-        //查询列表
-        // if (!this.hasScholatPerm('unit:list')) {
-        //   this.$message.error("没有list权限")
-        //   return
-        // }
-        this.listLoading = true;
-        console.log("### 开始查询关键学院")
-        this.listQuery.key = this.search
-        console.log(JSON.stringify(this.listQuery))
-        if (this.search != null && this.search != "") {
-          this.api({
-            url: "/scholat/apply/search",
-            method: "get",
-            params: this.listQuery
-          }).then(data => {
-            console.log("查询全部学院的信息为:")
-            console.log(data.list)
-            this.listLoading = false;
-            this.list = data.list;
-            this.totalCount = data.totalCount;
-            this.totalUpdate = data.totalUpdate;
-          }).catch(error => {
-            console.log("查询学院信息列表失败")
-          })
-        }
+          //查询列表
+          // if (!this.hasScholatPerm('unit:list')) {
+          //   this.$message.error("没有list权限")
+          //   return
+          // }
+          this.listLoading = true;
+          console.log("### 开始查询关键学院")
+          this.listQuery.key = this.search
+          console.log(JSON.stringify(this.listQuery))
+          if (this.search != null && this.search != "") {
+            this.api({
+              url: "/scholat/apply/search",
+              method: "get",
+              params: this.listQuery
+            }).then(data => {
+              console.log("查询全部学院的信息为:")
+              console.log(data.list)
+              this.listLoading = false;
+              this.list = data.list;
+              this.totalCount = data.totalCount;
+              this.totalUpdate = data.totalUpdate;
+            }).catch(error => {
+              console.log("查询学院信息列表失败")
+            })
+          }else{
+            this.getList()
+          }
       },
       handleSizeChange(val) {
         //改变每页数量
