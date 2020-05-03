@@ -364,7 +364,7 @@
           <el-row type="flex"  justify="center">
             <el-col :span="24">
               <div class="grid-content">
-                <!--<div id="div1" class="toolbar"></div>-->
+                <div id="div1" class="toolbar"></div>
                 <!--<div id="editor" class="editor" v-model="ruleForm.intro"></div>-->
 
                 <el-row style="border-radius: 5px;">
