@@ -401,7 +401,7 @@
                 } else {
                     return "http://47.106.132.95:2333/images/avatar/" + imgName;
                 }*/
-              return 'http://www.scholat.com/'+imgName;
+              return 'http://47.106.132.95:2333/images/avatar/'+imgName;
             },
           imgErrorFun(e){
             return 'this.src="http://47.106.132.95:2333/images/avatar/default.png"';
