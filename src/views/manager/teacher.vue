@@ -394,14 +394,15 @@
                 }
             },
             getImgUrl(imgName) {
-                /*if (imgName == null) {
+                if (imgName == null) {
                     return this.defaultImage;
                 } else if (imgName.indexOf("resources") != "-1") {
                     return "http://www.scholat.com/" + imgName;
                 } else {
                     return "http://47.106.132.95:2333/images/avatar/" + imgName;
-                }*/
-              return 'http://47.106.132.95:2333/images/avatar/'+imgName;
+                }
+              /*return 'http://47.106.132.95:2333/images/avatar/'+imgName;*/
+
             },
           imgErrorFun(e){
             return 'this.src="http://47.106.132.95:2333/images/avatar/default.png"';
