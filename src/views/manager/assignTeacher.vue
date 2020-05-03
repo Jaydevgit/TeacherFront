@@ -184,7 +184,7 @@
             <span></span>
           </template>
         </el-table-column>
-        <el-table-column align="center" label="状态">
+        <!--<el-table-column align="center" label="状态">
           <template slot-scope="scope">
             <span v-if="checkTeacherList(scope.row.tId)== true"
                   size="mini" type="success" style="color: green">可添加
@@ -193,7 +193,7 @@
                   size="mini">已添加
             </span>
           </template>
-        </el-table-column>
+        </el-table-column>-->
       </el-table>
     </el-dialog>
 
