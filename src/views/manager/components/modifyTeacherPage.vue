@@ -57,7 +57,7 @@
             <!--              <el-input v-model="ruleForm.email" v-if="!showUpdateInfo.emailScholat"-->
             <!--                        placeholder="请输入邮箱地址"></el-input>-->
             <!--            </el-form-item>-->
-            <el-form-item label="职务" prop="duty">
+            <el-form-item label="职称" prop="duty">
               <!--显示更新提示-->
               <!--              <el-tooltip placement="top" v-if="showUpdateInfo.postScholat">-->
               <!--                <div slot="content" style="font-size: 16px">-->
@@ -68,8 +68,18 @@
               <!--                <el-input v-model="ruleForm.post" class="change-input-background"-->
               <!--                          placeholder="例如：博士生导师、硕士生导师等"></el-input>-->
               <!--              </el-tooltip>-->
-              <el-input v-model="ruleForm.duty"
-                        placeholder="例如：院长、书记、老师、辅导员等"></el-input>
+              <!--显示更新提示-->
+              <el-tooltip placement="top" v-if="showUpdateInfo.postScholat">
+                <div slot="content" style="font-size: 16px">
+                  <span v-html="showUpdateInfo.post"></span>
+                  &nbsp;➡️&nbsp;
+                  <span v-html="showUpdateInfo.postScholat"></span>
+                </div>
+                <el-input v-model="ruleForm.post" class="change-input-background"
+                          placeholder="例如：教授、副教授、讲师"></el-input>
+              </el-tooltip>
+              <el-input v-model="ruleForm.post" v-if="!showUpdateInfo.postScholat"
+                        placeholder="例如：教授、副教授、讲师"></el-input>
             </el-form-item>
             <el-form-item label="头衔" prop="label">
               <el-input v-model="ruleForm.label" placeholder="例如：国务院特殊津贴专家等头衔"></el-input>
@@ -121,19 +131,9 @@
             <el-form-item label="域名" prop="domain_name">
               <el-input v-model="ruleForm.domain_name" disabled></el-input>
             </el-form-item>
-            <el-form-item label="职称" prop="post" style="margin-top:85px">
-              <!--显示更新提示-->
-              <el-tooltip placement="top" v-if="showUpdateInfo.postScholat">
-                <div slot="content" style="font-size: 16px">
-                  <span v-html="showUpdateInfo.post"></span>
-                  &nbsp;➡️&nbsp;
-                  <span v-html="showUpdateInfo.postScholat"></span>
-                </div>
-                <el-input v-model="ruleForm.post" class="change-input-background"
-                          placeholder="例如：博士生导师、硕士生导师等"></el-input>
-              </el-tooltip>
-              <el-input v-model="ruleForm.post" v-if="!showUpdateInfo.postScholat"
-                        placeholder="例如：博士生导师、硕士生导师等"></el-input>
+            <el-form-item label="职务" prop="post" style="margin-top:85px">
+              <el-input v-model="ruleForm.duty"
+                        placeholder="例如：院长、书记、老师、辅导员等"></el-input>
             </el-form-item>
             <el-form-item label="最高学位" prop="degree_max" style="margin-top: 85px">
 
