@@ -2,7 +2,11 @@
   <div style="height:100%; " class="baseInfo-body">
     <div class="personal-info">
       <div v-if="teacherProfile!=undefined " style="position:relative;">
-        <el-card class="box-card">
+
+        <el-card class="box-card" >
+          <div style="position:absolute;left:500px;top:30px;z-index:2;">
+            <img :src="bgLogo" width="250" height="250" style="opacity: 0.3; "/>
+          </div>
           <div style="display: inline-block;margin-left: 20px;vertical-align: top;margin-top: 20px">
             <img :src="getImgUrl(teacherProfile.avatar)" :onerror="imgErrorFun(this)" width="140" height="140"/>
           </div>
@@ -136,6 +140,7 @@ padding: 12px 20px 6px 27px">个人简介</div>
 
 <script>
     import logo from '@/assets/defaultLogo.png'
+    import bgLogo from '@/assets/logo1.png'
 
     export default {
         name: "BaseInfo",
@@ -148,6 +153,7 @@ padding: 12px 20px 6px 27px">个人简介</div>
         data() {
             return {
                 logo,
+              bgLogo:bgLogo,
                 // defaultQrImg:'this.src="' + require('../../../assets/img/logo.png') + '"',
                 defaultQrImg: 'this.style="display:none"',
                 personal: {
