@@ -776,6 +776,17 @@
             chooseScholatAvatar(){
                 this.$refs.cropAvatarImage.attach.laterUrl = 'http://www.scholat.com/'+this.scholatProfile.avatar;
                 this.ruleForm.avatar = this.scholatProfile.avatar;
+              this.api({
+                url: "/manager/updateTeacher",
+                method: "post",
+                data: this.ruleForm
+              }).then((res) => {
+                this.$message.success("选择头像成功");
+               // console.log("------------------------");
+            //    console.log(this.ruleForm);
+              }).catch(e => {
+
+              })
             },
             //学者关联信息查询
             scholatInfoSearch() {
@@ -1288,7 +1299,13 @@
                     cancelButtonText: '取消',
                     type: 'danger'
                 }).then(() => {
-                    this.ruleForm.intro = '';
+                  this.$message({
+                    type: 'success',
+                    message: '清除成功'
+                  });
+                  console.log("ruleForm.intro="+this.ruleForm.intro);
+                  this.ruleForm.intro = '';
+                  console.log("ruleForm.intro="+this.ruleForm.intro);
                 }).catch(() => {
                     this.$message({
                         type: 'info',
