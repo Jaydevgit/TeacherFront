@@ -113,7 +113,7 @@
               <div class="name-bottom-item" style="margin-bottom: 10px;flex-direction: column" v-if="">
                 <!--<span><svg-icon icon-class="rearch-direction"/></span>-->
                 <label class="font-one">研究方向：</label>
-                <div class="detail-msg" style="margin-left: 7px;margin-top: 10px">{{teacherProfile.research_direction}}</div>
+                <div class="detail-msg" style="margin-top: 10px">{{teacherProfile.research_direction}}</div>
               </div>
             </div>
           </div>
