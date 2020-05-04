@@ -523,10 +523,13 @@
                     params: {unitId: this.$store.getters.unitId}
                 }).then(data => {
                     console.log(JSON.stringify(data.list))
+                  setTimeout(()=>{
                     this.searchList = data.list.filter((item)=>{
                       console.log("item.tId="+item.tId);
                       return this.checkTeacherList(item.tId) != false;
                     });
+                  },500)
+
                     console.log(JSON.stringify(this.searchList))
                     this.dialogFormVisible = true;
                 }).catch(error => {
