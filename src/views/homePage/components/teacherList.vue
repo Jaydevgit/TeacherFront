@@ -272,9 +272,11 @@
                 return 'this.src="http://47.106.132.95:2333/images/avatar/default.png"';
             },
             getListAll() {
+
                 this.currentCat = 0
                 this.listQuery.unitId = this.unitId
                 this.listLoading = true;
+              console.log("查询所有教师信息为:"+JSON.stringify(this.listQuery))
                 this.api({
                     url: "/homepage/listTeacherAll",
                     method: "get",
