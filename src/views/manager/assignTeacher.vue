@@ -63,8 +63,8 @@
             </div>
           </div>
         </el-col>
-        <el-col :span="13">
-          <el-card class="box-card" style="width: 600px">
+        <el-col :span="9">
+          <el-card class="box-card" style="width: 500px">
             <div style="height: 60px;width: 100%" class="teacher-nav">
               <div style="margin-left: 8px;">
                 <el-button type="success" size="small"
@@ -125,12 +125,12 @@
                     <span></span>
                   </template>
                 </el-table-column>
-                <el-table-column align="center" label="职称" width="180">
-                  <template slot-scope="scope">
-                    <span class="teacher-homepage" style="cursor:pointer;">{{scope.row.tPost}}</span>
-                    <span></span>
-                  </template>
-                </el-table-column>
+<!--                <el-table-column align="center" label="职称" width="180">-->
+<!--                  <template slot-scope="scope">-->
+<!--                    <span class="teacher-homepage" style="cursor:pointer;">{{scope.row.tPost}}</span>-->
+<!--                    <span></span>-->
+<!--                  </template>-->
+<!--                </el-table-column>-->
                 <el-table-column label="操作" v-if="unitVisualable == false">
                   <template slot-scope="scope">
                     <el-button v-if="unitVisualable == false"
@@ -145,57 +145,112 @@
           </el-card>
 
         </el-col>
+        <el-col :span="4" v-if="dialogFormVisible">
+          <el-card class="box-card" style="width:350px">
+            <div style="height: 60px;width: 100%;" class="teacher-nav">
+              <span style="margin-left: 10px">请勾选添加教师</span>
+              <div style="margin: 0;display: flex;justify-content: space-between; ">
+                <el-button type="success" @click="addCatalogueTeacher" size="small">确 定</el-button>
+                <el-button type="primary" @click="dialogFormVisible = false" size="small" style="margin-right: 10px">取 消</el-button>
+              </div>
+            </div>
+            <div   style="height: calc(100vh - 155px);overflow-y: scroll;">
+
+              <el-table :data="searchList" @selection-change="changeFun" v-if="searchList!=null">
+
+                <el-table-column
+                  type="selection"
+                  width="55">
+                </el-table-column>
+
+                <el-table-column
+                  label="头像"
+                  width="100" align="center">
+                  <template slot-scope="scope">
+                    <img @click="routerTo(scope.row.tId)"
+                         :src="getImgUrl(scope.row.tAvatar)" :onerror="defaultImage"
+                         style="width:60px;height:60px;cursor:pointer;">
+
+                  </template>
+                </el-table-column>
+                <el-table-column align="center" label="姓名" width="130">
+                  <template slot-scope="scope">
+            <span class="teacher-homepage" @click="routerTo(scope.row.tId)"
+                  style="cursor:pointer;">{{scope.row.tName}}</span>
+                    <span></span>
+                  </template>
+                </el-table-column>
+<!--                <el-table-column align="center" label="职称" width="180">-->
+<!--                  <template slot-scope="scope">-->
+<!--                    <span class="teacher-homepage" style="cursor:pointer;">{{scope.row.tPost}}</span>-->
+<!--                    <span></span>-->
+<!--                  </template>-->
+<!--                </el-table-column>-->
+                <!--<el-table-column align="center" label="状态">
+                  <template slot-scope="scope">
+                    <span v-if="checkTeacherList(scope.row.tId)== true"
+                          size="mini" type="success" style="color: green">可添加
+                    </span>
+                    <span v-else
+                          size="mini">已添加
+                    </span>
+                  </template>
+                </el-table-column>-->
+              </el-table>
+            </div>
+          </el-card>
+        </el-col>
       </el-row>
     </div>
 
 
-    <el-dialog title="请勾选添加教师" :visible.sync="dialogFormVisible" style="margin-bottom: 18px;">
-      <div style="margin-bottom: 14px;display: flex;justify-content: space-between;">
-        <el-button type="success" @click="addCatalogueTeacher">确 定</el-button>
-        <el-button type="primary" @click="dialogFormVisible = false">取 消</el-button>
-      </div>
-      <el-table :data="searchList" @selection-change="changeFun">
+<!--    <el-dialog title="请勾选添加教师" :visible.sync="dialogFormVisible" style="margin-bottom: 18px;">-->
+<!--      <div style="margin-bottom: 14px;display: flex;justify-content: space-between;">-->
+<!--        <el-button type="success" @click="addCatalogueTeacher">确 定</el-button>-->
+<!--        <el-button type="primary" @click="dialogFormVisible = false">取 消</el-button>-->
+<!--      </div>-->
+<!--      <el-table :data="searchList" @selection-change="changeFun">-->
 
-        <el-table-column
-          type="selection"
-          width="55">
-        </el-table-column>
+<!--        <el-table-column-->
+<!--          type="selection"-->
+<!--          width="55">-->
+<!--        </el-table-column>-->
 
-        <el-table-column
-          label="头像"
-          width="100" align="center">
-          <template slot-scope="scope">
-            <img @click="routerTo(scope.row.tId)"
-                 :src="getImgUrl(scope.row.tAvatar)" :onerror="defaultImage"
-                 style="width:60px;height:60px;cursor:pointer;">
+<!--        <el-table-column-->
+<!--          label="头像"-->
+<!--          width="100" align="center">-->
+<!--          <template slot-scope="scope">-->
+<!--            <img @click="routerTo(scope.row.tId)"-->
+<!--                 :src="getImgUrl(scope.row.tAvatar)" :onerror="defaultImage"-->
+<!--                 style="width:60px;height:60px;cursor:pointer;">-->
 
-          </template>
-        </el-table-column>
-        <el-table-column align="center" label="姓名" width="130">
-          <template slot-scope="scope">
-            <span class="teacher-homepage" @click="routerTo(scope.row.tId)"
-                  style="cursor:pointer;">{{scope.row.tName}}</span>
-            <span></span>
-          </template>
-        </el-table-column>
-        <el-table-column align="center" label="职称" width="180">
-          <template slot-scope="scope">
-            <span class="teacher-homepage" style="cursor:pointer;">{{scope.row.tPost}}</span>
-            <span></span>
-          </template>
-        </el-table-column>
-        <!--<el-table-column align="center" label="状态">
-          <template slot-scope="scope">
-            <span v-if="checkTeacherList(scope.row.tId)== true"
-                  size="mini" type="success" style="color: green">可添加
-            </span>
-            <span v-else
-                  size="mini">已添加
-            </span>
-          </template>
-        </el-table-column>-->
-      </el-table>
-    </el-dialog>
+<!--          </template>-->
+<!--        </el-table-column>-->
+<!--        <el-table-column align="center" label="姓名" width="130">-->
+<!--          <template slot-scope="scope">-->
+<!--            <span class="teacher-homepage" @click="routerTo(scope.row.tId)"-->
+<!--                  style="cursor:pointer;">{{scope.row.tName}}</span>-->
+<!--            <span></span>-->
+<!--          </template>-->
+<!--        </el-table-column>-->
+<!--        <el-table-column align="center" label="职称" width="180">-->
+<!--          <template slot-scope="scope">-->
+<!--            <span class="teacher-homepage" style="cursor:pointer;">{{scope.row.tPost}}</span>-->
+<!--            <span></span>-->
+<!--          </template>-->
+<!--        </el-table-column>-->
+<!--        &lt;!&ndash;<el-table-column align="center" label="状态">-->
+<!--          <template slot-scope="scope">-->
+<!--            <span v-if="checkTeacherList(scope.row.tId)== true"-->
+<!--                  size="mini" type="success" style="color: green">可添加-->
+<!--            </span>-->
+<!--            <span v-else-->
+<!--                  size="mini">已添加-->
+<!--            </span>-->
+<!--          </template>-->
+<!--        </el-table-column>&ndash;&gt;-->
+<!--      </el-table>-->
+<!--    </el-dialog>-->
 
   </div>
 </template>
