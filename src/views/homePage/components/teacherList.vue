@@ -63,9 +63,9 @@
   <!--两种模式：模式2 简易显示 -->
   <div v-else-if="detail===2" class="teacherList-container2">
     <div style="float: left;position: relative;width: 100%;padding: 14px 5px;height: 100%;">
-      <ul class="ul-page2" style="display: flex;justify-content: space-between;flex-wrap: wrap">
+      <ul class="ul-page2" style="">
         <li v-for="teacher in teacherList" :key="teacher.tId" class="teacherLi2"
-            @click="routerTo(teacher.tId)" style="cursor: pointer">
+            @click="routerTo(teacher.tId)" style="cursor: pointer;width: 238px;float:left;">
           <img style="cursor: pointer" :src="getImgUrl(teacher.tAvatar)" :onerror="imgErrorFun(this)" class="list-img">
           <div style="width: 120px;text-align: center;padding-top: 40px">
             <div style="font-size: 16px;font-weight: bold;padding: 0px 0px 10px 0px;">
@@ -100,7 +100,6 @@
     margin: 15px 0;
     width: 154.8px;height:25px;display: flex;justify-content: center">
             <span style="font-size: 16px;color: #0099CC;letter-spacing: 3px;text-overflow: ellipsis;
-    width: 100%;
     overflow: hidden;
     white-space: nowrap;" class="teacherLi3">
               {{teacher.tName}}
