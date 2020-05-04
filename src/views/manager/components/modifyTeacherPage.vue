@@ -553,25 +553,33 @@
 
             };
             var validatedomainName = (rule, value, callback) => {
-                console.log(".......进入到验证信息部分, 输入部分为:" + rule.field + " 输入值为: " + value)
-                this.axios.post('/api/manager/judgeDomainExist', {
+
+                  console.log(".......--进入到验证信息部分, 输入部分为:" + rule.field + " 输入值为: " + value+this.$route.path.indexOf("addTeacher"))
+                  this.axios.post('/api/manager/judgeDomainExist', {
                     domain_name: value
-                }).then(res => {
+                  }).then(res => {
                     console.log(res);
                     this.domainCount = res.data[0].count;
                     console.log("this.domainCount=" + this.domainCount);
 
                     console.log(res.data[0].id + "====" + this.GetUrlRelativePath_id() + "this.domainCount=" + this.domainCount);
                     if ((res.data[0].flag === 1 && res.data[0].id === parseInt(this.GetUrlRelativePath_id())) || res.data[0].flag === 0) {
-                        callback()
+                      callback()
                     } else {
-                        this.ruleForm.domain_name = value + this.domainCount;
+                      if (this.$route.path.indexOf("addTeacher")===-1) {
+                        var a=parseInt(this.domainCount)-1
+                        this.ruleForm.domain_name = value + a;
                         console.log("this.ruleForm.domain_name=" + this.ruleForm.domain_name);
                         //  return callback(new Error("该域名已存在"))
+                      }else{
+                        this.ruleForm.domain_name = value + this.domainCount;
+                        console.log("this.ruleForm.domain_name=" + this.ruleForm.domain_name);
+                      }
                     }
-                }).catch(err => {
+                  }).catch(err => {
                     callback(new Error("网络请求有误"))
-                })
+                  })
+
 
             }
             var checkPhone = (rule, value, callback) => {
@@ -1314,10 +1322,12 @@
                     method: "post",
                     data: this.ruleForm
                 }).then((res) => {
-                    this.$message.success("添加教师信息成功");
+                  console.log("res="+JSON.stringify(res));
+                  this.$message.success("添加教师信息成功");
                     this.ruleForm.id = res.teacher_id;
                     this.secondPage = true;
                 }).catch(e => {
+                  console.log("e="+JSON.stringify(e));
                 }).then(res=>{
                     this.createEditor();
                 })
