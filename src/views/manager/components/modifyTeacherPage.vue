@@ -143,7 +143,10 @@
             <el-form-item label="研究方向" prop="research_direction">
               <el-input v-model="ruleForm.research_direction" placeholder="例如：数据挖掘、知识图谱、图像识别等"></el-input>
             </el-form-item>
-            <el-form-item label="办公电话" prop="phone" style="margin-top: 85px">
+            <el-form-item label="办公地点">
+              <el-input v-model="ruleForm.work_place" placeholder=""></el-input>
+            </el-form-item>
+            <el-form-item label="办公电话" prop="phone">
               <el-input v-model="ruleForm.phone" placeholder="建议输入办公固定电话，可以用'-'分隔"></el-input>
             </el-form-item>
             <!--          <el-form-item v-if="!flagAssignment"label="教师分配" prop="label">-->
@@ -156,10 +159,10 @@
               <el-input v-model="ruleForm.graduateFrom"
                         placeholder=""></el-input>
             </el-form-item>
-            <el-form-item label="办公地点" style="margin-top: 150px">
+            <!--<el-form-item label="办公地点" style="margin-top: 150px">
               <el-input v-model="ruleForm.work_place" placeholder=""></el-input>
-            </el-form-item>
-            <el-form-item style="display: flex;justify-content: flex-end;">
+            </el-form-item>-->
+            <el-form-item style="display: flex;justify-content: flex-end;margin-top:200px">
               <el-button @click="createTeacher_one" type="success" v-if="$route.path.indexOf('addTeacher')!=-1">保存</el-button>
               <el-button @click="saveTeacher" type="success" v-if="$route.path.indexOf('modifyTeacher')!=-1">保存</el-button>
 
