@@ -37,7 +37,7 @@
             <div class="name">
               {{teacherProfile.username}}
               <span class="prodile-second" style="margin-left: 14px;" v-if="teacherProfile.post&&tagFlag[3]==='d'">{{teacherProfile.post}}</span>
-              <span class="prodile-second" style="margin-left: 14px;" v-if="teacherProfile.duty&&tagFlag[2]==='c'">
+              <span class="prodile-second" style="" v-if="teacherProfile.duty&&tagFlag[2]==='c'">
                 <span v-if="teacherProfile.post&&teacherProfile.duty">、</span>
                 {{teacherProfile.duty}}
               </span>
@@ -49,31 +49,31 @@
             <div v-else style="margin-bottom: 10px;margin-top: 31px">
             </div>
             <div class="name-right-bg" style="float: right;height:210px;margin-top: -90px"></div>
-            <div class="name-bottom">
+            <div class="name-bottom" style="color: black">
 
 
 
               <div class="name-bottom-item" style="margin-bottom: 10px;"
                    v-if="tagFlag[10]==='k'">
                 <!--<span><svg-icon icon-class="department"/></span>-->
-                <label class="font-one">所在部门：</label><div class="detail-msg">{{teacherProfile.department_name}}</div>
+                <label class="font-one">部门：</label><div class="detail-msg">{{teacherProfile.department_name}}</div>
               </div>
               <div class="name-bottom-item" style="margin-bottom: 10px;" v-if="tagFlag[11]==='l'">
                 <!--<span><svg-icon icon-class="maps-and-flags"/></span>-->
-                <label class="font-one">办公地点：</label>
+                <label class="font-one">地点：</label>
                 <div class="detail-msg">{{teacherProfile.work_place}}</div>
               </div>
               <div class="name-bottom-item" style="margin-bottom: 10px;" v-if="tagFlag[12]==='m'">
                 <!--<span><svg-icon icon-class="mobile-phone"/></span>-->
-                <label class="font-one">办公电话：</label><div class="detail-msg">{{teacherProfile.phone}}</div>
+                <label class="font-one">电话：</label><div class="detail-msg">{{teacherProfile.phone}}</div>
               </div>
               <div class="name-bottom-item" style="margin-bottom: 10px;">
                 <!--<span><svg-icon icon-class="email"/></span>-->
-                <label class="font-one">办公邮箱：</label><div class="detail-msg">{{teacherProfile.email}}</div>
+                <label class="font-one">邮箱：</label><div class="detail-msg">{{teacherProfile.email}}</div>
               </div>
               <div class="name-bottom-item" style="margin-bottom: 10px;" v-if="">
                 <!--<span><svg-icon icon-class="S"/></span>-->
-                <label class="font-one">学者主页：</label><div class="detail-msg">
+                <label class="font-one">主页：</label><div class="detail-msg">
                 <a :href="'http://www.scholat.com/'+teacherProfile.scholat_username"
                    style="color: #399;display:block;overflow:hidden;word-break:keep-all;white-space:nowrap;text-overflow:ellipsis;width:210px;">
                   http://www.scholat.com/{{teacherProfile.scholat_username}}
@@ -110,9 +110,10 @@
                 <!--<span><svg-icon icon-class="department"/></span>-->
                 <label class="font-one">学科专业：</label><div class="detail-msg">{{teacherProfile.subject}}</div>
               </div>
-              <div class="name-bottom-item" style="margin-bottom: 10px;" v-if="">
+              <div class="name-bottom-item" style="margin-bottom: 10px;flex-direction: column" v-if="">
                 <!--<span><svg-icon icon-class="rearch-direction"/></span>-->
-                <label class="font-one">研究方向：</label><div class="detail-msg">{{teacherProfile.research_direction}}</div>
+                <label class="font-one">研究方向：</label>
+                <div class="detail-msg" style="margin-left: 7px;margin-top: 10px">{{teacherProfile.research_direction}}</div>
               </div>
             </div>
           </div>
@@ -334,6 +335,7 @@ padding: 12px 20px 6px 27px">个人简介</div>
         display: inline-block;
         vertical-align: top;
         max-width: 300px;
+        margin-left: 25px;
       }
       .name-bottom-right{
         /*padding: 15px 0px 0px;*/
@@ -343,6 +345,7 @@ padding: 12px 20px 6px 27px">个人简介</div>
         vertical-align: top;
         border-left:2px solid #4682b4;
         max-width: 290px;
+        padding-left: 25px;
       }
 
       .name-bottom-item {
@@ -353,9 +356,12 @@ padding: 12px 20px 6px 27px">个人简介</div>
       .font-one {
         line-height: 25px;
         font-weight: bold;
-        margin-left: 7px;
+
         color: #4682b4;
-        min-width: 80px;
+        /*min-width: 50px;*/
+        width: auto;
+        white-space:nowrap;
+
       }
 
       .detail-msg{
