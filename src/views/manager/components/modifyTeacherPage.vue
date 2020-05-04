@@ -215,7 +215,7 @@
             <div style="display: flex;align-items: center">
               <span style="font-family: 微软雅黑;font-weight: bold;font-size: 24px;float: left;margin-right: 20px">关联学者网</span>
 
-              已绑定学者网账号:
+              已绑定账号:
               <span @click="scholatInfoSearch" style="cursor: pointer;color: red">{{ruleForm.scholat_username}}</span>
             </div>
             <div class="teacher-homepage" style="display: flex;align-items: center">{{scholatProfile.username}}</div>
@@ -236,9 +236,9 @@
               <el-button type="success" @click="showDifferent(scholatProfile)" size="small"
                          style="margin-left:10px;width: 90px;height:30px;">信息对比
               </el-button>
-            <el-button @click="viewScholat(scholatProfile)" type="warning" size="small"
+            <!--<el-button @click="viewScholat(scholatProfile)" type="warning" size="small"
                        style="margin-left:10px;width: 60px;height:30px;">查看
-            </el-button>
+            </el-button>-->
             <el-button type="danger" @click="unlockScholat()" size="small"
                        style="margin-left:10px;width: 80px;height:30px;">解除绑定
             </el-button>
