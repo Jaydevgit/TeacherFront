@@ -1055,7 +1055,7 @@
       },
       // 上传头像
       uploadAvatar() {
-        this.$refs.cropAvatarImage.dialogVisible = true
+        this.$refs.cropAvatarImage.dialogVisible = true;
       },
       // 设置学者网用户信息
       setScholat(scholat) {
@@ -1290,13 +1290,13 @@
       },
       getImgUrl(imgName,avatar) {
         console.log("imgName="+imgName)
-        if (avatar==null){
+        /*if (avatar==null){
           return "http://www.scholat.com/" + imgName
         }
         else{
           return "http://47.106.132.95:2333/images/avatar/" + avatar;
-        }
-
+        }*/
+        return "http://www.scholat.com/" + imgName;
       },
       viewScholat(scholat) {
         var url = "http://www.scholat.com/" + scholat.scholat_username;
