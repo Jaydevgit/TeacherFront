@@ -896,7 +896,22 @@
             },
             // 上传头像
             uploadAvatar() {
-                this.$refs.cropAvatarImage.dialogVisible = true
+              console.log("this.ruleForm.avatar="+this.ruleForm.avatar);
+              var name=this.ruleForm.avatar
+              //上传头像前先删除原有头像
+              if(name!==null||name!==''){
+                this.api({
+                  url: "/attach/delete/" + name,
+                  method: "get"
+                }).then(res => {
+                  console.log("删除头像成功")
+                }).catch(error => {
+                  console.log("哎呀.....删除头像失败")
+                })
+                this.ruleForm.avatar=''
+              }
+
+              this.$refs.cropAvatarImage.dialogVisible = true
 
             },
             // 设置学者网用户信息
