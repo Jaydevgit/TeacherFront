@@ -26,47 +26,67 @@
           <span v-text="getIndex(scope.$index)"> </span>
         </template>
       </el-table-column>
-
-      <!--<el-table-column align="center" label="头像" width="150">
-        <template slot-scope="scope">
-            <img class="preview"  :src="getImgUrl(scope.row.avatar)"
-                 style="width:60px;height:60px;cursor:pointer;"/>
+      <el-table-column align="center" label="图标" width="140" >
+        <template slot-scope="scope" >
+          <img :src="getPic(scope.row.logo_url)" :onerror="defaultLogo" height="86"
+          />
         </template>
-      </el-table-column>-->
+      </el-table-column>
 
-      <el-table-column align="left" label="单位" width="200">
+      <el-table-column align="left" label="单位" width="450">
         <template slot-scope="scope">
-          <div>
-            <span class="label-describe">Logo</span><span>{{scope.row.pic_url}}</span>
-          </div>
+
+          <!--          <div>-->
+          <!--            <span class="label-describe">school</span><span>{{scope.row.school_eng}}</span>-->
+          <!--          </div>-->
+          <!--          <div>-->
+          <!--            <span class="label-describe">unit</span><span>{{scope.row.unit_eng}}</span>-->
+          <!--          </div>-->
           <div>
             <span class="label-describe">学校</span><span>{{scope.row.school_name}}</span>
+            <div style="display: inline-block;margin-left: 10px"><span >{{scope.row.school_eng}}</span></div>
           </div>
           <div>
             <span class="label-describe">学院</span><span>{{scope.row.unit_name}}</span>
+            <div style="display: inline-block;margin-left: 10px"><span >{{scope.row.unit_eng}}</span></div>
+          </div>
+          <!--          <div>-->
+          <!--          <span class="label-describe">域名</span><span>{{scope.row.domain_name}}</span>-->
+          <!--        </div>-->
+          <div>
+            <span class="label-describe">官网</span><span><a style="color: deepskyblue;" :href="scope.row.college_url">{{scope.row.college_url}}</a></span>
           </div>
           <div>
-            <span class="label-describe">官网</span>
-            <a style="color: deepskyblue;" :href="scope.row.college_url">{{scope.row.college_url}}</a>
-          </div>
-        </template>
-      </el-table-column>
-      <el-table-column align="left" label="学院部门" width="200">
-        <template slot-scope="scope">
-          <div>
-            <span>{{scope.row.department_list}}</span>
-          </div>
-        </template>
-      </el-table-column>
-      <el-table-column align="left" label="学院学科" width="200">
-        <template slot-scope="scope">
-          <div>
-            <span>{{scope.row.subject_list}}</span>
+            <span class="label-describe">师资主页</span><span><a style="color: deepskyblue;" :href="'http://faculty.scholat.com/homepage/'+scope.row.domain_name">http://faculty.scholat.com/homepage/{{scope.row.domain_name}}</a></span>
           </div>
         </template>
       </el-table-column>
 
-      <el-table-column align="left" label="高级管理员信息" width="200">
+      <!--      <el-table-column align="left" label="官网" width="200">-->
+      <!--        <template slot-scope="scope">-->
+      <!--          <div>-->
+      <!--            <a style="color: deepskyblue;" :href="scope.row.college_url">{{scope.row.college_url}}</a>-->
+      <!--          </div>-->
+      <!--        </template>-->
+      <!--      </el-table-column>-->
+
+      <!--      <el-table-column align="left" label="高级管理员信息" width="220">-->
+      <!--        <template slot-scope="scope">-->
+      <!--          <div>-->
+      <!--            <span class="label-describe">用户名</span><span>{{scope.row.username}}</span>-->
+      <!--          </div>-->
+      <!--          <div>-->
+      <!--            <span class="label-describe">昵称</span><span>{{scope.row.nickname}}</span>-->
+      <!--          </div>-->
+      <!--          <div>-->
+      <!--            <span class="label-describe">角色</span><span>{{scope.row.roleName}}</span>-->
+      <!--          </div>-->
+      <!--          <div>-->
+      <!--            <span class="label-describe">状态</span><span>{{scope.row.state}}</span>-->
+      <!--          </div>-->
+      <!--        </template>-->
+      <!--      </el-table-column>-->
+      <el-table-column align="left" label="账号信息" width="230">
         <template slot-scope="scope">
           <div>
             <span class="label-describe">用户名</span><span>{{scope.row.username}}</span>
@@ -78,8 +98,10 @@
             <span class="label-describe">角色</span><span>{{scope.row.roleName}}</span>
           </div>
           <div>
-            <span class="label-describe">状态</span><span>{{scope.row.state}}</span>
+            <!--            <span class="label-describe">高级管理员</span><span>{{scope.row.username}}</span>-->
+            <el-button  type="primary" size="mini" @click="subUser(scope.row.unitId)" plain>查看子账号</el-button>
           </div>
+
         </template>
       </el-table-column>
 
@@ -104,6 +126,20 @@
       :page-sizes="[10, 20, 50, 100]"
       layout="total, sizes, prev, pager, next, jumper">
     </el-pagination>
+    <div >
+
+      <el-dialog title="该学院账号信息为" :visible.sync="dialogTableVisible">
+        <el-table :data="allSubUnitName">
+          <el-table-column property="userName" label="账号" width="160">
+            <template slot-scope="scope">
+              <div><span>{{scope.row.userName}}</span></div>
+            </template>
+          </el-table-column>
+          <el-table-column property="nickName" label="昵称" width="220"></el-table-column>
+          <el-table-column property="email" label="邮箱"></el-table-column>
+        </el-table>
+      </el-dialog>
+  </div>
 
   </div>
 </template>
@@ -115,6 +151,7 @@
     name: "all",
     data() {
       return {
+        defaultLogo: 'this.src="http://www.scholat.com/images/uni_logo/nologo.png"',
         search: '',
         totalCount: 0, //分页组件--数据总条数
         list: [],//表格的数据
@@ -135,7 +172,12 @@
           phone: "",
           state: "",
           update_time: ''
-        }
+        },
+        allUnitId:{
+          id:'',
+        },
+        allSubUnitName:[],
+        dialogTableVisible:false
       }
     },
     created() {
@@ -143,6 +185,11 @@
       this.getList();
     },
     methods: {
+      subUser(id){
+        this.dialogTableVisible = true;
+        this.getListSubUser(id);
+      },
+
       getImgUrl(msg, imageName) {
         if (msg == 'front') {
           return "http://47.106.132.95:2333/images/certificate_front/" + imageName;
@@ -153,6 +200,40 @@
         }else {
           return "http://ww2.sinaimg.cn/large/006tNc79gy1g4i53qvv3kj30kn0eaacq.jpg"
         }
+      },
+      //获取学院LOGO
+      getPic(logoUrl,schoolName){
+        let s=JSON.stringify(logoUrl)
+        if(s!=null){
+          s=s.substring(1,2)
+        }
+        // console.log("logo..." +  JSON.stringify(logoUrl) + "schoolName" +schoolName+s)
+        if (s==='h' ){
+          console.log("true");
+          return logoUrl;
+        }else{
+          console.log("false");
+          return 'http://47.106.132.95:2333/images/certificate_logo/' + logoUrl
+        }
+        // return 'http://47.106.132.95:2333/images/unit_logo/' + logoUrl
+        // return "http://www.scholat.com/images/uni_logo/" + schoolName + ".png";
+      },
+      /* ---------------------------------------
+      * 获取该学院所有账号信息
+      * =======================
+      * */
+      getListSubUser(id){
+        this.allUnitId.id=id;
+        console.log("++++++++allUnitId"+this.allUnitId);
+        this.api({
+          url: "/unit/getUnitInfoByUnitId",
+          method: "get",
+          params: this.allUnitId
+        }).then(res => {
+          console.log("++++++++getUnitInfoByUnitId"+JSON.stringify(res.listSubName));
+          this.allSubUnitName=res.listSubName;
+        }).catch(error => {
+          console.log("查询账号信息列表失败")})
       },
       /* ---------------------------------------
       * 获取教师信息
