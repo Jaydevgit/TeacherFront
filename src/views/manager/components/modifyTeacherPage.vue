@@ -776,6 +776,17 @@
             chooseScholatAvatar(){
                 this.$refs.cropAvatarImage.attach.laterUrl = 'http://www.scholat.com/'+this.scholatProfile.avatar;
                 this.ruleForm.avatar = this.scholatProfile.avatar;
+              this.api({
+                url: "/manager/updateTeacher",
+                method: "post",
+                data: this.ruleForm
+              }).then((res) => {
+                this.$message.success("保存头像成功");
+                console.log("------------------------");
+                console.log(this.ruleForm);
+              }).catch(e => {
+
+              })
             },
             //学者关联信息查询
             scholatInfoSearch() {
@@ -886,6 +897,7 @@
             // 上传头像
             uploadAvatar() {
                 this.$refs.cropAvatarImage.dialogVisible = true
+
             },
             // 设置学者网用户信息
             setScholat(scholat) {
@@ -1201,8 +1213,19 @@
 
             },
             cropAvatarImageName(imageName) {
-                this.$message.success("上传" + imageName + "头像成功")
+              //  this.$message.success("上传" + imageName + "头像成功")
                 this.ruleForm.avatar = imageName
+              this.api({
+                url: "/manager/updateTeacher",
+                method: "post",
+                data: this.ruleForm
+              }).then((res) => {
+                this.$message.success("上传头像成功");
+                console.log("------------------------");
+                console.log(this.ruleForm);
+              }).catch(e => {
+
+              })
             },
             // 获取教师id
             GetUrlRelativePath_id() {

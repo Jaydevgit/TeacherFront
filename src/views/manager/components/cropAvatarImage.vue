@@ -159,13 +159,14 @@
             {contentType: false, processData: false, headers: {'Content-Type': 'multipart/form-data'}}
           ).then(res => {
             console.log("上传头像成功")
-            this.$message({
-              message: '头像上传成功',
-              type: 'success'
-            });
+            // this.$message({
+            //   message: '头像上传成功',
+            //   type: 'success'
+            // });
             console.log(".........头像文件名为: " + res.data)
             // 给父组件传递返回的图片文件名
             this.$emit('crop-avatar',res.data)
+
             this.dialogVisible = false
           }).catch(error => {
             console.log("哎呀.....上传头像失败")

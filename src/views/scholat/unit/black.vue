@@ -113,7 +113,7 @@
 
       <el-table-column fixed="right" align="center" label="管理" v-if="hasScholatPerm('unit:update')">
         <template slot-scope="scope">
-          <el-button type="success" size="small" @click="showDetail(scope.row.id)">从黑名单移除</el-button>
+          <el-button type="danger" size="small" @click="showDetail(scope.row.id)">从黑名单移除</el-button>
         </template>
       </el-table-column>
     </el-table>
