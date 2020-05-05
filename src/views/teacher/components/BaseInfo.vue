@@ -4,8 +4,8 @@
       <div v-if="teacherProfile!=undefined " style="position:relative;">
 
         <el-card class="box-card" >
-          <div style="position:absolute;left:500px;top:30px;z-index:2;">
-            <img :src="bgLogo" width="250" height="250" style="opacity: 0.3; "/>
+          <div style="position:absolute;left:530px;top:30px;z-index:2;">
+            <img :src="bgLogo" width="250" height="250" style="opacity: 0.2; "/>
           </div>
           <div style="display: inline-block;margin-left: 20px;vertical-align: top;margin-top: 20px">
             <img :src="getImgUrl(teacherProfile.avatar)" :onerror="imgErrorFun(this)" width="140" height="140"/>
@@ -64,13 +64,13 @@
               </div>
               <div class="name-bottom-item" style="margin-bottom: 10px;" v-if="tagFlag[11]==='l'">
                 <!--<span><svg-icon icon-class="maps-and-flags"/></span>-->
-                <label class="font-one">地点：</label>
+                <label class="font-one">地址：</label>
                 <div class="detail-msg">{{teacherProfile.work_place}}</div>
               </div>
-              <div class="name-bottom-item" style="margin-bottom: 10px;" v-if="tagFlag[12]==='m'">
-                <!--<span><svg-icon icon-class="mobile-phone"/></span>-->
+              <!--<div class="name-bottom-item" style="margin-bottom: 10px;" v-if="tagFlag[12]==='m'">
+                &lt;!&ndash;<span><svg-icon icon-class="mobile-phone"/></span>&ndash;&gt;
                 <label class="font-one">电话：</label><div class="detail-msg">{{teacherProfile.phone}}</div>
-              </div>
+              </div>-->
               <div class="name-bottom-item" style="margin-bottom: 10px;">
                 <!--<span><svg-icon icon-class="email"/></span>-->
                 <label class="font-one">邮箱：</label><div class="detail-msg">{{teacherProfile.email}}</div>
@@ -80,7 +80,7 @@
                 <label class="font-one">主页：</label><div class="detail-msg">
                 <a :href="'http://www.scholat.com/'+teacherProfile.scholat_username"
                    style="color: #399;display:block;overflow:hidden;word-break:keep-all;white-space:nowrap;text-overflow:ellipsis;width:210px;">
-                  http://www.scholat.com/{{teacherProfile.scholat_username}}
+                  scholat.com/{{teacherProfile.scholat_username}}
                 </a></div>
               </div>
 
@@ -117,7 +117,7 @@
               <div class="name-bottom-item" style="margin-bottom: 10px;flex-direction: column" v-if="">
                 <!--<span><svg-icon icon-class="rearch-direction"/></span>-->
                 <label class="font-one">研究方向：</label>
-                <div class="detail-msg" style="margin-top: 10px">{{teacherProfile.research_direction}}</div>
+                <div class="detail-msg" style="margin-top: 10px;line-height: 200%;width: 270px">{{teacherProfile.research_direction}}</div>
               </div>
             </div>
           </div>
@@ -140,7 +140,7 @@ padding: 12px 20px 6px 27px">个人简介</div>
 
 <script>
     import logo from '@/assets/defaultLogo.png'
-    import bgLogo from '@/assets/logo1.png'
+    import bgLogo from '@/assets/logobluegray.png'
 
     export default {
         name: "BaseInfo",
