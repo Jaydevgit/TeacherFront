@@ -1,7 +1,7 @@
 <template>
   <div class="app-container" style="padding: 0;min-height: calc(100vh - 60px);height: 100%">
     <div class="container" style="padding-top: 26px">
-      <base-info :teacherProfile="teacherProfile" class="left" style="width: 78%"></base-info>
+      <base-info :teacherProfile="teacherProfile" class="left" style="width: 100%"></base-info>
       <rightNav class="right"></rightNav>
     </div>
   </div>
@@ -90,11 +90,10 @@
 
 <style rel="stylesheet/scss" lang="scss" scoped>
   .container {
-    max-width: 960px;
+    max-width: 1000px;
     margin: 0 auto;
-    position: relative;
-    min-width: 960px;
     height: 100%;
+    width: 100%;
     display: flex;
 
     .left {
@@ -112,7 +111,7 @@
     .right {
       max-height: 600px;
       border-radius: 8px;
-      margin-left: 14px;
+      width: 25%
     }
   }
 
