@@ -193,7 +193,7 @@
               </div></el-col>
             </el-row>
             <el-row>
-              <el-col :span="8"><div class="grid-content bg-purple">
+              <el-col :span="16"><div class="grid-content bg-purple">
                 <el-form-item label="性别" prop="sex" class="redItem">
                   <el-radio-group v-model="ruleForm.sex">
                     <el-radio label="0">男</el-radio>
@@ -327,8 +327,8 @@
                   <!--              </el-radio-group>-->
                 </el-form-item>
               </div></el-col>
-              <el-col :span="8"><div class="grid-content bg-purple"></div></el-col>
-              <el-col :span="8"><div class="grid-content bg-purple">
+
+              <el-col :span="16"><div class="grid-content bg-purple">
                 <el-form-item style="display: flex;justify-content: flex-end;">
                   <el-button @click="createTeacher_one" type="success" v-if="$route.path.indexOf('addTeacher')!=-1">保存</el-button>
                   <el-button @click="saveTeacher" type="success" v-if="$route.path.indexOf('modifyTeacher')!=-1">保存</el-button>
@@ -1739,6 +1739,7 @@
         /*height: 162px;*/
 
       }
+
 
       .name-top {
         height: 90px;
