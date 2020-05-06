@@ -56,7 +56,7 @@
             return {
                 componentName: 'teacherList',
                 teacherProfile: {},//教师数据
-                cId: '',
+                cId: '0',
                 Letters: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'],
                 showLetter: false,
                 letter: 'A',
