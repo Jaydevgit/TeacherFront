@@ -22,11 +22,11 @@
         <div style="font-family: 微软雅黑;font-weight: bold;margin-bottom: 20px;font-size: 24px">编辑基本信息</div>
         <el-row type="flex"  justify="center" :gutter="20">
 
-          <el-col :span="7">
-            <!--          <div class="grid-content bg-purple-light">-->
+          <!--<el-col :span="7">
+            &lt;!&ndash;          <div class="grid-content bg-purple-light">&ndash;&gt;
             <el-form-item label="姓名" prop="username" class="redItem">
 
-              <!--显示更新提示-->
+              &lt;!&ndash;显示更新提示&ndash;&gt;
               <el-tooltip placement="top" v-if="showUpdateInfo.usernameScholat">
                 <div slot="content" style="font-size: 16px">
                   <span v-html="showUpdateInfo.username"></span>
@@ -44,31 +44,31 @@
                 <el-radio label="1">女</el-radio>
               </el-radio-group>
             </el-form-item>
-            <!--            <el-form-item class="font-one" label="邮箱" prop="email">-->
-            <!--              &lt;!&ndash;显示更新提示&ndash;&gt;-->
-            <!--              <el-tooltip placement="top" v-if="showUpdateInfo.emailScholat">-->
-            <!--                <div slot="content" style="font-size: 16px">-->
-            <!--                  <span v-html="showUpdateInfo.email"></span>-->
-            <!--                  &nbsp;➡️&nbsp;-->
-            <!--                  <span v-html="showUpdateInfo.emailScholat"></span>-->
-            <!--                </div>-->
-            <!--                <el-input v-model="ruleForm.email" class="change-input-background"></el-input>-->
-            <!--              </el-tooltip>-->
-            <!--              <el-input v-model="ruleForm.email" v-if="!showUpdateInfo.emailScholat"-->
-            <!--                        placeholder="请输入邮箱地址"></el-input>-->
-            <!--            </el-form-item>-->
+            &lt;!&ndash;            <el-form-item class="font-one" label="邮箱" prop="email">&ndash;&gt;
+            &lt;!&ndash;              &lt;!&ndash;显示更新提示&ndash;&gt;&ndash;&gt;
+            &lt;!&ndash;              <el-tooltip placement="top" v-if="showUpdateInfo.emailScholat">&ndash;&gt;
+            &lt;!&ndash;                <div slot="content" style="font-size: 16px">&ndash;&gt;
+            &lt;!&ndash;                  <span v-html="showUpdateInfo.email"></span>&ndash;&gt;
+            &lt;!&ndash;                  &nbsp;➡️&nbsp;&ndash;&gt;
+            &lt;!&ndash;                  <span v-html="showUpdateInfo.emailScholat"></span>&ndash;&gt;
+            &lt;!&ndash;                </div>&ndash;&gt;
+            &lt;!&ndash;                <el-input v-model="ruleForm.email" class="change-input-background"></el-input>&ndash;&gt;
+            &lt;!&ndash;              </el-tooltip>&ndash;&gt;
+            &lt;!&ndash;              <el-input v-model="ruleForm.email" v-if="!showUpdateInfo.emailScholat"&ndash;&gt;
+            &lt;!&ndash;                        placeholder="请输入邮箱地址"></el-input>&ndash;&gt;
+            &lt;!&ndash;            </el-form-item>&ndash;&gt;
             <el-form-item label="职称" prop="duty">
-              <!--显示更新提示-->
-              <!--              <el-tooltip placement="top" v-if="showUpdateInfo.postScholat">-->
-              <!--                <div slot="content" style="font-size: 16px">-->
-              <!--                  <span v-html="showUpdateInfo.post"></span>-->
-              <!--                  &nbsp;➡️&nbsp;-->
-              <!--                  <span v-html="showUpdateInfo.postScholat"></span>-->
-              <!--                </div>-->
-              <!--                <el-input v-model="ruleForm.post" class="change-input-background"-->
-              <!--                          placeholder="例如：博士生导师、硕士生导师等"></el-input>-->
-              <!--              </el-tooltip>-->
-              <!--显示更新提示-->
+              &lt;!&ndash;显示更新提示&ndash;&gt;
+              &lt;!&ndash;              <el-tooltip placement="top" v-if="showUpdateInfo.postScholat">&ndash;&gt;
+              &lt;!&ndash;                <div slot="content" style="font-size: 16px">&ndash;&gt;
+              &lt;!&ndash;                  <span v-html="showUpdateInfo.post"></span>&ndash;&gt;
+              &lt;!&ndash;                  &nbsp;➡️&nbsp;&ndash;&gt;
+              &lt;!&ndash;                  <span v-html="showUpdateInfo.postScholat"></span>&ndash;&gt;
+              &lt;!&ndash;                </div>&ndash;&gt;
+              &lt;!&ndash;                <el-input v-model="ruleForm.post" class="change-input-background"&ndash;&gt;
+              &lt;!&ndash;                          placeholder="例如：博士生导师、硕士生导师等"></el-input>&ndash;&gt;
+              &lt;!&ndash;              </el-tooltip>&ndash;&gt;
+              &lt;!&ndash;显示更新提示&ndash;&gt;
               <el-tooltip placement="top" v-if="showUpdateInfo.postScholat">
                 <div slot="content" style="font-size: 16px">
                   <span v-html="showUpdateInfo.post"></span>
@@ -86,12 +86,12 @@
             </el-form-item>
 
             <el-form-item label="最后学历" prop="degree">
-              <!-- <el-select v-model="ruleForm.degree">
+              &lt;!&ndash; <el-select v-model="ruleForm.degree">
                  <el-option label="博士研究生" value="博士研究生"></el-option>
                  <el-option label="硕士研究生" value="硕士研究生"></el-option>
                  <el-option label="本科" value="本科"></el-option>
                  <el-option label="专科" value="专科"></el-option>
-               </el-select>-->
+               </el-select>&ndash;&gt;
               <el-input v-model="ruleForm.degree"
                         placeholder=""></el-input>
             </el-form-item>
@@ -115,17 +115,17 @@
                   :value="item.value">
                 </el-option>
               </el-select>
-              <!--              <el-radio-group v-model="ruleForm.state">-->
-              <!--                <el-radio label="1">在岗</el-radio>-->
-              <!--                <el-radio label="0">调出</el-radio>-->
-              <!--                <el-radio label="-1">退休</el-radio>-->
-              <!--              </el-radio-group>-->
+              &lt;!&ndash;              <el-radio-group v-model="ruleForm.state">&ndash;&gt;
+              &lt;!&ndash;                <el-radio label="1">在岗</el-radio>&ndash;&gt;
+              &lt;!&ndash;                <el-radio label="0">调出</el-radio>&ndash;&gt;
+              &lt;!&ndash;                <el-radio label="-1">退休</el-radio>&ndash;&gt;
+              &lt;!&ndash;              </el-radio-group>&ndash;&gt;
             </el-form-item>
             <div class="grid-content bg-purple">
 
 
             </div>
-            <!--          </div>-->
+            &lt;!&ndash;          </div>&ndash;&gt;
           </el-col>
           <el-col :span="6">
             <el-form-item label="域名" prop="domain_name">
@@ -149,24 +149,195 @@
             <el-form-item label="办公电话" prop="phone">
               <el-input v-model="ruleForm.phone" placeholder="建议输入办公固定电话，可以用'-'分隔"></el-input>
             </el-form-item>
-            <!--          <el-form-item v-if="!flagAssignment"label="教师分配" prop="label">-->
-            <!--&lt;!&ndash;            <el-tag v-if="flagAssignment" style="width: 100%;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">添加教师完成后方可进行教师分配</el-tag>&ndash;&gt;-->
-            <!--            <el-button  type="primary" size="small" @click="openAssignment">选择分配</el-button>-->
-            <!--          </el-form-item>-->
+            &lt;!&ndash;          <el-form-item v-if="!flagAssignment"label="教师分配" prop="label">&ndash;&gt;
+            &lt;!&ndash;&lt;!&ndash;            <el-tag v-if="flagAssignment" style="width: 100%;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">添加教师完成后方可进行教师分配</el-tag>&ndash;&gt;&ndash;&gt;
+            &lt;!&ndash;            <el-button  type="primary" size="small" @click="openAssignment">选择分配</el-button>&ndash;&gt;
+            &lt;!&ndash;          </el-form-item>&ndash;&gt;
           </el-col>
           <el-col :span="6">
             <el-form-item label="毕业学校" prop="graduateFrom" style="margin-top: 250px">
               <el-input v-model="ruleForm.graduateFrom"
                         placeholder=""></el-input>
             </el-form-item>
-            <!--<el-form-item label="办公地点" style="margin-top: 150px">
+            &lt;!&ndash;<el-form-item label="办公地点" style="margin-top: 150px">
               <el-input v-model="ruleForm.work_place" placeholder=""></el-input>
-            </el-form-item>-->
+            </el-form-item>&ndash;&gt;
             <el-form-item style="display: flex;justify-content: flex-end;margin-top:200px">
               <el-button @click="createTeacher_one" type="success" v-if="$route.path.indexOf('addTeacher')!=-1">保存</el-button>
               <el-button @click="saveTeacher" type="success" v-if="$route.path.indexOf('modifyTeacher')!=-1">保存</el-button>
 
             </el-form-item>
+          </el-col>-->
+          <el-col :span="19">
+            <el-row>
+              <el-col :span="8"><div class="grid-content bg-purple">
+                <el-form-item label="姓名" prop="username" class="redItem">
+
+                  <!--显示更新提示-->
+                  <el-tooltip placement="top" v-if="showUpdateInfo.usernameScholat">
+                    <div slot="content" style="font-size: 16px">
+                      <span v-html="showUpdateInfo.username"></span>
+                      &nbsp;➡️&nbsp;
+                      <span v-html="showUpdateInfo.usernameScholat"></span>
+                    </div>
+                    <el-input v-model="ruleForm.username" class="change-input-background"></el-input>
+                  </el-tooltip>
+                  <el-input v-model="ruleForm.username" v-if="!showUpdateInfo.usernameScholat"></el-input>
+
+                </el-form-item>
+              </div></el-col>
+              <el-col :span="8"><div class="grid-content bg-purple">
+                <el-form-item label="域名" prop="domain_name">
+                  <el-input v-model="ruleForm.domain_name" disabled></el-input>
+                </el-form-item>
+              </div></el-col>
+            </el-row>
+            <el-row>
+              <el-col :span="8"><div class="grid-content bg-purple">
+                <el-form-item label="性别" prop="sex" class="redItem">
+                  <el-radio-group v-model="ruleForm.sex">
+                    <el-radio label="0">男</el-radio>
+                    <el-radio label="1">女</el-radio>
+                  </el-radio-group>
+                </el-form-item>
+              </div></el-col>
+
+            </el-row>
+            <el-row>
+              <el-col :span="8"><div class="grid-content bg-purple">
+                <el-form-item label="职称" prop="duty">
+                  <!--显示更新提示-->
+                  <!--              <el-tooltip placement="top" v-if="showUpdateInfo.postScholat">-->
+                  <!--                <div slot="content" style="font-size: 16px">-->
+                  <!--                  <span v-html="showUpdateInfo.post"></span>-->
+                  <!--                  &nbsp;➡️&nbsp;-->
+                  <!--                  <span v-html="showUpdateInfo.postScholat"></span>-->
+                  <!--                </div>-->
+                  <!--                <el-input v-model="ruleForm.post" class="change-input-background"-->
+                  <!--                          placeholder="例如：博士生导师、硕士生导师等"></el-input>-->
+                  <!--              </el-tooltip>-->
+                  <!--显示更新提示-->
+                  <el-tooltip placement="top" v-if="showUpdateInfo.postScholat">
+                    <div slot="content" style="font-size: 16px">
+                      <span v-html="showUpdateInfo.post"></span>
+                      &nbsp;➡️&nbsp;
+                      <span v-html="showUpdateInfo.postScholat"></span>
+                    </div>
+                    <el-input v-model="ruleForm.post" class="change-input-background"
+                              placeholder="例如：教授、副教授、讲师"></el-input>
+                  </el-tooltip>
+                  <el-input v-model="ruleForm.post" v-if="!showUpdateInfo.postScholat"
+                            placeholder="例如：教授、副教授、讲师"></el-input>
+                </el-form-item>
+              </div></el-col>
+              <el-col :span="8"><div class="grid-content bg-purple">
+                <el-form-item label="职务" prop="post" >
+                  <el-input v-model="ruleForm.duty"
+                            placeholder="例如：院长、书记、老师、辅导员等"></el-input>
+                </el-form-item>
+              </div></el-col>
+            </el-row>
+            <el-row>
+              <el-col :span="8"><div class="grid-content bg-purple">
+                <el-form-item label="头衔" prop="label">
+                  <el-input v-model="ruleForm.label" placeholder="例如：国务院特殊津贴专家等头衔"></el-input>
+                </el-form-item>
+              </div></el-col>
+
+            </el-row>
+            <el-row>
+              <el-col :span="8"><div class="grid-content bg-purple">
+                <el-form-item label="最后学历" prop="degree">
+                  <!-- <el-select v-model="ruleForm.degree">
+                     <el-option label="博士研究生" value="博士研究生"></el-option>
+                     <el-option label="硕士研究生" value="硕士研究生"></el-option>
+                     <el-option label="本科" value="本科"></el-option>
+                     <el-option label="专科" value="专科"></el-option>
+                   </el-select>-->
+                  <el-input v-model="ruleForm.degree"
+                            placeholder=""></el-input>
+                </el-form-item>
+              </div></el-col>
+              <el-col :span="8"><div class="grid-content bg-purple">
+                <el-form-item label="最高学位" prop="degree_max">
+
+                  <el-input v-model="ruleForm.degree_max"
+                            placeholder="博士、硕士、学士"></el-input>
+                </el-form-item>
+              </div></el-col>
+              <el-col :span="8"><div class="grid-content bg-purple">
+                <el-form-item label="毕业学校" prop="graduateFrom">
+                  <el-input v-model="ruleForm.graduateFrom"
+                            placeholder=""></el-input>
+                </el-form-item>
+              </div></el-col>
+            </el-row>
+            <el-row>
+              <el-col :span="8"><div class="grid-content bg-purple">
+                <el-form-item label="学科专业" prop="subject">
+                  <el-input v-model="ruleForm.subject" placeholder="例如：软件工程"></el-input>
+                </el-form-item>
+              </div></el-col>
+              <el-col :span="16"><div class="grid-content bg-purple">
+                <el-form-item label="研究方向" prop="research_direction">
+                  <el-input v-model="ruleForm.research_direction" placeholder="例如：数据挖掘、知识图谱、图像识别等"></el-input>
+                </el-form-item>
+              </div></el-col>
+            </el-row>
+            <el-row>
+              <el-col :span="8"><div class="grid-content bg-purple">
+                <el-form-item label="所在部门" prop="department_name">
+                  <el-input v-model="ruleForm.department_name" placeholder="例如：网络工程系"></el-input>
+                </el-form-item>
+              </div></el-col>
+              <el-col :span="8"><div class="grid-content bg-purple">
+                <el-form-item label="办公地点">
+                  <el-input v-model="ruleForm.work_place" placeholder=""></el-input>
+                </el-form-item>
+              </div></el-col>
+            </el-row>
+            <el-row>
+              <el-col :span="8"><div class="grid-content bg-purple">
+                <el-form-item label="办公邮箱" prop="email" class="redItem">
+                  <el-input v-model="ruleForm.email" placeholder="建议输入办公邮箱地址"></el-input>
+                </el-form-item>
+              </div></el-col>
+              <el-col :span="8"><div class="grid-content bg-purple">
+                <el-form-item label="办公电话" prop="phone">
+                  <el-input v-model="ruleForm.phone" placeholder="建议输入办公固定电话，可以用'-'分隔"></el-input>
+                </el-form-item>
+              </div></el-col>
+              <el-col :span="8"><div class="grid-content bg-purple"></div></el-col>
+            </el-row>
+            <el-row>
+              <el-col :span="8"><div class="grid-content bg-purple">
+                <el-form-item label="状态" prop="state" required class="redItem">
+                  <el-select v-model="ruleForm.state" placeholder="请选择">
+                    <el-option
+                      v-for="item in options"
+                      :key="item.value"
+                      :label="item.label"
+                      :value="item.value">
+                    </el-option>
+                  </el-select>
+                  <!--              <el-radio-group v-model="ruleForm.state">-->
+                  <!--                <el-radio label="1">在岗</el-radio>-->
+                  <!--                <el-radio label="0">调出</el-radio>-->
+                  <!--                <el-radio label="-1">退休</el-radio>-->
+                  <!--              </el-radio-group>-->
+                </el-form-item>
+              </div></el-col>
+              <el-col :span="8"><div class="grid-content bg-purple"></div></el-col>
+              <el-col :span="8"><div class="grid-content bg-purple">
+                <el-form-item style="display: flex;justify-content: flex-end;">
+                  <el-button @click="createTeacher_one" type="success" v-if="$route.path.indexOf('addTeacher')!=-1">保存</el-button>
+                  <el-button @click="saveTeacher" type="success" v-if="$route.path.indexOf('modifyTeacher')!=-1">保存</el-button>
+                  <el-button @click="backToManager">返回</el-button>
+                </el-form-item>
+              </div></el-col>
+              <el-col :span="8"><div class="grid-content bg-purple"></div></el-col>
+            </el-row>
+
           </el-col>
           <el-col :span="5">
             <div class="grid-content bg-purple" style="text-align: center">
@@ -1327,6 +1498,7 @@
                     type: 'danger'
                 }).then(() => {
                     this.ruleForm.intro = '';
+                    console.log("this.ruleForm.intro ="+this.ruleForm.intro )
                 }).catch(() => {
                     this.$message({
                         type: 'info',
