@@ -4,9 +4,9 @@
       <div v-if="teacherProfile!=undefined " style="position:relative;">
 
         <el-card class="box-card" >
-          <div style="position:absolute;left:530px;top:10px;z-index:2;">
-            <img :src="bgLogo" width="250" height="250" style="opacity: 0.1; "/>
-          </div>
+          <!--<div style="position:absolute;left:530px;top:20px;z-index:2;">-->
+            <img :src="bgLogo" width="250" height="250" style="opacity: 0.1;position:absolute;left:530px;top:15px;z-index:2; "/>
+          <!--</div>-->
           <div style="display: inline-block;margin-left: 20px;vertical-align: top;margin-top: 20px">
             <img :src="getImgUrl(teacherProfile.avatar)" :onerror="imgErrorFun(this)" width="140" height="140"/>
           </div>
@@ -323,8 +323,8 @@ padding: 12px 20px 6px 27px">个人简介</div>
       .name-right {
         position: absolute;
         right: 30px;
-        top: 30px;
-
+        top: 20px;
+        vertical-align: top;
       }
 
       .name-qr {
@@ -335,11 +335,12 @@ padding: 12px 20px 6px 27px">个人简介</div>
       }
 
       .name {
-        margin-top: 20px;
+        margin-top: 15px;
         margin-left: 25px;
         font-size: 34px;
         font-weight: 800;
         color: $bg;
+
       }
 
       .name-bottom {
