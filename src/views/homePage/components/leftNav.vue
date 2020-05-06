@@ -58,7 +58,8 @@
                 currentCat: 0,
                 listLoading: false,//数据加载等待动画
                 catalogueList: [],
-              catalogueId:''
+              catalogueId:'',
+              unitQuery: {unitId: '',domainName:''},
             }
         },
         props: ['unitId','sendName','sendSubName'],
@@ -75,11 +76,14 @@
         },
       },
         created() {
-          this.cIdSend()
+          this.init()
+
             this.getCatalogues()
         },
         mounted() {
-          this.cIdSend()
+          if(this.$store.state.user.unitId&&this.$store.state.user.domainName){
+            this.cIdSend()
+          }
         },
         computed: {
             currentUnitId: function () {
@@ -87,6 +91,30 @@
             }
         },
         methods: {
+          init(){
+            this.$store.state.user.domainName=this.$route.path.split('/')[2];
+            this.unitQuery.domainName=this.$route.path.split('/')[2];
+            this.api({
+              url: "/homepage/getUnitInfo2",
+              method: "get",
+              params: this.unitQuery
+            }).then(data => {
+              console.log("查询学院信息为:" + JSON.stringify(data))
+              console.log("================================")
+              this.listLoading = false;
+              this.unit = data;
+              //   console.log("cccc"+JSON.stringify(data));
+              this.$store.state.user.unitId=data.unitId
+              this.$store.state.user.tagState=data.tagState
+              console.log("dddddd"+this.$store.state.user.unitId+"vvv"+this.$store.state.user.unitId);
+           //   console.log("学校图标是："+"http://www.scholat.com/images/uni_logo/"+data.schoolName+".png");
+              this.unitQuery.unitId=data.unitId
+              this.cIdSend()
+           //   this.dataDone = true;
+            }).catch(error => {
+              console.log("QAQ........没有找到学院信息")
+            })
+          },
             getCatalogues() {
                 this.api({
                     url: "/catalogue/getCatalogues",
@@ -119,12 +147,20 @@
         //         params: { domainName:domainName,
         //         unitId:unitId}})
         // }
-                this.$router.push({name:'catalogue',
-                  params: { domainName:this.$store.state.user.domainName,
-                    unitId:this.$store.state.user.unitId,
-                    modelId:modelId,
-                    cId:cId}})
-            }
+          //    if(((this.$route.path.split('/')).length-1)===3) {
+              console.log("this.$store.state.user.domainName="+this.$store.state.user.domainName+this.$store.state.user.unitId);
+              this.$router.push({
+                  path: '/homepage',
+                  name: 'catalogue',
+                  params: {
+                    domainName: this.$store.state.user.domainName,
+                    unitId: this.$store.state.user.unitId,
+                    modelId: modelId,
+                    cId: cId
+                  }
+                })
+              }
+          //  }
         },
         components: {}
     }
