@@ -149,16 +149,30 @@
         // }
           //    if(((this.$route.path.split('/')).length-1)===3) {
               console.log("this.$store.state.user.domainName="+this.$store.state.user.domainName+this.$store.state.user.unitId);
-              this.$router.push({
-                  path: '/homepage',
-                  name: 'catalogue',
-                  params: {
-                    domainName: this.$store.state.user.domainName,
-                    unitId: this.$store.state.user.unitId,
-                    modelId: modelId,
-                    cId: cId
-                  }
-                })
+                if (cId == 0) {
+                    this.$router.push({
+                        path: '/homepage',
+                        name: 'homepage',
+                        params: {
+                            domainName: this.$store.state.user.domainName,
+                            unitId: this.$store.state.user.unitId,
+                            modelId: modelId,
+                            cId: cId
+                        }
+                    })
+                }else{
+                    this.$router.push({
+                        path: '/homepage',
+                        name: 'catalogue',
+                        params: {
+                            domainName: this.$store.state.user.domainName,
+                            unitId: this.$store.state.user.unitId,
+                            modelId: modelId,
+                            cId: cId
+                        }
+                    })
+                }
+
               }
           //  }
         },
