@@ -2,7 +2,7 @@
   <div id="app" class="homePage-body">
     <div class="middle-container">
       <div class="left">
-        <left-nav :unitId="unitId" @toList="toList"></left-nav>
+        <left-nav :unitId="unitId" @toList="toList"  ref="info"></left-nav>
       </div>
       <!--<router-view name="homepage" class="middle"></router-view>-->
       <div class="middle">
@@ -29,7 +29,7 @@
 
           </div>
         </div>
-        <component :is="componentName" @toInfo="changeToTeacherInfo" class="dynamic-page"
+        <component :is="componentName" @toInfo="changeToTeacherInfo" class="dynamic-page" @rInfo="rInfo"
                    :teacherProfile="teacherProfile" :msgLetter="letter"
                    :showList="showSortList" :detail="detailShow"
                    :cId='cId'
@@ -37,7 +37,6 @@
                    @detailShow="detailShowChange"
                    ref="teacherList1"></component>
       </div>
-
       <!--      <right-nav class="right"></right-nav>-->
     </div>
   </div>
@@ -69,6 +68,12 @@
         },
         ready() {
         },
+      watch:{
+        $route(){
+          this.cId = this.$route.params.cId
+          console.log("this.cId="+this.cId);
+        },
+      },
         created(){
 
         },
@@ -80,6 +85,10 @@
         mounted() {
         },
         methods: {
+          rInfo(){
+            console.log("info");
+            this.$refs.info.cIdSend(this.cId);
+          },
             changeToTeacherInfo(id) {
                 console.log("### 开始查询教师的个人信息")
                 this.api({
@@ -96,6 +105,12 @@
                 }).catch(error => {
                     console.log("QAQ........没有找到教师信息")
                 })
+              this.$router.push({name:'teacher',
+                params: { domainName:this.$store.state.user.domainName,
+                  unitId:this.$store.state.user.unitId,
+                  modelId:this.detailShow,
+                  cId:this.cId,
+                tId:id}})
             },
             toList(name, modelId, cId) {
                 this.cId = cId;

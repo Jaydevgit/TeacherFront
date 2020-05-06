@@ -40,7 +40,24 @@ export const constantRouterMap = [
     meta: {
       keepAlive: true
     },
-    children: []
+    children: [
+      {
+        path: '/homepage/:domainName/:cId',
+        name: 'catalogue',
+        component: HomePage,
+        meta: {
+          keepAlive: true
+        },
+      },
+      {
+        path: '/homepage/:domainName/:cId/:tId',
+        name: 'teacher',
+        component: HomePage,
+        meta: {
+          keepAlive: true
+        },
+      }
+    ]
   },
   {
     path: '/teacher/:scholat_username/:user_id/persona',

@@ -168,7 +168,19 @@
                 //cId为0,指师资队伍
                 else
                     self.getListAll()
-            }
+            },
+          $route(){
+         //   console.log("this.$route.path="+this.$route.path);
+             if(((this.$route.path.split('/')).length-1)===4){
+               if(this.$route.params.tId!==null||this.$route.params.tId!==''){
+                 console.log("changeToTeacherInfo");
+                 var tId=this.$route.params.tId
+                 this.$emit("toInfo", tId)
+               }
+
+             }
+
+          },
 
         },
         props: ['msgLetter', 'detail', 'cId','unitId'],
@@ -295,7 +307,7 @@
                     this.teacherListAll = data.list;
                     //console.log(this.teacherListAll);
                     this.totalCount = data.totalCount;
-                    //this.$emit("detailShow", 3);
+                    this.$emit("detailShow", 3);
                 }).catch(error => {
                     console.log("QAQ........没有找到教师列表")
                 })

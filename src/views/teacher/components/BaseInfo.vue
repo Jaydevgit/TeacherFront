@@ -150,6 +150,13 @@ padding: 12px 20px 6px 27px">个人简介</div>
             this.tagFlag = this.$store.state.user.tagState.split('')
             console.log("（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（ this.tagFlag=" + this.tagFlag);
         },
+      watch: {
+        $route() {
+          this.cId = this.$route.params.cId
+          console.log("this.cId=" + this.cId);
+          this.$emit('rInfo')
+        },
+      },
         data() {
             return {
                 logo,
@@ -173,6 +180,7 @@ padding: 12px 20px 6px 27px">个人简介</div>
         },
         props: ['teacherProfile'],
         methods: {
+
             handleCommand() {
                 // const that = this;
                 // that.$router.push({path: "/register",query:{alert:"页面跳转成功"}})

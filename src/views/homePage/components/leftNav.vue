@@ -4,7 +4,7 @@
       <el-row style="width: 100%;float: left;border-radius: 10px;">
         <el-col>
           <el-menu
-            default-active="0"
+            :default-active="catalogueId"
             class="el-menu-vertical-demo"
             background-color="#ffffff"
             style="overflow: hidden">
@@ -15,7 +15,7 @@
             <!--假如有子列表-->
             <el-submenu style="background-color: white;" v-for="(item, flag) in catalogueList"
                         v-if="Object.keys(item.subCatalogueList).length!=0"
-                        :key="'cId'+item.id" :index="flag+3 +''">
+                        :key="'cId'+item.id" :index="item.id+''">
 
               <div slot="title"  >
                 <i class="el-icon-menu"></i>
@@ -24,7 +24,7 @@
 
               <el-menu-item-group style="margin-top: -14px;">
                 <el-menu-item
-                  v-for="(sub, index) in item.subCatalogueList" :key="'subId'+sub.id" :index="flag + 3 + '-'+ index"
+                  v-for="(sub, index) in item.subCatalogueList" :key="'subId'+sub.id" :index="sub.id+''"
                   @click="cIdSend(sub.id,sub.name)" style="padding: 0;padding-left: 12px">
                   <span class="subcatalogueName">{{sub.name}}</span>
                 </el-menu-item>
@@ -33,7 +33,7 @@
 
             </el-submenu>
             <!--假如没有子列表-->
-            <el-menu-item v-else :key="'cId'+item.id" :index="flag+3 +''">
+            <el-menu-item v-else :key="'cId'+item.id" :index="item.id+''">
               <div slot="title" @click="cIdSend(item.id,item.name)" >
                 <i class="el-icon-menu"></i>
                 <span class="parentCatalogue">{{item.name}}</span>
@@ -58,6 +58,7 @@
                 currentCat: 0,
                 listLoading: false,//数据加载等待动画
                 catalogueList: [],
+              catalogueId:''
             }
         },
         props: ['unitId','sendName','sendSubName'],
@@ -66,6 +67,11 @@
           console.log(newValue+"4564654");
           this.cIdSend()
           this.getCatalogues()
+        },
+        $route(){
+          this.catalogueId = this.$route.params.cId
+          console.log("this.catalogueId="+this.catalogueId);
+
         },
       },
         created() {
@@ -109,6 +115,15 @@
                 console.log("leftNav的ModelId="+modelId);
                 //bus.$emit("cId", this.currentCat);
                 console.log("leftNav的cId="+cId);
+        //       { name:'homepage',path: '/homepage/'+this.$store.state.user.domainName+'/'+cId,
+        //         params: { domainName:domainName,
+        //         unitId:unitId}})
+        // }
+                this.$router.push({name:'catalogue',
+                  params: { domainName:this.$store.state.user.domainName,
+                    unitId:this.$store.state.user.unitId,
+                    modelId:modelId,
+                    cId:cId}})
             }
         },
         components: {}
