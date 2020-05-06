@@ -32,6 +32,8 @@
         <component :is="componentName" @toInfo="changeToTeacherInfo" class="dynamic-page" @rInfo="rInfo"
                    :teacherProfile="teacherProfile" :msgLetter="letter"
                    :showList="showSortList" :detail="detailShow"
+                   :search-key="searchKey"
+                   :search-count="searchCount"
                    :cId='cId'
                    :unitId = 'unitId'
                    @detailShow="detailShowChange"
@@ -64,6 +66,8 @@
                 showSortList: false,
                 detailShow: 3,
                 NavName: '师资队伍',
+                searchKey:'',
+                searchCount:0,
             }
         },
         ready() {
@@ -75,7 +79,6 @@
         },
       },
         created(){
-
         },
         computed: {
             unitId: function () {
@@ -83,6 +86,28 @@
             },
         },
         mounted() {
+            let _self = this;
+            bus.$on("changePageList", function (searchKey) {
+                _self.detailShow = 3;
+                _self.componentName = "teacherList";
+                _self.searchKey = searchKey;
+                _self.searchCount++;
+                document.getElementsByClassName('middle-nav')[0].style.display = "flex";
+                let node = document.getElementById('middle-nav');
+                node.children[1].children[0].innerText = "教师名录";
+                console.log("node.children[1].children[0].innerText ="+"教师名录");
+                _self.$router.push({
+                    path: '/homepage',
+                    name: 'search',
+                    params: {
+                        domainName: _self.$store.state.user.domainName,
+                        unitId: _self.$store.state.user.unitId,
+                        modelId: 3,
+                        searchKey:searchKey,
+                        cId: 0
+                    }
+                })
+            })
         },
         methods: {
           rInfo(){

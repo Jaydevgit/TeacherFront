@@ -50,6 +50,14 @@ export const constantRouterMap = [
         },
       },
       {
+        path: '/homepage/:domainName/search=:searchKey',
+        name: 'search',
+        component: HomePage,
+        meta: {
+          keepAlive: true
+        },
+      },
+      {
         path: '/homepage/:domainName/:cId/:tId',
         name: 'teacher',
         component: HomePage,

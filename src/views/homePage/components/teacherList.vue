@@ -134,7 +134,6 @@
                     key: '',
                     letter: ''
                 },
-                searchKey: '',
                 teacherList: [],
                 teacherListAll: [],
                 catalogueList: [],
@@ -144,6 +143,9 @@
             }
         },
         watch: {
+            searchCount:function(n,o){
+                this.searchTeacher();
+            },
             detail: function (newVal, oldVal) {
                 this.detailModel = newVal;  //newVal即是chartData
                 console.log("teacherList的watch检测到detail变化")
@@ -153,21 +155,32 @@
                 let self = this;
                 self.currentCat = msg;
                 //主目录
-                if (self.currentCat != 0)
-                    self.getTeacherByCatalogue(self.currentCat)
-                //cId为0,指师资队伍
-                else
-                    self.getListAll()
+                if(this.$route.path.indexOf('search')!=-1){
+                    this.searchKey = this.$route.params.searchKey
+                    this.searchTeacher();
+                }else {
+                    if (self.currentCat != 0)
+                        self.getTeacherByCatalogue(self.currentCat)
+                    //cId为0,指师资队伍
+                    else
+                        self.getListAll()
+                }
             },
             unitId: function (newVal, oldVal) {
                 let msg = newVal;
                 let self = this;
-                //主目录
-                if (self.currentCat != 0)
-                    self.getTeacherByCatalogue(self.currentCat)
-                //cId为0,指师资队伍
-                else
-                    self.getListAll()
+                if(this.$route.path.indexOf('search')!=-1){
+                    this.searchKey = this.$route.params.searchKey
+                    this.searchTeacher();
+                }else {
+                    //主目录
+                    if (self.currentCat != 0)
+                        self.getTeacherByCatalogue(self.currentCat)
+                    //cId为0,指师资队伍
+                    else
+                        self.getListAll()
+                }
+
             },
           $route(){
          //   console.log("this.$route.path="+this.$route.path);
@@ -183,7 +196,7 @@
           },
 
         },
-        props: ['msgLetter', 'detail', 'cId','unitId'],
+        props: ['msgLetter', 'detail', 'cId','unitId','searchKey','searchCount'],
         mounted() {
             let self = this;
            /* bus.$on("cId", function (msg) {
@@ -196,21 +209,28 @@
                 else
                     self.getListAll()
             });*/
-            bus.$on("key", function (msg) {
+            /*bus.$on("key", function (msg) {
                 self.searchKey = msg;
                 console.log("key++++" + msg);
                 self.searchTeacher();
-            })
+            })*/
         },
         created() {
             // this.getList();
-            if(this.unitId!=null && this.cId!=null){
-                if (this.cId != 0)
-                    this.getTeacherByCatalogue(this.cId);
-                //cId为0,指师资队伍
-                else
-                    this.getListAll()
+            if(this.$route.path.indexOf('search')!=-1){
+                this.searchKey = this.$route.params.searchKey
+                this.searchTeacher();
+            }else{
+                if(this.unitId!=null && this.cId!=null){
+                    if (this.cId != 0)
+                        this.getTeacherByCatalogue(this.cId);
+                    //cId为0,指师资队伍
+                    else
+                        this.getListAll()
+                }
             }
+
+
         },
         ready() {
         }
