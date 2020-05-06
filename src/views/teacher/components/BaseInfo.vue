@@ -4,8 +4,8 @@
       <div v-if="teacherProfile!=undefined " style="position:relative;">
 
         <el-card class="box-card" >
-          <div style="position:absolute;left:530px;top:30px;z-index:2;">
-            <img :src="bgLogo" width="250" height="250" style="opacity: 0.2; "/>
+          <div style="position:absolute;left:530px;top:10px;z-index:2;">
+            <img :src="bgLogo" width="250" height="250" style="opacity: 0.1; "/>
           </div>
           <div style="display: inline-block;margin-left: 20px;vertical-align: top;margin-top: 20px">
             <img :src="getImgUrl(teacherProfile.avatar)" :onerror="imgErrorFun(this)" width="140" height="140"/>
@@ -75,10 +75,10 @@
                 <!--<span><svg-icon icon-class="email"/></span>-->
                 <label class="font-one">邮箱：</label><div class="detail-msg">{{teacherProfile.email}}</div>
               </div>
-              <div class="name-bottom-item" style="margin-bottom: 10px;" v-if="">
+              <div class="name-bottom-item" style="margin-bottom: 10px;" >
                 <!--<span><svg-icon icon-class="S"/></span>-->
                 <label class="font-one">主页：</label><div class="detail-msg">
-                <a :href="'http://www.scholat.com/'+teacherProfile.scholat_username"
+                <a :href="'http://www.scholat.com/'+teacherProfile.scholat_username" v-if="teacherProfile.scholat_username"
                    style="color: #399;display:block;overflow:hidden;word-break:keep-all;white-space:nowrap;text-overflow:ellipsis;width:210px;">
                   scholat.com/{{teacherProfile.scholat_username}}
                 </a></div>
@@ -352,6 +352,7 @@ padding: 12px 20px 6px 27px">个人简介</div>
         border-left:2px solid #4682b4;
         max-width: 290px;
         padding-left: 25px;
+        margin-left: 10px;
       }
 
       .name-bottom-item {
