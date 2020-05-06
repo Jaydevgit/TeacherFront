@@ -76,7 +76,7 @@
                 <!--<el-button type="success" class="threeButton" size="small"    @click="topCatalogue(item.id)" >置顶</el-button>-->
                 <el-button type="warning" class="threeButton"  @click="showEdit(item.id,item.name)">修改
                 </el-button>
-                <div style="display: inline-block;float: right;margin-top: 20px;margin-right: 10px"><el-button type="danger" class="threeButton" @click="showDelete(item.id)">删除</el-button></div>
+                <div style="display: inline-block;float: right;margin-top: 20px;margin-right: 20px"><el-button type="danger" class="threeButton" @click="showDelete(item.id)">删除</el-button></div>
 
                 <!--<i class="el-icon-school" v-if="item.state == 0"></i>
                 <i class="el-icon-reading" v-else-if="item.state == 1"></i>
