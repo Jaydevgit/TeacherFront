@@ -76,8 +76,10 @@
           </div>
           <span style="" class="font-jsgrzy">
             <span v-if="$route.path.indexOf('login')!=-1">SCHOLAT+学院师资信息管理平台</span>
-            <span v-else><span style="font-family: 华文新魏;font-size: 38px">{{unit.unitName}}|</span>
-              <span style="font-family: 华文行楷 ;font-size: 36px;margin-left: -10px">师资队伍</span></span>
+            <span v-else>
+              <span style="font-family: 华文新魏;font-size: 38px">{{unit.unitName}}|</span>
+              <span style="font-family: 华文行楷 ;font-size: 36px;margin-left: -10px">师资队伍</span>
+            </span>
           </span>
         </template>
       </div>
@@ -153,12 +155,13 @@
             getUnitInfo() {
                 //如果是教師的頁面
                 if (window.location.href.indexOf('teacher') != -1) {
-                    var teacherId = this.GetUrlRelativePath_id();
-                    console.log("head教师id为:........" + teacherId);
+                    /*var teacherId = this.GetUrlRelativePath_id();*/
+                    var tDomain_name= this.GetUrlRelativePath_id();
+                    console.log("head教师domain_name为:........" + tDomain_name);
                     this.api({
-                        url: "/unit/getUnitBytId",
+                        url: "/unit/getUnitBytDomain_name",
                         method: "get",
-                        params: {id: teacherId}
+                        params: {tDomain_name: tDomain_name}
                     }).then(data => {
                         console.log("学院Id为:" + JSON.stringify(data))
                         console.log("================================")
@@ -198,16 +201,22 @@
                 }
             },
             GetUrlRelativePath_id() {
-                var url = document.location.toString();
+                /*var url = document.location.toString();
                 var arrUrl = url.split("//");
 
-                var start = arrUrl[1].indexOf("teacher/");
+                var start = arrUrl[1].indexOf("teacher/scnu/");
                 var relUrl_id = arrUrl[1].substring(start + 8);//stop省略，截取从start开始到结尾的所有字符
 
                 if (relUrl_id.indexOf("?") != -1) {
                     relUrl_id = relUrl_id.split("?")[0];
                 }
-                return relUrl_id;
+                return relUrl_id;*/
+              /*获取最后一个斜杠后的参数*/
+              var url = window.location.href;
+              var index = url.lastIndexOf("\/");
+              var str = url.substring(index + 1,url.length);
+              console.log("str"+str);
+              return str
             },
             goToCollege() {
                 if (this.unit.collegeUrl) {
