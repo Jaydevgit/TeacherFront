@@ -58,7 +58,7 @@
                 currentCat: 0,
                 listLoading: false,//数据加载等待动画
                 catalogueList: [],
-              catalogueId:'',
+              catalogueId:0,
               unitQuery: {unitId: '',domainName:''},
             }
         },
