@@ -683,9 +683,11 @@
                     pageRow: this.scholat.pageRow
                 }).then(res => {
                     console.log("验证邮箱有成功的返回结果:" + res.data.err)
+                //  console.log("验证邮箱有成功的返回结果:" + JSON.stringify(res.data))
                     console.log(res.data.info.list)
                     if (res.data.err !== undefined) {
-                        if (this.$route.path.indexOf("modifyTeacher")) {
+                      console.log("this.$route.path.indexOf(\"modifyTeacher\")"+this.$route.path.indexOf("modifyTeacher"));
+                      if (this.$route.path.indexOf("modifyTeacher")) {
                             this.list = res.data.info.list;
                             console.log("-------------根据邮箱获取到的学者网数据------------------")
                             console.log(this.list);
@@ -693,7 +695,12 @@
                                 this.showScholatDiv = true
                             } else {
                                 this.showScholatDiv = false
+                              if(res.data.id===this.ruleForm.id){
+                                callback()
+                              }else{
                                 return callback(new Error("该邮箱已存在"))
+                              }
+
                             }
                             callback()
                         } else {
@@ -1536,6 +1543,12 @@
                   console.log("res="+JSON.stringify(res));
                   this.$message.success("添加教师信息成功");
                     this.ruleForm.id = res.teacher_id;
+                  this.$router.push({
+                    name: 'modifyTeacher',
+                    params: {
+                      id: res.teacher_id,
+                    }
+                  })
                     this.secondPage = true;
                 }).catch(e => {
                   console.log("e="+JSON.stringify(e));
