@@ -105,6 +105,7 @@
           </div>
           <div>
 <!--            <span class="label-describe">高级管理员</span><span>{{scope.row.username}}</span>-->
+            <el-button  type="primary" size="mini" @click="changePassword(scope.row.unitId)" plain>重置密码</el-button>
             <el-button  type="primary" size="mini" @click="subUser(scope.row.unitId)" plain>查看子账号</el-button>
           </div>
 
@@ -147,6 +148,26 @@
           <el-table-column property="email" label="邮箱"></el-table-column>
         </el-table>
       </el-dialog></div>
+    <div>
+      <el-dialog
+        title="提示"
+        :visible.sync="dialogVisible"
+        width="30%"
+        :before-close="handleClose">
+        <el-row>
+          <el-col :span="6" style="text-align: center;margin: 0 auto;line-height:40px"> <span>新密码</span></el-col>
+          <el-col :span="16"><el-input type="password" v-model="newP.newPassword" placeholder="不填则表示不修改">
+          </el-input></el-col>
+        </el-row>
+
+
+        <span slot="footer" class="dialog-footer">
+
+    <el-button @click="dialogVisible = false">取 消</el-button>
+    <el-button type="primary" @click="passwordRight">确 定</el-button>
+  </span>
+      </el-dialog>
+    </div>
   </div>
 </template>
 
@@ -184,7 +205,13 @@
           id:'',
         },
         allSubUnitName:[],
-        dialogTableVisible:false
+        dialogTableVisible:false,
+        dialogVisible:false,
+        newP:{
+          newPassword:'',
+          changePasswordId:''
+        }
+
       }
     },
     created() {
@@ -193,6 +220,27 @@
     // this.getListSubUser()
     },
     methods: {
+      passwordRight(){
+        console.log("newPassword="+this.newP.newPassword+this.newP.changePasswordId);
+      //  console.log("加密后的密码为："+this.md5(this.newP.newPassword+this.salt));
+        this.newP.newPassword = this.md5(this.newP.newPassword+this.salt);
+        this.api({
+          url: "/scholat/changePassword",
+          method: "post",
+          data: this.newP
+        }).then(() => {
+          this.$message({
+            message: "修改成功",
+            type: 'success',
+          })
+          this.dialogVisible= false;
+        })
+
+      },
+      changePassword(id){
+        this.dialogVisible= true;
+        this.newP.changePasswordId=id;
+      },
       subUser(id){
         this.dialogTableVisible = true;
         this.getListSubUser(id);
