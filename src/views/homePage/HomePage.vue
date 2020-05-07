@@ -41,6 +41,25 @@
       </div>
       <!--      <right-nav class="right"></right-nav>-->
     </div>
+    <!--底部栏-->
+    <footer style="display: flex;justify-content: center;align-items: center">
+      <div style="height: 100%;
+      width:100%;display: flex;
+      justify-content: space-between;margin: 0 20px;">
+        <div style="display: flex;align-items: center;width: 350px;flex-wrap: wrap;">
+          <div style="color: #eee;display: block;font-family: initial;font-size: 14px"><a href="http://www.scholat.com/">© 2020-2022 SCHOLAT + LAB</a></div>
+        </div>
+
+      </div>
+      <div class="nav-inner-login">
+        <a href="/scholat/login" class="title" style="flex: 1;min-width: 100px">管理员登录</a>
+        <a href="http://www.scholat.com/"  class="title" style="flex: 1;min-width: 60px">
+          学者网
+        </a>
+      </div>
+
+
+    </footer>
   </div>
 </template>
 
@@ -203,6 +222,7 @@
     height: 100%;
     width: 100%;
     display: flex;
+    min-height: calc(100vh - 120px);
   }
 
   .left {
@@ -266,5 +286,36 @@
     }
   }
 
+  /*底部栏样式*/
+  footer {
+    background-color: #555555;
+    height: 60px;
+    width: 100%;
+    margin-top: 30px;
+    /*position: absolute;
+    bottom: 0;*/
+    /*position:fixed;
+    bottom:0;
+    left:0;*/
+  }
+  .nav-inner-login {
+    display: flex;
+    align-content: center;
+  }
+  .title{
+
+    color: #fff;
+    font-size: 18px;
+    letter-spacing: 2px;
+    cursor: pointer;
+    margin-right: 24px;margin-top: 10px;
+    height: 30px;
+    display: table-cell;
+    vertical-align:middle
+  }
+  .title:hover{
+    border-bottom:2px solid #fff;
+  }
+  /*底部栏样式结束*/
 
 </style>

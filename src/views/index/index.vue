@@ -100,7 +100,7 @@
         <div style="display: flex;align-items: center;width: 350px;flex-wrap: wrap;">
           <!--<div style="color: #eee;display: block">联系我们: 华南师范大学计算机学院232实验室</div>
           <div style="color: #eee;display: block">邮箱: help@scholat.com</div>-->
-          <div style="color: #eee;display: block"><a href="http://www.scholat.com/">© 2020-2022 SCHOLAT + LAB</a>></div>
+          <div style="color: #eee;display: block"><a href="http://www.scholat.com/">© 2020-2022 SCHOLAT + LAB</a></div>
 
         </div>
         <div style="display: flex;align-items:center;height: 100%;margin-left: 16px">
@@ -108,8 +108,6 @@
         </div>
 
       </div>
-
-
     </footer>
   </div>
 </template>
