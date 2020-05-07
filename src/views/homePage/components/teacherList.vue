@@ -46,17 +46,18 @@
             </el-col>
           </el-row>
         </li>
+          <div v-if="totalCount >12"
+               style="clear: both;text-align:center;width: 100%;margin-bottom: 18px;padding-top:10px;position:relative;bottom: 0;">
+            <el-pagination style=""
+                           @current-change="handleCurrentChange"
+                           :current-page="listQuery.pageNum"
+                           :page-size="listQuery.pageRow"
+                           :total="totalCount"
+                           layout="total, prev, pager, next, jumper">
+            </el-pagination>
+          </div>
       </ul>
-      <div v-if="totalCount >21"
-           style="clear: both;text-align:center;width: 100%;margin-bottom: 18px;padding-top:10px;position:relative;bottom: 0;">
-        <el-pagination style=""
-                       @current-change="handleCurrentChange"
-                       :current-page="listQuery.pageNum"
-                       :page-size="listQuery.pageRow"
-                       :total="totalCount"
-                       layout="total, prev, pager, next, jumper">
-        </el-pagination>
-      </div>
+
     </div>
   </div>
 
@@ -268,7 +269,8 @@
                 }
             },
             handleCurrentChange(val) {
-                //改变页码 0：师资队伍 -1：搜索  else：目录
+              console.log("val="+val);
+              //改变页码 0：师资队伍 -1：搜索  else：目录
                 this.listQuery.pageNum = val
                 if (this.currentCat == 0) {
                     if (this.flag == 0)
@@ -405,7 +407,13 @@
                     this.teacherList = data.list;
                     this.totalCount = data.totalCount;
                     this.isSendSuccessful = true;
-                    this.$emit("detailShow", 2);
+                    if(detail===1)
+                    {
+                      this.$emit("detailShow", 1);
+                    }else{
+                      this.$emit("detailShow", 2);
+                    }
+
                     console.log("emit***********************");
                 }).catch(error => {
                     console.log("QAQ........没有找到教师列表")
