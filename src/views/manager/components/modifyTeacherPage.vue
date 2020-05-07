@@ -191,9 +191,7 @@
                   <el-input v-model="ruleForm.domain_name" disabled></el-input>
                 </el-form-item>
               </div></el-col>
-            </el-row>
-            <el-row>
-              <el-col :span="16"><div class="grid-content bg-purple">
+              <el-col :span="8"><div class="grid-content bg-purple">
                 <el-form-item label="性别" prop="sex" class="redItem">
                   <el-radio-group v-model="ruleForm.sex">
                     <el-radio label="0">男</el-radio>
@@ -201,8 +199,10 @@
                   </el-radio-group>
                 </el-form-item>
               </div></el-col>
-
             </el-row>
+            <!--<el-row>
+
+            </el-row>-->
             <el-row>
               <el-col :span="8"><div class="grid-content bg-purple">
                 <el-form-item label="职称" prop="duty">
@@ -236,15 +236,16 @@
                             placeholder="例如：院长、书记、老师、辅导员等"></el-input>
                 </el-form-item>
               </div></el-col>
-            </el-row>
-            <el-row>
               <el-col :span="8"><div class="grid-content bg-purple">
                 <el-form-item label="头衔" prop="label">
                   <el-input v-model="ruleForm.label" placeholder="例如：国务院特殊津贴专家等头衔"></el-input>
                 </el-form-item>
               </div></el-col>
-
             </el-row>
+            <!--<el-row>
+
+
+            </el-row>-->
             <el-row>
               <el-col :span="8"><div class="grid-content bg-purple">
                 <el-form-item label="最后学历" prop="degree">
@@ -290,7 +291,7 @@
                   <el-input v-model="ruleForm.department_name" placeholder="例如：网络工程系"></el-input>
                 </el-form-item>
               </div></el-col>
-              <el-col :span="8"><div class="grid-content bg-purple">
+              <el-col :span="16"><div class="grid-content bg-purple">
                 <el-form-item label="办公地点">
                   <el-input v-model="ruleForm.work_place" placeholder=""></el-input>
                 </el-form-item>
@@ -298,7 +299,7 @@
             </el-row>
             <el-row>
               <el-col :span="8"><div class="grid-content bg-purple">
-                <el-form-item label="办公邮箱" prop="email" class="redItem">
+                <el-form-item label="邮箱" prop="email" class="redItem">
                   <el-input v-model="ruleForm.email" placeholder="建议输入办公邮箱地址"></el-input>
                 </el-form-item>
               </div></el-col>
