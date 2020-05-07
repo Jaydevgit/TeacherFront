@@ -145,11 +145,19 @@ padding: 12px 20px 6px 27px">个人简介</div>
     export default {
         name: "BaseInfo",
         created() {
+            console.log("********开始执行BaseInfo的create生命周期函数********")
             this.personal.avatar = this.logo;
-            this.teacherProfile.intro = this.teacherProfile.intro.replace("个人简介", '');
+          console.log("teacherProfile.intro="+this.teacherProfile.intro);
+          /*  this.teacherProfile.intro = this.teacherProfile.intro.replace("个人简介","");*/
+          console.log("this.$store.state.user.tagState.split('')="+this.$store.state.user.tagState.split(''));
             this.tagFlag = this.$store.state.user.tagState.split('')
-            console.log("（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（ this.tagFlag=" + this.tagFlag);
+          console.log("this.$store.state.user.tagState="+this.tagFlag);
+            console.log("（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（" +
+              "（（（（（（（（（（（（（（（（（（（（（（（（ this.tagFlag=" + this.tagFlag);
         },
+      mounted() {
+        console.log("********开始执行BaseInfo的mounted生命周期函数*********")
+      },
       watch: {
         $route() {
           this.cId = this.$route.params.cId

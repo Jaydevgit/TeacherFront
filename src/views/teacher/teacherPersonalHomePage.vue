@@ -1,7 +1,7 @@
 <template>
   <div class="app-container" style="padding: 0;min-height: calc(100vh - 60px);height: 100%">
     <div class="container" style="padding-top: 26px">
-      <base-info :teacherProfile="teacherProfile" class="left" style="width: 100%"></base-info>
+      <base-info v-if="teacherProfile" :teacherProfile="teacherProfile" class="left" style="width: 100%"></base-info>
       <rightNav class="right"></rightNav>
     </div>
   </div>
@@ -64,8 +64,9 @@
                     url: "/teacher/getTeacherInfoByDomainName/" + tDomainName,
                     method: "get"
                 }).then(data => {
-                    console.log("查询教师信息为:" + data.userName)
-                    console.log("================================")
+                  console.log("查询教师信息为:" + data.username)
+                  console.log(data)
+                  console.log("================================")
                     this.teacherProfile = data;
                 }).catch(error => {
                     console.log("QAQ........没有找到教师信息")

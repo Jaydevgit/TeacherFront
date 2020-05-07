@@ -57,6 +57,26 @@
           SCHOLAT+ 学院师资信息管理平台
           </span>
       </div>
+      <!--若判断为教师信息页，则显示学校logo，学校名称，教师主页，搜索-->
+      <div v-else-if="$route.path.indexOf('teacher')!=-1" style="display: flex;align-items: center;height: 100%;width: 100%">
+        <div @click="goToCollege" style="height: 90%;width: auto;bottom: 0;cursor: pointer">
+          <img :src="'http://www.scholat.com/images/uni_logo/'+this.unit.schoolName+'.png'" :onerror="defaultLogo" style="height: 55px;width:auto;"/>
+        </div>
+        <span style="" class="font-jsgrzy">
+            <span v-if="$route.path.indexOf('login')!=-1">SCHOLAT+学院师资信息管理平台</span>
+            <span v-else>
+              <span style="font-family: 华文新魏;font-size: 38px">{{unit.schoolName}}|</span>
+              <span style="font-family: 华文行楷 ;font-size: 36px;margin-left: -10px">教师主页</span>
+            </span>
+        </span>
+        <div class="search bar6" v-if="dataDone">
+          <div class="formDiv" style="min-width:200px;float: right;">
+            <input @keyup.enter="keySend" type="text" v-model="searchKey" placeholder="请输入您要搜索的教师" name="cname"
+                   style="color: gray;background-color: white;">
+            <button @click="keySend"></button>
+          </div>
+        </div>
+      </div>
       <div v-else style="display: flex;align-items: center;height: 100%;width: 100%" @click="goToCollege">
         <!--如果有背景图，则显示学院背景图片+文字-->
         <template v-if="unit.backgroundUrl">

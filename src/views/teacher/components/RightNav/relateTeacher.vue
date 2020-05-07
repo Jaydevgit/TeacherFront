@@ -62,7 +62,7 @@
     transition: all .5s;
     box-sizing: border-box;
     border-radius: 5px;
-    padding: 5px;
+    padding: 5px 3px 5px 3px;
 
     &:hover {
       transform: translateY(-3px);
