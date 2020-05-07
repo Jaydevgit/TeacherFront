@@ -52,7 +52,7 @@
 
       </div>
       <div class="nav-inner-login">
-        <a href="/scholat/login" class="title" style="flex: 1;min-width: 100px">管理员登录</a>
+        <a href="/login" class="title" style="flex: 1;min-width: 100px">管理员登录</a>
         <a href="http://www.scholat.com/"  class="title" style="flex: 1;min-width: 60px">
           学者网
         </a>
