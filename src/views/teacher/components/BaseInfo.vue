@@ -360,7 +360,7 @@ padding: 12px 20px 6px 27px">个人简介</div>
         flex-wrap: wrap;
         display: inline-block;
         vertical-align: top;
-        max-width: 280px;
+        width: 275px;
         margin-left: 25px;
       }
       .name-bottom-right{
@@ -370,7 +370,7 @@ padding: 12px 20px 6px 27px">个人简介</div>
         display: inline-block;
         vertical-align: top;
         border-left:2px solid #4682b4;
-        max-width: 290px;
+        width: 275px;
         padding-left: 25px;
         margin-left: 10px;
       }
