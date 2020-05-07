@@ -53,73 +53,76 @@
             <div v-else style="margin-bottom: 10px;margin-top: 31px">
             </div>
             <div class="name-right-bg" style="float: right;height:210px;margin-top: -90px"></div>
-            <div class="name-bottom" style="color: black">
+            <div style="display: flex">
+              <div class="name-bottom" style="color: black">
 
 
 
-              <div class="name-bottom-item" style="margin-bottom: 10px;"
-                   v-if="tagFlag[10]==='k'">
-                <!--<span><svg-icon icon-class="department"/></span>-->
-                <label class="font-one">部门：</label><div class="detail-msg">{{teacherProfile.department_name}}</div>
-              </div>
-              <div class="name-bottom-item" style="margin-bottom: 10px;" v-if="tagFlag[11]==='l'">
-                <!--<span><svg-icon icon-class="maps-and-flags"/></span>-->
-                <label class="font-one">地址：</label>
-                <div class="detail-msg">{{teacherProfile.work_place}}</div>
-              </div>
-              <!--<div class="name-bottom-item" style="margin-bottom: 10px;" v-if="tagFlag[12]==='m'">
-                &lt;!&ndash;<span><svg-icon icon-class="mobile-phone"/></span>&ndash;&gt;
-                <label class="font-one">电话：</label><div class="detail-msg">{{teacherProfile.phone}}</div>
-              </div>-->
-              <div class="name-bottom-item" style="margin-bottom: 10px;">
-                <!--<span><svg-icon icon-class="email"/></span>-->
-                <label class="font-one">邮箱：</label><div class="detail-msg">{{teacherProfile.email}}</div>
-              </div>
-              <div class="name-bottom-item" style="margin-bottom: 10px;" >
-                <!--<span><svg-icon icon-class="S"/></span>-->
-                <label class="font-one">主页：</label><div class="detail-msg">
-                <a :href="'http://www.scholat.com/'+teacherProfile.scholat_username" v-if="teacherProfile.scholat_username"
-                   style="color: #399;display:block;overflow:hidden;word-break:keep-all;white-space:nowrap;text-overflow:ellipsis;width:210px;">
-                  scholat.com/{{teacherProfile.scholat_username}}
-                </a></div>
-              </div>
+                <div class="name-bottom-item" style="margin-bottom: 10px;"
+                     v-if="tagFlag[10]==='k'">
+                  <!--<span><svg-icon icon-class="department"/></span>-->
+                  <label class="font-one">部门：</label><div class="detail-msg">{{teacherProfile.department_name}}</div>
+                </div>
+                <div class="name-bottom-item" style="margin-bottom: 10px;" v-if="tagFlag[11]==='l'">
+                  <!--<span><svg-icon icon-class="maps-and-flags"/></span>-->
+                  <label class="font-one">地址：</label>
+                  <div class="detail-msg">{{teacherProfile.work_place}}</div>
+                </div>
+                <!--<div class="name-bottom-item" style="margin-bottom: 10px;" v-if="tagFlag[12]==='m'">
+                  &lt;!&ndash;<span><svg-icon icon-class="mobile-phone"/></span>&ndash;&gt;
+                  <label class="font-one">电话：</label><div class="detail-msg">{{teacherProfile.phone}}</div>
+                </div>-->
+                <div class="name-bottom-item" style="margin-bottom: 10px;">
+                  <!--<span><svg-icon icon-class="email"/></span>-->
+                  <label class="font-one">邮箱：</label><div class="detail-msg">{{teacherProfile.email}}</div>
+                </div>
+                <div class="name-bottom-item" style="margin-bottom: 10px;" >
+                  <!--<span><svg-icon icon-class="S"/></span>-->
+                  <label class="font-one">主页：</label><div class="detail-msg">
+                  <a :href="'http://www.scholat.com/'+teacherProfile.scholat_username" v-if="teacherProfile.scholat_username"
+                     style="color: #399;display:block;overflow:hidden;word-break:keep-all;white-space:nowrap;text-overflow:ellipsis;width:210px;">
+                    scholat.com/{{teacherProfile.scholat_username}}
+                  </a></div>
+                </div>
 
-              <!--              <div class="show-persona" v-if="teacherProfile.scholat_username">-->
-              <!--              <a @click="routeTo()">查看学者画像</a>-->
-              <!--            </div>-->
+                <!--              <div class="show-persona" v-if="teacherProfile.scholat_username">-->
+                <!--              <a @click="routeTo()">查看学者画像</a>-->
+                <!--            </div>-->
+              </div>
+              <div class="name-bottom-right">
+                <div style="margin-bottom: 10px;" v-if="tagFlag[5]==='f'" class="name-bottom-item">
+                  <!--
+                                   <span ><svg-icon icon-class="degree" /></span>
+                  -->
+                  <label class="font-one">最后学历：</label><div class="detail-msg">{{teacherProfile.degree}}</div>
+                </div>
+                <div style="margin-bottom: 10px;" v-if="tagFlag[6]==='g'"
+                     class="name-bottom-item">
+                  <!--
+                                   <span><svg-icon icon-class="degree"/></span>
+                  -->
+                  <label class="font-one">最高学位：</label><div class="detail-msg">{{teacherProfile.degreeMax}}</div>
+                </div>
+                <div class="name-bottom-item" style="margin-bottom: 10px;"
+                     v-if="tagFlag[7]==='h'">
+                  <!--
+                                   <span><svg-icon icon-class="department"/></span>
+                  -->
+                  <label class="font-one">毕业学校：</label><div class="detail-msg">{{teacherProfile.graduateFrom}}</div>
+                </div>
+                <div class="name-bottom-item" style="margin-bottom: 10px;"
+                     v-if="tagFlag[8]==='i'">
+                  <!--<span><svg-icon icon-class="department"/></span>-->
+                  <label class="font-one">学科专业：</label><div class="detail-msg">{{teacherProfile.subject}}</div>
+                </div>
+                <div class="name-bottom-item" style="margin-bottom: 10px;flex-direction: column" v-if="">
+                  <!--<span><svg-icon icon-class="rearch-direction"/></span>-->
+                  <label class="font-one">研究方向：</label>
+                  <div class="detail-msg" style="margin-top: 7px;line-height: 25px;width: 270px">{{teacherProfile.research_direction}}</div>
+                </div>
+              </div>
             </div>
-            <div class="name-bottom-right">
-              <div style="margin-bottom: 10px;" v-if="tagFlag[5]==='f'" class="name-bottom-item">
-                <!--
-                                 <span ><svg-icon icon-class="degree" /></span>
-                -->
-                <label class="font-one">最后学历：</label><div class="detail-msg">{{teacherProfile.degree}}</div>
-              </div>
-              <div style="margin-bottom: 10px;" v-if="tagFlag[6]==='g'"
-                   class="name-bottom-item">
-                <!--
-                                 <span><svg-icon icon-class="degree"/></span>
-                -->
-                <label class="font-one">最高学位：</label><div class="detail-msg">{{teacherProfile.degreeMax}}</div>
-              </div>
-              <div class="name-bottom-item" style="margin-bottom: 10px;"
-                   v-if="tagFlag[7]==='h'">
-                <!--
-                                 <span><svg-icon icon-class="department"/></span>
-                -->
-                <label class="font-one">毕业学校：</label><div class="detail-msg">{{teacherProfile.graduateFrom}}</div>
-              </div>
-              <div class="name-bottom-item" style="margin-bottom: 10px;"
-                   v-if="tagFlag[8]==='i'">
-                <!--<span><svg-icon icon-class="department"/></span>-->
-                <label class="font-one">学科专业：</label><div class="detail-msg">{{teacherProfile.subject}}</div>
-              </div>
-              <div class="name-bottom-item" style="margin-bottom: 10px;flex-direction: column" v-if="">
-                <!--<span><svg-icon icon-class="rearch-direction"/></span>-->
-                <label class="font-one">研究方向：</label>
-                <div class="detail-msg" style="margin-top: 7px;line-height: 25px;width: 270px">{{teacherProfile.research_direction}}</div>
-              </div>
-            </div>
+
           </div>
         </el-card>
       </div>
@@ -357,7 +360,7 @@ padding: 12px 20px 6px 27px">个人简介</div>
         flex-wrap: wrap;
         display: inline-block;
         vertical-align: top;
-        max-width: 300px;
+        max-width: 280px;
         margin-left: 25px;
       }
       .name-bottom-right{
