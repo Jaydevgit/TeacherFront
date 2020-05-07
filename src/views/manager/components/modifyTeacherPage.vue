@@ -932,7 +932,7 @@
                 }
                 // 創建一个富文本编辑器
                 this.editor.customConfig.menus = [
-                    // 'head',  // 标题
+                     'head',  // 标题
                     // 'bold',  // 粗体
                     // 'italic',  // 斜体
                     // 'underline',  // 下划线
@@ -1497,6 +1497,7 @@
                     cancelButtonText: '取消',
                     type: 'danger'
                 }).then(() => {
+                  this.editor.txt.clear()
                     this.ruleForm.intro = '';
                     console.log("this.ruleForm.intro ="+this.ruleForm.intro )
                 }).catch(() => {
