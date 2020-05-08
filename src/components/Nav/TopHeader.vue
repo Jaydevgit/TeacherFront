@@ -42,7 +42,7 @@
         </div>
         <div style=" display: flex;align-content: center;margin-left: 120px">
         <a href="/index" class="title" style="flex: 1;min-width: 40px">首页</a>
-        <!--<a href="https://www.yuque.com/vd7ii9/dvybyk/na3nsf" class="title" style="min-width: 80px">帮助文档</a>-->
+        <a href="https://www.yuque.com/vd7ii9/dvybyk/na3nsf" class="title" style="min-width: 80px">帮助文档</a>
         <a href="/login" class="title" style="flex: 1;min-width: 40px">登录</a>
         <a href="/unitApply" class="title" style="flex: 1;min-width: 40px">注册</a>
         <a href="http://www.scholat.com/"  class="title" style="flex: 1;min-width: 60px">
@@ -116,7 +116,7 @@
     align-content: center;margin-left: 120px"
              v-if="$route.path.indexOf('login')!=-1">
           <a href="/index" class="title" style="flex: 1;min-width: 40px">首页</a>
-          <!--<a href="https://www.yuque.com/vd7ii9/dvybyk/na3nsf" class="title" style="min-width: 80px">帮助文档</a>-->
+          <a href="https://www.yuque.com/vd7ii9/dvybyk/na3nsf" class="title" style="min-width: 80px">帮助文档</a>
           <a href="/login" class="title" style="flex: 1;min-width: 40px">登录</a>
           <a href="/unitApply" class="title" style="flex: 1;min-width: 40px">注册</a>
           <a href="http://www.scholat.com/"  class="title" style="flex: 1;min-width: 60px">

@@ -16,7 +16,7 @@
         </div>
         <div class="nav-inner-login">
           <a href="/index" class="title" style="flex: 1;min-width: 40px">首页</a>
-          <!--<a href="https://www.yuque.com/vd7ii9/dvybyk/na3nsf" class="title" style="min-width: 80px">帮助文档</a>-->
+          <a href="https://www.yuque.com/vd7ii9/dvybyk/na3nsf" class="title" style="min-width: 80px">帮助文档</a>
          <a href="/login" class="title" style="flex: 1;min-width: 40px">登录</a>
          <a href="/unitApply" class="title" style="flex: 1;min-width: 40px">注册</a>
           <a href="http://www.scholat.com/"  class="title" style="flex: 1;min-width: 60px">
