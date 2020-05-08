@@ -2,7 +2,7 @@
   <div class="teacher-item">
     <div class="teacher-img">
       <a @click="openTeacher(msg.tDomainName)">
-        <img :src="getImgUrl(msg.tAvatar)" :onerror="defaultImage" :alt="msg.username" :key="msg.teacherId">
+        <img :src="getImgUrl(msg.tAvatar)" :onerror="imgErrorFun" :alt="msg.username" :key="msg.teacherId">
       </a>
     </div>
     <div class="teacher-title">
@@ -15,11 +15,13 @@
 </template>
 
 <script>
+  import defaultAvatar from '@/assets/default.png'
     export default {
         name: "relateTeacher",
         data() {
             return {
                 defaultImage: 'this.src="http://47.106.132.95:2333/images/avatar/default.png"',
+              defaultAvatar:defaultAvatar,
             }
         },
         props: {
@@ -41,14 +43,20 @@
                 // window.open(routeData.href, '_blank');
             },
             getImgUrl(imgName) {
-                if (imgName == null) {
-                    return ""
-                } else if (imgName.indexOf("resources") != "-1") {
-                    return "http://www.scholat.com/" + imgName;
-                } else {
-                    return "http://47.106.132.95:2333/images/avatar/" + imgName;
-                }
+              console.log("imgName="+imgName);
+              if (imgName == null) {
+                return this.defaultAvatar;
+              } else if(imgName=="default.png"){
+                return this.defaultAvatar
+              } else if (imgName.indexOf("resources") != "-1") {
+                return "http://www.scholat.com/" + imgName;
+              } else {
+                return "http://47.106.132.95:2333/images/avatar/" + imgName;
+              }
             },
+          imgErrorFun(e) {
+            return 'this.src="defaultAvatar"';
+          },
         }
 
     }

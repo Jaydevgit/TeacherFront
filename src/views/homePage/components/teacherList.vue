@@ -114,12 +114,14 @@
 
 <script>
     import bus from '../../../utils/eventBus'
+    import defaultAvatar from '@/assets/default.png'
 
     export default {
         data() {
             return {
                 //变量
                 defaultImage: 'http://47.106.132.95:2333/images/avatar/default.png',
+                defaultAvatar:defaultAvatar,
                 isActive: '',
                 sourceUrl: 'http://47.106.132.95:2333/images/avatar/',
                 listName: '最新更新',
@@ -297,9 +299,10 @@
                 this.$emit("toInfo", tId)
             },
             getImgUrl(imgName) {
-                /*return 'http://www.scholat.com/' + imgName;*/
               if (imgName == null) {
-                return this.defaultImage;
+                return this.defaultAvatar;
+              } else if(imgName=="default.png"){
+                return this.defaultAvatar
               } else if (imgName.indexOf("resources") != "-1") {
                 return "http://www.scholat.com/" + imgName;
               } else {
@@ -308,7 +311,7 @@
             },
             imgErrorFun(e) {
                 let img = e;
-                return 'this.src="http://47.106.132.95:2333/images/avatar/default.png"';
+              return 'this.src="defaultAvatar"';
             },
             getListAll() {
 

@@ -144,6 +144,7 @@ padding: 12px 20px 6px 27px">个人简介</div>
 <script>
     import logo from '@/assets/defaultLogo.png'
     import bgLogo from '@/assets/logobluegray.png'
+    import defaultAvatar from '@/assets/default.png'
 
     export default {
         name: "BaseInfo",
@@ -174,6 +175,7 @@ padding: 12px 20px 6px 27px">个人简介</div>
               bgLogo:bgLogo,
                 // defaultQrImg:'this.src="' + require('../../../assets/img/logo.png') + '"',
                 defaultQrImg: 'this.style="display:none"',
+                defaultAvatar:defaultAvatar,
                 personal: {
                     name: "汤庸",
                     avatar: 'http://localhost:8080/avatar/' + this.teacherProfile.avatar,
@@ -198,19 +200,22 @@ padding: 12px 20px 6px 27px">个人简介</div>
                 this.$router.push({path: '/login'});
             },
             getImgUrl(imgName) {
-                if (imgName == null) {
-                    return ""
-                } else if (imgName.indexOf("resources") != "-1") {
-                    return "http://www.scholat.com/" + imgName;
-                } else {
-                    return "http://47.106.132.95:2333/images/avatar/" + imgName;
-                }
+              if (imgName == null) {
+                return this.defaultAvatar;
+              } else if(imgName=="default.png"){
+                return this.defaultAvatar
+              } else if (imgName.indexOf("resources") != "-1") {
+                return "http://www.scholat.com/" + imgName;
+              } else {
+                return "http://47.106.132.95:2333/images/avatar/" + imgName;
+              }
             },
             imgErrorFun(e) {
-                let img = e;
+                /*let img = e;
                 img.onerror = null;
                 console.log("执行了imgErrorFun函数，onerror=" + img.onerror + "，img.src=" + img.src);
-                return 'this.src="http://47.106.132.95:2333/images/avatar/default.png"';
+                return 'this.src="http://47.106.132.95:2333/images/avatar/default.png"';*/
+              return 'this.src="defaultAvatar"';
             },
             routeTo() {
                 this.$router.push({

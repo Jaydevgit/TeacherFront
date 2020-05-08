@@ -235,6 +235,7 @@
 </template>
 <script>
     import teacherPersonalHomePage from '../teacher/teacherPersonalHomePage'
+    import defaultAvatar from '@/assets/default.png'
     import store from '../../store'
     // import dialogBar from "./components/dialog";
     import roleAssignmentBar from "./components/roleAssignment";
@@ -249,6 +250,7 @@
         data() {
             return {
                 defaultImage: 'http://47.106.132.95:2333/images/avatar/default.png',
+                defaultAvatar:defaultAvatar,
                 searchKey: '',
                 totalCount: 0, //分页组件--数据总条数
                 totalUpdate: 0,// 学者网更新总数
@@ -395,7 +397,9 @@
             },
             getImgUrl(imgName) {
                 if (imgName == null) {
-                    return this.defaultImage;
+                    return this.defaultAvatar;
+                } else if(imgName=="default.png"){
+                  return this.defaultAvatar
                 } else if (imgName.indexOf("resources") != "-1") {
                     return "http://www.scholat.com/" + imgName;
                 } else {
@@ -405,7 +409,7 @@
 
             },
           imgErrorFun(e){
-            return 'this.src="http://47.106.132.95:2333/images/avatar/default.png"';
+            return 'this.src="defaultAvatar"';
           },
             routerTo(teacher) {
                 console.log("=========================================")
