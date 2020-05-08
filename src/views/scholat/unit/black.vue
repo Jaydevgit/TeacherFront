@@ -113,7 +113,7 @@
 
       <el-table-column fixed="right" align="center" label="管理" v-if="hasScholatPerm('unit:update')">
         <template slot-scope="scope">
-          <el-button type="danger" size="small" @click="showDetail(scope.row.id)">从黑名单移除</el-button>
+          <el-button type="danger" size="small" @click="deleteU(scope.row.id,scope.row.domainName)">从黑名单移除</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -140,6 +140,26 @@
         </el-table>
       </el-dialog>
   </div>
+    <div>
+      <el-dialog
+        title="提示"
+        :visible.sync="dialogVisible"
+        width="30%"
+        :before-close="handleClose">
+        <div  class="notice">
+          {{Info}}</div>
+        <div style="margin-bottom: 5px;margin-left: 10px">请输入 <span style="font-weight:900;text-decoration:underline">{{domainName}}</span> 确认删除</div>
+        <el-row>
+          <el-input type="text" v-model="deleteInfo" placeholder="输入上述带下划线域名进行删除">
+          </el-input>
+        </el-row>
+        <span slot="footer" class="dialog-footer">
+
+    <el-button @click="dialogVisible = false">取 消</el-button>
+    <el-button type="primary" @click="deleteUnit">确 定</el-button>
+  </span>
+      </el-dialog>
+    </div>
 
   </div>
 </template>
@@ -177,7 +197,12 @@
           id:'',
         },
         allSubUnitName:[],
-        dialogTableVisible:false
+        dialogTableVisible:false,
+        dialogVisible:false,
+        deleteInfo:'',
+        domainName:'',
+        deleteId:'',
+        Info:'删除学院会删除该学院全部信息(包括该学院全部教师信息,登录信息，权限信息等等)',
       }
     },
     created() {
@@ -185,6 +210,36 @@
       this.getList();
     },
     methods: {
+      deleteUnit(){
+        if(this.deleteInfo===this.domainName){
+          this.api({
+            url: "/scholat/delete/" + this.deleteId,
+            method: "get"
+          }).then(res => {
+            console.log("删除头像成功")
+          }).catch(error => {
+            console.log("哎呀.....删除头像失败")
+          })
+          // this.$message({
+          //   message: "修改成功",
+          //   type: 'success',
+          // })
+          console.log("this.deleteId+"+this.deleteId+this.domainName)
+          this.dialogVisible = false
+        }else{
+          this.$message({
+            message: "输入验证域名错误,请重新输入",
+            type: 'error',
+          })
+          this.deleteInfo=''
+        }
+
+      },
+      deleteU(id,domain){
+        this.deleteId=id;
+        this.domainName=domain
+        this.dialogVisible= true;
+      },
       subUser(id){
         this.dialogTableVisible = true;
         this.getListSubUser(id);
@@ -350,5 +405,12 @@
     margin: 8px;
     border-radius: 14px;
     box-shadow: 0 0 14px 6px antiquewhite;
+  }
+  .notice{
+    background-color: #FFFBDE;
+    min-height: 60px;
+    margin-bottom: 20px;padding: 5px;
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+    transform: translateY(-10px);
   }
 </style>
