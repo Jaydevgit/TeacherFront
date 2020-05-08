@@ -210,20 +210,22 @@
       this.getList();
     },
     methods: {
+
       deleteUnit(){
+
         if(this.deleteInfo===this.domainName){
           this.api({
             url: "/scholat/delete/" + this.deleteId,
             method: "get"
           }).then(res => {
-            console.log("删除头像成功")
+            this.$message({
+              message: "移除黑名单成功",
+              type: 'success',
+            })
+            this.getList();
           }).catch(error => {
-            console.log("哎呀.....删除头像失败")
+            console.log("哎呀.....移除黑名单失败")
           })
-          // this.$message({
-          //   message: "修改成功",
-          //   type: 'success',
-          // })
           console.log("this.deleteId+"+this.deleteId+this.domainName)
           this.dialogVisible = false
         }else{
@@ -233,7 +235,6 @@
           })
           this.deleteInfo=''
         }
-
       },
       deleteU(id,domain){
         this.deleteId=id;

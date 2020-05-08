@@ -156,7 +156,12 @@
         :before-close="handleClose">
         <el-row>
           <el-col :span="6" style="text-align: center;margin: 0 auto;line-height:40px"> <span>新密码</span></el-col>
-          <el-col :span="16"><el-input type="password" v-model="newP.newPassword" placeholder="不填则表示不修改">
+          <el-col :span="16"><el-input type="password" v-model="newP.newPassword" placeholder="请输入新密码">
+          </el-input></el-col>
+        </el-row>
+        <el-row style="margin-top: 10px">
+          <el-col :span="6" style="text-align: center;margin: 0 auto;line-height:40px"> <span>确认密码</span></el-col>
+          <el-col :span="16"><el-input type="password" v-model="newPassword2" placeholder="再次输入上述密码">
           </el-input></el-col>
         </el-row>
 
@@ -210,7 +215,8 @@
         newP:{
           newPassword:'',
           changePasswordId:''
-        }
+        },
+        newPassword2:''
 
       }
     },
@@ -221,20 +227,28 @@
     },
     methods: {
       passwordRight(){
-        console.log("newPassword="+this.newP.newPassword+this.newP.changePasswordId);
-      //  console.log("加密后的密码为："+this.md5(this.newP.newPassword+this.salt));
-        this.newP.newPassword = this.md5(this.newP.newPassword+this.salt);
-        this.api({
-          url: "/scholat/changePassword",
-          method: "post",
-          data: this.newP
-        }).then(() => {
-          this.$message({
-            message: "修改成功",
-            type: 'success',
+        if(this.newPassword2===this.newP.newPassword){
+          console.log("newPassword="+this.newP.newPassword+this.newP.changePasswordId);
+          //  console.log("加密后的密码为："+this.md5(this.newP.newPassword+this.salt));
+          this.newP.newPassword = this.md5(this.newP.newPassword+this.salt);
+          this.api({
+            url: "/scholat/changePassword",
+            method: "post",
+            data: this.newP
+          }).then(() => {
+            this.$message({
+              message: "修改成功",
+              type: 'success',
+            })
+            this.dialogVisible= false;
           })
-          this.dialogVisible= false;
-        })
+        }else {
+          this.$message({
+            message: "两次密码不相同请重新输入",
+            type: 'warning',
+          })
+        }
+
 
       },
       changePassword(id){
@@ -377,7 +391,7 @@
           showCancelButton: false,
           type: 'danger'
         }).then(() => {
-          this.$message.warning("申请的id是:" + id)
+         // this.$message.warning("申请的id是:" + id)
           _vue.api({
             url: "/scholat/apply/blackAll",
             method: "post",
