@@ -397,7 +397,8 @@ padding: 12px 20px 6px 27px">个人简介</div>
       }
 
       .detail-msg{
-        width: 80%;
+        width: 220px;
+        display:block;word-break: break-all;word-wrap: break-word;
       }
       .personal-describe {
         display: inline;
