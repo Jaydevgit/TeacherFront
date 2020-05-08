@@ -2,6 +2,9 @@
   <el-menu class="navbar" mode="horizontal">
     <hamburger class="hamburger-container" :toggleClick="toggleSideBar" :isActive="sidebar.opened"></hamburger>
     <breadcrumb :unit="this.unit" v-if="this.unit.schoolName!=''"></breadcrumb>
+
+
+
     <el-dropdown class="avatar-container" trigger="click">
       <div class="avatar-wrapper" style="float: right">
         <img class="user-avatar" :src="logo">
@@ -11,6 +14,17 @@
       <div  style="float: right;padding-right: 20px;">
         <el-button type="primary"  size="small" v-if="backTOHome" @click="enterHomepage">进入学院主页</el-button>
       </div>
+      <div  style="float: right;padding-right: 20px;">
+        <el-button type="primary"  size="small" v-if="backTOHome" @click="logout">退出登录</el-button>
+      </div>
+      <span style="float: right;margin-right: 20px;text-underline: #7e8c8d">{{username}}</span>
+
+      <div  style="float: right;padding-right: 20px;">
+
+      </div>
+      <!--<div  style="float: right;padding-right: 20px;">
+        <el-button type="primary"  size="small" v-if="!backTOHome" @click="logoutAdmin">退出管理员账号</el-button>
+      </div>-->
 
       <el-dropdown-menu class="user-dropdown" slot="dropdown">
         <el-dropdown-item divided>
@@ -30,6 +44,10 @@ import logo from '@/assets/defaultLogo.png'
 export default {
   created(){
     console.log("+++++++++++++++++进入到管理页面+++++++++++++++++")
+    this.$store.dispatch('GetInfo').then(data=>{
+      console.log("data="+JSON.stringify(data));
+      this.username=data.userPermission.username;
+    })
     this.getUnitInfo();
     if(this.$route.path.indexOf("scholat")!=-1){
       this.backTOHome = false
@@ -57,6 +75,7 @@ export default {
         backgroundUrl:'',
         unitId:''
       },
+      username:''
     }
   },
   components: {
@@ -113,7 +132,9 @@ export default {
         { name:'homepage',
           params: { domainName:domainName,
             unitId:unitId}})
-    }
+    },
+
+
   }
 }
 </script>
