@@ -471,13 +471,15 @@
                 })
             },
             next() {
-                if (this.applyForm.school_name.length != 0
-                    & this.applyForm.unit_name.length != 0
-                    & this.applyForm.domain_name.length != 0
+              console.log("1.this.applyForm="+JSON.stringify(this.applyForm))
+                if (this.applyForm.school_name!=null
+                    & this.applyForm.unit_name!=null
+                    & this.applyForm.domain_name!=null
                     & this.ifCollegeDomainExist) {
                     if (this.active++ > 2) this.active = 0;
                     console.log(this.applyForm.school_name)
                 } else {
+                  console.log("2.this.applyForm="+JSON.stringify(this.applyForm))
                     this.$message.error("请将信息填入完整方可进行下一步")
                 }
 
