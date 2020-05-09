@@ -8,29 +8,26 @@
     <el-dropdown class="avatar-container" trigger="click">
       <div class="avatar-wrapper" style="float: right">
         <img class="user-avatar" :src="logo">
-        <i class="el-icon-caret-bottom"></i>
+        <!--<i class="el-icon-caret-bottom"></i>-->
       </div>
 
+
+      <div  style="float: right;padding-right: 20px;">
+        <el-button type="primary"  size="small" @click="logout">退出登录</el-button>
+      </div>
+      <span style="float: right;margin-right: 20px;text-underline: #7e8c8d">{{username}}</span>
       <div  style="float: right;padding-right: 20px;">
         <el-button type="primary"  size="small" v-if="backTOHome" @click="enterHomepage">进入学院主页</el-button>
       </div>
       <div  style="float: right;padding-right: 20px;">
-        <el-button type="primary"  size="small" v-if="backTOHome" @click="logout">退出登录</el-button>
-      </div>
-      <span style="float: right;margin-right: 20px;text-underline: #7e8c8d">{{username}}</span>
-
-      <div  style="float: right;padding-right: 20px;">
 
       </div>
-      <!--<div  style="float: right;padding-right: 20px;">
-        <el-button type="primary"  size="small" v-if="!backTOHome" @click="logoutAdmin">退出管理员账号</el-button>
-      </div>-->
 
-      <el-dropdown-menu class="user-dropdown" slot="dropdown">
+      <!--<el-dropdown-menu class="user-dropdown" slot="dropdown">
         <el-dropdown-item divided>
           <span @click="logout" style=" display:block;">退出登录</span>
         </el-dropdown-item>
-      </el-dropdown-menu>
+      </el-dropdown-menu>-->
     </el-dropdown>
   </el-menu>
 </template>
@@ -44,15 +41,17 @@ import logo from '@/assets/defaultLogo.png'
 export default {
   created(){
     console.log("+++++++++++++++++进入到管理页面+++++++++++++++++")
-    this.$store.dispatch('GetInfo').then(data=>{
+    /*this.$store.dispatch('GetInfo').then(data=>{
       console.log("data="+JSON.stringify(data));
       this.username=data.userPermission.username;
-    })
+    })*/
+
     this.getUnitInfo();
     if(this.$route.path.indexOf("scholat")!=-1){
       this.backTOHome = false
     }else {
       this.backTOHome = true
+      this.getUsername();
     }
 
     console.log(this.backTOHome)
@@ -106,8 +105,16 @@ export default {
         }).catch(error => {
           console.log("QAQ........没有找到学院Id")
         })
-
-
+    },
+    getUsername(){
+      this.api({
+        url: '/login/getInfo',
+        method: 'post'
+      }).then(data=>{
+        this.username=data.userPermission.username;
+      }).catch(error=>{
+        console.log("没有找到用户名")
+      })
     },
     toggleSideBar() {
       this.$store.dispatch('ToggleSideBar')
