@@ -213,13 +213,7 @@ export const asyncRouterMap = [
     name: '师资队伍主页',
     meta: {title: '师资队伍主页', icon: 'tree'},
     children: [
-      {
-        path: 'teacherSet',
-        name: '教师主页设置',
-        component: _import('homeSet/teacher/teacherSet'),
-        meta: {title: '教师主页设置', icon: 'user'},
-        menu: 'user'
-      },
+
       {
         path: 'catalogueList',
         name: '师资栏目设置',
@@ -234,6 +228,13 @@ export const asyncRouterMap = [
         meta: {title: '教师分类设置', icon: 'example'},
         menu: 'teacher',// 这里的menu和权限有关，如果权限menu没有返回对应的menu就不会显示，所以要写上menu
         hidden: false
+      },
+      {
+        path: 'teacherSet',
+        name: '教师主页设置',
+        component: _import('homeSet/teacher/teacherSet'),
+        meta: {title: '教师主页设置', icon: 'user'},
+        menu: 'user'
       },
     ]
   },

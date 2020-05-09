@@ -61,7 +61,7 @@
                 <div class="name-bottom-item" style="margin-bottom: 10px;"
                      v-if="tagFlag[10]==='k'">
                   <!--<span><svg-icon icon-class="department"/></span>-->
-                  <label class="font-one">部门：</label><div class="detail-msg">{{teacherProfile.department_name}}</div>
+                  <label class="font-one">部门：</label><div class="detail-msg" v-if="teacherProfile.department_name">{{personal.unit}}{{teacherProfile.department_name}}</div>
                 </div>
                 <div class="name-bottom-item" style="margin-bottom: 10px;" v-if="tagFlag[11]==='l'">
                   <!--<span><svg-icon icon-class="maps-and-flags"/></span>-->
@@ -149,6 +149,7 @@ padding: 12px 20px 6px 27px">个人简介</div>
     export default {
         name: "BaseInfo",
         created() {
+          this.getUnitInfo();
             console.log("********开始执行BaseInfo的create生命周期函数********")
             this.personal.avatar = this.logo;
           console.log("teacherProfile.intro="+this.teacherProfile.intro);
@@ -158,6 +159,7 @@ padding: 12px 20px 6px 27px">个人简介</div>
           console.log("this.$store.state.user.tagState="+this.tagFlag);
             console.log("（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（（" +
               "（（（（（（（（（（（（（（（（（（（（（（（（ this.tagFlag=" + this.tagFlag);
+
         },
       mounted() {
         console.log("********开始执行BaseInfo的mounted生命周期函数*********")
@@ -182,7 +184,7 @@ padding: 12px 20px 6px 27px">个人简介</div>
                     title: "教授",
                     position: "博士生导师",
                     subject: "计算机科学与技术",
-                    unit: "计算机学院",
+                    unit: "",
                     email: "ytang4@qq.com",
                     research: [],
                     introduction: "",
@@ -193,7 +195,20 @@ padding: 12px 20px 6px 27px">个人简介</div>
         },
         props: ['teacherProfile'],
         methods: {
-
+            getUnitInfo(){
+              console.log("teacherProfile="+JSON.stringify(this.teacherProfile))
+              console.log("teacherProfile.domain_name="+this.teacherProfile.tDomain_name)
+              this.api({
+                url: "/unit/getUnitBytDomain_name",
+                method: "get",
+                params: {tDomain_name: this.teacherProfile.domain_name}
+              }).then(data => {
+                console.log("学院名:" + JSON.stringify(data))
+                this.personal.unit=data.unitName;
+              }).catch(error => {
+                console.log("没有找到学院unit")
+              })
+            },
             handleCommand() {
                 // const that = this;
                 // that.$router.push({path: "/register",query:{alert:"页面跳转成功"}})
