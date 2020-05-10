@@ -200,7 +200,7 @@
   }
 
   .preview {
-    border-radius: 50%;
+    border-radius: 5%;
     overflow: hidden;
     border: 1px solid #cccccc;
     background: #cccccc;

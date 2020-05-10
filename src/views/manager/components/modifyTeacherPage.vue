@@ -168,7 +168,7 @@
 
             </el-form-item>
           </el-col>-->
-          <el-col :span="19">
+          <el-col :span="24">
             <el-row>
               <el-col :span="8"><div class="grid-content bg-purple">
                 <el-form-item label="姓名" prop="username" class="redItem">
@@ -272,16 +272,9 @@
                             placeholder=""></el-input>
                 </el-form-item>
               </div></el-col>
-            </el-row>
-            <el-row>
               <el-col :span="8"><div class="grid-content bg-purple">
                 <el-form-item label="学科专业" prop="subject">
                   <el-input v-model="ruleForm.subject" placeholder="例如：软件工程"></el-input>
-                </el-form-item>
-              </div></el-col>
-              <el-col :span="16"><div class="grid-content bg-purple">
-                <el-form-item label="研究方向" prop="research_direction">
-                  <el-input v-model="ruleForm.research_direction" placeholder="例如：数据挖掘、知识图谱、图像识别等"></el-input>
                 </el-form-item>
               </div></el-col>
             </el-row>
@@ -340,14 +333,53 @@
             </el-row>
 
           </el-col>
-          <el-col :span="5">
-            <div class="grid-content bg-purple" style="text-align: center">
+<!--          <el-col :span="5">-->
+<!--            <div class="grid-content bg-purple" style="text-align: center">-->
 
+<!--              &lt;!&ndash;显示更新提示&ndash;&gt;-->
+<!--              <el-tooltip placement="top" v-if="showUpdateInfo.avatarScholat">-->
+<!--                <div slot="content" style="font-size: 16px">-->
+<!--                  <img :src="showUpdateInfo.avatarScholat" class="update-avatar"-->
+<!--                       style="margin-left: 10px;border-radius: 15px;"/>-->
+<!--                  <div style="width: 80px;float: left;margininvitation-left: 10px">-->
+<!--                    <el-button size="small" type="success" @click="updateAvatar()"-->
+<!--                               style="display:block;margin-top: 15px;">替换头像-->
+<!--                    </el-button>-->
+<!--                    <el-button size="small" type="warning" @click="cancelUpdateAvatar()"-->
+<!--                               style="display:block;margin-left: 0;margin-top: 8px;">取消替换-->
+<!--                    </el-button>-->
+<!--                  </div>-->
+
+<!--                </div>-->
+<!--                &lt;!&ndash;上传头像对话框&ndash;&gt;-->
+<!--                <crop-avatar-image ref="cropAvatarImage" class="update-crop-avatar" :scholatAvatar="ruleForm.avatar"-->
+<!--                                   @crop-avatar="cropAvatarImageName"></crop-avatar-image>-->
+<!--              </el-tooltip>-->
+<!--              &lt;!&ndash;上传头像组件&ndash;&gt;-->
+<!--              <crop-avatar-image ref="cropAvatarImage"-->
+<!--                                 v-if="!showUpdateInfo.avatarScholat"-->
+<!--                                 @crop-avatar="cropAvatarImageName"></crop-avatar-image>-->
+
+<!--              <el-button @click="uploadAvatar()" type="primary" style="margin-top: 23px;">-->
+<!--                上传头像-->
+<!--              </el-button>-->
+<!--              &lt;!&ndash;<div style="margin-top: 38px;" v-if="ruleForm.qrcode">-->
+<!--                <img :src="'http://www.scholat.com/'+ruleForm.qrcode" style="width: 120px;height: 120px;">-->
+<!--              </div>&ndash;&gt;-->
+<!--            </div>-->
+<!--          </el-col>-->
+        </el-row>
+      </div>
+          <el-card class="box-card scholat-card" v-if="$route.path.indexOf('modifyTeacher')!=-1">
+            <el-row>
+              <el-col :span="4">
+            <div class="grid-content bg-purple" style="text-align: center">
+              <span style="font-weight: 900;font-size: 24px">教师头像</span>
               <!--显示更新提示-->
               <el-tooltip placement="top" v-if="showUpdateInfo.avatarScholat">
                 <div slot="content" style="font-size: 16px">
                   <img :src="showUpdateInfo.avatarScholat" class="update-avatar"
-                       style="margin-left: 10px;border-radius: 15px;"/>
+                       style="width:70px;height:70px;"/>
                   <div style="width: 80px;float: left;margininvitation-left: 10px">
                     <el-button size="small" type="success" @click="updateAvatar()"
                                style="display:block;margin-top: 15px;">替换头像
@@ -359,6 +391,7 @@
 
                 </div>
                 <!--上传头像对话框-->
+
                 <crop-avatar-image ref="cropAvatarImage" class="update-crop-avatar" :scholatAvatar="ruleForm.avatar"
                                    @crop-avatar="cropAvatarImageName"></crop-avatar-image>
               </el-tooltip>
@@ -367,20 +400,34 @@
                                  v-if="!showUpdateInfo.avatarScholat"
                                  @crop-avatar="cropAvatarImageName"></crop-avatar-image>
 
-              <el-button @click="uploadAvatar()" type="primary" style="margin-top: 23px;">
-                上传头像
-              </el-button>
+
               <!--<div style="margin-top: 38px;" v-if="ruleForm.qrcode">
                 <img :src="'http://www.scholat.com/'+ruleForm.qrcode" style="width: 120px;height: 120px;">
               </div>-->
-
-
             </div>
+              </el-col>
+              <el-col :span="6" style="margin-top: 50px;margin-left: 20px">
+                <div style="display: flex;align-items: center;">
+                  <img  class="preview" :src="getImgUrl(scholatProfile.avatar)"
+                        style="width:70px;height:70px;border-radius: 50%;"/>
+                  <ul style="list-style:none;transform: translateX(-20px);">
+                    <li>关联的头像</li>
+                    <li><el-button size="small" style="margin-left:-5px" @click="chooseScholatAvatar()">选择该头像</el-button></li>
+                  </ul>
+                </div>
+                <el-button @click="uploadAvatar()" type="primary" style="margin-top: 23px;margin-left:90px;transform: translateY(-20px);" size="small">
+                  上传头像
+                </el-button>
+              </el-col>
+              <el-col :span="12">
+                <span style="font-weight: 900;font-size: 24px">研究方向</span>
+                <el-input style="margin-top: 10px" type="textarea"  maxlength="100" show-word-limit
+                          v-model="ruleForm.research_direction" placeholder="例如：数据挖掘、知识图谱、图像识别等"></el-input>
+              </el-col>
+            </el-row>
+          </el-card>
 
-          </el-col>
-        </el-row>
 
-      </div>
 
 <!--关联学者网区域-->
       <template v-if="secondPage || $route.path.indexOf('modifyTeacher')!=-1">
@@ -400,12 +447,12 @@
             <span class="teacher-homepage">{{scholatProfile.post}}</span>
             <span class="teacher-homepage">{{scholatProfile.degree}}</span>-->
 <!--            <span>{{scholatProfile.update_time}}</span>-->
-            <div style="display: flex;align-items: center">
-              <img  class="preview" :src="getImgUrl(scholatProfile.avatar)"
-                    style="width:70px;height:70px;border-radius: 50%;"/>
-              <el-button size="small" style="margin-left: 8px" @click="chooseScholatAvatar()">选择该头像</el-button>
+<!--            <div style="display: flex;align-items: center">-->
+<!--              <img  class="preview" :src="getImgUrl(scholatProfile.avatar)"-->
+<!--                    style="width:70px;height:70px;border-radius: 5%;"/>-->
+<!--              <el-button size="small" style="margin-left: 8px" @click="chooseScholatAvatar()">选择该头像</el-button>-->
 
-            </div>
+<!--            </div>-->
 
             <div style="display: flex;align-items: center">
               <el-button type="success" @click="showDifferent(scholatProfile)" size="small"
@@ -452,7 +499,7 @@
                       <el-table-column fixed align="center" label="学者网用户" width="140">
                         <template slot-scope="scope">
                           <img id="avatar-id" class="preview" :src="getImgUrl(scope.row.avatar)"
-                               style="width:70px;height:70px;border-radius: 50%;"/>
+                               style="width:70px;height:70px;border-radius: 5%;"/>
                           <div class="teacher-homepage" @click="routerTo(scope.row)">{{scope.row.username}}</div>
                           <el-button type="success" @click="uploadAvatar" size="small"
                                      style="margin-left: 0;margin-bottom: 4px;">上传头像
@@ -1873,6 +1920,7 @@
 
     .update-crop-avatar.crop-avatar-image /deep/ .preview {
       box-shadow: 0 0 14px 14px antiquewhite;
+      border-radius:2%;
     }
 
     .update-avatar {
@@ -1880,7 +1928,7 @@
       height: 100px;
       display: block;
       float: left;
-      border-radius: 50%;
+      border-radius:2%;
       border: 2px solid white;
     }
 
