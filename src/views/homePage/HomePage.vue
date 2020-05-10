@@ -52,8 +52,8 @@
 
       </div>
       <div class="nav-inner-login">
-        <a href="/login" class="title" style="flex: 1;min-width: 100px">管理员登录</a>
-        <a href="http://www.scholat.com/"  class="title" style="flex: 1;min-width: 60px">
+        <a href="/login" class="title" style="flex: 1;min-width: 70px;font-size: 12px">管理员登录</a>
+        <a href="http://www.scholat.com/"  class="title" style="flex: 1;min-width: 45px;font-size: 12px">
           学者网
         </a>
       </div>
@@ -301,6 +301,7 @@
   .nav-inner-login {
     display: flex;
     align-content: center;
+    font-size: 14px
   }
   .title{
 

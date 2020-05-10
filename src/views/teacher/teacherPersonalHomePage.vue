@@ -1,7 +1,7 @@
 <template>
   <div class="app-container" style="padding: 0;min-height: calc(100vh - 60px);height: 100%">
-    <div class="container" style="padding-top: 26px">
-      <base-info v-if="teacherProfile" :teacherProfile="teacherProfile" class="left" style="width: 100%"></base-info>
+    <div class="container" style="padding-top: 26px" v-if="teacherProfile.domain_name!=null">
+      <base-info  :teacherProfile="teacherProfile" class="left" style="width: 100%"></base-info>
       <rightNav class="right"></rightNav>
     </div>
   </div>

@@ -59,10 +59,10 @@
     color: rgb(57, 119, 119);">
                   学院师资栏目管理系统
                 </span>
-                <div style="display: inline-block;margin-top: 12px;">
-                  <!--                  <span class="font-1" style="display: block">版本: 1.0-beta-1</span>-->
+                <!--<div style="display: inline-block;margin-top: 12px;">
+                  &lt;!&ndash;                  <span class="font-1" style="display: block">版本: 1.0-beta-1</span>&ndash;&gt;
                   <span class="font-1" style="display: block">发布日期: 2020年01月12日</span>
-                </div>
+                </div>-->
                 <div class="font-1" style="margin: 7px 50px 42px 0;
                 text-indent: 40px;
                 line-height: 34px;
