@@ -61,7 +61,7 @@
                 <div class="name-bottom-item" style="margin-bottom: 10px;"
                      v-if="tagFlag[10]==='k'">
                   <!--<span><svg-icon icon-class="department"/></span>-->
-                  <label class="font-one">部门：</label><div class="detail-msg" v-if="teacherProfile.department_name">{{personal.unit}}{{teacherProfile.department_name}}</div>
+                  <label class="font-one">部门：</label><div class="detail-msg">{{personal.unit}}{{teacherProfile.department_name}}</div>
                 </div>
                 <div class="name-bottom-item" style="margin-bottom: 10px;" v-if="tagFlag[11]==='l'">
                   <!--<span><svg-icon icon-class="maps-and-flags"/></span>-->
