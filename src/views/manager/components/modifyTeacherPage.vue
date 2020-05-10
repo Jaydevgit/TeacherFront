@@ -248,7 +248,7 @@
             </el-row>-->
             <el-row>
               <el-col :span="8"><div class="grid-content bg-purple">
-                <el-form-item label="最后学历" prop="degree">
+                <el-form-item label="学历学位" prop="degree">
                   <!-- <el-select v-model="ruleForm.degree">
                      <el-option label="博士研究生" value="博士研究生"></el-option>
                      <el-option label="硕士研究生" value="硕士研究生"></el-option>
@@ -259,13 +259,13 @@
                             placeholder=""></el-input>
                 </el-form-item>
               </div></el-col>
-              <el-col :span="8"><div class="grid-content bg-purple">
-                <el-form-item label="最高学位" prop="degree_max">
+<!--              <el-col :span="8"><div class="grid-content bg-purple">-->
+<!--                <el-form-item label="最高学位" prop="degree_max">-->
 
-                  <el-input v-model="ruleForm.degree_max"
-                            placeholder="博士、硕士、学士"></el-input>
-                </el-form-item>
-              </div></el-col>
+<!--                  <el-input v-model="ruleForm.degree_max"-->
+<!--                            placeholder="博士、硕士、学士"></el-input>-->
+<!--                </el-form-item>-->
+<!--              </div></el-col>-->
               <el-col :span="8"><div class="grid-content bg-purple">
                 <el-form-item label="毕业学校" prop="graduateFrom">
                   <el-input v-model="ruleForm.graduateFrom"
@@ -299,7 +299,7 @@
             </el-row>
             <el-row>
               <el-col :span="8"><div class="grid-content bg-purple">
-                <el-form-item label="邮箱" prop="email" class="redItem">
+                <el-form-item label="邮箱" prop="email" >
                   <el-input v-model="ruleForm.email" placeholder="建议输入办公邮箱地址"></el-input>
                 </el-form-item>
               </div></el-col>
@@ -874,8 +874,9 @@
                         {required: true, message: '请选择性别', trigger: 'change'}
                     ],
                     email: [
-                        {validator: validateEmail, required: true, message: '该邮箱已存在', trigger: 'blur'},
-                        {required: true, type: 'email', message: '请输入正确的邮箱地址', trigger: ['blur', 'change']}
+                      {validator: validateEmail},
+                     //   {validator: validateEmail, required: true, message: '该邮箱已存在', trigger: 'blur'},
+                        // {required: true, type: 'email', message: '请输入正确的邮箱地址', trigger: ['blur', 'change']}
                     ],
                     domain_name: [
                         {validator: validatedomainName, required: true, message: '该域名已存在', trigger: ['change']},
