@@ -2,15 +2,15 @@
   <div class="container" style="padding-top: 30px;">
     <div class="main-content">
       <el-row type="flex" class="row-bg" justify="start">
-        <el-col :span="9">
+        <el-col :span="6">
           <div
-            style="height: calc(100vh - 80px);margin-right: 14px;display: flex;justify-content: center;">
+            style="height: calc(100vh - 80px);display: flex;justify-content: center;">
             <div>
               <el-card class="box-card" style="width: fit-content">
                 <el-menu
                   default-active="0"
                   class="el-menu-vertical-demo"
-                  style="width: 480px;float: left"
+                  style="width: 300px;float: left"
                   background-color="#ffffff"
                   @open="handleOpen"
                   @close="handleClose">
@@ -53,7 +53,7 @@
                         <span style="margin-right: 20px;margin-left: 8px;">{{item.name}}</span>
                       </div>
 
-                      <el-button type="primary" size="small" style="float:left;margin-left: 145px;"
+                      <el-button type="primary" size="small" style="float:right;"
                                  @click="showListTeacher(item.id)">添加教师
                       </el-button>
                     </div>
@@ -109,7 +109,7 @@
                           class="seq"></span>
                   </template>
                 </el-table-column>
-                <el-table-column
+                <!--<el-table-column
                   label="头像"
                   width="120" align="center">
                   <template slot-scope="scope">
@@ -117,7 +117,7 @@
                          :src="getImgUrl(scope.row.tAvatar)" :onerror="defaultImage"
                          style="width:60px;height:60px;cursor:pointer;">
                   </template>
-                </el-table-column>
+                </el-table-column>-->
                 <el-table-column align="center" label="姓名" width="130">
                   <template slot-scope="scope">
           <span class="teacher-homepage" @click="routerTo(scope.row.tId)"
@@ -125,12 +125,12 @@
                     <span></span>
                   </template>
                 </el-table-column>
-<!--                <el-table-column align="center" label="职称" width="180">-->
-<!--                  <template slot-scope="scope">-->
-<!--                    <span class="teacher-homepage" style="cursor:pointer;">{{scope.row.tPost}}</span>-->
-<!--                    <span></span>-->
-<!--                  </template>-->
-<!--                </el-table-column>-->
+                <el-table-column align="center" label="职称" width="180">
+                  <template slot-scope="scope">
+                    <span class="teacher-homepage" style="cursor:pointer;">{{scope.row.tPost}}</span>
+                    <span></span>
+                  </template>
+                </el-table-column>
                 <el-table-column label="操作" v-if="unitVisualable == false">
                   <template slot-scope="scope">
                     <el-button v-if="unitVisualable == false"
@@ -145,25 +145,25 @@
           </el-card>
 
         </el-col>
-        <el-col :span="4" v-if="dialogFormVisible">
-          <el-card class="box-card" style="width:350px">
+        <el-col :span="9" v-if="dialogFormVisible">
+          <el-card class="box-card" style="width:500px">
             <div style="height: 60px;width: 100%;" class="teacher-nav">
-              <span style="margin-left: 10px">请勾选添加教师</span>
+              <span style="margin-left: 10px">请选择要添加教师</span>
               <div style="margin: 0;display: flex;justify-content: space-between; ">
-                <el-button type="success" @click="addCatalogueTeacher" size="small">确 定</el-button>
-                <el-button type="primary" @click="dialogFormVisible = false" size="small" style="margin-right: 10px">取 消</el-button>
+                <!--<el-button type="success" @click="addCatalogueTeacher" size="small">确 定</el-button>-->
+                <el-button type="primary" @click="dialogFormVisible = false" size="small" style="margin-right: 10px">取消</el-button>
               </div>
             </div>
             <div   style="height: calc(100vh - 155px);overflow-y: scroll;">
 
               <el-table :data="searchList" @selection-change="changeFun" v-if="searchList!=null">
 
-                <el-table-column
+                <!--<el-table-column
                   type="selection"
                   width="55">
-                </el-table-column>
+                </el-table-column>-->
 
-                <el-table-column
+                <!--<el-table-column
                   label="头像"
                   width="100" align="center">
                   <template slot-scope="scope">
@@ -172,7 +172,7 @@
                          style="width:60px;height:60px;cursor:pointer;">
 
                   </template>
-                </el-table-column>
+                </el-table-column>-->
                 <el-table-column align="center" label="姓名" width="130">
                   <template slot-scope="scope">
             <span class="teacher-homepage" @click="routerTo(scope.row.tId)"
@@ -180,12 +180,20 @@
                     <span></span>
                   </template>
                 </el-table-column>
-<!--                <el-table-column align="center" label="职称" width="180">-->
-<!--                  <template slot-scope="scope">-->
-<!--                    <span class="teacher-homepage" style="cursor:pointer;">{{scope.row.tPost}}</span>-->
-<!--                    <span></span>-->
-<!--                  </template>-->
-<!--                </el-table-column>-->
+                <el-table-column align="center" label="职称" width="180">
+                  <template slot-scope="scope">
+                    <span class="teacher-homepage" style="cursor:pointer;">{{scope.row.tPost}}</span>
+                    <span></span>
+                  </template>
+                </el-table-column>
+                <el-table-column label="操作">
+                  <template slot-scope="scope">
+                    <el-button size="mini"
+                               type="success"
+                               @click="addSingleTeacher(scope.row.tId)">添加
+                    </el-button>
+                  </template>
+                </el-table-column>
                 <!--<el-table-column align="center" label="状态">
                   <template slot-scope="scope">
                     <span v-if="checkTeacherList(scope.row.tId)== true"
@@ -200,57 +208,59 @@
             </div>
           </el-card>
         </el-col>
+
       </el-row>
     </div>
 
 
-<!--    <el-dialog title="请勾选添加教师" :visible.sync="dialogFormVisible" style="margin-bottom: 18px;">-->
-<!--      <div style="margin-bottom: 14px;display: flex;justify-content: space-between;">-->
-<!--        <el-button type="success" @click="addCatalogueTeacher">确 定</el-button>-->
-<!--        <el-button type="primary" @click="dialogFormVisible = false">取 消</el-button>-->
-<!--      </div>-->
-<!--      <el-table :data="searchList" @selection-change="changeFun">-->
+    <!--添加教师对话框模式-->
+    <!--<el-dialog title="请勾选添加教师" :visible.sync="dialogFormVisible" style="margin-bottom: 18px;">
+      <div style="margin-bottom: 14px;display: flex;justify-content: space-between;">
+        <el-button type="success" @click="addCatalogueTeacher">确 定</el-button>
+        <el-button type="primary" @click="dialogFormVisible = false">取 消</el-button>
+      </div>
+      <el-table :data="searchList" @selection-change="changeFun">
 
-<!--        <el-table-column-->
-<!--          type="selection"-->
-<!--          width="55">-->
-<!--        </el-table-column>-->
+        <el-table-column
+          type="selection"
+          width="55">
+        </el-table-column>
 
-<!--        <el-table-column-->
-<!--          label="头像"-->
-<!--          width="100" align="center">-->
-<!--          <template slot-scope="scope">-->
-<!--            <img @click="routerTo(scope.row.tId)"-->
-<!--                 :src="getImgUrl(scope.row.tAvatar)" :onerror="defaultImage"-->
-<!--                 style="width:60px;height:60px;cursor:pointer;">-->
+        <el-table-column
+          label="头像"
+          width="100" align="center">
+          <template slot-scope="scope">
+            <img @click="routerTo(scope.row.tId)"
+                 :src="getImgUrl(scope.row.tAvatar)" :onerror="defaultImage"
+                 style="width:60px;height:60px;cursor:pointer;">
 
-<!--          </template>-->
-<!--        </el-table-column>-->
-<!--        <el-table-column align="center" label="姓名" width="130">-->
-<!--          <template slot-scope="scope">-->
-<!--            <span class="teacher-homepage" @click="routerTo(scope.row.tId)"-->
-<!--                  style="cursor:pointer;">{{scope.row.tName}}</span>-->
-<!--            <span></span>-->
-<!--          </template>-->
-<!--        </el-table-column>-->
-<!--        <el-table-column align="center" label="职称" width="180">-->
-<!--          <template slot-scope="scope">-->
-<!--            <span class="teacher-homepage" style="cursor:pointer;">{{scope.row.tPost}}</span>-->
-<!--            <span></span>-->
-<!--          </template>-->
-<!--        </el-table-column>-->
-<!--        &lt;!&ndash;<el-table-column align="center" label="状态">-->
-<!--          <template slot-scope="scope">-->
-<!--            <span v-if="checkTeacherList(scope.row.tId)== true"-->
-<!--                  size="mini" type="success" style="color: green">可添加-->
-<!--            </span>-->
-<!--            <span v-else-->
-<!--                  size="mini">已添加-->
-<!--            </span>-->
-<!--          </template>-->
-<!--        </el-table-column>&ndash;&gt;-->
-<!--      </el-table>-->
-<!--    </el-dialog>-->
+          </template>
+        </el-table-column>
+        <el-table-column align="center" label="姓名" width="130">
+          <template slot-scope="scope">
+            <span class="teacher-homepage" @click="routerTo(scope.row.tId)"
+                  style="cursor:pointer;">{{scope.row.tName}}</span>
+            <span></span>
+          </template>
+        </el-table-column>
+        <el-table-column align="center" label="职称" width="180">
+          <template slot-scope="scope">
+            <span class="teacher-homepage" style="cursor:pointer;">{{scope.row.tPost}}</span>
+            <span></span>
+          </template>
+        </el-table-column>
+        &lt;!&ndash;<el-table-column align="center" label="状态">
+          <template slot-scope="scope">
+            <span v-if="checkTeacherList(scope.row.tId)== true"
+                  size="mini" type="success" style="color: green">可添加
+            </span>
+            <span v-else
+                  size="mini">已添加
+            </span>
+          </template>
+        </el-table-column>&ndash;&gt;
+      </el-table>
+    </el-dialog>-->
 
   </div>
 </template>
@@ -437,6 +447,41 @@
                 this.teacherSort = val // 返回的是选中的列的数组集合
                 console.log(JSON.stringify(this.teacherSort))
             },
+          /*添加单个教师*/
+          addSingleTeacher(tId){
+              console.log("tId="+tId);
+              console.log("currentCat="+this.currentCat);
+              this.api({
+                url: "/catalogue/addSingleTeacher",
+                method: "post",
+                data: {"tId": tId, "cId": this.currentCat}
+              }).then(data => {
+                this.$message.success('添加成功');
+                this.getTeacherByCatalogue(this.currentCat);
+                /*this.dialogFormVisible = false;*/
+              }).catch(error => {
+                console.log("QAQ........添加失败");
+                this.$message.warning('请勾选要添加的教师');
+              });
+              this.api({
+                url: "/catalogue/listTeacherAll",
+                method: "get",
+                params: {unitId: this.$store.getters.unitId}
+              }).then(data => {
+                console.log(JSON.stringify(data.list))
+                setTimeout(()=>{
+                  this.searchList = data.list.filter((item)=>{
+                    console.log("item.tId="+item.tId);
+                    return this.checkTeacherList(item.tId) != false;
+                  });
+                },500)
+
+                console.log(JSON.stringify(this.searchList))
+                this.dialogFormVisible = true;
+              }).catch(error => {
+                console.log("QAQ........添加学科失败")
+              })
+            },
             removeTeacher(ctId) {
                 this.$confirm('确定在此栏目中移除该教师?', '提示', {
                     confirmButtonText: '确定',
@@ -454,6 +499,24 @@
                         this.$message.success("移除该教师成功")
                     }).catch(e => {
                         this.$message.error("QAQ.....")
+                    });
+                    this.api({
+                      url: "/catalogue/listTeacherAll",
+                      method: "get",
+                      params: {unitId: this.$store.getters.unitId}
+                    }).then(data => {
+                      console.log(JSON.stringify(data.list))
+                      setTimeout(()=>{
+                        this.searchList = data.list.filter((item)=>{
+                          console.log("item.tId="+item.tId);
+                          return this.checkTeacherList(item.tId) != false;
+                        });
+                      },500)
+
+                      console.log(JSON.stringify(this.searchList))
+                      this.dialogFormVisible = true;
+                    }).catch(error => {
+                      console.log("QAQ........添加学科失败")
                     })
                 })
             },
@@ -514,6 +577,7 @@
                 }).then(data => {
                   console.log("CatalogueTeachers+++++" + JSON.stringify(data));
                   this.teacherList = data.list;
+
                 }).catch(error => {
                   console.log("QAQ........没有找到教师列表")
                 });
@@ -523,11 +587,11 @@
                     params: {unitId: this.$store.getters.unitId}
                 }).then(data => {
                     console.log(JSON.stringify(data.list))
-                  setTimeout(()=>{
-                    this.searchList = data.list.filter((item)=>{
-                      console.log("item.tId="+item.tId);
-                      return this.checkTeacherList(item.tId) != false;
-                    });
+                    setTimeout(()=>{
+                      this.searchList = data.list.filter((item)=>{
+                        console.log("item.tId="+item.tId);
+                        return this.checkTeacherList(item.tId) != false;
+                      });
                   },500)
 
                     console.log(JSON.stringify(this.searchList))
@@ -625,7 +689,7 @@
                     console.log("QAQ........没有找到教师")
                 })
             },
-            //添加教师
+            //添加教师（原先的批量添加）
             addCatalogueTeacher() {
                 let tIds = [];
                 //检查已选择教师的ID
@@ -650,11 +714,30 @@
                 }).then(data => {
                     this.$message.success('添加成功');
                     this.getTeacherByCatalogue(this.currentCat);
-                    this.dialogFormVisible = false;
+                    /*this.dialogFormVisible = false;*/
                 }).catch(error => {
                     console.log("QAQ........添加失败");
                     this.$message.warning('请勾选要添加的教师');
+                });
+                this.api({
+                  url: "/catalogue/listTeacherAll",
+                  method: "get",
+                  params: {unitId: this.$store.getters.unitId}
+                }).then(data => {
+                  console.log(JSON.stringify(data.list))
+                  setTimeout(()=>{
+                    this.searchList = data.list.filter((item)=>{
+                      console.log("item.tId="+item.tId);
+                      return this.checkTeacherList(item.tId) != false;
+                    });
+                  },500)
+
+                  console.log(JSON.stringify(this.searchList))
+                  this.dialogFormVisible = true;
+                }).catch(error => {
+                  console.log("QAQ........添加学科失败")
                 })
+
             },
             topTeacher(ctId) {
                 this.$confirm('是否要在该栏目置顶该教师?', '提示', {
