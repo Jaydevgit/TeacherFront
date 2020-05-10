@@ -80,10 +80,10 @@
       <div v-else style="display: flex;align-items: center;height: 100%;width: 100%" @click="goToCollege">
         <!--如果有背景图，则显示学院背景图片+文字-->
         <template v-if="unit.backgroundUrl">
-          <div @click="goToCollege" style="height: 100%;padding-left: 15px">
+          <div @click="goToCollege" style="height: 100%;padding-left: 15px;cursor: pointer">
             <img :src="'http://47.106.132.95:2333/images/background/' + unit.backgroundUrl"
                  style="height: 100%"
-                 :onerror="defaultBack"/>
+                 :onerror="defaultBack" title="点击访问该学院"/>
           </div>
           <span style="" class="font-jsgrzy">
             师资队伍
@@ -92,7 +92,7 @@
         <!--如果没有背景图，则显示学校LOGO+xx学院+文字，登录页面按照逻辑会跳到这里，所以要判断-->
         <template v-else>
           <div @click="goToCollege" style="height: 90%;width: auto;bottom: 0;cursor: pointer">
-            <img :src="'http://www.scholat.com/images/uni_logo/'+this.unit.schoolName+'.png'" :onerror="defaultLogo" style="height: 55px;width:auto;"/>
+            <img :src="'http://www.scholat.com/images/uni_logo/'+this.unit.schoolName+'.png'" :onerror="defaultLogo" title="点击访问该学院" style="height: 55px;width:auto;"/>
           </div>
           <span style="" class="font-jsgrzy">
             <span v-if="$route.path.indexOf('login')!=-1">SCHOLAT+学院师资信息管理平台</span>
