@@ -874,9 +874,9 @@
                         {required: true, message: '请选择性别', trigger: 'change'}
                     ],
                     email: [
-                      {validator: validateEmail},
-                     //   {validator: validateEmail, required: true, message: '该邮箱已存在', trigger: 'blur'},
-                        // {required: true, type: 'email', message: '请输入正确的邮箱地址', trigger: ['blur', 'change']}
+                      // {validator: validateEmail},
+                       {validator: validateEmail, message: '该邮箱已存在', trigger: 'blur'},
+                        {type: 'email', message: '请输入正确的邮箱地址', trigger: ['blur', 'change']}
                     ],
                     domain_name: [
                         {validator: validatedomainName, required: true, message: '该域名已存在', trigger: ['change']},
