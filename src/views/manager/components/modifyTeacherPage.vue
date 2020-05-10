@@ -370,62 +370,7 @@
 <!--          </el-col>-->
         </el-row>
       </div>
-          <el-card class="box-card scholat-card" v-if="$route.path.indexOf('modifyTeacher')!=-1">
-            <el-row>
-              <el-col :span="4">
-            <div class="grid-content bg-purple" style="text-align: center">
-              <span style="font-weight: 900;font-size: 24px">教师头像</span>
-              <!--显示更新提示-->
-              <el-tooltip placement="top" v-if="showUpdateInfo.avatarScholat">
-                <div slot="content" style="font-size: 16px">
-                  <img :src="showUpdateInfo.avatarScholat" class="update-avatar"
-                       style="width:70px;height:70px;"/>
-                  <div style="width: 80px;float: left;margininvitation-left: 10px">
-                    <el-button size="small" type="success" @click="updateAvatar()"
-                               style="display:block;margin-top: 15px;">替换头像
-                    </el-button>
-                    <el-button size="small" type="warning" @click="cancelUpdateAvatar()"
-                               style="display:block;margin-left: 0;margin-top: 8px;">取消替换
-                    </el-button>
-                  </div>
 
-                </div>
-                <!--上传头像对话框-->
-
-                <crop-avatar-image ref="cropAvatarImage" class="update-crop-avatar" :scholatAvatar="ruleForm.avatar"
-                                   @crop-avatar="cropAvatarImageName"></crop-avatar-image>
-              </el-tooltip>
-              <!--上传头像组件-->
-              <crop-avatar-image ref="cropAvatarImage"
-                                 v-if="!showUpdateInfo.avatarScholat"
-                                 @crop-avatar="cropAvatarImageName"></crop-avatar-image>
-
-
-              <!--<div style="margin-top: 38px;" v-if="ruleForm.qrcode">
-                <img :src="'http://www.scholat.com/'+ruleForm.qrcode" style="width: 120px;height: 120px;">
-              </div>-->
-            </div>
-              </el-col>
-              <el-col :span="6" style="margin-top: 50px;margin-left: 20px">
-                <div style="display: flex;align-items: center;">
-                  <img  class="preview" :src="getImgUrl(scholatProfile.avatar)"
-                        style="width:70px;height:70px;border-radius: 50%;"/>
-                  <ul style="list-style:none;transform: translateX(-20px);">
-                    <li>关联的头像</li>
-                    <li><el-button size="small" style="margin-left:-5px" @click="chooseScholatAvatar()">选择该头像</el-button></li>
-                  </ul>
-                </div>
-                <el-button @click="uploadAvatar()" type="primary" style="margin-top: 23px;margin-left:90px;transform: translateY(-20px);" size="small">
-                  上传头像
-                </el-button>
-              </el-col>
-              <el-col :span="12">
-                <span style="font-weight: 900;font-size: 24px">研究方向</span>
-                <el-input style="margin-top: 10px" type="textarea"  maxlength="100" show-word-limit
-                          v-model="ruleForm.research_direction" placeholder="例如：数据挖掘、知识图谱、图像识别等"></el-input>
-              </el-col>
-            </el-row>
-          </el-card>
 
 
 
@@ -585,6 +530,64 @@
           </el-row>
 
         </el-card>
+        <el-card class="box-card scholat-card" v-if="$route.path.indexOf('modifyTeacher')!=-1">
+          <el-row>
+            <el-col :span="4">
+              <div class="grid-content bg-purple" style="text-align: center">
+                <span style="font-weight: 900;font-size: 24px">教师头像</span>
+                <!--显示更新提示-->
+                <el-tooltip placement="top" v-if="showUpdateInfo.avatarScholat">
+                  <div slot="content" style="font-size: 16px">
+                    <img :src="showUpdateInfo.avatarScholat" class="update-avatar"
+                         style="width:70px;height:70px;"/>
+                    <div style="width: 80px;float: left;margininvitation-left: 10px">
+                      <el-button size="small" type="success" @click="updateAvatar()"
+                                 style="display:block;margin-top: 15px;">替换头像
+                      </el-button>
+                      <el-button size="small" type="warning" @click="cancelUpdateAvatar()"
+                                 style="display:block;margin-left: 0;margin-top: 8px;">取消替换
+                      </el-button>
+                    </div>
+
+                  </div>
+                  <!--上传头像对话框-->
+
+                  <crop-avatar-image ref="cropAvatarImage" class="update-crop-avatar" :scholatAvatar="ruleForm.avatar"
+                                     @crop-avatar="cropAvatarImageName"></crop-avatar-image>
+                </el-tooltip>
+                <!--上传头像组件-->
+                <crop-avatar-image ref="cropAvatarImage"
+                                   v-if="!showUpdateInfo.avatarScholat"
+                                   @crop-avatar="cropAvatarImageName"></crop-avatar-image>
+
+
+                <!--<div style="margin-top: 38px;" v-if="ruleForm.qrcode">
+                  <img :src="'http://www.scholat.com/'+ruleForm.qrcode" style="width: 120px;height: 120px;">
+                </div>-->
+              </div>
+            </el-col>
+            <el-col :span="6" style="margin-top: 50px;margin-left: 20px">
+              <div style="display: flex;align-items: center;" v-if="scholatProfile.avatar!==undefined">
+                <img  class="preview" :src="getImgUrl(scholatProfile.avatar)"
+                      style="width:70px;height:70px;border-radius: 50%;"/>
+                <ul style="list-style:none;transform: translateX(-20px);">
+                  <li>关联的头像</li>
+                  <li><el-button size="small" style="margin-left:-5px" @click="chooseScholatAvatar()">选择该头像</el-button></li>
+                </ul>
+              </div>
+              <el-button @click="uploadAvatar()" type="primary" style="margin-top: 23px;margin-left:90px;transform: translateY(-20px);" size="small">
+                上传头像
+              </el-button>
+            </el-col>
+            <el-col :span="12">
+              <span style="font-weight: 900;font-size: 24px">研究方向</span>
+              <el-input style="margin-top: 10px;" type="textarea"  maxlength="100" show-word-limit :rows="3"
+                        v-model="ruleForm.research_direction" placeholder="例如：数据挖掘、知识图谱、图像识别等"></el-input>
+              <div v-if="showUpdateInfo.research_directionScholat!==''" v-html="showUpdateInfo.research_directionScholat"
+                   style="height: 70px;overflow: auto;background-color: antiquewhite;margin-top: 5px;margin-bottom: 5px"></div>
+            </el-col>
+          </el-row>
+        </el-card>
 
         <!--个人简介区域-->
         <div class="row-bg">
@@ -658,7 +661,7 @@
             'v-role-assignment-bar': roleAssignmentBar
         },
         created() {
-            console.log("@@@@@@@@@@@@@@@@@@@@@@@");
+            console.log("@@@@@@@@@@@@@@@@@@@@@@@"+this.scholatProfile.avatar+this.showUpdateInfo.research_directionScholat);
             console.log(this.hasPerm('teacher:list'));
             console.log(this.$store.state.user.userId);
             console.log(this.$store.state.user.nickname);
@@ -841,7 +844,9 @@
                     degreeScholat: '',
                     degree: '',
                     postScholat: '',
-                    post: ''
+                    post: '',
+                  research_directionScholat:'',
+                  research_direction:''
                 },
                 showScholatDiv: false,
                 emailHasvalidated: false,
@@ -988,7 +993,7 @@
                 }
                 // 創建一个富文本编辑器
                 this.editor.customConfig.menus = [
-                     'head',  // 标题
+                    // 'head',  // 标题
                     // 'bold',  // 粗体
                     // 'italic',  // 斜体
                     // 'underline',  // 下划线
@@ -1154,6 +1159,7 @@
                 scholat.degree = filterXSS(scholat.degree);
                 scholat.post = filterXSS(scholat.post);
                 scholat.qrcode = filterXSS(scholat.qrcode);
+              scholat.research_direction = filterXSS(scholat.research_direction);
             },
             // 获取学者网更新的信息
             getScholatUpdateInfo(data) {
@@ -1196,7 +1202,11 @@
                 // 学历
                 this.showUpdateInfo.degree = data.teacher.degree;
                 this.showUpdateInfo.degreeScholat = data.scholat.degree;
-                // 职位
+                //研究方向
+              this.showUpdateInfo.research_direction=data.teacher.research_direction;
+              this.showUpdateInfo.research_directionScholat=data.scholat.research_direction;
+              console.log("this.showUpdateInfo.research_directionScholat"+this.showUpdateInfo.research_directionScholat);
+              // 职位
                 // this.showUpdateInfo.post = data.teacher.post;
                 // this.showUpdateInfo.postScholat = data.scholat.post;
             },
