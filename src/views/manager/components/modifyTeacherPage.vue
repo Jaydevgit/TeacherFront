@@ -688,7 +688,7 @@
                     console.log(res.data.info.list)
                     if (res.data.err !== undefined) {
                       console.log("this.$route.path.indexOf(\"modifyTeacher\")"+this.$route.path.indexOf("modifyTeacher"));
-                      if (this.$route.path.indexOf("modifyTeacher")) {
+                      if (this.$route.path.indexOf("modifyTeacher")!=-1) {
                             this.list = res.data.info.list;
                             console.log("-------------根据邮箱获取到的学者网数据------------------")
                             console.log(this.list);
@@ -696,7 +696,7 @@
                                 this.showScholatDiv = true
                             } else {
                                 this.showScholatDiv = false
-                              if(res.data.id===this.ruleForm.id){
+                              if(res.data.id===~~this.$route.path.split('/')[2]){
                                 callback()
                               }else{
                                 return callback(new Error("该邮箱已存在"))

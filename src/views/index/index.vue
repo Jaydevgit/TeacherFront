@@ -181,7 +181,6 @@
     height: 77%;
     width: 100%;
     display: flex;
-    align-items: end;
   }
 
   .intro {
