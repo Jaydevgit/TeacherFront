@@ -63,18 +63,18 @@
             </div>
           </div>
         </el-col>
-        <el-col :span="9">
-          <el-card class="box-card" style="width: 500px">
+        <el-col :span="7">
+          <el-card class="box-card" style="width: 400px">
             <div style="height: 60px;width: 100%" class="teacher-nav">
               <div style="margin-left: 8px;">
                 <el-button type="success" size="small"
-                           @click="sortTeacher" v-if="addTeacherVisible">排序教师
+                           @click="sortTeacher" v-if="addTeacherVisible">排序
                 </el-button>
                 <el-button type="success" size="small"
                            @click="sortTeacher" v-if="unitVisualable">排序学院教师
                 </el-button>
                 <el-input v-model="searchKey" v-if="addTeacherVisible"
-                          style="width: 220px;margin-left: 8px"
+                          style="width: 150px;"
                           placeholder="搜索添加的教师"></el-input>
                 <el-button type="primary" size="small" style="margin-left: 10px"
                            @click="searchTeacher" v-if="addTeacherVisible">搜索
@@ -93,7 +93,7 @@
             <div style="height: calc(100vh - 155px);overflow-y: scroll;">
               <el-table
                 :data="teacherList" @selection-change="teacherChange"
-                style="width: 700px;padding-left: 15px;">
+                style="width: 400px;padding-left: 15px;">
                 <el-table-column
                   v-if="teacherVisualable"
                   type="selection"
@@ -120,18 +120,18 @@
                 </el-table-column>-->
                 <el-table-column align="center" label="姓名" width="130">
                   <template slot-scope="scope">
-          <span class="teacher-homepage" @click="routerTo(scope.row.tId)"
+          <span class="teacher-homepage" @click="routerTo(scope.row.tDomain_name)"
                 style="cursor:pointer;">{{scope.row.tName}}</span>
                     <span></span>
                   </template>
                 </el-table-column>
-                <el-table-column align="center" label="职称" width="180">
+                <el-table-column align="center" label="职称" width="130">
                   <template slot-scope="scope">
                     <span class="teacher-homepage" style="cursor:pointer;">{{scope.row.tPost}}</span>
                     <span></span>
                   </template>
                 </el-table-column>
-                <el-table-column label="操作" v-if="unitVisualable == false">
+                <el-table-column label="操作" v-if="unitVisualable == false" align="center" width="130">
                   <template slot-scope="scope">
                     <el-button v-if="unitVisualable == false"
                                size="mini"
@@ -145,8 +145,8 @@
           </el-card>
 
         </el-col>
-        <el-col :span="9" v-if="dialogFormVisible">
-          <el-card class="box-card" style="width:500px">
+        <el-col :span="7" v-if="dialogFormVisible">
+          <el-card class="box-card" style="width:400px">
             <div style="height: 60px;width: 100%;" class="teacher-nav">
               <span style="margin-left: 10px">请选择要添加教师</span>
               <div style="margin: 0;display: flex;justify-content: space-between; ">
@@ -175,18 +175,18 @@
                 </el-table-column>-->
                 <el-table-column align="center" label="姓名" width="130">
                   <template slot-scope="scope">
-            <span class="teacher-homepage" @click="routerTo(scope.row.tId)"
+            <span class="teacher-homepage" @click="routerTo(scope.row.tDomain_name)"
                   style="cursor:pointer;">{{scope.row.tName}}</span>
                     <span></span>
                   </template>
                 </el-table-column>
-                <el-table-column align="center" label="职称" width="180">
+                <el-table-column align="center" label="职称" width="130">
                   <template slot-scope="scope">
                     <span class="teacher-homepage" style="cursor:pointer;">{{scope.row.tPost}}</span>
                     <span></span>
                   </template>
                 </el-table-column>
-                <el-table-column label="操作">
+                <el-table-column label="操作" align="center" width="130">
                   <template slot-scope="scope">
                     <el-button size="mini"
                                type="success"
@@ -334,7 +334,8 @@
                     this.teacherList = data.list;
                     this.totalCount = data.totalCount;
                     this.addTeacherVisible = false
-                    this.unitVisualable = true
+                    this.unitVisualable = true;
+                    this.dialogFormVisible=false
                 }).catch(error => {
                     console.log("QAQ........没有找到教师列表")
                 })
@@ -609,11 +610,15 @@
                     return "http://47.106.132.95:2333/images/avatar/" + imgName;
                 }
             },
-            routerTo(tId) {
+            routerTo(tDomain_name) {
+            console.log("tDomain_name="+tDomain_name);
+              console.log("school_domain_name="+this.$store.getters.domainName);
                 this.$router.push({
                     name: 'teacherPersonlHomePage',
                     params: {
-                        id: tId
+                      facultyDomainName: this.$store.getters.domainName,
+                      teacherDomainName:tDomain_name
+
                     }
                 })
             },
