@@ -120,7 +120,7 @@
                 </el-table-column>-->
                 <el-table-column align="center" label="姓名" width="130">
                   <template slot-scope="scope">
-          <span class="teacher-homepage" @click="routerTo(scope.row.tId)"
+          <span class="teacher-homepage" @click="routerTo(scope.row.tDomain_name)"
                 style="cursor:pointer;">{{scope.row.tName}}</span>
                     <span></span>
                   </template>
@@ -175,7 +175,7 @@
                 </el-table-column>-->
                 <el-table-column align="center" label="姓名" width="130">
                   <template slot-scope="scope">
-            <span class="teacher-homepage" @click="routerTo(scope.row.tId)"
+            <span class="teacher-homepage" @click="routerTo(scope.row.tDomain_name)"
                   style="cursor:pointer;">{{scope.row.tName}}</span>
                     <span></span>
                   </template>
@@ -610,11 +610,15 @@
                     return "http://47.106.132.95:2333/images/avatar/" + imgName;
                 }
             },
-            routerTo(tId) {
+            routerTo(tDomain_name) {
+            console.log("tDomain_name="+tDomain_name);
+              console.log("school_domain_name="+this.$store.getters.domainName);
                 this.$router.push({
                     name: 'teacherPersonlHomePage',
                     params: {
-                        id: tId
+                      facultyDomainName: this.$store.getters.domainName,
+                      teacherDomainName:tDomain_name
+
                     }
                 })
             },
