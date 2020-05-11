@@ -400,9 +400,9 @@
 <!--            </div>-->
 
             <div style="display: flex;align-items: center">
-              <el-button type="success" @click="showDifferent(scholatProfile)" size="small"
-                         style="margin-left:10px;width: 90px;height:30px;">信息对比
-              </el-button>
+<!--              <el-button type="success" @click="showDifferent(scholatProfile)" size="small"-->
+<!--                         style="margin-left:10px;width: 90px;height:30px;">信息对比-->
+<!--              </el-button>-->
             <!--<el-button @click="viewScholat(scholatProfile)" type="warning" size="small"
                        style="margin-left:10px;width: 60px;height:30px;">查看
             </el-button>-->
@@ -566,25 +566,30 @@
                 </div>-->
               </div>
             </el-col>
-            <el-col :span="6" style="margin-top: 50px;margin-left: 20px">
+            <el-col :span="2" style="margin-top: 50px;margin-left: 20px">
               <div style="display: flex;align-items: center;" v-if="scholatProfile.avatar!==undefined">
                 <img  class="preview" :src="getImgUrl(scholatProfile.avatar)"
                       style="width:70px;height:70px;border-radius: 50%;"/>
-                <ul style="list-style:none;transform: translateX(-20px);">
-                  <li>关联的头像</li>
-                  <li><el-button size="small" style="margin-left:-5px" @click="chooseScholatAvatar()">选择该头像</el-button></li>
-                </ul>
               </div>
-              <el-button @click="uploadAvatar()" type="primary" style="margin-top: 23px;margin-left:90px;transform: translateY(-20px);" size="small">
-                上传头像
-              </el-button>
             </el-col>
-            <el-col :span="12">
+            <el-col :span="4" style="margin-top: 50px;">
+                <div style="margin-left: 5px" v-if="scholatProfile.avatar!==undefined">关联的头像</div>
+               <div><el-button size="small" v-if="scholatProfile.avatar!==undefined" @click="chooseScholatAvatar()">选择该头像</el-button></div>
+              <div><el-button @click="uploadAvatar()" type="primary" style="margin-top: 23px;margin-left:5px;transform: translateY(-20px);" size="small">
+                上传头像
+              </el-button></div>
+            </el-col>
+            <el-col :span="11">
               <span style="font-weight: 900;font-size: 24px">研究方向</span>
               <el-input style="margin-top: 10px;" type="textarea"  maxlength="100" show-word-limit :rows="3"
-                        v-model="ruleForm.research_direction" placeholder="例如：数据挖掘、知识图谱、图像识别等"></el-input>
+                        v-model="ruleForm.research_direction" placeholder="例如：数据挖掘、知识图谱、图像识别等">
+
+              </el-input>
               <div v-if="showUpdateInfo.research_directionScholat!==''" v-html="showUpdateInfo.research_directionScholat"
                    style="height: 70px;overflow: auto;background-color: antiquewhite;margin-top: 5px;margin-bottom: 5px"></div>
+            </el-col>
+            <el-col :span="2">
+            <el-button style="margin-top:80px;margin-left: 5px;" @click="saveTeacher"size="small" type="success" v-if="$route.path.indexOf('modifyTeacher')!=-1">保存</el-button>
             </el-col>
           </el-row>
         </el-card>
@@ -620,6 +625,9 @@
                     <div class="grid-content" style="">
                       <div style="display: flex;justify-content: space-between;padding: 4px 0">
                         <div style="color: rgb(245, 108, 108);font-weight: 800;">▶编辑个人简介</div>
+                        <div v-if="ruleForm.scholat_username" style="color: rgb(245, 108, 108);font-weight: 800;cursor: pointer;flex: 2;text-align: right;margin-right: 15px"
+                             @click="showDifferent(scholatProfile)">信息对比</div>
+                        <div v-else style="color: rgb(245, 108, 108);font-weight: 800;cursor: pointer;flex: 2;text-align: right;margin-right: 15px"@click="ifShow">{{this.showTag}}</div>
                         <div style="color: rgb(245, 108, 108);font-weight: 800;cursor: pointer" @click="clearIntro()">清空简介
                         </div>
                       </div>
@@ -661,7 +669,7 @@
             'v-role-assignment-bar': roleAssignmentBar
         },
         created() {
-            console.log("@@@@@@@@@@@@@@@@@@@@@@@"+this.scholatProfile.avatar+this.showUpdateInfo.research_directionScholat);
+            console.log("@@@@@@@@@@@@@@@@@@@@@@@"+this.ruleForm.avatar+"========");
             console.log(this.hasPerm('teacher:list'));
             console.log(this.$store.state.user.userId);
             console.log(this.$store.state.user.nickname);
@@ -679,6 +687,14 @@
                     this.ruleForm.domain_name = Pinyin.chineseToPinYin(newVal);
                     console.log(">>>>" + this.ruleForm.domain_name);
                 }
+
+            },
+            'compareArea':function (newVal, oldVal) {
+              if(newVal===0){
+                this.showTag='展开对比'
+              }else{
+                this.showTag='收起对比'
+              }
 
             }
 
@@ -888,7 +904,7 @@
                     id: '',
                     username: '', // 姓名
                     sex: '0', // 性别
-                    avatar: 'default.png', // 头像
+                    avatar: 'defaultQR.png', // 头像
                     state: '1', // 状态
                     degree: '', // 学历
                     post: '', // 职位
@@ -951,9 +967,18 @@
                 showRoleAssigment: false,
                 roleId: '',//角色分配id
                 domainCount: '',//相同域名个数
+              showTag:'展开对比'
             }
         },
         methods: {
+          //是否显示对比区域
+          ifShow(){
+            if(this.compareArea===0){
+              this.compareArea=12;
+            }else{
+              this.compareArea=0;
+            }
+          },
             createEditor(){
                 this.editor = new Editor('#div1', '#editor');
                 // 关闭粘贴内容中的样式
@@ -1183,6 +1208,7 @@
                 // 头像地址
                 this.showUpdateInfo.avatar = data.teacher.avatar;
                 this.showUpdateInfo.avatarScholat = data.scholat.avatar;
+
                 if (this.showUpdateInfo.avatarScholat.indexOf("resources") != -1) {
                     this.showUpdateInfo.avatarScholat = "http://www.scholat.com/" + this.showUpdateInfo.avatarScholat;
                 } else {
@@ -1228,8 +1254,17 @@
                     // 设置获取到的更新信息
                     this.getScholatUpdateInfo(data);
                     // 设置编辑区域宽度显示
-                    this.editorArea = 12;
+                  if(this.ruleForm.scholat_username){
+                    if(  this.compareArea === 0){
+                      this.compareArea = 12;
+                    }else{
+                      this.compareArea = 0;
+                    }
+                  }else {
                     this.compareArea = 12;
+                  }
+                  this.editorArea = 12;
+
 
                 }).catch(e => {
                     this.$message.error("hey ")
@@ -1324,7 +1359,8 @@
                         if (this.ruleForm.avatar.indexOf("resources") != -1) {
                             this.$refs.cropAvatarImage.attach.laterUrl = "http://www.scholat.com/" + this.ruleForm.avatar;
                         } else {
-                            this.$refs.cropAvatarImage.attach.laterUrl = "http://47.106.132.95:2333/images/avatar/" + this.ruleForm.avatar;
+                          console.log("this.ruleForm.avatarthis.ruleForm.avatar="+this.ruleForm.avatar);
+                          this.$refs.cropAvatarImage.attach.laterUrl = "http://47.106.132.95:2333/images/avatar/" + this.ruleForm.avatar;
                         }
                         var filterHtml = filterXSS(this.ruleForm.intro)
                         this.editor.txt.html(filterHtml)
@@ -1901,7 +1937,7 @@
 
     .grid-content {
       border-radius: 4px;
-      padding: 6px;
+      padding: 0 6px 0 6px;
       min-height: 36px;
     }
 
