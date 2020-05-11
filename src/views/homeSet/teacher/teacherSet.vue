@@ -35,13 +35,17 @@
       label:'头衔',
       value:'e',
     },
-    {
+    /*{
       label:'最后学历',
       value:'f',
     },
     {
       label:'最高学位',
       value:'g',
+    },*/
+    {
+      label:'学历学位',
+      value: 'f'
     },
     {
       label:'毕业学校',
@@ -141,7 +145,8 @@
             // console.log(JSON.stringify(data))
             var a = data.tagState;
             this.tagState = a.split('');
-         //   console.log("this.tagState==" + this.tagState);
+            console.log("this.tagState==" + this.tagState);
+            /*console.log("this.compareState=="+ this.compareState)*/
             return new Promise(this.compareState);
           }).catch(error => {
             console.log("QAQ........没有找到学院信息")

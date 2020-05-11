@@ -96,7 +96,7 @@
                   -->
                   <label class="font-one">最后学历：</label><div class="detail-msg">{{teacherProfile.degree}}</div>
                 </div>
-                <div style="margin-bottom: 10px;" v-if="tagFlag[6]==='g'"
+                <div style="margin-bottom: 10px;" v-if="tagFlag[5]==='f'"
                      class="name-bottom-item">
                   <!--
                                    <span><svg-icon icon-class="degree"/></span>
