@@ -154,11 +154,24 @@
           console.log("显示的图片路径为：" + this.showBack)
           this.applyForm.backgroundUrl = imageName
         }
+        this.applyForm.state=1;
+        this.applyForm.unitId = this.$store.getters.unitId
+        console.log(this.applyForm)
+        this.api({
+          url: '/unit/updateUnitInfo',
+          method: 'post',
+          data: this.applyForm
+        }).then(data => {
+          this.$message.success("提交成功");
+        }).catch(e => {
+          this.$message.error("提交失败");
+        })
       },
       uploadImage(type) {
         //this.$message.success("准备上传的是: "+type)
         this.$refs.cropImage.transportMessage(type)
         this.$refs.cropImage.dialogVisible = true
+
       },
       restoreImage(type){
         if (type == 1) {
