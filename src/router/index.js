@@ -259,6 +259,13 @@ export const asyncRouterMap = [
         meta: {title: '权限管理', icon: 'password'},
         menu: 'role'
       },
+      {
+        path: 'password',
+        name: '本账号管理',
+        component: _import('user/password'),
+        meta: {title: '本账号管理', icon: 'password'},
+        menu: 'user'
+      },
 
 
     ]
