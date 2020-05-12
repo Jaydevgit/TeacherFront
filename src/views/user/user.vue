@@ -146,8 +146,8 @@
         dialogStatus: 'create',
         dialogFormVisible: false,
         textMap: {
-          update: '编辑',
-          create: '添加子账号'
+          update: '重置子账号密码',
+          create: '新建子账号'
         },
         tempUser: {
           username: '',
