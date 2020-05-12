@@ -410,8 +410,8 @@
                        style="margin-left:10px;width: 80px;height:30px;">解除绑定
             </el-button>
           </div>
-
           </div>
+          <div style="margin-left: 20px;opacity: 0.5;">以下教师头像、研究方向和个人简介可以参考选用所关联的学者网个人空间信息</div>
         </el-card>
         <!--未关联学者网时-->
         <el-card class="box-card scholat-card" v-if="!ruleForm.scholat_username">
@@ -572,14 +572,14 @@
                       style="width:70px;height:70px;border-radius: 50%;"/>
               </div>
             </el-col>
-            <el-col :span="4" style="margin-top: 50px;">
+            <el-col :span="5" style="margin-top: 50px;">
                 <div style="margin-left: 5px" v-if="scholatProfile.avatar!==undefined">关联的头像</div>
                <div><el-button size="small" v-if="scholatProfile.avatar!==undefined" @click="chooseScholatAvatar()">选择该头像</el-button></div>
               <div><el-button @click="uploadAvatar()" type="primary" style="margin-top: 23px;margin-left:5px;transform: translateY(-20px);" size="small">
                 上传头像
               </el-button></div>
             </el-col>
-            <el-col :span="11">
+            <el-col :span="10" style="margin-left: 15px">
               <span style="font-weight: 900;font-size: 24px">研究方向</span>
               <el-input style="margin-top: 10px;" type="textarea"  maxlength="100" show-word-limit :rows="3"
                         v-model="ruleForm.research_direction" placeholder="例如：数据挖掘、知识图谱、图像识别等">
@@ -587,6 +587,8 @@
               </el-input>
               <div v-if="showUpdateInfo.research_directionScholat!==''" v-html="showUpdateInfo.research_directionScholat"
                    style="height: 70px;overflow: auto;background-color: antiquewhite;margin-top: 5px;margin-bottom: 5px"></div>
+              <div v-if="scholatProfile.research_direction!==''&&showUpdateInfo.research_directionScholat===''" v-html="scholatProfile.research_direction"
+                     style="height: 70px;overflow: auto;background-color: antiquewhite;margin-top: 5px;margin-bottom: 5px"></div>
             </el-col>
             <el-col :span="2">
             <el-button style="margin-top:80px;margin-left: 5px;" @click="saveTeacher"size="small" type="success" v-if="$route.path.indexOf('modifyTeacher')!=-1">保存</el-button>
