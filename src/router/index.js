@@ -246,7 +246,11 @@ export const asyncRouterMap = [
     meta: {title: '账号管理', icon: 'table'},
     children: [
       {
-        path: '', name: '账号列表', component: _import('user/user'), meta: {title: '用户列表', icon: 'user'}, menu: 'user'
+        path: '',
+        name: '账号列表',
+        component: _import('user/user'),
+        meta: {title: '子账号管理', icon: 'user'},
+        menu: 'user'
       },
       {
         path: 'role',
@@ -255,6 +259,8 @@ export const asyncRouterMap = [
         meta: {title: '权限管理', icon: 'password'},
         menu: 'role'
       },
+
+
     ]
   },
   {

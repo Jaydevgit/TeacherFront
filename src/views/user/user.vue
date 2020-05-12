@@ -15,10 +15,10 @@
           <span v-text="getIndex(scope.$index)"> </span>
         </template>
       </el-table-column>
-      <el-table-column align="center" label="昵称" prop="nickname" style="width: 60px;"></el-table-column>
+      <!--<el-table-column align="center" label="昵称" prop="nickname" style="width: 60px;"></el-table-column>-->
       <el-table-column align="center" label="用户名" prop="username" style="width: 60px;"></el-table-column>
 <!--      <el-table-column align="center" label="密码" prop="password" style="width: 60px;"></el-table-column>-->
-      <el-table-column align="center" label="角色" width="160">
+      <!--<el-table-column align="center" label="角色" width="160">
         <template slot-scope="scope">
           <el-tag type="success" v-text="scope.row.roleName" v-if="scope.row.roleId===1"></el-tag>
           <el-tag type="primary" v-text="scope.row.roleName" v-else></el-tag>
@@ -36,10 +36,10 @@
             </div>
           </div>
         </template>
-      </el-table-column>
+      </el-table-column>-->
       <el-table-column align="center" label="管理" width="220" v-if="hasPerm('user:update')">
         <template slot-scope="scope">
-          <el-button type="primary" icon="edit" @click="showUpdate(scope.$index)">修改</el-button>
+          <el-button type="primary" icon="edit" @click="showUpdate(scope.$index)">重置密码</el-button>
           <el-button type="danger" icon="delete" v-if="scope.row.userId!=userId "
                      @click="removeUser(scope.$index)">删除
           </el-button>
@@ -70,7 +70,7 @@
           <el-input type="password" v-model="tempUser.password" placeholder="不填则表示不修改">
           </el-input>
         </el-form-item>
-        <el-form-item label="角色" required style="width: 420px">
+        <!--<el-form-item label="角色" required style="width: 420px">
           <el-select v-model="tempUser.roleId" :disabled="roles.length===0" :placeholder="roleMessage" style="float: left;width: 220px;">
             <el-option
               v-for="item in roles"
@@ -85,7 +85,7 @@
         <el-form-item label="昵称" required>
           <el-input type="text" v-model="tempUser.nickname">
           </el-input>
-        </el-form-item>
+        </el-form-item>-->
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="dialogFormVisible = false">取 消</el-button>
@@ -147,13 +147,13 @@
         dialogFormVisible: false,
         textMap: {
           update: '编辑',
-          create: '新建用户'
+          create: '添加子账号'
         },
         tempUser: {
           username: '',
           password: '',
           nickname: '',
-          roleId: '',
+          roleId: '3',
           userId: '',
           unitId:'',
           domainName:'',
@@ -201,6 +201,7 @@
         //查询列表
         this.listLoading = true;
         this.listQuery.unitId= this.$store.state.user.unitId;
+        console.log('this.listQuery='+JSON.stringify(this.listQuery));
         console.log('unitId=='+this.listQuery.unitId);
         this.api({
           url: "/user/list",
@@ -209,7 +210,7 @@
         }).then(data => {
           this.listLoading = false;
           this.list = data.list;
-          console.log("======list"+JSON.stringify(this.list));
+          console.log("======list="+JSON.stringify(this.list));
           this.totalCount = data.totalCount;
         })
       },
@@ -237,12 +238,13 @@
         this.tempUser.username = "";
         this.tempUser.password = "";
         this.tempUser.nickname = "";
-        this.tempUser.roleId = "";
+        this.tempUser.roleId = "3";
         this.tempUser.userId = "";
         this.dialogStatus = "create"
         this.dialogFormVisible = true
       },
       showUpdate($index) {
+        console.log('$index='+$index)
         let user = this.list[$index];
         this.tempUser.username = user.username;
         this.tempUser.nickname = user.nickname;
