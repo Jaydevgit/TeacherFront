@@ -273,7 +273,7 @@
                 </el-form-item>
               </div></el-col>
               <el-col :span="8"><div class="grid-content bg-purple">
-                <el-form-item label="学科专业" prop="subject">
+                <el-form-item label="专业" prop="subject">
                   <el-input v-model="ruleForm.subject" placeholder="例如：软件工程"></el-input>
                 </el-form-item>
               </div></el-col>
@@ -383,7 +383,9 @@
               <span style="font-family: 微软雅黑;font-weight: bold;font-size: 24px;float: left;margin-right: 20px">关联学者网</span>
 
               已绑定账号:
-              <span @click="scholatInfoSearch" style="cursor: pointer;color: red">{{ruleForm.scholat_username}}</span>
+              <!--<span @click="scholatInfoSearch" style="cursor: pointer;color: red">{{ruleForm.scholat_username}}</span>-->
+              <!--点击学者网账号跳转链接-->
+              <a style="color: red" :href="'http://www.scholat.com/'+ruleForm.scholat_username">{{ruleForm.scholat_username}}</a>
             </div>
             <div class="teacher-homepage" style="display: flex;align-items: center">{{scholatProfile.username}}</div>
             <span class="teacher-homepage" style="display: flex;align-items: center">{{scholatProfile.email}}</span>
@@ -530,6 +532,7 @@
           </el-row>
 
         </el-card>
+        <!--进一步信息-->
         <el-card class="box-card scholat-card" v-if="$route.path.indexOf('modifyTeacher')!=-1">
           <el-row>
             <el-col :span="4">
