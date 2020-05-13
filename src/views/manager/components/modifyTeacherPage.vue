@@ -1280,7 +1280,7 @@
 
 
                 }).catch(e => {
-                    this.$message.error("hey ")
+                    // this.$message.error("hey ")
                 })
             },
             // 设置教师信息
