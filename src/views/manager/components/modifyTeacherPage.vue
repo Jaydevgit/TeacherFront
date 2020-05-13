@@ -503,9 +503,9 @@
                           <el-button @click="viewScholat(scope.row)" type="warning" size="small"
                                      style="margin-left: 0;margin-bottom:4px;">查看主页
                           </el-button>
-                          <el-button type="success" @click="showDifferent(scope.row)" size="small"
+                          <!--<el-button type="success" @click="showDifferent(scope.row)" size="small"
                                      style="margin-left: 0;margin-bottom: 4px;">信息对比
-                          </el-button>
+                          </el-button>-->
                           <template v-if="scope.row.scholat_username === ruleForm.scholat_username">
                             <el-button type="danger" @click="unlockScholat(scope.row)" size="small"
                                        style="margin-left: 0;">解除绑定

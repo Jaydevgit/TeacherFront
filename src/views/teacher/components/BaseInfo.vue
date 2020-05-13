@@ -84,10 +84,7 @@
                     scholat.com/{{teacherProfile.scholat_username}}
                   </a></div>
                 </div>
-                <div class="name-bottom-item" style="margin-bottom: 10px;" v-if="tagFlag[4]==='e'">
-                  <!--<span><svg-icon icon-class="email"/></span>-->
-                  <label class="font-one">头衔：</label><div class="detail-msg">{{teacherProfile.label}}</div>
-                </div>
+
 
                 <!--              <div class="show-persona" v-if="teacherProfile.scholat_username">-->
                 <!--              <a @click="routeTo()">查看学者画像</a>-->
