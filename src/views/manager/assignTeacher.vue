@@ -2,7 +2,7 @@
   <div class="container" style="padding-top: 30px;">
     <div class="main-content">
       <el-row type="flex" class="row-bg" justify="start">
-        <el-col :span="6">
+        <el-col :span="4" style="padding-left: 17px">
           <div
             style="height: calc(100vh - 80px);display: flex;justify-content: center;">
             <div>
@@ -10,7 +10,7 @@
                 <el-menu
                   default-active="0"
                   class="el-menu-vertical-demo"
-                  style="width: 300px;float: left"
+                  style="width: 280px;float: left"
                   background-color="#ffffff"
                   @open="handleOpen"
                   @close="handleClose">
@@ -63,7 +63,7 @@
             </div>
           </div>
         </el-col>
-        <el-col :span="7">
+        <el-col :span="7" style="padding-left: 33px">
           <el-card class="box-card" style="width: 400px">
             <div style="height: 60px;width: 100%" class="teacher-nav">
               <div style="margin-left: 8px;">
@@ -145,7 +145,7 @@
           </el-card>
 
         </el-col>
-        <el-col :span="7" v-if="dialogFormVisible">
+        <el-col :span="7" style="padding-left: 30px" v-if="dialogFormVisible">
           <el-card class="box-card" style="width:400px">
             <div style="height: 60px;width: 100%;" class="teacher-nav">
               <span style="margin-left: 10px">请选择要添加教师</span>
