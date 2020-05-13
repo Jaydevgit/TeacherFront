@@ -7,7 +7,11 @@
 
       <div style="height: 1px;width: 100%;background-color: black"></div>
       <div style="margin-top: 20px">
-          <el-checkbox v-for="tag in checkedCities" :checked="tag.checked" :key="tag.value" :disabled="tag.disabled" @change="tag.checked=!tag.checked" border style="margin-top: 20px">
+          <el-checkbox v-for="tag in checkedCities" :checked="tag.checked" :key="tag.value"
+                       :disabled="tag.disabled"
+                       @change="tag.checked=!tag.checked"
+                       border
+                       style="margin-top: 20px">
             {{tag.label}}</el-checkbox>
       </div>
     </div>
@@ -35,48 +39,40 @@
       label:'头衔',
       value:'e',
     },
-    /*{
-      label:'最后学历',
-      value:'f',
-    },
-    {
-      label:'最高学位',
-      value:'g',
-    },*/
     {
       label:'学历学位',
       value: 'f'
     },
     {
       label:'毕业学校',
-      value:'h',
+      value:'g',
     },
     {
       label:'学科专业',
-      value:'i',
+      value:'h',
     },
     {
       label:'研究方向',
-      value:'j',
+      value:'i',
     }, {
       label:'所在部门',
-      value:'k',
+      value:'j',
     },
     {
       label:'办公地点',
-      value:'l',
+      value:'k',
     },
     {
       label:'办公电话',
-      value:'m',
+      value:'l',
     },
     {
       label:'办公邮箱',
-      value:'n',
+      value:'m',
     },
     {
       label:'学术主页',
-      value:'o',
+      value:'n',
     }];//各字母对应字段
     export default {
       name: "teacherSet",
@@ -112,6 +108,7 @@
           console.log(" this.finalTag="+ this.finalTag);
           this.applyForm.unitId = this.$store.getters.unitId
           this.applyForm.tagState=this.finalTag
+          /*this.applyForm.tagState='abcdEFGHijkLmn'*/
           this.api({
             url: '/unit/updateUnitInfo',
             method: 'post',
@@ -124,7 +121,7 @@
         },
         //判断是否为不可修改字段
         tagIf(val){
-          let str='abejno'
+          let str='abcdijkmn'
           if(str.indexOf(val)===-1){
             return false;
           }else{
@@ -134,6 +131,7 @@
         // 英文是否大写
          upperCase(num) {
           var reg = /^[a-z]+$/;
+          console.log("reg.test(num)="+reg.test(num))
           return reg.test(num)
         },
         getUnitInfo() {
@@ -156,7 +154,7 @@
         compareState() {
           console.log("======a=======");
           for (var i = 0; i <= this.cities.length; i++) {
-         //   console.log("this.cities" + this.cities[i].value + "?" + this.tagState[i]);
+            console.log("this.cities" + this.cities[i].label + "?" + this.tagState[i]);
             this.checkedCitiesItem = Object.assign({}, this.checkedCitiesItem, {
               label: this.cities[i].label,
               value: this.tagState[i],
