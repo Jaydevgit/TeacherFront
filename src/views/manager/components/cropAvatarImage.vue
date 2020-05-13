@@ -207,6 +207,7 @@
     overflow: hidden;
     border: 1px solid #cccccc;
     background: #cccccc;
+    margin-bottom: 15px;
   }
 
   .footerBtn {

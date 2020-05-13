@@ -434,8 +434,10 @@
             <el-button type="success" @click="inviteToScholat(ruleForm)" style="float: right; padding: 3px 3px"
                        v-if="!ruleForm.scholat_username">邀请该用户加入学者网
             </el-button>
-          </div>
+          </div><div style="margin-left:20px;opacity: 0.5;">以下教师头像、研究方向和个人简介可以参考选用所关联的学者网个人空间信息</div>
+
           <el-row type="flex" justify="center" v-if="list.length!=0">
+
             <el-col :span="24">
               <el-row>
                 <transition name="el-fade-in-linear">
@@ -448,9 +450,9 @@
                           <img id="avatar-id" class="preview" :src="getImgUrl(scope.row.avatar)"
                                style="width:70px;height:70px;border-radius: 5%;"/>
                           <div class="teacher-homepage" @click="routerTo(scope.row)">{{scope.row.username}}</div>
-                          <el-button type="success" @click="uploadAvatar" size="small"
-                                     style="margin-left: 0;margin-bottom: 4px;">上传头像
-                          </el-button>
+<!--                          <el-button type="success" @click="uploadAvatar" size="small"-->
+<!--                                     style="margin-left: 0;margin-bottom: 4px;">上传头像-->
+<!--                          </el-button>-->
                         </template>
                       </el-table-column>
                       <el-table-column align="center" label="邮箱" width="160">
@@ -472,42 +474,45 @@
                           <span class="teacher-homepage">{{scope.row.post}}</span>
                         </template>
                       </el-table-column>
-                      <el-table-column align="center" label="学历" width="80">
-                        <template slot-scope="scope">
-                          <span class="teacher-homepage">{{scope.row.degree}}</span>
-                        </template>
-                      </el-table-column>
-                      <el-table-column align="center" label="更新时间" width="160">
-                        <template slot-scope="scope">
-                          <span>{{scope.row.update_time}}</span>
-                          <!--                        <template v-if="(scope.row.scholat_username === ruleForm.scholat_username)&&scholatHasUpdate!=null">-->
-                          <!--                        <template v-if="scope.row.update_time > ruleForm.update_time">-->
-                          <!--                          <el-button type="success" @click="showDifferent(scope.row)" size="small"-->
-                          <!--                                     style="margin-left: 0;margin-bottom: 4px;">对比更新-->
-                          <!--                          </el-button>-->
-                          <!--                        </template>-->
-                          <el-button type="success" @click="showDifferent(scope.row)" size="small"
-                                     style="margin-left: 0;margin-bottom: 4px;">信息对比
-                          </el-button>
-                        </template>
-                      </el-table-column>
+<!--                      <el-table-column align="center" label="学历" width="80">-->
+<!--                        <template slot-scope="scope">-->
+<!--                          <span class="teacher-homepage">{{scope.row.degree}}</span>-->
+<!--                        </template>-->
+<!--                      </el-table-column>-->
+<!--                      <el-table-column align="center" label="信息对比" width="160">-->
+<!--                        <template slot-scope="scope">-->
+<!--&lt;!&ndash;                          <span>{{scope.row.update_time}}</span>&ndash;&gt;-->
+<!--                          &lt;!&ndash;                        <template v-if="(scope.row.scholat_username === ruleForm.scholat_username)&&scholatHasUpdate!=null">&ndash;&gt;-->
+<!--                          &lt;!&ndash;                        <template v-if="scope.row.update_time > ruleForm.update_time">&ndash;&gt;-->
+<!--                          &lt;!&ndash;                          <el-button type="success" @click="showDifferent(scope.row)" size="small"&ndash;&gt;-->
+<!--                          &lt;!&ndash;                                     style="margin-left: 0;margin-bottom: 4px;">对比更新&ndash;&gt;-->
+<!--                          &lt;!&ndash;                          </el-button>&ndash;&gt;-->
+<!--                          &lt;!&ndash;                        </template>&ndash;&gt;-->
+<!--                          <el-button type="success" @click="showDifferent(scope.row)" size="small"-->
+<!--                                     style="margin-left: 0;margin-bottom: 4px;">信息对比-->
+<!--                          </el-button>-->
+<!--                        </template>-->
+<!--                      </el-table-column>-->
                       <el-table-column
                         fixed="right"
                         label="操作"
                         width="170">
                         <template slot-scope="scope">
                           <el-button @click="viewScholat(scope.row)" type="warning" size="small"
-                                     style="width: 60%;margin-left: 0;margin-bottom:4px;">查看
+                                     style="margin-left: 0;margin-bottom:4px;">查看主页
+                          </el-button>
+                          <el-button type="success" @click="showDifferent(scope.row)" size="small"
+                                     style="margin-left: 0;margin-bottom: 4px;">信息对比
                           </el-button>
                           <template v-if="scope.row.scholat_username === ruleForm.scholat_username">
                             <el-button type="danger" @click="unlockScholat(scope.row)" size="small"
-                                       style="width: 60%;margin-left: 0;">解除绑定
+                                       style="margin-left: 0;">解除绑定
                             </el-button>
                           </template>
                           <template v-else>
                             <el-button v-if="routePage == 'modify' || !scope.row.email_exist" type="success"
                                        @click="importFromScholat(scope.row)" size="small"
-                                       style="width: 60%;margin-left: 0;">一键关联
+                                       style="margin-left: 0;">一键关联
                             </el-button>
                             <div v-if="routePage == 'add' && scope.row.email_exist"
                                  style="color: gray;font-weight: bold;">已存在该教师
@@ -537,7 +542,7 @@
           <el-row>
             <el-col :span="4">
               <div class="grid-content bg-purple" style="text-align: center">
-                <span style="font-weight: 900;font-size: 24px">教师头像</span>
+                <span style="font-weight: 900;font-size: 24px;">教师头像</span>
                 <!--显示更新提示-->
                 <el-tooltip placement="top" v-if="showUpdateInfo.avatarScholat">
                   <div slot="content" style="font-size: 16px">
@@ -569,7 +574,7 @@
                 </div>-->
               </div>
             </el-col>
-            <el-col :span="2" style="margin-top: 50px;margin-left: 20px">
+            <el-col :span="2" style="margin-top: 50px;margin-left: 20px;">
               <div style="display: flex;align-items: center;" v-if="scholatProfile.avatar!==undefined">
                 <img  class="preview" :src="getImgUrl(scholatProfile.avatar)"
                       style="width:70px;height:70px;border-radius: 50%;"/>
@@ -590,8 +595,8 @@
               </el-input>
               <div v-if="showUpdateInfo.research_directionScholat!==''" v-html="showUpdateInfo.research_directionScholat"
                    style="height: 70px;overflow: auto;background-color: antiquewhite;margin-top: 5px;margin-bottom: 5px"></div>
-              <div v-if="scholatProfile.research_direction!==''&&showUpdateInfo.research_directionScholat===''" v-html="scholatProfile.research_direction"
-                     style="height: 70px;overflow: auto;background-color: antiquewhite;margin-top: 5px;margin-bottom: 5px"></div>
+<!--              <div v-if="scholatProfile.research_direction!==''&&showUpdateInfo.research_directionScholat===''" v-html="scholatProfile.research_direction"-->
+<!--                     style="height: 70px;overflow: auto;background-color: antiquewhite;margin-top: 5px;margin-bottom: 5px"></div>-->
             </el-col>
             <el-col :span="2">
             <el-button style="margin-top:80px;margin-left: 5px;" @click="saveTeacher"size="small" type="success" v-if="$route.path.indexOf('modifyTeacher')!=-1">保存</el-button>
@@ -632,7 +637,7 @@
                         <div style="color: rgb(245, 108, 108);font-weight: 800;">▶编辑个人简介</div>
                         <div v-if="ruleForm.scholat_username" style="color: rgb(245, 108, 108);font-weight: 800;cursor: pointer;flex: 2;text-align: right;margin-right: 15px"
                              @click="showDifferent(scholatProfile)">信息对比</div>
-                        <div v-else style="color: rgb(245, 108, 108);font-weight: 800;cursor: pointer;flex: 2;text-align: right;margin-right: 15px"@click="ifShow">{{this.showTag}}</div>
+<!--                        <div v-else style="color: rgb(245, 108, 108);font-weight: 800;cursor: pointer;flex: 2;text-align: right;margin-right: 15px"@click="ifShow">{{this.showTag}}</div>-->
                         <div style="color: rgb(245, 108, 108);font-weight: 800;cursor: pointer" @click="clearIntro()">清空简介
                         </div>
                       </div>
