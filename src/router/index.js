@@ -97,7 +97,7 @@ export const constantRouterMap = [
     },
   {path: '/404', component: _import('404'), hidden: true},
   {path: '/applySuccess', name: 'applySuccess', component: _import('unitApply/ApplySuccess'), hidden: true},
-  {path: '/applySuccess', name: 'applySuccess', component: _import('unitApply/ApplySuccess'), hidden: true},
+/*  {path: '/applySuccess', name: 'applySuccess', component: _import('unitApply/ApplySuccess'), hidden: true},*/
   {
     path: '/unitApply',
     name: 'unitApply',
