@@ -413,7 +413,6 @@
             </el-button>
           </div>
           </div>
-          <div style="margin-left: 20px;opacity: 0.5;">以下教师头像、研究方向和个人简介可以参考选用所关联的学者网个人空间信息</div>
         </el-card>
         <!--未关联学者网时-->
         <el-card class="box-card scholat-card" v-if="!ruleForm.scholat_username">
@@ -427,14 +426,14 @@
             <el-button type="primary" size="small" style="margin-left:10px;" @click="scholatInfoSearch">查询</el-button>
             <!--          <span class="scholat_span"-->
             <!--                style="margin-left: 14px;">输入邮箱或姓名后开始查询</span>-->
-            <span v-if="list.length" class="scholat_span"
-                  style="float: right;margin-left: 14px;">搜索到{{this.list.length}}位学者网用户</span>
             <span v-if="ruleForm.scholat_username" class="scholat_span"
                   style="float: right;">已绑定学者网账号&nbsp{{ruleForm.scholat_username}}</span>
             <el-button type="success" @click="inviteToScholat(ruleForm)" style="float: right; padding: 3px 3px"
                        v-if="!ruleForm.scholat_username">邀请该用户加入学者网
             </el-button>
-          </div><div style="margin-left:20px;opacity: 0.5;">以下教师头像、研究方向和个人简介可以参考选用所关联的学者网个人空间信息</div>
+          </div>
+          <div v-if="list.length"
+               style="margin-left:20px;font-weight: bolder;color: darkgray;">搜索到{{this.list.length}}位学者网用户</div>
 
           <el-row type="flex" justify="center" v-if="list.length!=0">
 
@@ -442,8 +441,10 @@
               <el-row>
                 <transition name="el-fade-in-linear">
                   <div v-show="showScholatDiv" class="transition-box  bg-purple-light">
-                    <el-table :data="list" v-loading.body="listLoading" element-loading-text="拼命加载中" border
+                    <el-table :data="list" v-loading.body="listLoading" element-loading-text="拼命加载中"
+                              border
                               fit
+                              :show-header="false"
                               highlight-current-row>
                       <el-table-column fixed align="center" label="学者网用户" width="140">
                         <template slot-scope="scope">
@@ -494,6 +495,7 @@
 <!--                        </template>-->
 <!--                      </el-table-column>-->
                       <el-table-column
+                        align="center"
                         fixed="right"
                         label="操作"
                         width="170">
@@ -539,6 +541,7 @@
         </el-card>
         <!--进一步信息-->
         <el-card class="box-card scholat-card" v-if="$route.path.indexOf('modifyTeacher')!=-1">
+          <div style="padding-left:20px;opacity: 0.5; border-bottom: solid 1px darkgray;margin-bottom: 10px">以下教师头像、研究方向和个人简介可以参考选用所关联的学者网个人空间信息</div>
           <el-row>
             <el-col :span="4">
               <div class="grid-content bg-purple" style="text-align: center">
