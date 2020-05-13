@@ -153,7 +153,7 @@
           username: '',
           password: '',
           nickname: '',
-          roleId: '3',
+          roleId: '4',
           userId: '',
           unitId:'',
           domainName:'',
@@ -238,7 +238,7 @@
         this.tempUser.username = "";
         this.tempUser.password = "";
         this.tempUser.nickname = "";
-        this.tempUser.roleId = "3";
+        this.tempUser.roleId = "4";
         this.tempUser.userId = "";
         this.dialogStatus = "create"
         this.dialogFormVisible = true
@@ -262,6 +262,7 @@
         this.tempUser.unitId= this.$store.state.user.unitId;
         console.log("加密后的密码为："+this.md5(this.tempUser.password+this.salt));
         this.tempUser.password = this.md5(this.tempUser.password+this.salt);
+        console.log("this.tempUser.roleId："+this.tempUser.roleId);
         this.api({
           url: "/user/addUser",
           method: "post",
