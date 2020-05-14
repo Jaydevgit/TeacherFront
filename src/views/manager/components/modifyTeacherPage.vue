@@ -917,7 +917,7 @@
                     id: '',
                     username: '', // 姓名
                     sex: '0', // 性别
-                    avatar: 'defaultQR.png', // 头像
+                    avatar: 'default.png', // 头像
                     state: '1', // 状态
                     degree: '', // 学历
                     post: '', // 职位
