@@ -47,8 +47,10 @@
               </span>
               <!--                  <span class="prodile-second" v-if="teacherProfile.degree">/&nbsp{{teacherProfile.degree}}</span>-->
             </div>
+            <!--头衔-->
             <div v-if="teacherProfile.label&&tagFlag[4]==='e'" style="margin-bottom: 10px;margin-left: 20px">
               <span class="personal-describe">{{teacherProfile.label}}</span>
+
             </div>
             <div v-else style="margin-bottom: 10px;margin-top: 31px">
             </div>
