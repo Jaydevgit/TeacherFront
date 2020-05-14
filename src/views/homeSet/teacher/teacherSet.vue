@@ -108,12 +108,11 @@
           console.log(" this.finalTag="+ this.finalTag);
           this.applyForm.unitId = this.$store.getters.unitId
           this.applyForm.tagState=this.finalTag
-          /*this.applyForm.tagState='abcdEFGHijkLmn'*/
           this.api({
-            url: '/unit/updateUnitInfo',
+            url:'/unit/updateUnitTagstate',
             method: 'post',
             data: this.applyForm
-          }).then(data => {
+          }).then(data =>{
             this.$message.success("提交成功");
           }).catch(e => {
             this.$message.error("提交失败");
