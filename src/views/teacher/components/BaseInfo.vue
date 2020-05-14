@@ -86,9 +86,9 @@
                 </div>
 
 
-                <!--              <div class="show-persona" v-if="teacherProfile.scholat_username">-->
-                <!--              <a @click="routeTo()">查看学者画像</a>-->
-                <!--            </div>-->
+           <!--                   <div class="show-persona" v-if="teacherProfile.scholat_username">
+                              <a @click="routeTo()">查看学者画像</a>
+                            </div>-->
               </div>
               <div class="name-bottom-right">
                 <div style="margin-bottom: 10px;" v-if="tagFlag[5]==='f'" class="name-bottom-item">
