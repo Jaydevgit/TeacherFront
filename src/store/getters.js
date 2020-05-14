@@ -1,7 +1,7 @@
 const getters = {
   sidebar: state => state.app.sidebar,
   visitedViews: state => state.app.visitedViews,
-
+  username: state => state.user.username,
   nickname: state => state.user.nickname, // 单位登录账号的用户名
   userId: state => state.user.userId, // 用户id
   unitName: state => state.user.unitName, // 单位名称

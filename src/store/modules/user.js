@@ -6,6 +6,7 @@ import router from '../../router'
 
 const user = {
   state: {
+    username:'',
     nickname: "",
     userId: "",
     avatar: 'https://raw.githubusercontent.com/sansenlian/PicPlace/master/img/20190610104613.png',
@@ -19,6 +20,7 @@ const user = {
   },
   mutations: {
     SET_USER: (state, userInfo) => {
+      state.username = userInfo.username;
       state.nickname = userInfo.nickname;
       state.userId = userInfo.userId;
       state.role = userInfo.roleName;
@@ -30,6 +32,7 @@ const user = {
       state.tagState = userInfo.tagState;
     },
     RESET_USER: (state) => {
+      state.username = "";
       state.nickname = "";
       state.userId = "";
       state.role = '';
