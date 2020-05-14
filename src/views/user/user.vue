@@ -37,10 +37,10 @@
           </div>
         </template>
       </el-table-column>-->
-      <el-table-column align="center" label="管理" width="220" v-if="hasPerm('user:update')">
+      <el-table-column align="center" label="管理" width="220" >
         <template slot-scope="scope">
           <el-button type="primary" icon="edit" @click="showUpdate(scope.$index)">重置密码</el-button>
-          <el-button type="danger" icon="delete" v-if="scope.row.userId!=userId "
+          <el-button type="danger" icon="delete" v-if="scope.row.userId!=userId&&hasPerm('user:update') "
                      @click="removeUser(scope.$index)">删除
           </el-button>
         </template>
@@ -152,7 +152,7 @@
         tempUser: {
           username: '',
           password: '',
-          nickname: '',
+          nickname: '子管理员',
           roleId: '4',
           userId: '',
           unitId:'',
@@ -237,7 +237,7 @@
         //显示新增对话框
         this.tempUser.username = "";
         this.tempUser.password = "";
-        this.tempUser.nickname = "";
+        this.tempUser.nickname = "子管理员";
         this.tempUser.roleId = "4";
         this.tempUser.userId = "";
         this.dialogStatus = "create"
