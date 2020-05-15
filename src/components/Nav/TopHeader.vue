@@ -103,14 +103,15 @@
           </span>
         </template>
       </div>
-
       <div class="search bar6" v-if="dataDone && this.$route.path.indexOf('teacher')===-1">
-        <div class="formDiv" style="min-width:200px;float: right;">
+        <div class="formDiv" style="min-width:180px;">
           <input @keyup.enter="keySend" type="text" v-model="searchKey" placeholder="请输入您要搜索的教师" name="cname"
                  style="color: gray;background-color: white;">
           <button @click="keySend"></button>
         </div>
       </div>
+      <a href="/manager/teacher"><el-button type="text" style="position: relative;" @click="">返回学院主页</el-button></a>
+
 
         <div style=" display: flex;
     align-content: center;margin-left: 120px"
@@ -336,12 +337,12 @@
   }
 
   div.search {
-    width: 100%;
+    width: 80%;
   }
 
   .formDiv {
     position: relative;
-    width: 300px;
+    width: 250px;
     margin: 0 auto;
   }
 
@@ -392,7 +393,7 @@
 
   .top-container {
     width: 100%;
-    height: 60px;
+    height: 80px;
     background: #f1f2f6;
     min-width: 980px;
     background-color: #f1f2f6;
