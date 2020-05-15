@@ -110,7 +110,7 @@
           <button @click="keySend"></button>
         </div>
       </div>
-      <a href="/manager/teacher"><el-button type="text" style="position: relative;" @click="">返回学院主页</el-button></a>
+      <a href="/manager/teacher" v-if="dataDone && this.$route.path.indexOf('teacher')===-1"><el-button type="text" style="position: relative;" @click="">返回学院主页</el-button></a>
 
 
         <div style=" display: flex;
