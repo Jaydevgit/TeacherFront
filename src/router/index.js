@@ -236,6 +236,13 @@ export const asyncRouterMap = [
         meta: {title: '教师主页设置', icon: 'user'},
         menu: 'user'
       },
+      {
+        path: 'researchManagement',
+        name: 'researchManagement',
+        component: _import('homeSet/research/researchManagement'),
+        meta: {title: '科研管理', icon: 'user'},
+        menu: 'user'
+      },
     ]
   },
   {
@@ -250,7 +257,7 @@ export const asyncRouterMap = [
         name: '账号列表',
         component: _import('user/user'),
         meta: {title: '子账号管理', icon: 'user'},
-        menu: 'user'
+        menu: 'role'
       },
       {
         path: 'role',
