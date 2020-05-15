@@ -1317,7 +1317,7 @@
                 this.ruleForm.scholat_update_time = filterXSS(data.scholat_update_time); // 学者网更新日期
                 this.ruleForm.unit_id = filterXSS(this.$store.state.user.unitId);// 单位编号
                 this.ruleForm.domain_name = filterXSS(data.domain_name); // 域名
-                this.ruleForm.edit_name = filterXSS(this.$store.state.user.username); // 用户名
+                this.ruleForm.edit_name = filterXSS(this.$store.state.user.nickname); // 用户名
                 this.ruleForm.duty = filterXSS(data.duty); // 职务
                 this.ruleForm.degree_max = filterXSS(data.degree_max); // 最高学位
             },

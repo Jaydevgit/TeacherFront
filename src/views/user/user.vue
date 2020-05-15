@@ -15,7 +15,7 @@
           <span v-text="getIndex(scope.$index)"> </span>
         </template>
       </el-table-column>
-      <!--<el-table-column align="center" label="昵称" prop="nickname" style="width: 60px;"></el-table-column>-->
+      <el-table-column align="center" label="昵称" prop="nickname" style="width: 60px;"></el-table-column>
       <el-table-column align="center" label="用户名" prop="username" style="width: 60px;"></el-table-column>
 <!--      <el-table-column align="center" label="密码" prop="password" style="width: 60px;"></el-table-column>-->
       <!--<el-table-column align="center" label="角色" width="160">
@@ -60,6 +60,10 @@
                style='width: 300px; margin-left:50px;'>
         <el-form-item label="用户名" prop="username" required v-if="dialogStatus=='create'">
           <el-input type="text" v-model="tempUser.username">
+          </el-input>
+        </el-form-item>
+        <el-form-item label="昵称" prop="nickname" required v-if="dialogStatus=='create'">
+          <el-input type="text" v-model="tempUser.nickname">
           </el-input>
         </el-form-item>
         <el-form-item label="密码" v-if="dialogStatus=='create'" required>
@@ -152,7 +156,7 @@
         tempUser: {
           username: '',
           password: '',
-          nickname: '子管理员',
+          nickname: '',
           roleId: '4',
           userId: '',
           unitId:'',
@@ -237,7 +241,7 @@
         //显示新增对话框
         this.tempUser.username = "";
         this.tempUser.password = "";
-        this.tempUser.nickname = "子管理员";
+        this.tempUser.nickname = "";
         this.tempUser.roleId = "4";
         this.tempUser.userId = "";
         this.dialogStatus = "create"
