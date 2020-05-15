@@ -213,7 +213,7 @@
   }
 
   article {
-    background: url("../../assets/img/bg2.png") no-repeat;
+    background: url("../../assets/img/bg2.jpg") no-repeat;
     background-size: 100% 100%;
   }
   .title{
