@@ -21,12 +21,14 @@
 
 
       <div class="search bar6">
-        <div class="formDiv" style="min-width:200px;float: right">
+        <div class="formDiv" style="min-width:200px;">
           <input @keyup.enter="keySend" type="text" v-model="searchKey" placeholder="请输入您要搜索的教师" name="cname"
                  style="color: gray;background-color: white;">
           <button @click="keySend"></button>
         </div>
       </div>
+      <a href="/manager/teacher" v-if="dataDone && this.$route.path.indexOf('teacher')===-1"><el-button type="text" style="position: relative;" @click="">返回学院主页</el-button></a>
+
     </div>
 
     <!--两种模式：模式 2 自定义模式-->
@@ -60,7 +62,7 @@
       <!--若判断为教师信息页，则显示学校logo，学校名称，教师主页，搜索-->
       <div v-else-if="$route.path.indexOf('teacher')!=-1" style="display: flex;align-items: center;height: 100%;width: 100%">
         <div @click="goToCollege" style="height: 90%;width: auto;bottom: 0;cursor: pointer">
-          <img :src="'http://www.scholat.com/images/uni_logo/'+this.unit.schoolName+'.png'" :onerror="defaultLogo" style="height: 55px;width:auto;"/>
+          <img :src="'http://www.scholat.com/images/uni_logo/'+this.unit.schoolName+'.png'" :onerror="defaultLogo" style="height: 100%;width:auto;"/>
         </div>
         <span style="" class="font-jsgrzy">
             <span v-if="$route.path.indexOf('login')!=-1">SCHOLAT+学院师资信息管理平台</span>
