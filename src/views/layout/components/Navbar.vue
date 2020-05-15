@@ -15,10 +15,12 @@
       <div  style="float: right;padding-right: 20px;">
         <el-button type="primary"  size="small" @click="logout">退出登录</el-button>
       </div>
-      <span style="float: right;margin-right: 20px;text-underline: #7e8c8d">{{username}}</span>
+
       <div  style="float: right;padding-right: 20px;">
+        <a href="https://www.yuque.com/vd7ii9/dvybyk/na3nsf"><el-button type="primary" size="small" v-if="!backTOHome">帮助文档</el-button></a>
         <el-button type="primary"  size="small" v-if="backTOHome" @click="enterHomepage">进入学院主页</el-button>
       </div>
+      <span style="float: right;margin-right: 20px;text-underline: #7e8c8d">{{username}}</span>
       <div  style="float: right;padding-right: 20px;">
 
       </div>

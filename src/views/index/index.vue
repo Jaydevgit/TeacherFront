@@ -16,7 +16,7 @@
         </div>
         <div class="nav-inner-login">
           <a href="/index" class="title" style="flex: 1;min-width: 40px">首页</a>
-          <a href="https://www.yuque.com/vd7ii9/dvybyk/na3nsf" class="title" style="min-width: 80px">帮助文档</a>
+          <!--<a href="https://www.yuque.com/vd7ii9/dvybyk/na3nsf" class="title" style="min-width: 80px">帮助文档</a>-->
          <a href="/login" class="title" style="flex: 1;min-width: 40px">登录</a>
          <a href="/unitApply" class="title" style="flex: 1;min-width: 40px">注册</a>
           <a href="http://www.scholat.com/"  class="title" style="flex: 1;min-width: 60px">
@@ -38,7 +38,7 @@
                   <el-carousel-item v-for="item in 3" :key="item">
                     <div style="height: 100%;width: 100%;display: flex;justify-content: center">
                       <el-card>
-                        <img :src="'http://47.106.132.95:2333/images/index/index-show-'+item+'.png'"
+                        <img :src="'http://47.106.132.95:2333/images/index/index-show-'+item+'.jpg'"
                              style="width: 100%;display: inline-block;"
                              lazy>
                       </el-card>
@@ -63,7 +63,7 @@
                   &lt;!&ndash;                  <span class="font-1" style="display: block">版本: 1.0-beta-1</span>&ndash;&gt;
                   <span class="font-1" style="display: block">发布日期: 2020年01月12日</span>
                 </div>-->
-                <div class="font-1" style="margin: 7px 50px 42px 0;
+                <!--<div class="font-1" style="margin: 7px 50px 42px 0;
                 text-indent: 40px;
                 line-height: 34px;
                 height: 40%;
@@ -76,6 +76,23 @@
                   更新不及时、教师人员管理不方便、教师信息展示不全面和直观、教
                   师推荐机制不佳，并且学院师资栏目定制不方便，自行搭建师资栏目
                   管理需要一定成本的七大问题提出了一站式解决方案。
+                </div>-->
+                <div class="font-1" style="margin: 7px 50px 42px 0;
+                text-indent: 40px;
+                line-height: 34px;
+                height: 40%;
+                text-overflow: ellipsis;
+                overflow: auto;">
+                  SCHOLAT+学院师资学术信息管理平台<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（简称：SCHOLAT+师资平台）
+                  <br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;师资队伍是高校发展的第一资源。学院官网“师资队伍”栏目是展现学院实力重要窗口，对学院发展和招生就业等都有极其重要的作用。采集教师科研信息也是学院一项经常性、重复性和繁琐性工作。但是，传统“师资队伍”网页是静态信息，编辑困难，时效性差；传统的科研信息采集方法也通常给老师和管理人员带来诸多困扰，而且难以保障准确性和及时性。<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SCHOLAT+师资平台主要提供学院官网“师资队伍”主页定制，学院教师科研信息采集工具（将在第二期完成）。平台具有权威性、时效性、安全性、易用性和可扩展性等主要优点。<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;权威性：平台发布的教师信息由学院管理部门管理，通过学院官网师资队伍栏目链接定制主页，属于学院官网组成部分。<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;时效性：平台管理员能实时“感知”教师学者网个人空间信息的更新，从而较准确地编辑教师的研究方向、学术简介及个人照片。<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;安全性：平台管理的教师信息是非涉密学术性信息，而且是学院私有信息平台，与学者网教师空间只有数据交互，具有隔离性。<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;易用性：教师只需要登录自己的学者空间做好日程学术管理。学院管理员登录平台管理和采集学术信息，无需“打扰”教师。<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;可扩展性：进而可以建立学校的教师主页系统和教师数据中心，基于学者网社交功能建立教师学术交流平台等。<br>
                 </div>
                 <div>
                   <el-button style="background-color: #397777">
@@ -196,7 +213,7 @@
   }
 
   article {
-    background: url("../../assets/img/bg2.png") no-repeat;
+    background: url("../../assets/img/bg2.jpg") no-repeat;
     background-size: 100% 100%;
   }
   .title{
