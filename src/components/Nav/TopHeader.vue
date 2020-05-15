@@ -66,7 +66,7 @@
             <span v-if="$route.path.indexOf('login')!=-1">SCHOLAT+学院师资信息管理平台</span>
             <span v-else>
               <span style="font-family: 华文新魏;font-size: 38px">{{unit.schoolName}}|</span>
-              <span style="font-family: 华文行楷 ;font-size: 36px;margin-left: -10px">教师主页</span>
+              <span style="font-family: 华文行楷 ;font-size: 36px;margin-left: -10px">师资队伍</span>
             </span>
         </span>
         <div class="search bar6" v-if="dataDone">
