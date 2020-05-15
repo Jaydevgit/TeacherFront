@@ -373,6 +373,12 @@
                 this.teacherSort_id = [];
             },
             sortTeacherSubmit(state) {
+              //删除职称前排序号
+              this.teacherSort_id.forEach((v, k) => {
+                let d = document.getElementById('seq_teacher' + v);
+                d.style.display = 'inline';
+                d.innerText = '';
+              });
                 //state参数0，即为目录教师排序
                 if (!state) {
                     let ctIds = [];
