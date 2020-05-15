@@ -16,7 +16,7 @@
        </div>
       </div>
       <div class="font-jsgrzy" style="display: inline-block;min-width: 180px;">
-        教师个人主页
+        师资队伍
       </div>
 
 
