@@ -12,14 +12,17 @@
             :key="sub.name"
             :label="sub.label"
             :value="sub.name"
+            :disabled="sub.disabled"
            @click.native="getTeacherByCatalogueId(RoleId,sub.id),checkCataloguerList(sub.id,flag)">
           </el-option>
+<!--          :disabled="sub.cCatalogue_id"-->
         </el-select>
-          <el-select v-if="Object.keys(item.subCatalogueList).length===0" v-model="values[flag]"  :placeholder='item.name'>
+          <el-select v-if="Object.keys(item.subCatalogueList).length===0" v-model="values[flag]"  :placeholder='item.name'  :disabled="item.disabled">
             <el-option
               :key="item.name"
               :label="item.label"
               :value="item.name"
+
               @click.native="getTeacherByCatalogueId(RoleId,item.id),checkCataloguerList(item.id,flag)">
             </el-option>
           </el-select>
@@ -101,12 +104,27 @@
             };
 
         },
+      // watch:{
+      //   'catalogueList_t':{
+      //     handler:function(newValue,oldValue){
+      //       this.catalogueList_t=newValue
+      //       console.log("newValue"+JSON.stringify(newValue))
+      //     },
+      //     deep:true,
+      //   }
+      // },
         methods:{
             closeMask(){
                 this.showMask = false;
             },
             closeBtn(){
-
+              for (let i = 0; i <= this.catalogueList_t.length-1; i++) {
+                this.catalogueList_t[i].disabled=false;
+                for (let j = 0; j <=this.catalogueList_t[i].subCatalogueList.length-1; j++) {
+                  this.catalogueList_t[i].subCatalogueList[j].disabled=false
+                }
+              }
+              console.log("catalogueList_tttt="+JSON.stringify(this.catalogueList_t));
                 this.$emit('cancel');
                // this.selectedAllCatalogueIds="";
                 for(let i=0;i<(this.values).length;i++)
@@ -146,6 +164,8 @@
                     this.CataloguesIds = data.list;
                     console.log(this.CataloguesIds);
                     this.catalogueList_t = this.catalogueList;
+                    console.log("catalogueList_t="+JSON.stringify(this.catalogueList_t));
+
                     for(let cID in this.CataloguesIds){
                         let t_id = this.CataloguesIds[cID].cCatalogue_id
                       for(let item in this.catalogueList){
@@ -154,19 +174,25 @@
                               let sub = this.catalogueList[item].subCatalogueList
                               if(sub.length!=0){
                                   for(let sub_index in sub){
+                                   // this.catalogueList_t[item].subCatalogueList[sub_index].disabled=false
                                       if(sub[sub_index].id==t_id){
                                           // 暂时移除该子栏目
-                                          this.catalogueList_t[item].subCatalogueList.splice(sub_index,1)
+                                         // this.catalogueList_t[item].subCatalogueList.splice(sub_index,1)
+                                        this.catalogueList_t[item].subCatalogueList[sub_index].disabled=true
+                                        //console.log("disabled="+JSON.stringify(this.catalogueList_t));
                                       }
                                   }
                               }
                           }else{
                               //  暂时移除该栏目的展示
-                              this.catalogueList_t.splice(item,1);
+                             // this.catalogueList_t.splice(item,1);
+                            this.catalogueList_t[item].disabled=true
+                            console.log("disabled="+JSON.stringify(this.catalogueList_t));
                           }
                       }
                     }
-
+                  console.log("catalogueList_t="+JSON.stringify(this.catalogueList_t));
+                  this.$forceUpdate();
                     console.log(JSON.parse(this.catalogueList))
 
 

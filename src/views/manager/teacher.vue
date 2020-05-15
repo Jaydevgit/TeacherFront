@@ -582,7 +582,7 @@
                 console.log("当前分栏目标教师Id:" + id)
                 this.$notify({
                     title: '提示',
-                    message: '本页面教师分配只展示未分配栏目。若需要管理教师已分配栏目，请到教师分配页面进行管理。',
+                    message: '本页面教师已存在栏目为不可选状态栏目。若需要管理教师已分配栏目，请到教师分配页面进行管理。',
                     type: 'info',
                     position: 'bottom-left'
                 });
