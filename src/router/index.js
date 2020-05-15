@@ -236,6 +236,16 @@ export const asyncRouterMap = [
         meta: {title: '教师主页设置', icon: 'user'},
         menu: 'user'
       },
+
+    ]
+  },
+  {
+    path: '/researchManagement',
+    component: Layout,
+    redirect: '/researchManagement',
+    name: 'researchManagement',
+    meta: {title: '科研管理', icon: 'tree'},
+    children: [
       {
         path: 'researchManagement',
         name: 'researchManagement',
@@ -245,6 +255,7 @@ export const asyncRouterMap = [
       },
     ]
   },
+
   {
     path: '/user',
     component: Layout,
