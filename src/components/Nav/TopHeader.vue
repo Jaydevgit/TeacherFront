@@ -94,7 +94,7 @@
         <!--如果没有背景图，则显示学校LOGO+xx学院+文字，登录页面按照逻辑会跳到这里，所以要判断-->
         <template v-else>
           <div @click="goToCollege" style="height: 90%;width: auto;bottom: 0;cursor: pointer">
-            <img :src="'http://www.scholat.com/images/uni_logo/'+this.unit.schoolName+'.png'" :onerror="defaultLogo" title="点击访问该学院" style="height: 55px;width:auto;"/>
+            <img :src="'http://www.scholat.com/images/uni_logo/'+this.unit.schoolName+'.png'" :onerror="defaultLogo" title="点击访问该学院" style="height: 55px;width:auto;margin-top: 7px"/>
           </div>
           <span style="" class="font-jsgrzy">
             <span v-if="$route.path.indexOf('login')!=-1">SCHOLAT+学院师资信息管理平台</span>
@@ -112,7 +112,7 @@
           <button @click="keySend"></button>
         </div>
       </div>
-      <a href="/manager/teacher" v-if="dataDone && this.$route.path.indexOf('teacher')===-1"><el-button type="text" style="position: relative;" @click="">返回学院主页</el-button></a>
+      <a href="/manager/teacher" v-if="dataDone && this.$route.path.indexOf('teacher')===-1"><el-button type="text" style="position: relative;transform: translateX(-55px)" @click="">返回学院主页</el-button></a>
 
 
         <div style=" display: flex;
@@ -339,7 +339,7 @@
   }
 
   div.search {
-    width: 80%;
+    width: 65%;
   }
 
   .formDiv {
