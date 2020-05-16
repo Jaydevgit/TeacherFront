@@ -3,31 +3,31 @@
 
     <!--两种模式：模式 1 -->
     <div class="background" v-if="unit.state == 0 && dataDone">
-      <div @click="goToCollege" style="display: inline-block;height: 90%;width: auto;min-width: 93px">
+      <div @click="goToCollege" style="display: inline-block;height: 90%;width: auto;min-width: 75px">
         <img :src="'http://www.scholat.com/images/uni_logo/'+this.unit.schoolName+'.png'" :onerror="defaultLogo"
              style="height: 100%;width: auto;bottom: 0;"/>
       </div>
       <div @click="goToCollege"
-           style="height: 100%;max-width: 900px;display: flex;justify-content: center;align-items: center;
-           margin: 0 18px;cursor: pointer">
+           style="height: 100%;max-width: 900px;display: flex;justify-content: center;align-items: center;transform: translateX(-10px);
+           cursor: pointer">
        <div style="color: steelblue">
          <a class="university" style="white-space: nowrap;font-weight: bold;">{{unit.schoolName}}</a>
          <span class="unitName" style="color:steelblue;font-weight: bold;white-space:nowrap;">{{unit.unitName}}</span>
        </div>
       </div>
-      <div class="font-jsgrzy" style="display: inline-block;min-width: 180px;">
+      <div class="font-jsgrzy" style="display: inline-block;min-width: 160px;transform: translateX(-40px);">
         师资队伍
       </div>
 
 
       <div class="search bar6">
-        <div class="formDiv" style="min-width:200px;">
+        <div class="formDiv" style="min-width:200px;float: right;transform: translateX(-40px)">
           <input @keyup.enter="keySend" type="text" v-model="searchKey" placeholder="请输入您要搜索的教师" name="cname"
                  style="color: gray;background-color: white;">
           <button @click="keySend"></button>
         </div>
       </div>
-      <a href="/manager/teacher" v-if="dataDone && this.$route.path.indexOf('teacher')===-1"><el-button type="text" style="position: relative;" @click="">返回学院主页</el-button></a>
+      <a href="/manager/teacher" v-if="dataDone && this.$route.path.indexOf('teacher')===-1"><el-button type="text" style="position: relative;transform: translateX(-30px)" @click="">学院主页</el-button></a>
 
     </div>
 
@@ -106,13 +106,13 @@
         </template>
       </div>
       <div class="search bar6" v-if="dataDone && this.$route.path.indexOf('teacher')===-1">
-        <div class="formDiv" style="min-width:180px;">
+        <div class="formDiv" style="min-width:180px;transform: translateX(20px)">
           <input @keyup.enter="keySend" type="text" v-model="searchKey" placeholder="请输入您要搜索的教师" name="cname"
                  style="color: gray;background-color: white;">
           <button @click="keySend"></button>
         </div>
       </div>
-      <a href="/manager/teacher" v-if="dataDone && this.$route.path.indexOf('teacher')===-1"><el-button type="text" style="position: relative;transform: translateX(-55px)" @click="">返回学院主页</el-button></a>
+      <a href="/manager/teacher" v-if="dataDone && this.$route.path.indexOf('teacher')===-1"><el-button type="text" style="position: relative;transform: translateX(-30px)" @click="">学院主页</el-button></a>
 
 
         <div style=" display: flex;
@@ -321,7 +321,6 @@
   }
 
   .university {
-
     letter-spacing: 3.5px;
     font-size: 21px;
     color: steelblue;
@@ -411,7 +410,6 @@
     font-size: 28px;
     color: steelblue;
     white-space: nowrap;
-    margin-left: 14px;
   }
   .linkScholat a:hover {
     text-decoration:underline;
