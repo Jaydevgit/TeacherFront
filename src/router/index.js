@@ -10,6 +10,7 @@ import HomePage from '../views/homePage/HomePage'
 import index from '../views/index/index'
 import scholatLogin from "../views/scholat/login/login"
 import fa from "element-ui/src/locale/lang/fa";
+import researchManagement from "../views/research/researchManagement";
 
 const _import = require('./_import_' + process.env.NODE_ENV)
 Vue.use(Router)
@@ -236,11 +237,20 @@ export const asyncRouterMap = [
         meta: {title: '教师主页设置', icon: 'user'},
         menu: 'user'
       },
+
+    ]
+  },
+  {
+    path: '/research',
+    component: Layout,
+    redirect: '/research',
+    meta: {title: '科研信息采集',icon: "table"},
+    children: [
       {
         path: 'researchManagement',
         name: 'researchManagement',
-        component: _import('homeSet/research/researchManagement'),
-        meta: {title: '科研管理', icon: 'user'},
+        component: _import('research/researchManagement'),
+        meta: {title: '科研信息采集', icon: 'user'},
         menu: 'user'
       },
     ]
