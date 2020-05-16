@@ -27,7 +27,7 @@
           <button @click="keySend"></button>
         </div>
       </div>
-      <a href="/manager/teacher" v-if="dataDone && this.$route.path.indexOf('teacher')===-1"><el-button type="text" style="position: relative;transform: translateX(-30px)" @click="">学院主页</el-button></a>
+      <a :href="unit.collegeUrl" v-if="dataDone && this.$route.path.indexOf('teacher')===-1"><el-button type="text" style="position: relative;transform: translateX(-30px)" @click="">学院主页</el-button></a>
 
     </div>
 
@@ -82,7 +82,7 @@
       <div v-else style="display: flex;align-items: center;height: 100%;width: 100%" @click="goToCollege">
         <!--如果有背景图，则显示学院背景图片+文字-->
         <template v-if="unit.backgroundUrl">
-          <div @click="goToCollege" style="height: 100%;padding-left: 15px;cursor: pointer">
+          <div @click="goToCollege" style="height: 100%;cursor: pointer">
             <img :src="'http://47.106.132.95:2333/images/background/' + unit.backgroundUrl"
                  style="height: 100%"
                  :onerror="defaultBack" title="点击访问该学院"/>
@@ -112,7 +112,7 @@
           <button @click="keySend"></button>
         </div>
       </div>
-      <a href="/manager/teacher" v-if="dataDone && this.$route.path.indexOf('teacher')===-1"><el-button type="text" style="position: relative;transform: translateX(-30px)" @click="">学院主页</el-button></a>
+      <a :href="unit.collegeUrl" v-if="dataDone && this.$route.path.indexOf('teacher')===-1"><el-button type="text" style="position: relative;transform: translateX(-30px)" @click="">学院主页</el-button></a>
 
 
         <div style=" display: flex;
