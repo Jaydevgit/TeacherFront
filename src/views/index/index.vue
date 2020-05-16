@@ -57,7 +57,7 @@
                 <span style="font-size: 28px;
     font-weight: bold;
     color: rgb(57, 119, 119);">
-                  学院师资栏目管理系统
+                  SCHOLAT+学院师资学术信息管理平台
                 </span>
                 <!--<div style="display: inline-block;margin-top: 12px;">
                   &lt;!&ndash;                  <span class="font-1" style="display: block">版本: 1.0-beta-1</span>&ndash;&gt;
@@ -82,9 +82,7 @@
                 line-height: 34px;
                 height: 40%;
                 text-overflow: ellipsis;
-                overflow: auto;">
-                  SCHOLAT+学院师资学术信息管理平台<br>
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（简称：SCHOLAT+师资平台）
+                overflow: auto;">（简称：SCHOLAT+师资平台）
                   <br>
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;师资队伍是高校发展的第一资源。学院官网“师资队伍”栏目是展现学院实力重要窗口，对学院发展和招生就业等都有极其重要的作用。采集教师科研信息也是学院一项经常性、重复性和繁琐性工作。但是，传统“师资队伍”网页是静态信息，编辑困难，时效性差；传统的科研信息采集方法也通常给老师和管理人员带来诸多困扰，而且难以保障准确性和及时性。<br>
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SCHOLAT+师资平台主要提供学院官网“师资队伍”主页定制，学院教师科研信息采集工具（将在第二期完成）。平台具有权威性、时效性、安全性、易用性和可扩展性等主要优点。<br>

@@ -5,7 +5,7 @@
 
         <el-card class="box-card" >
           <!--<div style="position:absolute;left:530px;top:20px;z-index:2;">-->
-            <img :src="bgLogo" width="250" height="250" style="opacity: 0.1;position:absolute;left:530px;top:15px;z-index:2; "/>
+            <img :src="bgLogo" width="180" height="180" style="opacity: 0.1;position:absolute;left:580px;top:15px;z-index:2; "/>
           <!--</div>-->
           <div style="display: inline-block;margin-left: 20px;vertical-align: top;margin-top: 20px">
             <img :src="getImgUrl(teacherProfile.avatar)" :onerror="imgErrorFun(this)" width="140" height="140"/>
@@ -121,7 +121,7 @@
                 <div class="name-bottom-item" style="margin-bottom: 10px;flex-direction: column" v-if="">
                   <!--<span><svg-icon icon-class="rearch-direction"/></span>-->
                   <label class="font-one">研究方向：</label>
-                  <div class="detail-msg" style="margin-top: 7px;line-height: 25px;width: 270px">{{teacherProfile.research_direction}}</div>
+                  <div class="detail-msg" style="margin-top: 7px;line-height: 25px;width: 260px">{{teacherProfile.research_direction}}</div>
                 </div>
               </div>
             </div>
