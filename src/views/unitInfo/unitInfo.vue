@@ -43,21 +43,21 @@
 
       </el-form-item>-->
 
-      <!--<el-form-item label="背景模式" >
+      <el-form-item label="背景模式" >
         <el-radio-group v-model="applyForm.state" >
-          <el-radio :label="0">默认模式</el-radio>
+          <el-radio :label="0">logo+文字模式</el-radio>
           <el-radio :label="1">自定义背景</el-radio>
         </el-radio-group>
       </el-form-item>
 
-      <el-form-item v-if="applyForm.state === 0" label="默认模式："  >
+      <!--<el-form-item v-if="applyForm.state === 0" label="文字模式："  >
         <div style="margin-left: 15px;">
           &lt;!&ndash;提交完后显示这个&ndash;&gt;
           <img src="http://47.106.132.95:2333/images/background/1569738575202258.png"  style="width: 420px; height: 72px;"/>
         </div>
 
       </el-form-item>-->
-      <el-form-item label="自定义背景：">
+      <el-form-item v-if="applyForm.state === 1" label="自定义背景：">
         <div style="" v-if="showBack.indexOf('http://47.106.132.95:2333/images/background/')!=-1">
           <!--提交完后显示这个-->
           <img :src="showBack"
@@ -211,7 +211,7 @@
                 });
             },
             submitForm() {
-                this.applyForm.state = 1;
+                /*this.applyForm.state = 1;*/
                 this.applyForm.unitId = this.$store.getters.unitId
                 console.log(this.applyForm)
                 this.api({
