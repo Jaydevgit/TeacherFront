@@ -17,7 +17,7 @@
           </el-option>
 <!--          :disabled="sub.cCatalogue_id"-->
         </el-select>
-          <el-select v-if="Object.keys(item.subCatalogueList).length===0" v-model="values[flag]"  :placeholder='item.name'  :disabled="item.disabled">
+          <el-select v-if="Object.keys(item.subCatalogueList).length===0" v-model="values[flag]"  :placeholder='item.name'  :disabled="item.disabled" >
             <el-option
               :key="item.name"
               :label="item.label"
@@ -115,16 +115,21 @@
       // },
         methods:{
             closeMask(){
-                this.showMask = false;
-            },
-            closeBtn(){
-              for (let i = 0; i <= this.catalogueList_t.length-1; i++) {
+              for (let i = 0; i < this.catalogueList_t.length; i++) {
                 this.catalogueList_t[i].disabled=false;
-                for (let j = 0; j <=this.catalogueList_t[i].subCatalogueList.length-1; j++) {
+                for (let j = 0; j <this.catalogueList_t[i].subCatalogueList.length; j++) {
                   this.catalogueList_t[i].subCatalogueList[j].disabled=false
                 }
               }
+              for (let i = 0; i <  this.selectedAllCatalogueIds.length; i++) {
+                this.selectedAllCatalogueIds[i]=null
+              }
+                this.showMask = false;
               console.log("catalogueList_tttt="+JSON.stringify(this.catalogueList_t));
+              console.log("selectedAllCatalogueIds="+JSON.stringify(this.selectedAllCatalogueIds));
+            },
+            closeBtn(){
+
                 this.$emit('cancel');
                // this.selectedAllCatalogueIds="";
                 for(let i=0;i<(this.values).length;i++)
@@ -138,6 +143,7 @@
                 this.closeMask();
             },
             confirmBtn(){
+
                 this.addAllCatalogueTeacher();
               //  this.selectedAllCatalogueIds="";
                 for(let i=0;i<(this.values).length;i++)
@@ -249,17 +255,21 @@
             },
             addAllCatalogueTeacher() {
                 let cIds = [];
+              for (let i = 0; i < cIds.length; i++) {
+                cIds[i]=null
+              }
+              console.log("cIds===++++" + cIds);
                 //检查已选择教师的ID
-                console.log(JSON.stringify(this.selectedAllCatalogueIds))
+                console.log("检查已选择教师的ID"+JSON.stringify(this.selectedAllCatalogueIds))
                 //检查教师是否已经加入该栏目
                 for (let i = 0; i < this.selectedAllCatalogueIds.length; i++) {
 
                     if (!this.checkCataloguerList(this.selectedAllCatalogueIds[i])) {
-                        this.$message({
-                            type: 'error',
-                            message: '分配失败,请重新选择！'
-                        });
-                        return false;
+                        // this.$message({
+                        //     type: 'error',
+                        //     message: '分配失败,请重新选择！'
+                        // });
+                        // return false;
 
                     } else {
                         if((this.selectedAllCatalogueIds[i])!=null)
@@ -269,7 +279,7 @@
 
                     }
                 }
-                console.log("tIds===++++" + cIds);
+                console.log("cIds===++++" + cIds);
                 this.api({
                     url: "/catalogue/addCatalogueTeacher",
                     method: "post",
@@ -280,6 +290,7 @@
                     console.log("QAQ........添加失败");
                     this.$message.warning('请重新分配的教师');
                 })
+
             },
             getCatalogues() {
                 this.listQuery.unitId = this.$store.state.user.unitId
@@ -294,6 +305,7 @@
                 }).catch(error => {
                     console.log("QAQ........没有找到栏目信息")
                 })
+
             },
             updateCatalogues(cId,ctId){
                 console.log("ccc"+cId);
