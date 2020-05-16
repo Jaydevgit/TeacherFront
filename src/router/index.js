@@ -10,6 +10,7 @@ import HomePage from '../views/homePage/HomePage'
 import index from '../views/index/index'
 import scholatLogin from "../views/scholat/login/login"
 import fa from "element-ui/src/locale/lang/fa";
+import researchManagement from "../views/research/researchManagement";
 
 const _import = require('./_import_' + process.env.NODE_ENV)
 Vue.use(Router)
@@ -94,10 +95,10 @@ export const constantRouterMap = [
     meta: {
       keepAlive: true
     }
-    },
+  },
   {path: '/404', component: _import('404'), hidden: true},
   {path: '/applySuccess', name: 'applySuccess', component: _import('unitApply/ApplySuccess'), hidden: true},
-/*  {path: '/applySuccess', name: 'applySuccess', component: _import('unitApply/ApplySuccess'), hidden: true},*/
+  /*  {path: '/applySuccess', name: 'applySuccess', component: _import('unitApply/ApplySuccess'), hidden: true},*/
   {
     path: '/unitApply',
     name: 'unitApply',
@@ -119,9 +120,9 @@ export const constantRouterMap = [
     name: 'scholat',
     component: Layout,
     hidden: true,
-/*    children: [{
-      path: 'dashboard', component: _import('dashboard/index')
-    }]*/
+    /*    children: [{
+          path: 'dashboard', component: _import('dashboard/index')
+        }]*/
   },
   {
     path: '/',
@@ -129,9 +130,9 @@ export const constantRouterMap = [
     redirect: '/manager/teacher',
     name: 'managerTeacher',
     hidden: true,
-/*    children: [{
-      path: 'dashboard', component: _import('dashboard/index')
-    }]*/
+    /*    children: [{
+          path: 'dashboard', component: _import('dashboard/index')
+        }]*/
   },
 ]
 export default new Router({
@@ -147,11 +148,11 @@ export const asyncRouterMap = [
       name:'modifyTeacher',
       component:_import('manager/updateTeacher'),
     },*/
-/*  {
-    path: '/teacher/:id',
-    component: teacherPersonalHomePage,
-    name: 'teacherPersonlHomePage'
-  },*/
+  /*  {
+      path: '/teacher/:id',
+      component: teacherPersonalHomePage,
+      name: 'teacherPersonlHomePage'
+    },*/
   {
     path: '/unitInfo',
     component: Layout,
@@ -240,22 +241,20 @@ export const asyncRouterMap = [
     ]
   },
   {
-    path: '/researchManagement',
+    path: '/research',
     component: Layout,
-    redirect: '/researchManagement',
-    name: 'researchManagement',
-    meta: {title: '科研管理', icon: 'tree'},
+    redirect: '/research',
+    meta: {title: '科研信息采集',icon: "table"},
     children: [
       {
         path: 'researchManagement',
         name: 'researchManagement',
-        component: _import('homeSet/research/researchManagement'),
-        meta: {title: '科研管理', icon: 'user'},
+        component: _import('research/researchManagement'),
+        meta: {title: '科研信息采集', icon: 'user'},
         menu: 'user'
       },
     ]
   },
-
   {
     path: '/user',
     component: Layout,
