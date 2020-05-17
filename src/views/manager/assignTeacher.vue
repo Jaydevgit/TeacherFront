@@ -65,25 +65,28 @@
         </el-col>
         <el-col :span="7" style="padding-left: 33px">
           <el-card class="box-card" style="width: 400px">
-            <div style="height: 60px;width: 100%" class="teacher-nav">
+            <div style="height: 60px;width: 100%" class="teacher-nav" v-if="unitVisualable==false">
               <div style="margin-left: 8px;">
                 <el-button type="success" size="small"
                            @click="sortTeacher" v-if="addTeacherVisible">排序
                 </el-button>
-                <el-button type="success" size="small"
-                           @click="sortTeacher" v-if="unitVisualable">排序学院教师
-                </el-button>
-                <el-input v-model="searchKey" v-if="addTeacherVisible"
-                          style="width: 150px;"
-                          placeholder="搜索添加的教师"></el-input>
-                <el-button type="primary" size="small" style="margin-left: 10px"
-                           @click="searchTeacher" v-if="addTeacherVisible">搜索
-                </el-button>
+<!--                <el-button type="success" size="small"-->
+<!--                           @click="sortTeacher" v-if="unitVisualable">排序学院教师-->
+<!--                </el-button>-->
+                <div v-if="!(teacherVisualable==true && unitVisualable==false)" style="display: inline-block">
+                  <el-input v-model="searchKey" v-if="addTeacherVisible"
+                            style="width: 150px;"
+                            placeholder="搜索添加的教师"></el-input>
+                  <el-button type="primary" size="small" style="margin-left: 10px"
+                             @click="searchTeacher" v-if="addTeacherVisible">搜索
+                  </el-button>
+                </div>
+
               </div>
               <div style="display: flex;margin-right: 8px;align-items: center;justify-content: space-between;">
-                <el-button type="success" size="mini"
-                           @click="sortTeacherSubmit(1)" v-if="unitVisualable==true && teacherVisualable==true">提交学院排序
-                </el-button>
+<!--                <el-button type="success" size="mini"-->
+<!--                           @click="sortTeacherSubmit(1)" v-if="unitVisualable==true && teacherVisualable==true">提交学院排序-->
+<!--                </el-button>-->
                 <el-button type="success" size="mini" style="margin-left: 20px;float: left"
                            @click="sortTeacherSubmit(0)" v-if="teacherVisualable==true && unitVisualable==false">提交排序
                 </el-button>
@@ -93,17 +96,16 @@
             <div style="height: calc(100vh - 155px);overflow-y: scroll;">
               <el-table
                 :data="teacherList" @selection-change="teacherChange"
-                style="width: 400px;padding-left: 15px;">
+                style="width: 400px;">
                 <el-table-column
                   v-if="teacherVisualable"
                   type="selection"
-                  width="55">
-
+                  width="45">
                 </el-table-column>
                 <el-table-column
                   v-if="teacherVisualable"
                   label="排序"
-                  width="60">
+                  width="55">
                   <template slot-scope="scope">
                     <span :id="'seq_teacher'+scope.row.tId" style="display: none" v-if="teacherVisualable"
                           class="seq"></span>
@@ -118,20 +120,20 @@
                          style="width:60px;height:60px;cursor:pointer;">
                   </template>
                 </el-table-column>-->
-                <el-table-column align="center" label="姓名" width="130">
+                <el-table-column align="center" label="姓名" :width="nameWidth" >
                   <template slot-scope="scope">
           <span class="teacher-homepage" @click="routerTo(scope.row.tDomain_name)"
                 style="cursor:pointer;">{{scope.row.tName}}</span>
                     <span></span>
                   </template>
                 </el-table-column>
-                <el-table-column align="center" label="职称" width="130">
+                <el-table-column align="center" label="职称":width="postWidth">
                   <template slot-scope="scope">
                     <span class="teacher-homepage" style="cursor:pointer;">{{scope.row.tPost}}</span>
                     <span></span>
                   </template>
                 </el-table-column>
-                <el-table-column label="操作" v-if="unitVisualable == false" align="center" width="130">
+                <el-table-column label="操作" v-if="unitVisualable == false" align="center":width="doWidth">
                   <template slot-scope="scope">
                     <el-button v-if="unitVisualable == false"
                                size="mini"
@@ -305,7 +307,10 @@
                 seq_main: [],
                 seq_child: [],
                 seq_teacher: [],
-                formLabelWidth: '120px'
+                formLabelWidth: '120px',
+              nameWidth:'130px',
+              postWidth:'130px',
+              doWidth:'130px',
             }
         },
         created() {
@@ -321,7 +326,12 @@
                 alert("hhh")
             },
             getList() {
+
                 this.listLoading = true;
+                this.nameWidth='180px'
+                this.postWidth='180px'
+                this.doWidth='180px'
+              this.teacherVisualable = false;
                 console.log("### 开始查询教师成员列表")
                 this.api({
                     url: "/catalogue/listTeacherAll",
@@ -358,6 +368,15 @@
                 this.checkList = [];
             },
             sortTeacher() {
+              //删除职称前排序号
+              this.teacherSort_id.forEach((v, k) => {
+                let d = document.getElementById('seq_teacher' + v);
+                if(d.innerText!==''){
+                  d.style.display = 'inline';
+                  d.innerText = '';
+                }
+
+              });
                 this.$notify({
                     title: '警告',
                     message: '注：请依据您的点击顺序来排序教师（如想恢复默认按姓氏首字母排序则不点击任何选项，直接提交即可）',
@@ -367,10 +386,21 @@
                 if (this.sortVisualable === true || this.sortSubVisualable === true) {
                     this.sortVisualable = false;
                     this.sortSubVisualable = false;
+
                 }
+                if(this.nameWidth==='130px'|| this.nameWidth==='180px'){
+                  this.nameWidth='90px'
+                  this.postWidth='100px'
+                  this.doWidth='90px'
+                }else{
+                this.nameWidth='130px'
+                this.postWidth='130px'
+                this.doWidth='130px'
+              }
                 this.teacherVisualable = !this.teacherVisualable;
                 this.teacherSort = [];
                 this.teacherSort_id = [];
+
             },
             sortTeacherSubmit(state) {
               //删除职称前排序号
@@ -379,6 +409,15 @@
                 d.style.display = 'inline';
                 d.innerText = '';
               });
+              if(this.nameWidth==='130px'){
+                this.nameWidth='90px'
+                this.postWidth='100px'
+                this.doWidth='90px'
+              }else{
+                this.nameWidth='130px'
+                this.postWidth='130px'
+                this.doWidth='130px'
+              }
                 //state参数0，即为目录教师排序
                 if (!state) {
                     let ctIds = [];
@@ -453,6 +492,7 @@
                 });
                 this.teacherSort = val // 返回的是选中的列的数组集合
                 console.log(JSON.stringify(this.teacherSort))
+
             },
           /*添加单个教师*/
           addSingleTeacher(tId){
@@ -577,6 +617,13 @@
                 })
             },
             showListTeacher(cId) {
+              if(this.nameWidth==='180px'){
+                this.nameWidth='130px'
+                this.postWidth='130px'
+                this.doWidth='130px'
+              }
+
+
                 this.api({
                   url: "/catalogue/getTeacherByCatalogue",
                   method: "get",

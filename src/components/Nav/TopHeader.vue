@@ -27,7 +27,8 @@
           <button @click="keySend"></button>
         </div>
       </div>
-      <a :href="unit.collegeUrl" v-if="dataDone && this.$route.path.indexOf('teacher')===-1"><el-button type="text" style="position: relative;transform: translateX(-30px)" @click="">学院主页</el-button></a>
+      <a :href="unit.collegeUrl" v-if="dataDone && this.$route.path.indexOf('teacher')===-1"><el-button type="text" style=" font-size: 13px;
+    font-weight: bold;position: relative;transform: translateX(-30px);color: #3399CC;" @click="">学院首页</el-button></a>
 
     </div>
 
@@ -112,7 +113,8 @@
           <button @click="keySend"></button>
         </div>
       </div>
-      <a :href="unit.collegeUrl" v-if="dataDone && this.$route.path.indexOf('teacher')===-1"><el-button type="text" style="position: relative;transform: translateX(-30px)" @click="">学院主页</el-button></a>
+      <a :href="unit.collegeUrl" v-if="dataDone && this.$route.path.indexOf('teacher')===-1"><el-button type="text" style=" font-size: 13px;
+    font-weight: bold;position: relative;transform: translateX(-30px);color: #3399CC;" @click="">学院首页</el-button></a>
 
 
         <div style=" display: flex;
