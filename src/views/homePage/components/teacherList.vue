@@ -46,7 +46,7 @@
             </el-col>
           </el-row>
         </li>
-          <div v-if="totalCount >12"
+          <div v-if="totalCount >15"
                style="clear: both;text-align:center;width: 100%;margin-bottom: 18px;padding-top:10px;position:relative;bottom: 0;">
             <el-pagination style=""
                            @current-change="handleCurrentChange"
@@ -76,8 +76,8 @@
           </div>
         </li>
       </ul>
-      <div v-if="totalCount >12"
-           style="clear: both;text-align:center;width: 100%;margin-bottom: 18px;position: absolute;bottom: 0;">
+      <div v-if="totalCount >15"
+           style="clear: both;text-align:center;width: 100%;margin-bottom: 18px;position: absolute;bottom: 0;margin-top: 20px">
         <el-pagination style=""
                        @current-change="handleCurrentChange"
                        :current-page="listQuery.pageNum"
@@ -131,7 +131,7 @@
                 flag: 0,// 0：默认显示目录，1：字母显示目录
                 listQuery: {
                     pageNum: 1,//页码
-                    pageRow: 12,//每页条数
+                    pageRow: 15,//每页条数
                     unitId: '',
                     cId: '',
                     key: '',
@@ -303,8 +303,10 @@
             getImgUrl(imgName) {
               if (imgName == null) {
                 return this.defaultAvatar;
+                console.log("if (imgName == null)")
               } else if(imgName=="default.png"){
                 return this.defaultAvatar
+                console.log("else if(imgName==\"default.png\")")
               } else if (imgName.indexOf("resources") != "-1") {
                 return "http://www.scholat.com/" + imgName;
               } else {
@@ -313,6 +315,7 @@
             },
             imgErrorFun(e) {
                 let img = e;
+              console.log("imgErrorFun(e) ")
               return 'this.src="defaultAvatar"';
             },
             getListAll() {

@@ -232,6 +232,7 @@
   .middle {
     margin: 32px 8px 16px 12px;
     width: 100%;
+    min-height: 900px;
   }
 
   .right {
