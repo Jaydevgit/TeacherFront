@@ -234,6 +234,9 @@
             }
             bus.$on('getList_All',this.getListAll)
         },
+      beforeDestroy(){
+        bus.$off('getList_All',this.getListAll)
+      },
         ready() {
         }
         ,
