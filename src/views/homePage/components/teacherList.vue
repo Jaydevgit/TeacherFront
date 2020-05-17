@@ -232,8 +232,7 @@
                         this.getListAll()
                 }
             }
-
-
+            bus.$on('getList_All',this.getListAll)
         },
         ready() {
         }
@@ -314,7 +313,6 @@
               return 'this.src="defaultAvatar"';
             },
             getListAll() {
-
                 this.currentCat = 0
                 this.listQuery.unitId = this.unitId
                 this.listLoading = true;
@@ -382,7 +380,7 @@
                     console.log("查询教师信息为:" + data.totalUpdate)
                     console.log("================getAllByLetter方法================")
                     this.listLoading = false;
-                    this.teacherList = data.list;
+                    this.teacherListAll = data.list;
                     this.totalCount = data.totalCount;
                 }).catch(error => {
                     console.log("QAQ........没有找到教师列表")

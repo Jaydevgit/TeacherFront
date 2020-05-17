@@ -150,6 +150,7 @@
           //    if(((this.$route.path.split('/')).length-1)===3) {
               console.log("this.$store.state.user.domainName="+this.$store.state.user.domainName+this.$store.state.user.unitId);
                 if (cId == 0) {
+                  bus.$emit('getList_All')
                     this.$router.push({
                         path: '/homepage',
                         name: 'homepage',

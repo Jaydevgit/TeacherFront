@@ -12,10 +12,10 @@
             <el-breadcrumb-item>教师名录</el-breadcrumb-item>
           </el-breadcrumb>
           <div v-if="showLetter" class="centerLetter"><strong>{{letter}}</strong></div>
-          <div style="margin-top: -4px;" v-if="showLetterList">
+          <div style="margin-top: -4px;" v-if="showLetterList&&detailShow===3">
             <a class="letterList" v-for="letter in Letters" @click="jumper(letter)"><span>{{letter}}</span></a>
           </div>
-          <div class="list-style" style="margin-top: -4px;" v-if="detailShow!=3" @detailShow="detailShowChange">
+          <div class="list-style" style="margin-top: -4px;" v-if="detailShow!==3" @detailShow="detailShowChange">
             <!--            <el-button @click="defaultSort" type="info" round style="padding: inherit;margin-right: -5px;width: 70px">-->
             <!--              默认排序-->
             <!--            </el-button>-->
@@ -81,7 +81,7 @@
                 Letters: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'],
                 showLetter: false,
                 letter: 'A',
-                showLetterList: false,
+                showLetterList: true,
                 showSortList: false,
                 detailShow: 3,
                 NavName: '师资队伍',
