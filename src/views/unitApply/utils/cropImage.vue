@@ -89,12 +89,14 @@
         fileName: '',//本机文件地址
         uploadImgRelaPath: '',//上传后图片地址
         msg:'',
+        name:'',//原文件存储名
       }
     },
     methods: {
-      transportMessage(msg){
-        console.log(msg)
+      transportMessage(msg,name){
+        console.log(msg+"=========="+name)
         this.msg=msg
+        this.name=name
         switch (msg) {
           case 'front':
             this.titleName = '上传身份证正面'
@@ -171,6 +173,18 @@
       },
       //确认截图,上传
       cut(type) {
+        //上传背景前先删除原有背景
+        if((this.name!==null&&this.name!=='')){
+          this.api({
+            url: "/attach/delete/" +this.msg+"/"+this.name,
+            method: "get"
+          }).then(res => {
+            console.log("删除背景成功")
+          }).catch(error => {
+            console.log("哎呀.....删除背景失败")
+          })
+          this.name=''
+        }
         var formData = new FormData();
 
         this.$refs.cropper.getCropBlob(res => {
