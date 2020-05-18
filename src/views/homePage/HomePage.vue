@@ -98,7 +98,7 @@
           console.log("this.cId="+this.cId);
 
 
-          if (this.cId===null){
+          if (this.cId===0){
             let node = document.getElementById('middle-nav');
             node.children[1].children[0].innerText ="教师名录"
           }else {
