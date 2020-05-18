@@ -385,7 +385,7 @@
               已绑定账号:
               <!--<span @click="scholatInfoSearch" style="cursor: pointer;color: red">{{ruleForm.scholat_username}}</span>-->
               <!--点击学者网账号跳转链接-->
-              <a style="color: red" :href="'http://www.scholat.com/'+ruleForm.scholat_username">{{ruleForm.scholat_username}}</a>
+              <a style="color:#7f7f7f" :href="'http://www.scholat.com/'+ruleForm.scholat_username">{{ruleForm.scholat_username}}</a>
             </div>
             <div class="teacher-homepage" style="display: flex;align-items: center">{{scholatProfile.username}}</div>
             <span class="teacher-homepage" style="display: flex;align-items: center">{{scholatProfile.email}}</span>
@@ -414,6 +414,7 @@
           </div>
           </div>
         </el-card>
+        <div v-if="ruleForm.scholat_username" style="padding-left:20px;opacity: 0.8;">以下教师头像、研究方向和个人简介可以参考选用所关联的学者网个人空间信息</div>
         <!--未关联学者网时-->
         <el-card class="box-card scholat-card" v-if="!ruleForm.scholat_username">
           <div slot="header" class="clearfix">
@@ -541,7 +542,6 @@
         </el-card>
         <!--进一步信息-->
         <el-card class="box-card scholat-card" v-if="$route.path.indexOf('modifyTeacher')!=-1">
-          <div style="padding-left:20px;opacity: 0.5; border-bottom: solid 1px darkgray;margin-bottom: 10px">以下教师头像、研究方向和个人简介可以参考选用所关联的学者网个人空间信息</div>
           <el-row>
             <el-col :span="4">
               <div class="grid-content bg-purple" style="text-align: center">
@@ -640,6 +640,7 @@
                         <div style="color: rgb(245, 108, 108);font-weight: 800;">▶编辑个人简介</div>
                         <div v-if="ruleForm.scholat_username" style="color: rgb(245, 108, 108);font-weight: 800;cursor: pointer;flex: 2;text-align: right;margin-right: 15px"
                              @click="showDifferent(scholatProfile)">信息对比</div>
+                        <div style="color: rgb(245, 108, 108);font-weight: 800;cursor: pointer;margin-right: 15px" @click="saveTeacher()">保存简介</div>
 <!--                        <div v-else style="color: rgb(245, 108, 108);font-weight: 800;cursor: pointer;flex: 2;text-align: right;margin-right: 15px"@click="ifShow">{{this.showTag}}</div>-->
                         <div style="color: rgb(245, 108, 108);font-weight: 800;cursor: pointer" @click="clearIntro()">清空简介
                         </div>
@@ -1965,7 +1966,7 @@
 
     .scholat-card {
       border-radius: 14px;
-      margin: 16px 0;
+      margin: 14px 0;
       box-shadow: 0 0 14px 14px #d4d1d1;
     }
 
