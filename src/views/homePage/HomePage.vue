@@ -13,6 +13,7 @@
           </el-breadcrumb>
           <div v-if="showLetter" class="centerLetter"><strong>{{letter}}</strong></div>
           <div style="margin-top: -4px;" v-if="showLetterList&&detailShow===3">
+            <span style="margin-right: 5px;font-size: 14px;cursor:pointer" @click="allTeacher">All</span>
             <a class="letterList" v-for="letter in Letters" @click="jumper(letter)"><span>{{letter}}</span></a>
           </div>
           <div class="list-style" style="margin-top: -4px;" v-if="detailShow!==3" @detailShow="detailShowChange">
@@ -153,6 +154,9 @@
             })
         },
       methods: {
+        allTeacher(){
+          bus.$emit('getList_All')
+        },
           rInfo(){
             console.log("info");
             this.$refs.info.cIdSend(this.cId);
@@ -277,8 +281,8 @@
   }
 
   .letterList {
-    font-size: 16px;
-    letter-spacing: 7px;
+    font-size: 14px;
+    letter-spacing: 5px;
     margin-top: -4px;
   }
 

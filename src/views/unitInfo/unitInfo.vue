@@ -174,8 +174,10 @@
                 })
             },
             uploadImage(type) {
+              console.log("this.applyForm.backgroundUrl="+this.applyForm.backgroundUrl);
+              var name=this.applyForm.backgroundUrl
                 //this.$message.success("准备上传的是: "+type)
-                this.$refs.cropImage.transportMessage(type)
+                this.$refs.cropImage.transportMessage(type,name)
                 this.$refs.cropImage.dialogVisible = true
 
             },
