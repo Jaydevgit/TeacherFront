@@ -5,31 +5,37 @@
 
 
 
-    <el-dropdown class="avatar-container" trigger="click">
+    <el-dropdown class="avatar-container" trigger="click" size="medium">
       <div class="avatar-wrapper" style="float: right">
         <img class="user-avatar" :src="logo">
-        <!--<i class="el-icon-caret-bottom"></i>-->
+        <i class="el-icon-caret-bottom"></i>
       </div>
 
 
-      <div  style="float: right;padding-right: 20px;">
-        <el-button type="primary"  size="small" @click="logout">退出登录</el-button>
-      </div>
+<!--      <div  style="float: right;padding-right: 20px;">-->
+<!--        <el-button type="primary"  size="small" @click="logout">退出登录</el-button>-->
+<!--      </div>-->
 
       <div  style="float: right;padding-right: 20px;">
         <a href="https://www.yuque.com/vd7ii9/dvybyk/na3nsf"><el-button type="primary" size="small" v-if="!backTOHome">帮助文档</el-button></a>
         <el-button type="primary"  size="small" v-if="backTOHome" @click="enterHomepage">进入学院主页</el-button>
       </div>
-      <span style="float: right;margin-right: 20px;text-underline: #7e8c8d">{{username}}</span>
-      <div  style="float: right;padding-right: 20px;">
-
-      </div>
-
-      <!--<el-dropdown-menu class="user-dropdown" slot="dropdown">
+<!--      <span style="float: right;margin-right: 20px;text-underline: #7e8c8d">{{username}}</span>-->
+      <el-dropdown-menu class="user-dropdown" slot="dropdown" style="margin-left:70px">
+        <el-dropdown-item >
+          <span  style=" display:block;">账号名称:{{username}}</span>
+        </el-dropdown-item>
+<!--        <el-dropdown-item >-->
+<!--          <a href="https://www.yuque.com/vd7ii9/dvybyk/na3nsf"><el-button type="primary" size="small" v-if="!backTOHome">帮助文档</el-button></a>-->
+<!--            <span type="primary"  size="small" v-if="backTOHome" @click="enterHomepage">进入学院主页</span>-->
+<!--        </el-dropdown-item>-->
+        <el-dropdown-item >
+          <a href="/user/password" style=" display:block;">账号管理</a>
+        </el-dropdown-item>
         <el-dropdown-item divided>
           <span @click="logout" style=" display:block;">退出登录</span>
         </el-dropdown-item>
-      </el-dropdown-menu>-->
+      </el-dropdown-menu>
     </el-dropdown>
   </el-menu>
 </template>
@@ -183,7 +189,6 @@ export default {
       }
       .el-icon-caret-bottom {
         position: absolute;
-        right: -20px;
         top: 25px;
         font-size: 12px;
       }
