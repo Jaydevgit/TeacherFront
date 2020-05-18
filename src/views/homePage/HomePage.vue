@@ -87,6 +87,7 @@
                 NavName: '师资队伍',
                 searchKey:'',
                 searchCount:0,
+                catalogueName:''
             }
         },
         ready() {
@@ -95,6 +96,28 @@
         $route(){
           this.cId = this.$route.params.cId
           console.log("this.cId="+this.cId);
+
+
+          if (this.cId===null){
+            let node = document.getElementById('middle-nav');
+            node.children[1].children[0].innerText ="教师名录"
+          }else {
+            //根据cId获取分类名称
+            this.api({
+              url: "/catalogue/getCatalogueNameByCatalogueId",
+              method: "get",
+              params: {id: this.cId}
+            }).then(data => {
+              console.log(JSON.stringify(data));
+              this.catalogueName=data[0].catalogue_name;
+              console.log("this.catalogueName is " +this.catalogueName);
+              let node = document.getElementById('middle-nav');
+              node.children[1].children[0].innerText =this.catalogueName
+              console.log("breadcrumbName=",this.catalogueName)
+            }).catch(error => {
+              console.log("QAQ........没有找到catalogueName")
+            })
+          }
         },
       },
         created(){
@@ -105,6 +128,7 @@
             },
         },
         mounted() {
+          console.log("++++++++++++++++++++mounted");
             let _self = this;
             bus.$on("changePageList", function (searchKey) {
                 _self.detailShow = 3;
@@ -128,7 +152,7 @@
                 })
             })
         },
-        methods: {
+      methods: {
           rInfo(){
             console.log("info");
             this.$refs.info.cIdSend(this.cId);
@@ -157,17 +181,16 @@
                 tId:id}})
             },
             toList(name, modelId, cId) {
-                this.cId = cId;
-                if (cId == 0) {
-                    this.detailShow = 3;
-                } else {
-                    this.detailShow = 2;
-                }
-                this.componentName = "teacherList";
-                document.getElementsByClassName('middle-nav')[0].style.display = "flex";
-                let node = document.getElementById('middle-nav');
-                node.children[1].children[0].innerText = name;
-                console.log("node.children[1].children[0].innerText ="+name);
+              this.cId = cId;
+              if (cId == 0) {
+                  this.detailShow = 3;
+              } else {
+                  this.detailShow = 2;
+              }
+              this.componentName = "teacherList";
+              document.getElementsByClassName('middle-nav')[0].style.display = "flex";
+              console.log("node.children[1].children[0].modeId ="+modelId);
+              console.log("node.children[1].children[0].cId ="+cId);
             },
             detailShowChange(num) {
                 this.detailShow = num;

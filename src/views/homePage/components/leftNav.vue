@@ -76,9 +76,8 @@
         },
       },
         created() {
-          this.init()
-
-            this.getCatalogues()
+          this.init();
+          this.getCatalogues()
         },
         mounted() {
           if(this.$store.state.user.unitId&&this.$store.state.user.domainName){
