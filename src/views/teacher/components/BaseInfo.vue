@@ -5,7 +5,8 @@
 
         <el-card class="box-card" >
           <!--<div style="position:absolute;left:530px;top:20px;z-index:2;">-->
-            <img :src="bgLogo" width="180" height="180" style="opacity: 0.1;position:absolute;left:580px;top:15px;z-index:2; "/>
+            <img :src="'http://www.scholat.com/images/uni_logo/'+this.personal.schoolName+'.png'" :onerror="bgLogo" width="180" height="180" style="opacity: 0.2;position:absolute;left:580px;top:15px;z-index:2; "/>
+
           <!--</div>-->
           <div style="display: inline-block;margin-left: 20px;vertical-align: top;margin-top: 20px">
             <img :src="getImgUrl(teacherProfile.avatar)" :onerror="imgErrorFun(this)" width="140" height="140"/>
@@ -195,6 +196,7 @@
                     position: "博士生导师",
                     subject: "计算机科学与技术",
                     unit: "",
+                    schoolName:'',
                     email: "ytang4@qq.com",
                     research: [],
                     introduction: "",
@@ -215,6 +217,7 @@
               }).then(data => {
                 console.log("学院名:" + JSON.stringify(data))
                 this.personal.unit=data.unitName;
+                this.personal.schoolName=data.schoolName;
               }).catch(error => {
                 console.log("没有找到学院unit")
               })

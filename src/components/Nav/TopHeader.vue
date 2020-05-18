@@ -1,7 +1,7 @@
 <template>
   <header class="top-container">
 
-    <!--两种模式：模式 1 -->
+    <!--两种模式：模式 1 学校Logo+文字-->
     <div class="background" v-if="unit.state == 0 && dataDone">
       <div @click="goToCollege" style="display: inline-block;height: 90%;width: auto;min-width: 75px">
         <img :src="'http://www.scholat.com/images/uni_logo/'+this.unit.schoolName+'.png'" :onerror="defaultLogo"
@@ -32,7 +32,7 @@
 
     </div>
 
-    <!--两种模式：模式 2 自定义模式-->
+    <!--两种模式：模式 2 自定义背景模式-->
 
     <div v-else class="background2">
       <!--<div @click="goToCollege" style="display: inline-block;height: 90%;width: auto;">
