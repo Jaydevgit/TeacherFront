@@ -131,10 +131,17 @@
       </div>
       <div class="box-card-two" v-if="!!teacherProfile.intro && teacherProfile.intro!='<p><br></p>'">
         <el-card style="overflow: auto;margin-bottom: 17px;">
-          <div style="color: steelblue;
-font-size: 16px;
-font-weight: bold;
-padding: 12px 20px 6px 27px">个人简介</div>
+          <div style="display: flex;justify-content:space-between;color: steelblue;font-size: 16px;font-weight: bold;">
+            <div style="padding: 12px 20px 6px 27px">
+              个人简介
+            </div>
+            <div style="padding: 12px 20px 6px 27px;float: right">
+              <a :href="'http://www.scholat.com/'+teacherProfile.scholat_username" v-if="teacherProfile.scholat_username">
+                更多信息请见学者主页
+              </a>
+            </div>
+          </div>
+
           <hr style="margin: 4px">
           <div v-html="teacherProfile.intro" style="padding: 20px 20px 39px"></div>
         </el-card>
