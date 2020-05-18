@@ -120,7 +120,7 @@
         },
         //判断是否为不可修改字段
         tagIf(val){
-          let str='abcdijkmn'
+          let str='abcdjmn'
           if(str.indexOf(val)===-1){
             return false;
           }else{
@@ -153,7 +153,7 @@
         compareState() {
           console.log("======a=======");
           for (var i = 0; i <= this.cities.length; i++) {
-            console.log("this.cities" + this.cities[i].label + "?" + this.tagState[i]);
+          //  console.log("this.cities" + this.cities[i].label + "?" + this.tagState[i]);
             this.checkedCitiesItem = Object.assign({}, this.checkedCitiesItem, {
               label: this.cities[i].label,
               value: this.tagState[i],

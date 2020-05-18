@@ -118,7 +118,7 @@
                   <!--<span><svg-icon icon-class="department"/></span>-->
                   <label class="font-one">学科专业：</label><div class="detail-msg">{{teacherProfile.subject}}</div>
                 </div>
-                <div class="name-bottom-item" style="margin-bottom: 10px;flex-direction: column" v-if="">
+                <div class="name-bottom-item" style="margin-bottom: 10px;flex-direction: column" v-if="tagFlag[8]==='i'">
                   <!--<span><svg-icon icon-class="rearch-direction"/></span>-->
                   <label class="font-one">研究方向：</label>
                   <div class="detail-msg" style="margin-top: 7px;line-height: 25px;width: 260px">{{teacherProfile.research_direction}}</div>
