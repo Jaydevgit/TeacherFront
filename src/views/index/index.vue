@@ -98,10 +98,16 @@
                       立即申请使用
                     </a>
                   </el-button>
-                  <div class="font-1" style="margin-top: 20px;">
-                    示例:<a style="color: orange;margin-left: 15px;cursor: pointer" href="/homepage/scnu">华南师范大学·计算机学院</a>
+                  <div class="font-1" style="margin-top: 20px;display: flex">
+                    <div style="width: 60px">示例:</div>
+                    <div>
+                      <a style="color: orange;cursor: pointer" href="/homepage/scnu">华南师范大学·计算机学院</a><br>
+                      <a style="color: orange;cursor: pointer" href="/homepage/scnu">广州涉外经济职业技术学院·华文与国际教育学院</a>
+                    </div>
+
                   </div>
                 </div>
+
               </div>
             </div>
           </div>
