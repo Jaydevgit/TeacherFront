@@ -15,7 +15,7 @@
 </template>
 
 <script>
-  import defaultAvatar from '@/assets/default.png'
+  import defaultAvatar from '@/assets/default1.png'
     export default {
         name: "relateTeacher",
         data() {

@@ -114,7 +114,7 @@
 
 <script>
     import bus from '../../../utils/eventBus'
-    import defaultAvatar from '@/assets/default.png'
+    import defaultAvatar from '@/assets/default1.png'
 
     export default {
         data() {

@@ -235,7 +235,7 @@
 </template>
 <script>
     import teacherPersonalHomePage from '../teacher/teacherPersonalHomePage'
-    import defaultAvatar from '@/assets/default.png'
+    import defaultAvatar from '@/assets/default1.png'
     import store from '../../store'
     // import dialogBar from "./components/dialog";
     import roleAssignmentBar from "./components/roleAssignment";
