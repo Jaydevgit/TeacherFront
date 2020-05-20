@@ -70,23 +70,29 @@
           this.getCatalogues()
         },
         $route(){
-          this.catalogueId = this.$route.params.cId
-          console.log("this.catalogueId="+this.catalogueId);
+          if(this.$route.params.cId!=undefined){
+            this.catalogueId = this.$route.params.cId
+            console.log("this.catalogueId="+this.catalogueId);
+          }else {
+            this.catalogueId =0
+            console.log("this.catalogueId="+this.catalogueId);
+          }
+
 
         },
       },
         created() {
           this.init();
-          this.getCatalogues()
+
         },
         mounted() {
-          if(this.$store.state.user.unitId&&this.$store.state.user.domainName){
+          if(this.unitQuery.unitId&&this.unitQuery.domainName){
             this.cIdSend()
           }
         },
         computed: {
             currentUnitId: function () {
-                return this.unitId;
+                return this.unitQuery.unitId;
             }
         },
         methods: {
@@ -103,11 +109,12 @@
               this.listLoading = false;
               this.unit = data;
               //   console.log("cccc"+JSON.stringify(data));
-              this.$store.state.user.unitId=data.unitId
+              this.unitQuery.unitId=data.unitId
               this.$store.state.user.tagState=data.tagState
-              console.log("dddddd"+this.$store.state.user.unitId+"vvv"+this.$store.state.user.unitId);
+            //  console.log("dddddd"+this.unitQuery.unitId+"vvvthis.unitQuery.unitIdthis.unitQuery.unitId");
            //   console.log("学校图标是："+"http://www.scholat.com/images/uni_logo/"+data.schoolName+".png");
               this.unitQuery.unitId=data.unitId
+              this.getCatalogues()
               this.cIdSend()
            //   this.dataDone = true;
             }).catch(error => {
@@ -118,9 +125,9 @@
                 this.api({
                     url: "/catalogue/getCatalogues",
                     method: "get",
-                    params: {unitId: this.currentUnitId}
+                    params: {unitId: this.unitQuery.unitId}
                 }).then(data => {
-                    console.log("this.$route.params.unitId is " + this.currentUnitId);
+                    console.log("this.$route.params.unitId is isisisis" + this.unitQuery.unitId);
                     console.log(JSON.stringify(data));
                     this.catalogueList = data.list;
 
@@ -147,15 +154,15 @@
         //         unitId:unitId}})
         // }
           //    if(((this.$route.path.split('/')).length-1)===3) {
-              console.log("this.$store.state.user.domainName="+this.$store.state.user.domainName+this.$store.state.user.unitId);
+          //    console.log("this.$store.state.user.domainName="+this.$store.state.user.domainName+this.$store.state.user.unitId);
                 if (cId == 0) {
-                  bus.$emit('getList_All')
+                 // bus.$emit('getList_All')
                     this.$router.push({
                         path: '/homepage',
                         name: 'homepage',
                         params: {
-                            domainName: this.$store.state.user.domainName,
-                            unitId: this.$store.state.user.unitId,
+                            domainName: this.unitQuery.domainName,
+                            unitId: this.unitQuery.unitId,
                             modelId: modelId,
                             cId: cId
                         }
@@ -165,8 +172,8 @@
                         path: '/homepage',
                         name: 'catalogue',
                         params: {
-                            domainName: this.$store.state.user.domainName,
-                            unitId: this.$store.state.user.unitId,
+                          domainName: this.unitQuery.domainName,
+                          unitId: this.unitQuery.unitId,
                             modelId: modelId,
                             cId: cId
                         }

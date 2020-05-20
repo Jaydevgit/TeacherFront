@@ -179,10 +179,16 @@
                 }else {
                     //主目录
                     if (self.currentCat != 0)
-                        self.getTeacherByCatalogue(self.currentCat)
+                    {
+                      console.log("this.getTeacherByCatalogue(this.cId);")
+                      self.getTeacherByCatalogue(self.currentCat)
+                    }
                     //cId为0,指师资队伍
                     else
-                        self.getListAll()
+                    {
+                      console.log(" this.getListAll()");
+                      self.getListAll()
+                    }
                 }
 
             },
@@ -220,17 +226,21 @@
             })*/
         },
         created() {
+          console.log("unitIdunitIdunitId="+this.unitId)
             // this.getList();
             if(this.$route.path.indexOf('search')!=-1){
                 this.searchKey = this.$route.params.searchKey
                 this.searchTeacher();
             }else{
                 if(this.unitId!=null && this.cId!=null){
-                    if (this.cId != 0)
-                        this.getTeacherByCatalogue(this.cId);
-                    //cId为0,指师资队伍
+                  //cId为0,指师资队伍
+                    if (this.cId != 0&&this.cId != undefined)
+                    {
+                      this.getTeacherByCatalogue(this.cId);}
                     else
-                        this.getListAll()
+                  {
+                    this.getListAll()
+                  }
                 }
             }
             bus.$on('getList_All',this.getListAll)
@@ -415,10 +425,13 @@
                     this.teacherList = data.list;
                     this.totalCount = data.totalCount;
                     this.isSendSuccessful = true;
-                    if(detail===1)
+                  console.log("detailShow============"+this.detail)
+                    if(this.detail===1)
                     {
+                      console.log("detailShow====1")
                       this.$emit("detailShow", 1);
                     }else{
+                      console.log("detailShow====2")
                       this.$emit("detailShow", 2);
                     }
 

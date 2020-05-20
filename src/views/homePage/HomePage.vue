@@ -36,7 +36,7 @@
                    :search-key="searchKey"
                    :search-count="searchCount"
                    :cId='cId'
-                   :unitId = 'unitId'
+                   :unitId="unitId"
                    @detailShow="detailShowChange"
                    ref="teacherList1"></component>
       </div>
@@ -77,7 +77,8 @@
         data() {
             return {
                 componentName: 'teacherList',
-                teacherProfile: {},//教师数据
+                teacherProfile: {},//教师数据,
+              unitQuery: {unitId: '',domainName:''},
                 cId: '0',
                 Letters: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'],
                 showLetter: false,
@@ -88,7 +89,8 @@
                 NavName: '师资队伍',
                 searchKey:'',
                 searchCount:0,
-                catalogueName:''
+                catalogueName:'',
+              unitId2:'',
             }
         },
         ready() {
@@ -97,11 +99,11 @@
         $route(){
           this.cId = this.$route.params.cId
           console.log("this.cId="+this.cId);
-
-
-          if (this.cId===0){
+          if (this.cId===0||this.cId===undefined){
+            this.cId===0
             let node = document.getElementById('middle-nav');
             node.children[1].children[0].innerText ="教师名录"
+            this.$refs.info.cIdSend(this.cId);
           }else {
             //根据cId获取分类名称
             this.api({
@@ -120,14 +122,18 @@
             })
           }
         },
+        'unitId':function (n,o) {
+          console.log("unitIdunitIdunitIdunitIdunitIdunitId="+n)
+        }
       },
         created(){
+          this.init();
         },
         computed: {
             unitId: function () {
-                return this.$store.state.user.unitId;
+                return this.unitId2;
             },
-        },
+       },
         mounted() {
           console.log("++++++++++++++++++++mounted");
             let _self = this;
@@ -144,8 +150,8 @@
                     path: '/homepage',
                     name: 'search',
                     params: {
-                        domainName: _self.$store.state.user.domainName,
-                        unitId: _self.$store.state.user.unitId,
+                        domainName: _self.unitQuery.domainName,
+                        unitId: _self.unitId2,
                         modelId: 3,
                         searchKey:searchKey,
                         cId: 0
@@ -154,6 +160,25 @@
             })
         },
       methods: {
+        init(){
+         // this.$store.state.user.domainName=this.$route.path.split('/')[2];
+          this.unitQuery.domainName=this.$route.path.split('/')[2];
+          this.api({
+            url: "/homepage/getUnitInfo2",
+            method: "get",
+            params: this.unitQuery
+          }).then(data => {
+            console.log("查询学院信息为:" + JSON.stringify(data))
+            console.log("================================")
+            this.listLoading = false;
+              console.log("cccc"+JSON.stringify(data));
+            this.unitId2=data.unitId
+               console.log("  this.unitId  this.unitId  this.unitId  this.unitId"+  this.unitId);
+            //   this.dataDone = true;
+          }).catch(error => {
+            console.log("QAQ........没有找到学院信息")
+          })
+        },
         allTeacher(){
           bus.$emit('getList_All')
         },
@@ -178,8 +203,8 @@
                     console.log("QAQ........没有找到教师信息")
                 })
               this.$router.push({name:'teacher',
-                params: { domainName:this.$store.state.user.domainName,
-                  unitId:this.$store.state.user.unitId,
+                params: { domainName:this.unitQuery.domainName,
+                  unitId:this.unitId2,
                   modelId:this.detailShow,
                   cId:this.cId,
                 tId:id}})
