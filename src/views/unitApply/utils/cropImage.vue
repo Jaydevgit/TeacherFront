@@ -200,7 +200,7 @@
             {contentType: false, processData: false, headers: {'Content-Type': 'multipart/form-data'}}
           ).then(res => {
             this.$message.success("上传"+this.titleName+"成功")
-            console.log(".........图片文件名为: " + res.data)
+            console.log(".........图片文件名为: " + res.data+JSON.stringify(res))
             // 给父组件传递返回的图片文件名
             this.$emit('crop-url-callback', res.data,this.msg)
             this.dialogVisible = false

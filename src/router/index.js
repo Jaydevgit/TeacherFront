@@ -211,8 +211,8 @@ export const asyncRouterMap = [
     path: '/homeSet',
     component: Layout,
     redirect: '/homeSet/teacherSet',
-    name: '师资队伍主页',
-    meta: {title: '师资队伍主页', icon: 'tree'},
+    name: '师资队伍主页定制',
+    meta: {title: '师资队伍主页定制', icon: 'tree'},
     children: [
 
       {
