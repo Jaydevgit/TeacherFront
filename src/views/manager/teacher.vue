@@ -525,6 +525,11 @@
                 this.listQuery.pageRow = val
                 this.handleFilter();
             },
+            handleFilter() {
+              //查询事件
+              this.listQuery.pageNum = 1
+              this.getList()
+            },
             handleCurrentChange(val) {
                 //改变页码
                 this.listQuery.pageNum = val
