@@ -140,6 +140,17 @@
           <el-button type="success" @click="inviteToScholat(scope.row)" size="small"
                      v-if="!scope.row.scholat_username">邀请加入学者网
           </el-button>
+          <el-dialog title="完善信息" :visible.sync="dialogFormVisible" :modal-append-to-body='false'>
+            <el-form :model="scope.row">
+              <el-form-item label="邮箱">
+                <el-input v-model="scope.row.email" autocomplete="off"></el-input>
+              </el-form-item>
+            </el-form>
+            <div slot="footer" class="dialog-footer">
+              <el-button @click="dialogFormVisible = false">取消</el-button>
+              <el-button type="primary" @click="inviteToScholat(scope.row)">确认发送邀请</el-button>
+            </div>
+          </el-dialog>
         </template>
       </el-table-column>
       <!--域名修改-->
@@ -176,6 +187,7 @@
       :page-sizes="[10, 20, 50, 100]"
       layout="total, sizes, prev, pager, next, jumper">
     </el-pagination>
+
 
    <!-- <el-dialog title="教师栏目分配" :visible.sync="showRoleAssigment">
       <el-card class="box-card" style="width: 600px;float: left;margin-left: 40px">
@@ -293,7 +305,8 @@
               unitQuery:{
                 domainName:'',
                 unitId:''
-              }
+              },
+              dialogTableVisible: false,
             }
         },
         created() {
@@ -302,29 +315,44 @@
         },
         methods: {
             inviteToScholat(Form) {
-                this.$confirm('此操作将会给该用户发送邀请邮件, 是否继续?', '提示', {
-                    confirmButtonText: '确认发送邀请',
-                    cancelButtonText: '取消',
-                    type: 'success'
-                }).then(() => {
-                    this.$message.success("准备邀请" + Form.email + "加入学者网");
-                    this.api({
-                        url: '/scholat/invite',
-                        method: 'post',
-                        data: {
-                            "form": Form
-                        }
-                    }).then((data) => {
-                        this.$message.success("邀请" + Form.email + "成功")
-                    }).catch(e => {
-                        this.$message.error("邀请" + Form.email + "失败")
-                    })
-                }).catch(() => {
-                    this.$message({
-                        type: 'info',
-                        message: '已取消邀请'
-                    });
-                });
+              console.log("Form="+JSON.stringify(Form))
+             if (Form.email){
+               this.$confirm('此操作将会给该用户发送邀请邮件, 是否继续?', '提示', {
+
+                 confirmButtonText: '确认发送邀请',
+                 cancelButtonText: '取消',
+                 type: 'success'
+               }).then(() => {
+                 /*this.$message.success("准备邀请" + Form.email + "加入学者网");*/
+                 this.api({
+                   url: '/scholat/invite',
+                   method: 'post',
+                   data: {
+                     "form": Form
+                   }
+                 }).then((data) => {
+                   this.$message.success("邀请" + Form.email + "成功")
+                 }).catch(e => {
+                   if (e.code=="400"){
+                     this.$message.error("邀请" + Form.email + "失败")
+                   }else if (e.code=="10009"){
+                     this.$message.error("邮件已发送，请勿重复邀请")
+                   }else if (e.code=="90003"){
+                     this.$message.error("缺少必填参数email")
+                   }
+                 });
+                 this.dialogFormVisible = false;
+               }).catch(() => {
+                 this.$message({
+                   type: 'info',
+                   message: '已取消邀请'
+                 });
+                 this.dialogFormVisible = false;
+               });
+
+             }else {
+               this.dialogFormVisible=true;
+             }
             },
             updateFromScholat() {
                 this.$message.error("正在写")

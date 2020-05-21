@@ -1153,7 +1153,13 @@
                 }).then((data) => {
                     this.$message.success("邀请成功")
                 }).catch(e => {
-                    this.$message.error("邀请失败，请检查信息是否填写完整")
+                  if (e.code=="400"){
+                    this.$message.error("邀请" + Form.email + "失败")
+                  }else if (e.code=="10009"){
+                    this.$message.error("邮件已发送，请勿重复邀请")
+                  }else if (e.code=="90003"){
+                    this.$message.error("缺少必填参数email")
+                  }
                 })
             },
             // 更新头像
