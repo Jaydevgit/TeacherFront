@@ -24,7 +24,8 @@
         <div class="formDiv" style="min-width:200px;float: right;transform: translateX(-40px)">
           <input @keyup.enter="keySend" type="text" v-model="searchKey" placeholder="请输入您要搜索的教师" name="cname"
                  style="color: gray;background-color: white;">
-          <button @click="keySend"></button>
+          <!--<button @click="keySend"></button>-->
+          <img src="@/assets/img/search.png" @click="keySend">
         </div>
       </div>
       <a :href="unit.collegeUrl" v-if="dataDone && this.$route.path.indexOf('teacher')===-1"><el-button type="text" style=" font-size: 13px;
@@ -76,7 +77,8 @@
           <div class="formDiv" style="min-width:200px;float: right;">
             <input @keyup.enter="keySend" type="text" v-model="searchKey" placeholder="请输入您要搜索的教师" name="cname"
                    style="color: gray;background-color: white;">
-            <button @click="keySend"></button>
+            <!--<button @click="keySend"></button>-->
+            <img src="@/assets/img/search.png" @click="keySend">
           </div>
         </div>
       </div>
@@ -110,7 +112,8 @@
         <div class="formDiv" style="min-width:180px;transform: translateX(20px)">
           <input @keyup.enter="keySend" type="text" v-model="searchKey" placeholder="请输入您要搜索的教师" name="cname"
                  style="color: gray;background-color: white;">
-          <button @click="keySend"></button>
+          <!--<button @click="keySend"></button>-->
+          <img src="@/assets/img/search.png" @click="keySend">
         </div>
       </div>
       <a :href="unit.collegeUrl" v-if="dataDone && this.$route.path.indexOf('teacher')===-1"><el-button type="text" style=" font-size: 13px;
@@ -141,12 +144,14 @@
 <script>
     import Img from '@/assets/img/home.png'
     import bus from '@/utils/eventBus'
+    import searchImage from '@/assets/img/search.png'
 
     export default {
         data() {
             return {
                 defaultLogo: 'this.src="http://www.scholat.com/images/uni_logo/nologo.png"',
                 img: Img,
+                searchImage:searchImage,
                 searchKey: '',
                 unitQuery: {unitId: '',domainName:''},
                 defaultBack: 'this.src="http://47.106.132.95:2333/images/background/1569738575202258.png"',
@@ -386,6 +391,14 @@
     background-size:50% 70%;
     background-repeat:no-repeat;
     background-position:center center;
+  }
+
+  .bar6 img{
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    top: 2px;
+    right: 10px;
   }
 
   .bar6 button:before {
