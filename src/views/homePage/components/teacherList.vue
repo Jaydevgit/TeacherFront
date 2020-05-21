@@ -73,7 +73,7 @@
               {{teacher.tName}}
             </div>
             <div class="smallText">{{teacher.tPost}}</div>
-            <div class="smallText" v-if="!teacher.tPost">{{teacher.tDuty}}</div>
+            <div class="smallText" v-if="teacher.tDuty">{{teacher.tDuty}}</div>
           </div>
         </li>
       </ul>
