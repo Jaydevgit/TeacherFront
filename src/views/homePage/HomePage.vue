@@ -103,7 +103,9 @@
             this.cId===0
             let node = document.getElementById('middle-nav');
             node.children[1].children[0].innerText ="教师名录"
-            this.$refs.info.cIdSend(this.cId);
+            if(this.$route.path.indexOf('search')===-1){
+              this.$refs.info.cIdSend(this.cId);
+            }
           }else {
             //根据cId获取分类名称
             this.api({

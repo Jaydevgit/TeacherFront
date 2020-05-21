@@ -159,21 +159,25 @@
                 let self = this;
                 self.currentCat = msg;
                 //主目录
-                if(this.$route.path.indexOf('search')!=-1){
+                if(this.$route.path.indexOf('search')!==-1){
                     this.searchKey = this.$route.params.searchKey
                     this.searchTeacher();
                 }else {
-                    if (self.currentCat != 0)
+                    if (self.currentCat !== 0)
                         self.getTeacherByCatalogue(self.currentCat)
                     //cId为0,指师资队伍
-                    else
-                        self.getListAll()
+                  else if(((this.$route.path.split('/')).length-1)===2)
+                  { console.log("teacherList的watch检测self.getListAll()")
+                    self.getListAll()}
+                  else{
+                    console.log("teacherList的watch检测self.getListAll()")
+                  }
                 }
             },
             unitId: function (newVal, oldVal) {
                 let msg = newVal;
                 let self = this;
-                if(this.$route.path.indexOf('search')!=-1){
+                if(this.$route.path.indexOf('search')!==-1){
                     this.searchKey = this.$route.params.searchKey
                     this.searchTeacher();
                 }else {
