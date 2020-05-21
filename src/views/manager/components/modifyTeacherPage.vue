@@ -602,7 +602,7 @@
 <!--                     style="height: 70px;overflow: auto;background-color: antiquewhite;margin-top: 5px;margin-bottom: 5px"></div>-->
             </el-col>
             <el-col :span="2">
-            <el-button style="margin-top:80px;margin-left: 5px;" @click="saveTeacher"size="small" type="success" v-if="$route.path.indexOf('modifyTeacher')!=-1">保存</el-button>
+            <el-button style="margin-top:80px;margin-left: 5px;" @click="saveTeacher" size="small" type="success" v-if="$route.path.indexOf('modifyTeacher')!=-1">保存</el-button>
             </el-col>
           </el-row>
         </el-card>
@@ -636,17 +636,19 @@
                 <el-row>
                   <el-col :span="24">
                     <div class="grid-content" style="">
-                      <div style="display: flex;justify-content: space-between;padding: 4px 0">
-                        <div style="color: rgb(245, 108, 108);font-weight: 800;">▶编辑个人简介</div>
+                      <div style="display: flex;justify-content: space-between;">
+                        <!--<div style="color: rgb(245, 108, 108);font-weight: 800;">▶编辑个人简介</div>-->
+                        <div style="font-family: 微软雅黑;font-weight: bold;margin-bottom: 10px;font-size: 24px">编辑个人简介</div>
                         <div v-if="ruleForm.scholat_username" style="color: rgb(245, 108, 108);font-weight: 800;cursor: pointer;flex: 2;text-align: right;margin-right: 15px"
                              @click="showDifferent(scholatProfile)">信息对比</div>
-                        <div style="color: rgb(245, 108, 108);font-weight: 800;cursor: pointer;margin-right: 15px" @click="saveTeacher()">保存简介</div>
+                        <!--<div style="color: rgb(245, 108, 108);font-weight: 800;cursor: pointer;margin-right: 15px" @click="saveTeacher()">保存简介</div>-->
 <!--                        <div v-else style="color: rgb(245, 108, 108);font-weight: 800;cursor: pointer;flex: 2;text-align: right;margin-right: 15px"@click="ifShow">{{this.showTag}}</div>-->
-                        <div style="color: rgb(245, 108, 108);font-weight: 800;cursor: pointer" @click="clearIntro()">清空简介
+                        <div style="margin-top:5px;color: rgb(245, 108, 108);font-weight: 800;cursor: pointer" @click="clearIntro()">清空简介
                         </div>
                       </div>
                       <div  id="editor" class="editor" style="height: 360px;background-color: #e5e9f2;padding-top: 10px;"
                            v-model="ruleForm.intro"></div>
+                      <el-button @click="saveTeacher" type="success" size="small" style="margin-left: 20px;margin-top:10px;float: right">保存</el-button>
                     </div>
                   </el-col>
                 </el-row>

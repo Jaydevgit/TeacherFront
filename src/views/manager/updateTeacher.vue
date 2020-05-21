@@ -2,7 +2,7 @@
   <div class="app-container">
     <modify-page ref="modifyPage"></modify-page>
     <div slot="footer" class="dialog-footer">
-      <el-button @click="updateTeacherFunction"  type="success" style="margin-left: 20px;">提交更新</el-button>
+      <!--<el-button @click="updateTeacherFunction"  type="success" style="margin-left: 20px;">提交更新</el-button>-->
     </div>
   </div>
 </template>
