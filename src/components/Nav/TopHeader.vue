@@ -69,7 +69,7 @@
             <span v-if="$route.path.indexOf('login')!=-1">SCHOLAT+学院师资信息管理平台</span>
             <span v-else>
               <span style="font-family: 华文新魏;font-size: 38px">{{unit.schoolName}}|</span>
-              <span style="font-family: 华文行楷 ;font-size: 36px;margin-left: -10px">师资队伍</span>
+              <span style="font-family: 华文行楷 ;font-size: 34px;margin-left: -10px">师资队伍</span>
             </span>
         </span>
         <div class="search bar6" v-if="dataDone">
@@ -83,12 +83,12 @@
       <div v-else style="display: flex;align-items: center;height: 100%;width: 100%" @click="goToCollege">
         <!--如果有背景图，则显示学院背景图片+文字-->
         <template v-if="unit.backgroundUrl">
-          <div @click="goToCollege" style="height: 100%;cursor: pointer">
+          <div @click="goToCollege" style="cursor: pointer;margin-top: 4px">
             <img :src="'http://47.106.132.95:2333/images/background/' + unit.backgroundUrl"
                  style="height: 100%"
                  :onerror="defaultBack" title="点击访问该学院"/>
           </div>
-          <span style="" class="font-jsgrzy">
+          <span style="font-size: 28px" class="font-jsgrzy">
             师资队伍
           </span>
         </template>
@@ -101,7 +101,7 @@
             <span v-if="$route.path.indexOf('login')!=-1">SCHOLAT+学院师资信息管理平台</span>
             <span v-else>
               <span style="font-family: 华文新魏;font-size: 38px">{{unit.unitName}}|</span>
-              <span style="font-family: 华文行楷 ;font-size: 36px;margin-left: -10px">师资队伍</span>
+              <span style="font-family: 华文行楷 ;font-size: 34px;margin-left: -10px">师资队伍</span>
             </span>
           </span>
         </template>
@@ -379,17 +379,23 @@
   .bar6 button {
     background: white;
     border-radius: 0 46px 46px 0;
-    width: 60px;
+    width: 50px;
     top: 0;
     right: 0;
+    background-image: url("../../assets/search.png");
+    background-size:50% 70%;
+    background-repeat:no-repeat;
+    background-position:center center;
   }
 
   .bar6 button:before {
-    content: "搜索";
+    /*content: "搜索";*/
     font-size: 13px;
     font-weight: bold;
     color: #3399CC;
+
   }
+
 
   li {
     display: inline
@@ -410,7 +416,7 @@
     font-weight: bold;
     letter-spacing: 3.5px;
     line-height: 60px;
-    font-size: 28px;
+    font-size: 26px;
     color: steelblue;
     white-space: nowrap;
   }

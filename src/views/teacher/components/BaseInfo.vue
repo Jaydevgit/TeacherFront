@@ -132,7 +132,7 @@
       </div>
       <div class="box-card-two" v-if="!!teacherProfile.intro && teacherProfile.intro!='<p><br></p>'">
         <el-card style="overflow: auto;margin-bottom: 17px;">
-          <div style="display: flex;justify-content:space-between;color: steelblue;font-size: 16px;font-weight: bold;">
+          <div style="display: flex;justify-content:space-between;color: #b0c4de;font-size: 14px;font-weight: bold;">
             <div style="padding: 12px 20px 6px 27px">
               个人简介
             </div>
