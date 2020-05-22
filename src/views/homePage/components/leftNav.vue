@@ -131,12 +131,9 @@
                     method: "get",
                     params: {unitId: this.unitId}
                 }).then(data => {
-
                     console.log(JSON.stringify(data));
                     this.catalogueList = data.list;
-                    this.$nextTick(function () {
-                      
-                    })
+
                 }).catch(error => {
                     console.log("QAQ........没有找到栏目信息")
                 })
