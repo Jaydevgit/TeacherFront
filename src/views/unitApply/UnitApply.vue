@@ -47,7 +47,7 @@
             <!--              <el-input class="apply-input" v-model="applyForm.school_eng" auto-complete="off" placeholder="请输入学校英文名称"/>-->
             <!--            </el-form-item>-->
 
-            <el-form-item prop="school_name" label="学院名称：">
+            <el-form-item prop="unit_name" label="学院名称：">
               <el-input class="apply-input" v-model="applyForm.unit_name" auto-complete="off" placeholder="请输入学院名称"/>
             </el-form-item>
             <div class="form-domain-name">
