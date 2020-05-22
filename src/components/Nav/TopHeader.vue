@@ -25,7 +25,7 @@
           <input @keyup.enter="keySend" type="text" v-model="searchKey" placeholder="请输入您要搜索的教师" name="cname"
                  style="color: gray;background-color: white;">
           <!--<button @click="keySend"></button>-->
-          <img src="@/assets/img/search.png" @click="keySend">
+          <img src="@/assets/img/search.png" @click="keySend" style="cursor: pointer;">
         </div>
       </div>
       <a :href="unit.collegeUrl" v-if="dataDone && this.$route.path.indexOf('teacher')===-1"><el-button type="text" style=" font-size: 13px;
@@ -78,7 +78,7 @@
             <input @keyup.enter="keySend" type="text" v-model="searchKey" placeholder="请输入您要搜索的教师" name="cname"
                    style="color: gray;background-color: white;">
             <!--<button @click="keySend"></button>-->
-            <img src="@/assets/img/search.png" @click="keySend">
+            <img src="@/assets/img/search.png" @click="keySend" style="cursor: pointer;">
           </div>
         </div>
       </div>
@@ -113,7 +113,7 @@
           <input @keyup.enter="keySend" type="text" v-model="searchKey" placeholder="请输入您要搜索的教师" name="cname"
                  style="color: gray;background-color: white;">
           <!--<button @click="keySend"></button>-->
-          <img src="@/assets/img/search.png" @click="keySend">
+          <img src="@/assets/img/search.png" @click="keySend" style="cursor: pointer;">
         </div>
       </div>
       <a :href="unit.collegeUrl" v-if="dataDone && this.$route.path.indexOf('teacher')===-1"><el-button type="text" style=" font-size: 13px;

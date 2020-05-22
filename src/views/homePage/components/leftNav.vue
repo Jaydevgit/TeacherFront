@@ -69,6 +69,9 @@
           this.cIdSend()
           this.getCatalogues()
         },
+        'unitQuery.unitId':function(){
+          this.getCatalogues()
+        },
         $route(){
           if(this.$route.params.cId!=undefined){
             this.catalogueId = this.$route.params.cId
@@ -83,10 +86,10 @@
       },
         created() {
           this.init();
-
         },
         mounted() {
           if(this.unitQuery.unitId&&this.unitQuery.domainName){
+
             this.cIdSend()
           }
         },
@@ -114,7 +117,7 @@
             //  console.log("dddddd"+this.unitQuery.unitId+"vvvthis.unitQuery.unitIdthis.unitQuery.unitId");
            //   console.log("学校图标是："+"http://www.scholat.com/images/uni_logo/"+data.schoolName+".png");
               this.unitQuery.unitId=data.unitId
-              this.getCatalogues()
+             // this.getCatalogues()
               this.cIdSend()
            //   this.dataDone = true;
             }).catch(error => {
@@ -122,15 +125,18 @@
             })
           },
             getCatalogues() {
+              console.log("this.$route.params.unitId is isisisis" + this.unitQuery.unitId);
                 this.api({
                     url: "/catalogue/getCatalogues",
                     method: "get",
                     params: {unitId: this.unitQuery.unitId}
                 }).then(data => {
-                    console.log("this.$route.params.unitId is isisisis" + this.unitQuery.unitId);
+
                     console.log(JSON.stringify(data));
                     this.catalogueList = data.list;
-
+                    this.$nextTick(function () {
+                      
+                    })
                 }).catch(error => {
                     console.log("QAQ........没有找到栏目信息")
                 })
