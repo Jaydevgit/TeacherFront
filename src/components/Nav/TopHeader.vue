@@ -16,7 +16,7 @@
        </div>
       </div>
       <div class="font-jsgrzy" style="display: inline-block;min-width: 160px;transform: translateX(-40px);">
-        师资队伍
+        教师个人主页
       </div>
 
 
@@ -70,7 +70,7 @@
             <span v-if="$route.path.indexOf('login')!=-1">SCHOLAT+学院师资信息管理平台</span>
             <span v-else>
               <span style="font-family: 华文新魏;font-size: 38px">{{unit.schoolName}}|</span>
-              <span style="font-family: 华文行楷 ;font-size: 34px;margin-left: -10px">师资队伍</span>
+              <span style="font-family: 华文行楷 ;font-size: 34px;margin-left: -10px">教师个人主页</span>
             </span>
         </span>
         <div class="search bar6" v-if="dataDone">
@@ -91,7 +91,7 @@
                  :onerror="defaultBack" title="点击访问该学院"/>
           </div>
           <span style="font-size: 26px" class="font-jsgrzy">
-            师资队伍
+            教师个人主页
           </span>
         </template>
         <!--如果没有背景图，则显示学校LOGO+xx学院+文字，登录页面按照逻辑会跳到这里，所以要判断-->
@@ -103,13 +103,13 @@
             <span v-if="$route.path.indexOf('login')!=-1">SCHOLAT+学院师资信息管理平台</span>
             <span v-else>
               <span style="font-family: 华文新魏;font-size: 38px">{{unit.unitName}}|</span>
-              <span style="font-family: 华文行楷 ;font-size: 34px;margin-left: -10px">师资队伍</span>
+              <span style="font-family: 华文行楷 ;font-size: 34px;margin-left: -10px">教师个人主页</span>
             </span>
           </span>
         </template>
       </div>
       <div class="search bar6" v-if="dataDone && this.$route.path.indexOf('teacher')===-1">
-        <div class="formDiv" style="min-width:180px;transform: translateX(20px)">
+        <div class="formDiv" style="max-width:180px;transform: translateX(20px)">
           <input @keyup.enter="keySend" type="text" v-model="searchKey" placeholder="请输入您要搜索的教师" name="cname"
                  style="color: gray;background-color: white;">
           <!--<button @click="keySend"></button>-->
