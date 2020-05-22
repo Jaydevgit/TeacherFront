@@ -66,12 +66,13 @@
       watch:{
         unitId:function (newValue) {
           console.log(newValue+"4564654");
+          this.getCatalogues()
           this.cIdSend()
-          this.getCatalogues()
+
         },
-        'unitQuery.unitId':function(){
-          this.getCatalogues()
-        },
+        // 'unitQuery.unitId':function(){
+        //   this.getCatalogues()
+        // },
         $route(){
           if(this.$route.params.cId!=undefined){
             this.catalogueId = this.$route.params.cId
@@ -89,7 +90,6 @@
         },
         mounted() {
           if(this.unitQuery.unitId&&this.unitQuery.domainName){
-
             this.cIdSend()
           }
         },
@@ -118,18 +118,18 @@
            //   console.log("学校图标是："+"http://www.scholat.com/images/uni_logo/"+data.schoolName+".png");
               this.unitQuery.unitId=data.unitId
              // this.getCatalogues()
-              this.cIdSend()
+             // this.cIdSend()
            //   this.dataDone = true;
             }).catch(error => {
               console.log("QAQ........没有找到学院信息")
             })
           },
             getCatalogues() {
-              console.log("this.$route.params.unitId is isisisis" + this.unitQuery.unitId);
+              console.log("this.$route.params.unitId is isisisis" + this.unitId);
                 this.api({
                     url: "/catalogue/getCatalogues",
                     method: "get",
-                    params: {unitId: this.unitQuery.unitId}
+                    params: {unitId: this.unitId}
                 }).then(data => {
 
                     console.log(JSON.stringify(data));
