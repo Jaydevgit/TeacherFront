@@ -274,7 +274,10 @@
             },
             keySend: function () {
                 console.log("send++++" + this.searchKey)
-                 bus.$emit("changePageList", this.searchKey);
+              if (this.searchKey){
+                bus.$emit("changePageList", this.searchKey);
+              }
+
                 // this.$nextTick(function () {
                 //     bus.$emit("key", this.searchKey);
                 // })
