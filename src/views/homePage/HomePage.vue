@@ -13,8 +13,10 @@
           </el-breadcrumb>
           <div v-if="showLetter" class="centerLetter"><strong>{{letter}}</strong></div>
           <div style="margin-top: -4px;" v-if="showLetterList&&detailShow===3">
-            <span style="margin-right: 5px;font-size: 14px;cursor:pointer" @click="allTeacher">All</span>
-            <a class="letterList" v-for="letter in Letters" @click="jumper(letter)"><span>{{letter}}</span></a>
+            <span style="margin-right: 5px;font-size: 14px;cursor:pointer" @click="allTeacher" :class="{'letterRed':letterFlag==='All'}">All</span>
+            <a class="letterList" v-for="letter in Letters" @click="jumper(letter)" :class="{'letterRed':letterFlag===letter}">
+              <span>{{letter}}</span>
+            </a>
           </div>
           <div class="list-style" style="margin-top: -4px;" v-if="detailShow!==3" @detailShow="detailShowChange">
             <!--            <el-button @click="defaultSort" type="info" round style="padding: inherit;margin-right: -5px;width: 70px">-->
@@ -91,6 +93,7 @@
                 searchCount:0,
                 catalogueName:'',
               unitId2:'',
+              letterFlag:'',
             }
         },
         ready() {
@@ -182,6 +185,7 @@
           })
         },
         allTeacher(){
+          this.letterFlag='All';
           bus.$emit('getList_All')
         },
           rInfo(){
@@ -240,6 +244,7 @@
 
             },
             jumper(letter) {
+                this.letterFlag=letter;
                 this.showSortList = true;
                 this.letter = letter;
                 this.$refs.teacherList1.getLetter(letter);
@@ -311,6 +316,9 @@
     font-size: 14px;
     letter-spacing: 5px;
     margin-top: -4px;
+  }
+  .letterRed{
+    color: red;
   }
 
   @media screen and (max-width: 1024px) {
