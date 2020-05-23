@@ -132,13 +132,15 @@
       </div>
       <div class="box-card-two" v-if="!!teacherProfile.intro && teacherProfile.intro!='<p><br></p>'">
         <el-card style="overflow: auto;margin-bottom: 17px;">
-          <div style="display: flex;justify-content:space-between;color: #b0c4de;font-size: 14px;font-weight: bold;">
-            <div style="padding: 12px 20px 6px 27px">
+          <div style="display: flex;justify-content:space-between;">
+            <div style="padding: 15px 20px 3px 20px;color: #7e8c8d;font-size: 18px;font-weight: bold;">
               个人简介
             </div>
-            <div style="padding: 12px 20px 6px 27px;float: right;font-size: 14px;color: #7e8c8d">
+            <div style="padding: 8px 20px 3px 27px;float: right;font-size: 14px;color: #7e8c8d;transform: translateY(7px)">
               <a :href="'http://www.scholat.com/'+teacherProfile.scholat_username" v-if="teacherProfile.scholat_username">
                 更多信息请见学者主页
+                <img :src="'http://www.scholat.com/'+teacherProfile.qrcode" width="30" height="30"
+                     v-if="teacherProfile.qrcode" :onerror="defaultQrImg" style="border-radius: 5px;">
               </a>
             </div>
           </div>
