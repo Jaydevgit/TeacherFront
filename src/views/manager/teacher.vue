@@ -33,7 +33,16 @@
                     <el-button style="height: 34px">功能提示</el-button>
                   </el-tooltip></div>
               </div>-->
+              <div style="float: left;margin-left: 10px;margin-top: 2px" v-if="totalUpdate>0">
+                <el-tag type="warning" style="font-size: 14px;">学者网教师信息更新数
+                  <div style="font-size: 20px;font-weight: bold;color:#f56c6c;display: inline-block;margin:auto 0">{{totalUpdate}}</div>
+                </el-tag>
+<!--                <el-badge :value="totalUpdate" :max="99" class="item">-->
+<!--                  <span style="color:red">学者网有更新</span>-->
+<!--                </el-badge>-->
+              </div>
             </div>
+
 
 
 
@@ -53,11 +62,7 @@
                         placeholder="搜索要查询的信息"
                         @keydown.enter.native="searchTeahcer"></el-input>
               <el-input type="text" style="display:none"/> <!--确保keydown.enter触发-->
-              <div style="float: right" v-if="totalUpdate>0">
-                <el-badge :value="totalUpdate" :max="99" class="item">
-                  <span style="color:red">学者网有更新</span>
-                </el-badge>
-              </div>
+
             </div>
           </div>
 
@@ -312,8 +317,23 @@
         created() {
             console.log("--------------------开始查询教师权限")
             this.getList();
+            this.countTeacherUpdate();
         },
         methods: {
+          countTeacherUpdate(){
+            // this.listQuery.key="update_time";
+            // this.listQuery.sort="desc";
+            this.listQuery.unitId = this.$store.state.user.unitId;
+            console.log("### 开始查询学者网更新教师数据总为")
+            this.api({
+              url: "/manager/listTeacherUpdateScholat",
+              method: "get",
+              params: this.listQuery
+            }).then(data => {
+              console.log("学者网更新教师数据总countScholat===="+data.countScholat)
+              this.totalUpdate = data.countScholat;
+            }).catch((e) => {});
+          },
             inviteToScholat(Form) {
               console.log("Form="+JSON.stringify(Form))
              if (Form.email){
@@ -476,7 +496,7 @@
                     method: "get",
                     params: this.listQuery
                 }).then(data => {
-                    console.log("查询教师信息为:" + data.totalUpdate)
+                    console.log("查询教师信息为:")
                     console.log("=================展示教师列表信息===============")
                     this.listLoading = false;
                     this.list = data.list;
@@ -486,12 +506,13 @@
                         v.update_time = t;
                     });
                     this.totalCount = data.totalCount;
-                    this.totalUpdate = data.totalUpdate;
+
                     this.currentSearch = false
                   console.log(this.totalCount+"  "+this.totalUpdate+" "+this.listQuery.pageNum);
                 }).catch(error => {
                     console.log("QAQ........没有找到教师列表")
                 })
+
             },
           // getNoStateList() {
           //   //查询列表
