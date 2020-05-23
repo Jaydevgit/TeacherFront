@@ -91,7 +91,7 @@
                  :onerror="defaultBack" title="点击访问该学院"/>
           </div>
           <span style="font-size: 26px" class="font-jsgrzy">
-            教师个人主页
+            师资队伍
           </span>
         </template>
         <!--如果没有背景图，则显示学校LOGO+xx学院+文字，登录页面按照逻辑会跳到这里，所以要判断-->
