@@ -74,7 +74,7 @@ router.beforeEach((to, from, next) => {
           }
         }
         else {
-          //如果路径不是白名单内的,而且又没有登录,就跳转登录页面
+          //如果路径不是白名单内的,而且又没有登录,就跳转到首页页面
           store.commit('RESET_USER')
           next('/index')
           NProgress.done() // 结束Progress
