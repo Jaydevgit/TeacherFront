@@ -131,6 +131,12 @@
             this.options.autoCropHeight = 72
             break;
           }
+          case 'backgroundHome':{
+            this.titleName = '更换主页背景'
+            this.options.autoCropWidth = 800
+            this.options.autoCropHeight = 600
+            break;
+          }
           }
       },
       //控制弹出层关闭
