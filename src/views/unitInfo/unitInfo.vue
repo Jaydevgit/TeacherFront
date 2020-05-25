@@ -71,7 +71,7 @@
           <el-button @click="restoreImage(0)" size="mini" style="margin-left: 35px;">取消</el-button>
         </div>
       </el-form-item>
-      <el-form-item label="主页背景设置：" style="width: 570px">
+      <el-form-item label="主页背景设置：" style="width: 580px">
 <!--        <img :src="showBackHome"-->
 <!--             :onerror="defaultBackHome" style="width: 160px; height: 120px;"/>-->
 <!--        <div>-->
@@ -212,7 +212,8 @@
                   url: "/attach/delete/" +path+"/"+this.applyForm.backgroundHome,
                   method: "get"
                 }).then(res => {
-                  this.applyForm.backgroundHome=res.data
+                  this.applyForm.backgroundHome=undefined
+                  console.log("this.applyForm.backgroundHome="+this.applyForm.backgroundHome);
                   this.applyForm.unitId = this.$store.getters.unitId
                   // 给父组件传递返回的图片文件名
                   this.api({

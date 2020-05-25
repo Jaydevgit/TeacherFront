@@ -336,7 +336,7 @@
             getListAll() {
                 this.currentCat = 0
                 this.listQuery.unitId = this.unitId
-                this.listLoading = true;
+                // this.listLoading = true;
               console.log("查询所有教师信息为:"+JSON.stringify(this.listQuery))
                 this.api({
                     url: "/homepage/listTeacherAll",
@@ -364,7 +364,7 @@
             changeList() {
                 this.currentCat = 0
                 this.listQuery.unitId = this.unitId
-                this.listLoading = true;
+                // this.listLoading = true;
                 console.log("### 开始查询教师成员列表")
 
                 this.api({
@@ -374,7 +374,7 @@
                 }).then(data => {
                     console.log("查询教师信息为:" + data.totalUpdate)
                     console.log("==================getList方法==============")
-                    this.listLoading = false;
+                    // this.listLoading = false;
                     this.teacherList = data.list;
                     // console.log(this.teacherList);
                     this.totalCount = data.totalCount;
@@ -391,7 +391,7 @@
             changeAllByLetter() {
                 this.currentCat = 0
                 this.listQuery.unitId = this.unitId
-                this.listLoading = true;
+                // this.listLoading = true;
                 console.log("### 开始查询教师成员列表")
                 this.api({
                     url: "/homepage/letterTeacher",
@@ -400,7 +400,7 @@
                 }).then(data => {
                     console.log("查询教师信息为:" + data.totalUpdate)
                     console.log("================getAllByLetter方法================")
-                    this.listLoading = false;
+                    // this.listLoading = false;
                     this.teacherListAll = data.list;
                     this.totalCount = data.totalCount;
                 }).catch(error => {
@@ -416,7 +416,7 @@
             changeTeacherByCatalogue(cId) {
                 this.currentCat = cId;
                 this.listQuery.cId = cId;
-                this.listLoading = true;
+                // this.listLoading = true;
                 console.log("### 开始查询教师成员列表");
                 this.api({
                     url: "/catalogue/getTeacherByCatalogueAndPage",
@@ -425,7 +425,7 @@
                 }).then(data => {
                     console.log("查询教师信息为:" + JSON.stringify(data))
                     console.log("===============changeTeacherByCatalogue=================")
-                    this.listLoading = false;
+                    // this.listLoading = false;
                     this.teacherList = data.list;
                     this.totalCount = data.totalCount;
                     this.isSendSuccessful = true;
@@ -453,7 +453,7 @@
             changeTeacherByLetter(cId) {
                 this.currentCat = cId
                 this.listQuery.cId = cId
-                this.listLoading = true;
+                // this.listLoading = true;
                 console.log("### 开始查询教师成员列表")
                 this.api({
                     url: "/catalogue/getByCatalogueAndLetterAndPage",
@@ -462,7 +462,7 @@
                 }).then(data => {
                     console.log("查询教师信息为:" + JSON.stringify(data))
                     console.log("================getTeacherByLetter================")
-                    this.listLoading = false;
+                    // this.listLoading = false;
                     this.teacherList = data.list;
                     this.totalCount = data.totalCount;
                 }).catch(error => {
