@@ -19,7 +19,7 @@
       <el-form-item label="学院英文名称：">
         <el-input v-model="applyForm.unitEng" style="width: 50%"></el-input>
       </el-form-item>
-      <el-form-item label="学院链接：" prop="collegeUrl">
+      <el-form-item label="学院链接：" placeholder="注意链接形式以'http'开头" prop="collegeUrl">
         <el-input v-model="applyForm.collegeUrl" style="width: 50%"></el-input>
       </el-form-item>
       <!--<el-form-item label="学院图标：">
@@ -136,7 +136,10 @@
                 showBack: '',
                 showBackHome: '',
                 applyRules: {
-                    collegeUrl: [{required: true, message: "学院主页链接不能为空"}], //學院連接
+                    collegeUrl: [
+                      {required: true, message: "学院主页链接不能为空"},
+                      {required: true, message: "注意：学院链接以‘http’或‘https’开头", pattern: /(http|https):\/\/([\w.]+\/?)\S*/　}
+                    ], //學院連接
                     collegeLogo: [{required: true, message: "学院图标不能为空", trigger: 'change'}],   //學院图标
                     backSelect: [{required: true, message: "背景模式不能为空", trigger: 'change'}]    //背景模式
                 },
