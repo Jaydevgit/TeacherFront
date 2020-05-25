@@ -41,7 +41,8 @@
                    :cId='cId'
                    :unitId="unitId"
                    @detailShow="detailShowChange"
-                   ref="teacherList1"></component>
+                   ref="teacherList1"
+                   v-if="hackReset"></component>
       </div>
       <!--      <right-nav class="right"></right-nav>-->
     </div>
@@ -96,7 +97,8 @@
               unitId2:'',
               letterFlag:'',
               backgroundHome:'',
-              backgroundHomeDefault:'backgroundHomeDefault.png'
+              backgroundHomeDefault:'backgroundHomeDefault.png',
+              hackReset:true,
             }
         },
         ready() {
@@ -222,7 +224,11 @@
             toList(name, modelId, cId) {
               this.cId = cId;
               if (cId == 0) {
-                  this.detailShow = 3;
+                this.detailShow = 3;
+                this.hackReset = false
+                this.$nextTick(() => {
+                  this.hackReset = true
+                })
               } else {
                   this.detailShow = 2;
               }
