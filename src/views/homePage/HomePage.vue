@@ -1,5 +1,6 @@
 <template>
-  <div id="app" class="homePage-body">
+  <div  id="app" class="homePage-body" :style="(backgroundHome!==undefined)?'background-image:' +'url('+'http://47.106.132.95:2333/images/background/'+backgroundHome+')':
+'background-image:' +'url('+'http://47.106.132.95:2333/images/background/'+backgroundHomeDefault+')'" >
     <div class="middle-container">
       <div class="left">
         <left-nav :unitId="unitId" @toList="toList"  ref="info"></left-nav>
@@ -94,6 +95,8 @@
                 catalogueName:'',
               unitId2:'',
               letterFlag:'',
+              backgroundHome:'',
+              backgroundHomeDefault:'backgroundHomeDefault.png'
             }
         },
         ready() {
@@ -178,6 +181,7 @@
             this.listLoading = false;
               console.log("cccc"+JSON.stringify(data));
             this.unitId2=data.unitId
+            this.backgroundHome=data.backgroundHome
                console.log("  this.unitId  this.unitId  this.unitId  this.unitId"+  this.unitId);
             //   this.dataDone = true;
           }).catch(error => {
@@ -336,7 +340,9 @@
 
   .homePage-body {
     background-color: #1f2d3d;
-    background: url("../../assets/img/bg.png");
+    background: no-repeat;
+    background-size:cover;
+    /*background: url("../../assets/img/bg.png");*/
     width: 100%;
     min-width: 1000px;
     height: 100%;
