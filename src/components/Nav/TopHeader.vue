@@ -15,7 +15,10 @@
          <span class="unitName" style="color:steelblue;font-weight: bold;white-space:nowrap;">{{unit.unitName}}</span>
        </div>
       </div>
-      <div class="font-jsgrzy" style="display: inline-block;min-width: 160px;transform: translateX(-40px);">
+      <div class="font-jsgrzy" style="display: inline-block;min-width: 160px;transform: translateX(-40px);" v-if="$route.path.indexOf('homepage')!=-1">
+        师资队伍
+      </div>
+      <div class="font-jsgrzy" style="display: inline-block;min-width: 160px;transform: translateX(-40px);" v-if="$route.path.indexOf('teacher')!=-1">
         教师个人主页
       </div>
 
