@@ -55,6 +55,8 @@
             <div style="display: flex;float: right;max-height: 36px">
               <el-button style="margin-top: 3px;max-height: 36px" size="small"type="primary" icon="plus" @click="showCreate" v-if="hasPerm('teacher:add')">添加
               </el-button>
+              <el-button style="margin-top: 3px;max-height: 36px" size="small"type="primary" icon="plus" @click="exportInfo">导出教师信息
+              </el-button>
               <el-button type="primary" size="small" style="float:right;margin-right: 15px;margin-top: 3px;max-height: 36px"
                          @click="searchTeahcer">教师搜索
               </el-button>
@@ -600,6 +602,12 @@
                     path: '/manager/addTeacher'
                 })
             },
+          exportInfo(){
+            console.log("this.listQuery.unitId="+this.listQuery.unitId);
+            var json={unitId:this.listQuery.unitId}
+            var json2=JSON.stringify(json);
+            window.open("/api/manager/exportTeacher?json="+escape(json2))
+          },
             showUpdate(teacher) {
                 //显示修改对话框
                 /*   this.tempTeacher.id = this.list[$index].id;

@@ -205,7 +205,7 @@
             </el-row>-->
             <el-row>
               <el-col :span="8"><div class="grid-content bg-purple">
-                <el-form-item label="职称" prop="duty">
+                <el-form-item label="职称" prop="post">
                   <!--显示更新提示-->
                   <!--              <el-tooltip placement="top" v-if="showUpdateInfo.postScholat">-->
                   <!--                <div slot="content" style="font-size: 16px">-->
@@ -231,7 +231,7 @@
                 </el-form-item>
               </div></el-col>
               <el-col :span="8"><div class="grid-content bg-purple">
-                <el-form-item label="职务" prop="post" >
+                <el-form-item label="职务" prop="duty" >
                   <el-input v-model="ruleForm.duty"
                             placeholder="例如：院长、书记、老师、辅导员等"></el-input>
                 </el-form-item>
