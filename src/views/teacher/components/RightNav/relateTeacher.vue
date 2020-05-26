@@ -39,8 +39,6 @@
                         id: this.msg.tId,
                     }
                 });
-                window.location.reload()
-                // window.open(routeData.href, '_blank');
             },
             getImgUrl(imgName) {
               console.log("imgName="+imgName);

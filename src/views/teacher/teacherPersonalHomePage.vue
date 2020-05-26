@@ -27,6 +27,7 @@
             }
         },
         created() {
+          console.log("teacherPersonalHomepage的created()")
             // console.log("当前url中教师id为:........"+this.GetUrlRelativePath_id());
             // var teacherId = this.GetUrlRelativePath_id();
             this.tDomainName = this.$route.path.split('/')[3];
@@ -35,7 +36,13 @@
             // this.getInfo(teacherId);
         },
         mounted() {
-
+          console.log("********开始执行teacherPersonalHomePage的mounted生命周期函数*********")
+        },
+        watch: {
+          $route() {
+            this.tDomainName = this.$route.path.split('/')[3];
+            this.getTeacherInfoByDomainName(this.tDomainName);
+          },
         },
         computed: {
             unitId: function () {

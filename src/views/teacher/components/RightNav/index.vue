@@ -29,6 +29,12 @@
             this._getAllTeachers();
             this.listQuery.tDomainName = this.$route.path.split('/')[3];
         },
+        watch: {
+          $route() {
+            this._getAllTeachers();
+            this.listQuery.tDomainName = this.$route.path.split('/')[3];
+          },
+        },
         components: {
             relateTeacher
         },
