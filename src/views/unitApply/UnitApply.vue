@@ -307,7 +307,7 @@
                         // {validator: isEnglish, trigger: 'blur'}
                     ],
                     domain_name: [
-                        {required: true, trigger: 'blur', message: "学校域名不能为空"},
+                        {required: true, trigger: 'blur', message: "学院域名不能为空"},
                         {max: 50, message: "长度小于50字符"},
                         {validator: validatorDomain, required: true, trigger: 'blur',}
                     ],
@@ -482,7 +482,20 @@
                   console.log("2.this.applyForm="+JSON.stringify(this.applyForm))
                     this.$message.error("请将信息填入完整方可进行下一步")
                 }
-
+              /*if (this.applyForm.school_name==null||this.applyForm.unit_name==null
+                || this.applyForm.domain_name==null
+                ||!this.ifCollegeDomainExist){
+                this.$message.error("请将信息填入完整方可进行下一步")
+                console.log("this.applyForm.school_name="+this.applyForm.school_name)
+                console.log("this.applyForm.unit_name="+this.applyForm.unit_name)
+                console.log("this.applyForm.domain_name="+this.applyForm.domain_name)
+                console.log("this.applyForm.ifCollegeDomainExist="+this.applyForm.ifCollegeDomainExist)
+                console.log("请将信息填入完整方可进行下一步")
+              }else {
+                if (this.active++ > 2) this.active = 0;
+                console.log(this.applyForm.school_name)
+                console.log("this.applyForm.ifCollegeDomainExist="+this.applyForm.ifCollegeDomainExist)
+              }*/
 
             },
             previous() {
