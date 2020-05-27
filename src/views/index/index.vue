@@ -118,10 +118,13 @@
       <div style="height: 100%;
       width:100%;display: flex;
       justify-content: space-between;margin: 0 20px;">
-        <div style="display: flex;align-items: center;width: 350px;flex-wrap: wrap;">
+        <div style="display: flex;align-items: center;width: 550px;flex-wrap: wrap;">
           <!--<div style="color: #eee;display: block">联系我们: 华南师范大学计算机学院232实验室</div>
           <div style="color: #eee;display: block">邮箱: help@scholat.com</div>-->
-          <div style="color: #eee;display: block"><a href="http://www.scholat.com/">© 2020-2022 SCHOLAT + LAB</a></div>
+          <div style="color: #eee;display: block">
+            <a href="http://www.scholat.com/" target="_blank">© 2020 SCHOLAT + LAB</a>&nbsp;&nbsp;
+            <a href="http://www.beian.miit.gov.cn" target="_blank">粤ICP备16019897号</a>
+          </div>
 
         </div>
         <div style="display: flex;align-items:center;height: 100%;margin-left: 16px">

@@ -52,7 +52,10 @@
       width:100%;display: flex;
       justify-content: space-between;margin: 0 20px;">
         <div style="display: flex;align-items: center;width: 350px;flex-wrap: wrap;">
-          <div style="color: #eee;display: block;font-family: initial;font-size: 14px"><a href="http://www.scholat.com/">© 2020-2022 SCHOLAT + LAB</a></div>
+          <div style="color: #eee;display: block;font-family: initial;font-size: 14px">
+            <a href="http://www.scholat.com/" target="_blank">© 2020 SCHOLAT + LAB</a>&nbsp;&nbsp;
+            <a href="http://www.beian.miit.gov.cn" target="_blank">粤ICP备16019897号</a>
+          </div>
         </div>
 
       </div>
