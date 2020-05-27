@@ -326,7 +326,7 @@
   .background2 {
     width: 100%;
     height: 100%;
-    background-color: #f1f2f6;
+    background-color: white;
     max-width: 1000px;
     text-align: center;
     margin: auto;
@@ -385,6 +385,7 @@
     background: transparent;
     top: 0;
     right: 0;
+    box-shadow:2px 2px 10px #909090;
   }
 
   .bar6 button {
@@ -423,9 +424,8 @@
   .top-container {
     width: 100%;
     height: 80px;
-    background: #f1f2f6;
     min-width: 980px;
-    background-color: #f1f2f6;
+    background-color: white;
     /*background: url('../../assets/img/home.png') no-repeat;*/
     /*background-size: cover;*/
   }
