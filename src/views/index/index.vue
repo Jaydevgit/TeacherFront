@@ -7,7 +7,8 @@
           <span class="nav_1_1" style="color: #595959;font-size: 22px;margin-left: 28px">SCHOLAT+ 学院师资信息管理平台</span>
         </div>
         <div class="nav_2">
-          <span style="color: #595959;font-size: 22px;">SCHOLAT+ 学院师资信息管理平台</span>
+          <div class="nav_2_1">SCHOLAT+</div>
+          <span class="nav_2_2" style=""> 学院师资信息管理平台</span>
         </div>
         <div class="nav-inner-login">
           <!--<a href="https://www.yuque.com/vd7ii9/dvybyk/na3nsf" class="title" style="min-width: 80px">帮助文档</a>-->
@@ -59,12 +60,26 @@
           </div>
         </div>
       </div>
+      <div class="page2_sub">
+        <div >师资队伍是高校发展的第一资源。学院官网“师资队伍”栏目是展现学院实力重要窗口，对学院发展和招生就业等都有极其重要的作用。
+          采集教师科研信息也是学院一项经常性、重复性和繁琐性工作。
+        </div>
+        <div style="margin-top: 10px">
+          但是，传统“师资队伍”网页是静态信息，编辑困难，时效性差；传统的科研信息采集方法也通常给老师和管理人员带来诸多困扰，
+          而且难以保障准确性和及时性。
+        </div>
+      </div>
       <div class="page3">
         <div class="page3_left1" >
           SCHOLAT+师资平台主要提供学院官网“师资队伍”主页定制，学院教师科研信息采集工具（将在第二期完成）。
           平台具有<span style="color: #1890FF;">权威性</span>、<span style="color: #1890FF;">时效性</span>、
           <span style="color: #1890FF;">安全性</span>、<span style="color: #1890FF;">易用性</span>和<span style="color: #1890FF;">可扩展性</span>等主要优点。
         </div>
+      </div>
+      <div class="page3_sub">
+        SCHOLAT+师资平台主要提供学院官网“师资队伍”主页定制，学院教师科研信息采集工具（将在第二期完成）。
+        平台具有<span style="color: #1890FF;">权威性</span>、<span style="color: #1890FF;">时效性</span>、
+        <span style="color: #1890FF;">安全性</span>、<span style="color: #1890FF;">易用性</span>和<span style="color: #1890FF;">可扩展性</span>等主要优点。
       </div>
       <div class="page4">
         <div class="page4_title">
@@ -113,6 +128,54 @@
             <div><img :src="'http://www.scholat.com/images/uni_logo/广东药科大学.png'" alt=""></div>
             <div class="school_name">广东药科大学</div>
             <div class="unit">医药信息工程学院</div>
+            </a>
+          </div>
+        </div>
+        <div class="page4_school_sub">
+          <div class="school">
+            <a href="http://faculty.scholat.com/homepage/scnu">
+              <div ><img :src="'http://www.scholat.com/images/uni_logo/华南师范大学.png'" alt="" style="width: 96px"></div>
+              <div class="school_name" >华南师范大学</div>
+              <div class="unit">计算机学院</div>
+            </a>
+          </div>
+          <div class="school">
+            <a href="http://faculty.scholat.com/homepage/gziec">
+              <div><img :src="'http://www.scholat.com/images/uni_logo/广州涉外经济职业技术学院.png'" alt="" style="width: 96px"></div>
+              <div class="school_name">广州涉外经济职业技术学院</div>
+              <div class="unit">华文与国际教育学院</div>
+            </a>
+          </div>
+        </div>
+        <div class="page4_school_sub" >
+          <div class="school">
+            <a href="http://faculty.scholat.com/homepage/scnu">
+              <div ><img :src="'http://www.scholat.com/images/uni_logo/广东技术师范大学.png'" alt="" style="width: 96px"></div>
+              <div class="school_name" >广东技术师范大学</div>
+              <div class="unit">电子与信息学院</div>
+            </a>
+          </div>
+          <div class="school">
+            <a href="http://faculty.scholat.com/homepage/gziec">
+              <div><img :src="'http://www.scholat.com/images/uni_logo/广东科学技术职业学院.png'" alt="" style="width: 96px"></div>
+              <div class="school_name">广东科学技术职业学院</div>
+              <div class="unit">计算机工程技术学院</div>
+            </a>
+          </div>
+        </div>
+        <div class="page4_school_sub" >
+          <div class="school">
+            <a href="http://faculty.scholat.com/homepage/scnu">
+              <div ><img :src="'http://www.scholat.com/images/uni_logo/华南师范大学.png'" alt="" style="width: 96px"></div>
+              <div class="school_name" >华南师范大学</div>
+              <div class="unit">国际文化学院</div>
+            </a>
+          </div>
+          <div class="school">
+            <a href="http://faculty.scholat.com/homepage/gziec">
+              <div><img :src="'http://www.scholat.com/images/uni_logo/广东药科大学.png'" alt="" style="width: 96px"></div>
+              <div class="school_name">广东药科大学</div>
+              <div class="unit">医药信息工程学院</div>
             </a>
           </div>
         </div>
@@ -225,6 +288,7 @@
     width: 100%;
     .nav_2{
       display: none;
+      color: #595959;font-size: 22px;
     }
   }
 
@@ -412,13 +476,29 @@
   .title:hover{
    border-bottom:2px solid #fff;
   }
+  .page3_sub{
+    display: none;
+  }
+  .page2_sub{
+    display: none;
+  }
+  .page4_school_sub{
+    display: none;
+  }
 
   @media screen and (min-width: 1400px) {
+    .page3_sub {
+      display: none;
+    }
+    .page2_sub{
+      display: none;
+    }
     .nav-inner{
       margin: 0 180px;
 
     }
     .page1{
+      text-align: center;
       width: 1440px;
       height: 790px;
       background-image: url("../../assets/index/index_bg_max1.png");
@@ -428,19 +508,45 @@
     .page3{
       margin: 0 auto;
     }
+    .page4_school_sub{
+      display: none;
+    }
 
   }
   @media screen and (min-width: 1024px)and (max-width: 1400px){
+    .page3_sub{
+      display: none;
+    }
+    .page2_sub{
+        display: none;
+    }
+    .page1{
+      text-align: center;
+    }
+
     .page3{
+      padding-left: 20px;
       margin: 0 auto;
     }
+    .page4_school_sub{
+      display: none;
+    }
   }
-  @media only screen and (min-width: 768px) and (max-width: 1024px){
+  @media only screen and (min-width: 768px) and (max-width: 1023px){
+    .page3_sub{
+      display: none;
+    }
+    .page2_sub{
+      display: none;
+    }
     .nav_1_1{
       display: none;
     }
     .nav_2{
       display: inline !important;
+      .nav_2_1{
+        float: left;
+      }
   }
     .nav-inner-login{
       display: none;
@@ -497,5 +603,140 @@
         font-size: 18px;
       }
     }
+    .page4_school_sub{
+      display: none;
+    }
+  }
+  @media only screen and (max-width: 767px){
+    .nav_1{
+      height: 50px;
+      .nav_1_1{
+        display: none;
+      }
+    }
+    .nav_2{
+      margin-right: 10px;
+      font-size: 18px!important;
+      line-height: 23px !important;
+      display: inline !important;
+      text-align: center;
+    }
+    .nav-inner-login{
+      display: none;
+    }
+    .nav-inner-login2{
+      margin-right: 20px;
+      display: flex;
+    }
+    .page1{
+      margin: 0 auto;
+      width: 320px;
+      height: 442px;
+      background-image: url("../../assets/index/index_bgMin1.png");
+      .title_1{
+        padding: 40px 20px;
+        font-size: 16px;
+        line-height: 20px;
+        letter-spacing: 0.8px;
+      }
+      .title_2{
+        transform: translateY(-40px);
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 18px;
+        text-align: center;
+        letter-spacing: 1.4px;
+      }
+    }
+    .button_1 {
+      transform: translateY(-40px);
+    }
+    .page2 {
+      width: 320px;
+      height: 200px;
+      margin:0 auto;
+      background-image: url("../../assets/index/index_bgMin2.png");
+      background-repeat: no-repeat;
+      background-position: center;
+      .page2_left1{
+       display: none;
+
+      }
+      .page2_left2{
+        display: none;
+      }
+    }
+    .page2_sub{
+      display: inherit;
+      padding: 0 20px;
+      text-align: left;
+      color: #464646;
+      font-family: "PingFangSC-Medium";
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 18px;
+      letter-spacing: 1.4px;
+    }
+    .page3{
+      margin: 0 auto;
+      width: 320px;
+      height: 200px;
+      background-image: url("../../assets/index/index_bgMin3.png");
+      background-repeat: no-repeat;
+      background-position: center;
+      .page3_left1{
+        display: none;
+      }
+    }
+    .page3_sub{
+      display: inherit;
+      padding: 0 20px;
+      text-align: left;
+      color: #464646;
+      font-family: "PingFangSC-Medium";
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 18px;
+      letter-spacing: 1.4px;
+    }
+    .page4{
+
+      .page4_title{
+        font-size: 14px;
+        line-height: 18px;
+        letter-spacing: 1.4px;
+      }
+      .more_school{
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 18px;
+        text-align: center;
+        letter-spacing: 1.4px;
+      }
+    }
+    footer{
+      .Info{
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 18px;
+        text-align: center;
+        letter-spacing: 1.4px;
+      }
+      img{
+        height:35px !important;
+        transform: translateY(-10px);
+      }
+    }
+    .page4_school_sub{
+      margin-top: 20px;
+      display: flex;
+      .school{
+        flex: 1;
+      }
+    }
+    .page4_school{
+      display: none!important;
+    }
+
   }
 </style>
