@@ -2,9 +2,12 @@
   <div style="height: 100vh;">
     <nav>
       <div class="nav-inner">
-        <div style="height: 60px;display: flex;align-items: center; margin: 0 20px;">
+        <div class="nav_1" style="height: 60px;display: flex;align-items: center; margin: 0 20px;">
           <img src="../../assets/defaultLogo.png" height="100%">
-          <span style="color: #595959;font-size: 22px;margin-left: 28px">SCHOLAT+ 学院师资信息管理平台</span>
+          <span class="nav_1_1" style="color: #595959;font-size: 22px;margin-left: 28px">SCHOLAT+ 学院师资信息管理平台</span>
+        </div>
+        <div class="nav_2">
+          <span style="color: #595959;font-size: 22px;">SCHOLAT+ 学院师资信息管理平台</span>
         </div>
         <div class="nav-inner-login">
           <!--<a href="https://www.yuque.com/vd7ii9/dvybyk/na3nsf" class="title" style="min-width: 80px">帮助文档</a>-->
@@ -13,6 +16,25 @@
           <a href="http://www.scholat.com/"  class="title" style="flex: 1;min-width: 60px;">
             学者网
           </a>
+        </div>
+        <div class="nav-inner-login2">
+          <el-dropdown>
+            <img src="../../assets/index/crumb.png" style="height: 40px">
+            <el-dropdown-menu slot="dropdown">
+              <el-dropdown-item>
+                <a href="/login" class="title2" >登录</a>
+              </el-dropdown-item>
+              <el-dropdown-item>
+                <a href="/unitApply" class="title2" >注册</a>
+              </el-dropdown-item>
+              <el-dropdown-item>
+                <a href="http://www.scholat.com/"  class="title2" >
+                  学者网
+                </a>
+              </el-dropdown-item>
+            </el-dropdown-menu>
+          </el-dropdown>
+          <!--<a href="https://www.yuque.com/vd7ii9/dvybyk/na3nsf" class="title" style="min-width: 80px">帮助文档</a>-->
         </div>
       </div>
     </nav>
@@ -28,7 +50,7 @@
       <div class="page2">
         <div class="page2_left1"></div>
         <div class="page2_left2">
-          <div style="padding-top:50px;">师资队伍是高校发展的第一资源。学院官网“师资队伍”栏目是展现学院实力重要窗口，对学院发展和招生就业等都有极其重要的作用。
+          <div class="page2_left2_1">师资队伍是高校发展的第一资源。学院官网“师资队伍”栏目是展现学院实力重要窗口，对学院发展和招生就业等都有极其重要的作用。
             采集教师科研信息也是学院一项经常性、重复性和繁琐性工作。
           </div>
           <div style="padding-top:30px;">
@@ -38,7 +60,7 @@
         </div>
       </div>
       <div class="page3">
-        <div class="page3_left1">
+        <div class="page3_left1" >
           SCHOLAT+师资平台主要提供学院官网“师资队伍”主页定制，学院教师科研信息采集工具（将在第二期完成）。
           平台具有<span style="color: #1890FF;">权威性</span>、<span style="color: #1890FF;">时效性</span>、
           <span style="color: #1890FF;">安全性</span>、<span style="color: #1890FF;">易用性</span>和<span style="color: #1890FF;">可扩展性</span>等主要优点。
@@ -201,12 +223,17 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
-
+    .nav_2{
+      display: none;
+    }
   }
 
   .nav-inner-login {
     display: flex;
     align-content: center;
+  }
+  .nav-inner-login2{
+    display: none;
   }
 
   .shuffling-img {
@@ -270,6 +297,7 @@
   }
   .page2{
     margin: 100px auto;
+    height: 360px;
     width: 1024px;
     .page2_left1{
      float: left;
@@ -290,26 +318,28 @@
       float: left;
       height: 360px;
       width:60%;
+      .page2_left2_1{
+        padding-top:50px;
+      }
     }
   }
   .page3{
-    margin: 100px auto;
+    margin: 60px auto;
     width: 1024px;
     background-image: url("../../assets/index/index_bg3.png");
     background-repeat:no-repeat;
     height:400px;
       text-align: left;
-      padding-left: 20px;
       color: #464646;
       font-family: "PingFangSC-Medium";
       font-size: 24px;
       font-weight: 400;
       line-height: 30px;
       letter-spacing: 2.4px;
-      float: left;
+    /*  float: left;*/
     .page3_left1{
-      width: 60%;
-    }
+      width: 620px;
+     }
 
   }
   .page4{
@@ -360,7 +390,16 @@
     }
   }
   .title{
-
+    color: #595959;
+    font-size: 18px;
+    letter-spacing: 2px;
+    cursor: pointer;
+    margin-right: 24px;margin-top: 10px;
+    height: 30px;
+    display: table-cell;
+    vertical-align:middle
+  }
+  .title2{
     color: #595959;
     font-size: 18px;
     letter-spacing: 2px;
@@ -377,6 +416,7 @@
   @media screen and (min-width: 1400px) {
     .nav-inner{
       margin: 0 180px;
+
     }
     .page1{
       width: 1440px;
@@ -385,12 +425,77 @@
       background-repeat:no-repeat;
       background-position:center;
     }
+    .page3{
+      margin: 0 auto;
+    }
+
+  }
+  @media screen and (min-width: 1024px)and (max-width: 1400px){
+    .page3{
+      margin: 0 auto;
+    }
+  }
+  @media only screen and (min-width: 768px) and (max-width: 1024px){
+    .nav_1_1{
+      display: none;
+    }
+    .nav_2{
+      display: inline !important;
+  }
+    .nav-inner-login{
+      display: none;
+    }
+    .nav-inner-login2{
+      margin-right: 20px;
+      display: flex;
+    }
+    .title_1{
+      font-size: 24px;
+      font-weight: 400;
+      line-height: 30px;
+      letter-spacing: 1.2px;
+    }
+    .title_2{
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 23px;
+      text-align: center;
+      letter-spacing: 1.8px;
+    }
+    .page1{
+      margin: 0 auto;
+      width: 768px;
+      height: 678px;
+      background-image: url("../../assets/index/index_bgPad1.png");
+      background-repeat:no-repeat;
+      background-position:center;
+    }
     .page2{
-      margin: 60px  180px 0 180px;
+      width: 768px;
+      margin: 100px auto;
+      .page2_left1{
+        background-image: url("../../assets/index/index_bgPad2.png");
+      }
+      .page2_left2{
+        .page2_left2_1{
+          padding-top:0;
+        }
+      }
     }
     .page3{
-      margin-left:180px;
-
+      width: 768px;
+      margin: 60px auto;
+      background-image: url("../../assets/index/index_bgPad3.png");
+      .page3_left1{
+        padding-left: 20px;
+        width: 470px;
+      }
+    }
+    .page4{
+      margin-top: -100px;
+      .page4_school{
+        font-size: 18px;
+      }
     }
   }
 </style>
