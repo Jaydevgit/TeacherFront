@@ -88,9 +88,9 @@
       <div v-else style="display: flex;align-items: center;height: 100%;width: 100%" @click="goToCollege">
         <!--如果有背景图，则显示学院背景图片+文字-->
         <template v-if="unit.backgroundUrl">
-          <div @click="goToCollege" style="cursor: pointer;height: 100%">
+          <div @click="goToCollege" style="cursor: pointer;height: 100%;display: flex;align-items: center">
             <img :src="'http://47.106.132.95:2333/images/background/' + unit.backgroundUrl"
-                 style="height: 100%"
+                 style="height: 90%;vertical-align: center"
                  :onerror="defaultBack" title="点击访问该学院"/>
           </div>
           <span style="font-size: 26px" class="font-jsgrzy">
