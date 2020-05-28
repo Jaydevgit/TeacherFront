@@ -2,138 +2,132 @@
   <div style="height: 100vh;">
     <nav>
       <div class="nav-inner">
-        <div style="height: 60px;display: flex;align-items: center;">
-          <img src="../../assets/img/logo-white.png" height="100%">
-          <span style="font-size: 24px;
-    font-family: initial;
-    font-weight: bold;
-    letter-spacing: 9px;
-    margin-left: 21px;
-    color: #fff;">SCHOLAT+</span>
-          <span style="font-size: 22px;
-    font-weight: bold;
-    color: rgb(123, 186, 186);">学院师资信息管理平台</span>
+        <div style="height: 60px;display: flex;align-items: center; margin: 0 20px;">
+          <img src="../../assets/defaultLogo.png" height="100%">
+          <span style="color: #595959;font-size: 22px;margin-left: 28px">SCHOLAT+ 学院师资信息管理平台</span>
         </div>
         <div class="nav-inner-login">
-          <a href="/index" class="title" style="flex: 1;min-width: 40px">首页</a>
           <!--<a href="https://www.yuque.com/vd7ii9/dvybyk/na3nsf" class="title" style="min-width: 80px">帮助文档</a>-->
          <a href="/login" class="title" style="flex: 1;min-width: 40px">登录</a>
          <a href="/unitApply" class="title" style="flex: 1;min-width: 40px">注册</a>
-          <a href="http://www.scholat.com/"  class="title" style="flex: 1;min-width: 60px">
+          <a href="http://www.scholat.com/"  class="title" style="flex: 1;min-width: 60px;">
             学者网
           </a>
         </div>
       </div>
     </nav>
-    <article style="display: flex;
-    align-items: center;
-    justify-content: center;">
-      <el-row style="height: calc(100vh - 160px);">
-        <el-col :span="14" class="main-inner">
-          <div class="main-inner-left">
-            <div class="shuffling-img">
-              <div id="zouma" style="height: 77%;width:100%;display: flex;align-items: center;">
-                <el-carousel indicator-position="outside"
-                              style="width: 100%;height:100%;">
-                  <el-carousel-item v-for="item in 3" :key="item">
-                    <div style="height: 100%;width: 100%;display: flex;justify-content: center">
-                      <el-card>
-                        <img :src="'http://47.106.132.95:2333/images/index/index-show-'+item+'.jpg'"
-                             style="width: 100%;display: inline-block;"
-                             lazy>
-                      </el-card>
-                    </div>
-                  </el-carousel-item>
-                </el-carousel>
-              </div>
-
-            </div>
-          </div>
-        </el-col>
-        <el-col :span="10" class="main-inner">
-          <div class="main-inner-right">
-            <div class="intro">
-              <div style="height: 100%">
-                <span style="font-size: 28px;
-    font-weight: bold;
-    color: rgb(57, 119, 119);">
-                  SCHOLAT+师资平台
-                </span>
-                <!--<div style="display: inline-block;margin-top: 12px;">
-                  &lt;!&ndash;                  <span class="font-1" style="display: block">版本: 1.0-beta-1</span>&ndash;&gt;
-                  <span class="font-1" style="display: block">发布日期: 2020年01月12日</span>
-                </div>-->
-                <!--<div class="font-1" style="margin: 7px 50px 42px 0;
-                text-indent: 40px;
-                line-height: 34px;
-                height: 40%;
-                text-overflow: ellipsis;
-                overflow: auto;">
-                  学院师资栏目系统是
-                  <a href="http://www.scholat.com" style="color: orange">学者网</a>
-                  推出的一个学院教师信息管理的通用平台，
-                  该平台针对目前学院师资队伍模块面临着教师数据采集难、教师信息
-                  更新不及时、教师人员管理不方便、教师信息展示不全面和直观、教
-                  师推荐机制不佳，并且学院师资栏目定制不方便，自行搭建师资栏目
-                  管理需要一定成本的七大问题提出了一站式解决方案。
-                </div>-->
-                <div class="font-1" style="margin: 7px 50px 42px 0;
-                text-indent: 40px;
-                line-height: 34px;
-                height: 40%;
-                text-overflow: ellipsis;
-                overflow: auto;">
-<!--                  <br>-->
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;师资队伍是高校发展的第一资源。学院官网“师资队伍”栏目是展现学院实力重要窗口，对学院发展和招生就业等都有极其重要的作用。采集教师科研信息也是学院一项经常性、重复性和繁琐性工作。但是，传统“师资队伍”网页是静态信息，编辑困难，时效性差；传统的科研信息采集方法也通常给老师和管理人员带来诸多困扰，而且难以保障准确性和及时性。<br>
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SCHOLAT+师资平台主要提供学院官网“师资队伍”主页定制，学院教师科研信息采集工具（将在第二期完成）。平台具有权威性、时效性、安全性、易用性和可扩展性等主要优点。<br>
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;权威性：平台发布的教师信息由学院管理部门管理，通过学院官网师资队伍栏目链接定制主页，属于学院官网组成部分。<br>
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;时效性：平台管理员能实时“感知”教师学者网个人空间信息的更新，从而较准确地编辑教师的研究方向、学术简介及个人照片。<br>
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;安全性：平台管理的教师信息是非涉密学术性信息，而且是学院私有信息平台，与学者网教师空间只有数据交互，具有隔离性。<br>
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;易用性：教师只需要登录自己的学者空间做好日程学术管理。学院管理员登录平台管理和采集学术信息，无需“打扰”教师。<br>
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;可扩展性：进而可以建立学校的教师主页系统和教师数据中心，基于学者网社交功能建立教师学术交流平台等。<br>
-                </div>
-                <div>
-                  <el-button style="background-color: #397777">
-                    <a href="/unitApply" style="color: #fff">
-                      立即申请使用
-                    </a>
-                  </el-button>
-                  <div class="font-1" style="margin-top: 20px;display: flex">
-                    <div style="width: 80px">示例:</div>
-                    <div>
-                      <a style="color: orange;cursor: pointer" href="/homepage/scnu">华南师范大学·计算机学院</a><br>
-                      <a style="color: orange;cursor: pointer" href="/homepage/gziec">广州涉外经济职业技术学院·华文与国际教育学院</a><br>
-                      <a style="color: orange;cursor: pointer" href="/homepage/dxxy">广东技术师范大学·电子与信息学院</a><br>
-                      <a style="color: orange;cursor: pointer" href="/homepage/sic">华南师范大学·国际文化学院</a>
-                    </div>
-
-                  </div>
-                </div>
-
-              </div>
-            </div>
-          </div>
-        </el-col>
-      </el-row>
-    </article>
-    <footer style="display: flex;justify-content: center;align-items: center">
-      <div style="height: 100%;
-      width:100%;display: flex;
-      justify-content: space-between;margin: 0 20px;">
-        <div style="display: flex;align-items: center;width: 550px;flex-wrap: wrap;">
-          <!--<div style="color: #eee;display: block">联系我们: 华南师范大学计算机学院232实验室</div>
-          <div style="color: #eee;display: block">邮箱: help@scholat.com</div>-->
-          <div style="color: #eee;display: block">
-            <a href="http://www.scholat.com/" target="_blank">© 2020 SCHOLAT + LAB</a>&nbsp;&nbsp;
-            <a href="http://www.beian.miit.gov.cn" target="_blank">粤ICP备16019897号</a>
-          </div>
-
+    <article style="text-align: center">
+      <div class="page1">
+        <div class="title_1">SCHOLAT+师资，现代化的学院师资管理展示平台</div>
+        <div class="title_2">
+          <div>面向学院提供高效的师资管理，现代化的师资展示平台。</div>
+          <div>助力学院师资管理展示现代化。</div>
         </div>
-        <div style="display: flex;align-items:center;height: 100%;margin-left: 16px">
+        <a href="/unitApply"><div class="button_1" ><div class="b_name">立即申请使用</div></div></a>
+      </div>
+      <div class="page2">
+        <div class="page2_left1"></div>
+        <div class="page2_left2">
+          <div style="padding-top:50px;">师资队伍是高校发展的第一资源。学院官网“师资队伍”栏目是展现学院实力重要窗口，对学院发展和招生就业等都有极其重要的作用。
+            采集教师科研信息也是学院一项经常性、重复性和繁琐性工作。
+          </div>
+          <div style="padding-top:30px;">
+            但是，传统“师资队伍”网页是静态信息，编辑困难，时效性差；传统的科研信息采集方法也通常给老师和管理人员带来诸多困扰，
+            而且难以保障准确性和及时性。
+          </div>
+        </div>
+      </div>
+      <div class="page3">
+        <div class="page3_left1">
+          SCHOLAT+师资平台主要提供学院官网“师资队伍”主页定制，学院教师科研信息采集工具（将在第二期完成）。
+          平台具有<span style="color: #1890FF;">权威性</span>、<span style="color: #1890FF;">时效性</span>、
+          <span style="color: #1890FF;">安全性</span>、<span style="color: #1890FF;">易用性</span>和<span style="color: #1890FF;">可扩展性</span>等主要优点。
+        </div>
+      </div>
+      <div class="page4">
+        <div class="page4_title">
+          他们都在使用
+        </div>
+        <div class="page4_school">
+          <div class="school">
+            <a href="http://faculty.scholat.com/homepage/scnu">
+            <div ><img :src="'http://www.scholat.com/images/uni_logo/华南师范大学.png'" alt=""></div>
+            <div class="school_name" >华南师范大学</div>
+            <div class="unit">计算机学院</div>
+            </a>
+          </div>
+          <div class="school">
+            <a href="http://faculty.scholat.com/homepage/gziec">
+            <div><img :src="'http://www.scholat.com/images/uni_logo/广州涉外经济职业技术学院.png'" alt=""></div>
+            <div class="school_name">广州涉外经济职业技术学院</div>
+            <div class="unit">华文与国际教育学院</div>
+            </a>
+          </div>
+          <div class="school">
+            <a href="http://faculty.scholat.com/homepage/dxxy">
+            <div><img :src="'http://www.scholat.com/images/uni_logo/广东技术师范大学.png'" alt=""></div>
+            <div class="school_name">广东技术师范大学</div>
+            <div class="unit">电子与信息学院 </div>
+            </a>
+          </div>
+        </div>
+        <div class="page4_school">
+          <div class="school">
+            <a href="http://faculty.scholat.com/homepage/sic">
+            <div><img :src="'http://www.scholat.com/images/uni_logo/华南师范大学.png'" alt=""></div>
+            <div class="school_name">华南师范大学</div>
+            <div class="unit">国际文化学院 </div>
+            </a>
+          </div>
+          <div class="school">
+            <a href="http://faculty.scholat.com/homepage/gditjsj">
+            <div><img :src="'http://www.scholat.com/images/uni_logo/广东科学技术职业学院.png'" alt=""></div>
+            <div class="school_name">广东科学技术职业学院</div>
+            <div class="unit">计算机工程技术学院</div>
+            </a>
+          </div>
+          <div class="school">
+            <a href="http://faculty.scholat.com/homepage/gdpuxg">
+            <div><img :src="'http://www.scholat.com/images/uni_logo/广东药科大学.png'" alt=""></div>
+            <div class="school_name">广东药科大学</div>
+            <div class="unit">医药信息工程学院</div>
+            </a>
+          </div>
+        </div>
+        <div class="more_school">查看更多合作学院></div>
+      </div>
+
+    </article>
+    <footer style="">
+      <div class="Info" style="margin-top: 10px">
+        <div  style=" display:table-cell;transform: translateY(-30px)">
+          <div >
+            免责声明 | 关于学者网 | 联系我们
+          </div>
+          <div>© 2020-2022 SCHOLAT+LAB</div>
+        </div>
+        <div style=" display:table-cell;">
           <img src="http://47.106.132.95:2333/images/index/QR.png" style="height: 50px">
         </div>
+        </div>
 
-      </div>
+<!--      <div style="height: 100%;-->
+<!--      width:100%;display: flex;-->
+<!--      justify-content: space-between;margin: 0 20px;">-->
+<!--        <div style="display: flex;align-items: center;width: 550px;flex-wrap: wrap;">-->
+<!--          &lt;!&ndash;<div style="color: #eee;display: block">联系我们: 华南师范大学计算机学院232实验室</div>-->
+<!--          <div style="color: #eee;display: block">邮箱: help@scholat.com</div>&ndash;&gt;-->
+<!--          <div style="color: #eee;display: block">-->
+<!--            <a href="http://www.scholat.com/" target="_blank">© 2020 SCHOLAT + LAB</a>&nbsp;&nbsp;-->
+<!--            <a href="http://www.beian.miit.gov.cn" target="_blank">粤ICP备16019897号</a>-->
+<!--          </div>-->
+
+<!--        </div>-->
+<!--        <div style="display: flex;align-items:center;height: 100%;margin-left: 16px">-->
+<!--          <img src="http://47.106.132.95:2333/images/index/QR.png" style="height: 50px">-->
+<!--        </div>-->
+
+<!--      </div>-->
     </footer>
   </div>
 </template>
@@ -157,7 +151,6 @@
   }
 
   nav {
-    background-color: #555555;
     height: 80px;
     width: 100%;
     display: flex;
@@ -165,11 +158,24 @@
   }
 
   footer {
-    background-color: #555555;
+
+    float: left;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    text-align: center;
     height: 80px;
     width: 100%;
-    position: absolute;
     bottom: 0;
+    .Info{
+      display:inline;
+      color: #464646;
+      font-family: "PingFangSC-Regular";
+      font-size: 22px;
+      font-weight: 400;
+      line-height: 28px;
+      text-align: center;
+      letter-spacing: 2.2px;
+    }
   }
 
   .main-inner-left {
@@ -195,7 +201,7 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    margin: 0 20px;
+
   }
 
   .nav-inner-login {
@@ -222,12 +228,140 @@
   }
 
   article {
-    background: url("../../assets/img/bg2.jpg") no-repeat;
     background-size: 100% 100%;
+  }
+  .page1{
+    margin: 0 auto;
+    width: 1024px;
+    height: 720px;
+    background-image: url("../../assets/index/index_bg1.png");
+    background-repeat:no-repeat;
+    background-position:center;
+  }
+  .title_1{
+    color: #000000;
+    font-size: 36px;
+   padding-top: 100px;
+    line-height: 46px;
+    letter-spacing:1.8px;
+  }
+  .title_2{
+    margin-top: 30px;
+    font-size:24px;
+    line-height: 30px;
+    letter-spacing:2.4px;
+  }
+  .button_1{
+    cursor: pointer;
+    margin:30px auto;
+      width: 116px;
+      height: 32px;
+      border-radius: 2px;
+      background: #1890ff;
+    .b_name{
+      color: #ffffff;
+      font-family: "PingFangSC-Regular";
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 22px;
+      text-align: center;
+      padding: 5px 16px;
+    }
+  }
+  .page2{
+    margin: 100px auto;
+    width: 1024px;
+    .page2_left1{
+     float: left;
+      height: 360px;
+      width: 40%;
+      background-image: url("../../assets/index/index_bg2.png");
+      background-repeat:no-repeat;
+    }
+    .page2_left2{
+      padding-right: 20px;
+      text-align: left;
+      color: #464646;
+      font-family: "PingFangSC-Medium";
+      font-size: 24px;
+      font-weight: 400;
+      line-height: 30px;
+      letter-spacing: 2.4px;
+      float: left;
+      height: 360px;
+      width:60%;
+    }
+  }
+  .page3{
+    margin: 100px auto;
+    width: 1024px;
+    background-image: url("../../assets/index/index_bg3.png");
+    background-repeat:no-repeat;
+    height:400px;
+      text-align: left;
+      padding-left: 20px;
+      color: #464646;
+      font-family: "PingFangSC-Medium";
+      font-size: 24px;
+      font-weight: 400;
+      line-height: 30px;
+      letter-spacing: 2.4px;
+      float: left;
+    .page3_left1{
+      width: 60%;
+    }
+
+  }
+  .page4{
+    width: 100%;
+    float: left;
+    margin-top: 40px;
+    .page4_title{
+      color: #464646;
+      font-family: "PingFangSC-Medium";
+      font-size: 24px;
+      font-weight: 400;
+      line-height: 30px;
+      text-align: center;
+      letter-spacing: 2.4px;
+    }
+    .page4_school{
+      margin-top: 40px;
+      display: flex;
+      color: #6d7278;
+      font-family: "PingFangSC-Medium";
+      font-size: 24px;
+      font-weight: 400;
+      line-height: 30px;
+      text-align: center;
+      letter-spacing: 2.4px;
+      .school{
+        flex: 1;
+        img{
+          cursor: pointer;
+        }
+        .unit{
+          cursor: pointer;
+        }
+        .school_name{
+          cursor: pointer;
+        }
+      }
+    }
+    .more_school{
+      margin-top: 40px;
+      color: #3f7ab1;
+      font-family: "PingFangSC-Medium";
+      font-size: 24px;
+      font-weight: 400;
+      line-height: 30px;
+      text-align: center;
+      letter-spacing: 2.4px;
+    }
   }
   .title{
 
-    color: #fff;
+    color: #595959;
     font-size: 18px;
     letter-spacing: 2px;
     cursor: pointer;
@@ -238,5 +372,25 @@
   }
   .title:hover{
    border-bottom:2px solid #fff;
+  }
+
+  @media screen and (min-width: 1400px) {
+    .nav-inner{
+      margin: 0 180px;
+    }
+    .page1{
+      width: 1440px;
+      height: 790px;
+      background-image: url("../../assets/index/index_bg_max1.png");
+      background-repeat:no-repeat;
+      background-position:center;
+    }
+    .page2{
+      margin: 60px  180px 0 180px;
+    }
+    .page3{
+      margin-left:180px;
+
+    }
   }
 </style>
