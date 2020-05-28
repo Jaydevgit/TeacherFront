@@ -89,7 +89,7 @@
                 </div>
 
 
-           <!--                   <div class="show-persona" v-if="teacherProfile.scholat_username">
+                             <!-- <div class="show-persona" v-if="teacherProfile.scholat_username">
                               <a @click="routeTo()">查看学者画像</a>
                             </div>-->
               </div>
