@@ -99,10 +99,12 @@
                     </a>
                   </el-button>
                   <div class="font-1" style="margin-top: 20px;display: flex">
-                    <div style="width: 60px">示例:</div>
+                    <div style="width: 80px">示例:</div>
                     <div>
                       <a style="color: orange;cursor: pointer" href="/homepage/scnu">华南师范大学·计算机学院</a><br>
-                      <a style="color: orange;cursor: pointer" href="/homepage/gziec">广州涉外经济职业技术学院·华文与国际教育学院</a>
+                      <a style="color: orange;cursor: pointer" href="/homepage/gziec">广州涉外经济职业技术学院·华文与国际教育学院</a><br>
+                      <a style="color: orange;cursor: pointer" href="/homepage/dxxy">广东技术师范大学·电子与信息学院</a><br>
+                      <a style="color: orange;cursor: pointer" href="/homepage/sic">华南师范大学·国际文化学院</a>
                     </div>
 
                   </div>
