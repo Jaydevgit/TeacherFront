@@ -345,7 +345,7 @@
   .button_1{
     cursor: pointer;
     margin:30px auto;
-      width: 116px;
+      width: 126px;
       height: 32px;
       border-radius: 2px;
       background: #1890ff;
@@ -424,7 +424,7 @@
       display: flex;
       color: #6d7278;
       font-family: "PingFangSC-Medium";
-      font-size: 24px;
+      font-size: 20px;
       font-weight: 400;
       line-height: 30px;
       text-align: center;
@@ -432,6 +432,7 @@
       .school{
         flex: 1;
         img{
+          width: 110px;
           cursor: pointer;
         }
         .unit{
@@ -601,6 +602,11 @@
       margin-top: -100px;
       .page4_school{
         font-size: 18px;
+        .school{
+          img{
+            width: 100px;
+          }
+        }
       }
     }
     .page4_school_sub{
@@ -730,6 +736,7 @@
     .page4_school_sub{
       margin-top: 20px;
       display: flex;
+      font-family: "PingFangSC-Medium";
       .school{
         flex: 1;
       }
