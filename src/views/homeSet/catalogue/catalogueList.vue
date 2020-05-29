@@ -1,5 +1,5 @@
 <template>
-  <div class="container" style="padding-top: 30px;min-height: calc(100vh - 50px);height: 100%;display:flex;align-items: center;">
+  <div class="container" style="padding: 20px;min-height: calc(100vh - 50px);height: 100%;display:flex;align-items: center;">
 <!--    <div style="clear: both;width: 480px;">-->
 <!--    </div>-->
     <!--以下注释的要求在帮助文件内提供-->
@@ -24,7 +24,7 @@
       </el-carousel>
     </div>-->
     <div style="min-height: 600px;width: 700px;display: inline-block;margin-bottom: 40px">
-      <el-card class="box-card" style="width: 600px;float: left;margin-left: 40px">
+      <el-card class="box-card" style="width: 600px;float: left;">
         <div style=" height: 50px;text-align: center;margin-top: 40px">
           <el-button type="primary"  style=""
                      @click="showAdd">添加主栏目

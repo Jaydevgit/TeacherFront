@@ -172,7 +172,7 @@
 <style rel="stylesheet/scss" lang="scss" scoped>
 .teacherSet{
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
-  margin: 50px 50px 50px 50px;
+  margin: 20px;
   padding: 50px 50px 50px 50px;
 }
 </style>

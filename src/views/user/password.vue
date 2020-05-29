@@ -1,7 +1,7 @@
 <template>
   <div>
       <el-row>
-        <el-col :span="12"><div class="password"> <div style="font-family: 'Helvetica Neue';font-size: 20px;"><span>基本信息</span></div>
+        <el-col :span="11"><div class="password"> <div style="font-family: 'Helvetica Neue';font-size: 20px;"><span>基本信息</span></div>
           <el-form :model="ruleForm1" status-icon :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
             <!--        <el-form-item label="原始密码" prop="passOld">-->
             <!--          <el-input type="password" v-model="ruleForm.passOld" autocomplete="off"></el-input>-->
@@ -21,8 +21,8 @@
           </el-form>
         </div>
         </el-col>
-        <el-col :span="12">
-          <div class="password"> <div style="font-family: 'Helvetica Neue';font-size: 20px;"><span>密码修改</span></div>
+        <el-col :span="11" >
+          <div class="password" > <div style="font-family: 'Helvetica Neue';font-size: 20px;"><span>密码修改</span></div>
             <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
 
               <el-form-item label="新密码" prop="password">
@@ -179,8 +179,8 @@
 <style scoped>
   .password{
     box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
-    width: 90%;
-    margin: 50px 50px 50px 50px;
+    width: 96%;
+    margin: 20px;
     padding: 20px 50px 50px 20px;
   }
   .demo-ruleForm{

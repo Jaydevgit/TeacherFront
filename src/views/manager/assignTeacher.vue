@@ -1,6 +1,6 @@
 <template>
-  <div class="container" style="padding-top: 30px;">
-    <div class="main-content">
+  <div class="container" style="padding-top: 10px;padding-left: 20px">
+    <div class="main-content"style="transform: translateX(20px)">
       <el-row type="flex" class="row-bg" justify="start">
         <el-col :span="4" style="padding-left: 17px">
           <div

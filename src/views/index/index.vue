@@ -20,7 +20,7 @@
         </div>
         <div class="nav-inner-login2">
           <el-dropdown>
-            <img src="../../assets/index/crumb.png" style="height: 40px">
+            <img src="../../assets/index/crumb.png" style="height: 30px">
             <el-dropdown-menu slot="dropdown">
               <el-dropdown-item>
                 <a href="/login" class="title2" >登录</a>
@@ -72,8 +72,22 @@
       <div class="page3">
         <div class="page3_left1" >
           SCHOLAT+师资平台主要提供学院官网“师资队伍”主页定制，学院教师科研信息采集工具（将在第二期完成）。
-          平台具有<span style="color: #1890FF;">权威性</span>、<span style="color: #1890FF;">时效性</span>、
-          <span style="color: #1890FF;">安全性</span>、<span style="color: #1890FF;">易用性</span>和<span style="color: #1890FF;">可扩展性</span>等主要优点。
+          平台具有
+          <el-tooltip class="item" effect="dark" content="平台发布的教师信息由学院管理部门管理，通过学院官网师资队伍栏目链接定制主页，属于学院官网组成部分" placement="top">
+            <span style="color: #1890FF;">权威性</span>
+          </el-tooltip> 、
+          <el-tooltip class="item" effect="dark" content="平台管理员能实时“感知”教师学者网个人空间信息的更新，从而较准确地编辑教师的研究方向、学术简介及个人照片" placement="top">
+            <span style="color: #1890FF;">时效性</span>
+          </el-tooltip>、
+          <el-tooltip class="item" effect="dark" content="平台管理的教师信息是非涉密学术性信息，而且是学院私有信息平台，与学者网教师空间只有数据交互，具有隔离性。" placement="top">
+            <span style="color: #1890FF;">安全性</span>
+          </el-tooltip> 、
+          <el-tooltip class="item" effect="dark" content="教师只需要登录自己的学者空间做好日程学术管理。学院管理员登录平台管理和采集学术信息，无需“打扰”教师。" placement="top">
+            <span style="color: #1890FF;">易用性</span>
+          </el-tooltip>和
+          <el-tooltip class="item" effect="dark" content="进而可以建立学校的教师主页系统和教师数据中心，基于学者网社交功能建立教师学术交流平台等。" placement="top">
+             <span style="color: #1890FF;">可扩展性</span>
+          </el-tooltip>等主要优点。
         </div>
       </div>
       <div class="page3_sub">
@@ -83,7 +97,7 @@
       </div>
       <div class="page4">
         <div class="page4_title">
-          他们都在使用
+         <span style=" border-bottom:1px solid #464646">他们都在使用</span>
         </div>
         <div class="page4_school">
           <div class="school">
@@ -108,40 +122,40 @@
             </a>
           </div>
         </div>
-        <div class="page4_school">
-          <div class="school">
-            <a href="http://faculty.scholat.com/homepage/sic">
-            <div><img :src="'http://www.scholat.com/images/uni_logo/华南师范大学.png'" alt=""></div>
-            <div class="school_name">华南师范大学</div>
-            <div class="unit">国际文化学院 </div>
-            </a>
-          </div>
-          <div class="school">
-            <a href="http://faculty.scholat.com/homepage/gditjsj">
-            <div><img :src="'http://www.scholat.com/images/uni_logo/广东科学技术职业学院.png'" alt=""></div>
-            <div class="school_name">广东科学技术职业学院</div>
-            <div class="unit">计算机工程技术学院</div>
-            </a>
-          </div>
-          <div class="school">
-            <a href="http://faculty.scholat.com/homepage/gdpuxg">
-            <div><img :src="'http://www.scholat.com/images/uni_logo/广东药科大学.png'" alt=""></div>
-            <div class="school_name">广东药科大学</div>
-            <div class="unit">医药信息工程学院</div>
-            </a>
-          </div>
-        </div>
+<!--        <div class="page4_school">-->
+<!--          <div class="school">-->
+<!--            <a href="http://faculty.scholat.com/homepage/sic">-->
+<!--            <div><img :src="'http://www.scholat.com/images/uni_logo/华南师范大学.png'" alt=""></div>-->
+<!--            <div class="school_name">华南师范大学</div>-->
+<!--            <div class="unit">国际文化学院 </div>-->
+<!--            </a>-->
+<!--          </div>-->
+<!--          <div class="school">-->
+<!--            <a href="http://faculty.scholat.com/homepage/gditjsj">-->
+<!--            <div><img :src="'http://www.scholat.com/images/uni_logo/广东科学技术职业学院.png'" alt=""></div>-->
+<!--            <div class="school_name">广东科学技术职业学院</div>-->
+<!--            <div class="unit">计算机工程技术学院</div>-->
+<!--            </a>-->
+<!--          </div>-->
+<!--          <div class="school">-->
+<!--            <a href="http://faculty.scholat.com/homepage/gdpuxg">-->
+<!--            <div><img :src="'http://www.scholat.com/images/uni_logo/广东药科大学.png'" alt=""></div>-->
+<!--            <div class="school_name">广东药科大学</div>-->
+<!--            <div class="unit">医药信息工程学院</div>-->
+<!--            </a>-->
+<!--          </div>-->
+<!--        </div>-->
         <div class="page4_school_sub">
           <div class="school">
             <a href="http://faculty.scholat.com/homepage/scnu">
-              <div ><img :src="'http://www.scholat.com/images/uni_logo/华南师范大学.png'" alt="" style="width: 96px"></div>
+              <div ><img :src="'http://www.scholat.com/images/uni_logo/华南师范大学.png'" alt="" ></div>
               <div class="school_name" >华南师范大学</div>
               <div class="unit">计算机学院</div>
             </a>
           </div>
           <div class="school">
             <a href="http://faculty.scholat.com/homepage/gziec">
-              <div><img :src="'http://www.scholat.com/images/uni_logo/广州涉外经济职业技术学院.png'" alt="" style="width: 96px"></div>
+              <div><img :src="'http://www.scholat.com/images/uni_logo/广州涉外经济职业技术学院.png'" alt=""></div>
               <div class="school_name">广州涉外经济职业技术学院</div>
               <div class="unit">华文与国际教育学院</div>
             </a>
@@ -150,46 +164,46 @@
         <div class="page4_school_sub" >
           <div class="school">
             <a href="http://faculty.scholat.com/homepage/dxxy">
-              <div ><img :src="'http://www.scholat.com/images/uni_logo/广东技术师范大学.png'" alt="" style="width: 96px"></div>
+              <div ><img :src="'http://www.scholat.com/images/uni_logo/广东技术师范大学.png'" alt=""></div>
               <div class="school_name" >广东技术师范大学</div>
               <div class="unit">电子与信息学院</div>
             </a>
           </div>
           <div class="school">
             <a href="http://faculty.scholat.com/homepage/gditjsj">
-              <div><img :src="'http://www.scholat.com/images/uni_logo/广东科学技术职业学院.png'" alt="" style="width: 96px"></div>
+              <div><img :src="'http://www.scholat.com/images/uni_logo/广东科学技术职业学院.png'" alt=""></div>
               <div class="school_name">广东科学技术职业学院</div>
               <div class="unit">计算机工程技术学院</div>
             </a>
           </div>
         </div>
-        <div class="page4_school_sub" >
-          <div class="school">
-            <a href="http://faculty.scholat.com/homepage/sic">
-              <div ><img :src="'http://www.scholat.com/images/uni_logo/华南师范大学.png'" alt="" style="width: 96px"></div>
-              <div class="school_name" >华南师范大学</div>
-              <div class="unit">国际文化学院</div>
-            </a>
-          </div>
-          <div class="school">
-            <a href="http://faculty.scholat.com/homepage/gdpuxg">
-              <div><img :src="'http://www.scholat.com/images/uni_logo/广东药科大学.png'" alt="" style="width: 96px"></div>
-              <div class="school_name">广东药科大学</div>
-              <div class="unit">医药信息工程学院</div>
-            </a>
-          </div>
-        </div>
-        <div class="more_school">查看更多合作学院></div>
+<!--        <div class="page4_school_sub" >-->
+<!--          <div class="school">-->
+<!--            <a href="http://faculty.scholat.com/homepage/sic">-->
+<!--              <div ><img :src="'http://www.scholat.com/images/uni_logo/华南师范大学.png'" alt=""></div>-->
+<!--              <div class="school_name" >华南师范大学</div>-->
+<!--              <div class="unit">国际文化学院</div>-->
+<!--            </a>-->
+<!--          </div>-->
+<!--          <div class="school">-->
+<!--            <a href="http://faculty.scholat.com/homepage/gdpuxg">-->
+<!--              <div><img :src="'http://www.scholat.com/images/uni_logo/广东药科大学.png'" alt="" ></div>-->
+<!--              <div class="school_name">广东药科大学</div>-->
+<!--              <div class="unit">医药信息工程学院</div>-->
+<!--            </a>-->
+<!--          </div>-->
+<!--        </div>-->
+        <a style="display: none"><div class="more_school">查看更多合作学院></div></a>
       </div>
 
     </article>
-    <footer style="">
+    <footer style="padding-top: 20px">
       <div class="Info" style="margin-top: 10px">
         <div  style=" display:table-cell;transform: translateY(-30px)">
           <div >
             免责声明 | 关于学者网 | 联系我们
           </div>
-          <div>© 2020-2022 SCHOLAT+LAB</div>
+          <div>© 2020起 SCHOLAT+LAB</div>
         </div>
         <div style=" display:table-cell;">
           <img src="http://47.106.132.95:2333/images/index/QR.png" style="height: 50px">
@@ -432,7 +446,7 @@
       .school{
         flex: 1;
         img{
-          width: 110px;
+          width: 100px;
           cursor: pointer;
         }
         .unit{
@@ -604,7 +618,7 @@
         font-size: 18px;
         .school{
           img{
-            width: 100px;
+            width: 90px;
           }
         }
       }
@@ -708,7 +722,7 @@
     .page4{
 
       .page4_title{
-        font-size: 14px;
+        font-size: 12px;
         line-height: 18px;
         letter-spacing: 1.4px;
       }
@@ -734,11 +748,17 @@
       }
     }
     .page4_school_sub{
+
       margin-top: 20px;
       display: flex;
       font-family: "PingFangSC-Medium";
       .school{
+
+        font-size: 14px;
         flex: 1;
+        img{
+          width: 80px;
+        }
       }
     }
     .page4_school{
