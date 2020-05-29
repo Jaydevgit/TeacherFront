@@ -88,7 +88,7 @@
       <div v-else style="display: flex;align-items: center;height: 100%;width: 100%" @click="goToCollege">
         <!--如果有背景图，则显示学院背景图片+文字-->
         <template v-if="unit.backgroundUrl">
-          <div @click="goToCollege" style="cursor: pointer;height: 100%;display: flex;align-items: center">
+          <div class="backgroundImage"  @click="goToCollege" style="cursor: pointer;height: 100%;display: flex;align-items: center">
             <img :src="'http://47.106.132.95:2333/images/background/' + unit.backgroundUrl"
                  style="height: 90%;vertical-align: center"
                  :onerror="defaultBack" title="点击访问该学院"/>
@@ -312,6 +312,69 @@
     color: white;
   }
 
+
+  @media screen and (min-width: 1025px){
+    .top-container {
+      width: 100%;
+      height: 80px;
+      min-width: 980px;
+      background-color: white;
+      /*background: url('../../assets/img/home.png') no-repeat;*/
+      /*background-size: cover;*/
+    }
+    div.search {
+      width: 65%;
+    }
+    .font-jsgrzy {
+      font-family: '等线 Light';
+      font-weight: bold;
+      letter-spacing: 3.5px;
+      line-height: 60px;
+      font-size: 26px;
+      color: steelblue;
+      white-space: nowrap;
+    }
+  }
+  @media screen and (min-width: 768px) and (max-width: 1024px){
+    .top-container {
+      width: 100%;
+      height: 80px;
+      background-color: white;
+      /*background: url('../../assets/img/home.png') no-repeat;*/
+      /*background-size: cover;*/
+    }
+    div.search {
+      width: 65%;
+    }
+    .font-jsgrzy {
+      font-family: '等线 Light';
+      font-weight: bold;
+      letter-spacing: 3.5px;
+      line-height: 60px;
+      font-size: 26px;
+      color: steelblue;
+      white-space: nowrap;
+    }
+  }
+  @media screen and (max-width: 767px){
+    .top-container {
+      width: 100%;
+      box-sizing:border-box;
+      max-width: 700px;
+      height: 80px;
+      background-color: white;
+    }
+    div.search {
+      display: none;
+      width: 65%;
+    }
+    .font-jsgrzy {
+      display: none;
+    }
+    .backgroundImage img{
+      width: 100%;
+    }
+  }
   .background {
     padding: 0px 0px 5px 0px;
     width: 100%;
@@ -351,9 +414,6 @@
 
   }
 
-  div.search {
-    width: 65%;
-  }
 
   .formDiv {
     position: relative;
@@ -421,24 +481,6 @@
     display: inline
   }
 
-  .top-container {
-    width: 100%;
-    height: 80px;
-    min-width: 980px;
-    background-color: white;
-    /*background: url('../../assets/img/home.png') no-repeat;*/
-    /*background-size: cover;*/
-  }
-
-  .font-jsgrzy {
-    font-family: '等线 Light';
-    font-weight: bold;
-    letter-spacing: 3.5px;
-    line-height: 60px;
-    font-size: 26px;
-    color: steelblue;
-    white-space: nowrap;
-  }
   .linkScholat a:hover {
     text-decoration:underline;
   }

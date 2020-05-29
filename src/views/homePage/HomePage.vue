@@ -13,7 +13,7 @@
             <el-breadcrumb-item>教师名录</el-breadcrumb-item>
           </el-breadcrumb>
           <div v-if="showLetter" class="centerLetter"><strong>{{letter}}</strong></div>
-          <div style="margin-top: -4px;" v-if="showLetterList&&detailShow===3">
+          <div style="display: flex" v-if="showLetterList&&detailShow===3">
             <span style="margin-right: 5px;font-size: 14px;cursor:pointer" @click="allTeacher" :class="{'letterRed':letterFlag==='All'}">All</span>
             <a class="letterList" v-for="letter in Letters" @click="jumper(letter)" :class="{'letterRed':letterFlag===letter}">
               <span>{{letter}}</span>
@@ -47,7 +47,7 @@
       <!--      <right-nav class="right"></right-nav>-->
     </div>
     <!--底部栏-->
-    <footer style="display: flex;justify-content: center;align-items: center">
+    <!--<footer style="display: flex;justify-content: center;align-items: center">
       <div style="height: 100%;
       width:100%;display: flex;
       justify-content: space-between;margin: 0 20px;">
@@ -67,6 +67,25 @@
       </div>
 
 
+    </footer>-->
+    <footer style="">
+      <div class="Info" style="margin-top: 10px">
+        <div  style="">
+          <div style="margin-bottom: 5px">
+            <a href="/login" >管理员登录</a> |
+            <a href="http://www.scholat.com/">学者网</a>
+          </div>
+          <div style="margin-bottom: 5px">
+            免责声明 | 关于学者网 | 联系我们
+          </div>
+          <div style="margin-bottom: 5px">
+            © 2020 SCHOLAT+LAB
+          </div>
+        </div>
+        <div style="margin-left: 5px;margin-top: 25px">
+          <img src="http://47.106.132.95:2333/images/index/QR.png" style="height: 50px">
+        </div>
+      </div>
     </footer>
   </div>
 </template>
@@ -287,114 +306,307 @@
 
 <style rel="stylesheet/scss" lang="scss" scoped>
   @import '../../assets/css/base.css';
-
-  .middle-container {
-    max-width: 1000px;
-    margin: 0 auto;
-    height: 100%;
-    width: 100%;
-    display: flex;
-    min-height: calc(100vh - 120px);
-  }
-
-  .left {
-    width: 25%
-  }
-
-  .middle {
-    margin: 32px 8px 16px 12px;
-    width: 100%;
-    min-height: 900px;
-  }
-
-  .right {
-    position: absolute;
-    width: 200px;
-    float: right;
-    right: 0;
-    top: 0;
-  }
-
-  .middle-nav {
-    width: 100%;
-    height: 36px;
-    padding: 12px;
-    background: aliceblue;
-    display: flex;
-    justify-content: space-between;
-    border-radius: 8px 8px 0 0;
-  }
-
-  .letterList {
-    font-size: 14px;
-    letter-spacing: 5px;
-    margin-top: -4px;
-  }
   .letterRed{
     color: red;
   }
+  @media screen and (min-width: 1025px){
+    .middle-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      height: 100%;
+      width: 100%;
+      display: flex;
+      min-height: calc(100vh - 120px);
+    }
 
-  @media screen and (max-width: 1024px) {
+    .left {
+      width: 25%
+    }
+
+    .middle {
+      margin: 32px 8px 16px 12px;
+      width: 100%;
+      min-height: 900px;
+    }
+
+    .right {
+      position: absolute;
+      width: 200px;
+      float: right;
+      right: 0;
+      top: 0;
+    }
+
+    .middle-nav {
+      width: 100%;
+      height: 36px;
+      padding: 12px;
+      background: aliceblue;
+      display: flex;
+      justify-content: space-between;
+      border-radius: 8px 8px 0 0;
+    }
+
     .letterList {
       font-size: 14px;
-      letter-spacing: 4px;
-
+      letter-spacing: 5px;
     }
-  }
+    .letterRed{
+      color: red;
+    }
+
+    @media screen and (max-width: 768px) {
+      .letterList {
+        font-size: 14px;
+        letter-spacing: 4px;
+
+      }
+    }
 
 
-  .dynamic-page {
-    border-radius: 0 0 8px 8px;
-  }
+    .dynamic-page {
+      height: auto;
+      border-radius: 0 0 8px 8px;
+    }
 
-  .homePage-body {
-    background-color: #1f2d3d;
-    background: no-repeat;
-    background-size:cover;
-    /*background: url("../../assets/img/bg.png");*/
-    width: 100%;
-    min-width: 1000px;
-    height: 100%;
-    min-height: calc(100vh - 60px);
-  }
-
-  @media screen and (max-width: 768px) {
     .homePage-body {
-      min-height: 1220px;
+      background-color: #1f2d3d;
+      background: no-repeat;
+      background-size:cover;
+      /*background: url("../../assets/img/bg.png");*/
+      width: 100%;
+      min-width: 1000px;
+      height: 100%;
+      min-height: calc(100vh - 60px);
     }
-  }
 
-  /*底部栏样式*/
-  footer {
-    background-color: #555555;
-    height: 60px;
-    width: 100%;
-    margin-top: 30px;
-    /*position: absolute;
-    bottom: 0;*/
-    /*position:fixed;
-    bottom:0;
-    left:0;*/
-  }
-  .nav-inner-login {
-    display: flex;
-    align-content: center;
-    font-size: 14px
-  }
-  .title{
+    /*@media screen and (max-width: 768px) {
+      .homePage-body {
+        min-height: 1220px;
+      }
+    }*/
 
-    color: #fff;
-    font-size: 18px;
-    letter-spacing: 2px;
-    cursor: pointer;
-    margin-right: 24px;margin-top: 10px;
-    height: 30px;
-    display: table-cell;
-    vertical-align:middle
+    /*底部栏样式*/
+    /*footer {
+      background-color: #555555;
+      height: 60px;
+      width: 100%;
+      margin-top: 30px;
+      !*position: absolute;
+      bottom: 0;*!
+      !*position:fixed;
+      bottom:0;
+      left:0;*!
+    }
+    .nav-inner-login {
+      display: flex;
+      align-content: center;
+      font-size: 14px
+    }
+    .title{
+
+      color: #fff;
+      font-size: 18px;
+      letter-spacing: 2px;
+      cursor: pointer;
+      margin-right: 24px;margin-top: 10px;
+      height: 30px;
+      display: table-cell;
+      vertical-align:middle
+    }
+    .title:hover{
+      border-bottom:2px solid #fff;
+    }*/
+    footer{
+      .Info{
+        color: white;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 18px;
+        text-align: center;
+        letter-spacing: 1.4px;
+        display: flex;
+        justify-content: center;
+      }
+      img{
+        height:35px !important;
+      }
+    }
+    /*底部栏样式结束*/
   }
-  .title:hover{
-    border-bottom:2px solid #fff;
+  @media screen and (min-width: 768px) and (max-width: 1024px){
+    .middle-container{
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    .left{
+      width: 90%;
+      margin: 0 auto;
+      margin-bottom: 20px;
+    }
+    .middle{
+      width: 90%;
+      margin: 0 auto;
+    }
+    .dynamic-page{
+
+    }
+
+    .middle-nav {
+      width: 100%;
+      height: 36px;
+      padding: 12px;
+      background: aliceblue;
+      display: flex;
+      justify-content: space-between;
+      border-radius: 8px 8px 0 0;
+    }
+
+    .letterList {
+      font-size: 14px;
+      letter-spacing: 5px;
+    }
+    .letterRed{
+      color: red;
+    }
+    .dynamic-page {
+      border-radius: 0 0 8px 8px;
+    }
+
+    .homePage-body {
+      background-color: #1f2d3d;
+      background: no-repeat;
+      background-size:100% 100%;
+      /*background-size:cover;*/
+      /*background: url("../../assets/img/bg.png");*/
+      width: 100%;
+      height: 100%;
+      min-height: calc(100vh - 60px);
+    }
+
+    /*底部栏样式*/
+    footer{
+      .Info{
+        color: white;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 18px;
+        text-align: center;
+        letter-spacing: 1.4px;
+        display: flex;
+        justify-content: center;
+      }
+      img{
+        height:35px !important;
+      }
+    }
+    /*footer {
+      background-color: #555555;
+      height: 60px;
+      width: 100%;
+      margin-top: 30px;
+      !*position: absolute;
+      bottom: 0;*!
+      !*position:fixed;
+      bottom:0;
+      left:0;*!
+    }
+    .nav-inner-login {
+      display: flex;
+      align-content: center;
+      font-size: 14px
+    }
+    .title{
+
+      color: #fff;
+      font-size: 18px;
+      letter-spacing: 2px;
+      cursor: pointer;
+      margin-right: 24px;margin-top: 10px;
+      height: 30px;
+      display: table-cell;
+      vertical-align:middle
+    }
+    .title:hover{
+      border-bottom:2px solid #fff;
+    }*/
   }
-  /*底部栏样式结束*/
+  @media screen and (max-width: 767px){
+    .homePage-body {
+      width: 100%;
+      height: 100%;
+      min-height: calc(100vh - 60px);
+    }
+    .middle-container{
+      margin: 32px 8px 16px 12px;
+      width: 100%;
+
+      min-height: calc(100vh - 120px);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    .left{
+      width: 90%;
+      margin: 0 auto;
+    }
+    .middle{
+      width: 90%;
+      height: auto;
+      margin: 0 auto;
+    }
+    .dynamic-page{
+
+    }
+    footer{
+      .Info{
+        color: white;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 18px;
+        text-align: center;
+        letter-spacing: 1.4px;
+        display: flex;
+        justify-content: center;
+      }
+      img{
+        height:35px !important;
+      }
+    }
+ /*   .middle-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      height: 100%;
+      width: 100%;
+      display: flex;
+
+    }*/
+
+    .middle-nav {
+      width: 100%;
+      height: 36px;
+      padding: 12px;
+      background: aliceblue;
+      display: flex;
+      justify-content: space-between;
+      border-radius: 8px 8px 0 0;
+    }
+
+    .letterList {
+      font-size: 14px;
+      letter-spacing: 1px;
+
+    }
+
+
+    .dynamic-page {
+      height: auto;
+      border-radius: 0 0 8px 8px;
+    }
+
+
+
+  }
 
 </style>

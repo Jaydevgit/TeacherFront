@@ -1,8 +1,8 @@
 <template>
   <!--两种模式：模式1 详细显示 -->
-  <div v-if="detail===1" class="teacherList-container">
-    <div style="float: left;position: relative;width: 100%;padding: 0px 5px;height: 100%;">
-      <ul class="ul-page" style="width: 100%;">
+    <div v-if="detail===1" class="teacherList-container"
+         style="float: left;position: relative;width: 100%;padding: 0px 5px;">
+      <ul class="ul-page" style="width: 100%;text-align: center">
         <li v-for="teacher in teacherList" :key="teacher.tId" class="teacherLi">
           <el-row :gutter="10" style="height: 60px;padding-top: 15px;min-width: 758px">
             <el-col :span="10">
@@ -59,11 +59,10 @@
       </ul>
 
     </div>
-  </div>
 
   <!--两种模式：模式2 简易显示 -->
-  <div v-else-if="detail===2" class="teacherList-container2">
-    <div style="float: left;position: relative;width: 100%;padding: 14px 5px;height: 100%;">
+    <div v-else-if="detail===2" class="teacherList-container2"
+         style="float: left;position: relative;width: 100%;padding: 14px 5px;">
       <ul class="ul-page2" style="">
         <li v-for="teacher in teacherList" :key="teacher.tId" class="teacherLi2"
             @click="routerTo(teacher.tId)" style="cursor: pointer;width: 238px;float:left;">
@@ -90,10 +89,9 @@
     </div>
 
 
-  </div>
   <!--    师资只显示姓名模式-->
-  <div v-else-if="detail===3" class="teacherList-container3">
-    <div style="float: left;position: relative;width: 100%;padding: 14px 5px;height: 100%;">
+    <div v-else-if="detail===3" class="teacherList-container3"
+         style="float: left;position: relative;width: 100%;padding: 14px 5px;background: #fff;">
       <ul class="ul-page3">
         <li v-for="teacher in teacherListAll" :key="teacher.tId"
             @click="routerTo(teacher.tId)"
@@ -109,8 +107,6 @@
         </li>
       </ul>
     </div>
-  </div>
-
 </template>
 
 <script>
@@ -538,29 +534,6 @@
     flex-direction: row;
   }
 
-  .teacherLi2 {
-    float: left;
-    padding: 10px 5px 5px 5px;
-    height: 150px; /*224*/
-    width: 220px;
-    display: flex;
-    margin: 0 10px 10px 10px;
-    flex-direction: row;
-  }
-
-  .teacherLi2:hover {
-    float: left;
-
-
-    padding: 10px 5px 5px 5px;
-    height: 150px; /*224*/
-    display: flex;
-    margin: 0 10px 10px 10px;
-    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
-    transition: box-shadow 0.5s;
-    background-color: #F7F7F7;
-  }
-
   .teacherLi3:hover {
     padding-bottom: 2px;
     border-bottom: 2px solid #0099CC;
@@ -608,8 +581,10 @@
     flex-wrap: nowrap;
     justify-content: flex-start;
     align-items: center;
+
     height: calc(100% - 36px);
-    min-height: 520px;
+    /*_height: 520px;
+    min-height: 520px;*/
     margin: 0 auto;
     width: 100%;
     background: #fff;
@@ -695,6 +670,50 @@
 
   .ul-page {
     width: inherit;
+  }
+  @media screen and (min-width: 1025px){
+    .teacherLi2 {
+      float: left;
+      padding: 10px 5px 5px 5px;
+      height: 150px; /*224*/
+      width: 220px;
+      display: flex;
+      margin: 0 10px 10px 10px;
+      flex-direction: row;
+    }
+
+    .teacherLi2:hover {
+      float: left;
+      padding: 10px 5px 5px 5px;
+      height: 150px; /*224*/
+      display: flex;
+      margin: 0 10px 10px 10px;
+      box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+      transition: box-shadow 0.5s;
+      background-color: #F7F7F7;
+    }
+  }
+  @media screen and (max-width: 1024px){
+    .teacherLi2 {
+      float: left;
+      padding: 10px 5px 5px 5px;
+      height: 150px; /*224*/
+      width: 150px;
+      display: flex;
+      margin: 0 10px 10px 10px;
+      flex-direction: row;
+    }
+
+    .teacherLi2:hover {
+      float: left;
+      padding: 10px 5px 5px 5px;
+      height: 150px; /*224*/
+      display: flex;
+      margin: 0 10px 10px 10px;
+      box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+      transition: box-shadow 0.5s;
+      background-color: #F7F7F7;
+    }
   }
 
 </style>

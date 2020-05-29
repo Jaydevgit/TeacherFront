@@ -4,13 +4,12 @@
       <div v-if="teacherProfile!=undefined " style="position:relative;">
 
         <el-card class="box-card" >
-          <!--<div style="position:absolute;left:530px;top:20px;z-index:2;">-->
-            <img :src="'http://www.scholat.com/images/uni_logo/'+this.personal.schoolName+'.png'" :onerror="bgLogo" width="180" height="180" style="opacity: 0.2;position:absolute;left:580px;top:15px;z-index:2; "/>
-
-          <!--</div>-->
-          <div style="display: inline-block;margin-left: 20px;vertical-align: top;margin-top: 20px">
-            <img :src="getImgUrl(teacherProfile.avatar)" :onerror="imgErrorFun(this)" width="140" height="140"/>
+          <div class="imgDiv">
+            <img class="imgLogo" :src="'http://www.scholat.com/images/uni_logo/'+this.personal.schoolName+'.png'" :onerror="bgLogo" style=" "/>
           </div>
+
+          <img class="imgAvatar" :src="getImgUrl(teacherProfile.avatar)" :onerror="imgErrorFun(this)"/>
+
           <div class="right">
             <div class="name-top">
               <!--              <div class="name-left">-->
@@ -53,10 +52,9 @@
               <span class="personal-describe">{{teacherProfile.label}}</span>
 
             </div>
-            <div v-else style="margin-bottom: 10px;margin-top: 31px">
-            </div>
-            <div class="name-right-bg" style="float: right;height:210px;margin-top: -90px"></div>
-            <div style="display: flex">
+            <div v-else style="margin-bottom: 10px;margin-top: 31px"></div>
+            <!--<div class="name-right-bg" style="float: right;height:210px;margin-top: -90px"></div>-->
+            <div class="teacher-info">
               <div class="name-bottom" style="color: black">
 
 
@@ -122,7 +120,7 @@
                 <div class="name-bottom-item" style="margin-bottom: 10px;flex-direction: column" v-if="tagFlag[8]==='i'&&teacherProfile.research_direction">
                   <!--<span><svg-icon icon-class="rearch-direction"/></span>-->
                   <label class="font-one">研究方向：</label>
-                  <div class="detail-msg" style="margin-top: 7px;line-height: 25px;width: 260px">{{teacherProfile.research_direction}}</div>
+                  <div class="detail-msg" style="margin-top: 7px;line-height: 25px;">{{teacherProfile.research_direction}}</div>
                 </div>
               </div>
             </div>
@@ -136,7 +134,7 @@
             <div style="padding: 15px 20px 3px 20px;color: #7e8c8d;font-size: 18px;font-weight: bold;">
               个人简介
             </div>
-            <div style="padding: 8px 20px 3px 27px;float: right;font-size: 14px;color: #7e8c8d;transform: translateY(7px)">
+            <div style="padding: 8px 20px 3px 27px;float: right;font-size: 14px;color: #7e8c8d;transform: translateY(7px);vertical-align: center">
               <a :href="'http://www.scholat.com/'+teacherProfile.scholat_username" v-if="teacherProfile.scholat_username">
                 更多信息请见学者主页
                 <img :src="'http://www.scholat.com/'+teacherProfile.qrcode" width="30" height="30"
@@ -269,178 +267,396 @@
       color: gray;
     }
 
-    .personal-info {
-      position: relative;
-      width: 784px;
-      height: auto;
-      /*min-width: 767px;*/
-      .left {
+    @media screen and (min-width: 1025px) {
+      .personal-info {
+        position: relative;
+        width: 784px;
+        height: auto;
+        /*min-width: 767px;*/
+        .left {
 
-        display: flex;
-        flex-direction: row;
-        /*justify-content: space-around;*/
-        margin-top: 20px;
-        margin-left: 20px;
-        align-items: center;
-        width: 18%;
-        float: left;
-        height: inherit
-        /*background-color: burlywood;*/
-      }
-
-      .right {
-        display: inline-block;
-        max-width: 600px;
-        height: 100%;
-        /*background-color: aquamarine;*/
-      }
-
-      .info-right {
-
-        display: flex;
-        /*flex-flow: row nowrap;*/
-        /*justify-content: flex-start;*/
-        /*margin: 0;*/
-        /*padding: 0;*/
-        /*list-style: none;*/
-        background-color: #99a9bf;
-
-        .right-item {
-
-          width: 200px;
-          height: 400px;
-          margin-left: 15px;
+          display: flex;
+          flex-direction: row;
+          /*justify-content: space-around;*/
+          margin-top: 20px;
+          margin-left: 20px;
+          align-items: center;
+          width: 18%;
+          float: left;
+          height: inherit
+          /*background-color: burlywood;*/
         }
-      }
 
-      .box-card {
-        //   background:url('../../../assets/img/bg8.png');
-        background-repeat: no-repeat;
-        background-size: auto 100%;
-        min-height: 300px;
-        width: 100%;
-        margin-bottom: 20px;
-        padding-bottom: 17px;
-      }
+        .right {
+          display: inline-block;
+          max-width: 600px;
+          height: 100%;
+          /*background-color: aquamarine;*/
+        }
 
+        .info-right {
 
-      .box-card-two {
-        width: 100%;
+          display: flex;
+          /*flex-flow: row nowrap;*/
+          /*justify-content: flex-start;*/
+          /*margin: 0;*/
+          /*padding: 0;*/
+          /*list-style: none;*/
+          background-color: #99a9bf;
 
-        .el-tabs {
-          /deep/ .el-tabs--border-card > .el-tabs__header .el-tabs__item.is-active {
-            color: #0051c1;
-            font-weight: 800;
-            font-size: 16px;
-            background-color: #fff;
-            border-right-color: #dcdfe6;
-            border-left-color: #dcdfe6;
-          }
+          .right-item {
 
-          /deep/ .el-tabs--border-card > .el-tabs__content {
-            min-height: 350px;
-            /*margin-bottom: 30px;*/
+            width: 200px;
+            height: 400px;
+            margin-left: 15px;
           }
         }
 
+        .box-card {
+          //   background:url('../../../assets/img/bg8.png');
+          background-repeat: no-repeat;
+          background-size: auto 100%;
+          min-height: 300px;
+          width: 100%;
+          margin-bottom: 20px;
+          padding-bottom: 17px;
+        }
 
-        .describe-content {
+        .imgLogo{
+          opacity: 0.2;position:absolute;left:580px;top:15px;z-index:2;width:180px;height:180px;
+        }
+        .imgAvatar{
+          display: inline-block;margin-left: 20px;vertical-align: top;margin-top: 20px;width: 140px;height: 140px;
+        }
+
+        .box-card-two {
           width: 100%;
 
-          background: #fff;
-          padding: 22px 50px 39px;
-          overflow: hidden;
+          .el-tabs {
+            /deep/ .el-tabs--border-card > .el-tabs__header .el-tabs__item.is-active {
+              color: #0051c1;
+              font-weight: 800;
+              font-size: 16px;
+              background-color: #fff;
+              border-right-color: #dcdfe6;
+              border-left-color: #dcdfe6;
+            }
+
+            /deep/ .el-tabs--border-card > .el-tabs__content {
+              min-height: 350px;
+              /*margin-bottom: 30px;*/
+            }
+          }
+
+
+          .describe-content {
+            width: 100%;
+
+            background: #fff;
+            padding: 22px 50px 39px;
+            overflow: hidden;
+          }
+        }
+
+        .name-top {
+          /*height: 60px;*/
+          /*!*border-bottom: 1px solid #e8e8e8;*!*/
+          /*overflow: hidden;*/
+        }
+
+        .name-left {
+
+          height: 50%;
+          /*background-color: antiquewhite;*/
+          margin-top: 10px;
+        }
+
+        .name-right {
+          position: absolute;
+          right: 30px;
+          top: 20px;
+          vertical-align: top;
+        }
+
+        .name-qr {
+          width: 70px;
+          height: 70px;
+          margin-left: 750px;
+          box-shadow: 1px 1px 5px #eaeaea;
+        }
+
+        .name {
+          margin-top: 15px;
+          margin-left: 25px;
+          font-size: 34px;
+          font-weight: 800;
+          color: $bg;
+        }
+
+        .name-bottom {
+          /*padding: 15px 0px 0px;*/
+          /*display: flex;*/
+          flex-wrap: wrap;
+          display: inline-block;
+          vertical-align: top;
+          width: 275px;
+          margin-left: 25px;
+        }
+
+        .name-bottom-right {
+          /*padding: 15px 0px 0px;*/
+          /*display: flex;*/
+          flex-wrap: wrap;
+          display: inline-block;
+          vertical-align: top;
+          border-left: 2px solid #4682b4;
+          width: 275px;
+          padding-left: 25px;
+          margin-left: 10px;
+        }
+
+        .name-bottom-item {
+          /*width: 305px;*/
+          display: flex;
+        }
+
+        .font-one {
+          line-height: 25px;
+          font-weight: bold;
+
+          color: #4682b4;
+          /*min-width: 50px;*/
+          width: auto;
+          white-space: nowrap;
+
+        }
+
+        .detail-msg {
+          width: 220px;
+          display: block;
+          word-break: break-all;
+          word-wrap: break-word;
+          width: 260px
+        }
+
+        .personal-describe {
+          display: inline;
+          font-size: 16px;
+          font-weight: 400;
+          background: #eaeaea;
+          padding: 2px 12px;
+          border-radius: 19px;
+          color: #818181;
+        }
+      }
+    }
+    @media screen and (min-width: 768px) and (max-width: 1024px) {
+      .personal-info{
+        width: 100%;
+        margin-top: 20px;
+        .box-card{
+          width: 100%;
+          .imgAvatar{
+            display: inline-block;margin-left: 20px;vertical-align: top;margin-top: 20px;width: 140px;height: 140px;
+          }
+          /*.imgDiv{
+            float: right;
+          }*/
+          .imgLogo{
+            opacity: 0.2;
+            position:absolute;
+            left:520px;
+            top:15px;
+            width:160px;
+            height:160px;
+          }
+          .right{
+            width: 75%;
+            float: right;
+            .name {
+              margin-top: 15px;
+              margin-left: 25px;
+              font-size: 34px;
+              font-weight: 800;
+              color: $bg;
+            }
+            .teacher-info{
+              display: flex;
+              margin-bottom: 20px;
+            }
+            .name-bottom {
+              flex-wrap: wrap;
+              display: inline-block;
+              vertical-align: top;
+              width: 45%;
+              margin-left: 25px;
+              .name-bottom-item {
+                /*width: 305px;*/
+                display: flex;
+              }
+            }
+            .font-one {
+              line-height: 25px;
+              font-weight: bold;
+              color: #4682b4;
+              width: auto;
+              white-space: nowrap;
+            }
+            .name-bottom-right {
+              /*padding: 15px 0px 0px;*/
+              /*display: flex;*/
+              flex-wrap: wrap;
+              display: inline-block;
+              vertical-align: top;
+              border-left: 2px solid #4682b4;
+              width: 45%;
+              padding-left: 10px;
+              margin-left: 5px;
+            }
+          }
+          .detail-msg {
+            width: 100%;
+            display: block;
+            word-break: break-all;
+            word-wrap: break-word;
+          }
+
+          .personal-describe {
+            display: inline;
+            font-size: 16px;
+            font-weight: 400;
+            background: #eaeaea;
+            padding: 2px 12px;
+            border-radius: 19px;
+            color: #818181;
+          }
+        }
+        .box-card-two {
+          width: 100%;
+          margin-top: 20px;
+          .el-tabs {
+            /deep/ .el-tabs--border-card > .el-tabs__header .el-tabs__item.is-active {
+              color: #0051c1;
+              font-weight: 800;
+              font-size: 16px;
+              background-color: #fff;
+              border-right-color: #dcdfe6;
+              border-left-color: #dcdfe6;
+            }
+
+            /deep/ .el-tabs--border-card > .el-tabs__content {
+              min-height: 350px;
+            }
+          }
+          .describe-content {
+            width: 100%;
+
+            background: #fff;
+            padding: 22px 50px 39px;
+            overflow: hidden;
+          }
         }
       }
 
-      .name-top {
-        /*height: 60px;*/
-        /*!*border-bottom: 1px solid #e8e8e8;*!*/
-        /*overflow: hidden;*/
-      }
+    }
+    @media screen and (max-width: 767px){
+      .personal-info{
+        width: 100%;
+        margin-top: 20px;
+        .box-card{
+          width: 100%;
+          .imgAvatar{
+            display: inline-block;margin-left: 20px;vertical-align: top;margin-top: 20px;width: 20%
+          }
+          .imgLogo{
+            opacity: 0.2;position:absolute;left:180px;top:180px;z-index:2;width:100px;height:100px;
+          }
+          .right{
+            float: right;
+            width: 70%;
+            .name {
+              margin-top: 15px;
+              margin-left: 10px;
+              font-size: 34px;
+              font-weight: 800;
+              color: $bg;
+            }
+            teacher-info{
+              display: flex;
+              flex-direction: column;
+            }
+            .name-bottom {
+              margin-left: 10px;
+              flex-wrap: wrap;
+              display: inline-block;
+              vertical-align: top;
+              width: 100%;
+              .name-bottom-item {
+                /*width: 305px;*/
+                display: flex;
+              }
+            }
+            .font-one {
+              line-height: 25px;
+              font-weight: bold;
+              color: #4682b4;
+              width: auto;
+              white-space: nowrap;
+            }
+            .name-bottom-right {
+              /*padding: 15px 0px 0px;*/
+              /*display: flex;*/
+              flex-wrap: wrap;
+              display: inline-block;
+              vertical-align: top;
+              width: 100%;
+              transform: translateX(-75px);
+            }
+          }
+          .detail-msg {
+            width: 130%;
+            display: block;
+            word-break: break-all;
+            word-wrap: break-word;
+          }
 
-      .name-left {
+          .personal-describe {
+            display: inline;
+            font-size: 16px;
+            font-weight: 400;
+            background: #eaeaea;
+            padding: 2px 12px;
+            border-radius: 19px;
+            color: #818181;
+          }
+        }
+        .box-card-two {
+          width: 100%;
+          margin-top: 20px;
+          .el-tabs {
+            /deep/ .el-tabs--border-card > .el-tabs__header .el-tabs__item.is-active {
+              color: #0051c1;
+              font-weight: 800;
+              font-size: 16px;
+              background-color: #fff;
+              border-right-color: #dcdfe6;
+              border-left-color: #dcdfe6;
+            }
 
-        height: 50%;
-        /*background-color: antiquewhite;*/
-        margin-top: 10px;
-      }
+            /deep/ .el-tabs--border-card > .el-tabs__content {
+              min-height: 350px;
+            }
+          }
+          .describe-content {
+            width: 100%;
 
-      .name-right {
-        position: absolute;
-        right: 30px;
-        top: 20px;
-        vertical-align: top;
-      }
-
-      .name-qr {
-        width: 70px;
-        height: 70px;
-        margin-left: 750px;
-        box-shadow: 1px 1px 5px #eaeaea;
-      }
-
-      .name {
-        margin-top: 15px;
-        margin-left: 25px;
-        font-size: 34px;
-        font-weight: 800;
-        color: $bg;
-
-      }
-
-      .name-bottom {
-        /*padding: 15px 0px 0px;*/
-        /*display: flex;*/
-        flex-wrap: wrap;
-        display: inline-block;
-        vertical-align: top;
-        width: 275px;
-        margin-left: 25px;
-      }
-      .name-bottom-right{
-        /*padding: 15px 0px 0px;*/
-        /*display: flex;*/
-        flex-wrap: wrap;
-        display: inline-block;
-        vertical-align: top;
-        border-left:2px solid #4682b4;
-        width: 275px;
-        padding-left: 25px;
-        margin-left: 10px;
-      }
-
-      .name-bottom-item {
-        /*width: 305px;*/
-        display: flex;
-      }
-
-      .font-one {
-        line-height: 25px;
-        font-weight: bold;
-
-        color: #4682b4;
-        /*min-width: 50px;*/
-        width: auto;
-        white-space:nowrap;
-
-      }
-
-      .detail-msg{
-        width: 220px;
-        display:block;word-break: break-all;word-wrap: break-word;
-      }
-      .personal-describe {
-        display: inline;
-        font-size: 16px;
-        font-weight: 400;
-        background: #eaeaea;
-        padding: 2px 12px;
-        border-radius: 19px;
-        color: #818181;
+            background: #fff;
+            padding: 22px 50px 39px;
+            overflow: hidden;
+          }
+        }
       }
     }
-
     input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
       background-color: #99a9bf;
       background-image: none;
@@ -457,6 +673,7 @@
       box-shadow: inset 0 0 4px grey;
     }
   }
+
 
 
 </style>

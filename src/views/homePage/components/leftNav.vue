@@ -7,6 +7,7 @@
             :default-active="catalogueId"
             class="el-menu-vertical-demo"
             background-color="#ffffff"
+            :mode="displayMode"
             style="overflow: hidden">
             <el-menu-item index="0" @click="cIdSend(0)">
               <i class="el-icon-menu"></i>
@@ -58,8 +59,9 @@
                 currentCat: 0,
                 listLoading: false,//数据加载等待动画
                 catalogueList: [],
-              catalogueId:0,
-              unitQuery: {unitId: '',domainName:''},
+                catalogueId:0,
+                unitQuery: {unitId: '',domainName:''},
+                displayMode:'horizontal'
             }
         },
         props: ['unitId','sendName','sendSubName'],
@@ -87,11 +89,13 @@
       },
         created() {
           this.init();
+          this.initDisplay();
         },
         mounted() {
           if(this.unitQuery.unitId&&this.unitQuery.domainName){
             this.cIdSend()
           }
+          this.initDisplay();
         },
         computed: {
             currentUnitId: function () {
@@ -99,6 +103,16 @@
             }
         },
         methods: {
+          initDisplay(){
+            var mql = window.matchMedia("(max-width: 1024px)");//mql = media query list
+            if (mql.matches){
+              this.displayMode='horizontal'
+              console.log("this.displayMode='horizontal'")
+            }else{
+              this.displayMode='vertical'
+              console.log("this.displayMode='vertical'")
+            }
+          },
           init(){
             this.$store.state.user.domainName=this.$route.path.split('/')[2];
             this.unitQuery.domainName=this.$route.path.split('/')[2];
@@ -242,6 +256,9 @@
     display: flex;
     align-items: center;
     width: 100%;
+  }
+  @media screen and (max-width: 1023px){
+
   }
 
 
