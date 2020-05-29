@@ -565,6 +565,7 @@
         margin-top: 20px;
         .box-card{
           width: 100%;
+          min-height: 300px;
           .imgAvatar{
             display: inline-block;margin-left: 20px;vertical-align: top;margin-top: 20px;width: 20%
           }
@@ -614,7 +615,7 @@
             }
           }
           .detail-msg {
-            width: 130%;
+            width: 125%;
             display: block;
             word-break: break-all;
             word-wrap: break-word;
