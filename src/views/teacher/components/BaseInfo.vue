@@ -79,10 +79,10 @@
                   <!--<span><svg-icon icon-class="email"/></span>-->
                   <label class="font-one">邮箱：</label><div class="detail-msg">{{teacherProfile.email}}</div>
                 </div>
-                <div class="name-bottom-item" style="margin-bottom: 10px;" >
+                <div class="name-bottom-item" style="margin-bottom: 10px;" v-if="teacherProfile.scholat_username">
                   <!--<span><svg-icon icon-class="S"/></span>-->
                   <label class="font-one">主页：</label><div class="detail-msg">
-                  <a :href="'http://www.scholat.com/'+teacherProfile.scholat_username" v-if="teacherProfile.scholat_username&&teacherProfile.scholat_username"
+                  <a :href="'http://www.scholat.com/'+teacherProfile.scholat_username"
                      style="color: #399;display:block;overflow:hidden;word-break:keep-all;white-space:nowrap;text-overflow:ellipsis;width:210px;">
                     scholat.com/{{teacherProfile.scholat_username}}
                   </a></div>
