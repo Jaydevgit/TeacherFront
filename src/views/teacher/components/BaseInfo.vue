@@ -567,17 +567,17 @@
           width: 100%;
           min-height: 300px;
           .imgAvatar{
-            display: inline-block;margin-left: 20px;vertical-align: top;margin-top: 20px;width: 20%
+            display: inline-block;margin-left: 10px;vertical-align: top;margin-top: 20px;width: 20%
           }
           .imgLogo{
             opacity: 0.2;position:absolute;left:180px;top:180px;z-index:2;width:100px;height:100px;
           }
           .right{
             float: right;
-            width: 70%;
+            width: 75%;
             .name {
               margin-top: 15px;
-              margin-left: 10px;
+              margin-left: 0;
               font-size: 34px;
               font-weight: 800;
               color: $bg;
@@ -587,7 +587,7 @@
               flex-direction: column;
             }
             .name-bottom {
-              margin-left: 10px;
+              margin-left: 0;
               flex-wrap: wrap;
               display: inline-block;
               vertical-align: top;
@@ -611,7 +611,7 @@
               display: inline-block;
               vertical-align: top;
               width: 100%;
-              transform: translateX(-75px);
+              transform: translateX(-70px);
             }
           }
           .detail-msg {

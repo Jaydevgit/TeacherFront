@@ -65,9 +65,9 @@
          style="float: left;position: relative;width: 100%;padding: 14px 5px;">
       <ul class="ul-page2" style="">
         <li v-for="teacher in teacherList" :key="teacher.tId" class="teacherLi2"
-            @click="routerTo(teacher.tId)" style="cursor: pointer;width: 238px;float:left;">
+            @click="routerTo(teacher.tId)" style="cursor: pointer;float:left;">
           <img style="cursor: pointer" :src="getImgUrl(teacher.tAvatar)" :onerror="imgErrorFun(this)" class="list-img">
-          <div style="width: 120px;text-align: center;padding-top: 40px">
+          <div class="right-info">
             <div style="font-size: 16px;font-weight: bold;padding: 0px 0px 10px 0px;">
               {{teacher.tName}}
             </div>
@@ -668,6 +668,10 @@
     background-color: #f5f5f5;
   }
 
+  .right-info{
+    width: 120px;text-align: center;padding-top: 40px
+  }
+
   .ul-page {
     width: inherit;
   }
@@ -676,7 +680,7 @@
       float: left;
       padding: 10px 5px 5px 5px;
       height: 150px; /*224*/
-      width: 220px;
+      width: 238px;
       display: flex;
       margin: 0 10px 10px 10px;
       flex-direction: row;
@@ -693,12 +697,12 @@
       background-color: #F7F7F7;
     }
   }
-  @media screen and (max-width: 1024px){
+  @media screen and (min-width: 768px) and (max-width: 1024px){
     .teacherLi2 {
       float: left;
       padding: 10px 5px 5px 5px;
       height: 150px; /*224*/
-      width: 150px;
+      width: 200px;
       display: flex;
       margin: 0 10px 10px 10px;
       flex-direction: row;
@@ -713,6 +717,40 @@
       box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
       transition: box-shadow 0.5s;
       background-color: #F7F7F7;
+    }
+  }
+  @media screen and (max-width: 767px){
+    .teacherLi2 {
+      float: left;
+      padding: 0 5px 0 5px;
+      height: 120px; /*224*/
+      width: 135px;
+      display: flex;
+      margin: 0 10px 0 10px;
+      flex-direction: row;
+    }
+
+    .teacherLi2:hover {
+      float: left;
+      padding: 0 5px 0 5px;
+      height: 120px; /*224*/
+      display: flex;
+      margin: 0 10px 0 10px;
+      box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+      transition: box-shadow 0.5s;
+      background-color: #F7F7F7;
+    }
+    .list-img {
+      display: block;
+      margin: auto;
+      border-radius: 50%;
+      width: 50%;
+      height: auto;
+      border: 3px solid #efefef;
+      background-color: #f5f5f5;
+    }
+    .right-info{
+      width: 120px;text-align: center;padding-top: 35px
     }
   }
 
