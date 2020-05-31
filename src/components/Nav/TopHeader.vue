@@ -10,7 +10,7 @@
       <div @click="goToCollege"
            style="height: 100%;max-width: 900px;display: flex;justify-content: center;align-items: center;transform: translateX(-10px);
            cursor: pointer">
-       <div style="color: steelblue">
+       <div class="background1-name" style="color: steelblue">
          <a class="university" style="white-space: nowrap;font-weight: bold;">{{unit.schoolName}}</a>
          <span class="unitName" style="color:steelblue;font-weight: bold;white-space:nowrap;">{{unit.unitName}}</span>
        </div>
@@ -31,7 +31,7 @@
           <img src="@/assets/img/search.png" @click="keySend" style="cursor: pointer;">
         </div>
       </div>
-      <a :href="unit.collegeUrl" v-if="dataDone && this.$route.path.indexOf('teacher')===-1"><el-button type="text" style=" font-size: 13px;
+      <a class="college-link" :href="unit.collegeUrl" v-if="dataDone && this.$route.path.indexOf('teacher')===-1"><el-button type="text" style=" font-size: 13px;
     font-weight: bold;position: relative;transform: translateX(-30px);color: #3399CC;" @click="">学院首页</el-button></a>
 
     </div>
@@ -88,12 +88,17 @@
       <div v-else style="display: flex;align-items: center;height: 100%;width: 100%" @click="goToCollege">
         <!--如果有背景图，则显示学院背景图片+文字-->
         <template v-if="unit.backgroundUrl">
-          <div class="backgroundImage"  @click="goToCollege" style="cursor: pointer;height: 100%;display: flex;align-items: center">
+          <div class="backgroundImage"  @click="goToCollege" style="">
             <img :src="'http://47.106.132.95:2333/images/background/' + unit.backgroundUrl"
-                 style="height: 90%;vertical-align: center"
+                 style="height:90%;vertical-align: center"
                  :onerror="defaultBack" title="点击访问该学院"/>
           </div>
-          <span style="font-size: 26px" class="font-jsgrzy">
+          <span style="font-size: 26px;margin-left: 20px;
+      font-weight: bold;
+      letter-spacing: 3.5px;
+      line-height: 60px;
+      color: steelblue;
+      white-space: nowrap;" class="font-jsgrzy-none">
             师资队伍
           </span>
         </template>
@@ -119,8 +124,11 @@
           <img src="@/assets/img/search.png" @click="keySend" style="cursor: pointer;">
         </div>
       </div>
-      <a :href="unit.collegeUrl" v-if="dataDone && this.$route.path.indexOf('teacher')===-1"><el-button type="text" style=" font-size: 13px;
-    font-weight: bold;position: relative;transform: translateX(-30px);color: #3399CC;" @click="">学院首页</el-button></a>
+      <a class="college-link" :href="unit.collegeUrl" v-if="dataDone && this.$route.path.indexOf('teacher')===-1">
+        <el-button class="college-link-button" type="text" style=" font-size: 13px;font-weight: bold;position: relative;transform: translateX(-30px);color: #3399CC;" @click="">
+          学院首页
+        </el-button>
+      </a>
 
 
         <div style=" display: flex;
@@ -175,10 +183,18 @@
       },
         created() {
             this.getUnitInfo();
+            this.initDisplay();
         },
         ready() {
         },
         methods: {
+            initDisplay(){
+              var mql = window.matchMedia("(max-width: 767px)");//mql = media query list
+              var collegeLink=document.getElementsByClassName('college-link');
+              if (mql.matches) {
+                collegeLink.style.display = "none";
+              }
+            },
             routerToAdmin() {
                 console.log("=========================================")
                 this.$router.push({
@@ -334,6 +350,9 @@
       color: steelblue;
       white-space: nowrap;
     }
+    .backgroundImage{
+      cursor: pointer;height: 100%;display: flex;align-items: center
+    }
   }
   @media screen and (min-width: 768px) and (max-width: 1024px){
     .top-container {
@@ -355,6 +374,9 @@
       color: steelblue;
       white-space: nowrap;
     }
+    .backgroundImage{
+      cursor: pointer;height: 100%;display: flex;align-items: center
+    }
   }
   @media screen and (max-width: 767px){
     .top-container {
@@ -368,13 +390,44 @@
       display: none;
       width: 65%;
     }
-    .font-jsgrzy {
+    /*.font-jsgrzy {
       display: none;
+    }*/
+    .background1-name{
+      margin-left: 20px;
+    }
+    .backgroundImage{
+      cursor: pointer;height: 100%;display: flex;align-items: center;
+      width:100%;
+      justify-content: flex-end;
     }
     .backgroundImage img{
       width: 100%;
     }
+    .college-link{
+      display: none;
+    }
+    .college-link-button{
+      display: none;
+    }
+
+    .font-jsgrzy {
+      margin-left: 20px;
+      font-family: '等线 Light';
+      font-weight: bold;
+      letter-spacing: 3.5px;
+      line-height: 60px;
+      font-size: 22px;
+      color: steelblue;
+      white-space: nowrap;
+    }
+    .font-jsgrzy-none{
+      display: none;
+    }
   }
+
+
+
   .background {
     padding: 0px 0px 5px 0px;
     width: 100%;

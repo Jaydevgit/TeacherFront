@@ -208,19 +208,89 @@
 <style rel="stylesheet/scss" lang="scss" scoped>
   @import '../../../styles/catalogueVariables.scss';
 
-  .el-menu {
-    box-shadow: 0px 2px 10px 0px rgba(0, 81, 193, 0.3), 0px 1px 0px 0px rgba(255, 255, 255, 0.5);
-    border-radius: 10px;
-    border-right: none !important;
+  @media screen and (min-width: 1025px){
+    .parentCatalogue {
+      font-size: 16px;
+      letter-spacing: 3px;
+    }
+    .subcatalogueName {
+      padding-left: 15px;
+      color: #8590a6;
+    }
+    .el-menu {
+      box-shadow: 0px 2px 10px 0px rgba(0, 81, 193, 0.3), 0px 1px 0px 0px rgba(255, 255, 255, 0.5);
+      border-radius: 10px;
+      border-right: none !important;
+    }
+
+    el-menu-item {
+      background-color: white;
+    }
+
+    el-menu-item:hover {
+      background-color: white;
+    }
+  }
+  @media screen and (min-width: 768px) and (max-width: 1024px){
+    i{
+      display: none;
+    }
+    .parentCatalogue {
+      font-size: 16px;
+      letter-spacing: 3px;
+    }
+    .subcatalogueName {
+      padding-left: 15px;
+      color: #8590a6;
+    }
+    .el-menu {
+      box-shadow: 0px 2px 10px 0px rgba(0, 81, 193, 0.3), 0px 1px 0px 0px rgba(255, 255, 255, 0.5);
+      border-radius: 10px;
+      border-right: none !important;
+    }
+
+    el-menu-item {
+      background-color: white;
+    }
+
+    el-menu-item:hover {
+      background-color: white;
+    }
+  }
+  @media screen and (max-width: 767px){
+    i{
+      display: none;
+    }
+    .el-menu{
+      /*display: flex;*/
+
+    }
+    .el-menu-item{
+
+    }
+    .parentCatalogue {
+      font-size: 6px;
+      letter-spacing: 1px;
+    }
+    .subcatalogueName {
+      padding-left: 5px;
+      color: #8590a6;
+    }
+    .el-menu {
+      box-shadow: 0 2px 10px 0 rgba(0, 81, 193, 0.3), 0 1px 0 0 rgba(255, 255, 255, 0.5);
+      border-radius: 10px;
+      border-right: none !important;
+    }
+
+    .el-menu-item {
+      background-color: white;
+    }
+
+    .el-menu-item:hover {
+      background-color: white;
+    }
   }
 
-  el-menu-item {
-    background-color: white;
-  }
-
-  el-menu-item:hover {
-    background-color: white;
-  }
 
   .newsLi {
     height: 76px;
@@ -257,10 +327,6 @@
     align-items: center;
     width: 100%;
   }
-  @media screen and (max-width: 1023px){
-
-  }
-
 
   .header-navs {
     position: relative;
@@ -320,15 +386,9 @@
   }
 
 
-  .subcatalogueName {
-    padding-left: 15px;
-    color: #8590a6;
-  }
 
-  .parentCatalogue {
-    font-size: 16px;
-    letter-spacing: 3px;
-  }
+
+
 
 
 </style>

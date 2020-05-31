@@ -435,11 +435,19 @@
     /*底部栏样式结束*/
   }
   @media screen and (min-width: 768px) and (max-width: 1024px){
+    .homePage-body {
+      width: 100%;
+      height: 100%;
+      min-height: calc(100vh - 60px);
+    }
     .middle-container{
       width: 100%;
+      min-height: calc(100vh - 120px);
+      height: 100%;
       display: flex;
       flex-direction: column;
     }
+
     .left{
       width: 90%;
       margin: 0 auto;
@@ -474,16 +482,7 @@
       border-radius: 0 0 8px 8px;
     }
 
-    .homePage-body {
-      background-color: #1f2d3d;
-      background: no-repeat;
-      background-size:100% 100%;
-      /*background-size:cover;*/
-      /*background: url("../../assets/img/bg.png");*/
-      width: 100%;
-      height: 100%;
-      min-height: calc(100vh - 60px);
-    }
+
 
     /*底部栏样式*/
     footer{
@@ -539,9 +538,8 @@
       min-height: calc(100vh - 60px);
     }
     .middle-container{
-      margin: 32px 8px 16px 12px;
-      width: 100%;
 
+      width: 100%;
       min-height: calc(100vh - 120px);
       height: 100%;
       display: flex;
@@ -550,6 +548,7 @@
     .left{
       width: 90%;
       margin: 0 auto;
+      margin-bottom: 20px;
     }
     .middle{
       width: 90%;
