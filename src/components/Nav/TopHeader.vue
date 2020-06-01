@@ -377,7 +377,11 @@
     .backgroundImage{
       cursor: pointer;height: 100%;display: flex;align-items: center
     }
+    .college-link{
+      display: none;
+    }
   }
+
   @media screen and (max-width: 767px){
     .top-container {
       width: 100%;

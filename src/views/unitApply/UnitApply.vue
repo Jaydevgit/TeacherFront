@@ -479,6 +479,9 @@
                     if (this.active++ > 2) this.active = 0;
                     console.log(this.applyForm.school_name)
                 } else {
+                  console.log("this.applyForm.school_name="+this.applyForm.school_name)
+                  console.log("this.applyForm.unit_name="+this.applyForm.unit_name)
+                  console.log("this.applyForm.domain_name="+this.applyForm.domain_name)
                   console.log("2.this.applyForm="+JSON.stringify(this.applyForm))
                     this.$message.error("请将信息填入完整方可进行下一步")
                 }
