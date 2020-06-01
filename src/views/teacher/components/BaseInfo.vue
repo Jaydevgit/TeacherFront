@@ -75,7 +75,7 @@
                 </div>
                 <div class="name-bottom-item" style="margin-bottom: 10px;" v-if="teacherProfile.email">
                   <!--<span><svg-icon icon-class="email"/></span>-->
-                  <label class="font-one">邮箱：</label><div class="detail-msg" v-if="this.url.length!==0" ><img  :src="this.url" alt="" style="transform: translateX(-10px)"></div>
+                  <label class="font-one">邮箱：</label><div class="detail-msg" v-if="this.url.length!==0" ><img  :src="this.url" alt="" style="transform: translateX(-12px)"></div>
                   <div class="detail-msg" id="aaa" v-else >{{teacherProfile.email}}</div>
               </div>
                 <div class="name-bottom-item" style="margin-bottom: 10px;" v-if="teacherProfile.scholat_username">
@@ -217,7 +217,7 @@
               var copyDom=document.getElementById('aaa')
               var width = copyDom.offsetWidth;//dom宽
               var height = copyDom.offsetHeight;//dom高
-              var scale = 1.1;//放大倍数
+              var scale = 1.09;//放大倍数
               html2canvas(copyDom,{
                 dpi: window.devicePixelRatio*2,
                 scale:scale,
