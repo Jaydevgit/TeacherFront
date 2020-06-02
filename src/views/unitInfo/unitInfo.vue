@@ -224,7 +224,7 @@
                     method: 'post',
                     data: this.applyForm
                   }).then(data => {
-                    this.$message.success("删除背景成功")
+                    // this.$message.success("删除背景成功")
                     location.reload();
                   }).catch(e => {
                     this.$message.error("删除背景失败");
