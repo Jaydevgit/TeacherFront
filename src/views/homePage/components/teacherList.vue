@@ -4,16 +4,16 @@
          style="float: left;position: relative;width: 100%;padding: 0px 5px;">
       <ul class="ul-page" style="width: 100%;text-align: center">
         <li v-for="teacher in teacherList" :key="teacher.tId" class="teacherLi">
-          <el-row :gutter="10" style="height: 60px;padding-top: 15px;min-width: 758px">
-            <el-col :span="10">
+          <el-row :gutter="10" style="">
+            <el-col :span="colLength">
               <div class="grid-content bg-purple" @click="routerTo(teacher.tId)"
                    style="cursor: pointer; overflow: hidden;text-overflow: ellipsis;padding-left: 10px;">
                 <img :src="getImgUrl(teacher.tAvatar)" :onerror="imgErrorFun()" class="list-img" style="float: left;width: 40px;height: 40px">
-                <div style="padding-top: 10px;display: flex;margin-left: 20px;flex-direction: row;justify-content: space-between">
+                <div style="padding-top: 10px;display: flex;margin-left: 20px;flex-direction: row;justify-content: space-around">
                   <div style="width: 75px;font-size: 16px;font-weight: bold;padding: 0px 0px 10px 0px;margin-left: 28px">
                     {{teacher.tName}}
                   </div>
-                  <div class="smallText" style="width:100px;font-size: small;">{{teacher.tPost}}</div>
+                  <div class="smallText" style="width:70px;font-size: small;">{{teacher.tPost}}</div>
                 </div>
               </div>
             </el-col>
@@ -23,14 +23,14 @@
                 <div v-if="!!teacher.tDegree" style="margin: 12px 0 12px 0">{{teacher.tDegree}}</div>
               </div>
             </el-col>-->
-            <el-col :span="6">
-              <div class="grid-content bg-purple"
+            <el-col :span="7" hidden-xs-only>
+              <div class="grid-content bg-purple displayNone"
                    style="font-size: small;overflow: hidden;text-overflow: ellipsis;height: 60px;min-width: 180px">
                 <div v-if="!!teacher.tEmail" style="margin: 12px 0 12px 0">{{teacher.tEmail}}</div>
               </div>
             </el-col>
-            <el-col :span="7">
-              <div class="grid-content bg-purple"
+            <el-col :span="7" hidden-xs-only>
+              <div class="grid-content bg-purple displayNone"
                    style="font-size:large;height: 60px;overflow: hidden;text-overflow: ellipsis;">
                 <div style="margin-top: 10px;font-size: small" v-if="teacher.tScholat_username">
                   <!--<span><svg-icon icon-class="S"/></span>-->
@@ -41,9 +41,7 @@
 
               </div>
             </el-col>
-            <el-col :span="3">
 
-            </el-col>
           </el-row>
         </li>
           <div v-if="totalCount >15"
@@ -88,7 +86,6 @@
       </div>
     </div>
 
-
   <!--    师资只显示姓名模式-->
     <div v-else-if="detail===3" class="teacherList-container3"
          style="float: left;position: relative;width: 100%;padding: 14px 5px;background: #fff;">
@@ -112,6 +109,7 @@
 <script>
     import bus from '../../../utils/eventBus'
     import defaultAvatar from '@/assets/default1.png'
+    import 'element-ui/lib/theme-chalk/display.css';
 
     export default {
         data() {
@@ -139,7 +137,8 @@
                 catalogueList: [],
                 teacherProfile: {},//教师数据
                 detailModel: '',
-                isSendSuccessful: false
+                isSendSuccessful: false,
+                colLength:''
             }
         },
         watch: {
@@ -208,6 +207,7 @@
         },
         props: ['msgLetter', 'detail', 'cId','unitId','searchKey','searchCount'],
         mounted() {
+          this.initDisplay();
             let self = this;
            /* bus.$on("cId", function (msg) {
                 console.log("recieve++++" + msg)
@@ -226,6 +226,7 @@
             })*/
         },
         created() {
+          this.initDisplay();
           console.log("unitIdunitIdunitId="+this.unitId)
             // this.getList();
             if(this.$route.path.indexOf('search')!=-1){
@@ -253,6 +254,16 @@
         ,
         computed: {},
         methods: {
+          initDisplay(){
+            var mql = window.matchMedia("(max-width: 767px)");//mql = media query list
+            if (mql.matches){
+              this.colLength='24'
+              console.log("this.displayMode='horizontal'")
+            }else{
+              this.colLength='10'
+              console.log("this.displayMode='vertical'")
+            }
+          },
             getLetter(letter) {
                 //letter为0 即恢复到默认
                 if (letter == 0) {
@@ -524,16 +535,6 @@
     color: white;
   }
 
-  .teacherLi {
-    float: left;
-    padding: 5px 5px 0px 5px;
-    height: 60px;
-    min-width: calc(100% - 36px);
-    border-bottom: thin solid #EAEAEA;
-    display: flex;
-    flex-direction: row;
-  }
-
   .teacherLi3:hover {
     padding-bottom: 2px;
     border-bottom: 2px solid #0099CC;
@@ -676,6 +677,15 @@
     width: inherit;
   }
   @media screen and (min-width: 1025px){
+    .teacherLi {
+      float: left;
+      padding: 5px 5px 0px 5px;
+      height: 60px;
+      min-width: calc(100% - 36px);
+      border-bottom: thin solid #EAEAEA;
+      display: flex;
+      flex-direction: row;
+    }
     .teacherLi2 {
       float: left;
       padding: 10px 5px 5px 5px;
@@ -696,8 +706,20 @@
       transition: box-shadow 0.5s;
       background-color: #F7F7F7;
     }
+    .el-row{
+      height: 60px;padding-top: 15px;min-width: 758px
+    }
   }
   @media screen and (min-width: 768px) and (max-width: 1024px){
+    .teacherLi {
+      float: left;
+      padding: 5px 5px 0px 5px;
+      height: 60px;
+      min-width: calc(100% - 36px);
+      border-bottom: thin solid #EAEAEA;
+      display: flex;
+      flex-direction: row;
+    }
     .teacherLi2 {
       float: left;
       padding: 10px 5px 5px 5px;
@@ -718,8 +740,20 @@
       transition: box-shadow 0.5s;
       background-color: #F7F7F7;
     }
+    .el-row{
+      height: 60px;padding-top: 15px;width: 100%;
+    }
   }
   @media screen and (max-width: 767px){
+    .teacherLi {
+      float: left;
+      padding: 5px 5px 0px 5px;
+      height: 60px;
+      min-width: calc(100% - 36px);
+      border-bottom: thin solid #EAEAEA;
+      display: flex;
+      flex-direction: row;
+    }
     .teacherLi2 {
       float: left;
       padding: 0 5px 0 5px;
@@ -752,6 +786,13 @@
     .right-info{
       width: 120px;text-align: center;padding-top: 35px
     }
+    .displayNone{
+      display: none;
+    }
+    .el-row{
+      height: 60px;padding-top: 15px;width: 100%;
+    }
+
   }
 
 </style>

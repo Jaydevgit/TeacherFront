@@ -15,10 +15,10 @@
          <span class="unitName" style="color:steelblue;font-weight: bold;white-space:nowrap;">{{unit.unitName}}</span>
        </div>
       </div>
-      <div class="font-jsgrzy" style="display: inline-block;min-width: 160px;transform: translateX(-40px);" v-if="$route.path.indexOf('homepage')!=-1">
+      <div class="font-jsgrzy" style="display: inline-block;" v-if="$route.path.indexOf('homepage')!=-1">
         师资队伍
       </div>
-      <div class="font-jsgrzy" style="display: inline-block;min-width: 160px;transform: translateX(-40px);" v-if="$route.path.indexOf('teacher')!=-1">
+      <div class="font-jsgrzy" style="display: inline-block;" v-if="$route.path.indexOf('teacher')!=-1">
         教师个人主页
       </div>
 
@@ -31,8 +31,10 @@
           <img src="@/assets/img/search.png" @click="keySend" style="cursor: pointer;">
         </div>
       </div>
-      <a class="college-link" :href="unit.collegeUrl" v-if="dataDone && this.$route.path.indexOf('teacher')===-1"><el-button type="text" style=" font-size: 13px;
-    font-weight: bold;position: relative;transform: translateX(-30px);color: #3399CC;" @click="">学院首页</el-button></a>
+      <a class="college-link" :href="unit.collegeUrl" v-if="dataDone && this.$route.path.indexOf('teacher')===-1">
+        <el-button type="text" style=" font-size: 13px;
+    font-weight: bold;position: relative;transform: translateX(-30px);color: #3399CC;" @click="">学院首页</el-button>
+      </a>
 
     </div>
 
