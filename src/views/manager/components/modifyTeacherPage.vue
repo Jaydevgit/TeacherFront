@@ -607,7 +607,7 @@
           </el-row>
         </el-card>
 
-        <!--个人简介区域-->
+<!--个人简介区域-->
         <div class="row-bg">
 <!--          <div style="font-family: 微软雅黑;font-weight: bold;margin-bottom: 20px;font-size: 24px">编辑个人简介</div>-->
           <el-row type="flex"  justify="center">
@@ -639,7 +639,7 @@
                       <div style="display: flex;justify-content: space-between;">
                         <!--<div style="color: rgb(245, 108, 108);font-weight: 800;">▶编辑个人简介</div>-->
                         <div style="font-family: 微软雅黑;font-weight: bold;margin-bottom: 10px;font-size: 24px">编辑个人简介</div>
-                        <div v-if="ruleForm.scholat_username" style="color: rgb(245, 108, 108);font-weight: 800;cursor: pointer;flex: 2;text-align: right;margin-right: 15px"
+                        <div v-if="ruleForm.scholat_username" style="margin-top:5px;color: rgb(245, 108, 108);font-weight: 800;cursor: pointer;flex: 2;text-align: right;margin-right: 15px"
                              @click="showDifferent(scholatProfile)">信息对比</div>
                         <!--<div style="color: rgb(245, 108, 108);font-weight: 800;cursor: pointer;margin-right: 15px" @click="saveTeacher()">保存简介</div>-->
 <!--                        <div v-else style="color: rgb(245, 108, 108);font-weight: 800;cursor: pointer;flex: 2;text-align: right;margin-right: 15px"@click="ifShow">{{this.showTag}}</div>-->
@@ -1323,6 +1323,7 @@
                 this.axios.post('/api/manager/getScholatProfileByUserName', {
                     username: username,
                 }).then(res => {
+                  console.log("res="+JSON.stringify(res));
                     this.scholatProfile = res.data.info
                 }).catch(err => {
                 })
@@ -1491,13 +1492,21 @@
                             message: '已取消关联'
                         });
                     });*/
-
+              console.log("this.ruleForm.scholat_username = "+this.ruleForm.scholat_username)
                 if (this.ruleForm.scholat_username === '') {
                     this.ruleForm.scholat_username = filterXSS(scholat.scholat_username);
                 }
-                if (this.ruleForm.intro === '') {
+              console.log("this.ruleForm.scholat_username = "+this.ruleForm.scholat_username)
+              console.log("this.ruleForm.intro = "+this.ruleForm.intro)
+              console.log("scholat.intro = "+scholat.intro)
+              /*this.ruleForm.intro = filterXSS(scholat.intro);*/
+
+                if (this.ruleForm.intro === '<p><br></p>'||this.ruleForm.intro === '') {
                     this.ruleForm.intro = filterXSS(scholat.intro);
+                    console.log("this.ruleForm.intro = "+this.ruleForm.intro)
+                    this.editor.txt.html(this.ruleForm.intro)
                 }
+              console.log("this.ruleForm.intro = "+this.ruleForm.intro)
                 this.axios.post('/api/manager/bindScholat', {
                     id: this.ruleForm.id,
                     state:'lock',
@@ -1662,9 +1671,10 @@
                 })
             },
           saveTeacher() {
-            var html = this.editor.txt.html()
+            /*var html = this.editor.txt.html()
+            console.log("this.editor.txt.html()="+this.editor.txt.html())
             var filterHtml = filterXSS(html)
-            this.ruleForm.intro = filterHtml
+            this.ruleForm.intro = filterHtml*/
             this.$refs.ruleForm.validate((valid) => {
               if (valid) {
                 console.log("验证表单信息成功")
