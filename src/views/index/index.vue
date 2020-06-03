@@ -514,11 +514,24 @@
     }
     .page1{
       text-align: center;
-      width: 1440px;
+      width: 1349px;
       height: 790px;
-      background-image: url("../../assets/index/index_bg_max1.png");
-      background-repeat:no-repeat;
-      background-position:center;
+      /*background-image: url("../../assets/index/index_bg_max1.png");*/
+      /*background-repeat:no-repeat;*/
+      /*background-position:center;*/
+      background:
+        url("../../assets/index/t1.svg") left 115px top 75px no-repeat,
+        url("../../assets/index/t2.svg") left 985px top no-repeat,
+        url("../../assets/index/t3.svg") left 1085px top 150px no-repeat,
+        url("../../assets/index/a1.svg") left 10px bottom no-repeat,
+      url("../../assets/index/a2.svg") left 149px bottom no-repeat,
+      url("../../assets/index/a3.svg") left 334px bottom no-repeat,
+      url("../../assets/index/a4.svg") left 509px bottom no-repeat,
+      url("../../assets/index/a5.svg") left 629px bottom no-repeat,
+      url("../../assets/index/a6.svg") left 747px bottom no-repeat,
+      url("../../assets/index/a7.svg") left 914px bottom no-repeat,
+      url("../../assets/index/a8.svg") left 1042px bottom no-repeat,
+      url("../../assets/index/a9.svg") left 1191px bottom no-repeat;
     }
     .page3{
       margin: 0 auto;
