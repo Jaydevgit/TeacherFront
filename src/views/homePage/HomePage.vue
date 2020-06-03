@@ -548,7 +548,8 @@
     .left{
       width: 90%;
       margin: 0 auto;
-      margin-bottom: 20px;
+      margin-bottom: 10px;
+
     }
     .middle{
       width: 90%;
@@ -603,7 +604,9 @@
       height: auto;
       border-radius: 0 0 8px 8px;
     }
-
+    .el-breadcrumb{
+      display: none;
+    }
 
 
   }
