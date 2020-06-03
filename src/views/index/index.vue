@@ -339,9 +339,22 @@
     margin: 0 auto;
     width: 1024px;
     height: 720px;
-    background-image: url("../../assets/index/index_bg1.png");
-    background-repeat:no-repeat;
-    background-position:center;
+    /*background-image: url("../../assets/index/index_bg1.png");*/
+    /*background-repeat:no-repeat;*/
+    /*background-position:center;*/
+    background:
+      url("../../assets/index/DeskTop/tM1.svg") left 60px top 75px no-repeat,
+      url("../../assets/index/DeskTop/tM2.svg") left 750px top 20px no-repeat,
+      url("../../assets/index/DeskTop/tM3.svg") left 820px top 150px no-repeat,
+      url("../../assets/index/DeskTop/aM1.svg") left 10px bottom no-repeat,
+      url("../../assets/index/DeskTop/aM2.svg") left 101px bottom no-repeat,
+      url("../../assets/index/DeskTop/aM3.svg") left 246px bottom no-repeat,
+      url("../../assets/index/DeskTop/aM4.svg") left 374px bottom no-repeat,
+      url("../../assets/index/DeskTop/aM5.svg") left 460px bottom no-repeat,
+      url("../../assets/index/DeskTop/aM6.svg") left 545px bottom no-repeat,
+      url("../../assets/index/DeskTop/aM7.svg") left 667px bottom no-repeat,
+      url("../../assets/index/DeskTop/aM8.svg") left 760px bottom no-repeat,
+      url("../../assets/index/DeskTop/aM9.svg") left 883px bottom no-repeat;
   }
   .title_1{
     color: #000000;
@@ -514,11 +527,24 @@
     }
     .page1{
       text-align: center;
-      width: 1440px;
+      width: 1349px;
       height: 790px;
-      background-image: url("../../assets/index/index_bg_max1.png");
-      background-repeat:no-repeat;
-      background-position:center;
+      /*background-image: url("../../assets/index/index_bg_max1.png");*/
+      /*background-repeat:no-repeat;*/
+      /*background-position:center;*/
+      background:
+        url("../../assets/index/t1.svg") left 115px top 75px no-repeat,
+        url("../../assets/index/t2.svg") left 985px top no-repeat,
+        url("../../assets/index/t3.svg") left 1085px top 150px no-repeat,
+        url("../../assets/index/a1.svg") left 10px bottom no-repeat,
+      url("../../assets/index/a2.svg") left 149px bottom no-repeat,
+      url("../../assets/index/a3.svg") left 334px bottom no-repeat,
+      url("../../assets/index/a4.svg") left 509px bottom no-repeat,
+      url("../../assets/index/a5.svg") left 629px bottom no-repeat,
+      url("../../assets/index/a6.svg") left 747px bottom no-repeat,
+      url("../../assets/index/a7.svg") left 914px bottom no-repeat,
+      url("../../assets/index/a8.svg") left 1042px bottom no-repeat,
+      url("../../assets/index/a9.svg") left 1191px bottom no-repeat;
     }
     .page3{
       margin: 0 auto;
@@ -587,9 +613,23 @@
       margin: 0 auto;
       width: 768px;
       height: 678px;
-      background-image: url("../../assets/index/index_bgPad1.png");
-      background-repeat:no-repeat;
-      background-position:center;
+      /*background-image: url("../../assets/index/index_bgPad1.png");*/
+      /*background-repeat:no-repeat;*/
+      /*background-position:center;*/
+      background:
+        url("../../assets/index/ipad/tM1.svg") left 40px top 60px no-repeat,
+        url("../../assets/index/ipad/tM2.svg") left 560px top 20px no-repeat,
+        url("../../assets/index/ipad/tM3.svg") left 600px top 150px no-repeat,
+        url("../../assets/index/ipad/aM1.svg") left bottom no-repeat,
+        url("../../assets/index/ipad/aM2.svg") left 68px bottom no-repeat,
+        url("../../assets/index/ipad/aM3.svg") left 173px bottom no-repeat,
+        url("../../assets/index/ipad/aM4.svg") left 272px bottom no-repeat,
+        url("../../assets/index/ipad/aM5.svg") left 339px bottom no-repeat,
+        url("../../assets/index/ipad/aM6.svg") left 406px bottom no-repeat,
+        url("../../assets/index/ipad/aM7.svg") left 500px bottom no-repeat,
+        url("../../assets/index/ipad/aM8.svg") left 572px bottom no-repeat,
+        url("../../assets/index/ipad/aM9.svg") left 667px bottom no-repeat;
+
     }
     .page2{
       width: 768px;
@@ -652,7 +692,20 @@
       margin: 0 auto;
       width: 320px;
       height: 442px;
-      background-image: url("../../assets/index/index_bgMin1.png");
+      /*background-image: url("../../assets/index/index_bgMin1.png");*/
+      background:
+        url("../../assets/index/mobile/tM1.svg") left 10px top 60px no-repeat,
+        url("../../assets/index/mobile/tM2.svg") left 260px top 40px no-repeat,
+        url("../../assets/index/mobile/tM3.svg") left 240px top 120px no-repeat,
+        url("../../assets/index/mobile/aM1.svg") left 5px bottom no-repeat,
+        url("../../assets/index/mobile/aM2.svg") left 35px bottom no-repeat,
+        url("../../assets/index/mobile/aM3.svg") left 75px bottom no-repeat,
+        url("../../assets/index/mobile/aM4.svg") left 113px bottom no-repeat,
+        url("../../assets/index/mobile/aM5.svg") left 140px bottom no-repeat,
+        url("../../assets/index/mobile/aM6.svg") left 170px bottom no-repeat,
+        url("../../assets/index/mobile/aM7.svg") left 207px bottom no-repeat,
+        url("../../assets/index/mobile/aM8.svg") left 235px bottom no-repeat,
+        url("../../assets/index/mobile/aM9.svg") left 275px bottom no-repeat;
       .title_1{
         padding: 40px 20px;
         font-size: 16px;

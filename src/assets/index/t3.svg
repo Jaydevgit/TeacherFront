@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg width="185px" height="184px" viewBox="0 0 185 184" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
+  <desc>Created with Lunacy</desc>
+  <g id="2.通用组件/彩色版/点线三角体" transform="matrix(0.6819984 0.7313537 -0.7313537 0.6819984 103.7361 2.07785)" opacity="0.199102491">
+    <g id="编组">
+      <path d="M0 109.599L57.5116 0L99.3754 120.304L0 109.599Z" transform="translate(6.872432 8.77392)" id="路径-2" fill="none" stroke="none" />
+      <path d="M0 0L15.0434 79.7111L41.9218 120.304L0 0Z" transform="translate(64.46341 8.60519)" id="路径-3" fill="none" stroke="#597EF7" stroke-width="2.1384" stroke-linejoin="round" />
+      <path d="M0 109.674L72.5729 79.7656L57.5423 0L0 109.674Z" transform="translate(6.872432 8.60519)" id="路径-4" fill="none" stroke="#597EF7" stroke-width="2.9403" stroke-linejoin="round" />
+      <path d="M0 29.8159L99.3754 40.495L72.5341 4.49585e-15L0 29.8159Z" transform="translate(6.872432 88.41412)" id="路径-5" fill="none" stroke="#597EF7" stroke-width="2.1384" stroke-linejoin="round" />
+      <path d="M7.00988 17.2104C10.8813 17.2104 14.0198 13.3577 14.0198 8.60519C14.0198 3.85267 10.8813 0 7.00988 0C3.13843 0 0 3.85267 0 8.60519C0 13.3577 3.13843 17.2104 7.00988 17.2104Z" transform="translate(57.45353 0)" id="椭圆形备份-12" fill="#597EF7" stroke="none" />
+      <path d="M7.00988 17.2104C10.8813 17.2104 14.0198 13.3577 14.0198 8.60519C14.0198 3.85267 10.8813 0 7.00988 0C3.13843 0 0 3.85267 0 8.60519C0 13.3577 3.13843 17.2104 7.00988 17.2104Z" transform="translate(0 109.1678)" id="椭圆形备份-13" fill="#597EF7" stroke="none" />
+      <path d="M7.00988 17.2104C10.8813 17.2104 14.0198 13.3577 14.0198 8.60519C14.0198 3.85267 10.8813 0 7.00988 0C3.13843 0 0 3.85267 0 8.60519C0 13.3577 3.13843 17.2104 7.00988 17.2104Z" transform="translate(101.0247 120.8101)" id="椭圆形备份-14" fill="#597EF7" stroke="none" />
+      <path d="M7.00988 17.2104C10.8813 17.2104 14.0198 13.3577 14.0198 8.60519C14.0198 3.85267 10.8813 0 7.00988 0C3.13843 0 0 3.85267 0 8.60519C0 13.3577 3.13843 17.2104 7.00988 17.2104Z" transform="translate(71.47329 79.80892)" id="椭圆形备份-15" fill="#597EF7" stroke="none" />
+    </g>
+  </g>
+</svg>
