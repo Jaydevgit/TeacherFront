@@ -613,9 +613,23 @@
       margin: 0 auto;
       width: 768px;
       height: 678px;
-      background-image: url("../../assets/index/index_bgPad1.png");
-      background-repeat:no-repeat;
-      background-position:center;
+      /*background-image: url("../../assets/index/index_bgPad1.png");*/
+      /*background-repeat:no-repeat;*/
+      /*background-position:center;*/
+      background:
+        url("../../assets/index/ipad/tM1.svg") left 40px top 60px no-repeat,
+        url("../../assets/index/ipad/tM2.svg") left 560px top 20px no-repeat,
+        url("../../assets/index/ipad/tM3.svg") left 600px top 150px no-repeat,
+        url("../../assets/index/ipad/aM1.svg") left bottom no-repeat,
+        url("../../assets/index/ipad/aM2.svg") left 68px bottom no-repeat,
+        url("../../assets/index/ipad/aM3.svg") left 173px bottom no-repeat,
+        url("../../assets/index/ipad/aM4.svg") left 272px bottom no-repeat,
+        url("../../assets/index/ipad/aM5.svg") left 339px bottom no-repeat,
+        url("../../assets/index/ipad/aM6.svg") left 406px bottom no-repeat,
+        url("../../assets/index/ipad/aM7.svg") left 500px bottom no-repeat,
+        url("../../assets/index/ipad/aM8.svg") left 572px bottom no-repeat,
+        url("../../assets/index/ipad/aM9.svg") left 667px bottom no-repeat;
+
     }
     .page2{
       width: 768px;
