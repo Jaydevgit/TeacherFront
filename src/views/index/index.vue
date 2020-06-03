@@ -692,7 +692,20 @@
       margin: 0 auto;
       width: 320px;
       height: 442px;
-      background-image: url("../../assets/index/index_bgMin1.png");
+      /*background-image: url("../../assets/index/index_bgMin1.png");*/
+      background:
+        url("../../assets/index/mobile/tM1.svg") left 10px top 60px no-repeat,
+        url("../../assets/index/mobile/tM2.svg") left 260px top 40px no-repeat,
+        url("../../assets/index/mobile/tM3.svg") left 240px top 120px no-repeat,
+        url("../../assets/index/mobile/aM1.svg") left 5px bottom no-repeat,
+        url("../../assets/index/mobile/aM2.svg") left 35px bottom no-repeat,
+        url("../../assets/index/mobile/aM3.svg") left 75px bottom no-repeat,
+        url("../../assets/index/mobile/aM4.svg") left 113px bottom no-repeat,
+        url("../../assets/index/mobile/aM5.svg") left 140px bottom no-repeat,
+        url("../../assets/index/mobile/aM6.svg") left 170px bottom no-repeat,
+        url("../../assets/index/mobile/aM7.svg") left 207px bottom no-repeat,
+        url("../../assets/index/mobile/aM8.svg") left 235px bottom no-repeat,
+        url("../../assets/index/mobile/aM9.svg") left 275px bottom no-repeat;
       .title_1{
         padding: 40px 20px;
         font-size: 16px;
