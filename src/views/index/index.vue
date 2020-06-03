@@ -339,9 +339,22 @@
     margin: 0 auto;
     width: 1024px;
     height: 720px;
-    background-image: url("../../assets/index/index_bg1.png");
-    background-repeat:no-repeat;
-    background-position:center;
+    /*background-image: url("../../assets/index/index_bg1.png");*/
+    /*background-repeat:no-repeat;*/
+    /*background-position:center;*/
+    background:
+      url("../../assets/index/DeskTop/tM1.svg") left 60px top 75px no-repeat,
+      url("../../assets/index/DeskTop/tM2.svg") left 750px top 20px no-repeat,
+      url("../../assets/index/DeskTop/tM3.svg") left 820px top 150px no-repeat,
+      url("../../assets/index/DeskTop/aM1.svg") left 10px bottom no-repeat,
+      url("../../assets/index/DeskTop/aM2.svg") left 101px bottom no-repeat,
+      url("../../assets/index/DeskTop/aM3.svg") left 246px bottom no-repeat,
+      url("../../assets/index/DeskTop/aM4.svg") left 374px bottom no-repeat,
+      url("../../assets/index/DeskTop/aM5.svg") left 460px bottom no-repeat,
+      url("../../assets/index/DeskTop/aM6.svg") left 545px bottom no-repeat,
+      url("../../assets/index/DeskTop/aM7.svg") left 667px bottom no-repeat,
+      url("../../assets/index/DeskTop/aM8.svg") left 760px bottom no-repeat,
+      url("../../assets/index/DeskTop/aM9.svg") left 883px bottom no-repeat;
   }
   .title_1{
     color: #000000;
