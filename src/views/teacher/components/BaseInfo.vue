@@ -75,8 +75,9 @@
                 </div>
                 <div class="name-bottom-item" style="margin-bottom: 10px;" v-if="teacherProfile.email">
                   <!--<span><svg-icon icon-class="email"/></span>-->
-                  <label class="font-one">邮箱：</label><div class="detail-msg" v-if="this.url.length!==0" ><img  :src="this.url" alt="" style="transform: translateX(-12px)"></div>
-                  <div class="detail-msg" id="aaa" v-else >{{teacherProfile.email}}</div>
+                  <label class="font-one">邮箱：</label>
+                  <div class="detail-msg" id="aaa" v-if="this.destroy" >{{teacherProfile.email}}</div>
+                  <div class="detail-msg" v-else ><img  :src="this.url" alt="" style="transform: translateX(-12px)"></div>
               </div>
                 <div class="name-bottom-item" style="margin-bottom: 10px;" v-if="teacherProfile.scholat_username">
                   <!--<span><svg-icon icon-class="S"/></span>-->
@@ -184,7 +185,9 @@
 
           this.$emit('rInfo')
         },
-
+        teacherProfile:function (n,o) {
+          this.a()
+        }
       },
         data() {
             return {
@@ -207,16 +210,18 @@
                     matrixCode: ""
                 },
                 tagFlag: '',
-              url:''
+              url:'',
+              destroy:false
             }
         },
         props: ['teacherProfile'],
         methods: {
           a(){
+            this.destroy=true
             this.$nextTick(_ => {
               var copyDom=document.getElementById('aaa')
-              var width = copyDom.offsetWidth;//dom宽
-              var height = copyDom.offsetHeight;//dom高
+              var width = 210;//dom宽copyDom.offsetWidth
+              var height = 22;//dom高copyDom.offsetHeight
               var scale = 1.09;//放大倍数
               html2canvas(copyDom,{
                 dpi: window.devicePixelRatio*2,
@@ -226,6 +231,7 @@
               }).then(canvas => {
                 // 转成图片，生成图片地址
                 this.url = canvas.toDataURL("image/png");
+                this.destroy=false
               })
             })
           },
