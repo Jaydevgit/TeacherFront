@@ -236,11 +236,7 @@
                             placeholder="例如：院长、书记、老师、辅导员等"></el-input>
                 </el-form-item>
               </div></el-col>
-              <el-col :span="8"><div class="grid-content bg-purple">
-                <el-form-item label="头衔" prop="label">
-                  <el-input v-model="ruleForm.label" placeholder="例如：国务院特殊津贴专家等头衔"></el-input>
-                </el-form-item>
-              </div></el-col>
+
             </el-row>
             <!--<el-row>
 
@@ -267,6 +263,11 @@
 <!--                </el-form-item>-->
 <!--              </div></el-col>-->
               <el-col :span="8"><div class="grid-content bg-purple">
+                <el-form-item label="头衔" prop="label">
+                  <el-input v-model="ruleForm.label" placeholder="例如：国务院特殊津贴专家等头衔"></el-input>
+                </el-form-item>
+              </div></el-col>
+              <!--<el-col :span="8"><div class="grid-content bg-purple">
                 <el-form-item label="毕业学校" prop="graduateFrom">
                   <el-input v-model="ruleForm.graduateFrom"
                             placeholder=""></el-input>
@@ -276,7 +277,7 @@
                 <el-form-item label="专业" prop="subject">
                   <el-input v-model="ruleForm.subject" placeholder="例如：软件工程"></el-input>
                 </el-form-item>
-              </div></el-col>
+              </div></el-col>-->
             </el-row>
             <el-row>
               <el-col :span="8"><div class="grid-content bg-purple">

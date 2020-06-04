@@ -230,13 +230,14 @@ export const asyncRouterMap = [
         menu: 'teacher',// 这里的menu和权限有关，如果权限menu没有返回对应的menu就不会显示，所以要写上menu
         hidden: false
       },
-      {
+      /*经过进一步调研，由于我们这里的数据不是教师人事数据（可以跟学院人事数据对接），所以我们这里先删去“毕业学校”和“专业”等一般教师主页不需要显示的字段*/
+      /*{
         path: 'teacherSet',
         name: '教师主页设置',
         component: _import('homeSet/teacher/teacherSet'),
         meta: {title: '教师主页设置', icon: 'user'},
         menu: 'user'
-      },
+      },*/
 
     ]
   },

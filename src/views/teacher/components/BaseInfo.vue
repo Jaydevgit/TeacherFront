@@ -40,17 +40,17 @@
             </div>
             <div class="name">
               {{teacherProfile.username}}
-              <span class="prodile-second" style="margin-left: 14px;" v-if="teacherProfile.post&&tagFlag[3]==='d'">{{teacherProfile.post}}</span>
-              <span class="prodile-second" style="" v-if="teacherProfile.duty&&tagFlag[2]==='c'">
+              <span class="prodile-second" style="margin-left: 14px;" v-if="teacherProfile.post">{{teacherProfile.post}}</span>
+              <span class="prodile-second" style="" v-if="teacherProfile.duty">
                 <span v-if="teacherProfile.post&&teacherProfile.duty">、</span>
                 {{teacherProfile.duty}}
               </span>
               <!--                  <span class="prodile-second" v-if="teacherProfile.degree">/&nbsp{{teacherProfile.degree}}</span>-->
             </div>
-            <!--头衔-->
-            <div v-if="teacherProfile.label&&tagFlag[4]==='e'" style="margin-bottom: 10px;margin-left: 20px">
-              <span class="personal-describe">{{teacherProfile.label}}</span>
-
+            <!--头衔、学历学位-->
+            <div v-if="teacherProfile.label||teacherProfile.degree" style="margin-bottom: 10px;margin-left: 20px;margin-top: 10px">
+              <span v-if="teacherProfile.label" class="personal-describe">{{teacherProfile.label}}</span>
+              <span v-if="teacherProfile.degree" class="personal-describe">{{teacherProfile.degree}}</span>
             </div>
             <div v-else style="margin-bottom: 10px;margin-top: 31px"></div>
             <!--<div class="name-right-bg" style="float: right;height:210px;margin-top: -90px"></div>-->
@@ -59,17 +59,16 @@
 
 
 
-                <div class="name-bottom-item" style="margin-bottom: 10px;"
-                     v-if="tagFlag[9]==='j'">
+                <div class="name-bottom-item" style="margin-bottom: 10px;">
                   <!--<span><svg-icon icon-class="department"/></span>-->
                   <label class="font-one">部门：</label><div class="detail-msg">{{personal.unit}}{{teacherProfile.department_name}}</div>
                 </div>
-                <div class="name-bottom-item" style="margin-bottom: 10px;" v-if="tagFlag[10]==='k'&&teacherProfile.work_place">
+                <div class="name-bottom-item" style="margin-bottom: 10px;" v-if="teacherProfile.work_place">
                   <!--<span><svg-icon icon-class="maps-and-flags"/></span>-->
                   <label class="font-one">地址：</label>
                   <div class="detail-msg">{{teacherProfile.work_place}}</div>
                 </div>
-                <div class="name-bottom-item" style="margin-bottom: 10px;" v-if="tagFlag[11]==='l'&&teacherProfile.phone">
+                <div class="name-bottom-item" style="margin-bottom: 10px;" v-if="teacherProfile.phone">
                   <!--<span><svg-icon icon-class="mobile-phone"/></span>-->
                   <label class="font-one">电话：</label><div class="detail-msg">{{teacherProfile.phone}}</div>
                 </div>
@@ -94,32 +93,25 @@
                             </div>-->
               </div>
               <div class="name-bottom-right">
-                <div style="margin-bottom: 10px;" v-if="tagFlag[5]==='f'&&teacherProfile.degree" class="name-bottom-item">
-                  <!--
-                                   <span ><svg-icon icon-class="degree" /></span>
-                  -->
-                  <label class="font-one">学历学位：</label><div class="detail-msg">{{teacherProfile.degree}}</div>
-                </div>
-                <!--<div style="margin-bottom: 10px;" v-if="tagFlag[5]==='f'"
-                     class="name-bottom-item">
+                <!--<div style="margin-bottom: 10px;" v-if="tagFlag[5]==='f'&&teacherProfile.degree" class="name-bottom-item">
                   &lt;!&ndash;
-                                   <span><svg-icon icon-class="degree"/></span>
+                                   <span ><svg-icon icon-class="degree" /></span>
                   &ndash;&gt;
-                  <label class="font-one">最高学位：</label><div class="detail-msg">{{teacherProfile.degreeMax}}</div>
+                  <label class="font-one">学历学位：</label><div class="detail-msg">{{teacherProfile.degree}}</div>
                 </div>-->
-                <div class="name-bottom-item" style="margin-bottom: 10px;"
+                <!--<div class="name-bottom-item" style="margin-bottom: 10px;"
                      v-if="tagFlag[6]==='g'&&teacherProfile.graduateFrom">
-                  <!--
+                  &lt;!&ndash;
                                    <span><svg-icon icon-class="department"/></span>
-                  -->
+                  &ndash;&gt;
                   <label class="font-one">毕业学校：</label><div class="detail-msg">{{teacherProfile.graduateFrom}}</div>
                 </div>
                 <div class="name-bottom-item" style="margin-bottom: 10px;"
                      v-if="tagFlag[7]==='h'&&teacherProfile.subject">
-                  <!--<span><svg-icon icon-class="department"/></span>-->
+                  &lt;!&ndash;<span><svg-icon icon-class="department"/></span>&ndash;&gt;
                   <label class="font-one">学科专业：</label><div class="detail-msg">{{teacherProfile.subject}}</div>
-                </div>
-                <div class="name-bottom-item" style="margin-bottom: 10px;flex-direction: column" v-if="tagFlag[8]==='i'&&teacherProfile.research_direction">
+                </div>-->
+                <div class="name-bottom-item" style="margin-bottom: 10px;flex-direction: column" v-if="teacherProfile.research_direction">
                   <!--<span><svg-icon icon-class="rearch-direction"/></span>-->
                   <label class="font-one">研究方向：</label>
                   <div class="detail-msg" style="margin-top: 7px;line-height: 25px;">{{teacherProfile.research_direction}}</div>
@@ -471,7 +463,7 @@
           display: inline;
           font-size: 16px;
           font-weight: 400;
-          background: #eaeaea;
+          /*background: #eaeaea;*/
           padding: 2px 12px;
           border-radius: 19px;
           color: #818181;
