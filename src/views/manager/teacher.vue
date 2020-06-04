@@ -106,6 +106,16 @@
           <span></span>
         </template>
       </el-table-column>
+      <el-table-column align="center" label="网址"  prop="pinyin">
+        <template slot-scope="scope">
+          <span class="teacher-homepage" style="cursor:pointer;">
+            <a :href="'http://faculty.scholat.com/teacher/'+scope.row.school_unit_domainName+'/'+scope.row.domainName">
+              {{scope.row.domainName}}
+            </a>
+          </span>
+          <span></span>
+        </template>
+      </el-table-column>
       <!--<el-table-column align="center" label="学历" >
         <template slot-scope="scope">
           <span>{{scope.row.degree}}</span>
