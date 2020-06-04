@@ -626,7 +626,11 @@
                     </div>
                   </el-col>
                   <el-col :span="compareArea">
-                    <div style="padding: 5px 0; color: #ccc">文字更新区域</div>
+                    <div style="display: flex;justify-content: space-between">
+                      <div style="padding: 5px 0; color: #ccc">文字更新区域</div>
+                      <div style="padding: 5px 0; color: rgb(245, 108, 108);cursor: pointer" @click="copyPureText(scholatProfile)">复制纯文本</div>
+                    </div>
+
                     <div class="grid-content ">
                       <div v-html="showUpdateInfo.updateScholatInfo"
                            style="height: 270px;overflow: auto;background-color: antiquewhite"></div>
@@ -1250,35 +1254,47 @@
             showDifferent(scholat) {
                 this.$message.success("查找更新成功，黄色区域表示更新区域")
              // console.log("+scholat.log"+JSON.stringify(scholat));
-              this.setScholat(scholat)
-                this.api({
-                    url: "/manager/compare",
-                    method: 'post',
-                    data: {
-                        teacher: this.ruleForm,
-                        scholat: scholat
-                    }
-                }).then(data => {
-                    console.log('----------对比更新后的数据---------');
-                    console.log(data);
-                    // 设置获取到的更新信息
-                    this.getScholatUpdateInfo(data);
-                    // 设置编辑区域宽度显示
-                  if(this.ruleForm.scholat_username){
-                    if(  this.compareArea === 0){
-                      this.compareArea = 12;
-                    }else{
-                      this.compareArea = 0;
-                    }
-                  }else {
-                    this.compareArea = 12;
+              this.setScholat(scholat);
+              this.api({
+                  url: "/manager/compare",
+                  method: 'post',
+                  data: {
+                      teacher: this.ruleForm,
+                      scholat: scholat
                   }
-                  this.editorArea = 12;
-
-
-                }).catch(e => {
-                    // this.$message.error("hey ")
-                })
+              }).then(data => {
+                  console.log('----------对比更新后的数据---------');
+                  console.log(data);
+                  // 设置获取到的更新信息
+                  this.getScholatUpdateInfo(data);
+                  // 设置编辑区域宽度显示
+                if(this.ruleForm.scholat_username){
+                  if(  this.compareArea === 0){
+                    this.compareArea = 12;
+                  }else{
+                    this.compareArea = 0;
+                  }
+                }else {
+                  this.compareArea = 12;
+                }
+                this.editorArea = 12;
+              }).catch(e => {
+                  // this.$message.error("hey ")
+              })
+            },
+            copyPureText(scholatProfile){
+              let intro=scholatProfile.intro;
+              let oInput = document.createElement('input');
+              oInput.value = intro;
+              document.body.appendChild(oInput);
+              oInput.select(); // 选择对象;
+              console.log(oInput.value)
+              document.execCommand("Copy"); // 执行浏览器复制命令
+              this.$message({
+                message: '已成功复制到剪切板',
+                type: 'success'
+              });
+              oInput.remove();
             },
             // 设置教师信息
             setTeacherInfo(data) {
@@ -1324,7 +1340,14 @@
                     username: username,
                 }).then(res => {
                   console.log("res="+JSON.stringify(res));
-                    this.scholatProfile = res.data.info
+                  this.scholatProfile = res.data.info
+                  //将个人简介显示到框中
+                  /*if (this.ruleForm.intro === '<p><br></p>'||this.ruleForm.intro === '') {
+                    this.ruleForm.intro = filterXSS(this.scholatProfile.intro);
+                    console.log("this.ruleForm.intro = "+this.ruleForm.intro)
+                    this.editor.txt.html(this.ruleForm.intro)
+                  }
+                  console.log("this.ruleForm.intro = "+this.ruleForm.intro)*/
                 }).catch(err => {
                 })
             },
@@ -1499,7 +1522,6 @@
               console.log("this.ruleForm.scholat_username = "+this.ruleForm.scholat_username)
               console.log("this.ruleForm.intro = "+this.ruleForm.intro)
               console.log("scholat.intro = "+scholat.intro)
-              /*this.ruleForm.intro = filterXSS(scholat.intro);*/
 
                 if (this.ruleForm.intro === '<p><br></p>'||this.ruleForm.intro === '') {
                     this.ruleForm.intro = filterXSS(scholat.intro);
