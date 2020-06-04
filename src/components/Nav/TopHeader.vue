@@ -218,6 +218,7 @@
                         console.log("================================")
                         this.listLoading = false;
                         this.unit = data;
+                      this.$store.state.user.tagState=data.tagState
                         console.log("unit="+this.unit);
                         this.dataDone = true;
                     }).catch(error => {
