@@ -549,7 +549,7 @@
       width: 90%;
       margin: 0 auto;
       margin-bottom: 10px;
-
+      margin-top: 20px;
     }
     .middle{
       width: 90%;

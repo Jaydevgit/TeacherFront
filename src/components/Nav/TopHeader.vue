@@ -8,13 +8,14 @@
              style="height: 100%;width: auto;bottom: 0;"/>
       </div>
       <div @click="goToCollege"
-           style="height: 100%;max-width: 900px;display: flex;justify-content: center;align-items: center;transform: translateX(-10px);
+           style="height: 100%;max-width: 900px;display: flex;justify-content: center;align-items: center;
            cursor: pointer">
        <div class="background1-name" style="color: steelblue">
-         <a class="university" style="white-space: nowrap;font-weight: bold;">{{unit.schoolName}}</a>
+         <span class="university" style="white-space: nowrap;font-weight: bold;">{{unit.schoolName}}</span>
          <span class="unitName" style="color:steelblue;font-weight: bold;white-space:nowrap;">{{unit.unitName}}</span>
        </div>
       </div>
+
       <div class="font-jsgrzy" style="display: inline-block;" v-if="$route.path.indexOf('homepage')!=-1">
         师资队伍
       </div>
@@ -24,7 +25,7 @@
 
 
       <div class="search bar6">
-        <div class="formDiv" style="min-width:200px;float: right;transform: translateX(-40px)">
+        <div class="formDiv" style="">
           <input @keyup.enter="keySend" type="text" v-model="searchKey" placeholder="请输入您要搜索的教师" name="cname"
                  style="color: gray;background-color: white;">
           <!--<button @click="keySend"></button>-->
@@ -95,14 +96,14 @@
                  style="height:90%;vertical-align: center"
                  :onerror="defaultBack" title="点击访问该学院"/>
           </div>
-          <span style="font-size: 26px;margin-left: 20px;
+          <!--<span style="font-size: 26px;margin-left: 20px;
       font-weight: bold;
       letter-spacing: 3.5px;
       line-height: 60px;
       color: steelblue;
       white-space: nowrap;" class="font-jsgrzy-none">
             师资队伍
-          </span>
+          </span>-->
         </template>
         <!--如果没有背景图，则显示学校LOGO+xx学院+文字，登录页面按照逻辑会跳到这里，所以要判断-->
         <template v-else>
@@ -118,8 +119,11 @@
           </span>
         </template>
       </div>
+      <span style="" class="teacherTeam">
+            师资队伍
+          </span>
       <div class="search bar6" v-if="dataDone && this.$route.path.indexOf('teacher')===-1">
-        <div class="formDiv" style="max-width:180px;transform: translateX(20px)">
+        <div class="formDiv" style="">
           <input @keyup.enter="keySend" type="text" v-model="searchKey" placeholder="请输入您要搜索的教师" name="cname"
                  style="color: gray;background-color: white;">
           <!--<button @click="keySend"></button>-->
@@ -341,6 +345,26 @@
       /*background: url('../../assets/img/home.png') no-repeat;*/
       /*background-size: cover;*/
     }
+    .background {
+      padding: 0px 0px 5px 0px;
+      width: 100%;
+      height: 100%;
+      max-width: 1000px;
+      text-align: center;
+      margin: auto;
+      display: flex;
+      align-items: center;
+    }
+    .background2 {
+      width: 100%;
+      height: 100%;
+      background-color: white;
+      max-width: 1000px;
+      text-align: center;
+      margin: auto;
+      display: flex;
+      align-items: center;
+    }
     div.search {
       width: 65%;
     }
@@ -355,6 +379,55 @@
     }
     .backgroundImage{
       cursor: pointer;height: 100%;display: flex;align-items: center
+    }
+    .bar6 input {
+      border: 2px solid white;
+      border-radius: 46px;
+      background: transparent;
+      top: 0;
+      right: 0;
+      box-shadow:2px 2px 10px #909090;
+    }
+
+    .bar6 button {
+      background: white;
+      border-radius: 0 46px 46px 0;
+      width: 50px;
+      top: 0;
+      right: 0;
+      background-image: url("../../assets/search.png");
+      background-size:50% 70%;
+      background-repeat:no-repeat;
+      background-position:center center;
+    }
+
+    .bar6 img{
+      width: 32px;
+      height: 32px;
+      position: absolute;
+      top: 2px;
+      right: 10px;
+    }
+    .bar6 button:before {
+      /*content: "搜索";*/
+      font-size: 13px;
+      font-weight: bold;
+      color: #3399CC;
+
+    }
+    .formDiv {
+      position: relative;
+      width: 250px;
+      margin: 0 auto;
+      max-width:180px;transform: translateX(20px)
+    }
+    .teacherTeam{
+      font-size: 26px;
+      font-weight: bold;
+      letter-spacing: 3.5px;
+      line-height: 60px;
+      color: steelblue;
+      white-space: nowrap;
     }
   }
   @media screen and (min-width: 768px) and (max-width: 1024px){
@@ -365,6 +438,26 @@
       /*background: url('../../assets/img/home.png') no-repeat;*/
       /*background-size: cover;*/
     }
+    .background {
+      padding: 0px 0px 5px 0px;
+      width: 100%;
+      height: 100%;
+      max-width: 1000px;
+      text-align: center;
+      margin: auto;
+      display: flex;
+      align-items: center;
+    }
+    .background2 {
+      width: 100%;
+      height: 100%;
+      background-color: white;
+      max-width: 1000px;
+      text-align: center;
+      margin: auto;
+      display: flex;
+      align-items: center;
+    }
     div.search {
       width: 65%;
     }
@@ -383,8 +476,56 @@
     .college-link{
       display: none;
     }
-  }
+    .bar6 input {
+      border: 2px solid white;
+      border-radius: 46px;
+      background: transparent;
+      top: 0;
+      right: 0;
+      box-shadow:2px 2px 10px #909090;
+    }
 
+    .bar6 button {
+      background: white;
+      border-radius: 0 46px 46px 0;
+      width: 50px;
+      top: 0;
+      right: 0;
+      background-image: url("../../assets/search.png");
+      background-size:50% 70%;
+      background-repeat:no-repeat;
+      background-position:center center;
+    }
+
+    .bar6 img{
+      width: 32px;
+      height: 32px;
+      position: absolute;
+      top: 2px;
+      right: 10px;
+    }
+
+    .bar6 button:before {
+      /*content: "搜索";*/
+      font-size: 13px;
+      font-weight: bold;
+      color: #3399CC;
+    }
+    .formDiv {
+      position: relative;
+      width: 180px;
+      margin: 0 auto;
+      max-width:180px;transform: translateX(10px)
+    }
+    .teacherTeam{
+      font-size: 26px;
+      font-weight: bold;
+      letter-spacing: 3.5px;
+      line-height: 60px;
+      color: steelblue;
+      white-space: nowrap;
+    }
+  }
   @media screen and (max-width: 767px){
     .top-container {
       width: 100%;
@@ -393,15 +534,36 @@
       height: 80px;
       background-color: white;
     }
-    div.search {
-      display: none;
-      width: 65%;
+    .background {
+      padding: 0px 0px 5px 0px;
+      width: 100%;
+      height: 100%;
+      max-width: 1000px;
+      text-align: center;
+      margin: auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
     }
-    /*.font-jsgrzy {
-      display: none;
-    }*/
+    .background2 {
+      width: 100%;
+      height: 100%;
+      background-color: white;
+      max-width: 1000px;
+      text-align: center;
+      margin: auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    div.search {
+      /*display: none;*/
+      width: auto
+    }
     .background1-name{
-      margin-left: 20px;
+      margin-left: 70px;
+      display: flex;
+      flex-direction: column;
     }
     .backgroundImage{
       cursor: pointer;height: 100%;display: flex;align-items: center;
@@ -412,50 +574,82 @@
       width: 100%;
     }
     .college-link{
-      display: none;
-    }
-    .college-link-button{
-      display: none;
+      margin-left: 30px;
     }
 
     .font-jsgrzy {
       margin-left: 20px;
       font-family: '等线 Light';
       font-weight: bold;
-      letter-spacing: 3.5px;
+      letter-spacing: 1.5px;
       line-height: 60px;
-      font-size: 22px;
+      font-size: 18px;
       color: steelblue;
       white-space: nowrap;
     }
     .font-jsgrzy-none{
       display: none;
     }
+    .formDiv {
+      position: relative;
+      /*float: right;*/
+      width: 50%;
+      max-width:180px;transform: translateX(20px)
+    }
+    .bar6 input {
+      border: 2px solid white;
+      border-radius: 46px;
+      background: transparent;
+      top: 0;
+      right: 0;
+      box-shadow:2px 2px 10px #909090;
+      min-width: 130px;
+    }
+
+    .bar6 button {
+      background: white;
+      border-radius: 0 46px 46px 0;
+      width: 50px;
+      top: 0;
+      right: 0;
+      background-image: url("../../assets/search.png");
+      background-size:50% 70%;
+      background-repeat:no-repeat;
+      background-position:center center;
+    }
+
+    .bar6 img{
+      width: 32px;
+      height: 32px;
+      position: absolute;
+      top: 2px;
+      right: -30px;
+    }
+
+    .bar6 button:before {
+      /*content: "搜索";*/
+      font-size: 13px;
+      font-weight: bold;
+      color: #3399CC;
+    }
+
+    .teacherTeam{
+      min-width: 80px;
+      margin-left: 15px;
+      font-size: 13px;
+      font-weight: bold;
+      letter-spacing: 3.5px;
+      line-height: 60px;
+      color: steelblue;
+      white-space: nowrap;
+    }
   }
 
 
 
-  .background {
-    padding: 0px 0px 5px 0px;
-    width: 100%;
-    height: 100%;
-    max-width: 1000px;
-    text-align: center;
-    margin: auto;
-    display: flex;
-    align-items: center;
-  }
 
-  .background2 {
-    width: 100%;
-    height: 100%;
-    background-color: white;
-    max-width: 1000px;
-    text-align: center;
-    margin: auto;
-    display: flex;
-    align-items: center;
-  }
+
+
 
   .university {
     letter-spacing: 3.5px;
@@ -472,13 +666,6 @@
     letter-spacing: 3.5px;
     color: white;
 
-  }
-
-
-  .formDiv {
-    position: relative;
-    width: 250px;
-    margin: 0 auto;
   }
 
   input, button {
@@ -499,42 +686,7 @@
     position: absolute;
   }
 
-  .bar6 input {
-    border: 2px solid white;
-    border-radius: 46px;
-    background: transparent;
-    top: 0;
-    right: 0;
-    box-shadow:2px 2px 10px #909090;
-  }
 
-  .bar6 button {
-    background: white;
-    border-radius: 0 46px 46px 0;
-    width: 50px;
-    top: 0;
-    right: 0;
-    background-image: url("../../assets/search.png");
-    background-size:50% 70%;
-    background-repeat:no-repeat;
-    background-position:center center;
-  }
-
-  .bar6 img{
-    width: 32px;
-    height: 32px;
-    position: absolute;
-    top: 2px;
-    right: 10px;
-  }
-
-  .bar6 button:before {
-    /*content: "搜索";*/
-    font-size: 13px;
-    font-weight: bold;
-    color: #3399CC;
-
-  }
 
 
   li {
