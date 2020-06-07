@@ -1,6 +1,7 @@
 <template>
   <div class="content">
-    <span class="r-title">相关教师</span>
+    <span class="r-title" v-if="searchFlag===false">相关教师</span>
+    <span class="r-title" v-else>搜索结果</span>
     <div class="r-box">
       <relate-teacher v-for="(item, teacherId) in teachers"  :key="teacherId" :msg="item">
       </relate-teacher>
@@ -10,6 +11,7 @@
 
 <script>
     import relateTeacher from './relateTeacher'
+    import bus from '../../../../utils/eventBus'
 
     export default {
         name: "index",
@@ -21,8 +23,11 @@
                 listQuery: {
                     pageNum: 1,//页码
                     pageRow: 8,//每页条数
-                    tDomainName: ''
+                    tDomainName: '',
+                  key:'',
+                  unitId:''
                 },
+              searchFlag:false,
             }
         },
         created() {
@@ -35,11 +40,24 @@
             this.listQuery.tDomainName = this.$route.path.split('/')[3];
           },
         },
+      mounted(){
+        let _self = this;
+        bus.$on("changePageList2", function (searchKey) {
+          _self._changeSearchTeacher(searchKey)
+        })
+      },
         components: {
             relateTeacher
         },
+      computed: {
+        unitId: function () {
+          console.log(this.$store.state.user.unitId + 'bb');
+          return this.$store.state.user.unitId;
+        }
+      },
         methods: {
             _getAllTeachers() {
+              this.searchFlag=false
                 console.log("_getAllTeachers ()~~~ 开始查询教师成员列表")
                 this.api({
                     url: "/homepage/listTeacherRecommend",
@@ -53,7 +71,23 @@
                 }).catch(error => {
                     console.log("QAQ........没有找到教师列表")
                 })
-            }
+            },
+          _changeSearchTeacher(searchKey) {
+              this.searchFlag=true
+            this.listQuery.unitId =  this.$store.state.user.unitId
+            this.listQuery.key = searchKey
+            this.api({
+              url: "/teacher/searchTeacher",
+              method: "get",
+              params: this.listQuery
+            }).then(data => {
+              console.log("查询教师信息为---:" + JSON.stringify(data.list))
+              this.teachers = data.list
+              this.totalCount = data.totalCount;
+            }).catch(error => {
+              console.log("QAQ........获取教师失败")
+            })
+          },
 
         }
 

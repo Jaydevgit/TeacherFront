@@ -81,10 +81,10 @@
         </span>
         <div class="search bar6" v-if="dataDone">
           <div class="formDiv" style="min-width:200px;float: right;">
-            <input @keyup.enter="keySend" type="text" v-model="searchKey" placeholder="请输入您要搜索的教师" name="cname"
+            <input @keyup.enter="keySend2" type="text" v-model="searchKey" placeholder="请输入您要搜索的教师" name="cname"
                    style="color: gray;background-color: white;">
             <!--<button @click="keySend"></button>-->
-            <img src="@/assets/img/search.png" @click="keySend" style="cursor: pointer;">
+            <img src="@/assets/img/search.png" @click="keySend2" style="cursor: pointer;">
           </div>
         </div>
       </div>
@@ -119,7 +119,7 @@
           </span>
         </template>
       </div>
-      <span style="" class="teacherTeam">
+      <span style="" class="teacherTeam" v-if="dataDone && this.$route.path.indexOf('teacher')===-1">
             师资队伍
           </span>
       <div class="search bar6" v-if="dataDone && this.$route.path.indexOf('teacher')===-1">
@@ -223,6 +223,7 @@
                         this.listLoading = false;
                         this.unit = data;
                       this.$store.state.user.tagState=data.tagState
+                      this.$store.state.user.unitId=data.id
                         console.log("unit="+this.unit);
                         this.dataDone = true;
                     }).catch(error => {
@@ -308,6 +309,16 @@
                 //     bus.$emit("key", this.searchKey);
                 // })
             },
+          keySend2: function () {
+            console.log("send2222++++" + this.searchKey+this.unitQuery.unitId,this.unitQuery.unitId)
+            if (this.searchKey){
+              bus.$emit("changePageList2", this.searchKey,this.unitQuery.unitId);
+            }
+
+            // this.$nextTick(function () {
+            //     bus.$emit("key", this.searchKey);
+            // })
+          },
         },
         computed: {
             /*getPic() {
