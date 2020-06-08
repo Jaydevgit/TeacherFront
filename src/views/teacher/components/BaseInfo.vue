@@ -128,9 +128,9 @@
             <div style="padding: 15px 20px 3px 20px;color: #7e8c8d;font-size: 18px;font-weight: bold;">
               个人简介
             </div>
-            <div style="padding: 8px 20px 3px 27px;float: right;font-size: 14px;color: #7e8c8d;transform: translateY(7px);vertical-align: center">
-              <a :href="'http://www.scholat.com/'+teacherProfile.scholat_username" v-if="teacherProfile.scholat_username">
-                更多信息请见学者主页
+            <div style="padding: 8px 20px 3px 0px;float: right;font-size: 14px;color: #7e8c8d;vertical-align: center;transform: translateY(3px)">
+              <a :href="'http://www.scholat.com/'+teacherProfile.scholat_username" v-if="teacherProfile.scholat_username" style="display: flex;align-items: center">
+                <span>更多信息请见学者主页 </span>&nbsp
                 <img :src="'http://www.scholat.com/'+teacherProfile.qrcode" width="30" height="30"
                      v-if="teacherProfile.qrcode" :onerror="defaultQrImg" style="border-radius: 5px;">
               </a>
