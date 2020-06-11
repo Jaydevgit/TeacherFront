@@ -599,6 +599,7 @@
                         v-model="ruleForm.research_direction" placeholder="例如：数据挖掘、知识图谱、图像识别等">
 
               </el-input>
+              <span style="font-weight: 600;font-size: 14px">更新区域</span>
               <div v-if="showUpdateInfo.research_directionScholat!==''" v-html="showUpdateInfo.research_directionScholat"
                    style="height: 70px;overflow: auto;background-color: antiquewhite;margin-top: 5px;margin-bottom: 5px"></div>
 <!--              <div v-if="scholatProfile.research_direction!==''&&showUpdateInfo.research_directionScholat===''" v-html="scholatProfile.research_direction"-->
@@ -703,6 +704,7 @@
                 this.flagAssignment = false;
                 this.routePage = 'modify';
             }
+
         },
         watch: {
             'ruleForm.username': function (newVal, oldVal) {
@@ -728,6 +730,8 @@
             this.ruleForm.id=teacherid;
             this.createEditor();
             this.getTeacherInfoById(teacherid)
+          /*console.log("this.scholatProfile1="+this.scholatProfile);
+          this.showDifferent(this.scholatProfile);*/
         },
         data() {
             var validateName = (rule, value, callback) => {
@@ -1286,6 +1290,37 @@
                   // this.$message.error("hey ")
               })
             },
+          show_research_different(scholat) {
+            this.$message.success("查找更新成功，黄色区域表示更新区域")
+            // console.log("+scholat.log"+JSON.stringify(scholat));
+            this.setScholat(scholat);
+            this.api({
+              url: "/manager/compare",
+              method: 'post',
+              data: {
+                teacher: this.ruleForm,
+                scholat: scholat
+              }
+            }).then(data => {
+              console.log('----------对比更新后的数据---------');
+              console.log(data);
+              // 设置获取到的更新信息
+              this.getScholatUpdateInfo(data);
+              // 设置编辑区域宽度显示
+              /*if(this.ruleForm.scholat_username){
+                if(  this.compareArea === 0){
+                  this.compareArea = 12;
+                }else{
+                  this.compareArea = 0;
+                }
+              }else {
+                this.compareArea = 12;
+              }
+              this.editorArea = 12;*/
+            }).catch(e => {
+              // this.$message.error("hey ")
+            })
+          },
             copyPureText(scholatProfile){
               let intro=scholatProfile.intro;
               let oInput = document.createElement('input');
@@ -1348,6 +1383,9 @@
                 }).then(res => {
                   console.log("res="+JSON.stringify(res));
                   this.scholatProfile = res.data.info
+                  console.log("this.scholatProfile1="+this.scholatProfile);
+                  this.show_research_different(this.scholatProfile);
+                  console.log("通过用户名查询学者网用户信息的scholatProfile="+JSON.stringify(this.scholatProfile));
                   //将个人简介显示到框中
                   /*if (this.ruleForm.intro === '<p><br></p>'||this.ruleForm.intro === '') {
                     this.ruleForm.intro = filterXSS(this.scholatProfile.intro);
