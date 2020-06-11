@@ -48,7 +48,7 @@
               <!--                  <span class="prodile-second" v-if="teacherProfile.degree">/&nbsp{{teacherProfile.degree}}</span>-->
             </div>
             <!--头衔、学历学位-->
-            <div v-if="teacherProfile.label||teacherProfile.degree" style="margin-bottom: 10px;margin-left: 20px;margin-top: 10px">
+            <div v-if="teacherProfile.label||teacherProfile.degree" style="margin-bottom: 20px;margin-left: 20px;margin-top: 20px">
               <span v-if="teacherProfile.label" class="personal-describe">{{teacherProfile.label}}</span>
               <span v-if="teacherProfile.degree" class="personal-describe">{{teacherProfile.degree}}</span>
             </div>
@@ -61,30 +61,36 @@
 
                 <div class="name-bottom-item" style="margin-bottom: 10px;">
                   <!--<span><svg-icon icon-class="department"/></span>-->
-                  <label class="font-one">部门：</label><div class="detail-msg">{{personal.unit}}{{teacherProfile.department_name}}</div>
+                  <label class="font-one">所在部门：</label><div class="detail-msg">{{personal.unit}}{{teacherProfile.department_name}}</div>
                 </div>
                 <div class="name-bottom-item" style="margin-bottom: 10px;" v-if="teacherProfile.work_place">
                   <!--<span><svg-icon icon-class="maps-and-flags"/></span>-->
-                  <label class="font-one">地址：</label>
+                  <label class="font-one">办公地址：</label>
                   <div class="detail-msg">{{teacherProfile.work_place}}</div>
                 </div>
                 <div class="name-bottom-item" style="margin-bottom: 10px;" v-if="teacherProfile.phone">
                   <!--<span><svg-icon icon-class="mobile-phone"/></span>-->
-                  <label class="font-one">电话：</label><div class="detail-msg">{{teacherProfile.phone}}</div>
+                  <label class="font-one">办公电话：</label><div class="detail-msg">{{teacherProfile.phone}}</div>
                 </div>
                 <div class="name-bottom-item" style="margin-bottom: 10px;" v-if="teacherProfile.email">
                   <!--<span><svg-icon icon-class="email"/></span>-->
-                  <label class="font-one">邮箱：</label>
+                  <label class="font-one">办公邮箱：</label>
                   <div class="detail-msg" id="aaa" v-if="this.destroy" style="z-index: -999">{{teacherProfile.email}}</div>
                   <div class="detail-msg" v-else ><img  :src="this.url" alt="" style="transform: translateX(-12px)"></div>
               </div>
                 <div class="name-bottom-item" style="margin-bottom: 10px;" v-if="teacherProfile.scholat_username">
                   <!--<span><svg-icon icon-class="S"/></span>-->
-                  <label class="font-one">主页：</label><div class="detail-msg">
+                  <label class="font-one">个人主页：</label><div class="detail-msg">
                   <a :href="'http://www.scholat.com/'+teacherProfile.scholat_username"
                      style="color: #399;display:block;overflow:hidden;word-break:keep-all;white-space:nowrap;text-overflow:ellipsis;width:210px;">
                     scholat.com/{{teacherProfile.scholat_username}}
                   </a></div>
+                </div>
+                <div class="name-bottom-item" style="margin-bottom: 10px;" v-if="teacherProfile.research_direction">
+                  <label class="font-one">研究方向：</label>
+                  <div class="detail-msg">
+                    {{teacherProfile.research_direction}}
+                  </div>
                 </div>
 
 
@@ -111,11 +117,12 @@
                   &lt;!&ndash;<span><svg-icon icon-class="department"/></span>&ndash;&gt;
                   <label class="font-one">学科专业：</label><div class="detail-msg">{{teacherProfile.subject}}</div>
                 </div>-->
-                <div class="name-bottom-item" style="margin-bottom: 10px;flex-direction: column" v-if="teacherProfile.research_direction">
-                  <!--<span><svg-icon icon-class="rearch-direction"/></span>-->
+
+                <!--<div class="name-bottom-item" style="margin-bottom: 10px;flex-direction: column" v-if="teacherProfile.research_direction">
+                  &lt;!&ndash;<span><svg-icon icon-class="rearch-direction"/></span>&ndash;&gt;
                   <label class="font-one">研究方向：</label>
                   <div class="detail-msg" style="margin-top: 7px;line-height: 25px;">{{teacherProfile.research_direction}}</div>
-                </div>
+                </div>-->
               </div>
             </div>
 
@@ -137,7 +144,7 @@
             </div>
           </div>
 
-          <hr style="margin: 4px">
+          <hr style="margin:15px 5px 6px 5px">
           <div v-html="teacherProfile.intro" style="padding: 20px 20px 39px"></div>
         </el-card>
       </div>
@@ -419,7 +426,7 @@
           flex-wrap: wrap;
           display: inline-block;
           vertical-align: top;
-          width: 275px;
+          width: 95%;
           margin-left: 25px;
         }
 
@@ -452,11 +459,10 @@
         }
 
         .detail-msg {
-          width: 220px;
+          width: 100%;
           display: block;
           word-break: break-all;
           word-wrap: break-word;
-          width: 260px
         }
 
         .personal-describe {
@@ -508,7 +514,7 @@
               flex-wrap: wrap;
               display: inline-block;
               vertical-align: top;
-              width: 45%;
+              width: 90%;
               margin-left: 25px;
               .name-bottom-item {
                 /*width: 305px;*/
@@ -522,9 +528,9 @@
               width: auto;
               white-space: nowrap;
             }
-            .name-bottom-right {
-              /*padding: 15px 0px 0px;*/
-              /*display: flex;*/
+            /*.name-bottom-right {
+              !*padding: 15px 0px 0px;*!
+              !*display: flex;*!
               flex-wrap: wrap;
               display: inline-block;
               vertical-align: top;
@@ -532,7 +538,7 @@
               width: 45%;
               padding-left: 10px;
               margin-left: 5px;
-            }
+            }*/
           }
           .detail-msg {
             width: 100%;
