@@ -25,6 +25,9 @@
             <el-form-item prop="school_name" label="学校名称：">
               <el-input class="apply-input" v-model="applyForm.school_name" auto-complete="off" placeholder="请输入学校名称"/>
             </el-form-item>
+            <el-form-item prop="school_domain" label="学校域名：">
+              <el-input class="apply-input" v-model="applyForm.school_domain" auto-complete="off" placeholder="请输入学校域名,一般为学校英文名称缩写"/>
+            </el-form-item>
             <el-form-item label="学校图标：">
               <div>
                 <!--如果logo链接不为空，则从学者网拉取图标-->
@@ -48,7 +51,7 @@
             <!--            </el-form-item>-->
 
             <el-form-item prop="unit_name" label="学院名称：">
-              <el-input class="apply-input" v-model="applyForm.unit_name" auto-complete="off" placeholder="请输入学院名称"/>
+              <el-input class="apply-input" v-model="applyForm.unit_name" auto-complete="off" placeholder="请输入学院名称，一般为学院英文名称缩写"/>
             </el-form-item>
             <div class="form-domain-name">
               <el-form-item prop="domain_name" label="学院域名设置：">
@@ -215,6 +218,9 @@
             };
             let validatorDomain = (rule, value, callback) => {
                 let _self = this;
+              if(_self.applyForm.school_domain===null||_self.applyForm.school_domain===''){
+                return callback(new Error('学校域名不能为空'));
+              }
                 if (!value) {
                     return callback(new Error('请正确填写英文名'));
                 } else {
@@ -227,7 +233,8 @@
                                 url: '/register/judgeDomainNameExist',
                                 method: 'post',
                                 data: {
-                                    "domain_name": value
+                                    "domain_name": value,
+                                  "school_domain": _self.applyForm.school_domain
                                 }
                             }).then(res => {
                                 // console.log("=====" + JSON.stringify(res));
@@ -271,7 +278,8 @@
                     phone: '',
                     email: '',
                     domain_name: '',
-                    ifCollegeDomainExist: true
+                    ifCollegeDomainExist: true,
+                    school_domain:''
                 },
                 applyRules: {
                     username: [
@@ -310,6 +318,10 @@
                         {required: true, trigger: 'blur', message: "学院域名不能为空"},
                         {max: 50, message: "长度小于50字符"},
                         {validator: validatorDomain, required: true, trigger: 'blur',}
+                    ],
+                    school_domain:[
+                      {required: true, trigger: 'blur', message: "学校域名不能为空"},
+                      {max: 50, message: "长度小于50字符"},
                     ],
                     certificate_front: {required: true, message: "身份证证明不能为空"},//身份证明正面
                     certificate_back: {required: true, message: "身份证证明不能为空"},//身份证明反面
