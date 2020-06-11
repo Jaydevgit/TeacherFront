@@ -62,7 +62,7 @@
       </div>
 
       <div v-if="titleFlag"></div>
-      <div v-else-if="$route.path.indexOf('login')!=-1">
+      <div v-else-if="$route.path.indexOf('login')!==-1">
         <span style="padding-left: 0" class="font-jsgrzy">
           SCHOLAT+ 学院师资信息管理平台
           </span>
@@ -170,7 +170,7 @@
                 img: Img,
                 searchImage:searchImage,
                 searchKey: '',
-                unitQuery: {unitId: '',domainName:''},
+                unitQuery: {unitId: '',domainName:'',schoolDomain:''},
                 defaultBack: 'this.src="http://47.106.132.95:2333/images/background/1569738575202258.png"',
                 unit: {
                     schoolName: '',
@@ -233,8 +233,11 @@
                 }
                 //是主頁
                 else {
-                 // console.log("bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"+this.$route.params.domainName+"this.$route.params.unitId"+this.$route.params.unitId);
-                  this.unitQuery.domainName=this.$route.path.split('/')[2];
+                  this.unitQuery.schoolDomain=this.$route.path.split('/')[2];
+                  this.unitQuery.domainName=this.$route.path.split('/')[3];
+                  console.log(this.$route.path+" this.unitQuery.schoolDomain this.unitQuery.schoolDomain this.unitQuery.schoolDomain="+ this.unitQuery.schoolDomain+this.unitQuery.domainName)
+                  // console.log("bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"+this.$route.params.domainName+"this.$route.params.unitId"+this.$route.params.unitId);
+
                  //   this.unitQuery.unitId = this.$route.params.unitId
                     this.api({
                         url: "/homepage/getUnitInfo2",

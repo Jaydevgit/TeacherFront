@@ -16,6 +16,7 @@ const user = {
     unitId: '',
     permissions: [],
     domainName:'',
+    schoolDomain:'',
     tagState:''
   },
   mutations: {
@@ -29,6 +30,7 @@ const user = {
       state.permissions = userInfo.permissionList;
       state.unitId = userInfo.unitId;
       state.domainName = userInfo.domainName;
+      state.schoolDomain = userInfo.schoolDomain;
       state.tagState = userInfo.tagState;
     },
     RESET_USER: (state) => {

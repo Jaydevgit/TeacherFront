@@ -161,7 +161,7 @@
                     if (self.currentCat !== 0)
                         self.getTeacherByCatalogue(self.currentCat)
                     //cId为0,指师资队伍
-                  else if(((this.$route.path.split('/')).length-1)===2)
+                  else if(((this.$route.path.split('/')).length-1)===3)
                   { console.log("teacherList的watch检测self.getListAll()")
                     self.getListAll()}
                   else{
@@ -193,7 +193,7 @@
             },
           $route(){
          //   console.log("this.$route.path="+this.$route.path);
-             if(((this.$route.path.split('/')).length-1)===4){
+             if(((this.$route.path.split('/')).length-1)===5){
                if(this.$route.params.tId!==null||this.$route.params.tId!==''){
                  console.log("changeToTeacherInfo");
                  var tId=this.$route.params.tId

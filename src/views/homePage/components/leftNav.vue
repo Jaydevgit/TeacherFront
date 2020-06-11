@@ -60,7 +60,7 @@
                 listLoading: false,//数据加载等待动画
                 catalogueList: [],
                 catalogueId:0,
-                unitQuery: {unitId: '',domainName:''},
+                unitQuery: {unitId: '',domainName:'',schoolDomain:''},
                 displayMode:'horizontal'
             }
         },
@@ -114,8 +114,10 @@
             }
           },
           init(){
-            this.$store.state.user.domainName=this.$route.path.split('/')[2];
-            this.unitQuery.domainName=this.$route.path.split('/')[2];
+            this.$store.state.user.schoolDomain=this.$route.path.split('/')[2];
+            this.unitQuery.schoolDomain=this.$route.path.split('/')[2];
+            this.unitQuery.domainName=this.$route.path.split('/')[3];
+            this.$store.state.user.domainName=this.$route.path.split('/')[3];
             this.api({
               url: "/homepage/getUnitInfo2",
               method: "get",
@@ -179,6 +181,7 @@
                         name: 'homepage',
                         params: {
                             domainName: this.unitQuery.domainName,
+                          schoolDomain:this.unitQuery.schoolDomain,
                             unitId: this.unitQuery.unitId,
                             modelId: modelId,
                             cId: cId
@@ -190,6 +193,7 @@
                         name: 'catalogue',
                         params: {
                           domainName: this.unitQuery.domainName,
+                          schoolDomain:this.unitQuery.schoolDomain,
                           unitId: this.unitQuery.unitId,
                             modelId: modelId,
                             cId: cId

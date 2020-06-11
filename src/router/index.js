@@ -34,7 +34,7 @@ export const constantRouterMap = [
     }
   },
   {
-    path: '/homepage/:domainName',
+    path: '/homepage/:schoolDomain/:domainName',
     name: 'homepage',
     component: HomePage,
     hidden: true,
@@ -43,7 +43,7 @@ export const constantRouterMap = [
     },
     children: [
       {
-        path: '/homepage/:domainName/:cId',
+        path: '/homepage/:schoolDomain/:domainName/:cId',
         name: 'catalogue',
         component: HomePage,
         meta: {
@@ -51,7 +51,7 @@ export const constantRouterMap = [
         },
       },
       {
-        path: '/homepage/:domainName/search=:searchKey',
+        path: '/homepage/:schoolDomain/:domainName/search=:searchKey',
         name: 'search',
         component: HomePage,
         meta: {
@@ -59,7 +59,7 @@ export const constantRouterMap = [
         },
       },
       {
-        path: '/homepage/:domainName/:cId/:tId',
+        path: '/homepage/:schoolDomain/:domainName/:cId/:tId',
         name: 'teacher',
         component: HomePage,
         meta: {
@@ -79,7 +79,7 @@ export const constantRouterMap = [
     }
   },
   {
-    path: '/teacher/:facultyDomainName/:teacherDomainName',
+    path: '/teacher/:schoolDomain/:teacherDomainName',
     component: teacherPersonalHomePage,
     name: 'teacherPersonlHomePage',
     meta: {

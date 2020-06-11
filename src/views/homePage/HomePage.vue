@@ -104,7 +104,7 @@
             return {
                 componentName: 'teacherList',
                 teacherProfile: {},//教师数据,
-              unitQuery: {unitId: '',domainName:''},
+              unitQuery: {unitId: '',domainName:'',schoolDomain:''},
                 cId: '0',
                 Letters: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'],
                 showLetter: false,
@@ -183,6 +183,7 @@
                     name: 'search',
                     params: {
                         domainName: _self.unitQuery.domainName,
+                      schoolDomain:_self.unitQuery.schoolDomain,
                         unitId: _self.unitId2,
                         modelId: 3,
                         searchKey:searchKey,
@@ -194,7 +195,8 @@
       methods: {
         init(){
          // this.$store.state.user.domainName=this.$route.path.split('/')[2];
-          this.unitQuery.domainName=this.$route.path.split('/')[2];
+          this.unitQuery.schoolDomain=this.$route.path.split('/')[2];
+          this.unitQuery.domainName=this.$route.path.split('/')[3];
           this.api({
             url: "/homepage/getUnitInfo2",
             method: "get",
@@ -238,6 +240,7 @@
                 })
               this.$router.push({name:'teacher',
                 params: { domainName:this.unitQuery.domainName,
+                  schoolDomain:this.unitQuery.schoolDomain,
                   unitId:this.unitId2,
                   modelId:this.detailShow,
                   cId:this.cId,

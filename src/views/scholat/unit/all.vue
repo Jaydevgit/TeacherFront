@@ -39,7 +39,7 @@
         </template>
       </el-table-column>
 
-      <el-table-column align="left" label="单位" width="450">
+      <el-table-column align="left" label="单位" width="600">
         <template slot-scope="scope">
 
 <!--          <div>-->
@@ -63,7 +63,7 @@
           <span class="label-describe">官网</span><span><a style="color: deepskyblue;" :href="scope.row.college_url">{{scope.row.college_url}}</a></span>
         </div>
           <div>
-            <span class="label-describe">师资主页</span><span><a style="color: deepskyblue;" :href="'http://faculty.scholat.com/homepage/'+scope.row.domain_name">http://faculty.scholat.com/homepage/{{scope.row.domain_name}}</a></span>
+            <span class="label-describe">师资主页</span><span><a style="color: deepskyblue;" :href="'http://faculty.scholat.com/homepage/'+scope.row.school_domain+'/'+scope.row.domain_name">http://faculty.scholat.com/homepage/{{scope.row.school_domain}}/{{scope.row.domain_name}}</a></span>
           </div>
         </template>
       </el-table-column>

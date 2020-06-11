@@ -200,10 +200,34 @@
               <el-col :span="8">
                 <div class="grid-content bg-purple">
                   <el-form-item label="域名" prop="domain_name">
-                    <span>http://faculty.scholat.com/teacher/{{ruleForm.unit_DomainName}}/{{ruleForm.domain_name}}</span>
+                   <a :href="'http://faculty.scholat.com/teacher/'+SchoolDomain+'/'+ruleForm.domain_name"><span>http://faculty.scholat.com/teacher/{{SchoolDomain}}/{{ruleForm.domain_name}}</span></a>
                   </el-form-item>
                 </div>
               </el-col>
+              <el-col :span="8"><div class="grid-content bg-purple">
+                <el-form-item label="状态" prop="state" required class="redItem">
+                  <el-select v-model="ruleForm.state" placeholder="请选择">
+                    <el-option
+                      v-for="item in options"
+                      :key="item.value"
+                      :label="item.label"
+                      :value="item.value">
+                    </el-option>
+                  </el-select>
+                  <!--              <el-radio-group v-model="ruleForm.state">-->
+                  <!--                <el-radio label="1">在岗</el-radio>-->
+                  <!--                <el-radio label="0">调出</el-radio>-->
+                  <!--                <el-radio label="-1">退休</el-radio>-->
+                  <!--              </el-radio-group>-->
+                </el-form-item>
+              </div></el-col>
+              <el-col :span="8"><div class="grid-content bg-purple">
+                <el-form-item style="display: flex;justify-content: flex-start;">
+                  <el-button @click="createTeacher_one" type="success" v-if="$route.path.indexOf('addTeacher')!=-1">保存</el-button>
+                  <el-button @click="saveTeacher" type="success" v-if="$route.path.indexOf('modifyTeacher')!=-1">保存</el-button>
+                  <el-button @click="backToManager">返回</el-button>
+                </el-form-item>
+              </div></el-col>
             </el-row>
             <el-row>
               <el-col :span="8"><div class="grid-content bg-purple">
@@ -306,34 +330,34 @@
               </div></el-col>
               <el-col :span="8"><div class="grid-content bg-purple"></div></el-col>
             </el-row>
-            <el-row>
-              <el-col :span="8"><div class="grid-content bg-purple">
-                <el-form-item label="状态" prop="state" required class="redItem">
-                  <el-select v-model="ruleForm.state" placeholder="请选择">
-                    <el-option
-                      v-for="item in options"
-                      :key="item.value"
-                      :label="item.label"
-                      :value="item.value">
-                    </el-option>
-                  </el-select>
-                  <!--              <el-radio-group v-model="ruleForm.state">-->
-                  <!--                <el-radio label="1">在岗</el-radio>-->
-                  <!--                <el-radio label="0">调出</el-radio>-->
-                  <!--                <el-radio label="-1">退休</el-radio>-->
-                  <!--              </el-radio-group>-->
-                </el-form-item>
-              </div></el-col>
+<!--            <el-row>-->
+<!--&lt;!&ndash;              <el-col :span="8"><div class="grid-content bg-purple">&ndash;&gt;-->
+<!--&lt;!&ndash;                <el-form-item label="状态" prop="state" required class="redItem">&ndash;&gt;-->
+<!--&lt;!&ndash;                  <el-select v-model="ruleForm.state" placeholder="请选择">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <el-option&ndash;&gt;-->
+<!--&lt;!&ndash;                      v-for="item in options"&ndash;&gt;-->
+<!--&lt;!&ndash;                      :key="item.value"&ndash;&gt;-->
+<!--&lt;!&ndash;                      :label="item.label"&ndash;&gt;-->
+<!--&lt;!&ndash;                      :value="item.value">&ndash;&gt;-->
+<!--&lt;!&ndash;                    </el-option>&ndash;&gt;-->
+<!--&lt;!&ndash;                  </el-select>&ndash;&gt;-->
+<!--&lt;!&ndash;                  &lt;!&ndash;              <el-radio-group v-model="ruleForm.state">&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                  &lt;!&ndash;                <el-radio label="1">在岗</el-radio>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                  &lt;!&ndash;                <el-radio label="0">调出</el-radio>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                  &lt;!&ndash;                <el-radio label="-1">退休</el-radio>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                  &lt;!&ndash;              </el-radio-group>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                </el-form-item>&ndash;&gt;-->
+<!--&lt;!&ndash;              </div></el-col>&ndash;&gt;-->
 
-              <el-col :span="16"><div class="grid-content bg-purple">
-                <el-form-item style="display: flex;justify-content: flex-end;">
-                  <el-button @click="createTeacher_one" type="success" v-if="$route.path.indexOf('addTeacher')!=-1">保存</el-button>
-                  <el-button @click="saveTeacher" type="success" v-if="$route.path.indexOf('modifyTeacher')!=-1">保存</el-button>
-                  <el-button @click="backToManager">返回</el-button>
-                </el-form-item>
-              </div></el-col>
-              <el-col :span="8"><div class="grid-content bg-purple"></div></el-col>
-            </el-row>
+<!--              <el-col :span="16"><div class="grid-content bg-purple">-->
+<!--                <el-form-item style="display: flex;justify-content: flex-end;">-->
+<!--                  <el-button @click="createTeacher_one" type="success" v-if="$route.path.indexOf('addTeacher')!=-1">保存</el-button>-->
+<!--                  <el-button @click="saveTeacher" type="success" v-if="$route.path.indexOf('modifyTeacher')!=-1">保存</el-button>-->
+<!--                  <el-button @click="backToManager">返回</el-button>-->
+<!--                </el-form-item>-->
+<!--              </div></el-col>-->
+<!--              <el-col :span="8"><div class="grid-content bg-purple"></div></el-col>-->
+<!--            </el-row>-->
 
           </el-col>
 <!--          <el-col :span="5">-->
@@ -724,6 +748,11 @@
             }
 
         },
+      computed:{
+        SchoolDomain:function() {
+          return this.$store.state.user.schoolDomain
+        }
+      },
         mounted() {
             var teacherid = this.GetUrlRelativePath_id()
             console.log("教師id為:" + teacherid)
@@ -955,6 +984,7 @@
                     unit_id: '',// 单位编号
                     domain_name: '',//教师域名
                     unit_DomainName: '',//学院域名
+                  // schoolDomain:this.$store.user.schoolDomain,//学校域名
                     edit_name: '',//编辑用户名
                     degree_max: '',//最高学位
                     duty: '',//职务

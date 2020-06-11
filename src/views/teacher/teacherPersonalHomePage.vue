@@ -31,6 +31,7 @@
             // console.log("当前url中教师id为:........"+this.GetUrlRelativePath_id());
             // var teacherId = this.GetUrlRelativePath_id();
             this.tDomainName = this.$route.path.split('/')[3];
+            this.tSchoolDomain = this.$route.path.split('/')[2];
             this.getTeacherInfoByDomainName(this.tDomainName);
             // var teacherId =;
             // this.getInfo(teacherId);
