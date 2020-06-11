@@ -78,6 +78,7 @@ export default {
         logoUrl: '',
         state:'',
         domainName:'',
+        schoolDomain:'',
         tagState:'',
         backgroundUrl:'',
         unitId:''
@@ -108,6 +109,8 @@ export default {
           console.log("================================")
           this.listLoading = false;
           this.unit = data;
+          this.$store.state.user.domainName=data.domainName
+          this.$store.state.user.schoolDomain=data.schoolDomain
           console.log("unit="+this.unit);
           this.dataDone = true;
         }).catch(error => {
@@ -141,11 +144,14 @@ export default {
 
     },
     enterHomepage(){
-      let domainName=this.$store.state.user.domainName;
+      let domainName=this.unit.domainName;
+      let schoolDomain=this.unit.schoolDomain;
       let unitId = this.$store.state.user.unitId;
+      console.log("schoolDomain===="+schoolDomain+"===="+domainName+"==="+unitId);
       this.$router.push(
         { name:'homepage',
           params: { domainName:domainName,
+            schoolDomain:schoolDomain,
             unitId:unitId}})
     },
 

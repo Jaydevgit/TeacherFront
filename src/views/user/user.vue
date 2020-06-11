@@ -161,6 +161,7 @@
           userId: '',
           unitId:'',
           domainName:'',
+          schoolDomain:''
         },
         userRules:{
           username: [
@@ -262,6 +263,7 @@
       createUser() {
         //添加新用户
         this.tempUser.domainName=this.$store.state.user.domainName
+        this.tempUser.schoolDomain=this.$store.state.user.schoolDomain
         console.log("===this.tempUser.domainName==="+this.tempUser.domainName);
         this.tempUser.unitId= this.$store.state.user.unitId;
         console.log("加密后的密码为："+this.md5(this.tempUser.password+this.salt));

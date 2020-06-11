@@ -28,7 +28,7 @@
             }
         },
         created() {
-            this.listQuery.tId = this.$route.path.split('/')[2];
+            this.listQuery.tId = this.$route.path.split('/')[3];
             this._getAllTeachers();
         },
         components: {

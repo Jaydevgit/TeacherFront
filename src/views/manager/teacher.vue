@@ -477,7 +477,8 @@
                 let routeData = this.$router.push({
                     name: 'teacherPersonlHomePage',
                     params: {
-                        facultyDomainName:this.$store.state.user.domainName,
+                        // facultyDomainName:this.$store.state.user.domainName,
+                      schoolDomain:this.$store.state.user.schoolDomain,
                         teacherDomainName:teacher.domainName,
                         id: teacher.id
                     }

@@ -101,21 +101,21 @@
         </div>
         <div class="page4_school">
           <div class="school">
-            <a href="http://faculty.scholat.com/homepage/scnu">
+            <a href="http://faculty.scholat.com/homepage/scnu/cs">
             <div ><img :src="'http://www.scholat.com/images/uni_logo/华南师范大学.png'" alt=""></div>
             <div class="school_name" >华南师范大学</div>
             <div class="unit">计算机学院</div>
             </a>
           </div>
           <div class="school">
-            <a href="http://faculty.scholat.com/homepage/gziec">
+            <a href="http://faculty.scholat.com/homepage/gziec/gziec">
             <div><img :src="'http://www.scholat.com/images/uni_logo/广州涉外经济职业技术学院.png'" alt=""></div>
             <div class="school_name">广州涉外经济职业技术学院</div>
             <div class="unit">华文与国际教育学院</div>
             </a>
           </div>
           <div class="school">
-            <a href="http://faculty.scholat.com/homepage/dxxy">
+            <a href="http://faculty.scholat.com/homepage/gpnu/dxxy">
             <div><img :src="'http://www.scholat.com/images/uni_logo/广东技术师范大学.png'" alt=""></div>
             <div class="school_name">广东技术师范大学</div>
             <div class="unit">电子与信息学院 </div>
@@ -124,21 +124,21 @@
         </div>
         <div class="page4_school">
           <div class="school">
-            <a href="http://faculty.scholat.com/homepage/sic">
+            <a href="http://faculty.scholat.com/homepage/scnu/sic">
             <div><img :src="'http://www.scholat.com/images/uni_logo/华南师范大学.png'" alt=""></div>
             <div class="school_name">华南师范大学</div>
             <div class="unit">国际文化学院 </div>
             </a>
           </div>
           <div class="school">
-            <a href="http://faculty.scholat.com/homepage/gditjsj">
+            <a href="http://faculty.scholat.com/homepage/gdit/jsj">
             <div><img :src="'http://www.scholat.com/images/uni_logo/广东科学技术职业学院.png'" alt=""></div>
             <div class="school_name">广东科学技术职业学院</div>
             <div class="unit">计算机工程技术学院</div>
             </a>
           </div>
           <div class="school">
-            <a href="http://faculty.scholat.com/homepage/gdpuxg">
+            <a href="http://faculty.scholat.com/homepage/gdpu/xg">
             <div><img :src="'http://www.scholat.com/images/uni_logo/广东药科大学.png'" alt=""></div>
             <div class="school_name">广东药科大学</div>
             <div class="unit">医药信息工程学院</div>
@@ -147,14 +147,14 @@
         </div>
         <div class="page4_school_sub">
           <div class="school">
-            <a href="http://faculty.scholat.com/homepage/scnu">
+            <a href="http://faculty.scholat.com/homepage/scnu/cs">
               <div ><img :src="'http://www.scholat.com/images/uni_logo/华南师范大学.png'" alt="" ></div>
               <div class="school_name" >华南师范大学</div>
               <div class="unit">计算机学院</div>
             </a>
           </div>
           <div class="school">
-            <a href="http://faculty.scholat.com/homepage/gziec">
+            <a href="http://faculty.scholat.com/homepage/gziec/gziec">
               <div><img :src="'http://www.scholat.com/images/uni_logo/广州涉外经济职业技术学院.png'" alt=""></div>
               <div class="school_name">广州涉外经济职业技术学院</div>
               <div class="unit">华文与国际教育学院</div>
@@ -163,14 +163,14 @@
         </div>
         <div class="page4_school_sub" >
           <div class="school">
-            <a href="http://faculty.scholat.com/homepage/dxxy">
+            <a href="http://faculty.scholat.com/homepage/gpnu/dxxy">
               <div ><img :src="'http://www.scholat.com/images/uni_logo/广东技术师范大学.png'" alt=""></div>
               <div class="school_name" >广东技术师范大学</div>
               <div class="unit">电子与信息学院</div>
             </a>
           </div>
           <div class="school">
-            <a href="http://faculty.scholat.com/homepage/gditjsj">
+            <a href="http://faculty.scholat.com/homepage/gdit/jsj">
               <div><img :src="'http://www.scholat.com/images/uni_logo/广东科学技术职业学院.png'" alt=""></div>
               <div class="school_name">广东科学技术职业学院</div>
               <div class="unit">计算机工程技术学院</div>
@@ -179,14 +179,14 @@
         </div>
         <div class="page4_school_sub" >
           <div class="school">
-            <a href="http://faculty.scholat.com/homepage/sic">
+            <a href="http://faculty.scholat.com/homepage/scnu/sic">
               <div ><img :src="'http://www.scholat.com/images/uni_logo/华南师范大学.png'" alt=""></div>
               <div class="school_name" >华南师范大学</div>
               <div class="unit">国际文化学院</div>
             </a>
           </div>
           <div class="school">
-            <a href="http://faculty.scholat.com/homepage/gdpuxg">
+            <a href="http://faculty.scholat.com/homepage/gdpu/xg">
               <div><img :src="'http://www.scholat.com/images/uni_logo/广东药科大学.png'" alt="" ></div>
               <div class="school_name">广东药科大学</div>
               <div class="unit">医药信息工程学院</div>
