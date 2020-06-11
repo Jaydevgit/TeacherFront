@@ -186,11 +186,7 @@
 
                 </el-form-item>
               </div></el-col>
-              <el-col :span="8"><div class="grid-content bg-purple">
-                <el-form-item label="域名" prop="domain_name">
-                  <el-input v-model="ruleForm.domain_name" disabled></el-input>
-                </el-form-item>
-              </div></el-col>
+
               <el-col :span="8"><div class="grid-content bg-purple">
                 <el-form-item label="性别" prop="sex" class="redItem">
                   <el-radio-group v-model="ruleForm.sex">
@@ -200,9 +196,15 @@
                 </el-form-item>
               </div></el-col>
             </el-row>
-            <!--<el-row>
-
-            </el-row>-->
+            <el-row>
+              <el-col :span="8">
+                <div class="grid-content bg-purple">
+                  <el-form-item label="域名" prop="domain_name">
+                    <span>http://faculty.scholat.com/teacher/{{ruleForm.unit_DomainName}}/{{ruleForm.domain_name}}</span>
+                  </el-form-item>
+                </div>
+              </el-col>
+            </el-row>
             <el-row>
               <el-col :span="8"><div class="grid-content bg-purple">
                 <el-form-item label="职称" prop="post">
@@ -230,7 +232,7 @@
                             placeholder="例如：教授、副教授、讲师"></el-input>
                 </el-form-item>
               </div></el-col>
-              <el-col :span="8"><div class="grid-content bg-purple">
+              <el-col :span="11"><div class="grid-content bg-purple">
                 <el-form-item label="职务" prop="duty" >
                   <el-input v-model="ruleForm.duty"
                             placeholder="例如：院长、书记、老师、辅导员等"></el-input>
@@ -262,7 +264,7 @@
 <!--                            placeholder="博士、硕士、学士"></el-input>-->
 <!--                </el-form-item>-->
 <!--              </div></el-col>-->
-              <el-col :span="8"><div class="grid-content bg-purple">
+              <el-col :span="11"><div class="grid-content bg-purple">
                 <el-form-item label="头衔" prop="label">
                   <el-input v-model="ruleForm.label" placeholder="例如：国务院特殊津贴专家等头衔"></el-input>
                 </el-form-item>
@@ -285,7 +287,7 @@
                   <el-input v-model="ruleForm.department_name" placeholder="例如：网络工程系"></el-input>
                 </el-form-item>
               </div></el-col>
-              <el-col :span="16"><div class="grid-content bg-purple">
+              <el-col :span="11"><div class="grid-content bg-purple">
                 <el-form-item label="办公地点">
                   <el-input v-model="ruleForm.work_place" placeholder=""></el-input>
                 </el-form-item>
@@ -297,7 +299,7 @@
                   <el-input v-model="ruleForm.email" placeholder="建议输入办公邮箱地址"></el-input>
                 </el-form-item>
               </div></el-col>
-              <el-col :span="8"><div class="grid-content bg-purple">
+              <el-col :span="11"><div class="grid-content bg-purple">
                 <el-form-item label="办公电话" prop="phone">
                   <el-input v-model="ruleForm.phone" placeholder="建议输入办公固定电话，可以用'-'分隔"></el-input>
                 </el-form-item>
@@ -947,7 +949,8 @@
                     scholat_username: '', // 学者网用户名
                     scholat_update_time: '', // 学者网更新日期
                     unit_id: '',// 单位编号
-                    domain_name: '',//域名
+                    domain_name: '',//教师域名
+                    unit_DomainName: '',//学院域名
                     edit_name: '',//编辑用户名
                     degree_max: '',//最高学位
                     duty: '',//职务
@@ -1299,6 +1302,7 @@
             },
             // 设置教师信息
             setTeacherInfo(data) {
+            console.log("data="+JSON.stringify(data))
                 this.ruleForm.username = filterXSS(data.username); // 姓名
                 this.ruleForm.sex = filterXSS(data.sex.toString()); // 性别
                 this.ruleForm.avatar = filterXSS(data.avatar); // 头像
@@ -1331,6 +1335,8 @@
                 this.ruleForm.scholat_update_time = filterXSS(data.scholat_update_time); // 学者网更新日期
                 this.ruleForm.unit_id = filterXSS(this.$store.state.user.unitId);// 单位编号
                 this.ruleForm.domain_name = filterXSS(data.domain_name); // 域名
+                this.ruleForm.unit_DomainName=filterXSS(data.unit_DomainName);//学院域名
+              console.log("this.ruleForm.unit_DomainName="+this.ruleForm.unit_DomainName);
                 this.ruleForm.edit_name = filterXSS(this.$store.state.user.nickname); // 用户名
                 this.ruleForm.duty = filterXSS(data.duty); // 职务
                 this.ruleForm.degree_max = filterXSS(data.degree_max); // 最高学位
