@@ -58,7 +58,12 @@
               <div class="name-bottom" style="color: black">
 
 
-
+                <div class="name-bottom-item" style="margin-bottom: 10px;" v-if="teacherProfile.research_direction">
+                  <label class="font-one">研究方向：</label>
+                  <div class="detail-msg">
+                    {{teacherProfile.research_direction}}
+                  </div>
+                </div>
                 <div class="name-bottom-item" style="margin-bottom: 10px;">
                   <!--<span><svg-icon icon-class="department"/></span>-->
                   <label class="font-one">所在部门：</label><div class="detail-msg">{{personal.unit}}{{teacherProfile.department_name}}</div>
@@ -86,12 +91,7 @@
                     scholat.com/{{teacherProfile.scholat_username}}
                   </a></div>
                 </div>
-                <div class="name-bottom-item" style="margin-bottom: 10px;" v-if="teacherProfile.research_direction">
-                  <label class="font-one">研究方向：</label>
-                  <div class="detail-msg">
-                    {{teacherProfile.research_direction}}
-                  </div>
-                </div>
+
 
 
 <!--                              <div class="show-persona" v-if="teacherProfile.scholat_username">-->
@@ -459,6 +459,7 @@
         }
 
         .detail-msg {
+          line-height: 25px;
           width: 100%;
           display: block;
           word-break: break-all;
@@ -541,6 +542,7 @@
             }*/
           }
           .detail-msg {
+            line-height: 25px;
             width: 100%;
             display: block;
             word-break: break-all;
@@ -613,11 +615,12 @@
               flex-direction: column;
             }
             .name-bottom {
+              transform: translateX(-60px);
               margin-left: 0;
               flex-wrap: wrap;
               display: inline-block;
               vertical-align: top;
-              width: 100%;
+              width: 120%;
               .name-bottom-item {
                 /*width: 305px;*/
                 display: flex;
@@ -641,7 +644,8 @@
             }
           }
           .detail-msg {
-            width: 125%;
+            line-height: 25px;
+            width: 100%;
             display: block;
             word-break: break-all;
             word-wrap: break-word;
