@@ -108,7 +108,7 @@
             </a>
           </div>
           <div class="school">
-            <a href="http://faculty.scholat.com/homepage/gziec/gziec">
+            <a href="http://faculty.scholat.com/homepage/gziec/scie">
             <div><img :src="'http://www.scholat.com/images/uni_logo/广州涉外经济职业技术学院.png'" alt=""></div>
             <div class="school_name">广州涉外经济职业技术学院</div>
             <div class="unit">华文与国际教育学院</div>
@@ -154,7 +154,7 @@
             </a>
           </div>
           <div class="school">
-            <a href="http://faculty.scholat.com/homepage/gziec/gziec">
+            <a href="http://faculty.scholat.com/homepage/gziec/scie">
               <div><img :src="'http://www.scholat.com/images/uni_logo/广州涉外经济职业技术学院.png'" alt=""></div>
               <div class="school_name">广州涉外经济职业技术学院</div>
               <div class="unit">华文与国际教育学院</div>
