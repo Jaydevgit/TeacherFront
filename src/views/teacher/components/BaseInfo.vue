@@ -145,7 +145,7 @@
           </div>
 
           <hr style="margin:15px 5px 6px 5px">
-          <div v-html="teacherProfile.intro" style="padding: 20px 20px 39px"></div>
+          <div v-html="teacherProfile.intro" style="padding: 20px 20px 39px;line-height: 28px"></div>
         </el-card>
       </div>
     </div>
