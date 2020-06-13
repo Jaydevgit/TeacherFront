@@ -422,6 +422,8 @@
     }*/
     footer{
       .Info{
+        background-color: #3a3d3c;
+        padding: 20px 0;
         color: white;
         font-size: 14px;
         font-weight: 400;
@@ -490,6 +492,8 @@
     /*底部栏样式*/
     footer{
       .Info{
+        background-color: #3a3d3c;
+        padding: 20px 0;
         color: white;
         font-size: 14px;
         font-weight: 400;
@@ -564,6 +568,8 @@
     }
     footer{
       .Info{
+        background-color: #3a3d3c;
+        padding: 20px 0;
         color: white;
         font-size: 14px;
         font-weight: 400;
