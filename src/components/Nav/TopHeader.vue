@@ -88,7 +88,7 @@
           </div>
         </div>
       </div>
-      <div v-else style="display: flex;align-items: center;height: 100%;width: 100%" @click="goToCollege">
+      <div v-else style="display: flex;align-items: center;height: 100%;" @click="goToCollege">
         <!--如果有背景图，则显示学院背景图片+文字-->
         <template v-if="unit.backgroundUrl">
           <div class="backgroundImage"  @click="goToCollege" style="">
@@ -110,18 +110,28 @@
           <div @click="goToCollege" style="height: 90%;width: auto;bottom: 0;cursor: pointer">
             <img :src="'http://www.scholat.com/images/uni_logo/'+this.unit.schoolName+'.png'" :onerror="defaultLogo" title="点击访问该学院" style="height: 55px;width:auto;margin-top: 7px"/>
           </div>
-          <span style="" class="font-jsgrzy">
+          <!--<span style="" class="font-jsgrzy">
             <span v-if="$route.path.indexOf('login')!=-1">SCHOLAT+学院师资信息管理平台</span>
             <span v-else>
               <span style="font-family: 华文新魏;font-size: 38px">{{unit.unitName}}|</span>
               <span style="font-family: 华文行楷 ;font-size: 34px;margin-left: -10px">教师个人主页</span>
             </span>
-          </span>
+          </span>-->
+          <div @click="goToCollege"
+               style="height: 100%;display: flex;justify-content: center;align-items: center;
+           cursor: pointer">
+            <div style="color: steelblue;margin-left: 40px;
+      display: flex;
+      flex-direction: column;">
+              <span class="university" style="white-space: nowrap;font-weight: bold;">{{unit.schoolName}}</span>
+              <span class="unitName" style="color:steelblue;font-weight: bold;white-space:nowrap;">{{unit.unitName}}</span>
+            </div>
+          </div>
         </template>
       </div>
       <span style="" class="teacherTeam" v-if="dataDone && this.$route.path.indexOf('teacher')===-1">
             师资队伍
-          </span>
+      </span>
       <div class="search bar6" v-if="dataDone && this.$route.path.indexOf('teacher')===-1">
         <div class="formDiv" style="">
           <input @keyup.enter="keySend" type="text" v-model="searchKey" placeholder="请输入您要搜索的教师" name="cname"
@@ -440,6 +450,7 @@
       max-width:180px;transform: translateX(20px)
     }
     .teacherTeam{
+      margin-left: 20px;
       font-size: 26px;
       font-weight: bold;
       letter-spacing: 3.5px;
@@ -537,6 +548,7 @@
       max-width:180px;transform: translateX(10px)
     }
     .teacherTeam{
+      margin-left: 20px;
       font-size: 26px;
       font-weight: bold;
       letter-spacing: 3.5px;
