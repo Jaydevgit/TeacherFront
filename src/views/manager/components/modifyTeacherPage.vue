@@ -734,9 +734,19 @@
         },
         watch: {
             'ruleForm.username': function (newVal, oldVal) {
-                if (newVal !== oldVal) {
+                if (this.$route.path.indexOf("addTeacher")!==-1) {
                     this.ruleForm.domain_name = Pinyin.chineseToPinYin(newVal);
                     console.log(">>>>" + this.ruleForm.domain_name);
+                  this.axios.post('/api/manager/judgeDomainExist', {
+                    domain_name: this.ruleForm.domain_name
+                  }).then(res => {
+                    console.log(res);
+                    this.domainCount = res.data[0].count;
+                    console.log("this.domainCount=" + this.domainCount);
+                    this.ruleForm.domain_name =this.ruleForm.domain_name+(parseInt(this.domainCount)+1)
+                  }).catch(err => {
+                    callback(new Error("网络请求有误"))
+                  })
                 }
 
             },
@@ -765,6 +775,7 @@
           this.showDifferent(this.scholatProfile);*/
         },
         data() {
+          let _self=this
             var validateName = (rule, value, callback) => {
                 console.log(".......进入到验证信息部分, 输入部分为:" + rule.field + " 输入值为: " + value)
                 this.scholat.name = value
@@ -855,36 +866,37 @@
                 })
 
             };
-            var validatedomainName = (rule, value, callback) => {
-
-                  console.log(".......--进入到验证信息部分, 输入部分为:" + rule.field + " 输入值为: " + value+this.$route.path.indexOf("addTeacher"))
-                  this.axios.post('/api/manager/judgeDomainExist', {
-                    domain_name: value
-                  }).then(res => {
-                    console.log(res);
-                    this.domainCount = res.data[0].count;
-                    console.log("this.domainCount=" + this.domainCount);
-
-                    console.log(res.data[0].id + "====" + this.GetUrlRelativePath_id() + "this.domainCount=" + this.domainCount);
-                    if ((res.data[0].flag === 1 && res.data[0].id === parseInt(this.GetUrlRelativePath_id())) || res.data[0].flag === 0) {
-                      callback()
-                    } else {
-                      if (this.$route.path.indexOf("addTeacher")===-1) {
-                        var a=parseInt(this.domainCount)-1
-                        this.ruleForm.domain_name = value + a;
-                        console.log("this.ruleForm.domain_name=" + this.ruleForm.domain_name);
-                        //  return callback(new Error("该域名已存在"))
-                      }else{
-                        this.ruleForm.domain_name = value + this.domainCount;
-                        console.log("this.ruleForm.domain_name=" + this.ruleForm.domain_name);
-                      }
-                    }
-                  }).catch(err => {
-                    callback(new Error("网络请求有误"))
-                  })
-
-
-            }
+            // var validatedomainName = (rule, value, callback) => {
+            //   if (_self.$route.path.indexOf("addTeacher")!==-1){
+            //
+            //
+            //       console.log(".......--进入到验证信息部分, 输入部分为:" + rule.field + " 输入值为: " + value+this.$route.path.indexOf("addTeacher"))
+            //       this.axios.post('/api/manager/judgeDomainExist', {
+            //         domain_name: value
+            //       }).then(res => {
+            //         console.log(res);
+            //         this.domainCount = res.data[0].count;
+            //         console.log("this.domainCount=" + this.domainCount);
+            //         this.ruleForm.domain_name =value+parseInt(this.domainCount)
+            //         //   console.log(res.data[0].id + "====" + this.GetUrlRelativePath_id() + "this.domainCount=" + this.domainCount);
+            //         // if ((res.data[0].flag === 1 && res.data[0].id === parseInt(this.GetUrlRelativePath_id())) || res.data[0].flag === 0) {
+            //         //   callback()
+            //         // } else {
+            //         //   if (this.$route.path.indexOf("addTeacher")===-1) {
+            //         //     var a=parseInt(this.domainCount)-1
+            //         //     this.ruleForm.domain_name = value + a;
+            //         //     console.log("this.ruleForm.domain_name=" + this.ruleForm.domain_name);
+            //         //     //  return callback(new Error("该域名已存在"))
+            //         //   }else{
+            //         //     this.ruleForm.domain_name = value + this.domainCount;
+            //         //     console.log("this.ruleForm.domain_name=" + this.ruleForm.domain_name);
+            //         //   }
+            //         // }
+            //       }).catch(err => {
+            //         callback(new Error("网络请求有误"))
+            //       })
+            //   }
+           // }
             var checkPhone = (rule, value, callback) => {
                 const reg = /^\d+-*\d+$/g;
                 if (value == '') {
@@ -1006,10 +1018,10 @@
                        {validator: validateEmail, message: '该邮箱已存在', trigger: 'blur'},
                         {type: 'email', message: '请输入正确的邮箱地址', trigger: ['blur', 'change']}
                     ],
-                    domain_name: [
-                        {validator: validatedomainName, required: true, message: '该域名已存在', trigger: ['change']},
-                        {required: true, message: '请输入正确的域名地址', trigger: ['blur', 'change',]}
-                    ],
+                    // domain_name: [
+                    //     {validator: validatedomainName, required: true, message: '该域名已存在', trigger: ['change']},
+                    //     {required: true, message: '请输入正确的域名地址', trigger: ['blur', 'change',]}
+                    // ],
                     phone: [
                         {validator: checkPhone, trigger: 'blur'}
                     ],
