@@ -94,7 +94,7 @@
             @click="routerTo(teacher.tId)"
             style="    cursor: pointer;
     float: left;
-    margin: 15px 0;
+    margin: 8px 0;
     width: 154.8px;height:25px;display: flex;justify-content: center">
             <span style="font-size: 16px;color: #0099CC;letter-spacing: 3px;text-overflow: ellipsis;
     overflow: hidden;

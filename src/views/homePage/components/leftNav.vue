@@ -18,7 +18,7 @@
                         v-if="Object.keys(item.subCatalogueList).length!=0"
                         :key="'cId'+item.id" :index="item.id+''">
 
-              <div slot="title"  >
+              <div slot="title"  style="line-height: 50px;height: 50px">
                 <i class="el-icon-menu"></i>
                 <span class="parentCatalogue">{{item.name}}</span>
               </div>
@@ -227,11 +227,13 @@
       border-right: none !important;
     }
 
-    el-menu-item {
+    .el-menu-item {
       background-color: white;
+      height: 50px;
+      line-height: 50px;
     }
 
-    el-menu-item:hover {
+    .el-menu-item:hover {
       background-color: white;
     }
   }
@@ -253,24 +255,19 @@
       border-right: none !important;
     }
 
-    el-menu-item {
+    .el-menu-item {
       background-color: white;
+      height: 50px;
+      line-height: 50px;
     }
 
-    el-menu-item:hover {
+    .el-menu-item:hover {
       background-color: white;
     }
   }
   @media screen and (max-width: 767px){
     i{
       display: none;
-    }
-    .el-menu{
-      /*display: flex;*/
-
-    }
-    .el-menu-item{
-
     }
     .parentCatalogue {
       font-size: 6px;
@@ -288,6 +285,8 @@
 
     .el-menu-item {
       background-color: white;
+      height: 50px;
+      line-height: 50px;
     }
 
     .el-menu-item:hover {
