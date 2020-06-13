@@ -329,7 +329,7 @@
         created() {
             console.log("--------------------开始查询教师权限")
             this.getList();
-            this.countTeacherUpdate();
+            // this.countTeacherUpdate();太慢
         },
         methods: {
           countTeacherUpdate(){
