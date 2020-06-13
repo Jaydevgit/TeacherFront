@@ -1769,11 +1769,11 @@
                     this.createEditor();
                 })
             },
-          saveTeacher() {
-            /*var html = this.editor.txt.html()
+            saveTeacher() {
+            var html = this.editor.txt.html()
             console.log("this.editor.txt.html()="+this.editor.txt.html())
             var filterHtml = filterXSS(html)
-            this.ruleForm.intro = filterHtml*/
+            this.ruleForm.intro = filterHtml
             this.$refs.ruleForm.validate((valid) => {
               if (valid) {
                 console.log("验证表单信息成功")
