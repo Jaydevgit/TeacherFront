@@ -55,8 +55,17 @@
             <div style="display: flex;float: right;max-height: 36px">
               <el-button style="margin-top: 3px;max-height: 36px" size="small"type="primary" icon="plus" @click="showCreate" v-if="hasPerm('teacher:add')">添加
               </el-button>
-              <el-button style="margin-top: 3px;max-height: 36px" size="small"type="primary" icon="plus" @click="exportInfo">导出教师信息
-              </el-button>
+              <el-dropdown placement="bottom-end" style="padding: 0 5px">
+                <el-button type="primary" size="mini">
+                  教师信息管理<i class="el-icon-arrow-down el-icon--right"></i>
+                </el-button>
+                <el-dropdown-menu slot="dropdown">
+                  <el-dropdown-item @click.native="exportInfo">导出教师信息</el-dropdown-item>
+                  <el-dropdown-item @click.native="dialogImportVisible = true">导入教师信息</el-dropdown-item>
+                </el-dropdown-menu>
+              </el-dropdown>
+<!--              <el-button style="margin-top: 3px;max-height: 36px" size="small"type="primary" icon="plus" @click="exportInfo">导出教师信息-->
+<!--              </el-button>-->
               <el-button type="primary" size="small" style="float:right;margin-right: 15px;margin-top: 3px;max-height: 36px"
                          @click="searchTeahcer">教师搜索
               </el-button>
@@ -204,57 +213,77 @@
       :page-sizes="[10, 20, 50, 100]"
       layout="total, sizes, prev, pager, next, jumper">
     </el-pagination>
+    <el-dialog title="导入教师信息" :visible.sync="dialogImportVisible" >
+      <el-button style="margin:0 0 20px 0;max-height: 36px;" size="small"type="primary" icon="plus" @click="importInfo">下载教师信息填写模板</el-button>
+      <el-upload
+        class="upload-demo"
+        accept=".xlsx"
+        ref="upload"
+        :auto-upload="false"
+        :limit="1"
+        :action="'/api/manager/excel/import'"
+        :data="pdfData"
+        name="file"
+        >
+        <el-button size="small" type="primary">点击教师信息文件上传</el-button>
+        <div slot="tip" class="el-upload__tip">只能依据下载好模板填入教师信息进行导入，对系统已存在改教师邮箱和信息格式不符合要求的教师信息将默认不予导入</div>
+      </el-upload>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="dialogImportVisible = false">取 消</el-button>
+        <el-button type="primary" @click="submitUpload">确 定</el-button>
+      </div>
+    </el-dialog>
 
 
-   <!-- <el-dialog title="教师栏目分配" :visible.sync="showRoleAssigment">
-      <el-card class="box-card" style="width: 600px;float: left;margin-left: 40px">
-        <el-menu
-          default-active="0"
-          class="el-menu-vertical-demo"
-          style="width: 600px;float: left"
-          background-color="#ffffff"
-          @open="handleOpen"
-          @close="handleClose">
-          <el-checkbox-group v-model="checkList" @change="column_check">
+            <!-- <el-dialog title="教师栏目分配" :visible.sync="showRoleAssigment">
+               <el-card class="box-card" style="width: 600px;float: left;margin-left: 40px">
+                 <el-menu
+                   default-active="0"
+                   class="el-menu-vertical-demo"
+                   style="width: 600px;float: left"
+                   background-color="#ffffff"
+                   @open="handleOpen"
+                   @close="handleClose">
+                   <el-checkbox-group v-model="checkList" @change="column_check">
 
-            <el-menu-item index="0">
-              <i class="el-icon-menu"></i>
-              <span slot="title" class="parentCatalogue" style="font-size: 16px">师资队伍</span>
-            </el-menu-item>
+                     <el-menu-item index="0">
+                       <i class="el-icon-menu"></i>
+                       <span slot="title" class="parentCatalogue" style="font-size: 16px">师资队伍</span>
+                     </el-menu-item>
 
-            &lt;!&ndash;假如有子列表&ndash;&gt;
-            <el-submenu v-for="(item, flag) in catalogueList" v-if="Object.keys(item.subCatalogueList).length!=0"
-                        :key="'cId'+item.id" :index="flag +'1'">
-              <div slot="title" @click="addTeacherVisible=false">
-                <el-checkbox v-if="sortVisualable" :label="item.id">&nbsp</el-checkbox>
-                <i class="el-icon-menu"></i>
-                <span class="catalogueName" style="margin-right: 20px;margin-left: 8px;font-size: 16px">{{item.name}}</span>
-              </div>
+                     &lt;!&ndash;假如有子列表&ndash;&gt;
+                     <el-submenu v-for="(item, flag) in catalogueList" v-if="Object.keys(item.subCatalogueList).length!=0"
+                                 :key="'cId'+item.id" :index="flag +'1'">
+                       <div slot="title" @click="addTeacherVisible=false">
+                         <el-checkbox v-if="sortVisualable" :label="item.id">&nbsp</el-checkbox>
+                         <i class="el-icon-menu"></i>
+                         <span class="catalogueName" style="margin-right: 20px;margin-left: 8px;font-size: 16px">{{item.name}}</span>
+                       </div>
 
-              <el-menu-item-group>
-                <el-menu-item style="padding-left: 95px;display: flex;justify-content: space-between;align-items: center;    border: 1px solid #eee;
-    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);"
-                              v-for="(sub, index) in item.subCatalogueList" :key="'subId'+sub.id"
-                              :index="flag + '-'+ index"
-                              @click="getTeacherByCatalogue(sub.id)">
-                  <el-checkbox v-if="sortSubVisualable" style="padding-right: 15px;" :label="sub.id">&nbsp</el-checkbox>
-                  <span style="margin-right: 20px;margin-left: 8px;font-size: 16px">{{sub.name}}</span>
-                </el-menu-item>
+                       <el-menu-item-group>
+                         <el-menu-item style="padding-left: 95px;display: flex;justify-content: space-between;align-items: center;    border: 1px solid #eee;
+             box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);"
+                                       v-for="(sub, index) in item.subCatalogueList" :key="'subId'+sub.id"
+                                       :index="flag + '-'+ index"
+                                       @click="getTeacherByCatalogue(sub.id)">
+                           <el-checkbox v-if="sortSubVisualable" style="padding-right: 15px;" :label="sub.id">&nbsp</el-checkbox>
+                           <span style="margin-right: 20px;margin-left: 8px;font-size: 16px">{{sub.name}}</span>
+                         </el-menu-item>
 
-              </el-menu-item-group>
+                       </el-menu-item-group>
 
-            </el-submenu>
-            &lt;!&ndash;假如没有子列表&ndash;&gt;
-            <el-menu-item v-else :key="'cId'+item.id" :index="flag +'1'">
-              <div slot="title" @click="getTeacherByCatalogue(item.id,item.state)">
-                <el-checkbox v-if="sortVisualable" :label="item.id">&nbsp</el-checkbox>
-                <span class="catalogueName" style="margin-right: 20px;margin-left: 8px;font-size: 16px">{{item.name}}</span>
-              </div>
-            </el-menu-item>
-          </el-checkbox-group>
-        </el-menu>
-      </el-card>
-    </el-dialog>-->
+                     </el-submenu>
+                     &lt;!&ndash;假如没有子列表&ndash;&gt;
+                     <el-menu-item v-else :key="'cId'+item.id" :index="flag +'1'">
+                       <div slot="title" @click="getTeacherByCatalogue(item.id,item.state)">
+                         <el-checkbox v-if="sortVisualable" :label="item.id">&nbsp</el-checkbox>
+                         <span class="catalogueName" style="margin-right: 20px;margin-left: 8px;font-size: 16px">{{item.name}}</span>
+                       </div>
+                     </el-menu-item>
+                   </el-checkbox-group>
+                 </el-menu>
+               </el-card>
+             </el-dialog>-->
          <!-- <v-dialog-bar v-model="showMask" title="筛选账号">
           </v-dialog-bar>-->
     <v-role-assignment-bar v-model="showRoleAssigment" :RoleId="roleId" ref="childRole"
@@ -276,6 +305,7 @@
             // 'v-dialog-bar':dialogBar,
             'v-role-assignment-bar': roleAssignmentBar
         },
+      inject:['reload'],
         data() {
             return {
                 defaultImage: 'http://47.106.132.95:2333/images/avatar/default.png',
@@ -324,15 +354,33 @@
                 unitId:''
               },
               dialogTableVisible: false,
+              dialogImportVisible: false,
+              fileList:[],
             }
         },
         created() {
             console.log("--------------------开始查询教师权限")
             this.getList();
+          this.unitID=this.$store.state.unitId
             // this.countTeacherUpdate();太慢
         },
+      computed:{
+        pdfData:function () {
+          return{
+            unitId:  this.$store.state.user.unitId,
+            editName:this.$store.state.user.nickname
+          }
+        },
+      },
         methods: {
-          countTeacherUpdate(){
+
+          submitUpload(){
+            this.$refs.upload.submit()
+            this.dialogImportVisible=false
+            this.$message.success("教师信息导入完成")
+            this.getList();
+          },
+          countTeacherUpdate() {
             // this.listQuery.key="update_time";
             // this.listQuery.sort="desc";
             this.listQuery.unitId = this.$store.state.user.unitId;
@@ -342,191 +390,192 @@
               method: "get",
               params: this.listQuery
             }).then(data => {
-              console.log("学者网更新教师数据总countScholat===="+data.countScholat)
+              console.log("学者网更新教师数据总countScholat====" + data.countScholat)
               this.totalUpdate = data.countScholat;
-            }).catch((e) => {});
+            }).catch((e) => {
+            });
           },
-            inviteToScholat(Form) {
-              console.log("Form="+JSON.stringify(Form))
-             if (Form.email){
-               this.$confirm('此操作将会给该用户发送邀请邮件, 是否继续?', '提示', {
+          inviteToScholat(Form) {
+            console.log("Form=" + JSON.stringify(Form))
+            if (Form.email) {
+              this.$confirm('此操作将会给该用户发送邀请邮件, 是否继续?', '提示', {
 
-                 confirmButtonText: '确认发送邀请',
-                 cancelButtonText: '取消',
-                 type: 'success'
-               }).then(() => {
-                 /*this.$message.success("准备邀请" + Form.email + "加入学者网");*/
-                 this.api({
-                   url: '/scholat/invite',
-                   method: 'post',
-                   data: {
-                     "form": Form
-                   }
-                 }).then((data) => {
-                   this.$message.success("邀请" + Form.email + "成功")
-                 }).catch(e => {
-                   if (e.code=="400"){
-                     this.$message.error("邀请" + Form.email + "失败")
-                   }else if (e.code=="10009"){
-                     this.$message.error("邮件已发送，请勿重复邀请")
-                   }else if (e.code=="90003"){
-                     this.$message.error("缺少必填参数email")
-                   }
-                 });
-                 this.dialogFormVisible = false;
-               }).catch(() => {
-                 this.$message({
-                   type: 'info',
-                   message: '已取消邀请'
-                 });
-                 this.dialogFormVisible = false;
-               });
-
-             }else {
-               this.dialogFormVisible=true;
-             }
-            },
-            updateFromScholat() {
-                this.$message.error("正在写")
-
-            },
-            searchTeahcer() {
-                this.listQuery.pageNum = 1;
-                this.listQuery.unitId = this.$store.state.user.unitId
-                this.listQuery.key = this.searchKey
-                if (this.searchKey != null && this.searchKey != "") {
-                    this.api({
-                        url: "/manager/searchTeacher",
-                        method: "get",
-                        params: this.listQuery
-                    }).then(data => {
-                        this.list = data.list;
-                      console.log(" this.list"+ JSON.stringify(this.list));
-                      this.totalCount = data.totalCount;
-                        this.totalUpdate = data.totalUpdate;
-                        this.currentSearch = true;
-                    }).catch(error => {
-                        console.log("QAQ........获取教师失败")
-                    })
-                }
-            },
-            changeTeahcer() {
-                this.listQuery.unitId = this.$store.state.user.unitId
-                this.listQuery.key = this.searchKey
+                confirmButtonText: '确认发送邀请',
+                cancelButtonText: '取消',
+                type: 'success'
+              }).then(() => {
+                /*this.$message.success("准备邀请" + Form.email + "加入学者网");*/
                 this.api({
-                    url: "/manager/searchTeacher",
-                    method: "get",
-                    params: this.listQuery
-                }).then(data => {
-                    this.list = data.list;
-                    this.totalCount = data.totalCount;
-                    this.totalUpdate = data.totalUpdate;
-                }).catch(error => {
-                    console.log("QAQ........获取教师失败")
-                })
-            },
-            removeTeacher(teacherId) {
-                var _vue = this;
-                this.$confirm('确定删除该教师?', '提示', {
-                    confirmButtonText: '确定',
-                    showCancelButton: false,
-                    type: 'warning'
-                }).then(() => {
-                    _vue.api({
-                        url: "/manager/deleteTeacher",
-                        method: "post",
-                        data: {
-                            "teacherId": teacherId
-                        }
-                    }).then((data) => {
-                        this.$message.success("删除该教师成功")
-                        this.getList();
-                    }).catch(e => {
-                        this.$message.error("QAQ.....")
-                    })
-                })
-            },
-            getState(state) {
-                if (state == 1) {
-                    return "在岗"
-                } else if (state == 0) {
-                    return "调出"
-                } else {
-                    return "退休"
-                }
-            },
-            getImgUrl(imgName) {
-                if (imgName == null) {
-                    return this.defaultAvatar;
-                } else if(imgName=="default.png"){
-                  return this.defaultAvatar
-                } else if (imgName.indexOf("resources") != "-1") {
-                    return "http://www.scholat.com/" + imgName;
-                } else {
-                    return "http://47.106.132.95:2333/images/avatar/" + imgName;
-                }
-              /*return 'http://47.106.132.95:2333/images/avatar/'+imgName;*/
+                  url: '/scholat/invite',
+                  method: 'post',
+                  data: {
+                    "form": Form
+                  }
+                }).then((data) => {
+                  this.$message.success("邀请" + Form.email + "成功")
+                }).catch(e => {
+                  if (e.code == "400") {
+                    this.$message.error("邀请" + Form.email + "失败")
+                  } else if (e.code == "10009") {
+                    this.$message.error("邮件已发送，请勿重复邀请")
+                  } else if (e.code == "90003") {
+                    this.$message.error("缺少必填参数email")
+                  }
+                });
+                this.dialogFormVisible = false;
+              }).catch(() => {
+                this.$message({
+                  type: 'info',
+                  message: '已取消邀请'
+                });
+                this.dialogFormVisible = false;
+              });
 
-            },
-          imgErrorFun(e){
+            } else {
+              this.dialogFormVisible = true;
+            }
+          },
+          updateFromScholat() {
+            this.$message.error("正在写")
+
+          },
+          searchTeahcer() {
+            this.listQuery.pageNum = 1;
+            this.listQuery.unitId = this.$store.state.user.unitId
+            this.listQuery.key = this.searchKey
+            if (this.searchKey != null && this.searchKey != "") {
+              this.api({
+                url: "/manager/searchTeacher",
+                method: "get",
+                params: this.listQuery
+              }).then(data => {
+                this.list = data.list;
+                console.log(" this.list" + JSON.stringify(this.list));
+                this.totalCount = data.totalCount;
+                this.totalUpdate = data.totalUpdate;
+                this.currentSearch = true;
+              }).catch(error => {
+                console.log("QAQ........获取教师失败")
+              })
+            }
+          },
+          changeTeahcer() {
+            this.listQuery.unitId = this.$store.state.user.unitId
+            this.listQuery.key = this.searchKey
+            this.api({
+              url: "/manager/searchTeacher",
+              method: "get",
+              params: this.listQuery
+            }).then(data => {
+              this.list = data.list;
+              this.totalCount = data.totalCount;
+              this.totalUpdate = data.totalUpdate;
+            }).catch(error => {
+              console.log("QAQ........获取教师失败")
+            })
+          },
+          removeTeacher(teacherId) {
+            var _vue = this;
+            this.$confirm('确定删除该教师?', '提示', {
+              confirmButtonText: '确定',
+              showCancelButton: false,
+              type: 'warning'
+            }).then(() => {
+              _vue.api({
+                url: "/manager/deleteTeacher",
+                method: "post",
+                data: {
+                  "teacherId": teacherId
+                }
+              }).then((data) => {
+                this.$message.success("删除该教师成功")
+                this.getList();
+              }).catch(e => {
+                this.$message.error("QAQ.....")
+              })
+            })
+          },
+          getState(state) {
+            if (state == 1) {
+              return "在岗"
+            } else if (state == 0) {
+              return "调出"
+            } else {
+              return "退休"
+            }
+          },
+          getImgUrl(imgName) {
+            if (imgName == null) {
+              return this.defaultAvatar;
+            } else if (imgName == "default.png") {
+              return this.defaultAvatar
+            } else if (imgName.indexOf("resources") != "-1") {
+              return "http://www.scholat.com/" + imgName;
+            } else {
+              return "http://47.106.132.95:2333/images/avatar/" + imgName;
+            }
+            /*return 'http://47.106.132.95:2333/images/avatar/'+imgName;*/
+
+          },
+          imgErrorFun(e) {
             return 'this.src="defaultAvatar"';
           },
-            routerTo(teacher) {
-                console.log("=========================================")
-                console.log("点击跳转........" + teacher.domainName);
-                let routeData = this.$router.push({
-                    name: 'teacherPersonlHomePage',
-                    params: {
-                        // facultyDomainName:this.$store.state.user.domainName,
-                      schoolDomain:this.$store.state.user.schoolDomain,
-                        teacherDomainName:teacher.domainName,
-                        id: teacher.id
-                    }
-                });
-                window.open(routeData.href, '_blank');
-                /*  this.$router.push({
+          routerTo(teacher) {
+            console.log("=========================================")
+            console.log("点击跳转........" + teacher.domainName);
+            let routeData = this.$router.push({
+              name: 'teacherPersonlHomePage',
+              params: {
+                // facultyDomainName:this.$store.state.user.domainName,
+                schoolDomain: this.$store.state.user.schoolDomain,
+                teacherDomainName: teacher.domainName,
+                id: teacher.id
+              }
+            });
+            window.open(routeData.href, '_blank');
+            /*  this.$router.push({
                       name: 'teacherPersonlHomePage',
                       params: {
                           id: teacher.id
                       }
                   })*/
-            },
-            getList() {
+          },
+          getList() {
 
-                //查询列表
-                if (!this.hasPerm('teacher:list')) {
-                    return
-                }
-                this.listQuery.pageNum = 1;
-              // this.listQuery.key="update_time";
-              // this.listQuery.sort="desc";
-                this.listQuery.unitId = this.$store.state.user.unitId;
-                console.log('unitId==' + JSON.stringify(this.listQuery));
-                this.listLoading = true;
-                console.log("### 开始查询教师成员列表")
-                this.api({
-                    url: "/manager/listTeacher",
-                    method: "get",
-                    params: this.listQuery
-                }).then(data => {
-                    console.log("查询教师信息为:")
-                    console.log("=================展示教师列表信息===============")
-                    this.listLoading = false;
-                    this.list = data.list;
-                    console.log(data);
-                    this.list.forEach((v, k) => {
-                        let t = v.update_time.replace(/\./g, '-').slice(0, 16);
-                        v.update_time = t;
-                    });
-                    this.totalCount = data.totalCount;
+            //查询列表
+            if (!this.hasPerm('teacher:list')) {
+              return
+            }
+            this.listQuery.pageNum = 1;
+            // this.listQuery.key="update_time";
+            // this.listQuery.sort="desc";
+            this.listQuery.unitId = this.$store.state.user.unitId;
+            console.log('unitId==' + JSON.stringify(this.listQuery));
+            this.listLoading = true;
+            console.log("### 开始查询教师成员列表")
+            this.api({
+              url: "/manager/listTeacher",
+              method: "get",
+              params: this.listQuery
+            }).then(data => {
+              console.log("查询教师信息为:")
+              console.log("=================展示教师列表信息===============")
+              this.listLoading = false;
+              this.list = data.list;
+              console.log(data);
+              this.list.forEach((v, k) => {
+                let t = v.update_time.replace(/\./g, '-').slice(0, 16);
+                v.update_time = t;
+              });
+              this.totalCount = data.totalCount;
 
-                    this.currentSearch = false
-                  console.log(this.totalCount+"  "+this.totalUpdate+" "+this.listQuery.pageNum);
-                }).catch(error => {
-                    console.log("QAQ........没有找到教师列表")
-                })
+              this.currentSearch = false
+              console.log(this.totalCount + "  " + this.totalUpdate + " " + this.listQuery.pageNum);
+            }).catch(error => {
+              console.log("QAQ........没有找到教师列表")
+            })
 
-            },
+          },
           // getNoStateList() {
           //   //查询列表
           //   if (!this.hasPerm('teacher:list')) {
@@ -558,119 +607,122 @@
           //     console.log("QAQ........没有找到未在岗教师列表")
           //   })
           // },
-            changeList() {
-                //查询列表
-                if (!this.hasPerm('teacher:list')) {
-                    return
-                }
-                this.listQuery.unitId = this.$store.state.user.unitId;
-                console.log('unitId==' + this.listQuery.unitId);
-                this.listLoading = true;
-                console.log("### 开始查询教师成员列表")
-                this.api({
-                    url: "/manager/listTeacher",
-                    method: "get",
-                    params: this.listQuery
-                }).then(data => {
-                    console.log("查询教师信息为:" + data.totalUpdate)
-                    console.log("================================")
-                    this.listLoading = false;
-                    this.list = data.list;
-                  this.totalCount = data.totalCount;
-                    this.totalUpdate = data.totalUpdate;
-                }).catch(error => {
-                    console.log("QAQ........没有找到教师列表")
-                })
-            },
-            handleSizeChange(val) {
-                //改变每页数量
-                this.listQuery.pageRow = val
-                this.handleFilter();
-            },
-            handleFilter() {
-              //查询事件
-              this.listQuery.pageNum = 1
-              this.getList()
-            },
-            handleCurrentChange(val) {
-                //改变页码
-                this.listQuery.pageNum = val
-                if (!this.currentSearch)
-                    this.changeList()
-                else
-                    this.changeTeahcer()
-            },
-            getIndex($index) {
-                //表格序号
-                return (this.listQuery.pageNum - 1) * this.listQuery.pageRow + $index + 1
-            },
-            showCreate() {
-                //显示新增对话框
-                /*this.tempTeacher.name = "";
+          changeList() {
+            //查询列表
+            if (!this.hasPerm('teacher:list')) {
+              return
+            }
+            this.listQuery.unitId = this.$store.state.user.unitId;
+            console.log('unitId==' + this.listQuery.unitId);
+            this.listLoading = true;
+            console.log("### 开始查询教师成员列表")
+            this.api({
+              url: "/manager/listTeacher",
+              method: "get",
+              params: this.listQuery
+            }).then(data => {
+              console.log("查询教师信息为:" + data.totalUpdate)
+              console.log("================================")
+              this.listLoading = false;
+              this.list = data.list;
+              this.totalCount = data.totalCount;
+              this.totalUpdate = data.totalUpdate;
+            }).catch(error => {
+              console.log("QAQ........没有找到教师列表")
+            })
+          },
+          handleSizeChange(val) {
+            //改变每页数量
+            this.listQuery.pageRow = val
+            this.handleFilter();
+          },
+          handleFilter() {
+            //查询事件
+            this.listQuery.pageNum = 1
+            this.getList()
+          },
+          handleCurrentChange(val) {
+            //改变页码
+            this.listQuery.pageNum = val
+            if (!this.currentSearch)
+              this.changeList()
+            else
+              this.changeTeahcer()
+          },
+          getIndex($index) {
+            //表格序号
+            return (this.listQuery.pageNum - 1) * this.listQuery.pageRow + $index + 1
+          },
+          showCreate() {
+            //显示新增对话框
+            /*this.tempTeacher.name = "";
                 this.dialogStatus = "create"
                 this.dialogFormVisible = true*/
-                this.$router.push({
-                    path: '/manager/addTeacher'
-                })
-            },
-          exportInfo(){
-            console.log("this.listQuery.unitId="+this.listQuery.unitId);
-            var json={unitId:this.listQuery.unitId}
-            var json2=JSON.stringify(json);
-            window.open("/api/manager/exportTeacher?json="+escape(json2))
+            this.$router.push({
+              path: '/manager/addTeacher'
+            })
           },
-            showUpdate(teacher) {
-                //显示修改对话框
-                /*   this.tempTeacher.id = this.list[$index].id;
+          exportInfo() {
+            console.log("this.listQuery.unitId=" + this.listQuery.unitId);
+            var json = {unitId: this.listQuery.unitId}
+            var json2 = JSON.stringify(json);
+            window.open("/api/manager/exportTeacher?json=" + escape(json2))
+          },
+          importInfo() {
+            window.open("/api/manager/excel/download1")
+          },
+          showUpdate(teacher) {
+            //显示修改对话框
+            /*   this.tempTeacher.id = this.list[$index].id;
                    this.tempTeacher.name = this.list[$index].name;
                    this.dialogStatus = "update"
                    this.dialogFormVisible = true*/
-                //修改文章
-                let d1 = new Date(teacher.scholat_update_time);    //Tue Jul 04 2017 08:00:00 GMT+0800 (中国标准时间)
-                let d2 = new Date(teacher.update_time);    //Wed Jul 05 2017 08:00:00 GMT+0800 (中国标准时间)
+            //修改文章
+            let d1 = new Date(teacher.scholat_update_time);    //Tue Jul 04 2017 08:00:00 GMT+0800 (中国标准时间)
+            let d2 = new Date(teacher.update_time);    //Wed Jul 05 2017 08:00:00 GMT+0800 (中国标准时间)
 
 // 获取他们的距离1970年以来的毫秒
-                let time1 = d1.getTime();
-                let time2 = d2.getTime();
-                var scholatUserName = "";
-                if (time1 > time2) {
-                    scholatUserName = teacher.scholat_username;
-                }
-                this.$router.push({
-                    name: 'modifyTeacher',
-                    params: {
-                        t: teacher,
-                        id: teacher.id,
-                        scholatUpdate: scholatUserName
-                    }
-                })
-            },
-            openQuery() {
-                this.showMask = true;
-            },
-            // 教师分配
-            openAssignment(id) {
-                this.showRoleAssigment = true;
-                this.roleId = id;
-                console.log("当前分栏目标教师Id:" + id)
-                this.$notify({
-                    title: '提示',
-                    message: '本页面教师已存在栏目为不可选状态栏目。若需要管理教师已分配栏目，请到教师分配页面进行管理。',
-                    type: 'info',
-                    position: 'bottom-left'
-                });
-                this.$refs.childRole.getTeacherAllCatalogues(id);
-            },
+            let time1 = d1.getTime();
+            let time2 = d2.getTime();
+            var scholatUserName = "";
+            if (time1 > time2) {
+              scholatUserName = teacher.scholat_username;
+            }
+            this.$router.push({
+              name: 'modifyTeacher',
+              params: {
+                t: teacher,
+                id: teacher.id,
+                scholatUpdate: scholatUserName
+              }
+            })
+          },
+          openQuery() {
+            this.showMask = true;
+          },
+          // 教师分配
+          openAssignment(id) {
+            this.showRoleAssigment = true;
+            this.roleId = id;
+            console.log("当前分栏目标教师Id:" + id)
+            this.$notify({
+              title: '提示',
+              message: '本页面教师已存在栏目为不可选状态栏目。若需要管理教师已分配栏目，请到教师分配页面进行管理。',
+              type: 'info',
+              position: 'bottom-left'
+            });
+            this.$refs.childRole.getTeacherAllCatalogues(id);
+          },
 
           //教师状态改变
-          teacherStateChange(value){
-            if (value===1){
-              this.teacherState="1";
-              this.listQuery.state='1'
+          teacherStateChange(value) {
+            if (value === 1) {
+              this.teacherState = "1";
+              this.listQuery.state = '1'
             }
-            if (value===2){
-              this.teacherState="2";
-              this.listQuery.state=''
+            if (value === 2) {
+              this.teacherState = "2";
+              this.listQuery.state = ''
             }
             /*if(this.listQuery.state===1){
               this.listQuery.state='';
@@ -686,31 +738,82 @@
           },
 
           //姓名排序
-          sortChange(column){
-            this.listQuery.key=column.prop;
-            if(column.order==='descending'){
-              this.listQuery.sort='desc';
-            }else {
-              this.listQuery.sort='';
+          sortChange(column) {
+            this.listQuery.key = column.prop;
+            if (column.order === 'descending') {
+              this.listQuery.sort = 'desc';
+            } else {
+              this.listQuery.sort = '';
             }
-            console.log(this.listQuery.key+" "+this.listQuery.sort);
+            console.log(this.listQuery.key + " " + this.listQuery.sort);
             this.getList();
             //console.log(JSON.stringify(column) + '-' + column.prop + '-' + column.order)
           },
 
           //学者网关联状态改变
-          changeScholat(){
+          changeScholat() {
 
             console.log(this.flagScholat);
-            if(this.flagScholat===true){
-              this.listQuery.scholatUsernameFlag=true
+            if (this.flagScholat === true) {
+              this.listQuery.scholatUsernameFlag = true
             }
-            if(this.flagScholat===false){
-              this.listQuery.scholatUsernameFlag=false
+            if (this.flagScholat === false) {
+              this.listQuery.scholatUsernameFlag = false
             }
             this.getList();
-          }
+          },
+
+          // uploadFun(param) {
+          //   console.log("testmsg=");
+          //   var data = new FormData(); //创建form对象
+          //   data.append('file', param.file);
+          //   //data.append('fileName',param.name);//我想要修改name属性，发现改成自定义上传后，html上的name不起作用了，想要在这         设置不起作用(name,fileName都试过，不起作用)，导致接口调不通，最终放弃
+          //   this.axios.put('/api/attach/upload/teacherExcel', data,
+          //     {contentType: false, processData: false, headers: {'Content-Type': 'multipart/form-data'}}
+          //   ).then(res => {
+          //     console.log(".........文件名为: " + res.data + JSON.stringify(res))
+          //     if(res.data===false){
+          //       this.$message.error("上传失败");
+          //     }else{
+          //       this.$message.success("上传成功")
+          //     }
+          //   }).catch(error => {
+          //     this.$message.error("哎呀.....上传文件失败")
+          //   })
+          //
+          // },
+          // handleUpload(file){
+          //   var testmsg=file.name.substring(file.name.lastIndexOf('.')+1)
+          //   console.log("testmsg="+testmsg);
+          //   if ([ 'xlsx'].indexOf(testmsg.toLowerCase())===-1) {
+          //     this.$message.error('上传文件类型必须是.xlsx');
+          //     return false;
+          //   }
+          //   const isLt2M = file.size / 1024 / 1024 < 0.6     //这里做文件大小限制
+          //   if(!isLt2M) {
+          //     this.$message({
+          //       message: '上传文件大小不能超过 600kB!',
+          //       type: 'warning'
+          //     });
+          //     return false;
+          //   }
+          //   // console.log('beforeUpload')
+          //   // console.log(file.type)
+          //   // const isText = file.type === 'application/vnd.ms-excel'
+          //   // const isTextComputer = file.type === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+          //   // return (isText | isTextComputer)
+          // },
+          // handleRemove(file, fileList) {
+          //   console.log(file, fileList);
+          // },
+          // handlePreview(file) {
+          //   console.log(file.name);
+          // },
+          // handleExceed(files, fileList) {
+          //   this.$message.warning(`当前限制选择 1 个文件，请先删除默认文件再进行上传`);
+          // },
         }
+
     }
 </script>
 <style>
