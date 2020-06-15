@@ -669,7 +669,7 @@
             window.open("/api/manager/exportTeacher?json=" + escape(json2))
           },
           importInfo() {
-            window.open("/api/manager/excel/download1")
+            window.open("/api/manager/exportTeacher2")
           },
           showUpdate(teacher) {
             //显示修改对话框
