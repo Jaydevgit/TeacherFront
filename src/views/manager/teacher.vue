@@ -56,7 +56,7 @@
               <el-button style="margin-top: 3px;max-height: 36px" size="small"type="primary" icon="plus" @click="showCreate" v-if="hasPerm('teacher:add')">添加
               </el-button>
               <el-dropdown placement="bottom-end" style="padding: 0 5px">
-                <el-button type="primary" size="mini">
+                <el-button type="primary" size="small">
                   教师信息管理<i class="el-icon-arrow-down el-icon--right"></i>
                 </el-button>
                 <el-dropdown-menu slot="dropdown">
