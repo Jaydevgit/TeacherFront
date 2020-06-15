@@ -170,7 +170,7 @@
           </el-col>-->
           <el-col :span="24">
             <el-row>
-              <el-col :span="8"><div class="grid-content bg-purple">
+              <el-col :span="10"><div class="grid-content bg-purple">
                 <el-form-item label="姓名" prop="username" class="redItem">
 
                   <!--显示更新提示-->
@@ -187,7 +187,7 @@
                 </el-form-item>
               </div></el-col>
 
-              <el-col :span="8"><div class="grid-content bg-purple">
+              <el-col :span="10"><div class="grid-content bg-purple">
                 <el-form-item label="性别" prop="sex" class="redItem">
                   <el-radio-group v-model="ruleForm.sex">
                     <el-radio label="0">男</el-radio>
@@ -197,7 +197,7 @@
               </div></el-col>
             </el-row>
             <el-row>
-              <el-col :span="12">
+              <el-col :span="10">
                 <div class="grid-content bg-purple">
                   <el-form-item label="域名" prop="domain_name">
                    <a :href="'http://faculty.scholat.com/teacher/'+SchoolDomain+'/'+ruleForm.domain_name">
@@ -206,7 +206,7 @@
                   </el-form-item>
                 </div>
               </el-col>
-              <el-col :span="8"><div class="grid-content bg-purple">
+              <el-col :span="6"><div class="grid-content bg-purple">
                 <el-form-item label="状态" prop="state" required class="redItem">
                   <el-select v-model="ruleForm.state" placeholder="请选择">
                     <el-option
@@ -223,10 +223,17 @@
                   <!--              </el-radio-group>-->
                 </el-form-item>
               </div></el-col>
+              <el-col :span="4"><div class="grid-content bg-purple">
+                <el-form-item style="display: flex;justify-content: flex-end;">
+                  <el-button @click="createTeacher_one" type="success" v-if="$route.path.indexOf('addTeacher')!=-1">保存</el-button>
+                  <el-button @click="saveTeacher" type="success" v-if="$route.path.indexOf('modifyTeacher')!=-1">保存</el-button>
+                  <el-button @click="backToManager">返回</el-button>
+                </el-form-item>
+              </div></el-col>
 
             </el-row>
             <el-row>
-              <el-col :span="8"><div class="grid-content bg-purple">
+              <el-col :span="10"><div class="grid-content bg-purple">
                 <el-form-item label="职称" prop="post">
                   <!--显示更新提示-->
                   <!--              <el-tooltip placement="top" v-if="showUpdateInfo.postScholat">-->
@@ -252,7 +259,7 @@
                             placeholder="例如：教授、副教授、讲师"></el-input>
                 </el-form-item>
               </div></el-col>
-              <el-col :span="11"><div class="grid-content bg-purple">
+              <el-col :span="10"><div class="grid-content bg-purple">
                 <el-form-item label="职务" prop="duty" >
                   <el-input v-model="ruleForm.duty"
                             placeholder="例如：院长、书记、老师、辅导员等"></el-input>
@@ -265,7 +272,7 @@
 
             </el-row>-->
             <el-row>
-              <el-col :span="8"><div class="grid-content bg-purple">
+              <el-col :span="10"><div class="grid-content bg-purple">
                 <el-form-item label="学历学位" prop="degree">
                   <!-- <el-select v-model="ruleForm.degree">
                      <el-option label="博士研究生" value="博士研究生"></el-option>
@@ -284,7 +291,7 @@
 <!--                            placeholder="博士、硕士、学士"></el-input>-->
 <!--                </el-form-item>-->
 <!--              </div></el-col>-->
-              <el-col :span="11"><div class="grid-content bg-purple">
+              <el-col :span="10"><div class="grid-content bg-purple">
                 <el-form-item label="头衔" prop="label">
                   <el-input v-model="ruleForm.label" placeholder="例如：国务院特殊津贴专家等头衔"></el-input>
                 </el-form-item>
@@ -302,24 +309,24 @@
               </div></el-col>-->
             </el-row>
             <el-row>
-              <el-col :span="8"><div class="grid-content bg-purple">
+              <el-col :span="10"><div class="grid-content bg-purple">
                 <el-form-item label="所在部门" prop="department_name">
                   <el-input v-model="ruleForm.department_name" placeholder="例如：网络工程系"></el-input>
                 </el-form-item>
               </div></el-col>
-              <el-col :span="11"><div class="grid-content bg-purple">
+              <el-col :span="10"><div class="grid-content bg-purple">
                 <el-form-item label="办公地点">
                   <el-input v-model="ruleForm.work_place" placeholder=""></el-input>
                 </el-form-item>
               </div></el-col>
             </el-row>
             <el-row>
-              <el-col :span="8"><div class="grid-content bg-purple">
+              <el-col :span="10"><div class="grid-content bg-purple">
                 <el-form-item label="邮箱" prop="email" >
                   <el-input v-model="ruleForm.email" placeholder="建议输入办公邮箱地址"></el-input>
                 </el-form-item>
               </div></el-col>
-              <el-col :span="11"><div class="grid-content bg-purple">
+              <el-col :span="10"><div class="grid-content bg-purple">
                 <el-form-item label="办公电话" prop="phone">
                   <el-input v-model="ruleForm.phone" placeholder="建议输入办公固定电话，可以用'-'分隔"></el-input>
                 </el-form-item>
@@ -351,13 +358,7 @@
 <!--                </el-form-item>-->
 <!--              </div></el-col>-->
 
-              <el-col :span="18"><div class="grid-content bg-purple">
-                <el-form-item style="display: flex;justify-content: flex-end;">
-                  <el-button @click="createTeacher_one" type="success" v-if="$route.path.indexOf('addTeacher')!=-1">保存</el-button>
-                  <el-button @click="saveTeacher" type="success" v-if="$route.path.indexOf('modifyTeacher')!=-1">保存</el-button>
-                  <el-button @click="backToManager">返回</el-button>
-                </el-form-item>
-              </div></el-col>
+
               <el-col :span="8"><div class="grid-content bg-purple"></div></el-col>
             </el-row>
 
