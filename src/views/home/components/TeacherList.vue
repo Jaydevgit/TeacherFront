@@ -4,7 +4,7 @@
        style="float: left;position: relative;width: 100%;padding: 14px 5px;background: #fff;">
     <ul class="ul-page3">
       <li v-for="teacher in teacherListAll" :key="teacher.tId"
-          @click="routerTo(teacher.tId)"
+          @click="routerTo(teacher)"
           style="    cursor: pointer;
     float: left;
     margin: 8px 0;
@@ -30,6 +30,7 @@
             pageNum: 1,//页码
             pageRow: 15,//每页条数
             unitId: '',
+            schoolDomain:'',
             unitDomain:'',
             cId: '',
             key: '',
@@ -49,12 +50,15 @@
       },
       props: ['unitId'],
       created() {
+        this.schoolDomain=this.$route.path.split('/')[2];
+        this.unitDomain=this.$route.path.split('/')[3];
         this.getListAll();
       },
       methods:{
         getListAll() {
           this.currentCat = 0
           this.listQuery.unitDomain = this.$route.path.split('/')[3];
+          this.listQuery.schoolDomain = this.$route.path.split('/')[2];
           // this.listLoading = true;
           console.log("传入参数为:"+JSON.stringify(this.listQuery))
           this.api({
@@ -73,6 +77,18 @@
           }).catch(error => {
             console.log("QAQ........没有找到教师列表")
           })
+        },
+        routerTo(teacher) {
+          console.log("teacher.tDomain_name="+teacher.tDomain_name)
+          console.log("this.schoolDomain="+this.schoolDomain)
+          this.$router.push({
+            name: 'teacherPersonlHomePage',
+            params:{
+              schoolDomain:this.schoolDomain,
+              teacherDomainName:teacher.tDomain_name
+            }
+          })
+
         },
       }
     }

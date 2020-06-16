@@ -9,9 +9,9 @@
             background-color="#ffffff"
             :mode="displayMode"
             style="overflow: hidden">
-            <el-menu-item index="0" >
+            <!--<el-menu-item index="0" >
               <span slot="title" class="parentCatalogue">推荐教师</span>
-            </el-menu-item>
+            </el-menu-item>-->
             <el-menu-item v-for="(item, flag) in unitList" :key="'cId'+item.id" :index="item.id+''">
               <div slot="title" @click="uIdSend(item.id,item.domain_name)">
                 <i class="el-icon-menu"></i>

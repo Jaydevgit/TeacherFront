@@ -89,7 +89,7 @@
       },
         created() {
           this.init();
-          this.initDisplay();
+          /*this.initDisplay();*/
         },
         mounted() {
           if(this.unitQuery.unitId&&this.unitQuery.domainName){
@@ -141,7 +141,7 @@
             })
           },
             getCatalogues() {
-              console.log("this.$route.params.unitId is isisisis" + this.unitId);
+              console.log("this.$route.params.unitId is " + this.unitId);
                 this.api({
                     url: "/catalogue/getCatalogues",
                     method: "get",
