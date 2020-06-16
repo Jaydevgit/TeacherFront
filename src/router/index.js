@@ -7,6 +7,7 @@ import persona from '../views/persona/persona'
 import Layout from '../views/layout/Layout'
 import teacherPersonalHomePage from '../views/teacher/teacherPersonalHomePage'
 import HomePage from '../views/homePage/HomePage'
+import Home from '../views/home/Home'
 import index from '../views/index/index'
 import scholatLogin from "../views/scholat/login/login"
 import fa from "element-ui/src/locale/lang/fa";
@@ -66,6 +67,25 @@ export const constantRouterMap = [
           keepAlive: true
         },
       }
+    ]
+  },
+  {
+    path: '/home/:schoolDomain',
+    name: 'home',
+    component: Home,
+    hidden: true,
+    meta: {
+      keepAlive: false
+    },
+    children: [
+      {
+        path: '/home/:schoolDomain/:domainName',
+        name: 'unit',
+        component: HomePage,
+        meta: {
+          keepAlive: false
+        },
+      },
     ]
   },
   {
