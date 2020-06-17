@@ -43,7 +43,7 @@
       <div class="page1">
         <div class="title_1">SCHOLAT+师资，现代化的学院师资管理展示平台</div>
         <div class="title_2">
-          <div>面向学院提供高效的师资管理，现代化的师资展示平台。</div>
+          <div>提供高度自定义化的栏目列表，一键采集教师信息更新。</div>
           <div>助力学院师资管理展示现代化。</div>
         </div>
         <a href="/unitApply"><div class="button_1" ><div class="b_name">立即申请使用</div></div></a>
@@ -71,7 +71,7 @@
       </div>
       <div class="page3">
         <div class="page3_left1" >
-          SCHOLAT+师资平台主要提供学院官网“师资队伍”主页定制，学院教师科研信息采集工具（将在第二期完成）。
+          SCHOLAT+师资平台主要提供学院官网“师资队伍”主页定制，学院教师科研信息采集工具。
           平台具有
           <el-tooltip class="item" effect="dark" content="平台发布的教师信息由学院管理部门管理，通过学院官网师资队伍栏目链接定制主页，属于学院官网组成部分" placement="top">
             <span style="color: #1890FF;">权威性</span>
@@ -91,7 +91,7 @@
         </div>
       </div>
       <div class="page3_sub">
-        SCHOLAT+师资平台主要提供学院官网“师资队伍”主页定制，学院教师科研信息采集工具（将在第二期完成）。
+        SCHOLAT+师资平台主要提供学院官网“师资队伍”主页定制，学院教师科研信息采集工具。
         平台具有<span style="color: #1890FF;">权威性</span>、<span style="color: #1890FF;">时效性</span>、
         <span style="color: #1890FF;">安全性</span>、<span style="color: #1890FF;">易用性</span>和<span style="color: #1890FF;">可扩展性</span>等主要优点。
       </div>
