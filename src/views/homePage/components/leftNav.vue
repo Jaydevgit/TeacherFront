@@ -229,7 +229,7 @@
 
     .el-menu-item {
       background-color: white;
-      height: 50px;
+      height: 45px;
       line-height: 50px;
     }
 
@@ -257,7 +257,7 @@
 
     .el-menu-item {
       background-color: white;
-      height: 50px;
+      height:45px;
       line-height: 50px;
     }
 
