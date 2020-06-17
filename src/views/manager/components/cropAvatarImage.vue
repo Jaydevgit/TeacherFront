@@ -7,7 +7,7 @@
   <div class="crop-avatar-image">
     <div class="footerBtn">
       <img id="avatar-id" v-if="attach.laterUrl" :src="attach.laterUrl" class="preview"
-           style="width:120px;height:120px"/>
+           style="width:100px;height:100px"/>
       <!-- 弹出层-裁剪 -->
       <el-dialog
         title="编辑头像"
@@ -227,7 +227,7 @@
     overflow: hidden;
     border: 1px solid #cccccc;
     background: #cccccc;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
   }
 
   .footerBtn {
