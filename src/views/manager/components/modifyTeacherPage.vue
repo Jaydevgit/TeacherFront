@@ -661,7 +661,7 @@
           <el-col :span="10" style="margin-left: 15px">
             <span style="font-weight: 900;font-size: 24px">更新区域</span>
             <div v-if="showUpdateInfo.research_directionScholat!==''" v-html="showUpdateInfo.research_directionScholat"
-                 style="height: 70px;overflow: auto;background-color: antiquewhite;margin-top: 5px;margin-bottom: 5px"></div>
+                 style="height: 80px;overflow: auto;background-color: antiquewhite;margin-top: 20px"></div>
             <!--              <div v-if="scholatProfile.research_direction!==''&&showUpdateInfo.research_directionScholat===''" v-html="scholatProfile.research_direction"-->
             <!--                     style="height: 70px;overflow: auto;background-color: antiquewhite;margin-top: 5px;margin-bottom: 5px"></div>-->
           </el-col>
