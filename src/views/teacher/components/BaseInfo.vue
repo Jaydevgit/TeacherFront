@@ -49,8 +49,8 @@
             </div>
             <!--头衔、学历学位-->
             <div v-if="teacherProfile.label||teacherProfile.degree" style="margin-bottom: 20px;margin-left: 20px;margin-top: 20px">
-              <span v-if="teacherProfile.label" class="personal-describe">{{teacherProfile.label}}</span>
               <span v-if="teacherProfile.degree" class="personal-describe">{{teacherProfile.degree}}</span>
+              <span v-if="teacherProfile.label" class="personal-describe">{{teacherProfile.label}}</span>
             </div>
             <div v-else style="margin-bottom: 10px;margin-top: 31px"></div>
             <!--<div class="name-right-bg" style="float: right;height:210px;margin-top: -90px"></div>-->
@@ -81,7 +81,7 @@
                   <!--<span><svg-icon icon-class="email"/></span>-->
                   <label class="font-one">办公邮箱：</label>
                   <div class="detail-msg" id="aaa" v-if="this.destroy" style="z-index: -999">{{teacherProfile.email}}</div>
-                  <div class="detail-msg" v-else ><img  :src="this.url" alt="" style="transform: translateX(-12px)"></div>
+                  <div class="detail-msg" v-else ><img  :src="this.url" alt="" style="transform: translateX(-10px)"></div>
               </div>
                 <div class="name-bottom-item" style="margin-bottom: 10px;" v-if="teacherProfile.scholat_username">
                   <!--<span><svg-icon icon-class="S"/></span>-->
@@ -145,7 +145,7 @@
           </div>
 
           <hr style="margin:15px 5px 6px 5px">
-          <div v-html="teacherProfile.intro" style="padding: 20px 20px 39px;line-height: 28px"></div>
+          <div v-html="teacherProfile.intro" style="padding: 20px 20px 39px;line-height: 32px"></div>
         </el-card>
       </div>
     </div>
@@ -220,7 +220,7 @@
             this.$nextTick(_ => {
               var copyDom=document.getElementById('aaa')
               var width = 220;//dom宽copyDom.offsetWidth
-              var height = 20.5;//dom高copyDom.offsetHeight
+              var height = 22.5;//dom高
               var scale = 1.09;//放大倍数
               html2canvas(copyDom,{
                 dpi: window.devicePixelRatio*2,
@@ -354,6 +354,13 @@
         }
         .imgAvatar{
           display: inline-block;margin-left: 20px;vertical-align: top;margin-top: 20px;width: 140px;height: 140px;
+          padding:10px;
+          border:1px solid #cfd9df ;
+          -moz-box-shadow:3px 3px 4px #cfd9df ;
+          -webkit-box-shadow:3px 3px 4px #cfd9df ;
+          box-shadow:3px 3px 4px #cfd9df ;
+          background:#fff;
+          filter:progid:DXImageTransform.Microsoft.Shadow(Strength=4,Direction=135,Color='#000000');
         }
 
         .box-card-two {
@@ -471,7 +478,7 @@
           font-size: 16px;
           font-weight: 400;
           /*background: #eaeaea;*/
-          padding: 2px 12px;
+          padding: 2px 8px;
           border-radius: 19px;
           color: #818181;
         }
