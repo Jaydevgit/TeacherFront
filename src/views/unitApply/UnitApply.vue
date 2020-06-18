@@ -506,12 +506,13 @@
             },
             next() {
               console.log("1.this.applyForm="+JSON.stringify(this.applyForm))
-              if(this.applyForm.school_domain==''){this.$message.error("暂未找到与该学校相匹配域名，请联系管理员")}
-              else{
+
                 if (this.applyForm.school_name!=null
+                  &&this.applyForm.school_domain!=''
                   &&  this.applyForm.unit_name!=null
                   &&  this.applyForm.domain_name!=null
                   &&  this.ifCollegeDomainExist) {
+
                   if (this.active++ > 2) this.active = 0;
                   console.log(this.applyForm.school_name+this.applyForm.school_domain)
                 } else {
@@ -536,7 +537,6 @@
                   console.log("this.applyForm.ifCollegeDomainExist="+this.applyForm.ifCollegeDomainExist)
                 }*/
 
-              }
 
             },
             previous() {
