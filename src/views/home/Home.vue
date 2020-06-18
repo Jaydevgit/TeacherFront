@@ -18,7 +18,7 @@
         </div>
         <div class="eachScholar">
           <ul >
-            <div style="margin: 10px 0 20px 30px;height: 60px" v-for="item in recentUpdateTeacherList">
+            <div style="margin: 10px 0 20px 50px;height: 60px" v-for="item in recentUpdateTeacherList">
               <div :title="item.username" @click="routerTo(item)" style="float: left; width: 62px; height: 62px;">
                 <img class="recimg" :src="getImgUrl(item.avatar)" :onerror="imgErrorFun(this)">
               </div>
@@ -56,7 +56,7 @@
         </div>
         <div class="eachScholar">
           <ul >
-            <div style="margin: 10px 0 20px 30px;height: 60px" v-for="item in recommendList">
+            <div style="margin: 10px 0 20px 50px;height: 60px" v-for="item in recommendList">
               <div :title="item.username" @click="routerTo(item)" style="float: left; width: 62px; height: 62px;">
                   <img class="recimg" :src="getImgUrl(item.avatar)" :onerror="imgErrorFun(this)">
               </div>
@@ -398,7 +398,7 @@
     float: left;
     margin-left: 10px;
     margin-top: 2px;
-    width: 200px;
+    width: 150px;
     height: 62px;
   }
   .chTitle {
@@ -435,6 +435,6 @@
 
   .box-card {
     width: 480px;
-    margin-left: 30px;
+    margin-left: 50px;
   }
 </style>
