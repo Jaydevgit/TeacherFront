@@ -26,7 +26,7 @@
               <el-input class="apply-input" v-model="applyForm.school_name" auto-complete="off" placeholder="请输入学校名称"/>
             </el-form-item>
             <el-form-item prop="school_domain" label="学校域名：">
-              <el-input class="apply-input" v-model="applyForm.school_domain" auto-complete="off" placeholder="学校域名将自动生成无需填写，未生成请联系管理员" disabled/>
+              <el-input class="apply-input" v-model="applyForm.school_domain" auto-complete="off" placeholder="学校域名将自动生成无需填写" disabled/>
             </el-form-item>
             <el-form-item label="学校图标：">
               <div>
@@ -324,8 +324,9 @@
                         {validator: validatorDomain, required: true, trigger: 'blur',}
                     ],
                     // school_domain:[
+                    //   {required: true, trigger: 'blur', message: "学校域名不能为空"},
                     //   {max: 20, message: "20"},
-                    //   {validator: validatorSchoolDomain, required: true, trigger: 'blur',}
+                    //   {validator: validatorSchoolDomain, required: true,trigger: 'blur',}
                     // ],
                     certificate_front: {required: true, message: "身份证证明不能为空"},//身份证明正面
                     certificate_back: {required: true, message: "身份证证明不能为空"},//身份证明反面
@@ -353,7 +354,7 @@
         },
       watch:{
         'applyForm.school_name': function(n,o){
-          if(n==''){this.applyForm.school_domain=''}
+          if(n==''){ this.applyForm.school_domain=''}
           this.api({
             url: '/register/getSchoolDomain',
             method: 'post',
@@ -505,33 +506,37 @@
             },
             next() {
               console.log("1.this.applyForm="+JSON.stringify(this.applyForm))
+              if(this.applyForm.school_domain==''){this.$message.error("暂未找到与该学校相匹配域名，请联系管理员")}
+              else{
                 if (this.applyForm.school_name!=null
-                    & this.applyForm.unit_name!=null
-                    & this.applyForm.domain_name!=null
-                    & this.ifCollegeDomainExist) {
-                    if (this.active++ > 2) this.active = 0;
-                    console.log(this.applyForm.school_name)
+                  &&  this.applyForm.unit_name!=null
+                  &&  this.applyForm.domain_name!=null
+                  &&  this.ifCollegeDomainExist) {
+                  if (this.active++ > 2) this.active = 0;
+                  console.log(this.applyForm.school_name+this.applyForm.school_domain)
                 } else {
-                  console.log("this.applyForm.school_name="+this.applyForm.school_name)
+                  console.log("this.applyForm.school_name="+this.applyForm.school_name+this.applyForm.school_domain)
                   console.log("this.applyForm.unit_name="+this.applyForm.unit_name)
                   console.log("this.applyForm.domain_name="+this.applyForm.domain_name)
                   console.log("2.this.applyForm="+JSON.stringify(this.applyForm))
-                    this.$message.error("请将信息填入完整方可进行下一步")
+                  this.$message.error("请将信息填入完整方可进行下一步")
                 }
-              /*if (this.applyForm.school_name==null||this.applyForm.unit_name==null
-                || this.applyForm.domain_name==null
-                ||!this.ifCollegeDomainExist){
-                this.$message.error("请将信息填入完整方可进行下一步")
-                console.log("this.applyForm.school_name="+this.applyForm.school_name)
-                console.log("this.applyForm.unit_name="+this.applyForm.unit_name)
-                console.log("this.applyForm.domain_name="+this.applyForm.domain_name)
-                console.log("this.applyForm.ifCollegeDomainExist="+this.applyForm.ifCollegeDomainExist)
-                console.log("请将信息填入完整方可进行下一步")
-              }else {
-                if (this.active++ > 2) this.active = 0;
-                console.log(this.applyForm.school_name)
-                console.log("this.applyForm.ifCollegeDomainExist="+this.applyForm.ifCollegeDomainExist)
-              }*/
+                /*if (this.applyForm.school_name==null||this.applyForm.unit_name==null
+                  || this.applyForm.domain_name==null
+                  ||!this.ifCollegeDomainExist){
+                  this.$message.error("请将信息填入完整方可进行下一步")
+                  console.log("this.applyForm.school_name="+this.applyForm.school_name)
+                  console.log("this.applyForm.unit_name="+this.applyForm.unit_name)
+                  console.log("this.applyForm.domain_name="+this.applyForm.domain_name)
+                  console.log("this.applyForm.ifCollegeDomainExist="+this.applyForm.ifCollegeDomainExist)
+                  console.log("请将信息填入完整方可进行下一步")
+                }else {
+                  if (this.active++ > 2) this.active = 0;
+                  console.log(this.applyForm.school_name)
+                  console.log("this.applyForm.ifCollegeDomainExist="+this.applyForm.ifCollegeDomainExist)
+                }*/
+
+              }
 
             },
             previous() {
