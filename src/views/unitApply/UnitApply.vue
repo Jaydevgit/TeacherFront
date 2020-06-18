@@ -26,7 +26,7 @@
               <el-input class="apply-input" v-model="applyForm.school_name" auto-complete="off" placeholder="请输入学校名称"/>
             </el-form-item>
             <el-form-item prop="school_domain" label="学校域名：">
-              <el-input class="apply-input" v-model="applyForm.school_domain" auto-complete="off" placeholder="学校域名将自动生成无需填写" disabled/>
+              <el-input class="apply-input" v-model="applyForm.school_domain" auto-complete="off" placeholder="学校域名将自动生成无需填写，未生成请联系管理员" disabled/>
             </el-form-item>
             <el-form-item label="学校图标：">
               <div>
@@ -216,12 +216,12 @@
                 }
                 return callback();
             };
-            let validatorSchoolDomain=(rule, value, callback) => {
-              var pattern = /^[a-z]*$/;
-              if (!pattern.test(value)) {
-                return callback(new Error("请输入有效的学校英文域名"));
-              }
-            }
+            // let validatorSchoolDomain=(rule, value, callback) => {
+            //   var pattern = /^[a-z]*$/;
+            //   if (!pattern.test(value)) {
+            //     return callback(new Error("请输入有效的学校英文域名"));
+            //   }
+            // }
             let validatorDomain = (rule, value, callback) => {
                 let _self = this;
                 if (!value) {
@@ -323,11 +323,10 @@
                         {max: 20, message: "长度小于20字符"},
                         {validator: validatorDomain, required: true, trigger: 'blur',}
                     ],
-                    school_domain:[
-                      {required: true, trigger: 'blur', message: "学校域名不能为空"},
-                      {max: 20, message: "20"},
-                      {validator: validatorSchoolDomain, required: true, trigger: 'blur',}
-                    ],
+                    // school_domain:[
+                    //   {max: 20, message: "20"},
+                    //   {validator: validatorSchoolDomain, required: true, trigger: 'blur',}
+                    // ],
                     certificate_front: {required: true, message: "身份证证明不能为空"},//身份证明正面
                     certificate_back: {required: true, message: "身份证证明不能为空"},//身份证明反面
                     certificate_working: {required: true, message: "在职证明不能为空"},//在职证明
@@ -354,6 +353,7 @@
         },
       watch:{
         'applyForm.school_name': function(n,o){
+          if(n==''){this.applyForm.school_domain=''}
           this.api({
             url: '/register/getSchoolDomain',
             method: 'post',
