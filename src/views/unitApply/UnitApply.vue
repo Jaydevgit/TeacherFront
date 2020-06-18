@@ -26,7 +26,7 @@
               <el-input class="apply-input" v-model="applyForm.school_name" auto-complete="off" placeholder="请输入学校名称"/>
             </el-form-item>
             <el-form-item prop="school_domain" label="学校域名：">
-              <el-input class="apply-input" v-model="applyForm.school_domain" auto-complete="off" placeholder="请输入学校域名,一般为学校英文名称缩写"/>
+              <el-input class="apply-input" v-model="applyForm.school_domain" auto-complete="off" placeholder="学校域名将自动生成无需填写" disabled/>
             </el-form-item>
             <el-form-item label="学校图标：">
               <div>
@@ -38,10 +38,10 @@
                 <!--提交完后显示这个-->
                 <img v-else :src="'http://www.scholat.com/images/uni_logo/'+applyForm.school_name+'.png'"
                      :onerror="defaultLogo"/>
-                <div class="upload-btn">
-                  <el-button @click="uploadImage('logo')" size="small" type="primary">上传学校LOGO</el-button>
-                </div>
-                <div style="position: absolute;left: 150px;top: 78px;color: red">提示：如输入学校名称后找不到学校图标，可点击下方按钮自行上传图标</div>
+<!--                <div class="upload-btn">-->
+<!--                  <el-button @click="uploadImage('logo')" size="small" type="primary">上传学校LOGO</el-button>-->
+<!--                </div>-->
+                <div style="color: red">提示：如输入学校名称后未生成对应域名或者找不到学校图标请联系管理员</div>
               </div>
 
             </el-form-item>
@@ -182,7 +182,7 @@
               return callback(new Error('请正确填写用户名'));
             } else {
               if (value !== '') {
-                var pattern = /^[0-9a-zA-Z_]{1,}$/;
+                var pattern = /^[0-9a-zA-Z_]{1,50}$/;
                 if (!pattern.test(value)) {
                   return callback(new Error("请输入有效的用户名(支持数字、下划线_和英文)"));
                 } else {
@@ -216,16 +216,19 @@
                 }
                 return callback();
             };
+            let validatorSchoolDomain=(rule, value, callback) => {
+              var pattern = /^[a-z]*$/;
+              if (!pattern.test(value)) {
+                return callback(new Error("请输入有效的学校英文域名"));
+              }
+            }
             let validatorDomain = (rule, value, callback) => {
                 let _self = this;
-              if(_self.applyForm.school_domain===null||_self.applyForm.school_domain===''){
-                return callback(new Error('学校域名不能为空'));
-              }
                 if (!value) {
                     return callback(new Error('请正确填写英文名'));
                 } else {
                     if (value !== '') {
-                        var pattern = /^[a-zA-Z\s]{1,50}$/;
+                        var pattern = /^[a-z]*$/;
                         if (!pattern.test(value)) {
                             return callback(new Error("请输入有效的英文名"));
                         } else {
@@ -301,8 +304,9 @@
                     ],
                     school_name: [{required: true, trigger: 'blur', message: "学校名称不能为空"}, {
                         max: 30,
-                        message: "长度小于30字符"
-                    }],
+                        message: "长度小于30字符"},
+                     ],
+
                     unit_name: [{required: true, trigger: 'blur', message: "学院名称不能为空"}, {max: 30, message: "长度小于30字符"}],
                     school_eng: [
                         // {required: true, trigger: 'blur', message: "学校英文名称不能为空"},
@@ -316,12 +320,13 @@
                     ],
                     domain_name: [
                         {required: true, trigger: 'blur', message: "学院域名不能为空"},
-                        {max: 50, message: "长度小于50字符"},
+                        {max: 20, message: "长度小于20字符"},
                         {validator: validatorDomain, required: true, trigger: 'blur',}
                     ],
                     school_domain:[
                       {required: true, trigger: 'blur', message: "学校域名不能为空"},
-                      {max: 50, message: "长度小于50字符"},
+                      {max: 20, message: "20"},
+                      {validator: validatorSchoolDomain, required: true, trigger: 'blur',}
                     ],
                     certificate_front: {required: true, message: "身份证证明不能为空"},//身份证明正面
                     certificate_back: {required: true, message: "身份证证明不能为空"},//身份证明反面
@@ -345,9 +350,25 @@
             'top-header': TopHeader
         },
         mounted() {
-
             this.testSetForm();
         },
+      watch:{
+        'applyForm.school_name': function(n,o){
+          this.api({
+            url: '/register/getSchoolDomain',
+            method: 'post',
+            data:{
+              school_name:n
+            }
+          }).then(res=>{
+           // console.log("res.info.school_domain="+res.school_domain);
+            this.applyForm.school_domain=res.school_domain
+            this.$message.success("校级域名生成成功!");
+          }).catch(e => {
+            // this.$message.error("校级域名生成失败，请联系管理员!");
+          })
+        }
+      },
         created() {
             this.reminder();
             var token = this.$route.params.token;
