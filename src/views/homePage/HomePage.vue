@@ -119,7 +119,7 @@
               unitId2:'',
               letterFlag:'',
               backgroundHome:'',
-              backgroundHomeDefault:'backgroundHomeDefault.png',
+              backgroundHomeDefault:'backgroundHomeDefault.jpg',
               hackReset:true,
             }
         },
