@@ -75,7 +75,7 @@ export const constantRouterMap = [
     component: Home,
     hidden: true,
     meta: {
-      keepAlive: false
+      keepAlive: true
     },
     children: [
       {
@@ -83,7 +83,7 @@ export const constantRouterMap = [
         name: 'unit',
         component: HomePage,
         meta: {
-          keepAlive: false
+          keepAlive: true
         },
       },
     ]

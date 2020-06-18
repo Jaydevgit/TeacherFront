@@ -67,6 +67,24 @@
           SCHOLAT+ 学院师资信息管理平台
           </span>
       </div>
+      <!--若判断为学校首页-->
+      <div v-else-if="$route.path.split('/')[1]=='home'" style="display: flex;align-items: center;height: 100%;width: 960px;margin: 0 auto">
+        <div style="display: flex;height: 90%;width: auto;">
+          <img :src="'http://www.scholat.com/images/uni_logo/'+this.unitList[0].school_name+'.png'" :onerror="defaultLogo"
+               style="height: 100%;width: auto;bottom: 0;"/>
+        </div>
+        <div style="height: 100%;max-width: 900px;display: flex;justify-content: center;align-items: center;margin-left: 20px">
+          <div class="font-jsgrzy" style="display: inline-block;">
+            <span style="">{{this.unitList[0].school_name}}</span>
+          </div>
+          <div class="font-jsgrzy" style="display: inline-block;">
+            师资队伍
+          </div>
+        </div>
+
+
+      </div>
+
       <!--若判断为教师信息页，则显示学校logo，学校名称，教师主页，搜索-->
       <div v-else-if="$route.path.indexOf('teacher')!=-1" style="display: flex;align-items: center;height: 100%;width: 100%">
         <div @click="goToCollege" style="height: 90%;width: auto;bottom: 0;cursor: pointer">
@@ -192,6 +210,8 @@
                 },
                 listLoading: '',
                 dataDone: false,
+                schoolDomain:'',
+                unitList:[],
             }
         },
       props:{
@@ -239,7 +259,21 @@
                     }).catch(error => {
                         console.log("QAQ........没有找到学院Id")
                     })
-
+                }
+                else if (this.$route.path.split('/')[1]=='home'){
+                  this.schoolDomain=this.$route.path.split('/')[2];
+                  console.log("schoolDomain="+this.schoolDomain)
+                  this.api({
+                    url: "/home/"+this.schoolDomain,
+                    method: "get",
+                  }).then(data => {
+                    console.log("查询学校信息为:" + JSON.stringify(data))
+                    console.log("================================")
+                    this.listLoading = false;
+                    this.unitList = data;
+                  }).catch(error => {
+                    console.log("QAQ........没有找到学校信息")
+                  })
                 }
                 //是主頁
                 else {

@@ -5,28 +5,87 @@
         <left-nav @toList="toList"></left-nav>
       </div>
       <div class="middle">
-        <div class="middle-nav">
 
-          <div style="margin-top: -4px;" >
-            <!--            <el-button @click="defaultSort" type="info" round style="padding: inherit;margin-right: -5px;width: 70px">-->
-            <!--              默认排序-->
-            <!--            </el-button>-->
-            <!--            <el-button @click="showSort" type="info" round style="padding: inherit;margin-right: 5px;width: 70px">-->
-            <!--              姓名排序-->
-            <!--            </el-button>-->
-            <!--<i @click="simpleList" class="el-icon-menu"
-               style="font-size:20px;margin-right: 10px;opacity: 0.7;cursor: pointer"></i>
-            <i @click="detailList" class="el-icon-tickets"
-               style="font-size:20px;margin-right: 10px;opacity: 0.7;cursor: pointer"></i>-->
-
-          </div>
-        </div>
         <teacher-list :unitId="unitId">
-
         </teacher-list>
       </div>
 
+      <div class="recomScholar">
+        <div class="contentTitle" style="border: 0;">
+          <span class="chTitle chTitle1">最近更新教师主页</span>
+          <span class="engTitle">Teacher recently updated</span>
+        </div>
+      </div>
+      <div class="recomScholar">
+        <div class="contentTitle" style="border: 0;">
+          <span class="chTitle chTitle1">学院列表</span>
+          <span class="engTitle">List of colleges</span>
+        </div>
+      </div>
+
+      <!--推荐教师模块-->
+      <div class="recomScholar">
+        <div class="contentTitle" style="border: 0;">
+          <span class="chTitle chTitle1">推荐教师</span>
+          <span class="engTitle">Recommended teachers</span>
+        </div>
+        <div class="eachScholar">
+          <ul >
+            <div style="margin: 10px 0 20px;height: 60px" v-for="item in recommendList">
+              <div title="汤庸" style="float: left; width: 62px; height: 62px;">
+                <a href="http://www.scholat.com/ytang" target="_blank">
+                  <img class="recimg" :src="getImgUrl(item.avatar)" :onerror="imgErrorFun(this)">
+                </a>
+              </div>
+              <div class="recnametitle">
+                <div title="汤庸" class="recchn"><a href="ytang" target="_blank"> {{item.username}} </a></div>
+                <div class="titleandunit"> {{item.post}} </div>
+                <div class="titleandunit"> {{item.unit_name}}</div>
+              </div>
+              <div style="clear: left;"></div>
+            </div>
+            <!--<div style="margin: 10px 0 20px;">
+              <div title="邹锋" style="float: left; width: 62px; height: 62px;">
+                <a href="http://www.scholat.com/zoufeng568659281" target="_blank">
+                  <img class="recimg" onerror="javascript:this.src='http://www.scholat.com/images/default.png';"
+                       src="http://www.scholat.com/resources/s_icon/zoufeng568659281_1437134632527.jpg">
+                </a>
+              </div>
+              <div class="recnametitle">
+                <div title="邹锋" class="recchn">
+                  <a href="zoufeng568659281" target="_blank"> 邹锋 </a>
+                </div>
+                <div class="titleandunit"> 硕士生</div>
+                <div class="titleandunit"> 招商证券股份有限公司</div>
+              </div>
+              <div style="clear: left;"></div>
+            </div>
+            <div style="margin: 10px 0 20px;">
+              <div title="宋大卫" style="float: left; width: 62px; height: 62px;">
+                <a href="http://www.scholat.com/songdawei" target="_blank">
+                  <img class="recimg" onerror="javascript:this.src='http://www.scholat.com/images/default.png';"
+                       src="http://www.scholat.com/resources/s_icon/songdawei_1455681588741.jpg">
+                </a>
+              </div>
+              <div class="recnametitle">
+                <div title="宋大卫" class="recchn">
+                  <a href="songdawei" target="_blank"> 宋大卫 </a>
+                </div>
+                <div class="titleandunit"></div>
+                <div class="titleandunit"> 天津理工大学</div>
+              </div>
+              <div style="clear: left;">
+
+              </div>
+            </div>-->
+          </ul>
+        </div>
+      </div>
+
+
     </div>
+
+
 
     <footer style="">
       <div class="Info" style="margin-top: 10px">
@@ -54,6 +113,7 @@
     import TopHeader from "../../components/Nav/TopHeader";
     import LeftNav from "./components/LeftNav";
     import TeacherList from "./components/TeacherList";
+    import defaultAvatar from '@/assets/default1.png'
 
     export default {
       name: "Home",
@@ -64,8 +124,14 @@
       },
       data(){
         return{
+          defaultAvatar:defaultAvatar,
           unitId:'',
-
+          listQuery:{
+            unitId: '',
+            schoolDomain:'',
+            unitDomain:'',
+          },
+          recommendList:[],
         }
       },
       watch:{
@@ -73,10 +139,48 @@
 
         }
       },
+      created() {
+        this.listQuery.schoolDomain=this.$route.path.split('/')[2];
+        this.listQuery.unitDomain=this.$route.path.split('/')[3];
+        this.getRecommendTeacher();
+      },
       methods:{
+        getRecommendTeacher(){
+          this.api({
+            url: "/home/getRecommendTeacher",
+            method: "get",
+            params: this.listQuery
+          }).then(data => {
+            console.log("查询推荐教师信息为:" + JSON.stringify(data))
+            console.log("================================")
+            this.listLoading = false;
+            this.recommendList = data;
+          }).catch(error => {
+            console.log("QAQ........没有找到推荐教师信息")
+          })
+        },
         toList(uId) {
           this.unitId = uId;
         },
+        getImgUrl(imgName) {
+          if (imgName == null) {
+            return this.defaultAvatar;
+            console.log("if (imgName == null)")
+          } else if(imgName=="default.png"){
+            return this.defaultAvatar
+            console.log("else if(imgName==\"default.png\")")
+          } else if (imgName.indexOf("resources") != "-1") {
+            return "http://www.scholat.com/" + imgName;
+          } else {
+            return "http://47.106.132.95:2333/images/avatar/" + imgName;
+          }
+        },
+        imgErrorFun(e) {
+          let img = e;
+          console.log("imgErrorFun(e) ")
+          return 'this.src="defaultAvatar"';
+        },
+
       }
     }
 </script>
@@ -88,30 +192,27 @@
   }
   @media screen and (min-width: 1025px){
     .middle-container {
-      max-width: 1000px;
+      max-width: 960px;
       margin: 0 auto;
       height: 100%;
       width: 100%;
-      display: flex;
+      /*display: flex;*/
       min-height: calc(100vh - 120px);
     }
 
     .left {
-      width: 25%
+      margin: 0 auto;
     }
 
     .middle {
-      margin: 32px 8px 16px 12px;
+      margin: 32px 0 16px 0;
       width: 100%;
-      min-height: 900px;
-    }
-
-    .right {
-      position: absolute;
-      width: 200px;
-      float: right;
-      right: 0;
-      top: 0;
+      height: auto;
+      /*min-height: 400px;*/
+      background: green;
+      box-shadow: 0px 2px 10px 0px rgba(0, 81, 193, 0.3), 0px 1px 0px 0px rgba(255, 255, 255, 0.5);
+      border-radius: 10px;
+      border-right: none !important;
     }
 
     .middle-nav {
@@ -166,5 +267,115 @@
       }
     }
     /*底部栏样式结束*/
+  }
+
+  div {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    vertical-align: baseline;
+    background: transparent;
+  }
+  .recomScholar {
+    width: 960px;
+    min-height: 300px;
+    overflow: hidden;
+    margin: 0 auto;
+  }
+
+  .contentTitle {
+    height: 40px;
+    line-height: 40px;
+    width: 100%;
+    border-bottom: 2px solid #399;
+  }
+  .eachScholar {
+    width: 960px;
+    height: auto;
+    float: left;
+  }
+  ul, li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  ul {
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-auto-rows: minmax(100px,auto);
+  }
+  .recchn {
+    height: 20px;
+    line-height: 20px;
+    display: block;
+    font-size: 16px;
+    width: 240px;
+    padding-right: 5px;
+    word-break: keep-all;
+    float: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    letter-spacing: 8px;
+  }
+  .titleandunit {
+    height: 22px;
+    line-height: 20px;
+    display: block;
+    font-size: 12px;
+    width: 220px;
+    word-break: keep-all;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  a {
+    text-decoration: none;
+  }
+  .recchn a {
+    color: #000;
+    text-decoration: none;
+  }
+  img {
+    vertical-align: middle;
+    border: none;
+  }
+  .recimg {
+    border-radius: 50%;
+    height: 60px;
+    border: 1px solid #909090;
+    width: 60px;
+    margin: 0 15px 0 0;
+  }
+  .recnametitle {
+    float: left;
+    margin-left: 10px;
+    margin-top: 2px;
+    width: 240px;
+    height: 62px;
+  }
+  .chTitle {
+    color: #333;
+    font-weight: bold;
+    font-size: 16px;
+  }
+  .chTitle1 {
+    border-left: 2px solid #399;
+    padding-left: 7px;
+  }
+  .engTitle {
+    color: #999;
+    font-size: 16px;
+    margin-left: 5px;
+    font-family: "Microsoft YaHei";
+  }
+  .more, .ccf_more, .ccfmore, .noticemore {
+    float: right;
+    color: #399;
+    padding-right: 3px;
+    font-size: 13px;
   }
 </style>
