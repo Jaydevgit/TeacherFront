@@ -775,7 +775,12 @@
                     console.log(res);
                     this.domainCount = res.data[0].count;
                     console.log("this.domainCount=" + this.domainCount);
-                    this.ruleForm.domain_name =this.ruleForm.domain_name+(parseInt(this.domainCount)+1)
+                    if((parseInt(this.domainCount))===0){
+                      this.ruleForm.domain_name =this.ruleForm.domain_name
+                    }else{
+                      this.ruleForm.domain_name =this.ruleForm.domain_name+(parseInt(this.domainCount)+1)
+                    }
+
                   }).catch(err => {
                     callback(new Error("网络请求有误"))
                   })
