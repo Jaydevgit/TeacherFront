@@ -78,7 +78,7 @@
             <span style="">{{this.unitList[0].school_name}}</span>
           </div>
           <div class="font-jsgrzy" style="display: inline-block;">
-            师资队伍
+            &nbsp师资队伍
           </div>
         </div>
 

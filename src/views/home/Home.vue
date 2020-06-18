@@ -10,16 +10,41 @@
         </teacher-list>
       </div>
 
-      <div class="recomScholar">
+      <!--最近更新教师主页-->
+      <div class="recentTeacher">
         <div class="contentTitle" style="border: 0;">
           <span class="chTitle chTitle1">最近更新教师主页</span>
           <span class="engTitle">Teacher recently updated</span>
         </div>
+        <div class="eachScholar">
+          <ul >
+            <div style="margin: 10px 0 20px 30px;height: 60px" v-for="item in recentUpdateTeacherList">
+              <div :title="item.username" @click="routerTo(item)" style="float: left; width: 62px; height: 62px;">
+                <img class="recimg" :src="getImgUrl(item.avatar)" :onerror="imgErrorFun(this)">
+              </div>
+              <div class="recnametitle">
+                <div :title="item.username" @click="routerTo(item)" class="recchn"><a href="ytang" target="_blank"> {{item.username}} </a></div>
+                <div class="titleandunit"> {{item.post}} </div>
+                <div class="titleandunit"> {{item.department_name}}</div>
+              </div>
+              <div style="clear: left;"></div>
+            </div>
+          </ul>
+        </div>
       </div>
+
+      <!--学院列表模块-->
       <div class="recomScholar">
         <div class="contentTitle" style="border: 0;">
           <span class="chTitle chTitle1">学院列表</span>
           <span class="engTitle">List of colleges</span>
+        </div>
+        <div class="eachScholar">
+          <el-card class="box-card">
+            <div v-for="o in unitList" :key="o" class="item">
+              <a :href="'/homepage/'+listQuery.schoolDomain+'/'+o.domain_name" class="text">{{o.unit_name}}</a>
+            </div>
+          </el-card>
         </div>
       </div>
 
@@ -31,53 +56,17 @@
         </div>
         <div class="eachScholar">
           <ul >
-            <div style="margin: 10px 0 20px;height: 60px" v-for="item in recommendList">
-              <div title="汤庸" style="float: left; width: 62px; height: 62px;">
-                <a href="http://www.scholat.com/ytang" target="_blank">
+            <div style="margin: 10px 0 20px 30px;height: 60px" v-for="item in recommendList">
+              <div :title="item.username" @click="routerTo(item)" style="float: left; width: 62px; height: 62px;">
                   <img class="recimg" :src="getImgUrl(item.avatar)" :onerror="imgErrorFun(this)">
-                </a>
               </div>
               <div class="recnametitle">
-                <div title="汤庸" class="recchn"><a href="ytang" target="_blank"> {{item.username}} </a></div>
+                <div :title="item.username" @click="routerTo(item)" class="recchn"><a href="ytang" target="_blank"> {{item.username}} </a></div>
                 <div class="titleandunit"> {{item.post}} </div>
                 <div class="titleandunit"> {{item.unit_name}}</div>
               </div>
               <div style="clear: left;"></div>
             </div>
-            <!--<div style="margin: 10px 0 20px;">
-              <div title="邹锋" style="float: left; width: 62px; height: 62px;">
-                <a href="http://www.scholat.com/zoufeng568659281" target="_blank">
-                  <img class="recimg" onerror="javascript:this.src='http://www.scholat.com/images/default.png';"
-                       src="http://www.scholat.com/resources/s_icon/zoufeng568659281_1437134632527.jpg">
-                </a>
-              </div>
-              <div class="recnametitle">
-                <div title="邹锋" class="recchn">
-                  <a href="zoufeng568659281" target="_blank"> 邹锋 </a>
-                </div>
-                <div class="titleandunit"> 硕士生</div>
-                <div class="titleandunit"> 招商证券股份有限公司</div>
-              </div>
-              <div style="clear: left;"></div>
-            </div>
-            <div style="margin: 10px 0 20px;">
-              <div title="宋大卫" style="float: left; width: 62px; height: 62px;">
-                <a href="http://www.scholat.com/songdawei" target="_blank">
-                  <img class="recimg" onerror="javascript:this.src='http://www.scholat.com/images/default.png';"
-                       src="http://www.scholat.com/resources/s_icon/songdawei_1455681588741.jpg">
-                </a>
-              </div>
-              <div class="recnametitle">
-                <div title="宋大卫" class="recchn">
-                  <a href="songdawei" target="_blank"> 宋大卫 </a>
-                </div>
-                <div class="titleandunit"></div>
-                <div class="titleandunit"> 天津理工大学</div>
-              </div>
-              <div style="clear: left;">
-
-              </div>
-            </div>-->
           </ul>
         </div>
       </div>
@@ -132,6 +121,8 @@
             unitDomain:'',
           },
           recommendList:[],
+          unitList:[],
+          recentUpdateTeacherList:[],
         }
       },
       watch:{
@@ -142,9 +133,15 @@
       created() {
         this.listQuery.schoolDomain=this.$route.path.split('/')[2];
         this.listQuery.unitDomain=this.$route.path.split('/')[3];
-        this.getRecommendTeacher();
+        this.init();
+
       },
       methods:{
+        init(){
+          this.getRecommendTeacher();
+          this.getSchoolInfo();
+          this.getRecentUpdateTeacher();
+        },
         getRecommendTeacher(){
           this.api({
             url: "/home/getRecommendTeacher",
@@ -157,6 +154,33 @@
             this.recommendList = data;
           }).catch(error => {
             console.log("QAQ........没有找到推荐教师信息")
+          })
+        },
+        getSchoolInfo(){
+          this.api({
+            url: "/home/"+this.listQuery.schoolDomain,
+            method: "get",
+          }).then(data => {
+            console.log("查询学校信息为:" + JSON.stringify(data))
+            console.log("================================")
+            this.listLoading = false;
+            this.unitList = data;
+          }).catch(error => {
+            console.log("QAQ........没有找到学校信息")
+          })
+        },
+        getRecentUpdateTeacher(){
+          this.api({
+            url: "/home/getRecentUpdateTeacher",
+            method: "get",
+            params: this.listQuery
+          }).then(data => {
+            console.log("查询最近更新教师信息为:" + JSON.stringify(data))
+            console.log("================================")
+            this.listLoading = false;
+            this.recentUpdateTeacherList = data;
+          }).catch(error => {
+            console.log("QAQ........没有找到学校信息")
           })
         },
         toList(uId) {
@@ -179,6 +203,18 @@
           let img = e;
           console.log("imgErrorFun(e) ")
           return 'this.src="defaultAvatar"';
+        },
+        routerTo(teacher) {
+          console.log("teacher.tDomain_name="+teacher.domain_name)
+          console.log("this.schoolDomain="+this.listQuery.schoolDomain)
+          this.$router.push({
+            name: 'teacherPersonlHomePage',
+            params:{
+              schoolDomain:this.listQuery.schoolDomain,
+              teacherDomainName:teacher.domain_name
+            }
+          })
+
         },
 
       }
@@ -277,6 +313,12 @@
     vertical-align: baseline;
     background: transparent;
   }
+  .recentTeacher{
+    width: 960px;
+    min-height: 200px;
+    overflow: hidden;
+    margin: 0 auto;
+  }
   .recomScholar {
     width: 960px;
     min-height: 300px;
@@ -294,6 +336,7 @@
     width: 960px;
     height: auto;
     float: left;
+    margin-top: 10px;
   }
   ul, li {
     list-style: none;
@@ -344,6 +387,7 @@
     border: none;
   }
   .recimg {
+    cursor: pointer;
     border-radius: 50%;
     height: 60px;
     border: 1px solid #909090;
@@ -354,7 +398,7 @@
     float: left;
     margin-left: 10px;
     margin-top: 2px;
-    width: 240px;
+    width: 200px;
     height: 62px;
   }
   .chTitle {
@@ -377,5 +421,20 @@
     color: #399;
     padding-right: 3px;
     font-size: 13px;
+  }
+
+  .text {
+    font-size: 14px;
+    cursor: pointer;
+  }
+
+  .item {
+    padding: 18px 20px;
+
+  }
+
+  .box-card {
+    width: 480px;
+    margin-left: 30px;
   }
 </style>
