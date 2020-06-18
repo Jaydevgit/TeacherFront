@@ -33,20 +33,7 @@
         </div>
       </div>
 
-      <!--学院列表模块-->
-      <div class="recomScholar">
-        <div class="contentTitle" style="border: 0;">
-          <span class="chTitle chTitle1">学院列表</span>
-          <span class="engTitle">List of colleges</span>
-        </div>
-        <div class="eachScholar">
-          <el-card class="box-card">
-            <div v-for="o in unitList" :key="o" class="item">
-              <a :href="'/homepage/'+listQuery.schoolDomain+'/'+o.domain_name" class="text">{{o.unit_name}}</a>
-            </div>
-          </el-card>
-        </div>
-      </div>
+
 
       <!--推荐教师模块-->
       <div class="recomScholar">
@@ -68,6 +55,20 @@
               <div style="clear: left;"></div>
             </div>
           </ul>
+        </div>
+      </div>
+      <!--学院列表模块-->
+      <div class="recomScholar">
+        <div class="contentTitle" style="border: 0;">
+          <span class="chTitle chTitle1">学院列表</span>
+          <span class="engTitle">List of colleges</span>
+        </div>
+        <div class="eachScholar">
+          <el-card class="box-card">
+            <div v-for="o in unitList" :key="o" class="item">
+              <a :href="'/homepage/'+listQuery.schoolDomain+'/'+o.domain_name" class="text">{{o.unit_name}}</a>
+            </div>
+          </el-card>
         </div>
       </div>
 
