@@ -116,17 +116,17 @@
 
     <!--  推荐信息 -->
     <el-tabs type="border-card">
-      <el-tab-pane label="融合学术社交网络的学院教师推荐">
-        <div class="recommend">
-          <template v-for="item in recommend_union_users">
-            <div>
-              <img :src="getImage(item.avatar)" style="width: 70px;height: 80px;border-radius: 50%">
-              <div class="rmd-name">{{item.username}}</div>
-            </div>
-          </template>
-        </div>
-      </el-tab-pane>
-      <el-tab-pane label="学术社交网络的学者推荐">
+<!--      <el-tab-pane label="学术社交网络的学院教师推荐">-->
+<!--        <div class="recommend">-->
+<!--          <template v-for="item in recommend_union_users">-->
+<!--            <div>-->
+<!--              <img :src="getImage(item.avatar)" style="width: 70px;height: 80px;border-radius: 50%">-->
+<!--              <div class="rmd-name">{{item.username}}</div>-->
+<!--            </div>-->
+<!--          </template>-->
+<!--        </div>-->
+<!--      </el-tab-pane>-->
+      <el-tab-pane label="融合学术社交网络的学者个性化推荐">
         <div class="recommend">
           <template v-for="item in recommend_scholat_users">
             <div>

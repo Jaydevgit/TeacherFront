@@ -196,42 +196,12 @@
                 </el-form-item>
               </div></el-col>
             </el-row>
-            <el-row>
-              <el-col :span="10">
-                <div class="grid-content bg-purple">
-                  <el-form-item label="域名" prop="domain_name">
-                   <a :href="'http://faculty.scholat.com/teacher/'+SchoolDomain+'/'+ruleForm.domain_name">
-                     <span style="min-width: 350px">http://faculty.scholat.com/teacher/{{SchoolDomain}}/{{ruleForm.domain_name}}</span>
-                   </a>
-                  </el-form-item>
-                </div>
-              </el-col>
-              <el-col :span="6"><div class="grid-content bg-purple">
-                <el-form-item label="状态" prop="state" required class="redItem">
-                  <el-select v-model="ruleForm.state" placeholder="请选择">
-                    <el-option
-                      v-for="item in options"
-                      :key="item.value"
-                      :label="item.label"
-                      :value="item.value">
-                    </el-option>
-                  </el-select>
-                  <!--              <el-radio-group v-model="ruleForm.state">-->
-                  <!--                <el-radio label="1">在岗</el-radio>-->
-                  <!--                <el-radio label="0">调出</el-radio>-->
-                  <!--                <el-radio label="-1">退休</el-radio>-->
-                  <!--              </el-radio-group>-->
-                </el-form-item>
-              </div></el-col>
-              <el-col :span="4"><div class="grid-content bg-purple">
-                <el-form-item style="display: flex;justify-content: flex-end;">
-                  <el-button @click="createTeacher_one" type="success" v-if="$route.path.indexOf('addTeacher')!=-1">保存</el-button>
-                  <el-button @click="saveTeacher" type="success" v-if="$route.path.indexOf('modifyTeacher')!=-1">保存</el-button>
-                  <el-button @click="backToManager">返回</el-button>
-                </el-form-item>
-              </div></el-col>
+              <div class="grid-content bg-purple" style="padding-left: 90px;transform: translateY(-20px)">
+                <a :href="'http://faculty.scholat.com/teacher/'+SchoolDomain+'/'+ruleForm.domain_name">
+                  <span style="min-width: 350px">http://faculty.scholat.com/teacher/{{SchoolDomain}}/{{ruleForm.domain_name}}</span>
+                </a>
+              </div>
 
-            </el-row>
             <el-row>
               <el-col :span="10"><div class="grid-content bg-purple">
                 <el-form-item label="职称" prop="post">
@@ -340,26 +310,32 @@
               </div></el-col>-->
             </el-row>
             <el-row>
-<!--              <el-col :span="8"><div class="grid-content bg-purple">-->
-<!--                <el-form-item label="状态" prop="state" required class="redItem">-->
-<!--                  <el-select v-model="ruleForm.state" placeholder="请选择">-->
-<!--                    <el-option-->
-<!--                      v-for="item in options"-->
-<!--                      :key="item.value"-->
-<!--                      :label="item.label"-->
-<!--                      :value="item.value">-->
-<!--                    </el-option>-->
-<!--                  </el-select>-->
-<!--                  &lt;!&ndash;              <el-radio-group v-model="ruleForm.state">&ndash;&gt;-->
-<!--                  &lt;!&ndash;                <el-radio label="1">在岗</el-radio>&ndash;&gt;-->
-<!--                  &lt;!&ndash;                <el-radio label="0">调出</el-radio>&ndash;&gt;-->
-<!--                  &lt;!&ndash;                <el-radio label="-1">退休</el-radio>&ndash;&gt;-->
-<!--                  &lt;!&ndash;              </el-radio-group>&ndash;&gt;-->
-<!--                </el-form-item>-->
-<!--              </div></el-col>-->
+              <el-col :span="10"><div class="grid-content bg-purple">
+                <el-form-item label="状态" prop="state" required class="redItem">
+                  <el-select v-model="ruleForm.state" placeholder="请选择">
+                    <el-option
+                      v-for="item in options"
+                      :key="item.value"
+                      :label="item.label"
+                      :value="item.value">
+                    </el-option>
+                  </el-select>
+                  <!--              <el-radio-group v-model="ruleForm.state">-->
+                  <!--                <el-radio label="1">在岗</el-radio>-->
+                  <!--                <el-radio label="0">调出</el-radio>-->
+                  <!--                <el-radio label="-1">退休</el-radio>-->
+                  <!--              </el-radio-group>-->
+                </el-form-item>
+              </div></el-col>
+              <el-col :span="8"><div class="grid-content bg-purple">
+                <el-form-item style="display: flex;justify-content: flex-start;">
+                  <el-button @click="createTeacher_one" type="success" v-if="$route.path.indexOf('addTeacher')!=-1">保存</el-button>
+                  <el-button @click="saveTeacher" type="success" v-if="$route.path.indexOf('modifyTeacher')!=-1">保存</el-button>
+                  <el-button @click="backToManager">返回</el-button>
+                </el-form-item>
+              </div></el-col>
 
-
-              <el-col :span="8"><div class="grid-content bg-purple"></div></el-col>
+              <el-col :span="6"><div class="grid-content bg-purple"></div></el-col>
             </el-row>
 
           </el-col>
@@ -572,13 +548,64 @@
         </el-card>
         <!--进一步信息-->
         <el-card class="box-card scholat-card" v-if="$route.path.indexOf('modifyTeacher')!=-1">
+<!--          <el-row>-->
+<!--            <el-col :span="4">-->
+<!--              <div class="grid-content bg-purple" style="text-align: center">-->
+<!--                <span style="font-weight: 900;font-size: 24px;">教师头像</span>-->
+<!--                &lt;!&ndash;显示更新提示&ndash;&gt;-->
+<!--                <el-tooltip placement="top" v-if="showUpdateInfo.avatarScholat">-->
+<!--                  <div slot="content" style="font-size: 16px">-->
+<!--                    <img :src="showUpdateInfo.avatarScholat" class="update-avatar"-->
+<!--                         style="width:70px;height:70px;"/>-->
+<!--                    <div style="width: 80px;float: left;margininvitation-left: 10px">-->
+<!--                      <el-button size="small" type="success" @click="updateAvatar()"-->
+<!--                                 style="display:block;margin-top: 15px;">替换头像-->
+<!--                      </el-button>-->
+<!--                      <el-button size="small" type="warning" @click="cancelUpdateAvatar()"-->
+<!--                                 style="display:block;margin-left: 0;margin-top: 8px;">取消替换-->
+<!--                      </el-button>-->
+<!--                    </div>-->
+
+<!--                  </div>-->
+<!--                  &lt;!&ndash;上传头像对话框&ndash;&gt;-->
+
+<!--                  <crop-avatar-image ref="cropAvatarImage" class="update-crop-avatar" :scholatAvatar="ruleForm.avatar"-->
+<!--                                     @crop-avatar="cropAvatarImageName"></crop-avatar-image>-->
+<!--                </el-tooltip>-->
+<!--                &lt;!&ndash;上传头像组件&ndash;&gt;-->
+<!--                <crop-avatar-image ref="cropAvatarImage"-->
+<!--                                   v-if="!showUpdateInfo.avatarScholat"-->
+<!--                                   @crop-avatar="cropAvatarImageName"></crop-avatar-image>-->
+
+
+<!--                &lt;!&ndash;<div style="margin-top: 38px;" v-if="ruleForm.qrcode">-->
+<!--                  <img :src="'http://www.scholat.com/'+ruleForm.qrcode" style="width: 120px;height: 120px;">-->
+<!--                </div>&ndash;&gt;-->
+<!--              </div>-->
+<!--            </el-col>-->
+<!--            <el-col :span="2" style="margin-top: 50px;margin-left: 20px;">-->
+<!--              <div style="display: flex;align-items: center;" v-if="scholatProfile.avatar!==undefined">-->
+<!--                <img  class="preview" :src="getImgUrl(scholatProfile.avatar)"-->
+<!--                      style="width:70px;height:70px;border-radius: 50%;"/>-->
+<!--              </div>-->
+<!--            </el-col>-->
+<!--            <el-col :span="5" style="margin-top: 50px;">-->
+<!--                <div style="margin-left: 5px" v-if="scholatProfile.avatar!==undefined">关联的头像</div>-->
+<!--               <div><el-button size="small" v-if="scholatProfile.avatar!==undefined" @click="chooseScholatAvatar()">选择该头像</el-button></div>-->
+<!--              <div><el-button @click="uploadAvatar('avatar')" type="primary" style="margin-top: 23px;margin-left:5px;transform: translateY(-20px);" size="small">-->
+<!--                上传头像-->
+<!--              </el-button></div>-->
+<!--            </el-col>-->
           <el-row>
-            <el-col :span="4">
-              <div class="grid-content bg-purple" style="text-align: center">
+            <el-col :span="3">
+              <div class="grid-content bg-purple" style="text-align: center;line-height: 100px">
                 <span style="font-weight: 900;font-size: 24px;">教师头像</span>
+              </div>
+            </el-col>
+            <el-col :span="4">
                 <!--显示更新提示-->
                 <el-tooltip placement="top" v-if="showUpdateInfo.avatarScholat">
-                  <div slot="content" style="font-size: 16px">
+                  <div slot="content" style="font-size: 16px;text-align: left;line-height: 100px">
                     <img :src="showUpdateInfo.avatarScholat" class="update-avatar"
                          style="width:70px;height:70px;"/>
                     <div style="width: 80px;float: left;margininvitation-left: 10px">
@@ -592,52 +619,56 @@
 
                   </div>
                   <!--上传头像对话框-->
-
                   <crop-avatar-image ref="cropAvatarImage" class="update-crop-avatar" :scholatAvatar="ruleForm.avatar"
                                      @crop-avatar="cropAvatarImageName"></crop-avatar-image>
                 </el-tooltip>
                 <!--上传头像组件-->
                 <crop-avatar-image ref="cropAvatarImage"
                                    v-if="!showUpdateInfo.avatarScholat"
-                                   @crop-avatar="cropAvatarImageName"></crop-avatar-image>
-
-
+                                   @crop-avatar="cropAvatarImageName" ></crop-avatar-image>
                 <!--<div style="margin-top: 38px;" v-if="ruleForm.qrcode">
                   <img :src="'http://www.scholat.com/'+ruleForm.qrcode" style="width: 120px;height: 120px;">
                 </div>-->
-              </div>
             </el-col>
-            <el-col :span="2" style="margin-top: 50px;margin-left: 20px;">
+            <el-col :span="4">
+              <div style="padding-top: 40px"><el-button @click="uploadAvatar('avatar')" type="primary" style="margin-top: 23px;margin-left:5px;transform: translateY(-20px);" size="small">
+                上传头像
+              </el-button></div>
+            </el-col>
+            <el-col :span="2" style="margin-top: 30px;margin-left: 20px;">
               <div style="display: flex;align-items: center;" v-if="scholatProfile.avatar!==undefined">
                 <img  class="preview" :src="getImgUrl(scholatProfile.avatar)"
                       style="width:70px;height:70px;border-radius: 50%;"/>
               </div>
             </el-col>
-            <el-col :span="5" style="margin-top: 50px;">
-                <div style="margin-left: 5px" v-if="scholatProfile.avatar!==undefined">关联的头像</div>
-               <div><el-button size="small" v-if="scholatProfile.avatar!==undefined" @click="chooseScholatAvatar()">选择该头像</el-button></div>
-              <div><el-button @click="uploadAvatar('avatar')" type="primary" style="margin-top: 23px;margin-left:5px;transform: translateY(-20px);" size="small">
-                上传头像
-              </el-button></div>
-            </el-col>
-            <el-col :span="10" style="margin-left: 15px">
-              <span style="font-weight: 900;font-size: 24px">研究方向</span>
-              <el-input style="margin-top: 10px;" type="textarea"  maxlength="100" show-word-limit :rows="3"
-                        v-model="ruleForm.research_direction" placeholder="例如：数据挖掘、知识图谱、图像识别等">
+            <el-col :span="5" style="margin-top: 30px;">
+              <div style="margin-left: 5px" v-if="scholatProfile.avatar!==undefined">关联的头像</div>
+              <div><el-button size="small" v-if="scholatProfile.avatar!==undefined" @click="chooseScholatAvatar()">选择该头像</el-button></div>
 
-              </el-input>
-              <span style="font-weight: 600;font-size: 14px">更新区域</span>
-              <div v-if="showUpdateInfo.research_directionScholat!==''" v-html="showUpdateInfo.research_directionScholat"
-                   style="height: 70px;overflow: auto;background-color: antiquewhite;margin-top: 5px;margin-bottom: 5px"></div>
-<!--              <div v-if="scholatProfile.research_direction!==''&&showUpdateInfo.research_directionScholat===''" v-html="scholatProfile.research_direction"-->
-<!--                     style="height: 70px;overflow: auto;background-color: antiquewhite;margin-top: 5px;margin-bottom: 5px"></div>-->
             </el-col>
-            <el-col :span="2">
-            <el-button style="margin-top:80px;margin-left: 5px;" @click="saveTeacher" size="small" type="success" v-if="$route.path.indexOf('modifyTeacher')!=-1">保存</el-button>
-            </el-col>
+
           </el-row>
-        </el-card>
 
+        </el-card>
+        <el-card class="box-card scholat-card">
+          <el-col :span="10" style="margin-left: 15px">
+            <span style="font-weight: 900;font-size: 24px">研究方向</span>
+            <el-input style="margin:20px 0;" type="textarea"  maxlength="100" show-word-limit :rows="3"
+                      v-model="ruleForm.research_direction" placeholder="例如：数据挖掘、知识图谱、图像识别等">
+
+            </el-input>
+          </el-col>
+          <el-col :span="10" style="margin-left: 15px">
+            <span style="font-weight: 900;font-size: 24px">更新区域</span>
+            <div v-if="showUpdateInfo.research_directionScholat!==''" v-html="showUpdateInfo.research_directionScholat"
+                 style="height: 80px;overflow: auto;background-color: antiquewhite;margin-top: 20px"></div>
+            <!--              <div v-if="scholatProfile.research_direction!==''&&showUpdateInfo.research_directionScholat===''" v-html="scholatProfile.research_direction"-->
+            <!--                     style="height: 70px;overflow: auto;background-color: antiquewhite;margin-top: 5px;margin-bottom: 5px"></div>-->
+          </el-col>
+          <el-col :span="2">
+            <el-button style="margin-top:80px;margin-left: 5px;" @click="saveTeacher" size="small" type="success" v-if="$route.path.indexOf('modifyTeacher')!=-1">保存</el-button>
+          </el-col>
+        </el-card>
 <!--个人简介区域-->
         <div class="row-bg">
 <!--          <div style="font-family: 微软雅黑;font-weight: bold;margin-bottom: 20px;font-size: 24px">编辑个人简介</div>-->
@@ -2070,7 +2101,7 @@
     .grid-content {
       border-radius: 4px;
       padding: 0 6px 0 6px;
-      min-height: 36px;
+      min-height: 20px;
     }
 
     .row-bg {
@@ -2125,4 +2156,5 @@
   .redItem .el-form-item__label {
     color: red
   }
+
 </style>
