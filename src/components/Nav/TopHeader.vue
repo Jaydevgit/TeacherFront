@@ -78,10 +78,16 @@
             <span style="">{{this.unitList[0].school_name}}</span>
           </div>
           <div class="font-jsgrzy" style="display: inline-block;">
-            &nbsp师资队伍
+            &nbsp教师个人主页
           </div>
         </div>
-
+        <div class="search bar6">
+          <div class="formDiv" style="">
+            <input @keyup.enter="keySend" type="text" v-model="searchKey" placeholder="请输入您要搜索的教师" name="cname"
+                   style="color: gray;background-color: white;">
+            <img src="@/assets/img/search.png" @click="keySend" style="cursor: pointer;">
+          </div>
+        </div>
 
       </div>
 
@@ -347,12 +353,15 @@
                 }
             },
             keySend: function () {
-                console.log("send++++" + this.searchKey)
+                console.log("send++++" + this.searchKey + this.unitQuery.unitId)
               if (this.searchKey&&this.$route.path.indexOf('homepage')!==-1){
                 bus.$emit("changePageList", this.searchKey);
               }
               if (this.searchKey&&this.$route.path.indexOf('teacher')!==-1){
                 bus.$emit("changePageList2", this.searchKey,this.unitQuery.unitId);
+              }
+              if (this.searchKey&&this.$route.path.split('/')[1]==='home'){
+                bus.$emit("changePageList3", this.searchKey,this.unitQuery.unitId);
               }
                 // this.$nextTick(function () {
                 //     bus.$emit("key", this.searchKey);

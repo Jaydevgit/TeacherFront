@@ -20,6 +20,8 @@
 </template>
 
 <script>
+    import bus from "../../../utils/eventBus";
+
     export default {
       name: "TeacherList",
       data(){
@@ -33,7 +35,7 @@
             schoolDomain:'',
             unitDomain:'',
             cId: '',
-            key: '',
+            key: '',  //搜索的关键字
             letter: ''
           },
           teacherListAll:[],
@@ -53,6 +55,12 @@
         this.schoolDomain=this.$route.path.split('/')[2];
         this.unitDomain=this.$route.path.split('/')[3];
         this.getListAll();
+      },
+      mounted() {
+        let _self = this;
+        bus.$on("changePageList3", function (searchKey) {
+          _self._changeSearchTeacher(searchKey)
+        })
       },
       methods:{
         getListAll() {
@@ -88,7 +96,22 @@
               teacherDomainName:teacher.tDomain_name
             }
           })
-
+        },
+        _changeSearchTeacher(searchKey) {
+          this.searchFlag=true
+          this.listQuery.schoolDomain =  this.$route.path.split('/')[2];
+          this.listQuery.key = searchKey
+          this.api({
+            url: "/teacher/searchTeacherBySchoolDomain",
+            method: "get",
+            params: this.listQuery
+          }).then(data => {
+            console.log("查询教师信息为---:" + JSON.stringify(data.list))
+            this.teacherListAll = data.list
+            this.totalCount = data.totalCount;
+          }).catch(error => {
+            console.log("QAQ........获取教师失败")
+          })
         },
       }
     }
