@@ -323,13 +323,14 @@
     }
 
     .left {
-      width: 25%
+      width: 25%;
     }
 
     .middle {
       margin: 32px 8px 16px 12px;
       width: 100%;
       min-height: 900px;
+      min-width: 784px;
     }
 
     .right {
