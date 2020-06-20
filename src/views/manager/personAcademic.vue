@@ -1,11 +1,12 @@
 <template>
   <div class="app-container">
-    <div style="float: right;">
-      <el-button size="small" type="success" icon="el-icon-check" circle></el-button>   <span style="color: #909399;">&nbsp已存在&nbsp&nbsp&nbsp</span>
-      <el-button size="small" type="primary" icon="el-icon-plus" circle></el-button>  <span style="color: #909399;">&nbsp可添加&nbsp&nbsp&nbsp</span>
-      <!--  <el-button size="small" type="warning" icon="el-icon-star-off" circle></el-button>
-       <span style="color: #909399;">&nbsp存在相似成果&nbsp&nbsp&nbsp</span>-->
-    </div>
+<!--    <div style="float: right;">-->
+<!--      <i type="success" class="el-icon-success" style="font-size: 40px; color: #67C23A;transform: translateY(10px)"-->
+<!--        ></i><span style="color: #909399;">&nbsp已存在&nbsp&nbsp&nbsp</span>-->
+<!--      <el-button size="small" type="primary" icon="el-icon-plus" circle></el-button>  <span style="color: #909399;">&nbsp可添加&nbsp&nbsp&nbsp</span>-->
+<!--      &lt;!&ndash;  <el-button size="small" type="warning" icon="el-icon-star-off" circle></el-button>-->
+<!--       <span style="color: #909399;">&nbsp存在相似成果&nbsp&nbsp&nbsp</span>&ndash;&gt;-->
+<!--    </div>-->
     <el-tabs type="border-card" style="margin-top: 70px;" v-model="activeName"  @tab-click="handleClick">
       <el-tab-pane label="论文信息" name="first">
         <el-table
@@ -68,16 +69,16 @@
               <div>{{scope.row.type}}</div>
             </template>
           </el-table-column>
-          <el-table-column fixed="right" align="center" label="操作" width="120" v-if="hasPerm('teacher:update')">
-            <template slot-scope="scope" >
-              <el-button size="small" type="success" icon="el-icon-check" circle
-                         v-if="scope.row.exist == 1"></el-button>
-              <el-button size="small" type="primary" icon="el-icon-plus" circle
-                         v-else-if="scope.row.exist == 0" @click="addScholatPaper(scope.row)"></el-button>
-              <el-button size="small" type="warning" icon="el-icon-star-off" circle
-                         v-else @click="modifyPaper(scope.row.similarId)"></el-button>
-            </template>
-          </el-table-column>
+<!--          <el-table-column fixed="right" align="center" label="操作" width="120" v-if="hasPerm('teacher:update')">-->
+<!--            <template slot-scope="scope" >-->
+<!--              <i type="success" class="el-icon-success" style="font-size: 40px; color: #67C23A"-->
+<!--                 v-if="scope.row.exist === 1" ></i>-->
+<!--              <el-button size="small" type="primary" icon="el-icon-plus" circle-->
+<!--                         v-else="scope.row.exist == 0" @click="addScholatPaper(scope.row)"></el-button>-->
+<!--&lt;!&ndash;              <el-button size="small" type="warning" icon="el-icon-star-off" circle&ndash;&gt;-->
+<!--&lt;!&ndash;                         v-else @click="modifyPaper(scope.row.similarId)"></el-button>&ndash;&gt;-->
+<!--            </template>-->
+<!--          </el-table-column>-->
         </el-table>
 
 
@@ -141,16 +142,16 @@
               {{ scope.row.funding}}
             </template>
           </el-table-column>
-          <el-table-column fixed="right" align="center" label="操作" width="120" v-if="hasPerm('teacher:update')">
-            <template slot-scope="scope" >
-              <el-button size="small" type="success" icon="el-icon-check" circle
-                         v-if="scope.row.exist == 1"></el-button>
-              <el-button size="small" type="primary" icon="el-icon-plus" circle
-                         v-else-if="scope.row.exist == 0" @click="addScholatProject(scope.row)"></el-button>
-              <el-button size="small" type="warning" icon="el-icon-star-off" circle
-                         v-else @click="modifyProject(scope.row.similarId)"></el-button>
-            </template>
-          </el-table-column>
+<!--          <el-table-column fixed="right" align="center" label="操作" width="120" v-if="hasPerm('teacher:update')">-->
+<!--            <template slot-scope="scope" >-->
+<!--              <i type="success" class="el-icon-success" style="font-size: 40px; color: #67C23A"-->
+<!--                 v-if="scope.row.exist === 1" ></i>-->
+<!--              <el-button size="small" type="primary" icon="el-icon-plus" circle-->
+<!--                         v-else="scope.row.exist == 0" @click="addScholatProject(scope.row)"></el-button>-->
+<!--&lt;!&ndash;              <el-button size="small" type="warning" icon="el-icon-star-off" circle&ndash;&gt;-->
+<!--&lt;!&ndash;                         v-else @click="modifyProject(scope.row.similarId)"></el-button>&ndash;&gt;-->
+<!--            </template>-->
+<!--          </el-table-column>-->
         </el-table>
       </el-tab-pane>
       <el-tab-pane label="知识产权信息" name="third">
@@ -203,16 +204,16 @@
             width="130">
             <template slot-scope="scope">{{ scope.row.date}}</template>
           </el-table-column>
-          <el-table-column fixed="right" align="center" label="操作" width="120" v-if="hasPerm('teacher:update')">
-            <template slot-scope="scope" >
-              <el-button size="small" type="success" icon="el-icon-check" circle
-                         v-if="scope.row.exist == 1"></el-button>
-              <el-button size="small" type="primary" icon="el-icon-plus" circle
-                         v-else="scope.row.exist == 0" @click="addScholatPatent(scope.row)"></el-button>
-<!--              <el-button size="small" type="warning" icon="el-icon-star-off" circle-->
-<!--                         v-else @click="modifyPatent(scope.row.similarId)"></el-button>-->
-            </template>
-          </el-table-column>
+<!--          <el-table-column fixed="right" align="center" label="操作" width="120" v-if="hasPerm('teacher:update')">-->
+<!--            <template slot-scope="scope" >-->
+<!--              <i size="small" type="success" icon="el-icon-check" circle-->
+<!--                         v-if="scope.row.exist === 1" ></i>-->
+<!--              <el-button size="small" type="primary" icon="el-icon-plus" circle-->
+<!--                         v-else="scope.row.exist === 0" @click="addScholatPatent(scope.row)"></el-button>-->
+<!--&lt;!&ndash;              <el-button size="small" type="warning" icon="el-icon-star-off" circle&ndash;&gt;-->
+<!--&lt;!&ndash;                         v-else @click="modifyPatent(scope.row.similarId)"></el-button>&ndash;&gt;-->
+<!--            </template>-->
+<!--          </el-table-column>-->
         </el-table>
 
       </el-tab-pane>
@@ -398,9 +399,7 @@
             data: this.paperForm
           }).then((res) => {
             this.$message.success("添加论文信息成功")
-            this.$router.push({
-              path: '/personAcademic/' + this.$route.params.scholat_username
-            })
+            this.scholatPaper()
           }).catch(e => {
 
           })
