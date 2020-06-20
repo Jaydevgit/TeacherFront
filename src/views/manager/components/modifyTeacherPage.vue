@@ -293,12 +293,12 @@
             <el-row>
               <el-col :span="10"><div class="grid-content bg-purple">
                 <el-form-item label="邮箱" prop="email" >
-                  <el-input v-model="ruleForm.email" placeholder="建议输入办公邮箱地址"></el-input>
+                  <el-input v-model.trim="ruleForm.email" placeholder="建议输入办公邮箱地址"></el-input>
                 </el-form-item>
               </div></el-col>
               <el-col :span="10"><div class="grid-content bg-purple">
                 <el-form-item label="办公电话" prop="phone">
-                  <el-input v-model="ruleForm.phone" placeholder="建议输入办公固定电话，可以用'-'分隔"></el-input>
+                  <el-input v-model.trim="ruleForm.phone" placeholder="建议输入办公固定电话，可以用'-'分隔"></el-input>
                 </el-form-item>
               </div></el-col>
               <!--<el-col :span="5" style="transform: translateX(-40px);min-width: 500px"><div class="grid-content bg-purple">
@@ -427,7 +427,7 @@
             <span style="font-family: 微软雅黑;font-weight: bold;font-size: 24px;float: left;margin-right: 20px">关联学者网</span>
 
             <img src="@/assets/defaultLogo.png" style="width: 25px;height: 25px;float: left">
-            <el-input v-model="scholat_emailORname" placeholder="建议输入学者网邮箱或姓名进行学者网账号查询"
+            <el-input v-model.trim="scholat_emailORname" placeholder="建议输入学者网邮箱或姓名进行学者网账号查询"
                       @keyup.enter.native="scholatInfoSearch" size="small"
                       style="margin-left:10px;width: 320px;float: left;"></el-input>
             <el-button type="primary" size="small" style="margin-left:10px;" @click="scholatInfoSearch">查询</el-button>
@@ -807,9 +807,14 @@
                     callback(new Error("网络请求有误"))
                   })
                 }
-
             },
-            'compareArea':function (newVal, oldVal) {
+          'ruleForm.email': function (newVal, oldVal) {
+              this.ruleForm.email=newVal.replace(/\ +/g, "");
+          },
+          'scholat_emailORname':function (newVal, oldVal) {
+            this.scholat_emailORname=newVal.replace(/\ +/g, "");
+          },
+          'compareArea':function (newVal, oldVal) {
               if(newVal===0){
                 this.showTag='展开对比'
               }else{
@@ -868,8 +873,10 @@
                 })
             };
             var validateEmail = (rule, value, callback) => {
+
                 console.log(".......进入到验证信息部分, 输入部分为:" + rule.field + " 输入值为: " + value)
                 this.scholat.email = value
+
                 this.axios.post('/api/manager/validate', {
                     username: this.ruleForm.scholat_username,
                     key: rule.field,
@@ -1103,6 +1110,7 @@
             }
         },
         methods: {
+
           uploadFun(param){
             let name='avatar'
             console.log(this.ruleForm.avatar + "========this.name==" +name)
