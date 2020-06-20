@@ -224,6 +224,14 @@ export const asyncRouterMap = [
         menu: 'teacher', // 这里的menu和权限有关，如果权限menu没有返回对应的menu就不会显示，所以要写上menu
         hidden: true
       },
+      {
+        path: '/personAcademic/:scholat_username',
+        name:'personAcademic',
+        component: _import('manager/personAcademic'),
+        meta: {title: '学者网个人学术成果', icon: 'example'},
+        menu:'teacher',
+        hidden: true
+      }
 
     ]
   },
