@@ -64,21 +64,28 @@
 
 <script>
   import logo from '@/assets/defaultLogo.png'
+  import defaultAvatar from '@/assets/default1.png'
 
   export default {
     name: "cropAvatarImage",
     created() {
-      console.log("this.logo="+this.logo+"scholatAvatar="+this.scholatAvatar);
+      console.log("this.logo="+this.logo+",scholatAvatar="+this.scholatAvatar);
       if(this.scholatAvatar){
         if (this.scholatAvatar.indexOf("resources") != -1) {
           this.attach.laterUrl = "http://www.scholat.com/" + this.scholatAvatar;
         } else {
-          console.log("this.logo="+this.logo+"scholatAvatar="+this.scholatAvatar);
-          this.attach.laterUrl = "http://47.106.132.95:2333/images/avatar/" + this.scholatAvatar;
+          console.log("this.logo="+this.logo+",scholatAvatar="+this.scholatAvatar);
+          if (this.scholatAvatar=='default.png'){
+            this.attach.laterUrl = this.defaultAvatar
+          }else{
+            this.attach.laterUrl = "http://47.106.132.95:2333/images/avatar/" + this.scholatAvatar;
+          }
+
+
         }
       }else{
 
-        this.attach.laterUrl = this.logo
+        this.attach.laterUrl = this.defaultAvatar
       }
 
     },
@@ -86,6 +93,7 @@
     data() {
       return {
         logo,
+        defaultAvatar:defaultAvatar,
         dialogVisible: false,
         options: {
           autoCrop: true,  //默认生成截图框

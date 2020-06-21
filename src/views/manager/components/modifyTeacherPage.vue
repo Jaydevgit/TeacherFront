@@ -426,7 +426,8 @@
           <div slot="header" class="clearfix">
             <span style="font-family: 微软雅黑;font-weight: bold;font-size: 24px;float: left;margin-right: 20px">关联学者网</span>
 
-            <img src="@/assets/defaultLogo.png" style="width: 25px;height: 25px;float: left">
+            <!--<img src="@/assets/defaultLogo.png" style="width: 25px;height: 25px;float: left">-->
+            <span style="font-family: 微软雅黑;font-size: 16px;float: left;margin-right: 20px;margin-top: 5px">{{this.ruleForm.username}}</span>
             <el-input v-model.trim="scholat_emailORname" placeholder="建议输入学者网邮箱或姓名进行学者网账号查询"
                       @keyup.enter.native="scholatInfoSearch" size="small"
                       style="margin-left:10px;width: 320px;float: left;"></el-input>
@@ -764,6 +765,7 @@
     import {filterXSS} from 'xss'
     import Pinyin from '@/utils/pinyin'
     import roleAssignmentBar from ".//roleAssignment";
+    import defaultAvatar from '@/assets/default1.png'
 
     export default {
         name: "modifyTeacherPage",
@@ -790,7 +792,7 @@
             'ruleForm.username': function (newVal, oldVal) {
                 if (this.$route.path.indexOf("addTeacher")!==-1) {
                     this.ruleForm.domain_name = Pinyin.chineseToPinYin(newVal);
-                    console.log(">>>>" + this.ruleForm.domain_name);
+                    console.log(">>>>this.ruleForm.domain_name=" + this.ruleForm.domain_name);
                   this.axios.post('/api/manager/judgeDomainExist2', {
                     domain_name: this.ruleForm.domain_name
                   }).then(res => {
@@ -975,6 +977,7 @@
                 }
             };
             return {
+                defaultAvatar:defaultAvatar,
                 scholatProfile:'',
                 secondPage:false,
                 routePage: '',
@@ -1704,7 +1707,17 @@
                 this.getList();
             },
             getImgUrl(imgName) {
-                return "http://www.scholat.com/" + imgName
+            console.log("imgName*********="+imgName);
+              if (imgName == null||imgName=='') {
+                return this.defaultAvatar;
+              } else if(imgName=="default.png"){
+                return this.defaultAvatar
+              } else if (imgName.indexOf("resources") != "-1") {
+                return "http://www.scholat.com/" + imgName;
+              } else {
+                console.log("imgName++++++++++="+imgName);
+                return "http://47.106.132.95:2333/images/avatar/" + imgName;
+              }
             },
             viewScholat(scholat) {
                 var url = "http://www.scholat.com/" + scholat.scholat_username;
