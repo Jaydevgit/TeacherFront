@@ -4,10 +4,11 @@
       <div class="left">
         <left-nav @toList="toList"></left-nav>
       </div>
-      <div class="middle">
 
+      <div class="middle">
+        <el-card class="box-card">
         <teacher-list :unitId="unitId">
-        </teacher-list>
+        </teacher-list></el-card>
       </div>
 
       <!--最近更新教师主页-->
@@ -64,7 +65,7 @@
           <span class="engTitle">List of colleges</span>
         </div>
         <div class="eachScholar">
-          <el-card class="box-card">
+          <el-card class="box-card" style="">
             <div v-for="o in unitList" :key="o" class="item">
               <a :href="'/homepage/'+listQuery.schoolDomain+'/'+o.domain_name" class="text">{{o.unit_name}}</a>
             </div>
@@ -430,12 +431,11 @@
   }
 
   .item {
-    padding: 18px 20px;
+    padding: 18px 50px;
 
   }
 
   .box-card {
-    width: 480px;
-    margin-left: 50px;
+    width: 960px;
   }
 </style>
