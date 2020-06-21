@@ -293,12 +293,12 @@
             <el-row>
               <el-col :span="10"><div class="grid-content bg-purple">
                 <el-form-item label="邮箱" prop="email" >
-                  <el-input v-model="ruleForm.email" placeholder="建议输入办公邮箱地址"></el-input>
+                  <el-input v-model.trim="ruleForm.email" placeholder="建议输入办公邮箱地址"></el-input>
                 </el-form-item>
               </div></el-col>
               <el-col :span="10"><div class="grid-content bg-purple">
                 <el-form-item label="办公电话" prop="phone">
-                  <el-input v-model="ruleForm.phone" placeholder="建议输入办公固定电话，可以用'-'分隔"></el-input>
+                  <el-input v-model.trim="ruleForm.phone" placeholder="建议输入办公固定电话，可以用'-'分隔"></el-input>
                 </el-form-item>
               </div></el-col>
               <!--<el-col :span="5" style="transform: translateX(-40px);min-width: 500px"><div class="grid-content bg-purple">
@@ -427,7 +427,7 @@
             <span style="font-family: 微软雅黑;font-weight: bold;font-size: 24px;float: left;margin-right: 20px">关联学者网</span>
 
             <img src="@/assets/defaultLogo.png" style="width: 25px;height: 25px;float: left">
-            <el-input v-model="scholat_emailORname" placeholder="建议输入学者网邮箱或姓名进行学者网账号查询"
+            <el-input v-model.trim="scholat_emailORname" placeholder="建议输入学者网邮箱或姓名进行学者网账号查询"
                       @keyup.enter.native="scholatInfoSearch" size="small"
                       style="margin-left:10px;width: 320px;float: left;"></el-input>
             <el-button type="primary" size="small" style="margin-left:10px;" @click="scholatInfoSearch">查询</el-button>
@@ -604,24 +604,28 @@
             </el-col>
             <el-col :span="4">
                 <!--显示更新提示-->
-                <el-tooltip placement="top" v-if="showUpdateInfo.avatarScholat">
-                  <div slot="content" style="font-size: 16px;text-align: left;line-height: 100px">
-                    <img :src="showUpdateInfo.avatarScholat" class="update-avatar"
-                         style="width:70px;height:70px;"/>
-                    <div style="width: 80px;float: left;margininvitation-left: 10px">
-                      <el-button size="small" type="success" @click="updateAvatar()"
-                                 style="display:block;margin-top: 15px;">替换头像
-                      </el-button>
-                      <el-button size="small" type="warning" @click="cancelUpdateAvatar()"
-                                 style="display:block;margin-left: 0;margin-top: 8px;">取消替换
-                      </el-button>
-                    </div>
+<!--                <el-tooltip placement="top" v-if="showUpdateInfo.avatarScholat">-->
+<!--&lt;!&ndash;                  <div slot="content" style="font-size: 16px;text-align: left;line-height: 100px">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <img :src="showUpdateInfo.avatarScholat" class="update-avatar"&ndash;&gt;-->
+<!--&lt;!&ndash;                         style="width:70px;height:70px;"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <div style="width: 80px;float: left;margininvitation-left: 10px">&ndash;&gt;-->
+<!--&lt;!&ndash;                      <el-button size="small" type="success" @click="updateAvatar()"&ndash;&gt;-->
+<!--&lt;!&ndash;                                 style="display:block;margin-top: 15px;">替换头像&ndash;&gt;-->
+<!--&lt;!&ndash;                      </el-button>&ndash;&gt;-->
+<!--&lt;!&ndash;                      <el-button size="small" type="warning" @click="cancelUpdateAvatar()"&ndash;&gt;-->
+<!--&lt;!&ndash;                                 style="display:block;margin-left: 0;margin-top: 8px;">取消替换&ndash;&gt;-->
+<!--&lt;!&ndash;                      </el-button>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
 
-                  </div>
-                  <!--上传头像对话框-->
-                  <crop-avatar-image ref="cropAvatarImage" class="update-crop-avatar" :scholatAvatar="ruleForm.avatar"
-                                     @crop-avatar="cropAvatarImageName"></crop-avatar-image>
-                </el-tooltip>
+<!--&lt;!&ndash;                  </div>&ndash;&gt;-->
+<!--                  &lt;!&ndash;上传头像对话框&ndash;&gt;-->
+<!--                  <crop-avatar-image ref="cropAvatarImage" class="update-crop-avatar" :scholatAvatar="ruleForm.avatar"-->
+<!--                                     @crop-avatar="cropAvatarImageName"></crop-avatar-image>-->
+<!--                </el-tooltip>-->
+              <div  v-if="showUpdateInfo.avatarScholat">
+                <crop-avatar-image ref="cropAvatarImage" class="update-crop-avatar" :scholatAvatar="ruleForm.avatar"
+                                   @crop-avatar="cropAvatarImageName"></crop-avatar-image>
+              </div>
                 <!--上传头像组件-->
                 <crop-avatar-image ref="cropAvatarImage"
                                    v-if="!showUpdateInfo.avatarScholat"
@@ -631,8 +635,26 @@
                 </div>-->
             </el-col>
             <el-col :span="4">
-              <div style="padding-top: 40px"><el-button @click="uploadAvatar('avatar')" type="primary" style="margin-top: 23px;margin-left:5px;transform: translateY(-20px);" size="small">
-                上传头像
+              <el-upload
+                class="upload-demo"
+                action="/api/attach/upload2"
+                name="backgroundHome.png"
+                :http-request="uploadFun"
+                :on-preview="handlePreview"
+                :on-remove="handleRemove"
+                :before-remove="beforeRemove"
+                :before-upload="handleUpload"
+                :limit="1"
+                :show-file-list="false"
+                :on-exceed="handleExceed"
+                list-type="picture"
+                style="padding-top: 20px">
+                <el-button size="small" type="primary" >直接上传头像</el-button>
+<!--                <div slot="tip" class="el-upload__tip">只能上传jpg/jpeg/png/gif/bmp文件，且不超过600kb-->
+<!--               </div>-->
+              </el-upload>
+              <div style="padding-top: 20px;transform: translateX(-3px)"><el-button @click="uploadAvatar('avatar')" type="primary" style="margin-top: 23px;margin-left:5px;transform: translateY(-20px);" size="small">
+                裁剪上传头像
               </el-button></div>
             </el-col>
             <el-col :span="2" style="margin-top: 30px;margin-left: 20px;">
@@ -785,9 +807,14 @@
                     callback(new Error("网络请求有误"))
                   })
                 }
-
             },
-            'compareArea':function (newVal, oldVal) {
+          'ruleForm.email': function (newVal, oldVal) {
+              this.ruleForm.email=newVal.replace(/\ +/g, "");
+          },
+          'scholat_emailORname':function (newVal, oldVal) {
+            this.scholat_emailORname=newVal.replace(/\ +/g, "");
+          },
+          'compareArea':function (newVal, oldVal) {
               if(newVal===0){
                 this.showTag='展开对比'
               }else{
@@ -846,8 +873,10 @@
                 })
             };
             var validateEmail = (rule, value, callback) => {
+
                 console.log(".......进入到验证信息部分, 输入部分为:" + rule.field + " 输入值为: " + value)
                 this.scholat.email = value
+
                 this.axios.post('/api/manager/validate', {
                     username: this.ruleForm.scholat_username,
                     key: rule.field,
@@ -1076,10 +1105,106 @@
                 showRoleAssigment: false,
                 roleId: '',//角色分配id
                 domainCount: '',//相同域名个数
-              showTag:'展开对比'
+              showTag:'展开对比',
+              fileList: [],//直接上传头像
             }
         },
         methods: {
+
+          uploadFun(param){
+            let name='avatar'
+            console.log(this.ruleForm.avatar + "========this.name==" +name)
+            if(this.ruleForm.avatar!=='default.png'){
+              this.api({
+                url: "/attach/delete/" +this.msg+"/"+this.ruleForm.avatar,
+                method: "get"
+              }).then(res => {
+                console.log("删除头像成功")
+              }).catch(error => {
+                console.log("哎呀.....删除头像失败")
+              })
+              name=''
+            }
+            var data = new FormData(); //创建form对象
+            data.append('file',param.file);
+            //data.append('fileName',param.name);//我想要修改name属性，发现改成自定义上传后，html上的name不起作用了，想要在这         设置不起作用(name,fileName都试过，不起作用)，导致接口调不通，最终放弃
+            this.axios.put('/api/attach/upload2', data,
+              {contentType: false, processData: false, headers: {'Content-Type': 'multipart/form-data'}}
+            ).then(res => {
+              console.log(".........图片文件名为: " + res.data+JSON.stringify(res))
+              this.ruleForm.avatar=res.data
+              this.api({
+                url: "/manager/updateTeacher",
+                method: "post",
+                data: this.ruleForm
+              }).then((res) => {
+                this.$message.success("上传头像成功");
+                console.log("------------------------");
+                console.log(this.ruleForm);
+                this.$router.go(0)
+              }).catch(e => {
+
+              })
+            }).catch(error => {
+              this.$message.error("哎呀.....上传图片失败")
+            })
+
+          },
+          handleUpload(file){
+            var testmsg=file.name.substring(file.name.lastIndexOf('.')+1)
+            console.log("testmsg="+testmsg);
+            if ([ 'png', 'jpg','gif','bmp','jpeg'].indexOf(testmsg.toLowerCase())===-1) {
+              this.$message.error('图片类型必须是.gif,jpeg,jpg,png,bmp中的一种');
+              return false;
+            }
+            const isLt2M = file.size / 1024 / 1024 < 0.6     //这里做文件大小限制
+            if(!isLt2M) {
+              this.$message({
+                message: '上传文件大小不能超过 600kB!',
+                type: 'warning'
+              });
+              return false;
+            }
+
+          },
+          handleRemove(file, fileList) {
+            console.log(file, fileList);
+          },
+          handlePreview(file) {
+            console.log(file.name);
+          },
+          handleExceed(files, fileList) {
+            this.$message.warning(`当前限制选择 1 个文件，请先删除默认文件再进行上传`);
+          },
+          beforeRemove(file, fileList) {
+            // var path='backgroundHome'
+            // //上传背景前先删除原有背景
+            // if((this.applyForm.backgroundHome!==null&&this.applyForm.backgroundHome!=='')){
+            //   this.api({
+            //     url: "/attach/delete/" +path+"/"+this.applyForm.backgroundHome,
+            //     method: "get"
+            //   }).then(res => {
+            //     this.applyForm.backgroundHome=undefined
+            //     console.log("this.applyForm.backgroundHome="+this.applyForm.backgroundHome);
+            //     this.applyForm.unitId = this.$store.getters.unitId
+            //     // 给父组件传递返回的图片文件名
+            //     this.api({
+            //       url: '/unit/updateUnitInfo',
+            //       method: 'post',
+            //       data: this.applyForm
+            //     }).then(data => {
+            //       // this.$message.success("删除背景成功")
+            //       location.reload();
+            //     }).catch(e => {
+            //       this.$message.error("删除背景失败");
+            //     })
+            //     console.log("删除背景成功")
+            //   }).catch(error => {
+            //     console.log("哎呀.....删除背景失败")
+            //   })
+            //   this.name=''
+            // }
+          },
           //是否显示对比区域
           ifShow(){
             if(this.compareArea===0){

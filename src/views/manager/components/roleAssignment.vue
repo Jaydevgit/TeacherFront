@@ -4,8 +4,8 @@
       <div class="dialog-title">教师分配</div>
 
 <!--        <el-transfer :titles="['未分配', '已分配']" v-model="value2" :data="data"></el-transfer>-->
-
-        <div v-for="(item, flag) in catalogueList_t" :key="'cId'+item.id" style="margin-bottom: 10px;text-align: center">
+        <div style="overflow:auto;  height: 200px;">
+        <div v-for="(item, flag) in catalogueList_t" :key="'cId'+item.id" style="margin-bottom: 10px;text-align: center;">
         <el-select v-if="Object.keys(item.subCatalogueList).length!=0"  v-model="values[flag]"  :placeholder='item.name' >
           <el-option
             v-for="sub in item.subCatalogueList"
@@ -27,6 +27,7 @@
             </el-option>
           </el-select>
 <!--        <el-button type="primary" style="margin-left: 40px" @click="addCatalogueTeacher" :disabled="isAble[flag]">确认分配</el-button>-->
+        </div>
         </div>
 
       <div class="btns">
@@ -354,8 +355,8 @@
     background: rgba(0, 0, 0, 0.6);
     z-index: 2000;
     .dialog-container{
-      width: 450px;
-      height: 300px;
+      width: 500px;
+      height: 350px;
       background: #ffffff;
       position: absolute;
       top: 45%;
@@ -372,6 +373,7 @@
         font-weight: 600;
         padding: 16px 50px 0 20px;
         box-sizing: border-box;
+
 
       }
       .content{
