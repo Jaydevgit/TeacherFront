@@ -674,22 +674,25 @@
 
         </el-card>
         <el-card class="box-card scholat-card">
-          <el-col :span="10" style="margin-left: 15px">
-            <span style="font-weight: 900;font-size: 24px">研究方向</span>
+          <el-col :span="3" style="margin-left: 20px;height: 140px">
+            <span style="font-weight: 900;font-size: 24px;transform: translateY(70px);line-height: 140px">研究方向</span>
+          </el-col>
+          <el-col :span="8" style="margin-left: 15px">
+            <span style="font-weight: 900;font-size: 18px">当前内容</span>
             <el-input style="margin:20px 0;" type="textarea"  maxlength="100" show-word-limit :rows="3"
                       v-model="ruleForm.research_direction" placeholder="例如：数据挖掘、知识图谱、图像识别等">
 
             </el-input>
           </el-col>
-          <el-col :span="10" style="margin-left: 15px">
-            <span style="font-weight: 900;font-size: 24px">更新区域</span>
+          <el-col :span="8" style="margin-left: 15px">
+            <span style="font-weight: 900;font-size: 18px">学者空间内容</span>
             <div v-if="showUpdateInfo.research_directionScholat!==''" v-html="showUpdateInfo.research_directionScholat"
                  style="height: 80px;overflow: auto;background-color: antiquewhite;margin-top: 20px"></div>
             <!--              <div v-if="scholatProfile.research_direction!==''&&showUpdateInfo.research_directionScholat===''" v-html="scholatProfile.research_direction"-->
             <!--                     style="height: 70px;overflow: auto;background-color: antiquewhite;margin-top: 5px;margin-bottom: 5px"></div>-->
           </el-col>
-          <el-col :span="2">
-            <el-button style="margin-top:80px;margin-left: 5px;" @click="saveTeacher" size="small" type="success" v-if="$route.path.indexOf('modifyTeacher')!=-1">保存</el-button>
+          <el-col :span="3">
+            <el-button style="margin-top:80px;margin-left: 5px;float: right" @click="saveTeacher" size="small" type="success" v-if="$route.path.indexOf('modifyTeacher')!=-1">保存</el-button>
           </el-col>
         </el-card>
 <!--个人简介区域-->
