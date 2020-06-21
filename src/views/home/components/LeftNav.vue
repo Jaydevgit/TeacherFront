@@ -5,7 +5,6 @@
         <el-col>
           <el-menu
             background-color="#545c64"
-            :default-active="activeIndex"
             text-color="#fff"
             active-text-color="#ffd04b"
             class="el-menu-vertical-demo"
@@ -37,7 +36,6 @@
           listLoading: false,//数据加载等待动画
           schoolDomain:'',
           currentCat:'',
-          activeIndex: 0,
         }
       },
       created() {

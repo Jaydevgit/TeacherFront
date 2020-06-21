@@ -7,8 +7,9 @@
 
       <div class="middle">
         <el-card class="box-card">
-        <teacher-list :unitId="unitId">
-        </teacher-list></el-card>
+          <teacher-list :unitId="unitId" v-show="isDisplay">
+          </teacher-list>
+        </el-card>
       </div>
 
       <!--最近更新教师主页-->
@@ -125,6 +126,7 @@
           recommendList:[],
           unitList:[],
           recentUpdateTeacherList:[],
+          isDisplay:false,
         }
       },
       watch:{
@@ -187,6 +189,7 @@
         },
         toList(uId) {
           this.unitId = uId;
+          this.isDisplay=true;
         },
         getImgUrl(imgName) {
           if (imgName == null) {
@@ -435,7 +438,15 @@
 
   }
 
+  .box-card1{
+   width: 960px;
+    padding: 0;
+  }
+  .el-card{
+    padding: 0 0;
+  }
   .box-card {
     width: 960px;
   }
+
 </style>
