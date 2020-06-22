@@ -145,6 +145,29 @@
             </a>
           </div>
         </div>
+        <div class="page4_school">
+          <div class="school">
+            <a href="http://faculty.scholat.com/homepage/zhku/xky">
+              <div ><img :src="'http://www.scholat.com/images/uni_logo/仲恺农业工程学院.png'" alt=""></div>
+              <div class="school_name" >仲恺农业工程学院</div>
+              <div class="unit">信息科学与技术学院</div>
+            </a>
+          </div>
+          <div class="school">
+            <a href="http://faculty.scholat.com/homepage/fosu/eie">
+              <div><img :src="'http://www.scholat.com/images/uni_logo/佛山科学技术学院.png'" alt=""></div>
+              <div class="school_name">佛山科学技术学院</div>
+              <div class="unit">电子信息工程学院</div>
+            </a>
+          </div>
+          <div class="school">
+<!--            <a href="http://faculty.scholat.com/homepage/gpnu/dxxy">-->
+<!--              <div><img :src="'http://www.scholat.com/images/uni_logo/广东技术师范大学.png'" alt=""></div>-->
+<!--              <div class="school_name">广东技术师范大学</div>-->
+<!--              <div class="unit">电子与信息学院 </div>-->
+<!--            </a>-->
+          </div>
+        </div>
         <div class="page4_school_sub">
           <div class="school">
             <a href="http://faculty.scholat.com/homepage/scnu/cs">
