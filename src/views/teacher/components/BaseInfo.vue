@@ -40,10 +40,10 @@
             </div>
             <div class="name">
               {{teacherProfile.username}}
-              <span class="prodile-second" style="margin-left: 14px;" v-if="teacherProfile.duty">{{teacherProfile.duty}}</span>
-              <span class="prodile-second" style="" v-if="teacherProfile.post">
+              <span class="prodile-second" style="margin-left: 14px;" v-if="teacherProfile.post">{{teacherProfile.post}}</span>
+              <span class="prodile-second" style="" v-if="teacherProfile.duty">
                 <span v-if="teacherProfile.post&&teacherProfile.duty">、</span>
-                {{teacherProfile.post}}
+                {{teacherProfile.duty}}
               </span>
               <!--                  <span class="prodile-second" v-if="teacherProfile.degree">/&nbsp{{teacherProfile.degree}}</span>-->
             </div>
