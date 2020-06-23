@@ -5,7 +5,7 @@
       <ul class="ul-page" style="width: 100%;text-align: center">
         <li v-for="teacher in teacherList" :key="teacher.tId" class="teacherLi">
           <el-row :gutter="10" style="">
-            <el-col :span="colLength">
+            <el-col :span=colLength>
               <div class="grid-content bg-purple" @click="routerTo(teacher.tId)"
                    style="cursor: pointer; overflow: hidden;text-overflow: ellipsis;padding-left: 10px;">
                 <img :src="getImgUrl(teacher.tAvatar)" :onerror="imgErrorFun()" class="list-img" style="float: left;width: 40px;height: 40px">
@@ -23,13 +23,13 @@
                 <div v-if="!!teacher.tDegree" style="margin: 12px 0 12px 0">{{teacher.tDegree}}</div>
               </div>
             </el-col>-->
-            <el-col :span="7" hidden-xs-only>
+            <el-col :span=7 hidden-xs-only>
               <div class="grid-content bg-purple displayNone"
                    style="font-size: small;overflow: hidden;text-overflow: ellipsis;height: 60px;min-width: 180px">
-                <div v-if="!!teacher.tEmail" style="margin: 12px 0 12px 0">{{teacher.tEmail}}</div>
+                <div v-if="!!teacher.tEmail" style="margin: 12px 0">{{teacher.tEmail}}</div>
               </div>
             </el-col>
-            <el-col :span="7" hidden-xs-only>
+            <el-col :span=7 hidden-xs-only>
               <div class="grid-content bg-purple displayNone"
                    style="font-size:large;height: 60px;overflow: hidden;text-overflow: ellipsis;">
                 <div style="margin-top: 10px;font-size: small" v-if="teacher.tScholat_username">
@@ -90,7 +90,7 @@
     <div v-else-if="detail===3" class="teacherList-container3"
          style="float: left;position: relative;width: 100%;padding: 14px 5px;background: #fff;">
       <ul class="ul-page3">
-        <li v-for="teacher in teacherListAll" :key="teacher.tId"
+        <li v-for="teacher in teacherList" :key="teacher.tId"
             @click="routerTo(teacher.tId)"
             style="    cursor: pointer;
     float: left;
@@ -138,7 +138,7 @@
                 teacherProfile: {},//教师数据
                 detailModel: '',
                 isSendSuccessful: false,
-                colLength:''
+                colLength: 0,
             }
         },
         watch: {
@@ -257,10 +257,10 @@
           initDisplay(){
             var mql = window.matchMedia("(max-width: 767px)");//mql = media query list
             if (mql.matches){
-              this.colLength='24'
+              this.colLength=24
               console.log("this.displayMode='horizontal'")
             }else{
-              this.colLength='10'
+              this.colLength=10
               console.log("this.displayMode='vertical'")
             }
           },
@@ -355,8 +355,8 @@
                     console.log(data.list)
                     console.log(this.listQuery)
                     // this.listLoading = false;
-                    this.teacherListAll = data.list;
-                    //console.log(this.teacherListAll);
+                    this.teacherList = data.list;
+                    //console.log(this.teacherList);
                     this.totalCount = data.totalCount;
                     this.$emit("detailShow", 3);
                 }).catch(error => {
@@ -408,7 +408,7 @@
                     console.log("查询教师信息为:" + data.totalUpdate)
                     console.log("================getAllByLetter方法================")
                     // this.listLoading = false;
-                    this.teacherListAll = data.list;
+                    this.teacherList = data.list;
                     this.totalCount = data.totalCount;
                 }).catch(error => {
                     console.log("QAQ........没有找到教师列表")
@@ -491,7 +491,7 @@
                     params: this.listQuery
                 }).then(data => {
 
-                    this.teacherListAll=data.list
+                    this.teacherList=data.list
 
                     this.teacherList = data.list
 

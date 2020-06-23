@@ -13,13 +13,16 @@
             <el-breadcrumb-item>教师名录</el-breadcrumb-item>
           </el-breadcrumb>
           <div v-if="showLetter" class="centerLetter"><strong>{{letter}}</strong></div>
-          <div style="display: flex" v-if="showLetterList&&detailShow===3">
+          <div style="display: flex" v-if="showLetterList">
             <span style="margin-right: 5px;font-size: 14px;cursor:pointer" @click="allTeacher" :class="{'letterRed':letterFlag==='All'}">All</span>
             <a class="letterList" v-for="letter in Letters" @click="jumper(letter)" :class="{'letterRed':letterFlag===letter}">
               <span>{{letter}}</span>
             </a>
+            <i @click="detailList" class="el-icon-tickets"
+               style="font-size:20px;margin-right: 10px;opacity: 0.7;cursor: pointer"></i>
           </div>
-          <div class="list-style" style="margin-top: -4px;" v-if="detailShow!==3" @detailShow="detailShowChange">
+
+          <div class="list-style" style="margin-top: -4px;" v-if="detailShow!==3&&this.$route.path.split('/')[4]" @detailShow="detailShowChange">
             <!--            <el-button @click="defaultSort" type="info" round style="padding: inherit;margin-right: -5px;width: 70px">-->
             <!--              默认排序-->
             <!--            </el-button>-->
