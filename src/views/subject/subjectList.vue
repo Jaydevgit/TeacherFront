@@ -176,7 +176,7 @@
         } else if (imgName.indexOf("resources") != "-1") {
           return "http://www.scholat.com/" + imgName;
         } else {
-          return "http://47.106.132.95:2333/images/avatar/" + imgName;
+          return "http://39.108.169.193:2333/public/images/avatar/" + imgName;
         }
       },
       routerTo(tId){

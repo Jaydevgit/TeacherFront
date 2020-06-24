@@ -38,7 +38,7 @@
                   <el-carousel-item v-for="item in 3" :key="item">
                     <div style="height: 100%;width: 100%;display: flex;justify-content: center">
                       <el-card>
-                        <img :src="'http://47.106.132.95:2333/images/index/index-show-'+item+'.jpg'"
+                        <img :src="'http://39.108.169.193:2333/public/images/index/index-show-'+item+'.jpg'"
                              style="width: 100%;display: inline-block;"
                              lazy>
                       </el-card>
@@ -130,7 +130,7 @@
 
         </div>
         <div style="display: flex;align-items:center;height: 100%;margin-left: 16px">
-          <img src="http://47.106.132.95:2333/images/index/QR.png" style="height: 50px">
+          <img src="http://39.108.169.193:2333/public/images/index/QR.png" style="height: 50px">
         </div>
 
       </div>

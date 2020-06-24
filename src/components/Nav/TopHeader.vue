@@ -116,7 +116,7 @@
         <!--如果有背景图，则显示学院背景图片+文字-->
         <template v-if="unit.backgroundUrl">
           <div class="backgroundImage"  @click="goToCollege" style="">
-            <img :src="'http://47.106.132.95:2333/images/background/' + unit.backgroundUrl"
+            <img :src="'http://39.108.169.193:2333/public/images/background/' + unit.backgroundUrl"
                  style="height:90%;vertical-align: center"
                  :onerror="defaultBack" title="点击访问该学院"/>
           </div>
@@ -205,7 +205,7 @@
                 searchImage:searchImage,
                 searchKey: '',
                 unitQuery: {unitId: '',domainName:'',schoolDomain:''},
-                defaultBack: 'this.src="http://47.106.132.95:2333/images/background/1569738575202258.png"',
+                defaultBack: 'this.src="http://39.108.169.193:2333/public/images/background/1569738575202258.png"',
                 unit: {
                     schoolName: '',
                     unitName: '',
@@ -382,7 +382,7 @@
             /*getPic() {
                 if (this.unit.logoUrl) {
                     if (this.unit.logoUrl.indexOf('scholat') == -1) {
-                        /!*return 'http://47.106.132.95:2333/images/unit_logo/' + this.unit.logoUrl*!/
+                        /!*return 'http://39.108.169.193:2333/public/images/unit_logo/' + this.unit.logoUrl*!/
                       console.log("******学校图片为"+this.unit.logoUrl+"******");
                       return '"http://www.scholat.com/images/uni_logo/"+data.schoolName+".png"';
                     } else {

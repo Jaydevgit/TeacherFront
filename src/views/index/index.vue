@@ -148,9 +148,9 @@
         <div class="page4_school">
           <div class="school">
             <a href="http://faculty.scholat.com/homepage/zhku/xky">
-              <div ><img :src="'http://www.scholat.com/images/uni_logo/仲恺农业工程学院.png'" alt=""></div>
-              <div class="school_name" >仲恺农业工程学院</div>
-              <div class="unit">信息科学与技术学院</div>
+              <div><img :src="'http://www.scholat.com/images/uni_logo/仲恺农业工程学院.png'" alt=""></div>
+              <div class="school_name">仲恺农业工程学院</div>
+              <div class="unit">信息科学与技术学院 </div>
             </a>
           </div>
           <div class="school">
@@ -161,10 +161,10 @@
             </a>
           </div>
           <div class="school">
-<!--            <a href="http://faculty.scholat.com/homepage/gpnu/dxxy">-->
-<!--              <div><img :src="'http://www.scholat.com/images/uni_logo/广东技术师范大学.png'" alt=""></div>-->
-<!--              <div class="school_name">广东技术师范大学</div>-->
-<!--              <div class="unit">电子与信息学院 </div>-->
+<!--            <a href="http://faculty.scholat.com/homepage/gdpu/xg">-->
+<!--              <div><img :src="'http://www.scholat.com/images/uni_logo/广东药科大学.png'" alt=""></div>-->
+<!--              <div class="school_name">广东药科大学</div>-->
+<!--              <div class="unit">医药信息工程学院</div>-->
 <!--            </a>-->
           </div>
         </div>
@@ -229,7 +229,7 @@
           <div>© 2020起 SCHOLAT+LAB</div>
         </div>
         <div style=" display:table-cell;">
-          <img src="http://47.106.132.95:2333/images/index/QR.png" style="height: 50px">
+          <img src="http://39.108.169.193:2333/public/images/index/QR.png" style="height: 50px">
         </div>
         </div>
 
@@ -246,7 +246,7 @@
 
 <!--        </div>-->
 <!--        <div style="display: flex;align-items:center;height: 100%;margin-left: 16px">-->
-<!--          <img src="http://47.106.132.95:2333/images/index/QR.png" style="height: 50px">-->
+<!--          <img src="http://39.108.169.193:2333/public/images/index/QR.png" style="height: 50px">-->
 <!--        </div>-->
 
 <!--      </div>-->

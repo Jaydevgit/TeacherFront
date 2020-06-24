@@ -167,8 +167,8 @@
         props: ['local_profile', 'profile', 'intro_keywords', 'paper_keywords', 'local_keywords','fans','friends','watchs'],
         data() {
             return {
-                defaultImg: 'this.src="http://47.106.132.95:2333/images/avatar/default.png"',
-                defaultQR: 'this.src="http://47.106.132.95:2333/images/avatar/defaultQR.png"',
+                defaultImg: 'this.src="http://39.108.169.193:2333/public/images/avatar/default.png"',
+                defaultQR: 'this.src="http://39.108.169.193:2333/public/images/avatar/defaultQR.png"',
                 width: '600px',
                 height: '300px',
                 recommend_scholat_users: [],
@@ -222,7 +222,7 @@
                 if (avatar.indexOf('resources') != -1)
                     return 'http://www.scholat.com/' + avatar
                 else
-                    return "http://47.106.132.95:2333/images/avatar/" + avatar
+                    return "http://39.108.169.193:2333/public/images/avatar/" + avatar
             },
 
         }

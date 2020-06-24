@@ -94,7 +94,7 @@
           </div>
         </div>
         <div style="margin-left: 5px;margin-top: 25px">
-          <img src="http://47.106.132.95:2333/images/index/QR.png" style="height: 50px">
+          <img src="http://39.108.169.193:2333/public/images/index/QR.png" style="height: 50px">
         </div>
       </div>
     </footer>
@@ -201,7 +201,7 @@
           } else if (imgName.indexOf("resources") != "-1") {
             return "http://www.scholat.com/" + imgName;
           } else {
-            return "http://47.106.132.95:2333/images/avatar/" + imgName;
+            return "http://39.108.169.193:2333/public/images/avatar/" + imgName;
           }
         },
         imgErrorFun(e) {

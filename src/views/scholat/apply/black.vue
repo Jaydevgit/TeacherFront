@@ -200,11 +200,11 @@
       },
       getImgUrl(msg, imageName) {
         if (msg == 'front') {
-          return "http://47.106.132.95:2333/images/certificate_front/" + imageName;
+          return "http://39.108.169.193:2333/public/images/certificate_front/" + imageName;
         } else if (msg == 'back') {
-          return "http://47.106.132.95:2333/images/certificate_back/" + imageName;
+          return "http://39.108.169.193:2333/public/images/certificate_back/" + imageName;
         } else if (msg == 'working') {
-          return "http://47.106.132.95:2333/images/certificate_working/" + imageName;
+          return "http://39.108.169.193:2333/public/images/certificate_working/" + imageName;
         }else {
           return "http://ww2.sinaimg.cn/large/006tNc79gy1g4i53qvv3kj30kn0eaacq.jpg"
         }

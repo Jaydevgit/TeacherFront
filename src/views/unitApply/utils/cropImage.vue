@@ -1,7 +1,7 @@
 <!--
 裁剪头像组件,
 返回上传头像的文件名
-可以通过: http://47.106.132.95:2333/images/avatar/ 访问
+可以通过: http://39.108.169.193:2333/public/images/avatar/ 访问
 -->
 <template>
   <div class="crop-image">

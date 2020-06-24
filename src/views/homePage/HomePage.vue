@@ -1,6 +1,6 @@
 <template>
-  <div  id="app" class="homePage-body" :style="(backgroundHome!==undefined)?'background-image:' +'url('+'http://47.106.132.95:2333/images/background/'+backgroundHome+')':
-'background-image:' +'url('+'http://47.106.132.95:2333/images/background/'+backgroundHomeDefault+')'" >
+  <div  id="app" class="homePage-body" :style="(backgroundHome!==undefined)?'background-image:' +'url('+'http://39.108.169.193:2333/public/images/background/'+backgroundHome+')':
+'background-image:' +'url('+'http://39.108.169.193:2333/public/images/background/'+backgroundHomeDefault+')'" >
     <div class="middle-container">
       <div class="left">
         <left-nav :unitId="unitId" @toList="toList"  ref="info"></left-nav>
@@ -86,7 +86,7 @@
           </div>
         </div>
         <div style="margin-left: 5px;margin-top: 25px">
-          <img src="http://47.106.132.95:2333/images/index/QR.png" style="height: 50px">
+          <img src="http://39.108.169.193:2333/public/images/index/QR.png" style="height: 50px">
         </div>
       </div>
     </footer>
