@@ -13,7 +13,7 @@
             <el-breadcrumb-item>教师名录</el-breadcrumb-item>
           </el-breadcrumb>
           <div v-if="showLetter" class="centerLetter"><strong>{{letter}}</strong></div>
-          <div style="display: flex" v-if="showLetterList">
+          <div style="display: flex;margin-top: -2px" v-if="showLetterList&&this.$route.path.split('/').length<5">
             <span style="margin-right: 5px;font-size: 14px;cursor:pointer" @click="allTeacher" :class="{'letterRed':letterFlag==='All'}">All</span>
             <a class="letterList" v-for="letter in Letters" @click="jumper(letter)" :class="{'letterRed':letterFlag===letter}">
               <span>{{letter}}</span>
