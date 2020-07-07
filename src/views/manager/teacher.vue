@@ -383,7 +383,10 @@
             this.$refs.upload.submit()
             this.dialogImportVisible=false
             this.$message.success("教师信息导入完成")
-            this.getList();
+            setTimeout(() => {
+              this.getList();
+            },1000)
+
           },
           countTeacherUpdate() {
             // this.listQuery.key="update_time";

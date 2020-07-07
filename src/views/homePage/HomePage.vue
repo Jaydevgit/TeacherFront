@@ -296,6 +296,9 @@
             },
             detailList() {
                 this.detailShow = 1;
+              if (this.$route.path.split('/').length<5){
+                bus.$emit('getListAllByPage')
+              }
             }
 
         },

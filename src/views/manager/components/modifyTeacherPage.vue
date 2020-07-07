@@ -197,8 +197,8 @@
               </div></el-col>
             </el-row>
               <div class="grid-content bg-purple" style="padding-left: 90px;transform: translateY(-20px)">
-                <a :href="'http://39.108.169.193/teacher/'+SchoolDomain+'/'+ruleForm.domain_name">
-                  <span style="min-width: 350px">http://39.108.169.193/teacher/{{SchoolDomain}}/{{ruleForm.domain_name}}</span>
+                <a :href="'http://faculty.scholat.com/teacher/'+SchoolDomain+'/'+ruleForm.domain_name">
+                  <span style="min-width: 350px">http://faculty.scholat.com/teacher/{{SchoolDomain}}/{{ruleForm.domain_name}}</span>
                 </a>
               </div>
 

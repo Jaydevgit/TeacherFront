@@ -1,15 +1,171 @@
 <template>
     <div class="researchManagement">
-      加急开发中。。。
+      <div class="top">
+        <div class="left">
+          <el-form ref="form" :model="AcademicForm" label-width="80px" size="mini">
+            <el-form-item label="教师姓名">
+              <el-input v-model="AcademicForm.name"></el-input>
+            </el-form-item>
+            <el-form-item label="科研类型">
+              <el-select v-model="AcademicForm.type" placeholder="请选择科研类型">
+                <el-option label="论文信息" value="0"></el-option>
+                <el-option label="项目信息" value="1"></el-option>
+                <el-option label="知识产权信息" value="2"></el-option>
+              </el-select>
+            </el-form-item>
+            <el-form-item label="起始日期">
+              <el-date-picker
+                v-model="AcademicForm.valueStart"
+                type="month"
+                placeholder="选择月">
+              </el-date-picker>
+            </el-form-item>
+            <el-form-item label="截至日期">
+              <el-date-picker
+                v-model="AcademicForm.valueEnd"
+                type="month"
+                placeholder="选择月">
+              </el-date-picker>
+            </el-form-item>
+
+
+            <el-form-item size="large">
+              <el-button type="primary" @click="onSubmit" size="small">立即查询</el-button>
+            </el-form-item>
+          </el-form>
+        </div>
+        <div class="right"></div>
+      </div>
+
+      <div class="bottom">
+            <el-table
+              ref="multipleTable"
+              :data="paperList"
+              v-loading.body="listLoading"
+              element-loading-text="拼命加载中" border fit
+              highlight-current-row
+              tooltip-effect="dark"
+              style="width: 100%"
+              :default-sort = "{prop: 'date', order: 'descending'}">
+              <el-table-column type="expand" label="详细" width="80">
+                <template slot-scope="props">
+                  <el-form label-position="left" class="demo-table-expand">
+                    <el-form-item label="论文来源" >
+                      <span>{{ props.row.source }}</span>
+                    </el-form-item>
+                    <el-form-item label="来源详细">
+                      <span>{{ props.row.sourceDetail }}</span>
+                    </el-form-item>
+                    <el-form-item label="论文摘要">
+                      <span>{{ props.row.summary }}</span>
+                    </el-form-item>
+                    <el-form-item label="论文关键字">
+                      <span>{{props.row.keyword}}</span>
+                    </el-form-item>
+                  </el-form>
+                </template>
+              </el-table-column>
+              <el-table-column
+                label="论文题目"
+                prop="title"
+              >
+                <template slot-scope="scope">{{ scope.row.title }}</template>
+              </el-table-column>
+              <el-table-column
+                prop="authors"
+                label="作者"
+                width="400">
+                <template slot-scope="scope">{{ scope.row.authors }}</template>
+              </el-table-column>
+
+              <el-table-column
+                prop="date"
+                sortable
+                label="日期"
+                width="130">
+                <template slot-scope="scope">{{ scope.row.datetime}}</template>
+              </el-table-column>
+
+              <el-table-column
+                prop="type"
+                label="论文类型"
+                width="120">
+                <template slot-scope="scope">
+                  <div v-if="scope.row.papertype==0">期刊论文</div>
+                  <div v-else >会议论文</div>
+                </template>
+              </el-table-column>
+            </el-table>
+      </div>
     </div>
 </template>
 
 <script>
     export default {
-        name: "researchManagement"
+        name: "researchManagement",
+      data() {
+        return {
+          AcademicForm: {
+            name: '',
+            type: '0',//0:论文,1:项目,2:知识产权
+            date1: '',
+            date2: '',
+            desc: '',
+            valueStart: '',
+            valueEnd: '',
+            unitId:''
+          },
+          paperList:[],
+          listLoading: false,//数据加载等待动画
+
+        };
+      },
+      methods: {
+
+        onSubmit() {
+          this.listLoading=true
+          this.AcademicForm.unitId= this.$store.state.user.unitId
+          this.api({
+            url: "/academic/getAchievement",
+            method: "post",
+            data: this.AcademicForm
+          }).then(data => {
+            console.log("查询成果成功")
+            this.paperList = data.list;
+           // console.log("this.data==="+JSON.stringify( this.paperList));
+            this.listLoading=false
+
+          }).catch(error => {
+            console.log("QAQ........没有找到成果列表")
+          })
+          console.log('submit!');
+        }
+      }
     }
 </script>
 
 <style scoped>
+.researchManagement{
 
+}
+.top{
+  display: flex;
+}
+.left{
+  flex: 1;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  margin: 20px;
+  padding: 30px 30px 10px 30px;
+}
+.right{
+  flex: 1;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  margin: 20px;
+  padding: 30px 30px 10px 30px;
+}
+.bottom{
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  margin: 10px 20px 10px 20px;
+  padding: 30px 30px 10px 30px;
+}
 </style>

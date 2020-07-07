@@ -1,12 +1,15 @@
 <template>
   <div class="app-container">
-<!--    <div style="float: right;">-->
-<!--      <i type="success" class="el-icon-success" style="font-size: 40px; color: #67C23A;transform: translateY(10px)"-->
-<!--        ></i><span style="color: #909399;">&nbsp已存在&nbsp&nbsp&nbsp</span>-->
-<!--      <el-button size="small" type="primary" icon="el-icon-plus" circle></el-button>  <span style="color: #909399;">&nbsp可添加&nbsp&nbsp&nbsp</span>-->
-<!--      &lt;!&ndash;  <el-button size="small" type="warning" icon="el-icon-star-off" circle></el-button>-->
-<!--       <span style="color: #909399;">&nbsp存在相似成果&nbsp&nbsp&nbsp</span>&ndash;&gt;-->
-<!--    </div>-->
+    <div style="float: left">
+      <el-button type="primary" @click="addAllScholatPaper">一键添加所有论文</el-button>
+    </div>
+    <div style="float: right;">
+      <i type="success" class="el-icon-success" style="font-size: 40px; color: #67C23A;transform: translateY(10px)"
+        ></i><span style="color: #909399;">&nbsp已存在&nbsp&nbsp&nbsp</span>
+      <el-button size="small" type="primary" icon="el-icon-plus" circle></el-button>  <span style="color: #909399;">&nbsp可添加&nbsp&nbsp&nbsp</span>
+      <!--  <el-button size="small" type="warning" icon="el-icon-star-off" circle></el-button>
+       <span style="color: #909399;">&nbsp存在相似成果&nbsp&nbsp&nbsp</span>-->
+    </div>
     <el-tabs type="border-card" style="margin-top: 70px;" v-model="activeName"  @tab-click="handleClick">
       <el-tab-pane label="论文信息" name="first">
         <el-table
@@ -18,10 +21,10 @@
           style="width: 100%"
           :default-sort = "{prop: 'date', order: 'descending'}">
 
-          <el-table-column
-            type="selection"
-            width="50">
-          </el-table-column>
+<!--          <el-table-column-->
+<!--            type="selection"-->
+<!--            width="50">-->
+<!--          </el-table-column>-->
           <el-table-column type="expand" label="详细" width="80">
             <template slot-scope="props">
               <el-form label-position="left" class="demo-table-expand">
@@ -69,16 +72,16 @@
               <div>{{scope.row.type}}</div>
             </template>
           </el-table-column>
-<!--          <el-table-column fixed="right" align="center" label="操作" width="120" v-if="hasPerm('teacher:update')">-->
-<!--            <template slot-scope="scope" >-->
-<!--              <i type="success" class="el-icon-success" style="font-size: 40px; color: #67C23A"-->
-<!--                 v-if="scope.row.exist === 1" ></i>-->
-<!--              <el-button size="small" type="primary" icon="el-icon-plus" circle-->
-<!--                         v-else="scope.row.exist == 0" @click="addScholatPaper(scope.row)"></el-button>-->
-<!--&lt;!&ndash;              <el-button size="small" type="warning" icon="el-icon-star-off" circle&ndash;&gt;-->
-<!--&lt;!&ndash;                         v-else @click="modifyPaper(scope.row.similarId)"></el-button>&ndash;&gt;-->
-<!--            </template>-->
-<!--          </el-table-column>-->
+          <el-table-column fixed="right" align="center" label="操作" width="120" v-if="hasPerm('teacher:update')">
+            <template slot-scope="scope" >
+              <i type="success" class="el-icon-success" style="font-size: 40px; color: #67C23A"
+                 v-if="scope.row.exist === 1" ></i>
+              <el-button size="small" type="primary" icon="el-icon-plus" circle
+                         v-else="scope.row.exist == 0" @click="addScholatPaper(scope.row)"></el-button>
+<!--              <el-button size="small" type="warning" icon="el-icon-star-off" circle-->
+<!--                         v-else @click="modifyPaper(scope.row.similarId)"></el-button>-->
+            </template>
+          </el-table-column>
         </el-table>
 
 
@@ -93,10 +96,10 @@
           style="width: 100%"
           :default-sort = "{prop: 'date', order: 'descending'}">
 
-          <el-table-column
-            type="selection"
-            width="50">
-          </el-table-column>
+<!--          <el-table-column-->
+<!--            type="selection"-->
+<!--            width="50">-->
+<!--          </el-table-column>-->
           <el-table-column
             label="项目题目"
             prop="title"
@@ -164,10 +167,10 @@
           style="width: 100%"
           :default-sort = "{prop: 'date', order: 'descending'}">
 
-          <el-table-column
-            type="selection"
-            width="50">
-          </el-table-column>
+<!--          <el-table-column-->
+<!--            type="selection"-->
+<!--            width="50">-->
+<!--          </el-table-column>-->
           <el-table-column
             label="专利名称"
             prop="title"
@@ -345,6 +348,7 @@
         }).then(data => {
           console.log("查询成果成功")
           this.list = data;
+        //  console.log("this.list==="+JSON.stringify(this.list));
           this.listLoading = false;
         }).catch(error => {
           console.log("QAQ........没有找到成果列表")
@@ -397,6 +401,33 @@
             url: "/academic/addPaper",
             method: "post",
             data: this.paperForm
+          }).then((res) => {
+            this.$message.success("添加论文信息成功")
+            this.scholatPaper()
+          }).catch(e => {
+
+          })
+        })
+      },
+      addAllScholatPaper(){
+        var jsonObj = {};
+        let list = this.list;
+        let unitId = this.$store.state.user.unitId;
+        let scholat_username=this.$route.params.scholat_username;
+        this.$confirm('确定添加所有论文到机构?', '提示', {
+          confirmButtonText: '确定',
+          showCancelButton: false,
+          type: 'warning'
+        }).then(() => {
+          this.paperForm.unitId = this.$store.state.user.unitId;
+          this.api({
+            url: "/academic/addAllPaper",
+            method: "post",
+            data: {
+              "data":list,
+              "scholat_username" : scholat_username,
+              "unitId" :unitId
+            }
           }).then((res) => {
             this.$message.success("添加论文信息成功")
             this.scholatPaper()

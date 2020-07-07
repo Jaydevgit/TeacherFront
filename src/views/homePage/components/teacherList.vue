@@ -103,6 +103,16 @@
             </span>
         </li>
       </ul>
+      <div v-if="totalCount >15"
+           style="clear: both;text-align:center;width: 100%;margin-bottom: 18px;position: absolute;bottom: 0;margin-top: 20px">
+        <el-pagination style=""
+                       @current-change="handleCurrentChange"
+                       :current-page="listQuery.pageNum"
+                       :page-size="listQuery.pageRow"
+                       :total="totalCount"
+                       layout="total, prev, pager, next, jumper">
+        </el-pagination>
+      </div>
     </div>
 </template>
 
@@ -245,6 +255,7 @@
                 }
             }
             bus.$on('getList_All',this.getListAll)
+            bus.$on('getListAllByPage',this.getListAllByPage)
         },
       beforeDestroy(){
         bus.$off('getList_All',this.getListAll)
@@ -363,6 +374,27 @@
                     console.log("QAQ........没有找到教师列表")
                 })
             },
+          getListAllByPage(){
+            this.currentCat = 0
+            this.listQuery.unitId = this.unitId
+            // this.listLoading = true;
+            console.log("查询所有教师信息为:"+JSON.stringify(this.listQuery))
+            this.api({
+              url: "/homepage/listTeacher",
+              method: "get",
+              params: this.listQuery
+            }).then(data => {
+              console.log("查询所有教师信息为:" + data.totalUpdate)
+              console.log("=================getListAllByPage===============")
+              console.log(data.list)
+              console.log("this.listQuery="+JSON.stringify(this.listQuery)+",totalCount="+this.totalCount)
+              this.teacherList = data.list;
+              this.totalCount = data.totalCount;
+              // this.$emit("detailShow", 3);
+            }).catch(error => {
+              console.log("QAQ........没有找到教师列表")
+            })
+          },
             //此方法与下一个方法changeXXX的区别是，让页码变为1。 区别：change方法可以在任意页码跳转，下面的方法也一样
             getList() {
                 this.listQuery.pageNum = 1
