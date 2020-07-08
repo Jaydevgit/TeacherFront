@@ -39,7 +39,8 @@
 
       <div class="bottom">
             <el-table
-              ref="multipleTable"
+              v-show="AcademicForm.type==='0'"
+              ref="multipleTable1"
               :data="paperList"
               v-loading.body="listLoading"
               element-loading-text="拼命加载中" border fit
@@ -96,6 +97,65 @@
                 </template>
               </el-table-column>
             </el-table>
+        <el-table
+          v-show="AcademicForm.type==='1'"
+          ref="multipleTable2"
+          :data="projectList"
+          v-loading.body="listLoading"
+          element-loading-text="拼命加载中" border fit
+          highlight-current-row
+          tooltip-effect="dark"
+          style="width: 100%"
+          :default-sort = "{prop: 'startDate', order: 'descending'}">
+          <!--          <el-table-column-->
+          <!--            type="selection"-->
+          <!--            width="50">-->
+          <!--          </el-table-column>-->
+          <el-table-column
+            prop="title"
+            label="项目类型"
+           >
+            <template slot-scope="scope">{{ scope.row.title}}</template>
+          </el-table-column>
+          <el-table-column
+            prop="project_type"
+            label="项目类型"
+            width="300">
+            <template slot-scope="scope">{{ scope.row.project_type}}</template>
+          </el-table-column>
+
+<!--          <el-table-column-->
+<!--            prop="project_number"-->
+<!--            label="项目编号"-->
+<!--            width="150">-->
+<!--            <template slot-scope="scope">-->
+<!--              {{ scope.row.project_number}}-->
+<!--            </template>-->
+<!--          </el-table-column>-->
+
+          <el-table-column
+            prop="startDate"
+            sortable
+            label="开始时间"
+            width="130">
+            <template slot-scope="scope">{{ scope.row.start_date}}</template>
+          </el-table-column>
+
+          <el-table-column
+            label="结束时间"
+            width="130">
+            <template slot-scope="scope">{{ scope.row.end_date}}</template>
+          </el-table-column>
+
+          <el-table-column
+            prop="funding"
+            label="经费(万)"
+            width="90">
+            <template slot-scope="scope">
+              {{ scope.row.funding}}
+            </template>
+          </el-table-column>
+        </el-table>
       </div>
     </div>
 </template>
@@ -116,6 +176,7 @@
             unitId:''
           },
           paperList:[],
+          projectList:[],
           listLoading: false,//数据加载等待动画
 
         };
@@ -125,13 +186,19 @@
         onSubmit() {
           this.listLoading=true
           this.AcademicForm.unitId= this.$store.state.user.unitId
+          let type= this.AcademicForm.type
           this.api({
             url: "/academic/getAchievement",
             method: "post",
             data: this.AcademicForm
           }).then(data => {
             console.log("查询成果成功")
-            this.paperList = data.list;
+            if(type==='0'){
+              this.paperList = data.list;
+            }else if(type==='1'){
+              this.projectList = data.list;
+            }
+
            // console.log("this.data==="+JSON.stringify( this.paperList));
             this.listLoading=false
 

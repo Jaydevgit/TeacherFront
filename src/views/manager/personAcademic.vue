@@ -2,8 +2,8 @@
   <div class="app-container">
     <div style="float: left">
       <el-button v-if="this.activeName==='first'" type="primary" @click="addAllScholatPaper">添加所有论文</el-button>
-<!--      <el-button v-if="this.activeName==='second'" type="primary" @click="addAllScholatProject">添加所有项目</el-button>-->
-<!--      <el-button v-if="this.activeName==='third'" type="primary" @click="addAllScholatPaper">添加所有知识产权</el-button>-->
+      <el-button v-if="this.activeName==='second'" type="primary" @click="addAllScholatProject">添加所有项目</el-button>
+      <el-button v-if="this.activeName==='third'" type="primary" @click="addAllScholatPaper">添加所有知识产权</el-button>
     </div>
     <div style="float: right;">
       <i type="success" class="el-icon-success" style="font-size: 40px; color: #67C23A;transform: translateY(10px)"
@@ -93,7 +93,7 @@
           ref="multipleTable"
           :data="list2"
           style="width: 100%"
-          :default-sort = "{prop: 'date', order: 'descending'}">
+          :default-sort = "{prop: 'startDate', order: 'descending'}">
 <!--          <el-table-column-->
 <!--            type="selection"-->
 <!--            width="50">-->
@@ -121,7 +121,7 @@
           </el-table-column>
 
           <el-table-column
-            prop="date"
+            prop="startDate"
             sortable
             label="开始时间"
             width="130">
@@ -363,6 +363,7 @@
         }).then(data => {
           console.log("查询成果成功")
           this.list2 = data;
+        //  console.log("this.list2==="+JSON.stringify(this.list2));
           this.listLoading = false;
         }).catch(error => {
           console.log("QAQ........没有找到成果列表")
@@ -437,7 +438,7 @@
         let list2 = this.list2;
         let unitId = this.$store.state.user.unitId;
         let scholat_username=this.$route.params.scholat_username;
-        this.$confirm('确定添加所有论文到机构?', '提示', {
+        this.$confirm('确定添加所有项目到机构?', '提示', {
           confirmButtonText: '确定',
           showCancelButton: false,
           type: 'warning'
@@ -452,8 +453,8 @@
               "unitId" :unitId
             }
           }).then((res) => {
-            this.$message.success("添加论文信息成功")
-            this.scholatPaper()
+            this.$message.success("添加项目信息成功")
+            this.scholatProject()
           }).catch(e => {
 
           })
@@ -491,9 +492,10 @@
           }).then((res) => {
             scholat.exist == 1
             this.$message.success("添加项目信息成功")
-            this.$router.push({
-              path: '/personAcademic/' + this.$route.params.scholat_username
-            })
+            this.scholatProject()
+            // this.$router.push({
+            //   path: '/personAcademic/' + this.$route.params.scholat_username
+            // })
           }).catch(e => {
 
           })
