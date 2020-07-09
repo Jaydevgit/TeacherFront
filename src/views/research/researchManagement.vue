@@ -11,6 +11,7 @@
                 <el-option label="论文信息" value="0"></el-option>
                 <el-option label="项目信息" value="1"></el-option>
                 <el-option label="专利信息" value="2"></el-option>
+                <el-option label="著作信息" value="3"></el-option>
               </el-select>
             </el-form-item>
             <el-form-item label="起始日期">
@@ -199,6 +200,51 @@
             </el-table-column>
 
           </el-table>
+        <el-table
+          v-show="AcademicForm.type==='3'"
+          ref="multipleTable"
+          :data="publicationList"
+          style="width: 100%"
+          :default-sort = "{prop: 'date', order: 'descending'}">
+          <!--          <el-table-column-->
+          <!--            type="selection"-->
+          <!--            width="50">-->
+          <!--          </el-table-column>-->
+          <el-table-column
+            label="著作名称"
+            prop="title"
+          >
+            <template slot-scope="scope">{{ scope.row.title }}</template>
+          </el-table-column>
+          <el-table-column
+            prop="authors"
+            label="作者"
+            width="300">
+            <template slot-scope="scope">{{ scope.row.authors}}</template>
+          </el-table-column>
+
+          <el-table-column
+            prop="press"
+            label="出版社"
+            width="200">
+            <template slot-scope="scope">{{ scope.row.press}}</template>
+          </el-table-column>
+          <!--          <el-table-column-->
+          <!--            prop="citation"-->
+          <!--            label="著作简介"-->
+          <!--            width="180">-->
+          <!--            <template slot-scope="scope">-->
+          <!--              {{ scope.row.citation}}-->
+          <!--            </template>-->
+          <!--          </el-table-column>-->
+          <el-table-column
+            prop="datetime"
+            sortable
+            label="出版时间"
+            width="130">
+            <template slot-scope="scope">{{ scope.row.datetime}}</template>
+          </el-table-column>
+        </el-table>
       </div>
     </div>
 </template>
@@ -221,6 +267,7 @@
           paperList:[],
           projectList:[],
           patentList:[],
+          publicationList:[],
           listLoading: false,//数据加载等待动画
 
         };
@@ -243,6 +290,8 @@
               this.projectList = data.list;
             }else if(type==='2'){
               this.patentList = data.list;
+            }else if(type==='3'){
+              this.publicationList = data.list;
             }
 
            // console.log("this.data==="+JSON.stringify( this.paperList));
