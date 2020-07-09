@@ -4,10 +4,11 @@
       <el-button v-if="this.activeName==='first'" type="primary" @click="addAllScholatPaper">添加所有论文</el-button>
       <el-button v-if="this.activeName==='second'" type="primary" @click="addAllScholatProject">添加所有项目</el-button>
       <el-button v-if="this.activeName==='third'" type="primary" @click="addAllScholatPatent">添加所有专利</el-button>
+      <el-button v-if="this.activeName==='fourth'" type="primary" @click="addAllScholatPublication">添加所有著作</el-button>
     </div>
     <div style="float: right;">
       <i type="success" class="el-icon-success" style="font-size: 40px; color: #67C23A;transform: translateY(10px)"
-        ></i><span style="color: #909399;">&nbsp已存在&nbsp&nbsp&nbsp</span>
+        ></i><span style="color: #909399;">&nbsp已添加&nbsp&nbsp&nbsp</span>
       <el-button size="small" type="primary" icon="el-icon-plus" circle></el-button>  <span style="color: #909399;">&nbsp可添加&nbsp&nbsp&nbsp</span>
       <!--  <el-button size="small" type="warning" icon="el-icon-star-off" circle></el-button>
        <span style="color: #909399;">&nbsp存在相似成果&nbsp&nbsp&nbsp</span>-->
@@ -561,6 +562,32 @@
           }).then((res) => {
             this.$message.success("添加专利信息成功")
             this.scholatPatent()
+          }).catch(e => {
+
+          })
+        })
+      },
+      addAllScholatPublication(){
+        let list4 = this.list4;
+        let unitId = this.$store.state.user.unitId;
+        let scholat_username=this.$route.params.scholat_username;
+        this.$confirm('确定添加所有项目?', '提示', {
+          confirmButtonText: '确定',
+          showCancelButton: false,
+          type: 'warning'
+        }).then(() => {
+          this.paperForm.unitId = this.$store.state.user.unitId;
+          this.api({
+            url: "/academic/addAllPublication",
+            method: "post",
+            data: {
+              "data":list4,
+              "scholat_username" : scholat_username,
+              "unitId" :unitId
+            }
+          }).then((res) => {
+            this.$message.success("添加专利信息成功")
+            this.scholatPublication()
           }).catch(e => {
 
           })
