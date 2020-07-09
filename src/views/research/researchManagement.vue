@@ -10,7 +10,7 @@
               <el-select v-model="AcademicForm.type" placeholder="请选择科研类型">
                 <el-option label="论文信息" value="0"></el-option>
                 <el-option label="项目信息" value="1"></el-option>
-                <el-option label="知识产权信息" value="2"></el-option>
+                <el-option label="专利信息" value="2"></el-option>
               </el-select>
             </el-form-item>
             <el-form-item label="起始日期">
@@ -43,9 +43,6 @@
               ref="multipleTable1"
               :data="paperList"
               v-loading.body="listLoading"
-              element-loading-text="拼命加载中" border fit
-              highlight-current-row
-              tooltip-effect="dark"
               style="width: 100%"
               :default-sort = "{prop: 'date', order: 'descending'}">
               <el-table-column type="expand" label="详细" width="80">
@@ -102,9 +99,6 @@
           ref="multipleTable2"
           :data="projectList"
           v-loading.body="listLoading"
-          element-loading-text="拼命加载中" border fit
-          highlight-current-row
-          tooltip-effect="dark"
           style="width: 100%"
           :default-sort = "{prop: 'startDate', order: 'descending'}">
           <!--          <el-table-column-->
@@ -156,6 +150,55 @@
             </template>
           </el-table-column>
         </el-table>
+          <el-table
+            v-show="AcademicForm.type==='2'"
+            ref="multipleTable"
+            :data="patentList"
+            v-loading.body="listLoading"
+            style="width: 100%"
+            :default-sort = "{prop: 'date', order: 'descending'}">
+            <!--          <el-table-column-->
+            <!--            type="selection"-->
+            <!--            width="50">-->
+            <!--          </el-table-column>-->
+            <el-table-column
+              label="专利名称"
+              prop="title"
+            >
+              <template slot-scope="scope">{{ scope.row.title }}</template>
+            </el-table-column>
+            <el-table-column
+              prop="authors"
+              label="作者"
+              width="300">
+              <template slot-scope="scope">{{ scope.row.authors}}</template>
+            </el-table-column>
+
+            <el-table-column
+              prop="patentType"
+              label="专利类型"
+              width="200">
+              <template slot-scope="scope">{{ scope.row.patentType}}</template>
+            </el-table-column>
+
+            <el-table-column
+              prop="projectNumber"
+              label="专利编号"
+              width="180">
+              <template slot-scope="scope">
+                {{ scope.row.patentNumber}}
+              </template>
+            </el-table-column>
+
+            <el-table-column
+              prop="datetime"
+              sortable
+              label="发表时间"
+              width="130">
+              <template slot-scope="scope">{{ scope.row.datetime}}</template>
+            </el-table-column>
+
+          </el-table>
       </div>
     </div>
 </template>
@@ -177,6 +220,7 @@
           },
           paperList:[],
           projectList:[],
+          patentList:[],
           listLoading: false,//数据加载等待动画
 
         };
@@ -197,6 +241,8 @@
               this.paperList = data.list;
             }else if(type==='1'){
               this.projectList = data.list;
+            }else if(type==='2'){
+              this.patentList = data.list;
             }
 
            // console.log("this.data==="+JSON.stringify( this.paperList));
