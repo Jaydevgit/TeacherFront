@@ -236,14 +236,14 @@
           <el-table-column
             prop="authors"
             label="作者"
-            width="300">
+            width="450">
             <template slot-scope="scope">{{ scope.row.authors}}</template>
           </el-table-column>
 
           <el-table-column
             prop="press"
             label="出版社"
-            width="200">
+            width="350">
             <template slot-scope="scope">{{ scope.row.press}}</template>
           </el-table-column>
 
@@ -711,6 +711,7 @@
         this.patentForm.title = scholat.content
         this.patentForm.authors = scholat.authors
         this.patentForm.datetime = scholat.date
+        this.patentForm.citation = scholat.citation
         this.patentForm.press = scholat.press
         this.patentForm.unitId = this.$store.state.user.unitId;
         this.patentForm.scholat_publication_id =scholat.id

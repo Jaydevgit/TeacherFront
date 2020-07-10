@@ -218,14 +218,14 @@
           <el-table-column
             prop="authors"
             label="作者"
-            width="300">
+            width="450">
             <template slot-scope="scope">{{ scope.row.authors}}</template>
           </el-table-column>
 
           <el-table-column
             prop="press"
             label="出版社"
-            width="200">
+            width="350">
             <template slot-scope="scope">{{ scope.row.press}}</template>
           </el-table-column>
           <!--          <el-table-column-->
