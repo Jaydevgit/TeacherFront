@@ -3,8 +3,8 @@
       <div class="top">
         <div class="left">
           <el-form ref="form" :model="AcademicForm" label-width="80px" size="mini">
-            <el-form-item label="教师姓名">
-              <el-input v-model="AcademicForm.name"></el-input>
+            <el-form-item label="教师姓名"  >
+              <el-input v-model="AcademicForm.name" style="width: 220px"></el-input>
             </el-form-item>
             <el-form-item label="科研类型">
               <el-select v-model="AcademicForm.type" placeholder="请选择科研类型">
@@ -28,10 +28,9 @@
                 placeholder="选择月">
               </el-date-picker>
             </el-form-item>
-
-
             <el-form-item size="large">
               <el-button type="primary" @click="onSubmit" size="small">立即查询</el-button>
+              <el-button type="primary" @click="exportAcademic" size="small">导出查询结果</el-button>
             </el-form-item>
           </el-form>
         </div>
@@ -257,8 +256,6 @@
           AcademicForm: {
             name: '',
             type: '0',//0:论文,1:项目,2:知识产权
-            date1: '',
-            date2: '',
             desc: '',
             valueStart: '',
             valueEnd: '',
@@ -301,6 +298,16 @@
             console.log("QAQ........没有找到成果列表")
           })
           console.log('submit!');
+        },
+        exportAcademic(){
+          this.AcademicForm.unitId= this.$store.state.user.unitId
+          var json = JSON.stringify(this.AcademicForm);
+          var json2=encodeURI(json) //解析中文字符
+          window.open("/api/academic/exportAcademic?data="+json2);
+          // window.open("/api/academic/exportAcademic?type="+this.AcademicForm.type
+          //   +"?unitId="+ this.$store.state.user.unitId
+          //   +"?name="+this.AcademicForm.name
+          //   +"?startDate=" +this.AcademicForm.valueStart+"?endDate="+this.AcademicForm.valueEnd)
         }
       }
     }
