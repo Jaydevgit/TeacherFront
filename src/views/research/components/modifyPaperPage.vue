@@ -125,23 +125,23 @@
               <el-input v-model="ruleForm.summary"
                 type="textarea" :rows="5" ></el-input>
             </el-form-item>
-            <el-form-item label="上传附件">
-              <el-upload
-                class="upload-demo"
-                accept=".pdf"
-                :show-file-list="true"
-                multiple
-                action="#"
-                :http-request="imageUpload">
-                <el-button slot="trigger" size="small"  class="uploadImgBtn" >上传附件</el-button>
-                <span slot="tip">(只能上传pdf格式)</span>
-              </el-upload>
+<!--            <el-form-item label="上传附件">-->
+<!--              <el-upload-->
+<!--                class="upload-demo"-->
+<!--                accept=".pdf"-->
+<!--                :show-file-list="true"-->
+<!--                multiple-->
+<!--                action="#"-->
+<!--                :http-request="imageUpload">-->
+<!--                <el-button slot="trigger" size="small"  class="uploadImgBtn" >上传附件</el-button>-->
+<!--                <span slot="tip">(只能上传pdf格式)</span>-->
+<!--              </el-upload>-->
 
-            </el-form-item>
-            <el-form-item v-if="ruleForm.folderPath" label="下载附件">
-              <a target="_blank" :href="'http://222.201.80.72:2333/images/other/'+ ruleForm.folderPath"
-                    :download="ruleForm.title+'.pdf'" style="color: red"> {{ruleForm.folderPath}}  </a>
-            </el-form-item>
+<!--            </el-form-item>-->
+<!--            <el-form-item v-if="ruleForm.folderPath" label="下载附件">-->
+<!--              <a target="_blank" :href="'http://39.108.169.193:2333/public/images/other/'+ ruleForm.folderPath"-->
+<!--                    :download="ruleForm.title+'.pdf'" style="color: red"> {{ruleForm.folderPath}}  </a>-->
+<!--            </el-form-item>-->
         </el-col>
       </el-row>
     </el-form>
@@ -394,7 +394,7 @@
             } else if (imgName.indexOf("resources") != "-1") {
               return "http://www.scholat.com/" + imgName;
             } else {
-              return "http://222.201.80.72:2333/images/avatar/" + imgName;
+              return "http://39.108.169.193:2333/public/images/avatar/" + imgName;
             }
           },
           imageUpload:function(param) {
@@ -477,7 +477,7 @@
                       }).then((res) => {
                         this.$message.success("添加成果信息成功")
                         this.$router.push({
-                          path: '/academic/paper'
+                          path: '/research/paper'
                         })
                       }).catch(e => {
 
