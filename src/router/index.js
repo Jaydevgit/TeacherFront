@@ -276,11 +276,34 @@ export const asyncRouterMap = [
     meta: {title: '科研信息采集',icon: "table"},
     children: [
       {
-        path: 'researchManagement',
-        name: 'researchManagement',
-        component: _import('research/researchManagement'),
-        meta: {title: '科研信息采集', icon: 'user'},
+        path: 'paper',
+        name: 'paper',
+        component: _import('research/paperList'),
+        meta: {title: '论文管理', icon: 'user'},
         menu: 'user'
+      },
+      {
+        path: 'researchManagement',
+        name: '科研信息导出',
+        component: _import('research/researchManagement'),
+        meta: {title: '科研信息导出', icon: 'user'},
+        menu: 'user'
+      },
+      {
+        path: 'addPaper',
+        name: 'addPaper',
+        component: _import('research/addPaper'),
+        meta: {title: '添加论文', icon: 'example'},
+        menu: 'teacher',
+        hidden: true
+      },
+      {
+        path: '/modifyPaper/:id',
+        name: 'modifyPaper',
+        component: _import('research/updatePaper'),
+        meta: {title: '修改论文', icon: 'example'},
+        menu: 'teacher',
+        hidden: true
       },
     ]
   },
