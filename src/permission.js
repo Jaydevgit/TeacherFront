@@ -4,12 +4,12 @@ import NProgress from 'nprogress' // Progress 进度条
 import 'nprogress/nprogress.css' // Progress 进度条样式
 import {getToken, getScholatToken} from '@/utils/auth' // 验权
 const whiteList = ['/scholat/login', '/login','/index',
-  '/404', '/teacher/', '/homepage/', '/home','/teacherDetail',
+  '/404', '/teacher/', '/homepage/', '/home/','/teacherDetail',
   '/departmentPage', '/unitApply','/applySuccess'] //白名单,不需要登录的路由
 router.beforeEach((to, from, next) => {
   NProgress.start()
   console.log("=================================")
-  console.log("准备前往的路径是：" + to.path);
+  console.log("准备前往的路径（to.path）是：" + to.path);
   console.log("ScholatToken: "+getScholatToken())
   console.log("UnitToken: "+getToken())
   if (to.path.indexOf("scholat") != -1) {
@@ -50,6 +50,7 @@ router.beforeEach((to, from, next) => {
         // 跳转的是学院管理页面
         if (checkUrl(to.path) == 1){
           //如果前往的路径是白名单内的,就可以直接前往
+          console.log("前往的路径是白名单内的,就可以直接前往" );
           next()
         }
         else if (getToken()) {
@@ -87,7 +88,7 @@ router.afterEach(() => {
   NProgress.done() // 结束Progress
 })
 
-
+//判断是否是白名单里面的页面
 function checkUrl(path) {
   let flag = 0
   for (let i = 0, len = whiteList.length; i < len; i++) {
