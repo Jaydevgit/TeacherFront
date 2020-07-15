@@ -1289,6 +1289,7 @@
             scholatInfoSearch() {
                 let email = '';
                 let name = '';
+                console.log("scholatInfoSearch里面的scholat_emailORname="+this.scholat_emailORname)
                 if (this.scholat_emailORname.indexOf('@') != -1) {
                     email = this.scholat_emailORname
                     console.log("email" + email);
@@ -1626,7 +1627,7 @@
                             // 去根据学者username查询学者信息
                             this.axios.post('/api/manager/validate', {
                                 username: this.ruleForm.scholat_username,
-                                name: '',
+                                name: this.scholat_emailORname,
                                 email: '',
                                 pageRow: this.scholat.pageRow
                             }).then(res => {
@@ -1641,10 +1642,15 @@
                                 } else {
                                     this.showScholatDiv = false
                                 }
+                              this.scholat_emailORname=this.ruleForm.username;
+                              console.log("this.scholat_emailORname="+this.scholat_emailORname);
+                              this.scholatInfoSearch();
                                 //callback(!res || undefined)
                             }).catch(err => {
                                 //callback(false)
                             })
+
+                        }else{
 
                         }
                         if (this.ruleForm.avatar.indexOf("resources") != -1) {
@@ -1953,10 +1959,12 @@
                     }
                   })
                     this.secondPage = true;
+
                 }).catch(e => {
                   console.log("e="+JSON.stringify(e));
                 }).then(res=>{
                     this.createEditor();
+
                 })
             },
             saveTeacher() {
