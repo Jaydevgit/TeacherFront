@@ -1467,6 +1467,9 @@
               this.showUpdateInfo.research_direction=data.teacher.research_direction;
               this.showUpdateInfo.research_directionScholat=data.scholat.research_direction;
               console.log("this.showUpdateInfo.research_directionScholat"+this.showUpdateInfo.research_directionScholat);
+              if (this.ruleForm.research_direction==null||this.ruleForm.research_direction===''){
+                this.ruleForm.research_direction=data.scholat_research_direction1;
+              }
               // 职位
                 // this.showUpdateInfo.post = data.teacher.post;
                 // this.showUpdateInfo.postScholat = data.scholat.post;
@@ -1599,6 +1602,7 @@
                   console.log("this.scholatProfile1="+this.scholatProfile);
                   this.show_research_different(this.scholatProfile);
                   console.log("通过用户名查询学者网用户信息的scholatProfile="+JSON.stringify(this.scholatProfile));
+                  // this.ruleForm.research_direction=this.showUpdateInfo.research_directionScholat;
                   //将个人简介显示到框中
                   /*if (this.ruleForm.intro === '<p><br></p>'||this.ruleForm.intro === '') {
                     this.ruleForm.intro = filterXSS(this.scholatProfile.intro);
