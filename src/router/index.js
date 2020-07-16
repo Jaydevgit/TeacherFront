@@ -283,13 +283,6 @@ export const asyncRouterMap = [
         menu: 'user'
       },
       {
-        path: 'researchManagement',
-        name: '科研信息导出',
-        component: _import('research/researchManagement'),
-        meta: {title: '科研信息导出', icon: 'user'},
-        menu: 'user'
-      },
-      {
         path: 'addPaper',
         name: 'addPaper',
         component: _import('research/addPaper'),
@@ -305,6 +298,39 @@ export const asyncRouterMap = [
         menu: 'teacher',
         hidden: true
       },
+      {
+
+        path: 'project',
+        name: '项目管理',
+        component: _import('research/projectList'),
+        meta: {title: '项目管理', icon: 'user'},
+        menu: 'user'
+
+      },
+      {
+        path: 'addProject',
+        name: 'addProject',
+        component: _import('research/addProject'),
+        meta: {title: '添加项目', icon: 'example'},
+        menu: 'teacher',// 这里的menu和权限有关，如果权限menu没有返回对应的menu就不会显示，所以要写上menu
+        hidden: true
+      },
+      {
+        path: '/modifyProject/:id',
+        name: 'modifyProject',
+        component: _import('research/updateProject'),
+        meta: {title: '修改项目', icon: 'example'},
+        menu: 'teacher', // 这里的menu和权限有关，如果权限menu没有返回对应的menu就不会显示，所以要写上menu
+        hidden: true
+      },
+      {
+        path: 'researchManagement',
+        name: '科研信息导出',
+        component: _import('research/researchManagement'),
+        meta: {title: '科研信息导出', icon: 'user'},
+        menu: 'user'
+      },
+
     ]
   },
   {

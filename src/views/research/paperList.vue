@@ -76,7 +76,7 @@
             <template slot-scope="scope">
 <!--              <el-button type="success" icon="el-icon-bell"  size="mini" round-->
 <!--                         @click="aiPaper(scope.row.id)"></el-button>-->
-                <el-button type="warning" icon="el-icon-edit" size="mini" round @click="showUpdate(scope.row.id)"></el-button>
+                <el-button type="primary" icon="el-icon-edit" size="mini" round @click="showUpdate(scope.row.id)"></el-button>
                 <el-button type="danger" icon="el-icon-delete" size="mini" round v-if="hasPerm('teacher:delete')"
                          @click="removePaper(scope.row.id)"></el-button>
             </template>
