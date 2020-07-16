@@ -4,8 +4,8 @@
     <div class="filter-container" style="border-bottom: solid 3px #336699">
       <el-form>
         <el-form-item>
-          <el-button style="float: right;margin-right: 20px;margin-top: 10px;" round type="primary" size="small" icon="plus" @click="showCreate" v-if="hasPerm('teacher:add')">添加论文
-          </el-button>
+<!--          <el-button style="float: right;margin-right: 20px;margin-top: 10px;" round type="primary" size="small" icon="plus" @click="showCreate" v-if="hasPerm('teacher:add')">添加论文-->
+<!--          </el-button>-->
           <!--<el-button style="float:right;margin-right: 15px;margin-top: 3px;" size="small" type="success" icon="plus"-->
                      <!--@click="paperList">所有成果-->
           <!--</el-button>-->

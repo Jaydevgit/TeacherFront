@@ -23,62 +23,62 @@
             <el-form-item label="项目标题" prop="title">
               <el-input v-model="ruleForm.title" placeholder="请输入项目标题"></el-input>
             </el-form-item>
-            <el-form-item label="负责人">
-              <el-input v-model="ruleForm.leader" placeholder="请输入负责人"></el-input>
-            </el-form-item>
+<!--            <el-form-item label="负责人">-->
+<!--              <el-input v-model="ruleForm.leader" placeholder="请输入负责人"></el-input>-->
+<!--            </el-form-item>-->
             <el-form-item label="参与者" prop="application">
               <el-input v-model="ruleForm.application" placeholder="请输入参与者"></el-input>
             </el-form-item>
             <div v-if="modifyState == 0 ">
-              <el-form-item label="关联成员">
-                注：确认添加论文后再关联成员
-              </el-form-item>
+<!--              <el-form-item label="关联成员">-->
+<!--                注：确认添加论文后再关联成员-->
+<!--              </el-form-item>-->
             </div>
             <div v-if="modifyState == 1">
-              <el-form-item>
-                <el-button type="success" @click="identifyTeacher(ruleForm.application)">识别科研成员</el-button>
-                <el-button type="primary" @click="showListTeahcer">添加成员
-                </el-button>
-              </el-form-item>
-              <el-form-item label="关联成员">
-                <el-table :data="teacherList">
-                  <el-table-column
-                    label="头像"
-                    width="100" align="center">
-                    <template slot-scope="scope">
-                      <img @click="routerTo(scope.row.tId)"
-                           :src="getImgUrl(scope.row.tAvatar)" :onerror="defaultImage"
-                           style="width:60px;height:60px;cursor:pointer;">
+<!--              <el-form-item>-->
+<!--                <el-button type="success" @click="identifyTeacher(ruleForm.application)">识别科研成员</el-button>-->
+<!--                <el-button type="primary" @click="showListTeahcer">添加成员-->
+<!--                </el-button>-->
+<!--              </el-form-item>-->
+<!--              <el-form-item label="关联成员">-->
+<!--                <el-table :data="teacherList">-->
+<!--                  <el-table-column-->
+<!--                    label="头像"-->
+<!--                    width="100" align="center">-->
+<!--                    <template slot-scope="scope">-->
+<!--                      <img @click="routerTo(scope.row.tId)"-->
+<!--                           :src="getImgUrl(scope.row.tAvatar)" :onerror="defaultImage"-->
+<!--                           style="width:60px;height:60px;cursor:pointer;">-->
 
-                    </template>
-                  </el-table-column>
-                  <el-table-column align="center" label="姓名" width="130">
-                    <template slot-scope="scope">
-            <span class="teacher-homepage" @click="routerTo(scope.row.tId)"
-                  style="cursor:pointer;">{{scope.row.tName}}</span>
-                      <span></span>
-                    </template>
-                  </el-table-column>
-                  <el-table-column align="center" label="英文名" width="130">
-                    <template slot-scope="scope">
-            <span class="teacher-homepage" @click="routerTo(scope.row.tId)"
-                  style="cursor:pointer;">{{scope.row.englishName}}</span>
-                      <span></span>
-                    </template>
-                  </el-table-column>
-                  <el-table-column align="center" label="职称" width="180">
-                    <template slot-scope="scope">
-                      <span class="teacher-homepage" style="cursor:pointer;">{{scope.row.tPost}}</span>
-                      <span></span>
-                    </template>
-                  </el-table-column>
-                  <el-table-column align="center" label="操作">
-                    <template slot-scope="scope">
-                      <el-button type="danger" @click="showDelete(scope.row.ptId)">移除</el-button>
-                    </template>
-                  </el-table-column>
-                </el-table>
-              </el-form-item>
+<!--                    </template>-->
+<!--                  </el-table-column>-->
+<!--                  <el-table-column align="center" label="姓名" width="130">-->
+<!--                    <template slot-scope="scope">-->
+<!--            <span class="teacher-homepage" @click="routerTo(scope.row.tId)"-->
+<!--                  style="cursor:pointer;">{{scope.row.tName}}</span>-->
+<!--                      <span></span>-->
+<!--                    </template>-->
+<!--                  </el-table-column>-->
+<!--                  <el-table-column align="center" label="英文名" width="130">-->
+<!--                    <template slot-scope="scope">-->
+<!--            <span class="teacher-homepage" @click="routerTo(scope.row.tId)"-->
+<!--                  style="cursor:pointer;">{{scope.row.englishName}}</span>-->
+<!--                      <span></span>-->
+<!--                    </template>-->
+<!--                  </el-table-column>-->
+<!--                  <el-table-column align="center" label="职称" width="180">-->
+<!--                    <template slot-scope="scope">-->
+<!--                      <span class="teacher-homepage" style="cursor:pointer;">{{scope.row.tPost}}</span>-->
+<!--                      <span></span>-->
+<!--                    </template>-->
+<!--                  </el-table-column>-->
+<!--                  <el-table-column align="center" label="操作">-->
+<!--                    <template slot-scope="scope">-->
+<!--                      <el-button type="danger" @click="showDelete(scope.row.ptId)">移除</el-button>-->
+<!--                    </template>-->
+<!--                  </el-table-column>-->
+<!--                </el-table>-->
+<!--              </el-form-item>-->
             </div>
           </div>
         </el-col>
@@ -119,23 +119,23 @@
               <el-input v-model="ruleForm.summary"
                         type="textarea" :rows="5" ></el-input>
             </el-form-item>
-            <el-form-item label="上传附件">
-              <el-upload
-                class="upload-demo"
-                accept=".pdf"
-                :show-file-list="true"
-                multiple
-                action="#"
-                :http-request="imageUpload">
-                <el-button slot="trigger" size="small"  class="uploadImgBtn" >上传附件</el-button>
-                <span slot="tip">(只能上传pdf格式)</span>
-              </el-upload>
+<!--            <el-form-item label="上传附件">-->
+<!--              <el-upload-->
+<!--                class="upload-demo"-->
+<!--                accept=".pdf"-->
+<!--                :show-file-list="true"-->
+<!--                multiple-->
+<!--                action="#"-->
+<!--                :http-request="imageUpload">-->
+<!--                <el-button slot="trigger" size="small"  class="uploadImgBtn" >上传附件</el-button>-->
+<!--                <span slot="tip">(只能上传pdf格式)</span>-->
+<!--              </el-upload>-->
 
-            </el-form-item>
-            <el-form-item v-if="ruleForm.folderPath" label="下载附件">
-              <a target="_blank" :href="'http://222.201.80.72:2333/images/other/'+ ruleForm.folderPath"
-                 :download="ruleForm.title+'.pdf'" style="color: red"> {{ruleForm.folderPath}}  </a>
-            </el-form-item>
+<!--            </el-form-item>-->
+<!--            <el-form-item v-if="ruleForm.folderPath" label="下载附件">-->
+<!--              <a target="_blank" :href="'http://222.201.80.72:2333/images/other/'+ ruleForm.folderPath"-->
+<!--                 :download="ruleForm.title+'.pdf'" style="color: red"> {{ruleForm.folderPath}}  </a>-->
+<!--            </el-form-item>-->
         </el-col>
       </el-row>
     </el-form>
@@ -259,9 +259,9 @@
                     projectType: [
                         {required: true, message: '请输入项目类型', trigger: 'change'}
                     ],
-                    projectNumber: [
-                        {required: true, message: '请输入项目编号', trigger: ['blur', 'change']}
-                    ],
+                    // projectNumber: [
+                    //     {required: true, message: '请输入项目编号', trigger: ['blur', 'change']}
+                    // ],
                     startDate: [
                         {required: true, message: '请选择时间', trigger: 'blur'}
                     ],
@@ -485,7 +485,7 @@
                 }).then((res) => {
                     this.$message.success("添加成果信息成功")
                     this.$router.push({
-                        path: '/academic/project'
+                        path: '/research/project'
                     })
                 }).catch(e => {
 
@@ -519,7 +519,7 @@
                   }).then((res) => {
                     this.$message.success("添加成果信息成功")
                     this.$router.push({
-                      path: '/academic/project'
+                      path: '/research/project'
                     })
                   }).catch(e => {
 
