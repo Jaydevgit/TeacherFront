@@ -118,7 +118,6 @@ export const constantRouterMap = [
   },
   {path: '/404', component: _import('404'), hidden: true},
   {path: '/applySuccess', name: 'applySuccess', component: _import('unitApply/ApplySuccess'), hidden: true},
-  /*  {path: '/applySuccess', name: 'applySuccess', component: _import('unitApply/ApplySuccess'), hidden: true},*/
   {
     path: '/unitApply',
     name: 'unitApply',
@@ -132,6 +131,12 @@ export const constantRouterMap = [
     path: '/unitApply/:token',
     name: 'unitApply',
     component: _import('unitApply/UnitApply'),
+    hidden: true
+  },
+  {
+    path: '/unitApplySchool',
+    name: 'unitApplySchool',
+    component: _import('unitApply/UnitApplySchool'),
     hidden: true
   },
   {
