@@ -118,6 +118,7 @@ export const constantRouterMap = [
   },
   {path: '/404', component: _import('404'), hidden: true},
   {path: '/applySuccess', name: 'applySuccess', component: _import('unitApply/ApplySuccess'), hidden: true},
+  /*  {path: '/applySuccess', name: 'applySuccess', component: _import('unitApply/ApplySuccess'), hidden: true},*/
   {
     path: '/unitApply',
     name: 'unitApply',
@@ -131,12 +132,6 @@ export const constantRouterMap = [
     path: '/unitApply/:token',
     name: 'unitApply',
     component: _import('unitApply/UnitApply'),
-    hidden: true
-  },
-  {
-    path: '/unitApplySchool',
-    name: 'unitApplySchool',
-    component: _import('unitApply/UnitApplySchool'),
     hidden: true
   },
   {
@@ -329,6 +324,31 @@ export const asyncRouterMap = [
         hidden: true
       },
       {
+
+        path: 'patent',
+        name: '专利管理',
+        component: _import('research/patentList'),
+        meta: {title: '专利管理', icon: 'user'},
+        menu: 'user'
+
+      },
+      {
+        path: 'addPatent',
+        name: 'addPatent',
+        component: _import('research/addPatent'),
+        meta: {title: '添加专利', icon: 'example'},
+        menu: 'teacher',// 这里的menu和权限有关，如果权限menu没有返回对应的menu就不会显示，所以要写上menu
+        hidden: true
+      },
+      {
+        path: '/modifyPatent/:id',
+        name: 'modifyPatent',
+        component: _import('research/updatePatent'),
+        meta: {title: '修改专利', icon: 'example'},
+        menu: 'teacher', // 这里的menu和权限有关，如果权限menu没有返回对应的menu就不会显示，所以要写上menu
+        hidden: true
+      },
+      {
         path: 'researchManagement',
         name: '科研信息导出',
         component: _import('research/researchManagement'),
@@ -422,39 +442,6 @@ export const asyncRouterMap = [
         path: 'apply/black',
         name: 'applyBlack',
         component: _import('scholat/apply/black'),
-        meta: {title: '申请的黑名单', icon: 'example'},
-        menu: 'unit', // 这里的menu和权限有关，如果权限menu没有返回对应的menu就不会显示，所以要写上menu
-        hidden: false
-      }
-    ]
-  },
-  {
-    path: '/scholat',
-    component: Layout,
-    redirect: '/scholat/applySchool/wait', // 跳转到申请处理页面
-    name: 'scholatHomeSchool',
-    meta: {title: '学校申请管理', icon: 'tree'},
-    children: [
-      {
-        path: 'applySchool/wait',
-        name: 'applySchoolWait',
-        component: _import('scholat/ApplySchool/Wait'),
-        meta: {title: '待处理申请', icon: 'example'},
-        menu: 'unit', // 这里的menu和权限有关，如果权限menu没有返回对应的menu就不会显示，所以要写上menu
-        hidden: false
-      },
-      {
-        path: 'ApplySchool/processed',
-        name: 'applySchoolProcessed',
-        component: _import('scholat/ApplySchool/Processed'),
-        meta: {title: '待修改申请', icon: 'example'},
-        menu: 'unit', // 这里的menu和权限有关，如果权限menu没有返回对应的menu就不会显示，所以要写上menu
-        hidden: false
-      },
-      {
-        path: 'ApplySchool/black',
-        name: 'applySchoolBlack',
-        component: _import('scholat/ApplySchool/Black'),
         meta: {title: '申请的黑名单', icon: 'example'},
         menu: 'unit', // 这里的menu和权限有关，如果权限menu没有返回对应的menu就不会显示，所以要写上menu
         hidden: false
