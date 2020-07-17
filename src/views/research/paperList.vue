@@ -50,14 +50,6 @@
           </el-table-column>
 
           <el-table-column
-            prop="datetime"
-            sortable
-            label="日期"
-            width="90">
-            <template slot-scope="scope">{{ scope.row.datetime}}</template>
-          </el-table-column>
-
-          <el-table-column
             prop="type"
             label="论文类型"
             width="90">
@@ -72,6 +64,15 @@
             show-overflow-tooltip>
             <template slot-scope="scope">{{ scope.row.source }}</template>
           </el-table-column>
+
+          <el-table-column
+            prop="datetime"
+            sortable
+            label="日期"
+            width="90">
+            <template slot-scope="scope">{{ scope.row.datetime}}</template>
+          </el-table-column>
+
           <el-table-column fixed="right" align="center" label="管理" width="200" v-if="hasPerm('teacher:update')">
             <template slot-scope="scope">
 <!--              <el-button type="success" icon="el-icon-bell"  size="mini" round-->

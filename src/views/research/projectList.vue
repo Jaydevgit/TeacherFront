@@ -41,18 +41,18 @@
       <el-table-column
         prop="authors"
         label="项目类型"
-        width="300">
+        width="450">
         <template slot-scope="scope">{{ scope.row.projectType}}</template>
       </el-table-column>
 
-      <el-table-column
-        prop="projectNumber"
-        label="项目编号"
-        width="150">
-        <template slot-scope="scope">
-          {{ scope.row.projectNumber}}
-        </template>
-      </el-table-column>
+<!--      <el-table-column-->
+<!--        prop="projectNumber"-->
+<!--        label="项目编号"-->
+<!--        width="150">-->
+<!--        <template slot-scope="scope">-->
+<!--          {{ scope.row.projectNumber}}-->
+<!--        </template>-->
+<!--      </el-table-column>-->
 
       <el-table-column
         prop="date"
