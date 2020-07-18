@@ -205,17 +205,7 @@
             <el-row>
               <el-col :span="10"><div class="grid-content bg-purple">
                 <el-form-item label="职称" prop="post">
-                  <!--显示更新提示-->
-                  <!--              <el-tooltip placement="top" v-if="showUpdateInfo.postScholat">-->
-                  <!--                <div slot="content" style="font-size: 16px">-->
-                  <!--                  <span v-html="showUpdateInfo.post"></span>-->
-                  <!--                  &nbsp;➡️&nbsp;-->
-                  <!--                  <span v-html="showUpdateInfo.postScholat"></span>-->
-                  <!--                </div>-->
-                  <!--                <el-input v-model="ruleForm.post" class="change-input-background"-->
-                  <!--                          placeholder="例如：博士生导师、硕士生导师等"></el-input>-->
-                  <!--              </el-tooltip>-->
-                  <!--显示更新提示-->
+<!--                  显示更新提示-->
                   <el-tooltip placement="top" v-if="showUpdateInfo.postScholat">
                     <div slot="content" style="font-size: 16px">
                       <span v-html="showUpdateInfo.post"></span>
@@ -231,7 +221,16 @@
               </div></el-col>
               <el-col :span="10"><div class="grid-content bg-purple">
                 <el-form-item label="职务" prop="duty" >
-                  <el-input v-model="ruleForm.duty"
+                  <el-tooltip placement="top" v-if="showUpdateInfo.dutyScholat">
+                    <div slot="content" style="font-size: 16px">
+                      <span v-html="showUpdateInfo.duty"></span>
+                      &nbsp;➡️&nbsp;
+                      <span v-html="showUpdateInfo.dutyScholat"></span>
+                    </div>
+                    <el-input v-model="ruleForm.post" class="change-input-background"
+                              placeholder="例如：院长、书记、老师、辅导员等"></el-input>
+                  </el-tooltip>
+                  <el-input v-model="ruleForm.duty" v-if="!showUpdateInfo.dutyScholat"
                             placeholder="例如：院长、书记、老师、辅导员等"></el-input>
                 </el-form-item>
               </div></el-col>
@@ -250,7 +249,16 @@
                      <el-option label="本科" value="本科"></el-option>
                      <el-option label="专科" value="专科"></el-option>
                    </el-select>-->
-                  <el-input v-model="ruleForm.degree"
+                  <el-tooltip placement="top" v-if="showUpdateInfo.degreeScholat">
+                    <div slot="content" style="font-size: 16px">
+                      <span v-html="showUpdateInfo.degree"></span>
+                      &nbsp;➡️&nbsp;
+                      <span v-html="showUpdateInfo.degreeScholat"></span>
+                    </div>
+                    <el-input v-model="ruleForm.degree" class="change-input-background"
+                              placeholder=""></el-input>
+                  </el-tooltip>
+                  <el-input v-model="ruleForm.degree" v-if="!showUpdateInfo.degreeScholat"
                             placeholder=""></el-input>
                 </el-form-item>
               </div></el-col>
@@ -263,7 +271,17 @@
 <!--              </div></el-col>-->
               <el-col :span="10"><div class="grid-content bg-purple">
                 <el-form-item label="头衔" prop="label">
-                  <el-input v-model="ruleForm.label" placeholder="例如：国务院特殊津贴专家等头衔"></el-input>
+                  <el-tooltip placement="top" v-if="showUpdateInfo.labelScholat">
+                    <div slot="content" style="font-size: 16px">
+                      <span v-html="showUpdateInfo.label"></span>
+                      &nbsp;➡️&nbsp;
+                      <span v-html="showUpdateInfo.labelScholat"></span>
+                    </div>
+                    <el-input v-model="ruleForm.label" class="change-input-background"
+                              placeholder="例如：国务院特殊津贴专家等头衔"></el-input>
+                  </el-tooltip>
+                  <el-input v-model="ruleForm.label" v-if="!showUpdateInfo.labelScholat"
+                            placeholder="例如：国务院特殊津贴专家等头衔"></el-input>
                 </el-form-item>
               </div></el-col>
               <!--<el-col :span="8"><div class="grid-content bg-purple">
@@ -281,23 +299,61 @@
             <el-row>
               <el-col :span="10"><div class="grid-content bg-purple">
                 <el-form-item label="所在部门" prop="department_name">
-                  <el-input v-model="ruleForm.department_name" placeholder="例如：网络工程系"></el-input>
+                  <el-tooltip placement="top" v-if="showUpdateInfo.department_nameScholat">
+                    <div slot="content" style="font-size: 16px">
+                      <span v-html="showUpdateInfo.department_name"></span>
+                      &nbsp;➡️&nbsp;
+                      <span v-html="showUpdateInfo.department_nameScholat"></span>
+                    </div>
+                    <el-input v-model="ruleForm.department_name" class="change-input-background"
+                              placeholder="例如：网络工程系"></el-input>
+                  </el-tooltip>
+                  <el-input v-model="ruleForm.department_name" v-if="!showUpdateInfo.department_nameScholat"
+                            placeholder="例如：网络工程系"></el-input>
                 </el-form-item>
               </div></el-col>
               <el-col :span="10"><div class="grid-content bg-purple">
                 <el-form-item label="办公地点">
-                  <el-input v-model="ruleForm.work_place" placeholder=""></el-input>
+                  <el-tooltip placement="top" v-if="showUpdateInfo.work_placeScholat">
+                    <div slot="content" style="font-size: 16px">
+                      <span v-html="showUpdateInfo.work_place"></span>
+                      &nbsp;➡️&nbsp;
+                      <span v-html="showUpdateInfo.work_placeScholat"></span>
+                    </div>
+                    <el-input v-model="ruleForm.post" class="change-input-background"
+                              placeholder=""></el-input>
+                  </el-tooltip>
+                  <el-input v-model="ruleForm.work_place" v-if="!showUpdateInfo.work_placeScholat" placeholder=""></el-input>
                 </el-form-item>
               </div></el-col>
             </el-row>
             <el-row>
               <el-col :span="10"><div class="grid-content bg-purple">
                 <el-form-item label="邮箱" prop="email" >
-                  <el-input v-model.trim="ruleForm.email" placeholder="建议输入办公邮箱地址"></el-input>
+                  <el-tooltip placement="top" v-if="showUpdateInfo.emailScholat">
+                    <div slot="content" style="font-size: 16px">
+                      <span v-html="showUpdateInfo.email"></span>
+                      &nbsp;➡️&nbsp;
+                      <span v-html="showUpdateInfo.emailScholat"></span>
+                    </div>
+                    <el-input v-model="ruleForm.email" class="change-input-background"
+                              placeholder="建议输入办公邮箱地址"></el-input>
+                  </el-tooltip>
+                  <el-input v-model.trim="ruleForm.email" v-if="!showUpdateInfo.emailScholat"
+                            placeholder="建议输入办公邮箱地址"></el-input>
                 </el-form-item>
               </div></el-col>
               <el-col :span="10"><div class="grid-content bg-purple">
                 <el-form-item label="办公电话" prop="phone">
+                  <el-tooltip placement="top" v-if="showUpdateInfo.phoneScholat">
+                    <div slot="content" style="font-size: 16px">
+                      <span v-html="showUpdateInfo.phone"></span>
+                      &nbsp;➡️&nbsp;
+                      <span v-html="showUpdateInfo.phoneScholat"></span>
+                    </div>
+                    <el-input v-model="ruleForm.phone" class="change-input-background"
+                              placeholder="建议输入办公固定电话，可以用'-'分隔"></el-input>
+                  </el-tooltip>
                   <el-input v-model.trim="ruleForm.phone" placeholder="建议输入办公固定电话，可以用'-'分隔"></el-input>
                 </el-form-item>
               </div></el-col>
@@ -320,11 +376,6 @@
                       :value="item.value">
                     </el-option>
                   </el-select>
-                  <!--              <el-radio-group v-model="ruleForm.state">-->
-                  <!--                <el-radio label="1">在岗</el-radio>-->
-                  <!--                <el-radio label="0">调出</el-radio>-->
-                  <!--                <el-radio label="-1">退休</el-radio>-->
-                  <!--              </el-radio-group>-->
                 </el-form-item>
               </div></el-col>
               <el-col :span="8"><div class="grid-content bg-purple">
@@ -1005,7 +1056,16 @@
                     postScholat: '',
                     post: '',
                   research_directionScholat:'',
-                  research_direction:''
+                  research_direction:'',
+                  dutyScholat:'',
+                  duty:'',
+                  phoneScholat: '', // 办公电话
+                  phone: '', // 办公电话
+                  work_placeScholat: '', // 办公地点
+                  work_place: '', // 办公地点
+                  labelScholat: '', // 头衔
+                  label: '', // 头衔
+
                 },
                 showScholatDiv: false,
                 emailHasvalidated: false,
@@ -1050,9 +1110,9 @@
                     avatar: 'default.png', // 头像
                     state: '1', // 状态
                     degree: '', // 学历
-                    post: '', // 职位
+                    post: '', // 职称
                     //title: '', // 头衔
-                    label: '', // 标签
+                    label: '', // 头衔
                     email: '', // 邮箱
                     phone: '', // 办公电话
                     intro: '', // 简介
@@ -1456,12 +1516,12 @@
                     this.showUpdateInfo.avatar = "http://39.108.169.193:2333/public/images/avatar/" + this.showUpdateInfo.avatar;
                 }
                 // email
-                // this.showUpdateInfo.email = data.teacher.email;
-                // this.showUpdateInfo.emailScholat = data.scholat.email;
+                this.showUpdateInfo.email = data.teacher.email;
+                this.showUpdateInfo.emailScholat = data.scholat.email;
                 // update_time
                 this.showUpdateInfo.update_time = data.teacher.update_time;
                 this.showUpdateInfo.update_timeScholat = data.scholat.update_time;
-                // 学历
+                // 学历学位
                 this.showUpdateInfo.degree = data.teacher.degree;
                 this.showUpdateInfo.degreeScholat = data.scholat.degree;
                 //研究方向
@@ -1471,9 +1531,21 @@
               if (this.ruleForm.research_direction==null||this.ruleForm.research_direction===''){
                 this.ruleForm.research_direction=data.scholat_research_direction1;
               }
-              // 职位
-                // this.showUpdateInfo.post = data.teacher.post;
-                // this.showUpdateInfo.postScholat = data.scholat.post;
+              // 职称
+                this.showUpdateInfo.post = data.teacher.post;
+                this.showUpdateInfo.postScholat = data.scholat.post;
+                // 职务
+              this.showUpdateInfo.duty=data.teacher.duty;
+              this.showUpdateInfo.dutyScholat=data.scholat.duty;
+              //电话
+              this.showUpdateInfo.phone=data.teacher.phone;
+              this.showUpdateInfo.phoneScholat=data.scholat.phone;
+              //办公地点
+              this.showUpdateInfo.work_place=data.teacher.work_place;
+              this.showUpdateInfo.work_placeScholat=data.scholat.work_place;
+              //头衔
+              this.showUpdateInfo.label=data.teacher.label;
+              this.showUpdateInfo.labelScholat=data.scholat.label;
             },
             // 根据传入的数据比较不同
             showDifferent(scholat) {
@@ -1489,7 +1561,7 @@
                   }
               }).then(data => {
                   console.log('----------对比更新后的数据---------');
-                  console.log(data);
+                  console.log("getScholatUpdateInfo的data="+data);
                   // 设置获取到的更新信息
                   this.getScholatUpdateInfo(data);
                   // 设置编辑区域宽度显示
