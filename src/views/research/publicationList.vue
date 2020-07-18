@@ -73,7 +73,7 @@
           <!--                         @click="aiPaper(scope.row.id)"></el-button>-->
           <el-button type="primary" icon="el-icon-edit" size="mini" round @click="showUpdate(scope.row.id)"></el-button>
           <el-button type="danger" icon="el-icon-delete" size="mini" round v-if="hasPerm('teacher:delete')"
-                     @click="removePaper(scope.row.id)"></el-button>
+                     @click="removePubilcation(scope.row.id)"></el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -154,22 +154,22 @@
         this.listQuery.pageRow = 10
         this.changePageNum();
       },
-      removePaper(paperId) {
+      removePubilcation(pubilcationId) {
         var _vue = this;
-        this.$confirm('确定删除该论文?', '提示', {
+        this.$confirm('确定删除该著作?', '提示', {
           confirmButtonText: '确定',
           showCancelButton: false,
           type: 'warning'
         }).then(() => {
           _vue.api({
-            url: "/academic/deletePaper",
+            url: "/academic/deletePubilcation",
             method: "post",
             data: {
-              "id": paperId
+              "id": pubilcationId
             }
           }).then((data) => {
             this.$message.success("删除成果成功")
-            this.paperList();
+            this.publicationList();
           }).catch(e => {
             this.$message.error("QAQ.....")
           })
