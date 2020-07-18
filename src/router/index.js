@@ -349,6 +349,15 @@ export const asyncRouterMap = [
         hidden: true
       },
       {
+
+        path: 'publication',
+        name: '著作管理',
+        component: _import('research/publicationList'),
+        meta: {title: '著作管理', icon: 'user'},
+        menu: 'user'
+
+      },
+      {
         path: 'researchManagement',
         name: '科研信息导出',
         component: _import('research/researchManagement'),
