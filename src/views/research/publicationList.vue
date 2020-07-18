@@ -35,7 +35,8 @@
         label="著作名称"
         prop="title">
         <template slot-scope="scope" >
-          <div @click="routeTo(scope.row.id)" style="cursor: pointer">
+          <div >
+<!--            @click="routeTo(scope.row.id)" style="cursor: pointer"-->
             {{ scope.row.title }}
           </div>
         </template>
@@ -50,7 +51,7 @@
       <el-table-column
         prop="type"
         label="出版社"
-        show-overflow-tooltip>
+        width="200">
         <template slot-scope="scope">{{ scope.row.press }}</template>
       </el-table-column>
       <el-table-column

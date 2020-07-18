@@ -37,7 +37,8 @@
             label="论文题目"
             prop="title">
             <template slot-scope="scope" >
-              <div @click="routeTo(scope.row.id)" style="cursor: pointer">
+              <div >
+<!--                @click="routeTo(scope.row.id)" style="cursor: pointer"-->
               {{ scope.row.title }}
               </div>
             </template>
