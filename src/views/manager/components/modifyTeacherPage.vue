@@ -777,6 +777,7 @@
             cropAvatarImage,
             'v-role-assignment-bar': roleAssignmentBar
         },
+        inject:['reload'],
         created() {
             console.log("@@@@@@@@@@@@@@@@@@@@@@@"+this.ruleForm.avatar+"========");
             console.log(this.hasPerm('teacher:list'));
@@ -1685,6 +1686,7 @@
                         scholat_username:'',
                     }).then(res => {
                         this.$message.success("取消绑定成功")
+                        this.reload();
                     }).catch(err => {
                         this.$message.error("取消绑定失败")
                     });
