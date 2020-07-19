@@ -349,6 +349,22 @@ export const asyncRouterMap = [
         hidden: true
       },
       {
+
+        path: 'publication',
+        name: '著作管理',
+        component: _import('research/publicationList'),
+        meta: {title: '著作管理', icon: 'user'},
+        menu: 'user'
+      },
+      {
+        path: '/modifyPublication/:id',
+        name: 'modifyPublication',
+        component: _import('research/updatePublication'),
+        meta: {title: '修改著作', icon: 'example'},
+        menu: 'teacher', // 这里的menu和权限有关，如果权限menu没有返回对应的menu就不会显示，所以要写上menu
+        hidden: true
+      },
+      {
         path: 'researchManagement',
         name: '科研信息导出',
         component: _import('research/researchManagement'),
