@@ -132,12 +132,12 @@
           path: '/research/addPaper'
         })
       },
-      showUpdate(paperId) {
+      showUpdate(publicationId) {
 
         this.$router.push({
-          name: 'modifyPaper',
+          name: 'modifyPublication',
           params: {
-            id: paperId,
+            id: publicationId,
           }
         })
       },
