@@ -129,6 +129,12 @@ export const constantRouterMap = [
     }
   },
   {
+    path: '/unitApplySchool',
+    name: 'unitApplySchool',
+    component: _import('unitApply/UnitApplySchool'),
+    hidden: true
+  },
+  {
     path: '/unitApply/:token',
     name: 'unitApply',
     component: _import('unitApply/UnitApply'),
@@ -458,6 +464,39 @@ export const asyncRouterMap = [
         path: 'apply/black',
         name: 'applyBlack',
         component: _import('scholat/apply/black'),
+        meta: {title: '申请的黑名单', icon: 'example'},
+        menu: 'unit', // 这里的menu和权限有关，如果权限menu没有返回对应的menu就不会显示，所以要写上menu
+        hidden: false
+      }
+    ]
+  },
+  {
+    path: '/scholat',
+    component: Layout,
+    redirect: '/scholat/applySchool/wait', // 跳转到申请处理页面
+    name: 'scholatHomeSchool',
+    meta: {title: '学校申请管理', icon: 'tree'},
+    children: [
+      {
+        path: 'applySchool/wait',
+        name: 'applySchoolWait',
+        component: _import('scholat/ApplySchool/Wait'),
+        meta: {title: '待处理申请', icon: 'example'},
+        menu: 'unit', // 这里的menu和权限有关，如果权限menu没有返回对应的menu就不会显示，所以要写上menu
+        hidden: false
+      },
+      {
+        path: 'ApplySchool/processed',
+        name: 'applySchoolProcessed',
+        component: _import('scholat/ApplySchool/Processed'),
+        meta: {title: '待修改申请', icon: 'example'},
+        menu: 'unit', // 这里的menu和权限有关，如果权限menu没有返回对应的menu就不会显示，所以要写上menu
+        hidden: false
+      },
+      {
+        path: 'ApplySchool/black',
+        name: 'applySchoolBlack',
+        component: _import('scholat/ApplySchool/Black'),
         meta: {title: '申请的黑名单', icon: 'example'},
         menu: 'unit', // 这里的menu和权限有关，如果权限menu没有返回对应的menu就不会显示，所以要写上menu
         hidden: false
