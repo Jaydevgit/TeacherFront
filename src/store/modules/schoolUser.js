@@ -1,10 +1,10 @@
-import {getInfo, login, logout} from '@/api/login'
-import {getToken, removeToken, setToken} from '@/utils/auth'
+import {getSchoolToken, removeSchoolToken, setSchoolToken} from '@/utils/auth'
 import {default as api} from '../../utils/api'
 import store from '../../store'
 import router from '../../router'
 
-const user = {
+
+const schoolUser = {
   state: {
     username:'',
     nickname: "",
@@ -12,49 +12,47 @@ const user = {
     avatar: 'https://raw.githubusercontent.com/sansenlian/PicPlace/master/img/20190610104613.png',
     role: '',
     menus: [],
-    unitname:'',
-    unitId: '',
+    schoolName:'',
+    schoolId: '',
     permissions: [],
-    domainName:'',
     schoolDomain:'',
-    tagState:''
   },
   mutations: {
-    SET_USER: (state, userInfo) => {
+    SET_SCHOOL_USER: (state, userInfo) => {
       state.username = userInfo.username;
       state.nickname = userInfo.nickname;
       state.userId = userInfo.userId;
       state.role = userInfo.roleName;
       state.menus = userInfo.menuList;
-      state.unitName = userInfo.unitName;
+      state.schoolName = userInfo.schoolName;
       state.permissions = userInfo.permissionList;
       state.unitId = userInfo.unitId;
       state.domainName = userInfo.domainName;
       state.schoolDomain = userInfo.schoolDomain;
-      state.tagState = userInfo.tagState;
     },
-    RESET_USER: (state) => {
+    RESET_SCHOOL_USER: (state) => {
       state.username = "";
       state.nickname = "";
       state.userId = "";
       state.role = '';
       state.menus = [];
-      state.unitname = '';
+      state.schoolName = '';
       state.permissions = [];
     }
   },
   actions: {
-    // 学院登录
-    Login({commit, state}, loginForm) {
+    // 学校登录
+    schoolLogin({commit, state}, loginForm) {
       return new Promise((resolve, reject) => {
         api({
-          url: "login/auth",
+          url: "login/schoolAuth",
           method: "post",
           data: loginForm
         }).then(data => {
+          console.log("账号密码验证正确, 下一步保存token,登录后台传过来的是："+data.result)
           if (data.result === "success") {
             //cookie中保存前端登录状态
-            setToken();
+            setSchoolToken();
           }
           resolve(data);
         }).catch(err => {
@@ -64,18 +62,18 @@ const user = {
     },
 
     // 获取学院用户信息
-    GetInfo({commit, state}) {
+    GetSchoolInfo({commit, state}) {
       return new Promise((resolve, reject) => {
         api({
-          url: '/login/getInfo',
+          url: '/login/getSchoolInfo',
           method: 'post'
         }).then(data => {
           // 返回的是一个json
           console.log("----------获取权限信息:"+data.userPermission.permissionList);
           //储存用户信息
-          commit('SET_USER', data.userPermission);
+          commit('SET_SCHOOL_USER', data.userPermission);
           //cookie保存登录状态,仅靠vuex保存的话,页面刷新就会丢失登录状态
-          setToken();
+          setSchoolToken();
           //生成路由
           let userPermission = data.userPermission ;
           store.dispatch('GenerateRoutes', userPermission).then(() => {
@@ -94,30 +92,31 @@ const user = {
         })
       })
     },
-    // 学院登出
-    LogOut({commit}) {
+
+    // 学校登出
+    schoolLogOut({commit}) {
       return new Promise((resolve) => {
         api({
-          url: "login/logout",
+          url: "login/schoolLogout",
           method: "post"
         }).then(data => {
-          commit('RESET_USER')
-          removeToken()
+          commit('RESET_SCHOOL_USER')
+          removeSchoolToken()
           resolve(data);
         }).catch(() => {
-          commit('RESET_USER')
-          removeToken()
+          commit('RESET_SCHOOL_USER')
+          removeSchoolToken()
         })
       })
     },
     // 前端 登出
-    FedLogOut({commit}) {
+    schoolFedLogOut({commit}) {
       return new Promise(resolve => {
-        commit('RESET_USER')
-        removeToken()
+        commit('RESET_SCHOOL_USER')
+        removeSchoolToken()
         resolve()
       })
     }
   }
 }
-export default user
+export default schoolUser
