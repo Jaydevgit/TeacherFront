@@ -1,11 +1,14 @@
 <template>
   <div class="app-container">
     <div style="float: left">
-      <el-button type="primary" @click="addAllScholatPaper">一键添加所有论文</el-button>
+      <el-button v-if="this.activeName==='first'" type="primary" @click="addAllScholatPaper">添加所有论文</el-button>
+      <el-button v-if="this.activeName==='second'" type="primary" @click="addAllScholatProject">添加所有项目</el-button>
+      <el-button v-if="this.activeName==='third'" type="primary" @click="addAllScholatPatent">添加所有专利</el-button>
+      <el-button v-if="this.activeName==='fourth'" type="primary" @click="addAllScholatPublication">添加所有著作</el-button>
     </div>
     <div style="float: right;">
       <i type="success" class="el-icon-success" style="font-size: 40px; color: #67C23A;transform: translateY(10px)"
-        ></i><span style="color: #909399;">&nbsp已存在&nbsp&nbsp&nbsp</span>
+        ></i><span style="color: #909399;">&nbsp已添加&nbsp&nbsp&nbsp</span>
       <el-button size="small" type="primary" icon="el-icon-plus" circle></el-button>  <span style="color: #909399;">&nbsp可添加&nbsp&nbsp&nbsp</span>
       <!--  <el-button size="small" type="warning" icon="el-icon-star-off" circle></el-button>
        <span style="color: #909399;">&nbsp存在相似成果&nbsp&nbsp&nbsp</span>-->
@@ -15,9 +18,6 @@
         <el-table
           ref="multipleTable"
           :data="list"
-          v-loading.body="listLoading" element-loading-text="拼命加载中" border fit
-          highlight-current-row
-          tooltip-effect="dark"
           style="width: 100%"
           :default-sort = "{prop: 'date', order: 'descending'}">
 
@@ -86,16 +86,15 @@
 
 
       </el-tab-pane>
+<!--      v-loading.body="listLoading" element-loading-text="拼命加载中" border fit-->
+<!--      highlight-current-row-->
+<!--      tooltip-effect="dark"-->
       <el-tab-pane label="项目信息" name="second">
         <el-table
           ref="multipleTable"
           :data="list2"
-          v-loading.body="listLoading" element-loading-text="拼命加载中" border fit
-          highlight-current-row
-          tooltip-effect="dark"
           style="width: 100%"
-          :default-sort = "{prop: 'date', order: 'descending'}">
-
+          :default-sort = "{prop: 'startDate', order: 'descending'}">
 <!--          <el-table-column-->
 <!--            type="selection"-->
 <!--            width="50">-->
@@ -123,7 +122,7 @@
           </el-table-column>
 
           <el-table-column
-            prop="date"
+            prop="startDate"
             sortable
             label="开始时间"
             width="130">
@@ -145,28 +144,25 @@
               {{ scope.row.funding}}
             </template>
           </el-table-column>
-<!--          <el-table-column fixed="right" align="center" label="操作" width="120" v-if="hasPerm('teacher:update')">-->
-<!--            <template slot-scope="scope" >-->
-<!--              <i type="success" class="el-icon-success" style="font-size: 40px; color: #67C23A"-->
-<!--                 v-if="scope.row.exist === 1" ></i>-->
-<!--              <el-button size="small" type="primary" icon="el-icon-plus" circle-->
-<!--                         v-else="scope.row.exist == 0" @click="addScholatProject(scope.row)"></el-button>-->
-<!--&lt;!&ndash;              <el-button size="small" type="warning" icon="el-icon-star-off" circle&ndash;&gt;-->
-<!--&lt;!&ndash;                         v-else @click="modifyProject(scope.row.similarId)"></el-button>&ndash;&gt;-->
-<!--            </template>-->
-<!--          </el-table-column>-->
+          <el-table-column fixed="right" align="center" label="操作" width="120" v-if="hasPerm('teacher:update')">
+            <template slot-scope="scope" >
+              <i type="success" class="el-icon-success" style="font-size: 40px; color: #67C23A"
+                 v-if="scope.row.exist === 1" ></i>
+              <el-button size="small" type="primary" icon="el-icon-plus" circle
+                         v-else="scope.row.exist == 0" @click="addScholatProject(scope.row)"></el-button>
+<!--              <el-button size="small" type="warning" icon="el-icon-star-off" circle-->
+<!--                         v-else @click="modifyProject(scope.row.similarId)"></el-button>-->
+            </template>
+          </el-table-column>
         </el-table>
       </el-tab-pane>
-      <el-tab-pane label="知识产权信息" name="third">
+      <el-tab-pane label="专利信息" name="third">
         <el-table
           ref="multipleTable"
           :data="list3"
-          v-loading.body="listLoading" element-loading-text="拼命加载中" border fit
-          highlight-current-row
-          tooltip-effect="dark"
+
           style="width: 100%"
           :default-sort = "{prop: 'date', order: 'descending'}">
-
 <!--          <el-table-column-->
 <!--            type="selection"-->
 <!--            width="50">-->
@@ -180,25 +176,25 @@
           <el-table-column
             prop="authors"
             label="作者"
-            width="300">
+            width="450">
             <template slot-scope="scope">{{ scope.row.authors}}</template>
           </el-table-column>
 
           <el-table-column
             prop="authors"
             label="专利类型"
-            width="200">
+            width="350">
             <template slot-scope="scope">{{ scope.row.typeAndId}}</template>
           </el-table-column>
 
-          <el-table-column
-            prop="projectNumber"
-            label="专利编号"
-            width="180">
-            <template slot-scope="scope">
-              {{ scope.row.patentNumber}}
-            </template>
-          </el-table-column>
+<!--          <el-table-column-->
+<!--            prop="projectNumber"-->
+<!--            label="专利编号"-->
+<!--            width="180">-->
+<!--            <template slot-scope="scope">-->
+<!--              {{ scope.row.patentNumber}}-->
+<!--            </template>-->
+<!--          </el-table-column>-->
 
           <el-table-column
             prop="date"
@@ -207,16 +203,76 @@
             width="130">
             <template slot-scope="scope">{{ scope.row.date}}</template>
           </el-table-column>
-<!--          <el-table-column fixed="right" align="center" label="操作" width="120" v-if="hasPerm('teacher:update')">-->
-<!--            <template slot-scope="scope" >-->
-<!--              <i size="small" type="success" icon="el-icon-check" circle-->
-<!--                         v-if="scope.row.exist === 1" ></i>-->
-<!--              <el-button size="small" type="primary" icon="el-icon-plus" circle-->
-<!--                         v-else="scope.row.exist === 0" @click="addScholatPatent(scope.row)"></el-button>-->
-<!--&lt;!&ndash;              <el-button size="small" type="warning" icon="el-icon-star-off" circle&ndash;&gt;-->
-<!--&lt;!&ndash;                         v-else @click="modifyPatent(scope.row.similarId)"></el-button>&ndash;&gt;-->
+          <el-table-column fixed="right" align="center" label="操作" width="120" v-if="hasPerm('teacher:update')">
+            <template slot-scope="scope" >
+              <i type="success" class="el-icon-success" style="font-size: 40px; color: #67C23A"
+                 v-if="scope.row.exist === 1" ></i>
+              <el-button size="small" type="primary" icon="el-icon-plus" circle
+                         v-else="scope.row.exist === 0" @click="addScholatPatent(scope.row)"></el-button>
+<!--              <el-button size="small" type="warning" icon="el-icon-star-off" circle-->
+<!--                         v-else @click="modifyPatent(scope.row.similarId)"></el-button>-->
+            </template>
+          </el-table-column>
+        </el-table>
+
+      </el-tab-pane>
+      <el-tab-pane label="著作信息" name="fourth">
+        <el-table
+          ref="multipleTable"
+          :data="list4"
+
+          style="width: 100%"
+          :default-sort = "{prop: 'date', order: 'descending'}">
+          <!--          <el-table-column-->
+          <!--            type="selection"-->
+          <!--            width="50">-->
+          <!--          </el-table-column>-->
+          <el-table-column
+            label="著作名称"
+            prop="title"
+          >
+            <template slot-scope="scope">{{ scope.row.content }}</template>
+          </el-table-column>
+          <el-table-column
+            prop="authors"
+            label="作者"
+            width="450">
+            <template slot-scope="scope">{{ scope.row.authors}}</template>
+          </el-table-column>
+
+          <el-table-column
+            prop="press"
+            label="出版社"
+            width="350">
+            <template slot-scope="scope">{{ scope.row.press}}</template>
+          </el-table-column>
+
+<!--          <el-table-column-->
+<!--            prop="citation"-->
+<!--            label="著作简介"-->
+<!--            width="180">-->
+<!--            <template slot-scope="scope">-->
+<!--              {{ scope.row.citation}}-->
 <!--            </template>-->
 <!--          </el-table-column>-->
+
+          <el-table-column
+            prop="date"
+            sortable
+            label="出版时间"
+            width="130">
+            <template slot-scope="scope">{{ scope.row.date}}</template>
+          </el-table-column>
+          <el-table-column fixed="right" align="center" label="操作" width="120" v-if="hasPerm('teacher:update')">
+            <template slot-scope="scope" >
+              <i type="success" class="el-icon-success" style="font-size: 40px; color: #67C23A"
+                 v-if="scope.row.exist === 1" ></i>
+              <el-button size="small" type="primary" icon="el-icon-plus" circle
+                         v-else="scope.row.exist === 0" @click="addScholatPublication(scope.row)"></el-button>
+              <!--              <el-button size="small" type="warning" icon="el-icon-star-off" circle-->
+              <!--                         v-else @click="modifyPatent(scope.row.similarId)"></el-button>-->
+            </template>
+          </el-table-column>
         </el-table>
 
       </el-tab-pane>
@@ -236,6 +292,7 @@
         list: [],//表格的数据
         list2:[],
         list3:[],
+        list4:[],
         listLoading: true,//数据加载等待动画
         pids : [],
         paperForm: {
@@ -294,15 +351,19 @@
     watch:{
       activeName(){
         console.log('------test--------'+this.activeName)
-        if(this.activeName=='first'){
+        if(this.activeName==='first'){
           this.scholatPaper();
 
         }
-        else if(this.activeName=='second'){
+         if(this.activeName==='second'){
           this.scholatProject();
 
-        }else{
+        }
+         if(this.activeName==='third'){
           this.scholatPatent()
+        }
+        if(this.activeName==='fourth'){
+          this.scholatPublication()
         }
       }
     },
@@ -366,6 +427,7 @@
         }).then(data => {
           console.log("查询成果成功")
           this.list2 = data;
+        //  console.log("this.list2==="+JSON.stringify(this.list2));
           this.listLoading = false;
         }).catch(error => {
           console.log("QAQ........没有找到成果列表")
@@ -388,10 +450,27 @@
           console.log("QAQ........没有找到成果列表")
         })
       },
+      scholatPublication() {
+        this.listLoading = true
+        let unitId = this.$store.state.user.unitId;
+        this.api({
+          url: "/academic/getPublicationFromScholat",
+          method: "post",
+          data: {"scholat_username" : this.$route.params.scholat_username,
+            "unitId" :unitId}
+        }).then(data => {
+          console.log("查询成果成功")
+          console.log(data)
+          this.list4 = data;
+          this.listLoading = false;
+        }).catch(error => {
+          console.log("QAQ........没有找到成果列表")
+        })
+      },
       addScholatPaper(scholat){
        this.tranPaperForm(scholat)
         var _vue = this;
-        this.$confirm('确定添加该论文到机构?', '提示', {
+        this.$confirm('确定添加该论文?', '提示', {
           confirmButtonText: '确定',
           showCancelButton: false,
           type: 'warning'
@@ -414,7 +493,7 @@
         let list = this.list;
         let unitId = this.$store.state.user.unitId;
         let scholat_username=this.$route.params.scholat_username;
-        this.$confirm('确定添加所有论文到机构?', '提示', {
+        this.$confirm('确定添加所有论文?', '提示', {
           confirmButtonText: '确定',
           showCancelButton: false,
           type: 'warning'
@@ -431,6 +510,84 @@
           }).then((res) => {
             this.$message.success("添加论文信息成功")
             this.scholatPaper()
+          }).catch(e => {
+
+          })
+        })
+      },
+      addAllScholatProject(){
+        let list2 = this.list2;
+        let unitId = this.$store.state.user.unitId;
+        let scholat_username=this.$route.params.scholat_username;
+        this.$confirm('确定添加所有项目?', '提示', {
+          confirmButtonText: '确定',
+          showCancelButton: false,
+          type: 'warning'
+        }).then(() => {
+          this.paperForm.unitId = this.$store.state.user.unitId;
+          this.api({
+            url: "/academic/addAllProject",
+            method: "post",
+            data: {
+              "data":list2,
+              "scholat_username" : scholat_username,
+              "unitId" :unitId
+            }
+          }).then((res) => {
+            this.$message.success("添加项目信息成功")
+            this.scholatProject()
+          }).catch(e => {
+
+          })
+        })
+      },
+      addAllScholatPatent(){
+        let list3 = this.list3;
+        let unitId = this.$store.state.user.unitId;
+        let scholat_username=this.$route.params.scholat_username;
+        this.$confirm('确定添加所有项目?', '提示', {
+          confirmButtonText: '确定',
+          showCancelButton: false,
+          type: 'warning'
+        }).then(() => {
+          this.paperForm.unitId = this.$store.state.user.unitId;
+          this.api({
+            url: "/academic/addAllPatent",
+            method: "post",
+            data: {
+              "data":list3,
+              "scholat_username" : scholat_username,
+              "unitId" :unitId
+            }
+          }).then((res) => {
+            this.$message.success("添加专利信息成功")
+            this.scholatPatent()
+          }).catch(e => {
+
+          })
+        })
+      },
+      addAllScholatPublication(){
+        let list4 = this.list4;
+        let unitId = this.$store.state.user.unitId;
+        let scholat_username=this.$route.params.scholat_username;
+        this.$confirm('确定添加所有项目?', '提示', {
+          confirmButtonText: '确定',
+          showCancelButton: false,
+          type: 'warning'
+        }).then(() => {
+          this.paperForm.unitId = this.$store.state.user.unitId;
+          this.api({
+            url: "/academic/addAllPublication",
+            method: "post",
+            data: {
+              "data":list4,
+              "scholat_username" : scholat_username,
+              "unitId" :unitId
+            }
+          }).then((res) => {
+            this.$message.success("添加专利信息成功")
+            this.scholatPublication()
           }).catch(e => {
 
           })
@@ -455,7 +612,7 @@
       addScholatProject(scholat){
         this.tranProjectForm(scholat)
         var _vue = this;
-        this.$confirm('确定添加该项目到机构?', '提示', {
+        this.$confirm('确定添加该项目?', '提示', {
           confirmButtonText: '确定',
           showCancelButton: false,
           type: 'warning'
@@ -468,9 +625,10 @@
           }).then((res) => {
             scholat.exist == 1
             this.$message.success("添加项目信息成功")
-            this.$router.push({
-              path: '/personAcademic/' + this.$route.params.scholat_username
-            })
+            this.scholatProject()
+            // this.$router.push({
+            //   path: '/personAcademic/' + this.$route.params.scholat_username
+            // })
           }).catch(e => {
 
           })
@@ -492,7 +650,7 @@
       addScholatPatent(scholat){
         this.tranPatentForm(scholat)
         var _vue = this;
-        this.$confirm('确定添加该专利到机构?', '提示', {
+        this.$confirm('确定添加该专利?', '提示', {
           confirmButtonText: '确定',
           showCancelButton: false,
           type: 'warning'
@@ -503,10 +661,35 @@
             method: "post",
             data: this.patentForm
           }).then((res) => {
+            this.scholatPatent()
             this.$message.success("添加专利信息成功")
-            this.$router.push({
-              path: '/personAcademic/' + this.$route.params.scholat_username
-            })
+            // this.$router.push({
+            //   path: '/personAcademic/' + this.$route.params.scholat_username
+            // })
+          }).catch(e => {
+
+          })
+        })
+      },
+      addScholatPublication(scholat){
+        this.tranPublicationForm(scholat)
+        var _vue = this;
+        this.$confirm('确定添加该著作?', '提示', {
+          confirmButtonText: '确定',
+          showCancelButton: false,
+          type: 'warning'
+        }).then(() => {
+          this.patentForm.unitId = this.$store.state.user.unitId;
+          this.api({
+            url: "/academic/addPublication",
+            method: "post",
+            data: this.patentForm
+          }).then((res) => {
+            this.scholatPublication()
+            this.$message.success("添加著作信息成功")
+            // this.$router.push({
+            //   path: '/personAcademic/' + this.$route.params.scholat_username
+            // })
           }).catch(e => {
 
           })
@@ -521,6 +704,17 @@
         this.patentForm.patentNumber = scholat.patentNumber
         this.patentForm.unitId = this.$store.state.user.unitId;
         this.patentForm.scholat_patent_id =scholat.id
+        this.patentForm.scholat_username = this.$route.params.scholat_username
+      },
+      tranPublicationForm(scholat){
+        console.log(scholat)
+        this.patentForm.title = scholat.content
+        this.patentForm.authors = scholat.authors
+        this.patentForm.datetime = scholat.date
+        this.patentForm.citation = scholat.citation
+        this.patentForm.press = scholat.press
+        this.patentForm.unitId = this.$store.state.user.unitId;
+        this.patentForm.scholat_publication_id =scholat.id
         this.patentForm.scholat_username = this.$route.params.scholat_username
       },
     }

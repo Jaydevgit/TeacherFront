@@ -51,7 +51,7 @@
             <!--            </el-form-item>-->
 
             <el-form-item prop="unit_name" label="学院名称：">
-              <el-input class="apply-input" v-model="applyForm.unit_name" auto-complete="off" placeholder="请输入学院名称，一般为学院英文名称缩写"/>
+              <el-input class="apply-input" v-model="applyForm.unit_name" auto-complete="off" placeholder="请输入学院中文名称"/>
             </el-form-item>
             <div class="form-domain-name">
               <el-form-item prop="domain_name" label="学院域名设置：">
@@ -60,6 +60,11 @@
                           onkeyup="this.value=this.value.replace(/^ +| +$/g,'')"/>
                 <!--              <div style="position: absolute;top:30px;color: red;font-size:12px;">学院英文简写，用作域名，申请成功后不可修改</div>-->
               </el-form-item>
+              <el-alert style="width:715px"
+                title="例如:计算机学院(computer science)，域名简写为：cs"
+                type="info"
+                description="最终学院链接为：http://faculty.scholat.com/homepage/scnu/cs">
+              </el-alert>
             </div>
 
             <!--            <el-form-item prop="unit_eng" label="学院英文名称：">-->
