@@ -384,7 +384,7 @@
               method: "get",
               params: this.listQuery
             }).then(data => {
-              console.log("查询所有教师信息为:" + data.totalUpdate)
+              console.log("查询所有教师信息为:" + JSON.stringify(data));
               console.log("=================getListAllByPage===============")
               console.log(data.list)
               console.log("this.listQuery="+JSON.stringify(this.listQuery)+",totalCount="+this.totalCount)

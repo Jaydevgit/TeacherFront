@@ -64,8 +64,9 @@ router.beforeEach((to, from, next) => {
         NProgress.done() // 结束Progress
       } else if (!store.getters.schoolRole) {
         console.log("已经登录过了,到了验证权限阶段")
+        // next(...to)
         // 刚刚验证完密码后获取权限管理
-        store.dispatch('GetSchoolInfo').then(() => {
+        store.dispatch('getSchoolInfo').then(() => {
           next({...to})
         }).catch(e=>{
           console.log("虽然验证完了密码，但是后台没有找到用户信息，返回主页")

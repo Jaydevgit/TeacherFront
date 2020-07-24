@@ -94,12 +94,12 @@ const scholat = {
         }).then(data => {
           commit('RESET_SCHOLAT_USER')
           removeScholatToken()
-          console.log("登出成功，移除了TscholatoTken")
+          console.log("登出成功，移除了scholatToken")
           resolve(data);
         }).catch(() => {
           commit('RESET_SCHOLAT_USER')
           removeScholatToken()
-          console.log("登出虽然失败，但是移除了scholatoken")
+          console.log("登出虽然失败，但是移除了scholaToken")
         })
       })
     },

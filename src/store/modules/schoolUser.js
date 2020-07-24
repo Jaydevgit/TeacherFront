@@ -1,3 +1,4 @@
+// import {getSchoolInfo, schoolLogin, schoolLogout} from '@/api/login'
 import {getSchoolToken, removeSchoolToken, setSchoolToken} from '@/utils/auth'
 import {default as api} from '../../utils/api'
 import store from '../../store'
@@ -62,7 +63,7 @@ const schoolUser = {
     },
 
     // 获取学院用户信息
-    GetSchoolInfo({commit, state}) {
+    getSchoolInfo({commit, state}) {
       return new Promise((resolve, reject) => {
         api({
           url: '/login/getSchoolInfo',
