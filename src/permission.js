@@ -70,7 +70,7 @@ router.beforeEach((to, from, next) => {
           next({...to})
         }).catch(e=>{
           console.log("虽然验证完了密码，但是后台没有找到用户信息，返回主页")
-          store.dispatch('schoolLogOut').then(()=>{
+          store.dispatch('schoolLogout').then(()=>{
             next({path: '/'})
           })
         })

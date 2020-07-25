@@ -23,13 +23,13 @@ const schoolUser = {
       state.username = userInfo.username;
       state.nickname = userInfo.nickname;
       state.userId = userInfo.userId;
+      state.schoolId=userInfo.schoolId;
       state.role = userInfo.roleName;
       state.menus = userInfo.menuList;
       state.schoolName = userInfo.schoolName;
       state.permissions = userInfo.permissionList;
-      state.unitId = userInfo.unitId;
-      state.domainName = userInfo.domainName;
       state.schoolDomain = userInfo.schoolDomain;
+      state.avatar=userInfo.avatar;
     },
     RESET_SCHOOL_USER: (state) => {
       state.username = "";
@@ -70,6 +70,7 @@ const schoolUser = {
           method: 'post'
         }).then(data => {
           // 返回的是一个json
+          console.log("----------获取data信息:"+JSON.stringify(data));
           console.log("----------获取权限信息:"+data.userPermission.permissionList);
           //储存用户信息
           commit('SET_SCHOOL_USER', data.userPermission);
@@ -95,7 +96,7 @@ const schoolUser = {
     },
 
     // 学校登出
-    schoolLogOut({commit}) {
+    schoolLogout({commit}) {
       return new Promise((resolve) => {
         api({
           url: "login/schoolLogout",
@@ -111,7 +112,7 @@ const schoolUser = {
       })
     },
     // 前端 登出
-    schoolFedLogOut({commit}) {
+    schoolFedLogout({commit}) {
       return new Promise(resolve => {
         commit('RESET_SCHOOL_USER')
         removeSchoolToken()

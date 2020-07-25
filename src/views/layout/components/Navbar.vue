@@ -1,7 +1,15 @@
 <template>
   <el-menu class="navbar" mode="horizontal">
     <hamburger class="hamburger-container" :toggleClick="toggleSideBar" :isActive="sidebar.opened"></hamburger>
-    <breadcrumb :unit="this.unit" v-if="this.unit.schoolName!=''"></breadcrumb>
+
+    <template v-if="this.$route.path.indexOf('school')!=-1">
+      <breadcrumb :unit="this.school" v-if="this.school.schoolName!=''"></breadcrumb>
+    </template>
+    <template v-else>
+      <breadcrumb :unit="this.unit" v-if="this.unit.schoolName!=''"></breadcrumb>
+    </template>
+
+
 
 
 
@@ -17,8 +25,9 @@
 <!--      </div>-->
 
       <div  style="float: right;padding-right: 20px;">
-        <a href="https://www.yuque.com/vd7ii9/dvybyk/na3nsf"><el-button type="primary" size="small" v-if="!backTOHome">帮助文档</el-button></a>
-        <el-button type="primary"  size="small" v-if="backTOHome" @click="enterHomepage">进入学院主页</el-button>
+        <a href="https://www.yuque.com/vd7ii9/dvybyk/na3nsf"><el-button type="primary" size="small" v-if="backTOHome==0">帮助文档</el-button></a>
+        <el-button type="primary"  size="small" v-if="backTOHome==1" @click="enterHomepage">进入学院主页</el-button>
+        <el-button type="primary"  size="small" v-if="backTOHome==2" @click="enterHomepage">进入学校主页</el-button>
       </div>
 <!--      <span style="float: right;margin-right: 20px;text-underline: #7e8c8d">{{username}}</span>-->
       <el-dropdown-menu class="user-dropdown" slot="dropdown" style="margin-left:70px">
@@ -54,21 +63,27 @@ export default {
       this.username=data.userPermission.username;
     })*/
 
-    this.getUnitInfo();
+
     if(this.$route.path.indexOf("scholat")!=-1){
-      this.backTOHome = false
-    }else {
-      this.backTOHome = true
+      this.backTOHome = 0;
+    }else if (this.$route.path.indexOf("school")!=-1){
+      this.backTOHome = 2;
+      this.getSchoolInfo();
+      this.getSchoolUsername();
+    }
+    else {
+      this.backTOHome = 1;
+      this.getUnitInfo();
       this.getUsername();
     }
-
     console.log(this.backTOHome)
   },
+
   data(){
     return{
       img_404,
       logo,
-      backTOHome:true,
+      backTOHome:1,
       unit: {
         schoolName: '',
         unitName: '',
@@ -82,6 +97,16 @@ export default {
         tagState:'',
         backgroundUrl:'',
         unitId:''
+      },
+      school:{
+        schoolName: '',
+        schoolEng: '',
+        schoolUrl: '',
+        logoUrl: '',
+        state:'',
+        schoolDomain:'',
+        backgroundUrl:'',
+        schoolId:''
       },
       username:''
     }
@@ -117,9 +142,38 @@ export default {
           console.log("QAQ........没有找到学院Id")
         })
     },
+    getSchoolInfo() {
+      this.school.schoolId = this.$store.state.schoolUser.schoolId;
+      console.log("schoolId:........" + this.school.schoolId);
+      this.api({
+        url: "/school/getSchoolInfo",
+        method: "get",
+        params: {schoolId: this.school.schoolId}
+      }).then(data => {
+        console.log("学校Id为:" + JSON.stringify(data))
+        console.log("================================")
+        this.listLoading = false;
+        this.school = data;
+        this.$store.state.schoolUser.schoolDomain=data.schoolDomain
+        console.log("school="+JSON.stringify(this.school));
+        this.dataDone = true;
+      }).catch(error => {
+        console.log("QAQ........没有找到学校Id")
+      })
+    },
     getUsername(){
       this.api({
         url: '/login/getInfo',
+        method: 'post'
+      }).then(data=>{
+        this.username=data.userPermission.username;
+      }).catch(error=>{
+        console.log("没有找到用户名")
+      })
+    },
+    getSchoolUsername(){
+      this.api({
+        url: '/login/getSchoolInfo',
         method: 'post'
       }).then(data=>{
         this.username=data.userPermission.username;
@@ -136,7 +190,13 @@ export default {
         this.$store.dispatch('scholatLogOut').then(() => {
           location.reload() // 为了重新实例化vue-router对象 避免bug
         })
-      }else{
+      }else if (this.$route.path.indexOf("school")!=-1){
+        console.log("去执行schoolLogout方法")
+        this.$store.dispatch('schoolLogout').then(() => {
+          location.reload() // 为了重新实例化vue-router对象 避免bug
+        })
+      }
+      else{
         this.$store.dispatch('LogOut').then(() => {
           location.reload() // 为了重新实例化vue-router对象 避免bug
         })
@@ -144,18 +204,27 @@ export default {
 
     },
     enterHomepage(){
-      let domainName=this.unit.domainName;
-      let schoolDomain=this.unit.schoolDomain;
-      let unitId = this.$store.state.user.unitId;
-      console.log("schoolDomain===="+schoolDomain+"===="+domainName+"==="+unitId);
-      this.$router.push(
-        { name:'homepage',
-          params: { domainName:domainName,
-            schoolDomain:schoolDomain,
-            unitId:unitId}})
-    },
-
-
+      if (this.$route.path.indexOf("school")!=-1){
+        let schoolDomain=this.school.schoolDomain;
+        console.log("schoolDomain===="+schoolDomain);
+        this.$router.push(
+          { name:'home',
+            params: {
+              schoolDomain:schoolDomain,
+              }})
+      }
+      else{
+        let domainName=this.unit.domainName;
+        let schoolDomain=this.unit.schoolDomain;
+        let unitId = this.$store.state.user.unitId;
+        console.log("schoolDomain===="+schoolDomain+"===="+domainName+"==="+unitId);
+        this.$router.push(
+          { name:'homepage',
+            params: { domainName:domainName,
+              schoolDomain:schoolDomain,
+              unitId:unitId}})
+        }
+      }
   }
 }
 </script>
