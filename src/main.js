@@ -10,6 +10,7 @@ import '@/icons' // icon
 import '@/permission' // 权限
 import {default as api} from './utils/api'
 import {hasPermission} from "./utils/hasPermission";
+import {hasSchoolPermission} from "./utils/hasSchoolPermission";
 import {hasScholatPermission} from "./utils/hasScholatPermission";
 import VueCropper from 'vue-cropper'
 import md5 from 'js-md5';
@@ -30,6 +31,7 @@ Vue.prototype.salt = 'teacherHome';
 
 //全局的常量
 Vue.prototype.hasPerm = hasPermission;
+Vue.prototype.hasSchoolPerm=hasSchoolPermission;
 Vue.prototype.hasScholatPerm = hasScholatPermission;
 //生产环境时自动设置为 false 以阻止 vue 在启动时生成生产提示。
 Vue.config.productionTip = (process.env.NODE_ENV != 'production')

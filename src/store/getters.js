@@ -1,4 +1,5 @@
 const getters = {
+  // -------------------学院用户---------------------
   sidebar: state => state.app.sidebar,
   visitedViews: state => state.app.visitedViews,
   username: state => state.user.username,
@@ -14,6 +15,17 @@ const getters = {
   schoolDomain: state => state.user.schoolDomain, // 学校域名
   tagState: state => state.user.tagState, // 学院教师主页信息显示标记字段
 
+  // -------------------学校用户---------------------
+  schoolUsername: state => state.schoolUser.username,
+  schoolNickname: state => state.schoolUser.nickname, // 学校登录账号的用户名
+  schoolUserId: state => state.schoolUser.userId, // 学校用户id
+  schoolName: state => state.schoolUser.unitName, // 学校名称
+  schoolId: state => state.schoolUser.schoolId, // 学校ID
+  schoolAvatar: state => state.schoolUser.avatar, // 学校头像
+  schoolRole: state => state.schoolUser.role, // 学校的角色权限名称
+  schoolMenus: state => state.schoolUser.menus, // 学校所拥有的菜单
+  schoolPermissions: state => state.schoolUser.permissions, // 学校所拥有的权限
+  schoolDomainName: state => state.schoolUser.schoolDomain, // 学校域名
 
   // -------------------学者网用户---------------------
   scholatNickname: state => state.scholat.nickname, // 学者网管理员登录账号的用户名

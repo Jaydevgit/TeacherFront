@@ -66,7 +66,12 @@
                 </div>
                 <div class="name-bottom-item" style="margin-bottom: 10px;">
                   <!--<span><svg-icon icon-class="department"/></span>-->
-                  <label class="font-one">所在部门：</label><div class="detail-msg">{{personal.unit}}{{teacherProfile.department_name}}</div>
+                  <label class="font-one">所在部门：</label><div class="detail-msg">
+                  {{personal.unit}}
+                  <div v-if="personal.unit!=teacherProfile.department_name">
+                    {{teacherProfile.department_name}}
+                  </div>
+                </div>
                 </div>
                 <div class="name-bottom-item" style="margin-bottom: 10px;" v-if="teacherProfile.work_place">
                   <!--<span><svg-icon icon-class="maps-and-flags"/></span>-->

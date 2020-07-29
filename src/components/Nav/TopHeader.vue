@@ -62,7 +62,7 @@
       </div>
 
       <div v-if="titleFlag"></div>
-      <div v-else-if="$route.path.indexOf('login')!==-1">
+      <div v-else-if="$route.path.indexOf('login')!==-1||$route.path.indexOf('schoolLogin')!=-1">
         <span style="padding-left: 0" class="font-jsgrzy">
           SCHOLAT+ 学院师资信息管理平台
           </span>
@@ -173,7 +173,7 @@
 
         <div style=" display: flex;
     align-content: center;margin-left: 120px"
-             v-if="$route.path.indexOf('login')!=-1">
+             v-if="$route.path.indexOf('login')!=-1||$route.path.indexOf('schoolLogin')!=-1">
           <a href="/index" class="title" style="flex: 1;min-width: 40px">首页</a>
           <!--<a href="https://www.yuque.com/vd7ii9/dvybyk/na3nsf" class="title" style="min-width: 80px">帮助文档</a>-->
           <a href="/login" class="title" style="flex: 1;min-width: 40px">登录</a>

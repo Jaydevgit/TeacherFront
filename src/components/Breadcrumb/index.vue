@@ -36,9 +36,15 @@ export default {
     getBreadcrumb() {
       let matched = this.$route.matched.filter(item => item.name)
       const first = matched[0];
+      // var util = require("util")
+      // console.log("this.$route.matched="+util.inspect(this.$route.matched));
       console.log("///////////////////"+matched+"///////////////////////////////");
       if (first && first.name !== '/manager/teacher') {
+        if (this.$route.path.indexOf("school")!=-1) {
+          matched = [{ path: '/', meta: { title: this.unit.schoolName+'后台管理' }}].concat(matched)
+        } else{
           matched = [{ path: '/', meta: { title: this.unit.schoolName+this.unit.unitName+'后台管理' }}].concat(matched)
+        }
       }
         this.levelList = matched
         console.log(this.levelList);

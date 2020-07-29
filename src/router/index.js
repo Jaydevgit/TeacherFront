@@ -116,6 +116,15 @@ export const constantRouterMap = [
       keepAlive: true
     }
   },
+  {
+    path: '/schoolLogin',
+    name: "main-color",
+    component: _import('login/schoolLogin'),
+    hidden: true,
+    meta: {
+      keepAlive: true
+    }
+  },
   {path: '/404', component: _import('404'), hidden: true},
   {path: '/applySuccess', name: 'applySuccess', component: _import('unitApply/ApplySuccess'), hidden: true},
   /*  {path: '/applySuccess', name: 'applySuccess', component: _import('unitApply/ApplySuccess'), hidden: true},*/
@@ -180,10 +189,26 @@ export const asyncRouterMap = [
       name: 'teacherPersonlHomePage'
     },*/
   {
+    path: '/school/manager',
+    component: Layout,
+    redirect: '/school/manager/teacher',
+    name: '学校教师信息管理',
+    meta: {title: '教师信息管理', icon: 'tree'},
+    children: [
+      {
+        path: 'teacher',
+        name: '教师列表',
+        component: _import('managerSchool/teacher'),
+        meta: {title: '教师列表', icon: 'example'},
+        menu: 'school',// 这里的menu和权限有关，如果权限menu没有返回对应的menu就不会显示，所以要写上menu
+      },
+    ]
+  },
+  {
     path: '/unitInfo',
     component: _import('layout/Layout'),
     redirect: '/unitInfo',
-    name: 'unitInfo',
+    name: '学院设置',
     meta: {title: '信息管理', icon: 'tree'},
     children: [
       {
@@ -202,7 +227,7 @@ export const asyncRouterMap = [
     path: '/manager',
     component:_import('layout/Layout'),
     redirect: '/manager/teacher',
-    name: '教师信息管理',
+    name: '学院教师信息管理',
     meta: {title: '教师信息管理', icon: 'tree'},
     children: [
       {
@@ -279,6 +304,7 @@ export const asyncRouterMap = [
     path: '/research',
     component: _import('layout/Layout'),
     redirect: '/research',
+    name: '科研信息采集',
     meta: {title: '科研信息采集',icon: "table"},
     children: [
       {
@@ -384,7 +410,7 @@ export const asyncRouterMap = [
     path: '/user',
     component: _import('layout/Layout'),
     redirect: '/user/',
-    name: '',
+    name: '账号管理',
     meta: {title: '账号管理', icon: 'table'},
     children: [
       {
@@ -408,8 +434,6 @@ export const asyncRouterMap = [
         meta: {title: '本账号管理', icon: 'password'},
         menu: 'user'
       },
-
-
     ]
   },
   {

@@ -33,6 +33,7 @@ service.interceptors.response.use(
         onClose: () => {
           store.dispatch('FedLogOut').then(()=>{
             store.dispatch('scholatFedLogOut')
+            //store.dispatch('schoolFedLogOut')
           }).then(() => {
             location.reload()// 为了重新实例化vue-router对象 避免bug
           })

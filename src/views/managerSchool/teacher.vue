@@ -1,0 +1,639 @@
+<template>
+  <div class="app-container">
+    <div class="filter-container">
+    <el-form>
+      <el-form-item >
+        <div style="display: flex;justify-content: space-between">
+          <div style="display: flex;justify-content: flex-start;flex-wrap: wrap">
+            <!--<el-radio-group v-model="teacherState" @change="teacherStateChange" >
+              <el-radio style="margin-left: 15px;height: 36px"  label="1" border>在岗</el-radio>
+              <el-radio  label="2" style="height: 36px" border>其他</el-radio>
+            </el-radio-group>-->
+            <el-dropdown placement="bottom-end">
+              <el-button type="primary" size="small">
+                教师分类<i class="el-icon-arrow-down el-icon--right"></i>
+              </el-button>
+              <el-dropdown-menu slot="dropdown">
+                <el-dropdown-item @click.native="teacherStateChange(1)">在岗</el-dropdown-item>
+                <el-dropdown-item @click.native="teacherStateChange(2)">其他</el-dropdown-item>
+              </el-dropdown-menu>
+            </el-dropdown>
+            <div style="float: left;margin-left: 10px;margin-top: 2px" v-if="totalUpdate>0">
+              <el-tag type="warning" style="font-size: 14px;">学者网教师信息更新数
+                <div style="font-size: 20px;font-weight: bold;color:#f56c6c;display: inline-block;margin:auto 0">{{totalUpdate}}</div>
+              </el-tag>
+              <!--                <el-badge :value="totalUpdate" :max="99" class="item">-->
+              <!--                  <span style="color:red">学者网有更新</span>-->
+              <!--                </el-badge>-->
+            </div>
+          </div>
+          <div style="display: flex;float: right;max-height: 36px">
+            <!--<el-button style="margin-top: 3px;max-height: 36px" size="small"type="primary" icon="plus" @click="showCreate" v-if="hasPerm('teacher:add')">添加
+            </el-button>-->
+            <!--<el-dropdown placement="bottom-end" style="padding: 0 5px">
+              <el-button type="primary" size="small">
+                教师信息管理<i class="el-icon-arrow-down el-icon&#45;&#45;right"></i>
+              </el-button>
+              <el-dropdown-menu slot="dropdown">
+                <el-dropdown-item @click.native="exportInfo">导出教师信息</el-dropdown-item>
+                <el-dropdown-item @click.native="dialogImportVisible = true">导入教师信息</el-dropdown-item>
+              </el-dropdown-menu>
+            </el-dropdown>-->
+
+            <el-button type="primary" size="small" style="float:right;margin-right: 15px;margin-top: 3px;max-height: 36px"
+                       @click="searchTeacher">教师搜索
+            </el-button>
+            <el-input v-model="searchKey" style="width: 150px;float:right;height: 24px;margin-right: 15px;"
+                      placeholder="搜索要查询的信息"
+                      @keydown.enter.native="searchTeacher"></el-input>
+            <el-input type="text" style="display:none"/> <!--确保keydown.enter触发-->
+
+          </div>
+        </div>
+
+
+        <div style="clear: both;"></div>
+      </el-form-item>
+      <el-form-item style="margin-bottom:0;display:none;">
+      </el-form-item>
+    </el-form>
+  </div>
+    <el-table :data="list"
+              v-loading.body="listLoading" element-loading-text="拼命加载中" border fit
+              highlight-current-row
+              @sort-change='sortChange'>
+      <el-table-column align="center" label="序号" width="60">
+        <template slot-scope="scope">
+          <span v-text="getIndex(scope.$index)"> </span>
+        </template>
+      </el-table-column>
+      <el-table-column align="center" label="头像" style="text-overflow: clip">
+
+        <template slot-scope="scope">
+          <template v-if="scope.row.scholat_update_time > scope.row.update_time">
+            <el-badge is-dot aria-setsize="14px" class="item" style="margin-top: 10px;">
+              <img class="preview" @click="routerTo(scope.row)" :src="getImgUrl(scope.row.avatar)"
+                   :onerror="imgErrorFun()" style="width:60px;height:60px;cursor:pointer;"/>
+            </el-badge>
+          </template>
+          <template v-else>
+            <img class="preview" @click="routerTo(scope.row)" :src="getImgUrl(scope.row.avatar)" :onerror="imgErrorFun(this)"
+                 style="width:60px;height:60px;cursor:pointer;"/>
+          </template>
+        </template>
+
+      </el-table-column>
+      <el-table-column align="center" label="姓名"  sortable='custom' prop="pinyin">
+        <template slot-scope="scope">
+          <span class="teacher-homepage" @click="routerTo(scope.row)" style="cursor:pointer;">{{scope.row.name}}</span>
+          <span></span>
+        </template>
+      </el-table-column>
+      <el-table-column align="center" label="网址"  prop="pinyin">
+        <template slot-scope="scope">
+          <span class="teacher-homepage" style="cursor:pointer;">
+            <a :href="'http://faculty.scholat.com/teacher/'+scope.row.school_unit_domainName+'/'+scope.row.domainName">
+              {{scope.row.domainName}}
+            </a>
+          </span>
+          <span></span>
+        </template>
+      </el-table-column>
+      <!--<el-table-column align="center" label="学历" >
+        <template slot-scope="scope">
+          <span>{{scope.row.degree}}</span>
+        </template>
+      </el-table-column>-->
+      <!--      <el-table-column align="center" label="状态" width="100">-->
+      <!--        <template slot-scope="scope">-->
+      <!--          <el-tag-->
+      <!--            :type="scope.row.state === '在岗' ? 'primary' : 'success'"-->
+      <!--            disable-transitions>-->
+      <!--            <span v-text='getState(scope.row.state)'></span>-->
+      <!--          </el-tag>-->
+      <!--        </template>-->
+      <!--      </el-table-column>-->
+      <!--<el-table-column align="center" label="职称" >
+        <template slot-scope="scope">
+          <span>{{scope.row.post}}</span>
+        </template>
+      </el-table-column>-->
+      <el-table-column align="center" label="更新时间"  min-width="160" sortable='custom' prop="update_time">
+        <template slot-scope="scope">
+          <span>{{scope.row.update_time}}</span>
+          <div style="margin-top: 7px;"><el-tag v-if="scope.row.editName" type="success" effect="plain" >编辑者:{{ scope.row.editName }} </el-tag></div>
+        </template>
+      </el-table-column>
+      <el-table-column align="center" label="学者网关联" min-width="110">
+        <template slot-scope="scope">
+          <a style="color: #399;
+    text-decoration: underline;
+    font-weight: bold;"
+             :href="'http://www.scholat.com/'+scope.row.scholat_username">{{scope.row.scholat_username}}</a>
+          <template v-if="scope.row.scholat_update_time > scope.row.update_time">
+            <div style="color: #e6a23b;
+    font-weight: bold;">学者网有更新信息</div>
+          </template>
+          <!--<template v-if="!scope.row.scholat_update_time && scope.row.scholat_username">
+            <div style="color:#848484;font-weight: bold;">已绑定学者网账号，但未查询到学者网更新日期</div>
+          </template>-->
+          <el-button type="success" @click="inviteToScholat(scope.row)" size="small"
+                     v-if="!scope.row.scholat_username">邀请加入学者网
+          </el-button>
+          <el-dialog title="完善信息" :visible.sync="dialogFormVisible" :modal-append-to-body='false'>
+            <el-form :model="scope.row">
+              <el-form-item label="邮箱">
+                <el-input v-model="scope.row.email" autocomplete="off"></el-input>
+              </el-form-item>
+            </el-form>
+            <div slot="footer" class="dialog-footer">
+              <el-button @click="dialogFormVisible = false">取消</el-button>
+              <el-button type="primary" @click="inviteToScholat(scope.row)">确认发送邀请</el-button>
+            </div>
+          </el-dialog>
+        </template>
+      </el-table-column>
+      <!--域名修改-->
+      <!--<el-table-column fixed="right" align="center" label="域名修改" width="90">
+        <template slot-scope="scope">
+          <el-button type="primary" icon="el-icon-star-off" circle @click="openAssignment(scope.row.id)"></el-button>
+        </template>
+      </el-table-column>-->
+      <!--域名修改结束-->
+      <el-table-column fixed="right" align="center" label="学术档案" width="90">
+        <template slot-scope="scope">
+          <el-button v-if="scope.row.scholat_username!==''" type="success" icon="el-icon-info" circle @click="showAcademic(scope.row.scholat_username)"></el-button>
+        </template>
+      </el-table-column>
+      <el-table-column fixed="right" align="center" label="教师分配" width="90">
+        <template slot-scope="scope">
+          <el-button type="primary" icon="el-icon-star-off" circle @click="openAssignment(scope.row.id)"></el-button>
+        </template>
+      </el-table-column>
+      <el-table-column fixed="right" align="center" label="管理" width="120" v-if="hasPerm('teacher:update')">
+        <template slot-scope="scope">
+          <template v-if="scope.row.scholat_update_time > scope.row.update_time">
+            <el-button type="warning" icon="el-icon-edit" circle @click="showUpdate(scope.row)"></el-button>
+          </template>
+          <template v-else>
+            <el-button type="primary" icon="el-icon-edit" circle @click="showUpdate(scope.row)"></el-button>
+          </template>
+          <el-button type="danger" icon="el-icon-delete" circle v-if="hasPerm('teacher:delete')"
+                     @click="removeTeacher(scope.row.id)"></el-button>
+        </template>
+      </el-table-column>
+    </el-table>
+    <el-pagination
+      @size-change="handleSizeChange"
+      @current-change="handleCurrentChange"
+      :current-page="listQuery.pageNum"
+      :page-size="listQuery.pageRow"
+      :total="totalCount"
+      :page-sizes="[10, 20, 50, 100]"
+      layout="total, sizes, prev, pager, next, jumper">
+    </el-pagination>
+  </div>
+</template>
+
+<script>
+  import defaultAvatar from '@/assets/default1.png'
+    export default {
+      name: "teacher",
+      inject:['reload'],
+      data() {
+        return {
+          defaultImage: 'http://39.108.169.193:2333/public/images/avatar/default.png',
+          defaultAvatar:defaultAvatar,
+          searchKey: '',
+          totalCount: 0, //分页组件--数据总条数
+          totalUpdate: 0,// 学者网更新总数
+          list: [],//表格的数据
+          listLoading: false,//数据加载等待动画
+          listQuery: {
+            pageNum: 1,//页码
+            pageRow: 10,//每页条数
+            schoolId: '',
+            schoolDomain:'',
+            key: '',//排序关键字
+            sort:'', //升降序标记
+            state:1 ,//在岗状态
+            scholatUsernameFlag:true,
+          },
+          currentSearch: 'false',
+          dialogStatus: 'create',
+          dialogFormVisible: false,
+          textMap: {
+            update: '编辑',
+            create: '添加新成员'
+          },
+          tempTeacher: {
+            id: "",
+            name: "",
+            sex: 0,
+            avatar: '',
+            department: '',
+            post: '',
+            state: 1,
+            intro: '',
+            update_time: '',
+            email: '',
+            phone: ''
+          },
+          showMask: false,
+          showRoleAssigment: false,
+          roleId: '',//角色分配id
+          teacherState:'1',//教师是否在岗
+          flagScholat:true, //是否关联学者网
+          unitQuery:{
+            domainName:'',
+            unitId:''
+          },
+          schoolQuery:{
+            schoolDomain:'',
+            schoolId:''
+          },
+          schoolId:'',
+          dialogTableVisible: false,
+          dialogImportVisible: false,
+          fileList:[],
+        }
+      },
+      created() {
+        console.log("--------------------开始查询教师权限")
+        this.getList();
+        this.schoolId=this.$store.state.schoolId
+      },
+      methods: {
+
+        submitUpload(){
+          this.$refs.upload.submit()
+          this.dialogImportVisible=false
+          this.$message.success("教师信息导入完成")
+          setTimeout(() => {
+            this.getList();
+          },1000)
+
+        },
+        countTeacherUpdate() {
+          // this.listQuery.key="update_time";
+          // this.listQuery.sort="desc";
+          this.listQuery.unitId = this.$store.state.user.unitId;
+          console.log("### 开始查询学者网更新教师数据总为")
+          this.api({
+            url: "/manager/listTeacherUpdateScholat",
+            method: "get",
+            params: this.listQuery
+          }).then(data => {
+            console.log("学者网更新教师数据总countScholat====" + data.countScholat)
+            this.totalUpdate = data.countScholat;
+          }).catch((e) => {
+          });
+        },
+        inviteToScholat(Form) {
+          console.log("Form=" + JSON.stringify(Form))
+          if (Form.email) {
+            this.$confirm('此操作将会给该用户发送邀请邮件, 是否继续?', '提示', {
+
+              confirmButtonText: '确认发送邀请',
+              cancelButtonText: '取消',
+              type: 'success'
+            }).then(() => {
+              /*this.$message.success("准备邀请" + Form.email + "加入学者网");*/
+              this.api({
+                url: '/scholat/invite',
+                method: 'post',
+                data: {
+                  "form": Form
+                }
+              }).then((data) => {
+                this.$message.success("邀请" + Form.email + "成功")
+              }).catch(e => {
+                if (e.code == "400") {
+                  this.$message.error("邀请" + Form.email + "失败")
+                } else if (e.code == "10009") {
+                  this.$message.error("邮件已发送，请勿重复邀请")
+                } else if (e.code == "90003") {
+                  this.$message.error("缺少必填参数email")
+                }
+              });
+              this.dialogFormVisible = false;
+            }).catch(() => {
+              this.$message({
+                type: 'info',
+                message: '已取消邀请'
+              });
+              this.dialogFormVisible = false;
+            });
+
+          } else {
+            this.dialogFormVisible = true;
+          }
+        },
+        updateFromScholat() {
+          this.$message.error("正在写")
+
+        },
+        searchTeacher() {
+          this.listQuery.pageNum = 1;
+          this.listQuery.schoolId = this.$store.state.schoolUser.schoolId
+          this.listQuery.key = this.searchKey
+          if (this.searchKey != null && this.searchKey != "") {
+            this.api({
+              url: "/school/searchTeacher",
+              method: "get",
+              params: this.listQuery
+            }).then(data => {
+              this.list = data.list;
+              console.log(" this.list" + JSON.stringify(this.list));
+              this.totalCount = data.totalCount;
+              this.totalUpdate = data.totalUpdate;
+              this.currentSearch = true;
+            }).catch(error => {
+              console.log("QAQ........获取教师失败")
+            })
+          }
+        },
+        changeTeahcer() {
+          this.listQuery.unitId = this.$store.state.user.unitId
+          this.listQuery.key = this.searchKey
+          this.api({
+            url: "/manager/searchTeacher",
+            method: "get",
+            params: this.listQuery
+          }).then(data => {
+            this.list = data.list;
+            this.totalCount = data.totalCount;
+            this.totalUpdate = data.totalUpdate;
+          }).catch(error => {
+            console.log("QAQ........获取教师失败")
+          })
+        },
+        removeTeacher(teacherId) {
+          var _vue = this;
+          this.$confirm('确定删除该教师?', '提示', {
+            confirmButtonText: '确定',
+            showCancelButton: false,
+            type: 'warning'
+          }).then(() => {
+            _vue.api({
+              url: "/manager/deleteTeacher",
+              method: "post",
+              data: {
+                "teacherId": teacherId
+              }
+            }).then((data) => {
+              this.$message.success("删除该教师成功")
+              this.getList();
+            }).catch(e => {
+              this.$message.error("QAQ.....")
+            })
+          })
+        },
+        getState(state) {
+          if (state == 1) {
+            return "在岗"
+          } else if (state == 0) {
+            return "调出"
+          } else {
+            return "退休"
+          }
+        },
+        getImgUrl(imgName) {
+          if (imgName == null) {
+            return this.defaultAvatar;
+          } else if (imgName == "default.png") {
+            return this.defaultAvatar
+          } else if (imgName.indexOf("resources") != "-1") {
+            return "http://www.scholat.com/" + imgName;
+          } else {
+            return "http://39.108.169.193:2333/public/images/avatar/" + imgName;
+          }
+          /*return 'http://39.108.169.193:2333/public/images/avatar/'+imgName;*/
+
+        },
+        imgErrorFun(e) {
+          return 'this.src="defaultAvatar"';
+        },
+        routerTo(teacher) {
+          console.log("=========================================")
+          console.log("点击跳转........" + teacher.domainName);
+          let routeData = this.$router.push({
+            name: 'teacherPersonlHomePage',
+            params: {
+              // facultyDomainName:this.$store.state.user.domainName,
+              schoolDomain: this.$store.state.user.schoolDomain,
+              teacherDomainName: teacher.domainName,
+              id: teacher.id
+            }
+          });
+          window.open(routeData.href, '_blank');
+          /*  this.$router.push({
+                    name: 'teacherPersonlHomePage',
+                    params: {
+                        id: teacher.id
+                    }
+                })*/
+        },
+        getList() {
+          //查询列表
+          console.log("this.hasSchoolPerm('school:list')="+this.hasSchoolPerm('school:list'))
+          console.log('permissions==' + this.$store.state.schoolUser.permissions);
+          if (!this.hasSchoolPerm('school:list')) {
+            return
+          }
+          this.listQuery.pageNum = 1;
+          this.listQuery.schoolDomain = this.$store.state.schoolUser.schoolDomain;
+          console.log('schoolDomain==' + JSON.stringify(this.listQuery));
+          this.listLoading = true;
+          console.log("### 开始查询教师成员列表")
+          this.api({
+            url: "/school/listTeacher",
+            method: "get",
+            params: this.listQuery
+          }).then(data => {
+            console.log("查询教师信息为:")
+            console.log("=================展示教师列表信息===============")
+            this.listLoading = false;
+            this.list = data.list;
+            console.log(data);
+            this.list.forEach((v, k) => {
+              let t = v.update_time.replace(/\./g, '-').slice(0, 16);
+              v.update_time = t;
+            });
+            this.totalCount = data.totalCount;
+
+            this.currentSearch = false
+            console.log(this.totalCount + "  " + this.totalUpdate + " " + this.listQuery.pageNum);
+          }).catch(error => {
+            console.log("QAQ........没有找到教师列表")
+          })
+
+        },
+        changeList() {
+          console.log("===============执行changeList方法=================")
+          //查询列表
+          if (!this.hasSchoolPerm('school:list')) {
+            return
+          }
+          this.listQuery.schoolDomain = this.$store.state.schoolUser.schoolDomain;
+          console.log('schoolDomain==' + JSON.stringify(this.listQuery));
+          this.listLoading = true;
+          console.log("### 开始查询教师成员列表")
+          this.api({
+            url: "/school/listTeacher",
+            method: "get",
+            params: this.listQuery
+          }).then(data => {
+            console.log("查询教师信息为:" + data.totalUpdate)
+            console.log("================================")
+            this.listLoading = false;
+            this.list = data.list;
+            this.totalCount = data.totalCount;
+            this.totalUpdate = data.totalUpdate;
+          }).catch(error => {
+            console.log("QAQ........没有找到教师列表")
+          })
+        },
+        handleSizeChange(val) {
+          //改变每页数量
+          this.listQuery.pageRow = val
+          this.handleFilter();
+        },
+        handleFilter() {
+          //查询事件
+          this.listQuery.pageNum = 1
+          this.getList()
+        },
+        handleCurrentChange(val) {
+          //改变页码
+          this.listQuery.pageNum = val
+          if (!this.currentSearch)
+            this.changeList()
+          else
+            this.changeTeahcer()
+        },
+        getIndex($index) {
+          //表格序号
+          return (this.listQuery.pageNum - 1) * this.listQuery.pageRow + $index + 1
+        },
+        showCreate() {
+          //显示新增对话框
+          /*this.tempTeacher.name = "";
+              this.dialogStatus = "create"
+              this.dialogFormVisible = true*/
+          this.$router.push({
+            path: '/manager/addTeacher'
+          })
+        },
+        exportInfo() {
+          console.log("this.listQuery.unitId=" + this.listQuery.unitId);
+          var json = {unitId: this.listQuery.unitId}
+          var json2 = JSON.stringify(json);
+          window.open("/api/manager/exportTeacher?json=" + escape(json2))
+        },
+        importInfo() {
+          window.open("/api/manager/exportTeacher2")
+        },
+        showUpdate(teacher) {
+          //显示修改对话框
+          /*   this.tempTeacher.id = this.list[$index].id;
+                 this.tempTeacher.name = this.list[$index].name;
+                 this.dialogStatus = "update"
+                 this.dialogFormVisible = true*/
+          //修改文章
+          let d1 = new Date(teacher.scholat_update_time);    //Tue Jul 04 2017 08:00:00 GMT+0800 (中国标准时间)
+          let d2 = new Date(teacher.update_time);    //Wed Jul 05 2017 08:00:00 GMT+0800 (中国标准时间)
+
+// 获取他们的距离1970年以来的毫秒
+          let time1 = d1.getTime();
+          let time2 = d2.getTime();
+          var scholatUserName = "";
+          if (time1 > time2) {
+            scholatUserName = teacher.scholat_username;
+          }
+          this.$router.push({
+            name: 'modifyTeacher',
+            params: {
+              t: teacher,
+              id: teacher.id,
+              scholatUpdate: scholatUserName
+            }
+          })
+        },
+        openQuery() {
+          this.showMask = true;
+        },
+        // 教师分配
+        openAssignment(id) {
+          this.showRoleAssigment = true;
+          this.roleId = id;
+          console.log("当前分栏目标教师Id:" + id)
+          this.$notify({
+            title: '提示',
+            message: '本页面教师已存在栏目为不可选状态栏目。若需要管理教师已分配栏目，请到教师分配页面进行管理。',
+            type: 'info',
+            position: 'bottom-left'
+          });
+          this.$refs.childRole.getTeacherAllCatalogues(id);
+        },
+
+        //教师状态改变
+        teacherStateChange(value) {
+          if (value === 1) {
+            this.teacherState = "1";
+            this.listQuery.state = '1'
+          }
+          if (value === 2) {
+            this.teacherState = "2";
+            this.listQuery.state = ''
+          }
+          this.getList();
+
+        },
+
+        //姓名排序
+        sortChange(column) {
+          this.listQuery.key = column.prop;
+          if (column.order === 'descending') {
+            this.listQuery.sort = 'desc';
+          } else {
+            this.listQuery.sort = '';
+          }
+          console.log(this.listQuery.key + " " + this.listQuery.sort);
+          this.getList();
+          //console.log(JSON.stringify(column) + '-' + column.prop + '-' + column.order)
+        },
+
+        //学者网关联状态改变
+        changeScholat() {
+
+          console.log(this.flagScholat);
+          if (this.flagScholat === true) {
+            this.listQuery.scholatUsernameFlag = true
+          }
+          if (this.flagScholat === false) {
+            this.listQuery.scholatUsernameFlag = false
+          }
+          this.getList();
+        },
+        showAcademic(scholat_username) {
+          this.$router.push({
+            name: 'personAcademic',
+            params: {
+              scholat_username: scholat_username
+            }
+          })
+        },
+      }
+    }
+</script>
+
+<style scoped>
+  .el-badge__content.is-dot {
+    width: 15px;
+    height: 15px;
+  }
+  .el-switch{
+    border: 1px !important;
+  }
+</style>
