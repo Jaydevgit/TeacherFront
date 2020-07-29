@@ -205,6 +205,31 @@ export const asyncRouterMap = [
     ]
   },
   {
+    path: '/school/user',
+    component: Layout,
+    redirect: '/school/user/user',
+    name: '账号管理',
+    meta: {title: '账号管理', icon: 'table'},
+    children: [
+      /*{
+        path: 'user',
+        name: '账号列表',
+        component: _import('user/SchoolUser'),
+        meta: {title: '子账号管理', icon: 'user'},
+        menu: 'school'
+      },*/
+      {
+        path: 'password',
+        name: '本账号管理',
+        component: _import('user/SchoolPassword'),
+        meta: {title: '本账号管理', icon: 'password'},
+        menu: 'school'
+      },
+    ]
+  },
+
+
+  {
     path: '/unitInfo',
     component: Layout,
     redirect: '/unitInfo',
