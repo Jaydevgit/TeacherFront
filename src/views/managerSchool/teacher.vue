@@ -41,11 +41,11 @@
             </el-dropdown>-->
 
             <el-button type="primary" size="small" style="float:right;margin-right: 15px;margin-top: 3px;max-height: 36px"
-                       @click="searchTeahcer">教师搜索
+                       @click="searchTeacher">教师搜索
             </el-button>
             <el-input v-model="searchKey" style="width: 150px;float:right;height: 24px;margin-right: 15px;"
                       placeholder="搜索要查询的信息"
-                      @keydown.enter.native="searchTeahcer"></el-input>
+                      @keydown.enter.native="searchTeacher"></el-input>
             <el-input type="text" style="display:none"/> <!--确保keydown.enter触发-->
 
           </div>
@@ -333,13 +333,13 @@
           this.$message.error("正在写")
 
         },
-        searchTeahcer() {
+        searchTeacher() {
           this.listQuery.pageNum = 1;
-          this.listQuery.unitId = this.$store.state.user.unitId
+          this.listQuery.schoolId = this.$store.state.schoolUser.schoolId
           this.listQuery.key = this.searchKey
           if (this.searchKey != null && this.searchKey != "") {
             this.api({
-              url: "/manager/searchTeacher",
+              url: "/school/searchTeacher",
               method: "get",
               params: this.listQuery
             }).then(data => {
