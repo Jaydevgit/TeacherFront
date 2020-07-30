@@ -19,7 +19,7 @@ export const constantRouterMap = [
   {
     path: '/scholat/login',
     name: 'scholatLogin',
-    component: scholatLogin,
+    component: _import('scholat/login/login'),//scholatLogin,
     hidden: true,
     meta: {
       keepAlive: false
@@ -28,7 +28,7 @@ export const constantRouterMap = [
   {
     path: '/index',
     name: 'index',
-    component: index,
+    component: _import('index/index'),
     hidden: true,
     meta: {
       keepAlive: false
@@ -37,7 +37,7 @@ export const constantRouterMap = [
   {
     path: '/homepage/:schoolDomain/:domainName',
     name: 'homepage',
-    component: HomePage,
+    component: _import('homePage/HomePage'),
     hidden: true,
     meta: {
       keepAlive: true
@@ -46,7 +46,7 @@ export const constantRouterMap = [
       {
         path: '/homepage/:schoolDomain/:domainName/:cId',
         name: 'catalogue',
-        component: HomePage,
+        component: _import('homePage/HomePage'),
         meta: {
           keepAlive: true
         },
@@ -54,7 +54,7 @@ export const constantRouterMap = [
       {
         path: '/homepage/:schoolDomain/:domainName/search=:searchKey',
         name: 'search',
-        component: HomePage,
+        component:_import('homePage/HomePage'),
         meta: {
           keepAlive: true
         },
@@ -62,7 +62,7 @@ export const constantRouterMap = [
       {
         path: '/homepage/:schoolDomain/:domainName/:cId/:tId',
         name: 'teacher',
-        component: HomePage,
+        component:_import('homePage/HomePage'),
         meta: {
           keepAlive: true
         },
@@ -72,7 +72,7 @@ export const constantRouterMap = [
   {
     path: '/home/:schoolDomain',
     name: 'home',
-    component: Home,
+    component:_import('home/Home'),
     hidden: true,
     meta: {
       keepAlive: true
@@ -81,7 +81,7 @@ export const constantRouterMap = [
       {
         path: '/home/:schoolDomain/:domainName',
         name: 'unit',
-        component: HomePage,
+        component:_import('homePage/HomePage'),
         meta: {
           keepAlive: true
         },
@@ -91,7 +91,7 @@ export const constantRouterMap = [
   {
     path: '/teacher/:scholat_username/:user_id/persona',
     name: 'persona',
-    component: persona,
+    component:_import('persona/persona'),
     hidden: true,
     children: [],
     meta: {
@@ -100,7 +100,7 @@ export const constantRouterMap = [
   },
   {
     path: '/teacher/:schoolDomain/:teacherDomainName',
-    component: teacherPersonalHomePage,
+    component: _import('teacher/teacherPersonalHomePage'),
     name: 'teacherPersonlHomePage',
     meta: {
       keepAlive: true
@@ -153,7 +153,7 @@ export const constantRouterMap = [
     path: '/scholat',
     redirect: '/scholat/apply/wait',
     name: 'scholat',
-    component: Layout,
+    component: _import('layout/Layout'),
     hidden: true,
     /*    children: [{
           path: 'dashboard', component: _import('dashboard/index')
@@ -161,7 +161,7 @@ export const constantRouterMap = [
   },
   {
     path: '/',
-    component: Layout,
+    component:_import('layout/Layout'),
     redirect: '/manager/teacher',
     name: 'managerTeacher',
     hidden: true,
@@ -231,7 +231,7 @@ export const asyncRouterMap = [
 
   {
     path: '/unitInfo',
-    component: Layout,
+    component: _import('layout/Layout'),
     redirect: '/unitInfo',
     name: '学院设置',
     meta: {title: '信息管理', icon: 'tree'},
@@ -250,7 +250,7 @@ export const asyncRouterMap = [
   },
   {
     path: '/manager',
-    component: Layout,
+    component:_import('layout/Layout'),
     redirect: '/manager/teacher',
     name: '学院教师信息管理',
     meta: {title: '教师信息管理', icon: 'tree'},
@@ -293,7 +293,7 @@ export const asyncRouterMap = [
   },
   {
     path: '/homeSet',
-    component: Layout,
+    component: _import('layout/Layout'),
     redirect: '/homeSet/teacherSet',
     name: '师资队伍主页定制',
     meta: {title: '师资队伍主页定制', icon: 'tree'},
@@ -327,7 +327,7 @@ export const asyncRouterMap = [
   },
   {
     path: '/research',
-    component: Layout,
+    component: _import('layout/Layout'),
     redirect: '/research',
     name: '科研信息采集',
     meta: {title: '科研信息采集',icon: "table"},
@@ -433,7 +433,7 @@ export const asyncRouterMap = [
   },
   {
     path: '/user',
-    component: Layout,
+    component: _import('layout/Layout'),
     redirect: '/user/',
     name: '账号管理',
     meta: {title: '账号管理', icon: 'table'},
@@ -463,7 +463,7 @@ export const asyncRouterMap = [
   },
   {
     path: '/scholat/unit',
-    component: Layout,
+    component: _import('layout/Layout'),
     name: 'scholatUnit',
     meta: {title: '学院管理', icon: 'tree'},
     children: [
@@ -488,7 +488,7 @@ export const asyncRouterMap = [
   },
   {
     path: '/scholat',
-    component: Layout,
+    component: _import('layout/Layout'),
     redirect: '/scholat/apply/wait', // 跳转到申请处理页面
     name: 'scholatHome',
     meta: {title: '学院申请管理', icon: 'tree'},

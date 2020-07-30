@@ -493,7 +493,8 @@
                 url: "/manager/deleteTeacher",
                 method: "post",
                 data: {
-                  "teacherId": teacherId
+                  "teacherId": teacherId,
+                  "unitId": this.$store.state.user.unitId
                 }
               }).then((data) => {
                 this.$message.success("删除该教师成功")
