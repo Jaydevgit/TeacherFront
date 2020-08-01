@@ -5,19 +5,27 @@
       <el-form-item >
         <div style="display: flex;justify-content: space-between">
           <div style="display: flex;justify-content: flex-start;flex-wrap: wrap">
-            <!--<el-radio-group v-model="teacherState" @change="teacherStateChange" >
-              <el-radio style="margin-left: 15px;height: 36px"  label="1" border>在岗</el-radio>
-              <el-radio  label="2" style="height: 36px" border>其他</el-radio>
-            </el-radio-group>-->
-            <el-dropdown placement="bottom-end">
+            <!--<el-dropdown placement="bottom-end">
               <el-button type="primary" size="small">
-                教师分类<i class="el-icon-arrow-down el-icon--right"></i>
+                教师分类<i class="el-icon-arrow-down el-icon&#45;&#45;right"></i>
               </el-button>
               <el-dropdown-menu slot="dropdown">
                 <el-dropdown-item @click.native="teacherStateChange(1)">在岗</el-dropdown-item>
                 <el-dropdown-item @click.native="teacherStateChange(2)">其他</el-dropdown-item>
               </el-dropdown-menu>
+            </el-dropdown>-->
+
+            <el-dropdown placement="bottom-end">
+              <el-button type="primary" size="small">
+                学院分类<i class="el-icon-arrow-down el-icon--right"></i>
+              </el-button>
+              <el-dropdown-menu slot="dropdown">
+                <template v-for="item in unitList">
+                  <el-dropdown-item @click.native="unitChange(item.unitId)">{{item.unitName}}</el-dropdown-item>
+                </template>
+              </el-dropdown-menu>
             </el-dropdown>
+
             <div style="float: left;margin-left: 10px;margin-top: 2px" v-if="totalUpdate>0">
               <el-tag type="warning" style="font-size: 14px;">学者网教师信息更新数
                 <div style="font-size: 20px;font-weight: bold;color:#f56c6c;display: inline-block;margin:auto 0">{{totalUpdate}}</div>
@@ -99,6 +107,14 @@
           <span></span>
         </template>
       </el-table-column>
+      <el-table-column align="center" label="学院"  prop="">
+        <template slot-scope="scope">
+          <span class="teacher-homepage" style="cursor:pointer;">
+              {{scope.row.unit_name}}
+          </span>
+          <span></span>
+        </template>
+      </el-table-column>
       <!--<el-table-column align="center" label="学历" >
         <template slot-scope="scope">
           <span>{{scope.row.degree}}</span>
@@ -160,11 +176,11 @@
         </template>
       </el-table-column>-->
       <!--域名修改结束-->
-      <el-table-column fixed="right" align="center" label="学术档案" width="90">
+      <!--<el-table-column fixed="right" align="center" label="学术档案" width="90">
         <template slot-scope="scope">
           <el-button v-if="scope.row.scholat_username!==''" type="success" icon="el-icon-info" circle @click="showAcademic(scope.row.scholat_username)"></el-button>
         </template>
-      </el-table-column>
+      </el-table-column>-->
       <el-table-column fixed="right" align="center" label="教师分配" width="90">
         <template slot-scope="scope">
           <el-button type="primary" icon="el-icon-star-off" circle @click="openAssignment(scope.row.id)"></el-button>
@@ -256,11 +272,13 @@
           dialogTableVisible: false,
           dialogImportVisible: false,
           fileList:[],
+          unitList:''
         }
       },
       created() {
         console.log("--------------------开始查询教师权限")
         this.getList();
+        this.getUnitList();
         this.schoolId=this.$store.state.schoolId
       },
       methods: {
@@ -469,6 +487,23 @@
           })
 
         },
+        getUnitList(){
+          this.listLoading = true;
+          console.log("### 开始查询教师成员列表")
+          this.api({
+            url: "/school/getUnitList",
+            method: "get",
+            params: this.listQuery
+          }).then(data => {
+            console.log("=================展示学院信息===============")
+            this.listLoading = false;
+            this.unitList = data.list;
+            console.log(data);
+            this.currentSearch = false
+          }).catch(error => {
+            console.log("QAQ........没有找到教师列表")
+          })
+        },
         changeList() {
           console.log("===============执行changeList方法=================")
           //查询列表
@@ -589,6 +624,35 @@
           }
           this.getList();
 
+        },
+        //学院改变
+        unitChange(unitId){
+          this.listQuery.pageNum = 1;
+          this.listQuery.unitId = unitId;
+          console.log('unitId==' + JSON.stringify(this.listQuery));
+          this.listLoading = true;
+          console.log("### 开始查询教师成员列表")
+          this.api({
+            url: "/school/listTeacherByUnit",
+            method: "get",
+            params: this.listQuery
+          }).then(data => {
+            console.log("查询某学院的教师信息为:")
+            console.log("=================展示教师列表信息===============")
+            this.listLoading = false;
+            this.list = data.list;
+            console.log(data);
+            this.list.forEach((v, k) => {
+              let t = v.update_time.replace(/\./g, '-').slice(0, 16);
+              v.update_time = t;
+            });
+            this.totalCount = data.totalCount;
+
+            this.currentSearch = false
+            console.log(this.totalCount + "  " + this.totalUpdate + " " + this.listQuery.pageNum);
+          }).catch(error => {
+            console.log("QAQ........没有找到教师列表")
+          })
         },
 
         //姓名排序
