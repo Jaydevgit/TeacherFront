@@ -454,7 +454,7 @@
             this.applyForm.school_domain = ""
             return this.$message.error("该域名已存在,请重新申请");
           } else {
-            this.$message.success("提交成功");
+            this.$message.success("提交成功，需等待学者网团队审核");
             this.applyForm.password = ""
             this.applyForm.repassword = ""
           }

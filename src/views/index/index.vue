@@ -12,8 +12,26 @@
         </div>
         <div class="nav-inner-login">
           <!--<a href="https://www.yuque.com/vd7ii9/dvybyk/na3nsf" class="title" style="min-width: 80px">帮助文档</a>-->
-         <a href="/login" class="title" style="flex: 1;min-width: 40px">登录</a>
-         <a href="/unitApply" class="title" style="flex: 1;min-width: 40px">注册</a>
+<!--         <a href="/login" class="title" style="flex: 1;min-width: 40px">登录</a>-->
+<!--         <a href="/unitApply" class="title" style="flex: 1;min-width: 40px">注册</a>-->
+          <el-dropdown style="padding-top: 8px">
+            <span class="title el-dropdown-link" style="flex: 1;min-width: 80px">
+              登录<i class="el-icon-arrow-down el-icon--right"></i>
+            </span>
+            <el-dropdown-menu slot="dropdown">
+              <el-dropdown-item><a href="/schoolLogin" class="title" style="flex: 1;min-width: 40px">学校登录</a></el-dropdown-item>
+              <el-dropdown-item><a href="/login" class="title" style="flex: 1;min-width: 40px">学院登录</a></el-dropdown-item>
+            </el-dropdown-menu>
+          </el-dropdown>
+          <el-dropdown style="padding-top: 8px">
+            <span class="title el-dropdown-link" style="flex: 1;min-width: 80px">
+              注册<i class="el-icon-arrow-down el-icon--right"></i>
+            </span>
+            <el-dropdown-menu slot="dropdown">
+              <el-dropdown-item><a href="/unitApplySchool" class="title" style="flex: 1;min-width: 40px">学校注册</a></el-dropdown-item>
+              <el-dropdown-item><a href="/unitApply" class="title" style="flex: 1;min-width: 40px">学院注册</a></el-dropdown-item>
+            </el-dropdown-menu>
+          </el-dropdown>
           <a href="http://www.scholat.com/"  class="title" style="flex: 1;min-width: 60px;">
             学者网
           </a>
@@ -840,6 +858,12 @@
     .page4_school{
       display: none!important;
     }
-
+    .el-dropdown-link {
+      cursor: pointer;
+      color: #409EFF;
+    }
+    .el-icon-arrow-down {
+      font-size: 12px;
+    }
   }
 </style>
