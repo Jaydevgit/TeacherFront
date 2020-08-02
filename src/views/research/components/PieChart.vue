@@ -20,21 +20,25 @@ export default {
     },
     height: {
       type: String,
-      default: '300px'
+      default: '320px'
     }
   },
   data() {
     return {
-      chart: null
+      chart: null,
+      patentTotal:0,
+      projectTotal:0,
+      publicationTotal:0,
+      paperTotal:0
     }
   },
   created(){
-
+    this.getTotal()
   },
   mounted() {
-    this.$nextTick(() => {
-      this.initChart()
-    })
+    // this.$nextTick(() => {
+    //   this.initChart()
+    // })
   },
   beforeDestroy() {
     if (!this.chart) {
@@ -43,7 +47,27 @@ export default {
     this.chart.dispose()
     this.chart = null
   },
+  watch: {
+    patentTotal(val) {
+     console.log("aaa")
+      this.initChart()
+    }
+  },
   methods: {
+    getTotal(){
+      let unitId =  this.$store.state.user.unitId;
+      this.api({
+        url: "/statistic/getTotal/"+unitId,
+        method: "get",
+      }).then(data => {
+        console.log("data="+data.paperTotal);
+        this.paperTotal=data.paperTotal
+        this.projectTotal=data.projectTotal
+        this.patentTotal=data.patentTotal
+        this.publicationTotal=data.publicationTotal
+      })
+
+    },
     initChart() {
       this.chart = echarts.init(this.$el, 'macarons')
 
@@ -55,21 +79,20 @@ export default {
         legend: {
           left: 'center',
           bottom: '10',
-          data: ['Industries', 'Technology', 'Forex', 'Gold', 'Forecasts']
+          data: ['论文', '项目', '专利', '著作']
         },
         series: [
           {
-            name: 'WEEKLY WRITE ARTICLES',
+            name: '学术成果统计',
             type: 'pie',
             roseType: 'radius',
             radius: [15, 95],
             center: ['50%', '38%'],
             data: [
-              { value: 320, name: 'Industries' },
-              { value: 240, name: 'Technology' },
-              { value: 149, name: 'Forex' },
-              { value: 100, name: 'Gold' },
-              { value: 59, name: 'Forecasts' }
+              { value: this.paperTotal, name: '论文' },
+              { value: this.projectTotal, name: '项目' },
+              { value: this.patentTotal, name: '专利' },
+              { value: this.publicationTotal, name: '著作' },
             ],
             animationEasing: 'cubicInOut',
             animationDuration: 2600
