@@ -39,7 +39,8 @@
 <!--            <span type="primary"  size="small" v-if="backTOHome" @click="enterHomepage">进入学院主页</span>-->
 <!--        </el-dropdown-item>-->
         <el-dropdown-item >
-          <a href="/user/password" style=" display:block;">账号管理</a>
+          <a v-if="backTOHome==1" href="/user/password" style=" display:block;">账号管理</a>
+          <a v-if="backTOHome==2" href="/school/user/password" style=" display:block;">账号管理</a>
         </el-dropdown-item>
         <el-dropdown-item divided>
           <span @click="logout" style=" display:block;">退出登录</span>

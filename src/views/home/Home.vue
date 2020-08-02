@@ -67,7 +67,7 @@
         </div>
         <div class="eachScholar">
           <el-card class="box-card" style="">
-            <div v-for="o in unitList" :key="o" class="item">
+            <div v-for="o in unitList" class="item">
               <a :href="'/homepage/'+listQuery.schoolDomain+'/'+o.domain_name" class="text">{{o.unit_name}}</a>
             </div>
           </el-card>

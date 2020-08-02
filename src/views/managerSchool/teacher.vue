@@ -272,7 +272,8 @@
           dialogTableVisible: false,
           dialogImportVisible: false,
           fileList:[],
-          unitList:''
+          unitList:'',
+          changeType:''
         }
       },
       created() {
@@ -371,7 +372,8 @@
             })
           }
         },
-        changeTeahcer() {
+        changeTeacher() {
+          console.log("----------执行了changeTeacher方法-------------")
           this.listQuery.unitId = this.$store.state.user.unitId
           this.listQuery.key = this.searchKey
           this.api({
@@ -470,7 +472,7 @@
             params: this.listQuery
           }).then(data => {
             console.log("查询教师信息为:")
-            console.log("=================展示教师列表信息===============")
+            console.log("=================展示学校教师列表信息===============")
             this.listLoading = false;
             this.list = data.list;
             console.log(data);
@@ -479,7 +481,8 @@
               v.update_time = t;
             });
             this.totalCount = data.totalCount;
-
+            this.changeType='school';
+            console.log("getList.changeType="+this.changeType)
             this.currentSearch = false
             console.log(this.totalCount + "  " + this.totalUpdate + " " + this.listQuery.pageNum);
           }).catch(error => {
@@ -506,28 +509,57 @@
         },
         changeList() {
           console.log("===============执行changeList方法=================")
-          //查询列表
-          if (!this.hasSchoolPerm('school:list')) {
-            return
+          console.log("this.changeType="+this.changeType)
+          if (this.changeType=="school"){
+            //查询列表
+            if (!this.hasSchoolPerm('school:list')) {
+              return
+            }
+            this.listQuery.schoolDomain = this.$store.state.schoolUser.schoolDomain;
+            console.log('schoolDomain==' + JSON.stringify(this.listQuery));
+            this.listLoading = true;
+            console.log("### 开始查询教师成员列表")
+            this.api({
+              url: "/school/listTeacher",
+              method: "get",
+              params: this.listQuery
+            }).then(data => {
+              console.log("查询教师信息为:" + data.totalUpdate)
+              console.log("================================")
+              this.listLoading = false;
+              this.list = data.list;
+              this.totalCount = data.totalCount;
+              this.totalUpdate = data.totalUpdate;
+            }).catch(error => {
+              console.log("QAQ........没有找到教师列表")
+            })
+          }else if(this.changeType=="unit"){
+            this.listLoading = true;
+            console.log("### 开始查询教师成员列表")
+            this.api({
+              url: "/school/listTeacherByUnit",
+              method: "get",
+              params: this.listQuery
+            }).then(data => {
+              console.log("查询某学院的教师信息为:")
+              console.log("=================展示学院教师列表信息===============")
+              this.listLoading = false;
+              this.list = data.list;
+              console.log(data);
+              this.list.forEach((v, k) => {
+                let t = v.update_time.replace(/\./g, '-').slice(0, 16);
+                v.update_time = t;
+              });
+              this.totalCount = data.totalCount;
+              this.changeType='unit';
+              console.log("unitChange.changeType="+this.changeType)
+              this.currentSearch = false
+              console.log(this.totalCount + "  " + this.totalUpdate + " " + this.listQuery.pageNum);
+            }).catch(error => {
+              console.log("QAQ........没有找到教师列表")
+            })
           }
-          this.listQuery.schoolDomain = this.$store.state.schoolUser.schoolDomain;
-          console.log('schoolDomain==' + JSON.stringify(this.listQuery));
-          this.listLoading = true;
-          console.log("### 开始查询教师成员列表")
-          this.api({
-            url: "/school/listTeacher",
-            method: "get",
-            params: this.listQuery
-          }).then(data => {
-            console.log("查询教师信息为:" + data.totalUpdate)
-            console.log("================================")
-            this.listLoading = false;
-            this.list = data.list;
-            this.totalCount = data.totalCount;
-            this.totalUpdate = data.totalUpdate;
-          }).catch(error => {
-            console.log("QAQ........没有找到教师列表")
-          })
+
         },
         handleSizeChange(val) {
           //改变每页数量
@@ -537,7 +569,12 @@
         handleFilter() {
           //查询事件
           this.listQuery.pageNum = 1
-          this.getList()
+          if (this.changeType=='school'){
+            this.getList()
+          }else if(this.changeType=='unit'){
+            this.unitChange(this.listQuery.unitId)
+          }
+
         },
         handleCurrentChange(val) {
           //改变页码
@@ -545,7 +582,7 @@
           if (!this.currentSearch)
             this.changeList()
           else
-            this.changeTeahcer()
+            this.changeTeacher()
         },
         getIndex($index) {
           //表格序号
@@ -638,7 +675,7 @@
             params: this.listQuery
           }).then(data => {
             console.log("查询某学院的教师信息为:")
-            console.log("=================展示教师列表信息===============")
+            console.log("=================展示学院教师列表信息===============")
             this.listLoading = false;
             this.list = data.list;
             console.log(data);
@@ -647,7 +684,8 @@
               v.update_time = t;
             });
             this.totalCount = data.totalCount;
-
+            this.changeType='unit';
+            console.log("unitChange.changeType="+this.changeType)
             this.currentSearch = false
             console.log(this.totalCount + "  " + this.totalUpdate + " " + this.listQuery.pageNum);
           }).catch(error => {
