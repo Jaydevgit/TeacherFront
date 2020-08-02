@@ -34,7 +34,9 @@
             </el-form-item>
           </el-form>
         </div>
-        <div class="right"></div>
+        <div class="right">
+          <PieChart></PieChart>
+        </div>
       </div>
 
       <div class="bottom">
@@ -249,8 +251,12 @@
 </template>
 
 <script>
+  import PieChart from './components/PieChart'
     export default {
         name: "researchManagement",
+      components:{
+        PieChart
+      },
       data() {
         return {
           AcademicForm: {
@@ -337,4 +343,16 @@
   margin: 10px 20px 10px 20px;
   padding: 30px 30px 10px 30px;
 }
+.card-panel-description {
+  float: left;
+  font-weight: bold;
+  margin: 10px;
+}
+.card-panel-text {
+  line-height: 26px;
+  color: rgba(0, 0, 0, 0.45);
+  font-size: 22px;
+  margin-bottom: 12px;
+}
+
 </style>
