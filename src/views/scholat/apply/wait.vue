@@ -271,7 +271,7 @@
           showCancelButton: false,
           type: 'warning'
         }).then(() => {
-          this.$message.warning("申请的id是:" + id)
+      //    this.$message.warning("申请的id是:" + id)
             _vue.api({
               url: "/scholat/apply/allowApply",
               method: "post",

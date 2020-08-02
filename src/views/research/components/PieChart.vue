@@ -57,7 +57,7 @@ export default {
     getTotal(){
       let unitId =  this.$store.state.user.unitId;
       this.api({
-        url: "/statistic/getTotal/"+unitId,
+        url: "/academic/getAllCount/"+unitId,
         method: "get",
       }).then(data => {
         console.log("data="+data.paperTotal);
