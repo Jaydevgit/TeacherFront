@@ -181,12 +181,12 @@
           <el-button v-if="scope.row.scholat_username!==''" type="success" icon="el-icon-info" circle @click="showAcademic(scope.row.scholat_username)"></el-button>
         </template>
       </el-table-column>-->
-      <el-table-column fixed="right" align="center" label="教师分配" width="90">
+      <!--<el-table-column fixed="right" align="center" label="教师分配" width="90">
         <template slot-scope="scope">
           <el-button type="primary" icon="el-icon-star-off" circle @click="openAssignment(scope.row.id)"></el-button>
         </template>
-      </el-table-column>
-      <el-table-column fixed="right" align="center" label="管理" width="120" v-if="hasPerm('teacher:update')">
+      </el-table-column>-->
+      <el-table-column fixed="right" align="center" label="管理" width="120" v-if="hasSchoolPerm('school:update')">
         <template slot-scope="scope">
           <template v-if="scope.row.scholat_update_time > scope.row.update_time">
             <el-button type="warning" icon="el-icon-edit" circle @click="showUpdate(scope.row)"></el-button>
@@ -194,7 +194,7 @@
           <template v-else>
             <el-button type="primary" icon="el-icon-edit" circle @click="showUpdate(scope.row)"></el-button>
           </template>
-          <el-button type="danger" icon="el-icon-delete" circle v-if="hasPerm('teacher:delete')"
+          <el-button type="danger" icon="el-icon-delete" circle v-if="hasSchoolPerm('school:delete')"
                      @click="removeTeacher(scope.row.id)"></el-button>
         </template>
       </el-table-column>
@@ -389,6 +389,7 @@
           })
         },
         removeTeacher(teacherId) {
+          console.log("teacherId="+teacherId);
           var _vue = this;
           this.$confirm('确定删除该教师?', '提示', {
             confirmButtonText: '确定',
@@ -396,7 +397,7 @@
             type: 'warning'
           }).then(() => {
             _vue.api({
-              url: "/manager/deleteTeacher",
+              url: "/school/deleteTeacher",
               method: "post",
               data: {
                 "teacherId": teacherId
@@ -436,12 +437,14 @@
         },
         routerTo(teacher) {
           console.log("=========================================")
+          console.log("schoolDomain=" + this.$store.state.schoolUser.schoolDomain);
+          console.log("id="+teacher.id)
           console.log("点击跳转........" + teacher.domainName);
           let routeData = this.$router.push({
             name: 'teacherPersonlHomePage',
             params: {
               // facultyDomainName:this.$store.state.user.domainName,
-              schoolDomain: this.$store.state.user.schoolDomain,
+              schoolDomain: this.$store.state.schoolUser.schoolDomain,
               teacherDomainName: teacher.domainName,
               id: teacher.id
             }
