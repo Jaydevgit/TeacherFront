@@ -1,15 +1,21 @@
 <template>
   <div class="app-container">
+
     <div style="float: left">
+      <div style="padding-bottom: 5px;float:left">
+        <img class="preview"  :src="getImgUrl(this.person.avator)"
+             :onerror="imgErrorFun()" style="width:60px;height:60px;border-radius:50%; "/>
+      </div>
+      <div style="display:inline;line-height: 60px;padding-left: 20px">{{this.person.name}}</div>
+    </div>
+    <div style="float: right;margin-top: 5px">
       <el-button v-if="this.activeName==='first'" type="primary" @click="addAllScholatPaper">添加所有论文</el-button>
       <el-button v-if="this.activeName==='second'" type="primary" @click="addAllScholatProject">添加所有项目</el-button>
       <el-button v-if="this.activeName==='third'" type="primary" @click="addAllScholatPatent">添加所有专利</el-button>
       <el-button v-if="this.activeName==='fourth'" type="primary" @click="addAllScholatPublication">添加所有著作</el-button>
-    </div>
-    <div style="float: right;">
-      <i type="success" class="el-icon-success" style="font-size: 40px; color: #67C23A;transform: translateY(10px)"
-        ></i><span style="color: #909399;">&nbsp已添加&nbsp&nbsp&nbsp</span>
-      <el-button size="small" type="primary" icon="el-icon-plus" circle></el-button>  <span style="color: #909399;">&nbsp可添加&nbsp&nbsp&nbsp</span>
+<!--      <i type="success" class="el-icon-success" style="font-size: 40px; color: #67C23A;transform: translateY(10px)"-->
+<!--        ></i><span style="color: #909399;">&nbsp已添加&nbsp&nbsp&nbsp</span>-->
+<!--      <el-button size="small" type="primary" icon="el-icon-plus" circle></el-button>  <span style="color: #909399;">&nbsp可添加&nbsp&nbsp&nbsp</span>-->
       <!--  <el-button size="small" type="warning" icon="el-icon-star-off" circle></el-button>
        <span style="color: #909399;">&nbsp存在相似成果&nbsp&nbsp&nbsp</span>-->
     </div>
@@ -295,6 +301,10 @@
         list4:[],
         listLoading: true,//数据加载等待动画
         pids : [],
+        person:{
+          name:'',
+          avator:''
+        },
         paperForm: {
           id: '',
           title:'',
@@ -343,6 +353,7 @@
       }
     },
     created() {
+      this.getPerson()
     },
     mounted(){
         this.scholatPaper()
@@ -368,7 +379,37 @@
       }
     },
     methods: {
+      getPerson(){
+        let scholatName=this.$route.params.scholat_username
+        this.api({
+          url: "/teacher/getTeacherInfoByScholatName/" + scholatName,
+          method: "get"
+        }).then(data => {
+          this.person.name=data.tName
+          this.person.avator=data.tAvatar
+     //     console.log("查询教师信息为:" + JSON.stringify(data)+data.tAvatar)
+        }).catch(error => {
+          console.log("QAQ........没有找到教师信息")
+        })
+      },
       handleClick(tab, event) {
+      },
+      getImgUrl(imgName) {
+        console.log("imgName"+imgName);
+        if (imgName == null) {
+          return this.defaultAvatar;
+        } else if (imgName == "default.png") {
+          return this.defaultAvatar
+        } else if (imgName.indexOf("resources") !== -1) {
+          return "http://www.scholat.com/" + imgName;
+        } else {
+          return "http://39.108.169.193:2333/public/images/avatar/" + imgName;
+        }
+        /*return 'http://39.108.169.193:2333/public/images/avatar/'+imgName;*/
+
+      },
+      imgErrorFun(e) {
+        return 'this.src="defaultAvatar"';
       },
       modifyPaper(id){
           let routeData = this.$router.resolve({

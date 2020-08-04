@@ -186,11 +186,11 @@
         </template>
       </el-table-column>-->
       <!--域名修改结束-->
-      <el-table-column fixed="right" align="center" label="学术档案" width="90">
-        <template slot-scope="scope">
-          <el-button v-if="scope.row.scholat_username!==''" type="success" icon="el-icon-info" circle @click="showAcademic(scope.row.scholat_username)"></el-button>
-        </template>
-      </el-table-column>
+<!--      <el-table-column fixed="right" align="center" label="学术档案" width="90">-->
+<!--        <template slot-scope="scope">-->
+<!--          <el-button v-if="scope.row.scholat_username!==''" type="success" icon="el-icon-info" circle @click="showAcademic(scope.row.scholat_username)"></el-button>-->
+<!--        </template>-->
+<!--      </el-table-column>-->
             <el-table-column fixed="right" align="center" label="教师分配" width="90">
               <template slot-scope="scope">
                 <el-button type="primary" icon="el-icon-star-off" circle @click="openAssignment(scope.row.id)"></el-button>
