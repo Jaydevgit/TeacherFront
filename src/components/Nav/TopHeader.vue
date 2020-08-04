@@ -223,11 +223,19 @@
       props:{
         titleFlag:'',
       },
+      watch:{
+        $route(){
+          this.getUnitInfo();
+        }
+      },
         created() {
             this.getUnitInfo();
             this.initDisplay();
         },
-        ready() {
+      mounted() {
+
+      },
+      ready() {
         },
         methods: {
             initDisplay(){
