@@ -50,7 +50,7 @@
           this.getListAll();
         }
       },
-      props: ['unitId'],
+      props: ['unitId','currentDomainName'],
       created() {
         this.schoolDomain=this.$route.path.split('/')[2];
         this.unitDomain=this.$route.path.split('/')[3];
@@ -64,8 +64,14 @@
       },
       methods:{
         getListAll() {
+          console.log("执行了TeacherList的created中的getListAll方法")
           this.currentCat = 0
-          this.listQuery.unitDomain = this.$route.path.split('/')[3];
+          if (this.$route.path.split('/')[3]!=null){
+            this.listQuery.unitDomain = this.$route.path.split('/')[3];
+          }else{
+            this.listQuery.unitDomain = this.currentDomainName
+          }
+
           this.listQuery.schoolDomain = this.$route.path.split('/')[2];
           // this.listLoading = true;
           console.log("传入参数为:"+JSON.stringify(this.listQuery))

@@ -192,7 +192,7 @@ export const asyncRouterMap = [
     path: '/school/schoolInfo',
     component: Layout,
     redirect: '/school/schoolInfo',
-    name: '嘻嘻嘻设置',
+    name: '学校信息管理',
     meta: {title: '信息管理', icon: 'tree'},
     children: [
       {

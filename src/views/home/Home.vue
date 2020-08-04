@@ -7,7 +7,7 @@
 
       <div class="middle">
         <el-card class="box-card">
-          <teacher-list :unitId="unitId" v-show="isDisplay">
+          <teacher-list :unitId="unitId" :currentDomainName="currentDomainName" v-show="isDisplay" v-if="isRouterAlive">
           </teacher-list>
         </el-card>
       </div>
@@ -109,6 +109,11 @@
 
     export default {
       name: "Home",
+      provide:function(){
+        return{
+          reload:this.reload
+        }
+      },
       components:{
         'top-header':TopHeader,
         'LeftNav':LeftNav,
@@ -118,6 +123,7 @@
         return{
           defaultAvatar:defaultAvatar,
           unitId:'',
+          currentDomainName:'',
           listQuery:{
             unitId: '',
             schoolDomain:'',
@@ -127,6 +133,7 @@
           unitList:[],
           recentUpdateTeacherList:[],
           isDisplay:false,
+          isRouterAlive:true,
         }
       },
       watch:{
@@ -145,6 +152,12 @@
           this.getRecommendTeacher();
           this.getSchoolInfo();
           this.getRecentUpdateTeacher();
+        },
+        reload:function(){
+          this.isRouterAlive=false;
+          this.$nextTick(function () {
+            this.isRouterAlive=true;
+          })
         },
         getRecommendTeacher(){
           this.api({
@@ -169,6 +182,12 @@
             console.log("================================")
             this.listLoading = false;
             this.unitList = data;
+            console.log("data[0].id="+data[0].id)
+            this.isDisplay=true;
+            this.unitId = data[0].id;
+            this.currentDomainName=data[0].domain_name;
+            this.reload()
+
           }).catch(error => {
             console.log("QAQ........没有找到学校信息")
           })
