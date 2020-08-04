@@ -48,8 +48,7 @@ export default {
     this.chart = null
   },
   watch: {
-    patentTotal(val) {
-     console.log("aaa")
+    paperTotal(val) {
       this.initChart()
     }
   },
@@ -60,7 +59,6 @@ export default {
         url: "/academic/getAllCount/"+unitId,
         method: "get",
       }).then(data => {
-        console.log("data="+data.paperTotal);
         this.paperTotal=data.paperTotal
         this.projectTotal=data.projectTotal
         this.patentTotal=data.patentTotal
