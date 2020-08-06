@@ -1,7 +1,16 @@
 <template>
   <div class="app-container">
-    <div class="filter-container">
-  <el-table :data="list"
+    <div class="filter-container" style="">
+      <div style="height: 50px">
+        <el-button type="primary" size="small" style="float:right;margin-right: 15px;margin-top: 3px;max-height: 36px"
+                   @click="searchTeahcer">教师搜索
+        </el-button>
+        <el-input v-model="searchKey" style="width: 150px;float:right;height: 24px;margin-right: 15px;"
+                  placeholder="搜索要查询的信息"
+                  @keydown.enter.native="searchTeahcer"></el-input>
+        <el-input type="text" style="display:none"/> <!--确保keydown.enter触发-->
+      </div>
+    <el-table :data="list"
             v-loading.body="listLoading" element-loading-text="拼命加载中" border fit
             highlight-current-row
             @sort-change='sortChange'>
@@ -115,37 +124,7 @@ import defaultAvatar from '@/assets/default1.png'
           scholatUsernameFlag:true,
         },
         currentSearch: 'false',
-        dialogStatus: 'create',
-        dialogFormVisible: false,
-        textMap: {
-          update: '编辑',
-          create: '添加新成员'
-        },
-        tempTeacher: {
-          id: "",
-          name: "",
-          sex: 0,
-          avatar: '',
-          department: '',
-          post: '',
-          state: 1,
-          intro: '',
-          update_time: '',
-          email: '',
-          phone: ''
-        },
-        showMask: false,
-        showRoleAssigment: false,
-        roleId: '',//角色分配id
-        teacherState:'1',//教师是否在岗
         flagScholat:true, //是否关联学者网
-        unitQuery:{
-          domainName:'',
-          unitId:''
-        },
-        dialogTableVisible: false,
-        dialogImportVisible: false,
-        fileList:[],
       }
     },
     created() {
@@ -163,6 +142,26 @@ import defaultAvatar from '@/assets/default1.png'
       },
     },
     methods: {
+      searchTeahcer() {
+        this.listQuery.pageNum = 1;
+        this.listQuery.unitId = this.$store.state.user.unitId
+        this.listQuery.key = this.searchKey
+        if (this.searchKey != null && this.searchKey != "") {
+          this.api({
+            url: "/manager/searchTeacher",
+            method: "get",
+            params: this.listQuery
+          }).then(data => {
+            this.list = data.list;
+            console.log(" this.list" + JSON.stringify(this.list));
+            this.totalCount = data.totalCount;
+            this.totalUpdate = data.totalUpdate;
+            this.currentSearch = true;
+          }).catch(error => {
+            console.log("QAQ........获取教师失败")
+          })
+        }
+      },
       updateFromScholat() {
         this.$message.error("正在写")
 
