@@ -210,10 +210,17 @@ export const asyncRouterMap = [
   {
     path: '/school/manager',
     component: Layout,
-    redirect: '/school/manager/teacher',
-    name: '学校教师信息管理',
-    meta: {title: '教师信息管理', icon: 'tree'},
+    redirect: '/school/manager/college',
+    name: '学院管理',
+    meta: {title: '学院管理', icon: 'tree'},
     children: [
+      {
+        path: 'college',
+        name: '学院列表',
+        component: _import('managerSchool/CollegeManagement'),
+        meta: {title: '学院列表', icon: 'example'},
+        menu: 'school',// 这里的menu和权限有关，如果权限menu没有返回对应的menu就不会显示，所以要写上menu
+      },
       {
         path: 'teacher',
         name: '教师列表',
