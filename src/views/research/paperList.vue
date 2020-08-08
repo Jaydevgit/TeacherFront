@@ -156,6 +156,12 @@
         })
         console.log('submit!');
       },
+      exportExcel(){
+        this.listQuery.unitId= this.$store.state.user.unitId
+        var json = JSON.stringify(this.listQuery);
+        var json2=encodeURI(json) //解析中文字符
+        window.open("/api/academic/exportPaper2?data="+json2);
+      },
       handleSizeChange(val) {
         //改变每页数量
         this.listQuery.pageRow = val
