@@ -2,24 +2,29 @@
   <div class="app-container">
 
     <div class="filter-container" style="border-bottom: solid 3px #336699">
-      <el-form>
-        <el-form-item>
-<!--          <el-button style="float: right;margin-right: 20px;margin-top: 10px;" round type="primary" size="small" icon="plus" @click="showCreate" v-if="hasPerm('teacher:add')">添加项目-->
-<!--          </el-button>-->
-          <!--<el-button style="float:right;margin-right: 15px;margin-top: 3px;" size="small" type="success" icon="plus"-->
-          <!--@click="projectList">所有成果-->
-          <!--</el-button>-->
-          <!--<el-button type="primary" size="small" style="float:right;margin-right: 15px;margin-top: 3px;"-->
-          <!--@click="searchTeahcer">搜索-->
-          <!--</el-button>-->
-          <!--<el-input v-model="searchKey" style="width: 150px;float:right;height: 24px;margin-right: 15px;"-->
-          <!--placeholder="搜索要查询的信息"-->
-          <!--@keydown.enter.native="searchTeahcer"></el-input>-->
-          <!--<el-input type="text" style="display:none"/> &lt;!&ndash;确保keydown.enter触发&ndash;&gt;-->
-
-          <div style="clear: both;"></div>
+      <el-form :inline="true" :model="listQuery" class="demo-form-inline" >
+        <el-form-item label="教师姓名" >
+          <el-input v-model="listQuery.name" style="width: 100px" placeholder="请输入"></el-input>
         </el-form-item>
-        <el-form-item style="margin-bottom:0;display:none;">
+        <el-form-item label="起始日期" >
+          <el-date-picker
+            v-model="listQuery.valueStart"
+            type="month"
+            placeholder="选择月">
+          </el-date-picker>
+        </el-form-item>
+        <el-form-item label="截至日期">
+          <el-date-picker
+            v-model="listQuery.valueEnd"
+            type="month"
+            placeholder="选择月">
+          </el-date-picker>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary" @click="onSubmit">查询</el-button>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary" @click="exportExcel">导出Excel</el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -119,6 +124,9 @@
           pageNum: 1,//页码
           pageRow: 10,//每页条数
           unitId: '',
+          name:'',
+          valueStart:'',
+          valueEnd:'',
           key: ''
         }
       }
@@ -128,6 +136,31 @@
       this.projectList();
     },
     methods: {
+      onSubmit() {
+        this.listLoading=true
+        this.listQuery.pageNum = 1
+        this.listQuery.pageRow = 10
+        this.listQuery.unitId= this.$store.state.user.unitId
+        this.api({
+          url: "/academic/searchProject",
+          method: "post",
+          data: this.listQuery
+        }).then(data => {
+          console.log("查询成果成功"+JSON.stringify(data))
+          this.list = data.list;
+          this.totalCount = data.totalCount;
+          this.listLoading=false
+        }).catch(error => {
+          console.log("QAQ........没有找到成果列表")
+        })
+        console.log('submit!');
+      },
+      exportExcel(){
+        this.listQuery.unitId= this.$store.state.user.unitId
+        var json = JSON.stringify(this.listQuery);
+        var json2=encodeURI(json) //解析中文字符
+        window.open("/api/academic/exportPaper2?data="+json2);
+      },
       handleSizeChange(val) {
         //改变每页数量
         this.listQuery.pageRow = val
@@ -194,9 +227,9 @@
       changePageNum(){
         this.listQuery.unitId =  this.$store.state.user.unitId;
         this.api({
-          url: "/academic/listProject",
-          method: "get",
-          params: this.listQuery
+          url: "/academic/searchProject",
+          method: "post",
+          data: this.listQuery
         }).then(data => {
           console.log("查询科研组织成果成功")
           console.log(data)
