@@ -187,11 +187,11 @@
     methods: {
       getImgUrl(msg, imageName) {
         if (msg == 'front') {
-          return "http://39.108.169.193:2333/public/images/certificate_front/" + imageName;
+          return "https://faculty.scholat.com:2333/public/images/certificate_front/" + imageName;
         } else if (msg == 'back') {
-          return "http://39.108.169.193:2333/public/images/certificate_back/" + imageName;
+          return "https://faculty.scholat.com:2333/public/images/certificate_back/" + imageName;
         } else if (msg == 'working') {
-          return "http://39.108.169.193:2333/public/images/certificate_working/" + imageName;
+          return "https://faculty.scholat.com:2333/public/images/certificate_working/" + imageName;
         }else {
           return "http://ww2.sinaimg.cn/large/006tNc79gy1g4i53qvv3kj30kn0eaacq.jpg"
         }
@@ -209,14 +209,14 @@
            return logoUrl;
          }else{
            console.log("false");
-           return 'http://39.108.169.193:2333/public/images/certificate_logo/' + logoUrl
+           return 'https://faculty.scholat.com:2333/public/images/certificate_logo/' + logoUrl
          }
         // {
         //   return logoUrl;
         // }else{
         //   return schoolName;
         // }
-        //   return 'http://39.108.169.193:2333/public/images/certificate_logo/' + logoUrl
+        //   return 'https://faculty.scholat.com:2333/public/images/certificate_logo/' + logoUrl
         // return "http://www.scholat.com/images/uni_logo/" + schoolName + ".png";
       },
       /* ---------------------------------------

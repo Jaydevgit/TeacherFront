@@ -139,7 +139,7 @@
 
 <!--            </el-form-item>-->
 <!--            <el-form-item v-if="ruleForm.folderPath" label="下载附件">-->
-<!--              <a target="_blank" :href="'http://39.108.169.193:2333/public/images/other/'+ ruleForm.folderPath"-->
+<!--              <a target="_blank" :href="'https://faculty.scholat.com:2333/public/images/other/'+ ruleForm.folderPath"-->
 <!--                    :download="ruleForm.title+'.pdf'" style="color: red"> {{ruleForm.folderPath}}  </a>-->
 <!--            </el-form-item>-->
         </el-col>
@@ -394,7 +394,7 @@
             } else if (imgName.indexOf("resources") != "-1") {
               return "http://www.scholat.com/" + imgName;
             } else {
-              return "http://39.108.169.193:2333/public/images/avatar/" + imgName;
+              return "https://faculty.scholat.com:2333/public/images/avatar/" + imgName;
             }
           },
           imageUpload:function(param) {

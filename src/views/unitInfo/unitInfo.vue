@@ -53,12 +53,12 @@
       <!--<el-form-item v-if="applyForm.state === 0" label="文字模式："  >
         <div style="margin-left: 15px;">
           &lt;!&ndash;提交完后显示这个&ndash;&gt;
-          <img src="http://39.108.169.193:2333/public/images/background/1569738575202258.png"  style="width: 420px; height: 72px;"/>
+          <img src="https://faculty.scholat.com:2333/public/images/background/1569738575202258.png"  style="width: 420px; height: 72px;"/>
         </div>
 
       </el-form-item>-->
       <el-form-item v-if="applyForm.state === 1" label="">
-        <div style="" v-if="showBack.indexOf('http://39.108.169.193:2333/public/images/background/')!=-1">
+        <div style="" v-if="showBack.indexOf('https://faculty.scholat.com:2333/public/images/background/')!=-1">
           <!--提交完后显示这个-->
           <img :src="showBack"
                :onerror="defaultBack" style="width: 420px; height: 72px;"/>
@@ -116,7 +116,7 @@
         data() {
             return {
                 defaultLogo: 'this.src="http://www.scholat.com/images/uni_logo/nologo.png"',
-                //  defaultBack: 'this.src="http://39.108.169.193:2333/public/images/background/1569738575202258.png"',
+                //  defaultBack: 'this.src="https://faculty.scholat.com:2333/public/images/background/1569738575202258.png"',
                 defaultBack: '',
               defaultBackHome:'',
                 applyForm: {
@@ -245,21 +245,21 @@
                     console.log(JSON.stringify(data))
                     this.applyForm = data
                     if (data.logoUrl != null && data.logoUrl.indexOf('scholat') === -1)
-                        this.showLogo = 'http://39.108.169.193:2333/public/images/unit_logo/' + data.logoUrl
+                        this.showLogo = 'https://faculty.scholat.com:2333/public/images/unit_logo/' + data.logoUrl
                     else
                         this.showLogo = data.logoUrl;
                     if (data.backgroundUrl != undefined &&
                         data.backgroundUrl != ''
                         && data.backgroundUrl != null) {
-                        this.showBack = 'http://39.108.169.193:2333/public/images/background/' + data.backgroundUrl;
+                        this.showBack = 'https://faculty.scholat.com:2333/public/images/background/' + data.backgroundUrl;
                     } else {
                         this.showBack = ''
                     }
                   if (data.backgroundHome != undefined &&
                     data.backgroundHome != ''
                     && data.backgroundHome != null) {
-                    this.showBackHome = 'http://39.108.169.193:2333/public/images/background/' + data.backgroundHome;
-                    this.fileList.url='http://39.108.169.193:2333/public/images/background/' + data.backgroundHome;
+                    this.showBackHome = 'https://faculty.scholat.com:2333/public/images/background/' + data.backgroundHome;
+                    this.fileList.url='https://faculty.scholat.com:2333/public/images/background/' + data.backgroundHome;
                     this.fileList.push({'name': 'default.png','url':this.fileList.url})
                     console.log("this.fileList.url="+this.fileList.url);
                   } else {

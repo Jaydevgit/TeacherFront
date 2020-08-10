@@ -178,7 +178,7 @@
                     if (data.local_profile.avatar.indexOf('resources') != -1) {
                         data.local_profile.avatar = "http://www.scholat.com/" + data.local_profile.avatar;
                     } else {
-                        data.local_profile.avatar = "http://39.108.169.193:2333/public/images/avatar/" + data.local_profile.avatar;
+                        data.local_profile.avatar = "https://faculty.scholat.com:2333/public/images/avatar/" + data.local_profile.avatar;
                     }
                     data.local_profile.sex=data.local_profile.sex==0?'男':'女';
                     data.local_profile.state=data.local_profile.state=='1'?'在岗':'退休/临调';

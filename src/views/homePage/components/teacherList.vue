@@ -125,10 +125,10 @@
         data() {
             return {
                 //变量
-                defaultImage: 'http://39.108.169.193:2333/public/images/avatar/default.png',
+                defaultImage: 'https://faculty.scholat.com:2333/public/images/avatar/default.png',
                 defaultAvatar:defaultAvatar,
                 isActive: '',
-                sourceUrl: 'http://39.108.169.193:2333/public/images/avatar/',
+                sourceUrl: 'https://faculty.scholat.com:2333/public/images/avatar/',
                 listName: '最新更新',
                 totalCount: 0, //分页组件--数据总条数
                 currentCat: '',
@@ -343,7 +343,7 @@
               } else if (imgName.indexOf("resources") != "-1") {
                 return "http://www.scholat.com/" + imgName;
               } else {
-                return "http://39.108.169.193:2333/public/images/avatar/" + imgName;
+                return "https://faculty.scholat.com:2333/public/images/avatar/" + imgName;
               }
             },
             imgErrorFun(e) {

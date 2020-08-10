@@ -247,7 +247,7 @@
           <div>© 2020起 SCHOLAT+LAB</div>
         </div>
         <div style=" display:table-cell;">
-          <img src="http://39.108.169.193:2333/public/images/index/QR.png" style="height: 50px">
+          <img src="https://faculty.scholat.com:2333/public/images/index/QR.png" style="height: 50px">
         </div>
         </div>
 
@@ -264,7 +264,7 @@
 
 <!--        </div>-->
 <!--        <div style="display: flex;align-items:center;height: 100%;margin-left: 16px">-->
-<!--          <img src="http://39.108.169.193:2333/public/images/index/QR.png" style="height: 50px">-->
+<!--          <img src="https://faculty.scholat.com:2333/public/images/index/QR.png" style="height: 50px">-->
 <!--        </div>-->
 
 <!--      </div>-->

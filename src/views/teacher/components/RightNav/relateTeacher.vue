@@ -20,7 +20,7 @@
         name: "relateTeacher",
         data() {
             return {
-                defaultImage: 'this.src="http://39.108.169.193:2333/public/images/avatar/default.png"',
+                defaultImage: 'this.src="https://faculty.scholat.com:2333/public/images/avatar/default.png"',
               defaultAvatar:defaultAvatar,
             }
         },
@@ -49,7 +49,7 @@
               } else if (imgName.indexOf("resources") != "-1") {
                 return "http://www.scholat.com/" + imgName;
               } else {
-                return "http://39.108.169.193:2333/public/images/avatar/" + imgName;
+                return "https://faculty.scholat.com:2333/public/images/avatar/" + imgName;
               }
             },
           imgErrorFun(e) {

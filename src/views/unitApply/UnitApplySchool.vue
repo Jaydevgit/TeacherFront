@@ -243,7 +243,7 @@
       }
       return {
         active: 0,
-        cerLogo: 'this.src="http://39.108.169.193:2333/public/images/default/default_cer.png"',
+        cerLogo: 'this.src="https://faculty.scholat.com:2333/public/images/default/default_cer.png"',
         defaultLogo: 'this.src="http://www.scholat.com/images/uni_logo/nologo.png"',
         modifyBtnFlag: false,
         certificate_front_url: '',
