@@ -34,7 +34,7 @@
       </div>
       <a class="college-link" :href="unit.collegeUrl" v-if="dataDone && this.$route.path.indexOf('teacher')===-1">
         <el-button type="text" style=" font-size: 13px;
-    font-weight: bold;position: relative;transform: translateX(-30px);color: #3399CC;" @click="">学院首页</el-button>
+    font-weight: bold;position: relative;transform: translateX(-40px);color: #3399CC;" @click="">学院首页</el-button>
       </a>
 
     </div>
@@ -498,7 +498,8 @@
       position: relative;
       width: 250px;
       margin: 0 auto;
-      max-width:180px;transform: translateX(20px)
+      max-width:150px;
+      transform: translateX(20px)
     }
     .teacherTeam{
       margin-left: 20px;
@@ -520,7 +521,7 @@
     }
     .background {
       padding: 0px 0px 5px 0px;
-      width: 100%;
+      width: 90%;
       height: 100%;
       max-width: 1000px;
       text-align: center;
@@ -555,7 +556,7 @@
       cursor: pointer;height: 100%;display: flex;align-items: center
     }
     .college-link{
-      display: none;
+      /*display: none;*/
     }
     .bar6 input {
       border: 2px solid white;
@@ -618,7 +619,7 @@
     }
     .background {
       padding: 0px 0px 5px 0px;
-      width: 100%;
+      width: 90%;
       height: 100%;
       max-width: 1000px;
       text-align: center;
@@ -641,10 +642,10 @@
     }
     div.search {
       /*display: none;*/
-      width: auto
+      width: 50%
     }
     .background1-name{
-      margin-left: 70px;
+      margin-left: 60px;
       display: flex;
       flex-direction: column;
     }
@@ -657,14 +658,14 @@
       width: 100%;
     }
     .college-link{
-      margin-left: 30px;
+      margin-left: 32px;
     }
 
     .font-jsgrzy {
-      margin-left: 20px;
+      margin-left: 10px;
       font-family: '等线 Light';
       font-weight: bold;
-      letter-spacing: 1.5px;
+      letter-spacing: 1px;
       line-height: 60px;
       font-size: 18px;
       color: steelblue;
@@ -677,7 +678,8 @@
       position: relative;
       /*float: right;*/
       width: 50%;
-      max-width:180px;transform: translateX(20px)
+      max-width:150px;
+      transform: translateX(20px)
     }
     .bar6 input {
       border: 2px solid white;
