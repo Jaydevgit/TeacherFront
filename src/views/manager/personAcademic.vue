@@ -289,12 +289,14 @@
 <script>
   import teacherPersonalHomePage from '../teacher/teacherPersonalHomePage'
   import store from '../../store'
+  import defaultAvatar from '@/assets/default1.png'
 
   export default {
     // -------------------这个用来获取路由表, 因为我点击教师链接需要跳转到教师主页
     components: {teacherPersonalHomePage},
     data() {
       return {
+        defaultAvatar:defaultAvatar,
         list: [],//表格的数据
         list2:[],
         list3:[],
@@ -387,7 +389,7 @@
         }).then(data => {
           this.person.name=data.tName
           this.person.avator=data.tAvatar
-     //     console.log("查询教师信息为:" + JSON.stringify(data)+data.tAvatar)
+          console.log("查询教师信息为:" + JSON.stringify(data)+data.tAvatar)
         }).catch(error => {
           console.log("QAQ........没有找到教师信息")
         })
@@ -398,7 +400,7 @@
         console.log("imgName"+imgName);
         if (imgName == null) {
           return this.defaultAvatar;
-        } else if (imgName == "default.png") {
+        } else if (imgName === "default.png") {
           return this.defaultAvatar
         } else if (imgName.indexOf("resources") !== -1) {
           return "http://www.scholat.com/" + imgName;
