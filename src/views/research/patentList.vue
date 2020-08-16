@@ -219,9 +219,9 @@
       changePageNum(){
         this.listQuery.unitId =  this.$store.state.user.unitId;
         this.api({
-          url: "/academic/listPatent",
-          method: "get",
-          params: this.listQuery
+          url: "/academic/searchPatent",
+          method: "post",
+          data: this.listQuery
         }).then(data => {
           console.log("查询科研组织成果成功")
           console.log(data)
