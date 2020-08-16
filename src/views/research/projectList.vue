@@ -128,7 +128,7 @@
           valueStart:'',
           valueEnd:'',
           key: ''
-        }
+        },
       }
     },
     created() {
