@@ -68,7 +68,7 @@
                   <!--<span><svg-icon icon-class="department"/></span>-->
                   <label class="font-one">所在部门：</label><div class="detail-msg">
                   {{personal.unit}}
-                  <div v-if="personal.unit!=teacherProfile.department_name">
+                  <div v-if="personal.unit!=teacherProfile.department_name" style="display: initial">
                     {{teacherProfile.department_name}}
                   </div>
                 </div>

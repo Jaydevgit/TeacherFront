@@ -179,11 +179,11 @@
             </a>
           </div>
           <div class="school">
-<!--            <a href="http://faculty.scholat.com/homepage/gdpu/xg">-->
-<!--              <div><img :src="'http://www.scholat.com/images/uni_logo/广东药科大学.png'" alt=""></div>-->
-<!--              <div class="school_name">广东药科大学</div>-->
-<!--              <div class="unit">医药信息工程学院</div>-->
-<!--            </a>-->
+            <a href="http://faculty.scholat.com/homepage/ougd/ai">
+              <div><img :src="'http://www.scholat.com/images/uni_logo/广东开放大学.png'" alt=""></div>
+              <div class="school_name">广东开放大学</div>
+              <div class="unit">人工智能学院</div>
+            </a>
           </div>
         </div>
         <div class="page4_school_sub">
