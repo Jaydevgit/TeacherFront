@@ -298,7 +298,7 @@
                 dialogFormVisible: false,
                 sortVisualable: false,
                 teacherVisualable: false,
-                unitVisualable: false,
+              unitVisualable: false,
                 sortSubVisualable: false,
                 form: {
                     tId: [],
