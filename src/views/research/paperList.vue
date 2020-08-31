@@ -6,9 +6,7 @@
         <el-form-item label="教师姓名" >
           <el-input v-model="listQuery.name" style="width: 100px" placeholder="请输入"></el-input>
         </el-form-item>
-        <el-form-item>
-          <el-button type="primary" @click="selectTeacher">批量选择教师</el-button>
-        </el-form-item>
+
         <el-form-item label="论文类型">
           <el-select v-model="listQuery.type" style="width: 120px" clearable>
             <el-option label="期刊论文" value="0"></el-option>
@@ -31,6 +29,9 @@
         </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="onSubmit">查询</el-button>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary" @click="selectTeacher">批量选择教师</el-button>
         </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="exportExcel">导出Excel</el-button>
@@ -109,9 +110,9 @@
         layout="total, sizes, prev, pager, next, jumper">
       </el-pagination>
 
-    <el-dialog title="请勾选添加教师" :visible.sync="dialogFormVisible" style="margin-bottom: 18px;" width="520px">
+    <el-dialog title="请勾选教师导出论文" :visible.sync="dialogFormVisible" style="margin-bottom: 18px;" width="520px">
       <div style="margin-bottom: 14px;display: flex;justify-content: space-between;">
-<!--        <el-button type="success" @click="addCatalogueTeacher">确 定</el-button>-->
+        <el-button type="success" @click="tIdsExport">确定导出Excel</el-button>
         <el-button type="primary" @click="dialogFormVisible = false">取 消</el-button>
       </div>
       <el-table :data="teacherList" @selection-change="changeFun">
@@ -185,17 +186,23 @@
       this.paperList();
     },
     methods: {
+      tIdsExport(){
+        this.listQuery.unitId= this.$store.state.user.unitId
+        var json = JSON.stringify(this.listQuery);
+        var json2=encodeURI(json) //解析中文字符
+        window.open("/api/academic/exportTeacherPaper?data="+json2);
+      },
       selectTeacher(){
         this.dialogFormVisible=true
         this.getList()
       },
       changeFun(val) {
-        console.log(JSON.stringify(val)) // 返回的是选中的列的数组集合
-        let Ids=new Array()
+     //   console.log(JSON.stringify(val)) // 返回的是选中的列的数组集合
+        this.listQuery.tIds=[]
         for(let i=0;i<=val.length-1;i++){
-          Ids.push(val[i].tId)
+          this.listQuery.tIds.push(val[i].tId)
         }
-        console.log(Ids)
+        console.log(this.listQuery.tIds)
       },
       checkTeacherList(value) {
         for (let a = 0; a < this.teacherList.length; a++) {
@@ -215,7 +222,7 @@
           method: "get",
           params: {unitId: this.$store.getters.unitId}
         }).then(data => {
-          console.log("查询教师信息为:" + JSON.stringify(data))
+         // console.log("查询教师信息为:" + JSON.stringify(data))
           console.log("================================")
           this.listLoading = false;
           this.teacherList = data.list;
