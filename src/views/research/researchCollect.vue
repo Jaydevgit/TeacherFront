@@ -2,6 +2,13 @@
   <div class="app-container">
     <div class="filter-container" style="">
       <div style="height: 50px">
+          <el-alert
+            title="所有教师科研将于每天凌晨一点进行自动采集"
+            type="info"
+            center
+            show-icon
+            style="min-width:340px;display: initial">
+          </el-alert>
         <el-button type="primary" size="small" style="float:right;margin-right: 15px;margin-top: 3px;max-height: 36px"
                    @click="searchTeahcer">教师搜索
         </el-button>
