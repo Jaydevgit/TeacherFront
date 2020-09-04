@@ -354,7 +354,7 @@ export const asyncRouterMap = [
   {
     path: '/research',
     component: _import('layout/Layout'),
-    redirect: '/research',
+    redirect: '/research/researchCollect',
     name: '科研信息采集',
     meta: {title: '科研信息采集',icon: "table"},
     children: [
