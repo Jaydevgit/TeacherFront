@@ -24,6 +24,9 @@
           <el-button type="primary" @click="onSubmit">查询</el-button>
         </el-form-item>
         <el-form-item>
+          <el-button type="primary" @click="selectTeacher">批量选择教师</el-button>
+        </el-form-item>
+        <el-form-item>
           <el-button type="primary" @click="exportExcel">导出Excel</el-button>
         </el-form-item>
       </el-form>
@@ -104,6 +107,44 @@
       layout="total, sizes, prev, pager, next, jumper">
     </el-pagination>
 
+    <el-dialog title="请勾选教师导出项目" :visible.sync="dialogFormVisible" style="margin-bottom: 18px;" width="520px">
+      <div style="margin-bottom: 14px;display: flex;justify-content: space-between;">
+        <el-button type="success" @click="tIdsExport">确定导出Excel</el-button>
+        <el-button type="primary" @click="dialogFormVisible = false">取 消</el-button>
+      </div>
+      <el-table :data="teacherList" @selection-change="changeFun">
+
+        <el-table-column
+          type="selection"
+          width="55">
+        </el-table-column>
+
+        <el-table-column
+          label="头像"
+          width="100" align="center">
+          <template slot-scope="scope">
+            <img @click="routerTo(scope.row.tId)"
+                 :src="getImgUrl(scope.row.tAvatar)" :onerror="defaultImage"
+                 style="width:60px;height:60px;cursor:pointer;">
+
+          </template>
+        </el-table-column>
+        <el-table-column align="center" label="姓名" width="130">
+          <template slot-scope="scope">
+            <span class="teacher-homepage" @click="routerTo(scope.row.tId)"
+                  style="cursor:pointer;">{{scope.row.tName}}</span>
+            <span></span>
+          </template>
+        </el-table-column>
+        <el-table-column align="center" label="职称" width="180">
+          <template slot-scope="scope">
+            <span class="teacher-homepage" style="cursor:pointer;">{{scope.row.tPost}}</span>
+            <span></span>
+          </template>
+        </el-table-column>
+      </el-table>
+    </el-dialog>
+
 
 
   </div>
@@ -127,8 +168,12 @@
           name:'',
           valueStart:'',
           valueEnd:'',
-          key: ''
+          key: '',
+          tIds:[] ,//批量选择教师的id
         },
+        dialogFormVisible: false,
+        searchList: [],
+        teacherList: [],
       }
     },
     created() {
@@ -136,6 +181,72 @@
       this.projectList();
     },
     methods: {
+      tIdsExport(){
+        this.listQuery.unitId= this.$store.state.user.unitId
+        var json = JSON.stringify(this.listQuery);
+        var json2=encodeURI(json) //解析中文字符
+        window.open("/api/academic/exportTeacherProject?data="+json2);
+      },
+      selectTeacher(){
+        this.dialogFormVisible=true
+        this.getList()
+      },
+      changeFun(val) {
+        //   console.log(JSON.stringify(val)) // 返回的是选中的列的数组集合
+        this.listQuery.tIds=[]
+        for(let i=0;i<=val.length-1;i++){
+          this.listQuery.tIds.push(val[i].tId)
+        }
+        console.log(this.listQuery.tIds)
+      },
+      checkTeacherList(value) {
+        for (let a = 0; a < this.teacherList.length; a++) {
+          if (this.teacherList[a].tId == value) {
+            return false
+          }
+        }
+        return true
+      },
+      getList() {
+        this.listLoading = true;
+        this.nameWidth='180px'
+        this.postWidth='180px'
+        console.log("### 开始查询教师成员列表")
+        this.api({
+          url: "/catalogue/listTeacherAllNoScholat",
+          method: "get",
+          params: {unitId: this.$store.getters.unitId}
+        }).then(data => {
+          // console.log("查询教师信息为:" + JSON.stringify(data))
+          console.log("================================")
+          this.listLoading = false;
+          this.teacherList = data.list;
+          this.totalCount = data.totalCount;
+        }).catch(error => {
+          console.log("QAQ........没有找到教师列表")
+        })
+      },
+      getImgUrl(imgName) {
+        if (imgName == null) {
+          return ""
+        } else if (imgName.indexOf("resources") != "-1") {
+          return "http://www.scholat.com/" + imgName;
+        } else {
+          return "https://faculty.scholat.com:2333/public/images/avatar/" + imgName;
+        }
+      },
+      routerTo(tDomain_name) {
+        console.log("tDomain_name="+tDomain_name);
+        console.log("school_domain_name="+this.$store.getters.domainName);
+        this.$router.push({
+          name: 'teacherPersonlHomePage',
+          params: {
+            facultyDomainName: this.$store.getters.domainName,
+            teacherDomainName:tDomain_name
+
+          }
+        })
+      },
       onSubmit() {
         this.listLoading=true
         this.listQuery.pageNum = 1

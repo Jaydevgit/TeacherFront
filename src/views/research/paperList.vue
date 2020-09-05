@@ -218,7 +218,7 @@
         this.postWidth='180px'
         console.log("### 开始查询教师成员列表")
         this.api({
-          url: "/catalogue/listTeacherAll",
+          url: "/catalogue/listTeacherAllNoScholat",
           method: "get",
           params: {unitId: this.$store.getters.unitId}
         }).then(data => {
