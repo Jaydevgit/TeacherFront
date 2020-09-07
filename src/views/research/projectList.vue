@@ -49,6 +49,12 @@
           {{ scope.row.title }}</div></template>
       </el-table-column>
       <el-table-column
+        label="参与人"
+        prop="title">
+        <template slot-scope="scope" ><div >
+          {{ scope.row.application }}</div></template>
+      </el-table-column>
+      <el-table-column
         prop="authors"
         label="项目类型"
         width="450">
