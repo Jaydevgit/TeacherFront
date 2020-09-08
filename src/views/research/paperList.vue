@@ -226,7 +226,6 @@
           console.log("================================")
           this.listLoading = false;
           this.teacherList = data.list;
-          this.totalCount = data.totalCount;
         }).catch(error => {
           console.log("QAQ........没有找到教师列表")
         })
