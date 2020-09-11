@@ -25,9 +25,9 @@
 <!--        <el-form-item>-->
 <!--          <el-button type="primary" @click="selectTeacher">批量选择教师</el-button>-->
 <!--        </el-form-item>-->
-<!--        <el-form-item>-->
-<!--          <el-button type="primary" @click="exportExcel">导出Excel</el-button>-->
-<!--        </el-form-item>-->
+        <el-form-item>
+          <el-button type="primary" @click="exportExcel">导出Excel</el-button>
+        </el-form-item>
       </el-form>
     </div>
 
@@ -143,6 +143,12 @@
           console.log("QAQ........没有找到成果列表")
         })
         console.log('submit!');
+      },
+      exportExcel(){
+        this.listQuery.unitId= this.$store.state.user.unitId
+        var json = JSON.stringify(this.listQuery);
+        var json2=encodeURI(json) //解析中文字符
+        window.open("/api/academic/exportPublication2?data="+json2);
       },
       handleSizeChange(val) {
         //改变每页数量
