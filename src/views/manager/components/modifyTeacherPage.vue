@@ -1797,7 +1797,7 @@
             console.log("imgName*********="+imgName);
               if (imgName == null||imgName=='') {
                 return this.defaultAvatar;
-              } else if(imgName=="default.png"){
+              } else if(imgName=="default.png"||imgName=="/images/default.png"){
                 return this.defaultAvatar
               } else if (imgName.indexOf("resources") != "-1") {
                 return "http://www.scholat.com/" + imgName;
