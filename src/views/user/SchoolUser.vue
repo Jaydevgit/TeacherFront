@@ -247,7 +247,7 @@
                 console.log("加密后的密码为："+this.md5(this.tempUser.password+this.salt));
                 this.tempUser.password = this.md5(this.tempUser.password+this.salt);
                 this.api({
-                    url: "/user/updateUser",
+                    url: "/user/updateSchoolUser",
                     method: "post",
                     data: this.tempUser
                 }).then(() => {
