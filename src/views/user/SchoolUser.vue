@@ -274,10 +274,10 @@
                     type: 'warning'
                 }).then(() => {
                     let user = _vue.list[$index];
-                    user.state = '2';
+                    user.state = '-1';
                     console.log("----user:-----"+user);
                     _vue.api({
-                        url: "/user/updateUser",
+                        url: "/user/updateSchoolUser",
                         method: "post",
                         data: user
                     }).then(() => {
