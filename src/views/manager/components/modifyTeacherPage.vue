@@ -1372,13 +1372,7 @@
                             this.list = res.data.info.list;
                             console.log("-------------根据邮箱获取到的学者网数据------------------")
                             console.log(this.list);
-                            if (this.list != "" && this.list != null) {
-                                this.showScholatDiv = true
-                                this.$message({
-                                    message: '查询学者网账号成功，但该邮箱已存在',
-                                    type: 'warning'
-                                });
-                            } else {
+                            if (this.list == "" || this.list == null) {
                                 this.showScholatDiv = false
                                 this.$message({
                                     message: '查询学者网账号失败',
