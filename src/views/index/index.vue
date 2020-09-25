@@ -38,7 +38,7 @@
         </div>
         <div class="nav-inner-login2">
           <el-dropdown>
-            <img src="../../assets/index/crumb.png" style="height: 30px">
+            <img src="https://faculty.scholat.com:2333/public/images/index_img/crumb.png" style="height: 30px">
             <el-dropdown-menu slot="dropdown">
               <el-dropdown-item>
                 <a href="/login" class="title2" >登录</a>
@@ -384,18 +384,18 @@
     /*background-repeat:no-repeat;*/
     /*background-position:center;*/
     background:
-      url("../../assets/index/DeskTop/tM1.svg") left 60px top 75px no-repeat,
-      url("../../assets/index/DeskTop/tM2.svg") left 750px top 20px no-repeat,
-      url("../../assets/index/DeskTop/tM3.svg") left 820px top 150px no-repeat,
-      url("../../assets/index/DeskTop/aM1.svg") left 10px bottom no-repeat,
-      url("../../assets/index/DeskTop/aM2.svg") left 101px bottom no-repeat,
-      url("../../assets/index/DeskTop/aM3.svg") left 246px bottom no-repeat,
-      url("../../assets/index/DeskTop/aM4.svg") left 374px bottom no-repeat,
-      url("../../assets/index/DeskTop/aM5.svg") left 460px bottom no-repeat,
-      url("../../assets/index/DeskTop/aM6.svg") left 545px bottom no-repeat,
-      url("../../assets/index/DeskTop/aM7.svg") left 667px bottom no-repeat,
-      url("../../assets/index/DeskTop/aM8.svg") left 760px bottom no-repeat,
-      url("../../assets/index/DeskTop/aM9.svg") left 883px bottom no-repeat;
+      url("https://faculty.scholat.com:2333/public/images/index_img/DeskTop/tM1.svg") left 60px top 75px no-repeat,
+      url("https://faculty.scholat.com:2333/public/images/index_img/DeskTop/tM2.svg") left 750px top 20px no-repeat,
+      url("https://faculty.scholat.com:2333/public/images/index_img/DeskTop/tM3.svg") left 820px top 150px no-repeat,
+      url("https://faculty.scholat.com:2333/public/images/index_img/DeskTop/aM1.svg") left 10px bottom no-repeat,
+      url("https://faculty.scholat.com:2333/public/images/index_img/DeskTop/aM2.svg") left 101px bottom no-repeat,
+      url("https://faculty.scholat.com:2333/public/images/index_img/DeskTop/aM3.svg") left 246px bottom no-repeat,
+      url("https://faculty.scholat.com:2333/public/images/index_img/DeskTop/aM4.svg") left 374px bottom no-repeat,
+      url("https://faculty.scholat.com:2333/public/images/index_img/DeskTop/aM5.svg") left 460px bottom no-repeat,
+      url("https://faculty.scholat.com:2333/public/images/index_img/DeskTop/aM6.svg") left 545px bottom no-repeat,
+      url("https://faculty.scholat.com:2333/public/images/index_img/DeskTop/aM7.svg") left 667px bottom no-repeat,
+      url("https://faculty.scholat.com:2333/public/images/index_img/DeskTop/aM8.svg") left 760px bottom no-repeat,
+      url("https://faculty.scholat.com:2333/public/images/index_img/DeskTop/aM9.svg") left 883px bottom no-repeat;
   }
   .title_1{
     color: #000000;
@@ -435,7 +435,7 @@
      float: left;
       height: 360px;
       width: 40%;
-      background-image: url("../../assets/index/index_bg2.png");
+      background-image: url("https://faculty.scholat.com:2333/public/images/index_img/index_bg2.svg");
       background-repeat:no-repeat;
     }
     .page2_left2{
@@ -458,9 +458,9 @@
   .page3{
     margin: 60px auto;
     width: 1024px;
-    background-image: url("../../assets/index/index_bg3.png");
+    background-image: url("https://faculty.scholat.com:2333/public/images/index_img/index_bg3.svg");
     background-repeat:no-repeat;
-    height:400px;
+    height:440px;
       text-align: left;
       color: #464646;
       font-family: "PingFangSC-Medium";
@@ -574,18 +574,18 @@
       /*background-repeat:no-repeat;*/
       /*background-position:center;*/
       background:
-        url("../../assets/index/t1.svg") left 115px top 75px no-repeat,
-        url("../../assets/index/t2.svg") left 985px top no-repeat,
-        url("../../assets/index/t3.svg") left 1085px top 150px no-repeat,
-        url("../../assets/index/a1.svg") left 10px bottom no-repeat,
-      url("../../assets/index/a2.svg") left 149px bottom no-repeat,
-      url("../../assets/index/a3.svg") left 334px bottom no-repeat,
-      url("../../assets/index/a4.svg") left 509px bottom no-repeat,
-      url("../../assets/index/a5.svg") left 629px bottom no-repeat,
-      url("../../assets/index/a6.svg") left 747px bottom no-repeat,
-      url("../../assets/index/a7.svg") left 914px bottom no-repeat,
-      url("../../assets/index/a8.svg") left 1042px bottom no-repeat,
-      url("../../assets/index/a9.svg") left 1191px bottom no-repeat;
+        url("https://faculty.scholat.com:2333/public/images/index_img/t1.svg") left 115px top 75px no-repeat,
+        url("https://faculty.scholat.com:2333/public/images/index_img/t2.svg") left 985px top no-repeat,
+        url("https://faculty.scholat.com:2333/public/images/index_img/t3.svg") left 1085px top 150px no-repeat,
+        url("https://faculty.scholat.com:2333/public/images/index_img/a1.svg") left 10px bottom no-repeat,
+      url("https://faculty.scholat.com:2333/public/images/index_img/a2.svg") left 149px bottom no-repeat,
+      url("https://faculty.scholat.com:2333/public/images/index_img/a3.svg") left 334px bottom no-repeat,
+      url("https://faculty.scholat.com:2333/public/images/index_img/a4.svg") left 509px bottom no-repeat,
+      url("https://faculty.scholat.com:2333/public/images/index_img/a5.svg") left 629px bottom no-repeat,
+      url("https://faculty.scholat.com:2333/public/images/index_img/a6.svg") left 747px bottom no-repeat,
+      url("https://faculty.scholat.com:2333/public/images/index_img/a7.svg") left 914px bottom no-repeat,
+      url("https://faculty.scholat.com:2333/public/images/index_img/a8.svg") left 1042px bottom no-repeat,
+      url("https://faculty.scholat.com:2333/public/images/index_img/a9.svg") left 1191px bottom no-repeat;
     }
     .page3{
       margin: 0 auto;
@@ -658,25 +658,25 @@
       /*background-repeat:no-repeat;*/
       /*background-position:center;*/
       background:
-        url("../../assets/index/ipad/tM1.svg") left 40px top 60px no-repeat,
-        url("../../assets/index/ipad/tM2.svg") left 560px top 20px no-repeat,
-        url("../../assets/index/ipad/tM3.svg") left 600px top 150px no-repeat,
-        url("../../assets/index/ipad/aM1.svg") left bottom no-repeat,
-        url("../../assets/index/ipad/aM2.svg") left 68px bottom no-repeat,
-        url("../../assets/index/ipad/aM3.svg") left 173px bottom no-repeat,
-        url("../../assets/index/ipad/aM4.svg") left 272px bottom no-repeat,
-        url("../../assets/index/ipad/aM5.svg") left 339px bottom no-repeat,
-        url("../../assets/index/ipad/aM6.svg") left 406px bottom no-repeat,
-        url("../../assets/index/ipad/aM7.svg") left 500px bottom no-repeat,
-        url("../../assets/index/ipad/aM8.svg") left 572px bottom no-repeat,
-        url("../../assets/index/ipad/aM9.svg") left 667px bottom no-repeat;
+        url("https://faculty.scholat.com:2333/public/images/index_img/ipad/tM1.svg") left 40px top 60px no-repeat,
+        url("https://faculty.scholat.com:2333/public/images/index_img/ipad/tM2.svg") left 560px top 20px no-repeat,
+        url("https://faculty.scholat.com:2333/public/images/index_img/ipad/tM3.svg") left 600px top 150px no-repeat,
+        url("https://faculty.scholat.com:2333/public/images/index_img/ipad/aM1.svg") left bottom no-repeat,
+        url("https://faculty.scholat.com:2333/public/images/index_img/ipad/aM2.svg") left 68px bottom no-repeat,
+        url("https://faculty.scholat.com:2333/public/images/index_img/ipad/aM3.svg") left 173px bottom no-repeat,
+        url("https://faculty.scholat.com:2333/public/images/index_img/ipad/aM4.svg") left 272px bottom no-repeat,
+        url("https://faculty.scholat.com:2333/public/images/index_img/ipad/aM5.svg") left 339px bottom no-repeat,
+        url("https://faculty.scholat.com:2333/public/images/index_img/ipad/aM6.svg") left 406px bottom no-repeat,
+        url("https://faculty.scholat.com:2333/public/images/index_img/ipad/aM7.svg") left 500px bottom no-repeat,
+        url("https://faculty.scholat.com:2333/public/images/index_img/ipad/aM8.svg") left 572px bottom no-repeat,
+        url("https://faculty.scholat.com:2333/public/images/index_img/ipad/aM9.svg") left 667px bottom no-repeat;
 
     }
     .page2{
       width: 768px;
       margin: 100px auto;
       .page2_left1{
-        background-image: url("../../assets/index/index_bgPad2.png");
+        background-image: url("https://faculty.scholat.com:2333/public/images/index_img/index_bgPad2.svg");
       }
       .page2_left2{
         .page2_left2_1{
@@ -687,7 +687,7 @@
     .page3{
       width: 768px;
       margin: 60px auto;
-      background-image: url("../../assets/index/index_bgPad3.png");
+      background-image: url("https://faculty.scholat.com:2333/public/images/index_img/index_bgPad3.svg");
       .page3_left1{
         padding-left: 20px;
         width: 470px;
@@ -735,18 +735,18 @@
       height: 442px;
       /*background-image: url("../../assets/index/index_bgMin1.png");*/
       background:
-        url("../../assets/index/mobile/tM1.svg") left 10px top 60px no-repeat,
-        url("../../assets/index/mobile/tM2.svg") left 260px top 40px no-repeat,
-        url("../../assets/index/mobile/tM3.svg") left 240px top 120px no-repeat,
-        url("../../assets/index/mobile/aM1.svg") left 5px bottom no-repeat,
-        url("../../assets/index/mobile/aM2.svg") left 35px bottom no-repeat,
-        url("../../assets/index/mobile/aM3.svg") left 75px bottom no-repeat,
-        url("../../assets/index/mobile/aM4.svg") left 113px bottom no-repeat,
-        url("../../assets/index/mobile/aM5.svg") left 140px bottom no-repeat,
-        url("../../assets/index/mobile/aM6.svg") left 170px bottom no-repeat,
-        url("../../assets/index/mobile/aM7.svg") left 207px bottom no-repeat,
-        url("../../assets/index/mobile/aM8.svg") left 235px bottom no-repeat,
-        url("../../assets/index/mobile/aM9.svg") left 275px bottom no-repeat;
+        url("https://faculty.scholat.com:2333/public/images/index_img/mobile/tM1.svg") left 10px top 60px no-repeat,
+        url("https://faculty.scholat.com:2333/public/images/index_img/mobile/tM2.svg") left 260px top 40px no-repeat,
+        url("https://faculty.scholat.com:2333/public/images/index_img/mobile/tM3.svg") left 240px top 120px no-repeat,
+        url("https://faculty.scholat.com:2333/public/images/index_img/mobile/aM1.svg") left 5px bottom no-repeat,
+        url("https://faculty.scholat.com:2333/public/images/index_img/mobile/aM2.svg") left 35px bottom no-repeat,
+        url("https://faculty.scholat.com:2333/public/images/index_img/mobile/aM3.svg") left 75px bottom no-repeat,
+        url("https://faculty.scholat.com:2333/public/images/index_img/mobile/aM4.svg") left 113px bottom no-repeat,
+        url("https://faculty.scholat.com:2333/public/images/index_img/mobile/aM5.svg") left 140px bottom no-repeat,
+        url("https://faculty.scholat.com:2333/public/images/index_img/mobile/aM6.svg") left 170px bottom no-repeat,
+        url("https://faculty.scholat.com:2333/public/images/index_img/mobile/aM7.svg") left 207px bottom no-repeat,
+        url("https://faculty.scholat.com:2333/public/images/index_img/mobile/aM8.svg") left 235px bottom no-repeat,
+        url("https://faculty.scholat.com:2333/public/images/index_img/mobile/aM9.svg") left 275px bottom no-repeat;
       .title_1{
         padding: 40px 20px;
         font-size: 16px;
@@ -769,7 +769,7 @@
       width: 320px;
       height: 200px;
       margin:0 auto;
-      background-image: url("../../assets/index/index_bgMin2.png");
+      background-image: url("https://faculty.scholat.com:2333/public/images/index_img/index_bgMin2.svg");
       background-repeat: no-repeat;
       background-position: center;
       .page2_left1{
@@ -795,7 +795,7 @@
       margin: 0 auto;
       width: 320px;
       height: 200px;
-      background-image: url("../../assets/index/index_bgMin3.png");
+      background-image: url("https://faculty.scholat.com:2333/public/images/index_img/index_bgMin3.svg");
       background-repeat: no-repeat;
       background-position: center;
       .page3_left1{
