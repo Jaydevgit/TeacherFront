@@ -129,7 +129,7 @@
         ready() {
         },
       watch:{
-        $route(){
+        /*$route(){
           this.cId = this.$route.params.cId
           console.log("this.cId="+this.cId);
           if (this.cId===0||this.cId===undefined){
@@ -156,7 +156,7 @@
               console.log("QAQ........没有找到catalogueName")
             })
           }
-        },
+        },*/
         'unitId':function (n,o) {
           console.log("unitIdunitIdunitIdunitIdunitIdunitId="+n)
         }
@@ -226,7 +226,7 @@
             this.$refs.info.cIdSend(this.cId);
           },
             changeToTeacherInfo(id) {
-                console.log("### 开始查询教师的个人信息")
+                console.log("###changeToTeacherInfo 开始查询教师的个人信息")
                 this.api({
                     url: "/teacher/" + id,
                     method: "get"
@@ -241,13 +241,16 @@
                 }).catch(error => {
                     console.log("QAQ........没有找到教师信息")
                 })
-              this.$router.push({name:'teacher',
-                params: { domainName:this.unitQuery.domainName,
-                  schoolDomain:this.unitQuery.schoolDomain,
-                  unitId:this.unitId2,
-                  modelId:this.detailShow,
-                  cId:this.cId,
-                tId:id}})
+              this.$router.push({
+                  name:'teacher',
+                  params: {
+                      schoolDomain:this.unitQuery.schoolDomain,
+                      domainName:this.unitQuery.domainName,
+                      unitId:this.unitId2,
+                      modelId:this.detailShow,
+                      cId:this.cId,
+                      tId:id}
+              })
             },
             toList(name, modelId, cId) {
               this.cId = cId;

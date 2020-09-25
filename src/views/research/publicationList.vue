@@ -1,23 +1,32 @@
 <template>
   <div class="app-container">
     <div class="filter-container" style="border-bottom: solid 3px #336699">
-      <el-form>
-        <el-form-item>
-          <!--          <el-button style="float: right;margin-right: 20px;margin-top: 10px;" round type="primary" size="small" icon="plus" @click="showCreate" v-if="hasPerm('teacher:add')">添加论文-->
-          <!--          </el-button>-->
-          <!--<el-button style="float:right;margin-right: 15px;margin-top: 3px;" size="small" type="success" icon="plus"-->
-          <!--@click="paperList">所有成果-->
-          <!--</el-button>-->
-          <!--<el-button type="primary" size="small" style="float:right;margin-right: 15px;margin-top: 3px;"-->
-          <!--@click="searchTeahcer">搜索-->
-          <!--</el-button>-->
-          <!--<el-input v-model="searchKey" style="width: 150px;float:right;height: 24px;margin-right: 15px;"-->
-          <!--placeholder="搜索要查询的信息"-->
-          <!--@keydown.enter.native="searchTeahcer"></el-input>-->
-          <!--<el-input type="text" style="display:none"/> &lt;!&ndash;确保keydown.enter触发&ndash;&gt;-->
-          <div style="clear: both;"></div>
+      <el-form :inline="true" :model="listQuery" class="demo-form-inline" >
+        <el-form-item label="教师姓名" >
+          <el-input v-model="listQuery.name" style="width: 100px" placeholder="请输入"></el-input>
         </el-form-item>
-        <el-form-item style="margin-bottom:0;display:none;">
+        <el-form-item label="起始日期" >
+          <el-date-picker
+            v-model="listQuery.valueStart"
+            type="month"
+            placeholder="选择月">
+          </el-date-picker>
+        </el-form-item>
+        <el-form-item label="截至日期">
+          <el-date-picker
+            v-model="listQuery.valueEnd"
+            type="month"
+            placeholder="选择月">
+          </el-date-picker>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary" @click="onSubmit">查询</el-button>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary" @click="selectTeacher">批量选择教师</el-button>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary" @click="exportExcel">导出Excel</el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -89,6 +98,44 @@
       layout="total, sizes, prev, pager, next, jumper">
     </el-pagination>
 
+    <el-dialog title="请勾选教师导出论文" :visible.sync="dialogFormVisible" style="margin-bottom: 18px;" width="520px">
+      <div style="margin-bottom: 14px;display: flex;justify-content: space-between;">
+        <el-button type="success" @click="tIdsExport">确定导出Excel</el-button>
+        <el-button type="primary" @click="dialogFormVisible = false">取 消</el-button>
+      </div>
+      <el-table :data="teacherList" @selection-change="changeFun">
+
+        <el-table-column
+          type="selection"
+          width="55">
+        </el-table-column>
+
+        <el-table-column
+          label="头像"
+          width="100" align="center">
+          <template slot-scope="scope">
+            <img @click="routerTo(scope.row.tId)"
+                 :src="getImgUrl(scope.row.tAvatar)" :onerror="defaultImage"
+                 style="width:60px;height:60px;cursor:pointer;">
+
+          </template>
+        </el-table-column>
+        <el-table-column align="center" label="姓名" width="130">
+          <template slot-scope="scope">
+            <span class="teacher-homepage" @click="routerTo(scope.row.tId)"
+                  style="cursor:pointer;">{{scope.row.tName}}</span>
+            <span></span>
+          </template>
+        </el-table-column>
+        <el-table-column align="center" label="职称" width="180">
+          <template slot-scope="scope">
+            <span class="teacher-homepage" style="cursor:pointer;">{{scope.row.tPost}}</span>
+            <span></span>
+          </template>
+        </el-table-column>
+      </el-table>
+    </el-dialog>
+
   </div>
 </template>
 
@@ -104,8 +151,14 @@
           pageNum: 1,//页码
           pageRow: 10,//每页条数
           unitId: '',
-          key: ''
-        }
+          key: '',
+          name:'',
+          valueStart:'',
+          valueEnd:'',
+        },
+        dialogFormVisible: false,
+        searchList: [],
+        teacherList: [],
       }
     },
     created() {
@@ -113,6 +166,96 @@
       this.publicationList();
     },
     methods: {
+      tIdsExport(){
+        this.listQuery.unitId= this.$store.state.user.unitId
+        var json = JSON.stringify(this.listQuery);
+        var json2=encodeURI(json) //解析中文字符
+        window.open("/api/academic/exportTeacherPublication?data="+json2);
+      },
+      selectTeacher(){
+        this.dialogFormVisible=true
+        this.getList()
+      },
+      changeFun(val) {
+        //   console.log(JSON.stringify(val)) // 返回的是选中的列的数组集合
+        this.listQuery.tIds=[]
+        for(let i=0;i<=val.length-1;i++){
+          this.listQuery.tIds.push(val[i].tId)
+        }
+        console.log(this.listQuery.tIds)
+      },
+      checkTeacherList(value) {
+        for (let a = 0; a < this.teacherList.length; a++) {
+          if (this.teacherList[a].tId === value) {
+            return false
+          }
+        }
+        return true
+      },
+      getList() {
+        this.listLoading = true;
+        this.nameWidth='180px'
+        this.postWidth='180px'
+        console.log("### 开始查询教师成员列表")
+        this.api({
+          url: "/catalogue/listTeacherAllNoScholat",
+          method: "get",
+          params: {unitId: this.$store.getters.unitId}
+        }).then(data => {
+          // console.log("查询教师信息为:" + JSON.stringify(data))
+          console.log("================================")
+          this.listLoading = false;
+          this.teacherList = data.list;
+        }).catch(error => {
+          console.log("QAQ........没有找到教师列表")
+        })
+      },
+      getImgUrl(imgName) {
+        if (imgName == null) {
+          return ""
+        } else if (imgName.indexOf("resources") != "-1") {
+          return "http://www.scholat.com/" + imgName;
+        } else {
+          return "https://faculty.scholat.com:2333/public/images/avatar/" + imgName;
+        }
+      },
+      routerTo(tDomain_name) {
+        console.log("tDomain_name="+tDomain_name);
+        console.log("school_domain_name="+this.$store.getters.domainName);
+        this.$router.push({
+          name: 'teacherPersonlHomePage',
+          params: {
+            facultyDomainName: this.$store.getters.domainName,
+            teacherDomainName:tDomain_name
+
+          }
+        })
+      },
+      onSubmit() {
+        this.listLoading=true
+        this.listQuery.pageNum = 1
+        this.listQuery.pageRow = 10
+        this.listQuery.unitId= this.$store.state.user.unitId
+        this.api({
+          url: "/academic/searchPublication",
+          method: "post",
+          data: this.listQuery
+        }).then(data => {
+          console.log("查询成果成功"+JSON.stringify(data))
+          this.list = data.list;
+          this.totalCount = data.totalCount;
+          this.listLoading=false
+        }).catch(error => {
+          console.log("QAQ........没有找到成果列表")
+        })
+        console.log('submit!');
+      },
+      exportExcel(){
+        this.listQuery.unitId= this.$store.state.user.unitId
+        var json = JSON.stringify(this.listQuery);
+        var json2=encodeURI(json) //解析中文字符
+        window.open("/api/academic/exportPublication2?data="+json2);
+      },
       handleSizeChange(val) {
         //改变每页数量
         this.listQuery.pageRow = val

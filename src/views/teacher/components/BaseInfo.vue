@@ -67,7 +67,7 @@
                 <div class="name-bottom-item" style="margin-bottom: 10px;">
                   <!--<span><svg-icon icon-class="department"/></span>-->
                   <label class="font-one">所在部门：</label><div class="detail-msg">
-                  {{personal.unit}}
+                  {{teacherProfile.unit_name}}
                   <div v-if="personal.unit!=teacherProfile.department_name" style="display: initial">
                     {{teacherProfile.department_name}}
                   </div>
@@ -166,7 +166,7 @@
     export default {
         name: "BaseInfo",
         created() {
-          this.getUnitInfo();
+          /*this.getUnitInfo();*/
             console.log("********开始执行BaseInfo的create生命周期函数********")
             this.personal.avatar = this.logo;
           console.log("teacherProfile.intro="+this.teacherProfile.intro);
@@ -239,7 +239,7 @@
               })
             })
           },
-            getUnitInfo(){
+            /*getUnitInfo(){
               console.log("teacherProfile="+JSON.stringify(this.teacherProfile))
               console.log("teacherProfile.domain_name="+this.teacherProfile.tDomain_name)
               this.api({
@@ -253,7 +253,7 @@
               }).catch(error => {
                 console.log("没有找到学院unit")
               })
-            },
+            },*/
             handleCommand() {
                 // const that = this;
                 // that.$router.push({path: "/register",query:{alert:"页面跳转成功"}})

@@ -237,13 +237,13 @@ export const asyncRouterMap = [
     name: '账号管理',
     meta: {title: '账号管理', icon: 'table'},
     children: [
-      /*{
+      {
         path: 'user',
         name: '账号列表',
         component: _import('user/SchoolUser'),
         meta: {title: '子账号管理', icon: 'user'},
-        menu: 'school'
-      },*/
+        menu: 'schoolUser'
+      },
       {
         path: 'password',
         name: '本账号管理',

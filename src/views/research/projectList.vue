@@ -234,7 +234,7 @@
       getImgUrl(imgName) {
         if (imgName == null) {
           return ""
-        } else if (imgName.indexOf("resources") != "-1") {
+        } else if (imgName.indexOf("resources") !== "-1") {
           return "http://www.scholat.com/" + imgName;
         } else {
           return "https://faculty.scholat.com:2333/public/images/avatar/" + imgName;
