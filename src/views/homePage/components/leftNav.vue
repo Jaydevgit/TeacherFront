@@ -26,10 +26,9 @@
               <el-menu-item-group style="margin-top: -14px;">
                 <el-menu-item
                   v-for="(sub, index) in item.subCatalogueList" :key="'subId'+sub.id" :index="sub.id+''"
-                  @click="cIdSend(sub.id,sub.name)" style="padding: 0;padding-left: 12px">
+                  @click="cIdSend(sub.id,sub.name)" style="padding: 0;padding-left: 12px;width: 100%">
                   <span class="subcatalogueName">{{sub.name}}</span>
                 </el-menu-item>
-
               </el-menu-item-group>
 
             </el-submenu>
@@ -242,7 +241,7 @@
       display: none;
     }
     .parentCatalogue {
-      font-size: 16px;
+      font-size: 13px;
       letter-spacing: 3px;
     }
     .subcatalogueName {
@@ -257,7 +256,9 @@
 
     .el-menu-item {
       background-color: white;
-      height:45px;
+      height: 50px;
+      width: 33%;
+      font-size: 13px;
       line-height: 50px;
     }
 
@@ -270,7 +271,7 @@
       display: none;
     }
     .parentCatalogue {
-      font-size: 6px;
+      font-size: 13px;
       letter-spacing: 1px;
     }
     .subcatalogueName {
@@ -286,6 +287,8 @@
     .el-menu-item {
       background-color: white;
       height: 50px;
+      width: 33%;
+      font-size: 13px;
       line-height: 50px;
     }
 
