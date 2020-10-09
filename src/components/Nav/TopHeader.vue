@@ -47,31 +47,32 @@
       </div>-->
 
       <div class="apply-nav" v-if="$route.path.indexOf('unitApply')!=-1">
-        <div style="color: steelblue;white-space: nowrap;font-weight: bold;font-size: 26px;">
+        <div style="color: #595959;font-size: 26px;white-space: nowrap;">
           SCHOLAT+ 学院师资信息管理平台
         </div>
+        <!--color: steelblue;font-size: 26px;white-space: nowrap;font-weight: bold;-->
         <div style=" display: flex;align-content: center;margin-left: 120px">
-        <a href="/index" class="title" style="flex: 1;min-width: 40px">首页</a>
+        <a href="/index" class="title" style="color: #595959;flex: 1;min-width: 40px;font-size: 18px">首页</a>
         <!--<a href="https://www.yuque.com/vd7ii9/dvybyk/na3nsf" class="title" style="min-width: 80px">帮助文档</a>-->
           <el-dropdown style="padding-top: 8px">
-            <span class="title el-dropdown-link" style="flex: 1;min-width: 80px">
+            <span class="title el-dropdown-link" style="flex: 1;min-width: 80px;color: #595959;font-size: 18px">
               登录<i class="el-icon-arrow-down el-icon--right"></i>
             </span>
             <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item><a href="/schoolLogin" class="title" style="flex: 1;min-width: 40px">学校登录</a></el-dropdown-item>
-              <el-dropdown-item><a href="/login" class="title" style="flex: 1;min-width: 40px">学院登录</a></el-dropdown-item>
+              <el-dropdown-item style="display: table"><a href="/schoolLogin" class="title" style="flex: 1;min-width: 40px;color: #595959;font-size: 18px">学校登录</a></el-dropdown-item>
+              <el-dropdown-item ><a href="/login" class="title" style="flex: 1;min-width: 40px;color: #595959;font-size: 18px">学院登录</a></el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
           <el-dropdown style="padding-top: 8px">
-            <span class="title el-dropdown-link" style="flex: 1;min-width: 80px">
+            <span class="title el-dropdown-link" style="flex: 1;min-width: 80px;color: #595959;font-size: 18px">
               注册<i class="el-icon-arrow-down el-icon--right"></i>
             </span>
             <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item><a href="/unitApplySchool" class="title" style="flex: 1;min-width: 40px">学校注册</a></el-dropdown-item>
-              <el-dropdown-item><a href="/unitApply" class="title" style="flex: 1;min-width: 40px">学院注册</a></el-dropdown-item>
+              <el-dropdown-item style="display: table"><a href="/unitApplySchool" class="title" style="flex: 1;min-width: 40px;color: #595959;font-size: 18px">学校注册</a></el-dropdown-item>
+              <el-dropdown-item ><a href="/unitApply" class="title" style="flex: 1;min-width: 40px;color: #595959;font-size: 18px">学院注册</a></el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
-        <a href="http://www.scholat.com/"  class="title" style="flex: 1;min-width: 60px">
+        <a href="http://www.scholat.com/"  class="title" style="flex: 1;min-width: 60px;color: #595959;font-size: 18px">
           学者网
         </a>
         </div>
@@ -79,7 +80,7 @@
 
       <div v-if="titleFlag"></div>
       <div v-else-if="$route.path.indexOf('login')!==-1||$route.path.indexOf('schoolLogin')!=-1">
-        <span style="padding-left: 0" class="font-jsgrzy">
+        <span style="padding-left: 0;color: #595959;font-size: 26px;white-space: nowrap;margin-left: 15px">
           SCHOLAT+ 学院师资信息管理平台
           </span>
       </div>
@@ -190,27 +191,27 @@
         <div style=" display: flex;
     align-content: center;margin-left: 120px"
              v-if="$route.path.indexOf('login')!=-1||$route.path.indexOf('schoolLogin')!=-1">
-          <a href="/index" class="title" style="flex: 1;min-width: 40px">首页</a>
+          <a href="/index" class="title" style="flex: 1;min-width: 40px;color: #595959;font-size: 18px;margin-left: 148px">首页</a>
           <!--<a href="https://www.yuque.com/vd7ii9/dvybyk/na3nsf" class="title" style="min-width: 80px">帮助文档</a>-->
           <el-dropdown style="padding-top: 8px">
-            <span class="title el-dropdown-link" style="flex: 1;min-width: 80px">
+            <span class="title el-dropdown-link" style="flex: 1;min-width: 80px;color: #595959;font-size: 18px">
               登录<i class="el-icon-arrow-down el-icon--right"></i>
             </span>
             <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item><a href="/schoolLogin" class="title" style="flex: 1;min-width: 40px">学校登录</a></el-dropdown-item>
-              <el-dropdown-item><a href="/login" class="title" style="flex: 1;min-width: 40px">学院登录</a></el-dropdown-item>
+              <el-dropdown-item style="display: table"><a href="/schoolLogin" class="title" style="color: #595959;font-size: 18px;flex: 1;min-width: 40px">学校登录</a></el-dropdown-item>
+              <el-dropdown-item><a href="/login" class="title" style="color: #595959;font-size: 18px;flex: 1;min-width: 40px">学院登录</a></el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
           <el-dropdown style="padding-top: 8px">
-            <span class="title el-dropdown-link" style="flex: 1;min-width: 80px">
+            <span class="title el-dropdown-link" style="color: #595959;font-size: 18px;flex: 1;min-width: 80px">
               注册<i class="el-icon-arrow-down el-icon--right"></i>
             </span>
             <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item><a href="/unitApplySchool" class="title" style="flex: 1;min-width: 40px">学校注册</a></el-dropdown-item>
-              <el-dropdown-item><a href="/unitApply" class="title" style="flex: 1;min-width: 40px">学院注册</a></el-dropdown-item>
+              <el-dropdown-item style="display: table"><a href="/unitApplySchool" class="title" style="color: #595959;font-size: 18px;flex: 1;min-width: 40px">学校注册</a></el-dropdown-item>
+              <el-dropdown-item><a href="/unitApply" class="title" style="color: #595959;font-size: 18px;flex: 1;min-width: 40px">学院注册</a></el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
-          <a href="http://www.scholat.com/"  class="title" style="flex: 1;min-width: 60px">
+          <a href="http://www.scholat.com/"  class="title" style="color: #595959;font-size: 18px;flex: 1;min-width: 60px">
             学者网
           </a>
 <!--          <span><svg-icon icon-class="S"/></span>-->
@@ -832,6 +833,6 @@
     vertical-align:middle
   }
   .title:hover{
-    border-bottom:2px solid steelblue;
+    border-bottom:2px solid #ffffff;
   }
 </style>
