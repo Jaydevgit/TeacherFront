@@ -107,6 +107,7 @@
              <span style="color: #1890FF;">可扩展性</span>
           </el-tooltip>等主要优点。
         </div>
+        <div class="page3_left2"></div>
       </div>
       <div class="page3_sub">
         SCHOLAT+师资平台主要提供学院官网“师资队伍”主页定制，学院教师科研信息采集工具。
@@ -428,7 +429,7 @@
     }
   }
   .page2{
-    margin: 100px auto;
+    margin: 80px auto;
     height: 360px;
     width: 1024px;
     .page2_left1{
@@ -438,7 +439,7 @@
       background-image: url("https://faculty.scholat.com:2333/public/images/index_img/index_bg2.svg");
       background-repeat:no-repeat;
       background-size: 420px;
-      transform: translateY(-45px);
+      background-position: right 20px top -25px;
     }
     .page2_left2{
       padding-right: 20px;
@@ -460,10 +461,11 @@
   .page3{
     margin: 60px auto;
     width: 1024px;
-    background-image: url("https://faculty.scholat.com:2333/public/images/index_img/index_bg3.svg");
-    background-repeat:no-repeat;
-    background-size: cover;
     height:400px;
+    .page3_left1{
+      float: left;
+      height: 400px;
+      width: 60%;
       text-align: left;
       color: #464646;
       font-family: "PingFangSC-Medium";
@@ -471,11 +473,16 @@
       font-weight: 400;
       line-height: 30px;
       letter-spacing: 2.4px;
-    /*  float: left;*/
-    .page3_left1{
-      width: 620px;
-     }
-
+    }
+    .page3_left2{
+      height: 400px;
+      width: 40%;
+      float: left;
+      background-image: url("https://faculty.scholat.com:2333/public/images/index_img/index_bg3.svg");
+      background-repeat:no-repeat;
+      background-size: cover;
+      background-position: left -240px bottom 60px;
+    }
   }
   .page4{
     width: 100%;
@@ -680,6 +687,7 @@
       margin: 100px auto;
       .page2_left1{
         background-image: url("https://faculty.scholat.com:2333/public/images/index_img/index_bgPad2.svg");
+        background-position: left 20px bottom 50px;
       }
       .page2_left2{
         .page2_left2_1{
@@ -690,10 +698,15 @@
     .page3{
       width: 768px;
       margin: 60px auto;
-      background-image: url("https://faculty.scholat.com:2333/public/images/index_img/index_bgPad3.svg");
       .page3_left1{
         padding-left: 20px;
         width: 470px;
+      }
+      background-image: url("https://faculty.scholat.com:2333/public/images/index_img/index_bgPad3.svg");
+      background-repeat: no-repeat;
+      transform: translateY(-30px);
+      .page3_left2{
+        display: none;
       }
     }
     .page4{
@@ -796,12 +809,16 @@
     }
     .page3{
       margin: 0 auto;
+      margin-top: -30px;
       width: 320px;
       height: 200px;
       background-image: url("https://faculty.scholat.com:2333/public/images/index_img/index_bgMin3.svg");
       background-repeat: no-repeat;
       background-position: center;
       .page3_left1{
+        display: none;
+      }
+      .page3_left2{
         display: none;
       }
     }
