@@ -42,7 +42,8 @@
 
       <el-table-column
         label="著作名称"
-        prop="title">
+        prop="title"
+        min-width="300px">
         <template slot-scope="scope" >
           <div >
 <!--            @click="routeTo(scope.row.id)" style="cursor: pointer"-->

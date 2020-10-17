@@ -50,7 +50,8 @@
 
           <el-table-column
             label="论文题目"
-            prop="title">
+            prop="title"
+          min-width="300px">
             <template slot-scope="scope" >
               <div >
 <!--                @click="routeTo(scope.row.id)" style="cursor: pointer"-->
