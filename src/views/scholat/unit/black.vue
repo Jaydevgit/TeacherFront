@@ -171,7 +171,7 @@
     name: "all",
     data() {
       return {
-        defaultLogo: 'this.src="http://www.scholat.com/images/uni_logo/nologo.png"',
+        defaultLogo: 'this.src="https://faculty.scholat.com/mainSite/images/uni_logo/nologo.png"',
         search: '',
         totalCount: 0, //分页组件--数据总条数
         list: [],//表格的数据
@@ -272,7 +272,7 @@
           return 'https://faculty.scholat.com:2333/public/images/certificate_logo/' + logoUrl
         }
         // return 'https://faculty.scholat.com:2333/public/images/unit_logo/' + logoUrl
-        // return "http://www.scholat.com/images/uni_logo/" + schoolName + ".png";
+        // return "https://faculty.scholat.com/mainSite/images/uni_logo/" + schoolName + ".png";
       },
       /* ---------------------------------------
       * 获取该学院所有账号信息

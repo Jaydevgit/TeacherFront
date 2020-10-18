@@ -138,8 +138,8 @@
                     // 判断是否存在学者网信息
                     if(data.scholat_profile.length!=0){
                         this.profile = data.scholat_profile;
-                        this.profile.picture_url='http://www.scholat.com/'+this.profile.picture_url
-                        this.profile.qrcodeUrl='http://www.scholat.com/'+this.profile.qrcodeUrl
+                        this.profile.picture_url='https://faculty.scholat.com/mainSite/'+this.profile.picture_url
+                        this.profile.qrcodeUrl='https://faculty.scholat.com/mainSite/'+this.profile.qrcodeUrl
                         this.ifScholatExist = 1;
                     }else{
                         // 没有找到学者网历史信息,原因:在线有信息,但是历史没更新就没有信息
@@ -176,13 +176,13 @@
                     // ------------------------------
 
                     if (data.local_profile.avatar.indexOf('resources') != -1) {
-                        data.local_profile.avatar = "http://www.scholat.com/" + data.local_profile.avatar;
+                        data.local_profile.avatar = "https://faculty.scholat.com/mainSite/" + data.local_profile.avatar;
                     } else {
                         data.local_profile.avatar = "https://faculty.scholat.com:2333/public/images/avatar/" + data.local_profile.avatar;
                     }
                     data.local_profile.sex=data.local_profile.sex==0?'男':'女';
                     data.local_profile.state=data.local_profile.state=='1'?'在岗':'退休/临调';
-                    data.local_profile.qrcode = "http://www.scholat.com/" + data.local_profile.qrcode;
+                    data.local_profile.qrcode = "https://faculty.scholat.com/mainSite/" + data.local_profile.qrcode;
                     this.local_profile = data.local_profile;
                     return data.scholat_profile;
                 }).catch(e => {

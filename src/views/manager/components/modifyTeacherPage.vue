@@ -1332,7 +1332,7 @@
                 this.editor.create();
             },
             chooseScholatAvatar(){
-                this.$refs.cropAvatarImage.attach.laterUrl = 'http://www.scholat.com/'+this.scholatProfile.avatar;
+                this.$refs.cropAvatarImage.attach.laterUrl = 'https://faculty.scholat.com/mainSite/'+this.scholatProfile.avatar;
                 this.ruleForm.avatar = this.scholatProfile.avatar;
               this.api({
                 url: "/manager/updateTeacher",
@@ -1445,7 +1445,7 @@
             // 更新头像
             updateAvatar() {
                 this.$refs.cropAvatarImage.attach.laterUrl = this.showUpdateInfo.avatarScholat;
-                this.ruleForm.avatar = this.showUpdateInfo.avatarScholat.split('http://www.scholat.com/')[1];
+                this.ruleForm.avatar = this.showUpdateInfo.avatarScholat.split('https://faculty.scholat.com/mainSite/')[1];
 
             },
             // 取消更新头像
@@ -1500,12 +1500,12 @@
                 this.showUpdateInfo.avatarScholat = data.scholat.avatar;
 
                 if (this.showUpdateInfo.avatarScholat.indexOf("resources") != -1) {
-                    this.showUpdateInfo.avatarScholat = "http://www.scholat.com/" + this.showUpdateInfo.avatarScholat;
+                    this.showUpdateInfo.avatarScholat = "https://faculty.scholat.com/mainSite/" + this.showUpdateInfo.avatarScholat;
                 } else {
                     this.showUpdateInfo.avatarScholat = "https://faculty.scholat.com:2333/public/images/avatar/" + this.showUpdateInfo.avatarScholat;
                 }
                 if (this.showUpdateInfo.avatar.indexOf("resources") != -1) {
-                    this.showUpdateInfo.avatar = "http://www.scholat.com/" + this.showUpdateInfo.avatar;
+                    this.showUpdateInfo.avatar = "https://faculty.scholat.com/mainSite/" + this.showUpdateInfo.avatar;
                 } else {
                     this.showUpdateInfo.avatar = "https://faculty.scholat.com:2333/public/images/avatar/" + this.showUpdateInfo.avatar;
                 }
@@ -1725,7 +1725,7 @@
 
                         }
                         if (this.ruleForm.avatar.indexOf("resources") != -1) {
-                            this.$refs.cropAvatarImage.attach.laterUrl = "http://www.scholat.com/" + this.ruleForm.avatar;
+                            this.$refs.cropAvatarImage.attach.laterUrl = "https://faculty.scholat.com/mainSite/" + this.ruleForm.avatar;
                         } else {
                           console.log("this.ruleForm.avatarthis.ruleForm.avatar="+this.ruleForm.avatar);
                           this.$refs.cropAvatarImage.attach.laterUrl = "https://faculty.scholat.com:2333/public/images/avatar/" + this.ruleForm.avatar;
@@ -1794,7 +1794,7 @@
               } else if(imgName=="default.png"||imgName=="/images/default.png"){
                 return this.defaultAvatar
               } else if (imgName.indexOf("resources") != "-1") {
-                return "http://www.scholat.com/" + imgName;
+                return "https://faculty.scholat.com/mainSite/" + imgName;
               } else {
                 console.log("imgName++++++++++="+imgName);
                 return "https://faculty.scholat.com:2333/public/images/avatar/" + imgName;

@@ -367,7 +367,7 @@
             if (imgName == null) {
               return ""
             } else if (imgName.indexOf("resources") != "-1") {
-              return "http://www.scholat.com/" + imgName;
+              return "https://faculty.scholat.com/mainSite/" + imgName;
             } else {
               return "http://222.201.80.72:2333/images/avatar/" + imgName;
             }

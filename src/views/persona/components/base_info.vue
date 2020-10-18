@@ -220,7 +220,7 @@
         methods: {
             getImage(avatar) {
                 if (avatar.indexOf('resources') != -1)
-                    return 'http://www.scholat.com/' + avatar
+                    return 'https://faculty.scholat.com/mainSite/' + avatar
                 else
                     return "https://faculty.scholat.com:2333/public/images/avatar/" + avatar
             },

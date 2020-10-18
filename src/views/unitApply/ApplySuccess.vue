@@ -17,7 +17,7 @@
 
       return {
         cerLogo: 'this.src="../src/assets/default_cer.png"',
-        defaultLogo: 'this.src="http://www.scholat.com/images/uni_logo/nologo.png"',
+        defaultLogo: 'this.src="https://faculty.scholat.com/mainSite/images/uni_logo/nologo.png"',
       }
     },
     components: {

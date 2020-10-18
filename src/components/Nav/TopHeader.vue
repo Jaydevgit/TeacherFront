@@ -4,7 +4,7 @@
     <!--两种模式：模式 1 学校Logo+文字-->
     <div class="background" v-if="unit.state == 0 && dataDone">
       <div @click="goToCollege" style="display: inline-block;height: 90%;width: auto;min-width: 75px">
-        <img :src="'http://www.scholat.com/images/uni_logo/'+this.unit.schoolName+'.png'" :onerror="defaultLogo"
+        <img :src="'https://faculty.scholat.com/mainSite/images/uni_logo/'+this.unit.schoolName+'.png'" :onerror="defaultLogo"
              style="height: 100%;width: auto;bottom: 0;"/>
       </div>
       <div @click="goToCollege"
@@ -43,7 +43,7 @@
 
     <div v-else class="background2">
       <!--<div @click="goToCollege" style="display: inline-block;height: 90%;width: auto;">
-        <img :src="'http://www.scholat.com/images/uni_logo/'+this.unit.schoolName+'.png'" :onerror="defaultLogo" style="height:100%;width:auto;bottom: 0;"/>
+        <img :src="'https://faculty.scholat.com/mainSite/images/uni_logo/'+this.unit.schoolName+'.png'" :onerror="defaultLogo" style="height:100%;width:auto;bottom: 0;"/>
       </div>-->
 
       <div class="apply-nav" v-if="$route.path.indexOf('unitApply')!=-1">
@@ -87,7 +87,7 @@
       <!--若判断为学校首页-->
       <div v-else-if="$route.path.split('/')[1]=='home'" style="display: flex;align-items: center;height: 100%;width: 960px;margin: 0 auto">
         <div style="display: flex;height: 90%;width: auto;">
-          <img :src="'http://www.scholat.com/images/uni_logo/'+this.unitList[0].school_name+'.png'" :onerror="defaultLogo"
+          <img :src="'https://faculty.scholat.com/mainSite/images/uni_logo/'+this.unitList[0].school_name+'.png'" :onerror="defaultLogo"
                style="height: 100%;width: auto;bottom: 0;"/>
         </div>
         <div style="height: 100%;max-width: 900px;display: flex;justify-content: center;align-items: center;margin-left: 20px">
@@ -111,7 +111,7 @@
       <!--若判断为教师信息页，则显示学校logo，学校名称，教师主页，搜索-->
       <div v-else-if="$route.path.indexOf('teacher')!=-1" style="display: flex;align-items: center;height: 100%;width: 100%">
         <div @click="goToCollege" style="height: 90%;width: auto;bottom: 0;cursor: pointer">
-          <img :src="'http://www.scholat.com/images/uni_logo/'+this.unit.schoolName+'.png'" :onerror="defaultLogo" style="height: 100%;width:auto;"/>
+          <img :src="'https://faculty.scholat.com/mainSite/images/uni_logo/'+this.unit.schoolName+'.png'" :onerror="defaultLogo" style="height: 100%;width:auto;"/>
         </div>
         <span style="" class="font-jsgrzy">
             <span v-if="$route.path.indexOf('login')!=-1">SCHOLAT+学院师资信息管理平台</span>
@@ -149,7 +149,7 @@
         <!--如果没有背景图，则显示学校LOGO+xx学院+文字，登录页面按照逻辑会跳到这里，所以要判断-->
         <template v-else>
           <div @click="goToCollege" style="height: 90%;width: auto;bottom: 0;cursor: pointer">
-            <img :src="'http://www.scholat.com/images/uni_logo/'+this.unit.schoolName+'.png'" :onerror="defaultLogo" title="点击访问该学院" style="height: 55px;width:auto;margin-top: 7px"/>
+            <img :src="'https://faculty.scholat.com/mainSite/images/uni_logo/'+this.unit.schoolName+'.png'" :onerror="defaultLogo" title="点击访问该学院" style="height: 55px;width:auto;margin-top: 7px"/>
           </div>
           <!--<span style="" class="font-jsgrzy">
             <span v-if="$route.path.indexOf('login')!=-1">SCHOLAT+学院师资信息管理平台</span>
@@ -233,7 +233,7 @@
     export default {
         data() {
             return {
-                defaultLogo: 'this.src="http://www.scholat.com/images/uni_logo/nologo.png"',
+                defaultLogo: 'this.src="https://faculty.scholat.com/mainSite/images/uni_logo/nologo.png"',
                 img: Img,
                 searchImage:searchImage,
                 searchKey: '',
@@ -344,7 +344,7 @@
                       this.$store.state.user.unitId=data.unitId
                       this.$store.state.user.tagState=data.tagState
                      console.log("dddddd"+this.$route.params.unitId+"vvv"+this.$store.state.user.unitId);
-                      console.log("学校图标是："+"http://www.scholat.com/images/uni_logo/"+data.schoolName+".png");
+                      console.log("学校图标是："+"https://faculty.scholat.com/mainSite/images/uni_logo/"+data.schoolName+".png");
                       this.unitQuery.unitId=data.unitId
                         this.dataDone = true;
                     }).catch(error => {
@@ -425,7 +425,7 @@
                     if (this.unit.logoUrl.indexOf('scholat') == -1) {
                         /!*return 'https://faculty.scholat.com:2333/public/images/unit_logo/' + this.unit.logoUrl*!/
                       console.log("******学校图片为"+this.unit.logoUrl+"******");
-                      return '"http://www.scholat.com/images/uni_logo/"+data.schoolName+".png"';
+                      return '"https://faculty.scholat.com/mainSite/images/uni_logo/"+data.schoolName+".png"';
                     } else {
                         return this.unit.logoUrl;
                     }

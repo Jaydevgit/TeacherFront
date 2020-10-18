@@ -31,7 +31,7 @@
             // 处理头像裁切为圆形
             initImgAvatar(){
               let run = async ()=>{
-                  let defaultAvatarUrl = await this.getImgData("http://www.scholat.com//images/default.png");
+                //  let defaultAvatarUrl = await this.getImgData("http://www.scholat.com//images/default.png");
                   let main_avatarUrl = await this.getImgData(this.local_profile.avatar);
                   let len = this.friends.length;
                   let fans_len = this.fans.length;

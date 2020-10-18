@@ -131,7 +131,7 @@
               this.unitQuery.unitId=data.unitId
               this.$store.state.user.tagState=data.tagState
             //  console.log("dddddd"+this.unitQuery.unitId+"vvvthis.unitQuery.unitIdthis.unitQuery.unitId");
-           //   console.log("学校图标是："+"http://www.scholat.com/images/uni_logo/"+data.schoolName+".png");
+           //   console.log("学校图标是："+"https://faculty.scholat.com/mainSite/images/uni_logo/"+data.schoolName+".png");
               this.unitQuery.unitId=data.unitId
              // this.getCatalogues()
              // this.cIdSend()
