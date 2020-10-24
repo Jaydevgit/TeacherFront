@@ -318,6 +318,7 @@
                     console.log("================================")
                     this.listLoading = false;
                     this.unitList = data;
+                    this.dataDone = false;
                   }).catch(error => {
                     console.log("QAQ........没有找到学校信息")
                   })
