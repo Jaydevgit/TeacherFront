@@ -72,7 +72,7 @@
       console.log("this.logo="+this.logo+",scholatAvatar="+this.scholatAvatar);
       if(this.scholatAvatar){
         if (this.scholatAvatar.indexOf("resources") != -1) {
-          this.attach.laterUrl = "http://www.scholat.com/" + this.scholatAvatar;
+          this.attach.laterUrl = "https://faculty.scholat.com/mainSite/" + this.scholatAvatar;
         } else {
           console.log("this.logo="+this.logo+",scholatAvatar="+this.scholatAvatar);
           if (this.scholatAvatar=='default.png'){

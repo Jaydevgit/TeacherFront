@@ -28,7 +28,7 @@
             &lt;!&ndash;提交完后显示这个&ndash;&gt;
             <img :src="showLogo"
                  :onerror="defaultLogo" v-if="this.showLogo" style="width: 120px;"/>
-            <img v-else src="http://www.scholat.com/images/uni_logo/华南师范大学.png"
+            <img v-else src="https://faculty.scholat.com/mainSite/images/uni_logo/华南师范大学.png"
                  :onerror="defaultLogo" style="width: 120px;"/>
           </div>
           <div style="margin-left: 50px">
@@ -115,7 +115,7 @@
     export default {
         data() {
             return {
-                defaultLogo: 'this.src="http://www.scholat.com/images/uni_logo/nologo.png"',
+                defaultLogo: 'this.src="https://faculty.scholat.com/mainSite/images/uni_logo/nologo.png"',
                 //  defaultBack: 'this.src="https://faculty.scholat.com:2333/public/images/background/1569738575202258.png"',
                 defaultBack: '',
               defaultBackHome:'',
@@ -318,8 +318,8 @@
             },
             restoreImage(type) {
                 if (type == 1) {
-                    this.applyForm.logoUrl = 'http://www.scholat.com/images/uni_logo/' + this.applyForm.schoolName + '.png'
-                    this.showLogo = 'http://www.scholat.com/images/uni_logo/' + this.applyForm.schoolName + '.png'
+                    this.applyForm.logoUrl = 'https://faculty.scholat.com/mainSite/images/uni_logo/' + this.applyForm.schoolName + '.png'
+                    this.showLogo = 'https://faculty.scholat.com/mainSite/images/uni_logo/' + this.applyForm.schoolName + '.png'
                     console.log(" this.showLogo=" + this.showLogo);
                 } else {
                     this.applyForm.backgroundUrl = ''

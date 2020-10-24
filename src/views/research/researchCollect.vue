@@ -216,7 +216,7 @@ import defaultAvatar from '@/assets/default1.png'
         } else if (imgName == "default.png") {
           return this.defaultAvatar
         } else if (imgName.indexOf("resources") != "-1") {
-          return "http://www.scholat.com/" + imgName;
+          return "https://faculty.scholat.com/mainSite/" + imgName;
         } else {
           return "https://faculty.scholat.com:2333/public/images/avatar/" + imgName;
         }

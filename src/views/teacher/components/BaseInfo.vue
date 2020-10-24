@@ -5,7 +5,7 @@
 
         <el-card class="box-card" >
           <div class="imgDiv">
-            <img class="imgLogo" :src="'http://www.scholat.com/images/uni_logo/'+this.personal.schoolName+'.png'" :onerror="bgLogo" style=" "/>
+            <img class="imgLogo" :src="'https://faculty.scholat.com/mainSite/images/uni_logo/'+this.personal.schoolName+'.png'" :onerror="bgLogo" style=" "/>
           </div>
 
           <img class="imgAvatar" :src="getImgUrl(teacherProfile.avatar)" :onerror="imgErrorFun(this)"/>
@@ -143,7 +143,7 @@
             <div style="padding: 8px 20px 3px 0px;float: right;font-size: 14px;color: #7e8c8d;vertical-align: center;transform: translateY(3px)">
               <a :href="'http://www.scholat.com/'+teacherProfile.scholat_username" v-if="teacherProfile.scholat_username" style="display: flex;align-items: center">
                 <span>更多信息请见学者主页 </span>&nbsp
-                <img :src="'http://www.scholat.com/'+teacherProfile.qrcode" width="30" height="30"
+                <img :src="'https://faculty.scholat.com/mainSite/'+teacherProfile.qrcode" width="30" height="30"
                      v-if="teacherProfile.qrcode" :onerror="defaultQrImg" style="border-radius: 5px;">
               </a>
             </div>
@@ -166,7 +166,7 @@
     export default {
         name: "BaseInfo",
         created() {
-          /*this.getUnitInfo();*/
+           this.getUnitInfo();
             console.log("********开始执行BaseInfo的create生命周期函数********")
             this.personal.avatar = this.logo;
           console.log("teacherProfile.intro="+this.teacherProfile.intro);
@@ -239,7 +239,7 @@
               })
             })
           },
-            /*getUnitInfo(){
+            getUnitInfo(){
               console.log("teacherProfile="+JSON.stringify(this.teacherProfile))
               console.log("teacherProfile.domain_name="+this.teacherProfile.tDomain_name)
               this.api({
@@ -253,7 +253,7 @@
               }).catch(error => {
                 console.log("没有找到学院unit")
               })
-            },*/
+            },
             handleCommand() {
                 // const that = this;
                 // that.$router.push({path: "/register",query:{alert:"页面跳转成功"}})
@@ -265,7 +265,7 @@
               } else if(imgName=="default.png"){
                 return this.defaultAvatar
               } else if (imgName.indexOf("resources") != "-1") {
-                return "http://www.scholat.com/" + imgName;
+                return "https://faculty.scholat.com/mainSite/" + imgName;
               } else {
                 return "https://faculty.scholat.com:2333/public/images/avatar/" + imgName;
               }
