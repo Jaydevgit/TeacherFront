@@ -49,7 +49,7 @@
       <el-table-column align="center" label="学院教师主页地址"  prop="pinyin">
         <template slot-scope="scope">
           <span class="teacher-homepage" style="cursor:pointer;">
-            <a :href="'http://faculty.scholat.com/homepage/'+listQuery.schoolDomain+'/'+scope.row.domainName">
+            <a :href="'https://faculty.scholat.com/homepage/'+listQuery.schoolDomain+'/'+scope.row.domainName">
               {{scope.row.domainName}}
             </a>
           </span>
@@ -349,26 +349,38 @@
         return 'this.src="defaultAvatar"';
       },
       routerTo(teacher) {
-        console.log("=========================================")
-        console.log("schoolDomain=" + this.$store.state.schoolUser.schoolDomain);
-        console.log("id="+teacher.id)
-        console.log("点击跳转........" + teacher.domainName);
-        let routeData = this.$router.push({
-          name: 'teacherPersonlHomePage',
-          params: {
-            // facultyDomainName:this.$store.state.user.domainName,
-            schoolDomain: this.$store.state.schoolUser.schoolDomain,
-            teacherDomainName: teacher.domainName,
-            id: teacher.id
-          }
-        });
-        window.open(routeData.href, '_blank');
-        /*  this.$router.push({
-                  name: 'teacherPersonlHomePage',
-                  params: {
-                      id: teacher.id
-                  }
-              })*/
+        if (this.$route.path.split('/')[3]==='college'){
+          console.log("=========================================")
+          console.log("schoolDomain=" + this.$store.state.schoolUser.schoolDomain);
+          console.log("id="+teacher.id)
+          console.log("点击跳转........" + teacher.domainName);
+          let routeData = this.$router.push({
+            name: 'homepage',
+            params: {
+              // facultyDomainName:this.$store.state.user.domainName,
+              schoolDomain: this.$store.state.schoolUser.schoolDomain,
+              domainName: teacher.domainName
+            }
+          });
+          window.open(routeData.href, '_blank');
+        }else if (this.$route.path.split('/')[3]==='teacher'){
+          console.log("=========================================")
+          console.log("schoolDomain=" + this.$store.state.schoolUser.schoolDomain);
+          console.log("id="+teacher.id)
+          console.log("点击跳转........" + teacher.domainName);
+          let routeData = this.$router.push({
+            name: 'teacherPersonlHomePage',
+            params: {
+              // facultyDomainName:this.$store.state.user.domainName,
+              schoolDomain: this.$store.state.schoolUser.schoolDomain,
+              teacherDomainName: teacher.domainName,
+              id: teacher.id
+            }
+          });
+          window.open(routeData.href, '_blank');
+        }
+
+
       },
       getList() {
         //查询列表
