@@ -170,9 +170,21 @@
           </div>
         </template>
       </div>
-      <span style="" class="teacherTeam" v-if="dataDone && this.$route.path.indexOf('teacher')===-1">
+      <table>
+        <td>
+        <span style="" class="teacherTeam" v-if="dataDone && this.$route.path.indexOf('teacher')===-1">
             师资队伍
-      </span>
+        </span>
+        </td>
+        <td>
+          <a style="" class="collegeHomePage" :href="unit.collegeUrl" v-if="dataDone && this.$route.path.indexOf('teacher')===-1"  >
+            学院首页
+          </a>
+        </td>
+        <td>
+        <td>
+        </td>
+      </table>
       <div class="search bar6" v-if="dataDone && this.$route.path.indexOf('teacher')===-1">
         <div class="formDiv" style="">
           <input @keyup.enter="keySend" type="text" v-model="searchKey" placeholder="请输入您要搜索的教师" name="cname"
@@ -181,12 +193,6 @@
           <img src="@/assets/img/search.png" @click="keySend" style="cursor: pointer;">
         </div>
       </div>
-      <a class="college-link" :href="unit.collegeUrl" v-if="dataDone && this.$route.path.indexOf('teacher')===-1">
-        <el-button class="college-link-button" type="text" style=" font-size: 13px;font-weight: bold;position: relative;transform: translateX(-30px);color: #3399CC;" @click="">
-          学院首页
-        </el-button>
-      </a>
-
 
         <div style=" display: flex;
     align-content: center;margin-left: 120px"
@@ -543,6 +549,15 @@
       color: steelblue;
       white-space: nowrap;
     }
+    .collegeHomePage{
+      margin-left: 20px;
+      font-size: 26px;
+      font-weight: bold;
+      letter-spacing: 3.5px;
+      line-height: 60px;
+      color: steelblue;
+      white-space: nowrap;
+    }
   }
   @media screen and (min-width: 768px) and (max-width: 1024px){
     .top-container {
@@ -598,6 +613,7 @@
       top: 0;
       right: 0;
       box-shadow:2px 2px 10px #909090;
+      min-width: 130px;
     }
 
     .bar6 button {
@@ -633,6 +649,15 @@
       max-width:180px;transform: translateX(10px)
     }
     .teacherTeam{
+      margin-left: 20px;
+      font-size: 26px;
+      font-weight: bold;
+      letter-spacing: 3.5px;
+      line-height: 60px;
+      color: steelblue;
+      white-space: nowrap;
+    }
+    .collegeHomePage{
       margin-left: 20px;
       font-size: 26px;
       font-weight: bold;
@@ -712,6 +737,7 @@
       /*float: right;*/
       width: 50%;
       max-width:150px;
+      margin-bottom: 5px;
       transform: translateX(20px)
     }
     .bar6 input {
@@ -752,6 +778,16 @@
     }
 
     .teacherTeam{
+      min-width: 80px;
+      margin-left: 15px;
+      font-size: 13px;
+      font-weight: bold;
+      letter-spacing: 3.5px;
+      line-height: 60px;
+      color: steelblue;
+      white-space: nowrap;
+    }
+    .collegeHomePage{
       min-width: 80px;
       margin-left: 15px;
       font-size: 13px;
