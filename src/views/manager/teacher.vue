@@ -313,7 +313,7 @@
       inject:['reload'],
         data() {
             return {
-                defaultImage: 'https://faculty.scholat.com:2333/public/images/avatar/default.png',
+                defaultImage: 'http://faculty.scholat.com:2333/public/images/avatar/default.png',
                 defaultAvatar:defaultAvatar,
                 searchKey: '',
                 totalCount: 0, //分页组件--数据总条数
@@ -519,11 +519,11 @@
             } else if (imgName == "default.png") {
               return this.defaultAvatar
             } else if (imgName.indexOf("resources") != "-1") {
-              return "https://faculty.scholat.com/mainSite/" + imgName;
+              return "http://www.scholat.com/" + imgName;
             } else {
-              return "https://faculty.scholat.com:2333/public/images/avatar/" + imgName;
+              return "http://faculty.scholat.com:2333/public/images/avatar/" + imgName;
             }
-            /*return 'https://faculty.scholat.com:2333/public/images/avatar/'+imgName;*/
+            /*return 'http://faculty.scholat.com:2333/public/images/avatar/'+imgName;*/
 
           },
           imgErrorFun(e) {

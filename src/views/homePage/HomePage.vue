@@ -1,6 +1,6 @@
 <template>
-  <div  id="app" class="homePage-body" :style="(backgroundHome!==undefined)?'background-image:' +'url('+'https://faculty.scholat.com:2333/public/images/background/'+backgroundHome+')':
-'background-image:' +'url('+'https://faculty.scholat.com:2333/public/images/background/'+backgroundHomeDefault+')'" >
+  <div  id="app" class="homePage-body" :style="(backgroundHome!==undefined)?'background-image:' +'url('+'http://faculty.scholat.com:2333/public/images/background/'+backgroundHome+')':
+'background-image:' +'url('+'http://faculty.scholat.com:2333/public/images/background/'+backgroundHomeDefault+')'" >
     <div class="middle-container">
       <div class="left">
         <left-nav :unitId="unitId" @toList="toList"  ref="info"></left-nav>
@@ -86,7 +86,7 @@
           </div>
         </div>
         <div style="margin-left: 5px;margin-top: 25px">
-          <img src="https://faculty.scholat.com:2333/public/images/index/QR.png" style="height: 50px">
+          <img src="http://faculty.scholat.com:2333/public/images/index/QR.png" style="height: 50px">
         </div>
       </div>
     </footer>

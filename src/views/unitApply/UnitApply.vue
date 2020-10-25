@@ -36,7 +36,7 @@
                      :onerror="defaultLogo"
                      width="120" height="120"/>
                 <!--提交完后显示这个-->
-                <img v-else :src="'https://faculty.scholat.com/mainSite/images/uni_logo/'+applyForm.school_name+'.png'"
+                <img v-else :src="'http://www.scholat.com/images/uni_logo/'+applyForm.school_name+'.png'"
                      :onerror="defaultLogo"/>
 <!--                <div class="upload-btn">-->
 <!--                  <el-button @click="uploadImage('logo')" size="small" type="primary">上传学校LOGO</el-button>-->
@@ -263,8 +263,8 @@
 
             return {
                 active: 0,
-                cerLogo: 'this.src="https://faculty.scholat.com:2333/public/images/default/default_cer.png"',
-                defaultLogo: 'this.src="https://faculty.scholat.com/mainSite/images/uni_logo/nologo.png"',
+                cerLogo: 'this.src="http://faculty.scholat.com:2333/public/images/default/default_cer.png"',
+                defaultLogo: 'this.src="http://www.scholat.com/images/uni_logo/nologo.png"',
                 modifyBtnFlag: false,
                 certificate_front_url: '',
                 certificate_back_url: '',
@@ -463,7 +463,7 @@
             // },
             handleApply(applyForm) {
               if(this.applyForm.certificate_logo===''){
-                this.applyForm.certificate_logo='https://faculty.scholat.com/mainSite/images/uni_logo/'+this.applyForm.school_name+'.png'
+                this.applyForm.certificate_logo='http://www.scholat.com/images/uni_logo/'+this.applyForm.school_name+'.png'
                 console.log("this.applyForm.certificate_logo===="+this.applyForm.certificate_logo);
               }
                 this.$refs['applyForm'].validate((valid) => {

@@ -11,7 +11,7 @@
           <span class="nav_2_2" style=""> 学院师资信息管理平台</span>
         </div>
         <div class="nav-inner-login">
-          <!--<a href="https://www.yuque.com/vd7ii9/dvybyk/na3nsf" class="title" style="min-width: 80px">帮助文档</a>-->
+          <!--<a href="http://www.yuque.com/vd7ii9/dvybyk/na3nsf" class="title" style="min-width: 80px">帮助文档</a>-->
 <!--         <a href="/login" class="title" style="flex: 1;min-width: 40px">登录</a>-->
 <!--         <a href="/unitApply" class="title" style="flex: 1;min-width: 40px">注册</a>-->
           <el-dropdown style="padding-top: 8px">
@@ -38,7 +38,7 @@
         </div>
         <div class="nav-inner-login2">
           <el-dropdown>
-            <img src="https://faculty.scholat.com:2333/public/images/index_img/crumb.png" style="height: 30px">
+            <img src="http://faculty.scholat.com:2333/public/images/index_img/crumb.png" style="height: 30px">
             <el-dropdown-menu slot="dropdown">
               <el-dropdown-item>
                 <a href="/login" class="title2" >登录</a>
@@ -53,7 +53,7 @@
               </el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
-          <!--<a href="https://www.yuque.com/vd7ii9/dvybyk/na3nsf" class="title" style="min-width: 80px">帮助文档</a>-->
+          <!--<a href="http://www.yuque.com/vd7ii9/dvybyk/na3nsf" class="title" style="min-width: 80px">帮助文档</a>-->
         </div>
       </div>
     </nav>
@@ -121,21 +121,21 @@
         <div class="page4_school">
           <div class="school">
             <a href="http://faculty.scholat.com/homepage/scnu/cs">
-            <div ><img :src="'https://faculty.scholat.com:2333/public/images/university_logo/SCNU.png'" alt=""></div>
+            <div ><img :src="'http://faculty.scholat.com:2333/public/images/university_logo/SCNU.png'" alt=""></div>
             <div class="school_name" >华南师范大学</div>
             <div class="unit">计算机学院</div>
             </a>
           </div>
           <div class="school">
             <a href="http://faculty.scholat.com/homepage/gziec/scie">
-            <div><img :src="'https://faculty.scholat.com:2333/public/images/university_logo/GZIEC.png'" alt=""></div>
+            <div><img :src="'http://faculty.scholat.com:2333/public/images/university_logo/GZIEC.png'" alt=""></div>
             <div class="school_name">广州涉外经济职业技术学院</div>
             <div class="unit">华文与国际教育学院</div>
             </a>
           </div>
           <div class="school">
             <a href="http://faculty.scholat.com/homepage/gpnu/dxxy">
-            <div><img :src="'https://faculty.scholat.com:2333/public/images/university_logo/GPNU.png'" alt=""></div>
+            <div><img :src="'http://faculty.scholat.com:2333/public/images/university_logo/GPNU.png'" alt=""></div>
             <div class="school_name">广东技术师范大学</div>
             <div class="unit">电子与信息学院 </div>
             </a>
@@ -144,21 +144,21 @@
         <div class="page4_school">
           <div class="school">
             <a href="http://faculty.scholat.com/homepage/scnu/sic">
-            <div><img :src="'https://faculty.scholat.com:2333/public/images/university_logo/SCNU.png'" alt=""></div>
+            <div><img :src="'http://faculty.scholat.com:2333/public/images/university_logo/SCNU.png'" alt=""></div>
             <div class="school_name">华南师范大学</div>
             <div class="unit">国际文化学院 </div>
             </a>
           </div>
           <div class="school">
             <a href="http://faculty.scholat.com/homepage/gdit/jsj">
-            <div><img :src="'https://faculty.scholat.com:2333/public/images/university_logo/GDIT.png'" alt=""></div>
+            <div><img :src="'http://faculty.scholat.com:2333/public/images/university_logo/GDIT.png'" alt=""></div>
             <div class="school_name">广东科学技术职业学院</div>
             <div class="unit">计算机工程技术学院</div>
             </a>
           </div>
           <div class="school">
             <a href="http://faculty.scholat.com/homepage/gdpu/xg">
-            <div><img :src="'https://faculty.scholat.com:2333/public/images/university_logo/GDPU.png'" alt=""></div>
+            <div><img :src="'http://faculty.scholat.com:2333/public/images/university_logo/GDPU.png'" alt=""></div>
             <div class="school_name">广东药科大学</div>
             <div class="unit">医药信息工程学院</div>
             </a>
@@ -167,21 +167,21 @@
         <div class="page4_school">
           <div class="school">
             <a href="http://faculty.scholat.com/homepage/zhku/xky">
-              <div><img :src="'https://faculty.scholat.com:2333/public/images/university_logo/ZHKU.png'" alt=""></div>
+              <div><img :src="'http://faculty.scholat.com:2333/public/images/university_logo/ZHKU.png'" alt=""></div>
               <div class="school_name">仲恺农业工程学院</div>
               <div class="unit">信息科学与技术学院 </div>
             </a>
           </div>
           <div class="school">
             <a href="http://faculty.scholat.com/homepage/fosu/eie">
-              <div><img :src="'https://faculty.scholat.com:2333/public/images/university_logo/FOSU.png'" alt=""></div>
+              <div><img :src="'http://faculty.scholat.com:2333/public/images/university_logo/FOSU.png'" alt=""></div>
               <div class="school_name">佛山科学技术学院</div>
               <div class="unit">电子信息工程学院</div>
             </a>
           </div>
           <div class="school">
             <a href="http://faculty.scholat.com/homepage/ougd/ai">
-              <div><img :src="'https://faculty.scholat.com:2333/public/images/university_logo/OUGD.png'" alt=""></div>
+              <div><img :src="'http://faculty.scholat.com:2333/public/images/university_logo/OUGD.png'" alt=""></div>
               <div class="school_name">广东开放大学</div>
               <div class="unit">人工智能学院</div>
             </a>
@@ -190,14 +190,14 @@
         <div class="page4_school_sub">
           <div class="school">
             <a href="http://faculty.scholat.com/homepage/scnu/cs">
-              <div ><img :src="'https://faculty.scholat.com:2333/public/images/university_logo/SCNU.png'" alt="" ></div>
+              <div ><img :src="'http://faculty.scholat.com:2333/public/images/university_logo/SCNU.png'" alt="" ></div>
               <div class="school_name" >华南师范大学</div>
               <div class="unit">计算机学院</div>
             </a>
           </div>
           <div class="school">
             <a href="http://faculty.scholat.com/homepage/gziec/scie">
-              <div><img :src="'https://faculty.scholat.com:2333/public/images/university_logo/GZIEC.png'" alt=""></div>
+              <div><img :src="'http://faculty.scholat.com:2333/public/images/university_logo/GZIEC.png'" alt=""></div>
               <div class="school_name">广州涉外经济职业技术学院</div>
               <div class="unit">华文与国际教育学院</div>
             </a>
@@ -206,14 +206,14 @@
         <div class="page4_school_sub" >
           <div class="school">
             <a href="http://faculty.scholat.com/homepage/gpnu/dxxy">
-              <div ><img :src="'https://faculty.scholat.com:2333/public/images/university_logo/GPNU.png'" alt=""></div>
+              <div ><img :src="'http://faculty.scholat.com:2333/public/images/university_logo/GPNU.png'" alt=""></div>
               <div class="school_name" >广东技术师范大学</div>
               <div class="unit">电子与信息学院</div>
             </a>
           </div>
           <div class="school">
             <a href="http://faculty.scholat.com/homepage/gdit/jsj">
-              <div><img :src="'https://faculty.scholat.com:2333/public/images/university_logo/GDIT.png'" alt=""></div>
+              <div><img :src="'http://faculty.scholat.com:2333/public/images/university_logo/GDIT.png'" alt=""></div>
               <div class="school_name">广东科学技术职业学院</div>
               <div class="unit">计算机工程技术学院</div>
             </a>
@@ -222,14 +222,14 @@
         <div class="page4_school_sub" >
           <div class="school">
             <a href="http://faculty.scholat.com/homepage/scnu/sic">
-              <div ><img :src="'https://faculty.scholat.com:2333/public/images/university_logo/SCNU.png'" alt=""></div>
+              <div ><img :src="'http://faculty.scholat.com:2333/public/images/university_logo/SCNU.png'" alt=""></div>
               <div class="school_name" >华南师范大学</div>
               <div class="unit">国际文化学院</div>
             </a>
           </div>
           <div class="school">
             <a href="http://faculty.scholat.com/homepage/gdpu/xg">
-              <div><img :src="'https://faculty.scholat.com:2333/public/images/university_logo/GDPU.png'" alt="" ></div>
+              <div><img :src="'http://faculty.scholat.com:2333/public/images/university_logo/GDPU.png'" alt="" ></div>
               <div class="school_name">广东药科大学</div>
               <div class="unit">医药信息工程学院</div>
             </a>
@@ -248,7 +248,7 @@
           <div>© 2020起 SCHOLAT+LAB</div>
         </div>
         <div style=" display:table-cell;">
-          <img src="https://faculty.scholat.com:2333/public/images/index/QR.png" style="height: 50px">
+          <img src="http://faculty.scholat.com:2333/public/images/index/QR.png" style="height: 50px">
         </div>
         </div>
 
@@ -265,7 +265,7 @@
 
 <!--        </div>-->
 <!--        <div style="display: flex;align-items:center;height: 100%;margin-left: 16px">-->
-<!--          <img src="https://faculty.scholat.com:2333/public/images/index/QR.png" style="height: 50px">-->
+<!--          <img src="http://faculty.scholat.com:2333/public/images/index/QR.png" style="height: 50px">-->
 <!--        </div>-->
 
 <!--      </div>-->
@@ -385,18 +385,18 @@
     /*background-repeat:no-repeat;*/
     /*background-position:center;*/
     background:
-      url("https://faculty.scholat.com:2333/public/images/index_img/DeskTop/tM1.svg") left 60px top 75px no-repeat,
-      url("https://faculty.scholat.com:2333/public/images/index_img/DeskTop/tM2.svg") left 750px top 20px no-repeat,
-      url("https://faculty.scholat.com:2333/public/images/index_img/DeskTop/tM3.svg") left 820px top 150px no-repeat,
-      url("https://faculty.scholat.com:2333/public/images/index_img/DeskTop/aM1.svg") left 10px bottom no-repeat,
-      url("https://faculty.scholat.com:2333/public/images/index_img/DeskTop/aM2.svg") left 101px bottom no-repeat,
-      url("https://faculty.scholat.com:2333/public/images/index_img/DeskTop/aM3.svg") left 246px bottom no-repeat,
-      url("https://faculty.scholat.com:2333/public/images/index_img/DeskTop/aM4.svg") left 374px bottom no-repeat,
-      url("https://faculty.scholat.com:2333/public/images/index_img/DeskTop/aM5.svg") left 460px bottom no-repeat,
-      url("https://faculty.scholat.com:2333/public/images/index_img/DeskTop/aM6.svg") left 545px bottom no-repeat,
-      url("https://faculty.scholat.com:2333/public/images/index_img/DeskTop/aM7.svg") left 667px bottom no-repeat,
-      url("https://faculty.scholat.com:2333/public/images/index_img/DeskTop/aM8.svg") left 760px bottom no-repeat,
-      url("https://faculty.scholat.com:2333/public/images/index_img/DeskTop/aM9.svg") left 883px bottom no-repeat;
+      url("http://faculty.scholat.com:2333/public/images/index_img/DeskTop/tM1.svg") left 60px top 75px no-repeat,
+      url("http://faculty.scholat.com:2333/public/images/index_img/DeskTop/tM2.svg") left 750px top 20px no-repeat,
+      url("http://faculty.scholat.com:2333/public/images/index_img/DeskTop/tM3.svg") left 820px top 150px no-repeat,
+      url("http://faculty.scholat.com:2333/public/images/index_img/DeskTop/aM1.svg") left 10px bottom no-repeat,
+      url("http://faculty.scholat.com:2333/public/images/index_img/DeskTop/aM2.svg") left 101px bottom no-repeat,
+      url("http://faculty.scholat.com:2333/public/images/index_img/DeskTop/aM3.svg") left 246px bottom no-repeat,
+      url("http://faculty.scholat.com:2333/public/images/index_img/DeskTop/aM4.svg") left 374px bottom no-repeat,
+      url("http://faculty.scholat.com:2333/public/images/index_img/DeskTop/aM5.svg") left 460px bottom no-repeat,
+      url("http://faculty.scholat.com:2333/public/images/index_img/DeskTop/aM6.svg") left 545px bottom no-repeat,
+      url("http://faculty.scholat.com:2333/public/images/index_img/DeskTop/aM7.svg") left 667px bottom no-repeat,
+      url("http://faculty.scholat.com:2333/public/images/index_img/DeskTop/aM8.svg") left 760px bottom no-repeat,
+      url("http://faculty.scholat.com:2333/public/images/index_img/DeskTop/aM9.svg") left 883px bottom no-repeat;
   }
   .title_1{
     color: #000000;
@@ -436,7 +436,7 @@
      float: left;
       height: 360px;
       width: 40%;
-      background-image: url("https://faculty.scholat.com:2333/public/images/index_img/index_bg2.svg");
+      background-image: url("http://faculty.scholat.com:2333/public/images/index_img/index_bg2.svg");
       background-repeat:no-repeat;
       background-size: 420px;
       background-position: right 20px top -25px;
@@ -478,7 +478,7 @@
       height: 400px;
       width: 40%;
       float: left;
-      background-image: url("https://faculty.scholat.com:2333/public/images/index_img/index_bg3.svg");
+      background-image: url("http://faculty.scholat.com:2333/public/images/index_img/index_bg3.svg");
       background-repeat:no-repeat;
       background-size: cover;
       background-position: left -240px bottom 60px;
@@ -584,18 +584,18 @@
       /*background-repeat:no-repeat;*/
       /*background-position:center;*/
       background:
-        url("https://faculty.scholat.com:2333/public/images/index_img/t1.svg") left 115px top 75px no-repeat,
-        url("https://faculty.scholat.com:2333/public/images/index_img/t2.svg") left 985px top no-repeat,
-        url("https://faculty.scholat.com:2333/public/images/index_img/t3.svg") left 1085px top 150px no-repeat,
-        url("https://faculty.scholat.com:2333/public/images/index_img/a1.svg") left 10px bottom no-repeat,
-      url("https://faculty.scholat.com:2333/public/images/index_img/a2.svg") left 149px bottom no-repeat,
-      url("https://faculty.scholat.com:2333/public/images/index_img/a3.svg") left 334px bottom no-repeat,
-      url("https://faculty.scholat.com:2333/public/images/index_img/a4.svg") left 509px bottom no-repeat,
-      url("https://faculty.scholat.com:2333/public/images/index_img/a5.svg") left 629px bottom no-repeat,
-      url("https://faculty.scholat.com:2333/public/images/index_img/a6.svg") left 747px bottom no-repeat,
-      url("https://faculty.scholat.com:2333/public/images/index_img/a7.svg") left 914px bottom no-repeat,
-      url("https://faculty.scholat.com:2333/public/images/index_img/a8.svg") left 1042px bottom no-repeat,
-      url("https://faculty.scholat.com:2333/public/images/index_img/a9.svg") left 1191px bottom no-repeat;
+        url("http://faculty.scholat.com:2333/public/images/index_img/t1.svg") left 115px top 75px no-repeat,
+        url("http://faculty.scholat.com:2333/public/images/index_img/t2.svg") left 985px top no-repeat,
+        url("http://faculty.scholat.com:2333/public/images/index_img/t3.svg") left 1085px top 150px no-repeat,
+        url("http://faculty.scholat.com:2333/public/images/index_img/a1.svg") left 10px bottom no-repeat,
+      url("http://faculty.scholat.com:2333/public/images/index_img/a2.svg") left 149px bottom no-repeat,
+      url("http://faculty.scholat.com:2333/public/images/index_img/a3.svg") left 334px bottom no-repeat,
+      url("http://faculty.scholat.com:2333/public/images/index_img/a4.svg") left 509px bottom no-repeat,
+      url("http://faculty.scholat.com:2333/public/images/index_img/a5.svg") left 629px bottom no-repeat,
+      url("http://faculty.scholat.com:2333/public/images/index_img/a6.svg") left 747px bottom no-repeat,
+      url("http://faculty.scholat.com:2333/public/images/index_img/a7.svg") left 914px bottom no-repeat,
+      url("http://faculty.scholat.com:2333/public/images/index_img/a8.svg") left 1042px bottom no-repeat,
+      url("http://faculty.scholat.com:2333/public/images/index_img/a9.svg") left 1191px bottom no-repeat;
     }
     .page3{
       margin: 0 auto;
@@ -668,25 +668,25 @@
       /*background-repeat:no-repeat;*/
       /*background-position:center;*/
       background:
-        url("https://faculty.scholat.com:2333/public/images/index_img/ipad/tM1.svg") left 40px top 60px no-repeat,
-        url("https://faculty.scholat.com:2333/public/images/index_img/ipad/tM2.svg") left 560px top 20px no-repeat,
-        url("https://faculty.scholat.com:2333/public/images/index_img/ipad/tM3.svg") left 600px top 150px no-repeat,
-        url("https://faculty.scholat.com:2333/public/images/index_img/ipad/aM1.svg") left bottom no-repeat,
-        url("https://faculty.scholat.com:2333/public/images/index_img/ipad/aM2.svg") left 68px bottom no-repeat,
-        url("https://faculty.scholat.com:2333/public/images/index_img/ipad/aM3.svg") left 173px bottom no-repeat,
-        url("https://faculty.scholat.com:2333/public/images/index_img/ipad/aM4.svg") left 272px bottom no-repeat,
-        url("https://faculty.scholat.com:2333/public/images/index_img/ipad/aM5.svg") left 339px bottom no-repeat,
-        url("https://faculty.scholat.com:2333/public/images/index_img/ipad/aM6.svg") left 406px bottom no-repeat,
-        url("https://faculty.scholat.com:2333/public/images/index_img/ipad/aM7.svg") left 500px bottom no-repeat,
-        url("https://faculty.scholat.com:2333/public/images/index_img/ipad/aM8.svg") left 572px bottom no-repeat,
-        url("https://faculty.scholat.com:2333/public/images/index_img/ipad/aM9.svg") left 667px bottom no-repeat;
+        url("http://faculty.scholat.com:2333/public/images/index_img/ipad/tM1.svg") left 40px top 60px no-repeat,
+        url("http://faculty.scholat.com:2333/public/images/index_img/ipad/tM2.svg") left 560px top 20px no-repeat,
+        url("http://faculty.scholat.com:2333/public/images/index_img/ipad/tM3.svg") left 600px top 150px no-repeat,
+        url("http://faculty.scholat.com:2333/public/images/index_img/ipad/aM1.svg") left bottom no-repeat,
+        url("http://faculty.scholat.com:2333/public/images/index_img/ipad/aM2.svg") left 68px bottom no-repeat,
+        url("http://faculty.scholat.com:2333/public/images/index_img/ipad/aM3.svg") left 173px bottom no-repeat,
+        url("http://faculty.scholat.com:2333/public/images/index_img/ipad/aM4.svg") left 272px bottom no-repeat,
+        url("http://faculty.scholat.com:2333/public/images/index_img/ipad/aM5.svg") left 339px bottom no-repeat,
+        url("http://faculty.scholat.com:2333/public/images/index_img/ipad/aM6.svg") left 406px bottom no-repeat,
+        url("http://faculty.scholat.com:2333/public/images/index_img/ipad/aM7.svg") left 500px bottom no-repeat,
+        url("http://faculty.scholat.com:2333/public/images/index_img/ipad/aM8.svg") left 572px bottom no-repeat,
+        url("http://faculty.scholat.com:2333/public/images/index_img/ipad/aM9.svg") left 667px bottom no-repeat;
 
     }
     .page2{
       width: 768px;
       margin: 100px auto;
       .page2_left1{
-        background-image: url("https://faculty.scholat.com:2333/public/images/index_img/index_bgPad2.svg");
+        background-image: url("http://faculty.scholat.com:2333/public/images/index_img/index_bgPad2.svg");
         background-position: left 20px bottom 50px;
       }
       .page2_left2{
@@ -702,7 +702,7 @@
         padding-left: 20px;
         width: 470px;
       }
-      background-image: url("https://faculty.scholat.com:2333/public/images/index_img/index_bgPad3.svg");
+      background-image: url("http://faculty.scholat.com:2333/public/images/index_img/index_bgPad3.svg");
       background-repeat: no-repeat;
       transform: translateY(-30px);
       .page3_left2{
@@ -751,18 +751,18 @@
       height: 442px;
       /*background-image: url("../../assets/index/index_bgMin1.png");*/
       background:
-        url("https://faculty.scholat.com:2333/public/images/index_img/mobile/tM1.svg") left 10px top 60px no-repeat,
-        url("https://faculty.scholat.com:2333/public/images/index_img/mobile/tM2.svg") left 260px top 40px no-repeat,
-        url("https://faculty.scholat.com:2333/public/images/index_img/mobile/tM3.svg") left 240px top 120px no-repeat,
-        url("https://faculty.scholat.com:2333/public/images/index_img/mobile/aM1.svg") left 5px bottom no-repeat,
-        url("https://faculty.scholat.com:2333/public/images/index_img/mobile/aM2.svg") left 35px bottom no-repeat,
-        url("https://faculty.scholat.com:2333/public/images/index_img/mobile/aM3.svg") left 75px bottom no-repeat,
-        url("https://faculty.scholat.com:2333/public/images/index_img/mobile/aM4.svg") left 113px bottom no-repeat,
-        url("https://faculty.scholat.com:2333/public/images/index_img/mobile/aM5.svg") left 140px bottom no-repeat,
-        url("https://faculty.scholat.com:2333/public/images/index_img/mobile/aM6.svg") left 170px bottom no-repeat,
-        url("https://faculty.scholat.com:2333/public/images/index_img/mobile/aM7.svg") left 207px bottom no-repeat,
-        url("https://faculty.scholat.com:2333/public/images/index_img/mobile/aM8.svg") left 235px bottom no-repeat,
-        url("https://faculty.scholat.com:2333/public/images/index_img/mobile/aM9.svg") left 275px bottom no-repeat;
+        url("http://faculty.scholat.com:2333/public/images/index_img/mobile/tM1.svg") left 10px top 60px no-repeat,
+        url("http://faculty.scholat.com:2333/public/images/index_img/mobile/tM2.svg") left 260px top 40px no-repeat,
+        url("http://faculty.scholat.com:2333/public/images/index_img/mobile/tM3.svg") left 240px top 120px no-repeat,
+        url("http://faculty.scholat.com:2333/public/images/index_img/mobile/aM1.svg") left 5px bottom no-repeat,
+        url("http://faculty.scholat.com:2333/public/images/index_img/mobile/aM2.svg") left 35px bottom no-repeat,
+        url("http://faculty.scholat.com:2333/public/images/index_img/mobile/aM3.svg") left 75px bottom no-repeat,
+        url("http://faculty.scholat.com:2333/public/images/index_img/mobile/aM4.svg") left 113px bottom no-repeat,
+        url("http://faculty.scholat.com:2333/public/images/index_img/mobile/aM5.svg") left 140px bottom no-repeat,
+        url("http://faculty.scholat.com:2333/public/images/index_img/mobile/aM6.svg") left 170px bottom no-repeat,
+        url("http://faculty.scholat.com:2333/public/images/index_img/mobile/aM7.svg") left 207px bottom no-repeat,
+        url("http://faculty.scholat.com:2333/public/images/index_img/mobile/aM8.svg") left 235px bottom no-repeat,
+        url("http://faculty.scholat.com:2333/public/images/index_img/mobile/aM9.svg") left 275px bottom no-repeat;
       .title_1{
         padding: 40px 20px;
         font-size: 16px;
@@ -785,7 +785,7 @@
       width: 320px;
       height: 200px;
       margin:0 auto;
-      background-image: url("https://faculty.scholat.com:2333/public/images/index_img/index_bgMin2.svg");
+      background-image: url("http://faculty.scholat.com:2333/public/images/index_img/index_bgMin2.svg");
       background-repeat: no-repeat;
       background-position: center;
       .page2_left1{
@@ -812,7 +812,7 @@
       margin-top: -30px;
       width: 320px;
       height: 200px;
-      background-image: url("https://faculty.scholat.com:2333/public/images/index_img/index_bgMin3.svg");
+      background-image: url("http://faculty.scholat.com:2333/public/images/index_img/index_bgMin3.svg");
       background-repeat: no-repeat;
       background-position: center;
       .page3_left1{

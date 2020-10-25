@@ -100,7 +100,7 @@
           </div>
         </div>
         <div style="margin-left: 5px;margin-top: 25px">
-          <img src="https://faculty.scholat.com:2333/public/images/index/QR.png" style="height: 50px">
+          <img src="http://faculty.scholat.com:2333/public/images/index/QR.png" style="height: 50px">
         </div>
       </div>
     </footer>
@@ -224,7 +224,7 @@
             return this.defaultAvatar
             console.log("else if(imgName==\"default.png\")")
           } else if (imgName.indexOf("resources") != "-1") {
-            return "https://faculty.scholat.com/mainSite/" + imgName;
+            return "http://www.scholat.com/" + imgName;
           } else {
             return "http://faculty.scholat.com:2333/public/images/avatar/" + imgName;
           }

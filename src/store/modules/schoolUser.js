@@ -10,7 +10,7 @@ const schoolUser = {
     username:'',
     nickname: "",
     userId: "",
-    avatar: 'https://raw.githubusercontent.com/sansenlian/PicPlace/master/img/20190610104613.png',
+    avatar: 'http://raw.githubusercontent.com/sansenlian/PicPlace/master/img/20190610104613.png',
     role: '',
     menus: [],
     schoolName:'',

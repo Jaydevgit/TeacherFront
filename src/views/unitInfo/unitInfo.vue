@@ -28,7 +28,7 @@
             &lt;!&ndash;提交完后显示这个&ndash;&gt;
             <img :src="showLogo"
                  :onerror="defaultLogo" v-if="this.showLogo" style="width: 120px;"/>
-            <img v-else src="https://faculty.scholat.com/mainSite/images/uni_logo/华南师范大学.png"
+            <img v-else src="http://www.scholat.com/images/uni_logo/华南师范大学.png"
                  :onerror="defaultLogo" style="width: 120px;"/>
           </div>
           <div style="margin-left: 50px">
@@ -53,12 +53,12 @@
       <!--<el-form-item v-if="applyForm.state === 0" label="文字模式："  >
         <div style="margin-left: 15px;">
           &lt;!&ndash;提交完后显示这个&ndash;&gt;
-          <img src="https://faculty.scholat.com:2333/public/images/background/1569738575202258.png"  style="width: 420px; height: 72px;"/>
+          <img src="http://faculty.scholat.com:2333/public/images/background/1569738575202258.png"  style="width: 420px; height: 72px;"/>
         </div>
 
       </el-form-item>-->
       <el-form-item v-if="applyForm.state === 1" label="">
-        <div style="" v-if="showBack.indexOf('https://faculty.scholat.com:2333/public/images/background/')!=-1">
+        <div style="" v-if="showBack.indexOf('http://faculty.scholat.com:2333/public/images/background/')!=-1">
           <!--提交完后显示这个-->
           <img :src="showBack"
                :onerror="defaultBack" style="width: 420px; height: 72px;"/>
@@ -115,8 +115,8 @@
     export default {
         data() {
             return {
-                defaultLogo: 'this.src="https://faculty.scholat.com/mainSite/images/uni_logo/nologo.png"',
-                //  defaultBack: 'this.src="https://faculty.scholat.com:2333/public/images/background/1569738575202258.png"',
+                defaultLogo: 'this.src="http://www.scholat.com/images/uni_logo/nologo.png"',
+                //  defaultBack: 'this.src="http://faculty.scholat.com:2333/public/images/background/1569738575202258.png"',
                 defaultBack: '',
               defaultBackHome:'',
                 applyForm: {
@@ -138,7 +138,7 @@
                 applyRules: {
                     collegeUrl: [
                       {required: true, message: "学院主页链接不能为空"},
-                      {required: true, message: "注意：学院链接以‘http’或‘https’开头", pattern: /(http|https):\/\/([\w.]+\/?)\S*/　}
+                      {required: true, message: "注意：学院链接以‘http’或‘http’开头", pattern: /(http|http):\/\/([\w.]+\/?)\S*/　}
                     ], //學院連接
                     collegeLogo: [{required: true, message: "学院图标不能为空", trigger: 'change'}],   //學院图标
                     backSelect: [{required: true, message: "背景模式不能为空", trigger: 'change'}]    //背景模式
@@ -245,21 +245,21 @@
                     console.log(JSON.stringify(data))
                     this.applyForm = data
                     if (data.logoUrl != null && data.logoUrl.indexOf('scholat') === -1)
-                        this.showLogo = 'https://faculty.scholat.com:2333/public/images/unit_logo/' + data.logoUrl
+                        this.showLogo = 'http://faculty.scholat.com:2333/public/images/unit_logo/' + data.logoUrl
                     else
                         this.showLogo = data.logoUrl;
                     if (data.backgroundUrl != undefined &&
                         data.backgroundUrl != ''
                         && data.backgroundUrl != null) {
-                        this.showBack = 'https://faculty.scholat.com:2333/public/images/background/' + data.backgroundUrl;
+                        this.showBack = 'http://faculty.scholat.com:2333/public/images/background/' + data.backgroundUrl;
                     } else {
                         this.showBack = ''
                     }
                   if (data.backgroundHome != undefined &&
                     data.backgroundHome != ''
                     && data.backgroundHome != null) {
-                    this.showBackHome = 'https://faculty.scholat.com:2333/public/images/background/' + data.backgroundHome;
-                    this.fileList.url='https://faculty.scholat.com:2333/public/images/background/' + data.backgroundHome;
+                    this.showBackHome = 'http://faculty.scholat.com:2333/public/images/background/' + data.backgroundHome;
+                    this.fileList.url='http://faculty.scholat.com:2333/public/images/background/' + data.backgroundHome;
                     this.fileList.push({'name': 'default.png','url':this.fileList.url})
                     console.log("this.fileList.url="+this.fileList.url);
                   } else {
@@ -318,8 +318,8 @@
             },
             restoreImage(type) {
                 if (type == 1) {
-                    this.applyForm.logoUrl = 'https://faculty.scholat.com/mainSite/images/uni_logo/' + this.applyForm.schoolName + '.png'
-                    this.showLogo = 'https://faculty.scholat.com/mainSite/images/uni_logo/' + this.applyForm.schoolName + '.png'
+                    this.applyForm.logoUrl = 'http://www.scholat.com/images/uni_logo/' + this.applyForm.schoolName + '.png'
+                    this.showLogo = 'http://www.scholat.com/images/uni_logo/' + this.applyForm.schoolName + '.png'
                     console.log(" this.showLogo=" + this.showLogo);
                 } else {
                     this.applyForm.backgroundUrl = ''

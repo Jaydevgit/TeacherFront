@@ -5,7 +5,7 @@
 
         <el-card class="box-card" >
           <div class="imgDiv">
-            <img class="imgLogo" :src="'https://faculty.scholat.com/mainSite/images/uni_logo/'+this.personal.schoolName+'.png'" :onerror="bgLogo" style=" "/>
+            <img class="imgLogo" :src="'http://www.scholat.com/images/uni_logo/'+this.personal.schoolName+'.png'" :onerror="bgLogo" style=" "/>
           </div>
 
           <img class="imgAvatar" :src="getImgUrl(teacherProfile.avatar)" :onerror="imgErrorFun(this)"/>
@@ -143,7 +143,7 @@
             <div style="padding: 8px 20px 3px 0px;float: right;font-size: 14px;color: #7e8c8d;vertical-align: center;transform: translateY(3px)">
               <a :href="'http://www.scholat.com/'+teacherProfile.scholat_username" v-if="teacherProfile.scholat_username" style="display: flex;align-items: center">
                 <span>更多信息请见学者主页 </span>&nbsp
-                <img :src="'https://faculty.scholat.com/mainSite/'+teacherProfile.qrcode" width="30" height="30"
+                <img :src="'http://www.scholat.com/'+teacherProfile.qrcode" width="30" height="30"
                      v-if="teacherProfile.qrcode" :onerror="defaultQrImg" style="border-radius: 5px;">
               </a>
             </div>
@@ -265,16 +265,16 @@
               } else if(imgName=="default.png"){
                 return this.defaultAvatar
               } else if (imgName.indexOf("resources") != "-1") {
-                return "https://faculty.scholat.com/mainSite/" + imgName;
+                return "http://www.scholat.com/" + imgName;
               } else {
-                return "https://faculty.scholat.com:2333/public/images/avatar/" + imgName;
+                return "http://faculty.scholat.com:2333/public/images/avatar/" + imgName;
               }
             },
             imgErrorFun(e) {
                 /*let img = e;
                 img.onerror = null;
                 console.log("执行了imgErrorFun函数，onerror=" + img.onerror + "，img.src=" + img.src);
-                return 'this.src="https://faculty.scholat.com:2333/public/images/avatar/default.png"';*/
+                return 'this.src="http://faculty.scholat.com:2333/public/images/avatar/default.png"';*/
               return 'this.src="defaultAvatar"';
             },
             routeTo() {

@@ -21,7 +21,7 @@ export default {
     this.$_destroySidebarResizeEvent()
   },
   // to fixed bug when cached by keep-alive
-  // https://github.com/PanJiaChen/vue-element-admin/issues/2116
+  // http://github.com/PanJiaChen/vue-element-admin/issues/2116
   activated() {
     this.$_initResizeEvent()
     this.$_initSidebarResizeEvent()
@@ -32,7 +32,7 @@ export default {
   },
   methods: {
     // use $_ for mixins properties
-    // https://vuejs.org/v2/style-guide/index.html#Private-property-names-essential
+    // http://vuejs.org/v2/style-guide/index.html#Private-property-names-essential
     $_initResizeEvent() {
       window.addEventListener('resize', this.$_resizeHandler)
     },

@@ -16,7 +16,7 @@
         </div>
         <div class="nav-inner-login">
           <a href="/index" class="title" style="flex: 1;min-width: 40px">首页</a>
-          <!--<a href="https://www.yuque.com/vd7ii9/dvybyk/na3nsf" class="title" style="min-width: 80px">帮助文档</a>-->
+          <!--<a href="http://www.yuque.com/vd7ii9/dvybyk/na3nsf" class="title" style="min-width: 80px">帮助文档</a>-->
           <a href="/login" class="title" style="flex: 1;min-width: 40px">登录</a>
           <a href="/unitApply" class="title" style="flex: 1;min-width: 40px">注册</a>
           <a href="http://www.scholat.com/"  class="title" style="flex: 1;min-width: 60px">
@@ -38,7 +38,7 @@
                   <el-carousel-item v-for="item in 3" :key="item">
                     <div style="height: 100%;width: 100%;display: flex;justify-content: center">
                       <el-card>
-                        <img :src="'https://faculty.scholat.com:2333/public/images/index/index-show-'+item+'.jpg'"
+                        <img :src="'http://faculty.scholat.com:2333/public/images/index/index-show-'+item+'.jpg'"
                              style="width: 100%;display: inline-block;"
                              lazy>
                       </el-card>
@@ -130,7 +130,7 @@
 
         </div>
         <div style="display: flex;align-items:center;height: 100%;margin-left: 16px">
-          <img src="https://faculty.scholat.com:2333/public/images/index/QR.png" style="height: 50px">
+          <img src="http://faculty.scholat.com:2333/public/images/index/QR.png" style="height: 50px">
         </div>
 
       </div>

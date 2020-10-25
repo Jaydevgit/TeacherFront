@@ -70,7 +70,7 @@
     created() {
       if(this.scholatAvatar){
         if (this.scholatAvatar.indexOf("resources") != -1) {
-          this.attach.laterUrl = "https://faculty.scholat.com/mainSite/" + this.scholatAvatar;
+          this.attach.laterUrl = "http://www.scholat.com/" + this.scholatAvatar;
         } else {
           this.attach.laterUrl = "http://222.201.80.72:2333/images/avatar/" + this.scholatAvatar;
         }

@@ -10,7 +10,7 @@ const scholat = {
     username:'',
     nickname: "",
     role: '',
-    avatar: 'https://raw.githubusercontent.com/sansenlian/PicPlace/master/img/20190610104613.png',
+    avatar: 'http://raw.githubusercontent.com/sansenlian/PicPlace/master/img/20190610104613.png',
     menus: [],
     permissions: [],
   },

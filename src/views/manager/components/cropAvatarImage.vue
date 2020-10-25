@@ -1,7 +1,7 @@
 <!--
 裁剪头像组件,
 返回上传头像的文件名
-可以通过: https://faculty.scholat.com:2333/public/images/avatar/ 访问
+可以通过: http://faculty.scholat.com:2333/public/images/avatar/ 访问
 -->
 <template>
   <div class="crop-avatar-image">
@@ -72,13 +72,13 @@
       console.log("this.logo="+this.logo+",scholatAvatar="+this.scholatAvatar);
       if(this.scholatAvatar){
         if (this.scholatAvatar.indexOf("resources") != -1) {
-          this.attach.laterUrl = "https://faculty.scholat.com/mainSite/" + this.scholatAvatar;
+          this.attach.laterUrl = "http://www.scholat.com/" + this.scholatAvatar;
         } else {
           console.log("this.logo="+this.logo+",scholatAvatar="+this.scholatAvatar);
           if (this.scholatAvatar=='default.png'){
             this.attach.laterUrl = this.defaultAvatar
           }else{
-            this.attach.laterUrl = "https://faculty.scholat.com:2333/public/images/avatar/" + this.scholatAvatar;
+            this.attach.laterUrl = "http://faculty.scholat.com:2333/public/images/avatar/" + this.scholatAvatar;
           }
 
 
