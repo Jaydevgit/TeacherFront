@@ -17,6 +17,7 @@
         <div class="contentTitle" style="border: 0;">
           <span class="chTitle chTitle1">最近更新教师主页</span>
           <span class="engTitle">Teacher recently updated</span>
+          <span class="line"></span>
         </div>
         <div class="eachScholar">
           <ul >
@@ -25,7 +26,7 @@
                 <img class="recimg" :src="getImgUrl(item.avatar)" :onerror="imgErrorFun(this)">
               </div>
               <div class="recnametitle">
-                <div :title="item.username" @click="routerTo(item)" class="recchn"><a href="ytang" target="_blank"> {{item.username}} </a></div>
+                <div :title="item.username" @click="routerTo(item)" class="recchn">{{item.username}}</div>
                 <div class="titleandunit"> {{item.post}} </div>
                 <div class="titleandunit"> {{item.department_name}}</div>
               </div>
@@ -42,6 +43,7 @@
         <div class="contentTitle" style="border: 0;">
           <span class="chTitle chTitle1">推荐教师</span>
           <span class="engTitle">Recommended teachers</span>
+          <span class="line"></span>
         </div>
         <div class="eachScholar">
           <ul >
@@ -50,7 +52,7 @@
                   <img class="recimg" :src="getImgUrl(item.avatar)" :onerror="imgErrorFun(this)">
               </div>
               <div class="recnametitle">
-                <div :title="item.username" @click="routerTo(item)" class="recchn"><a href="ytang" target="_blank"> {{item.username}} </a></div>
+                <div :title="item.username" @click="routerTo(item)" class="recchn"> {{item.username}} </div>
                 <div class="titleandunit"> {{item.post}} </div>
                 <div class="titleandunit"> {{item.unit_name}}</div>
               </div>
@@ -64,11 +66,15 @@
         <div class="contentTitle" style="border: 0;">
           <span class="chTitle chTitle1">学院列表</span>
           <span class="engTitle">List of colleges</span>
+          <span class="line"></span>
         </div>
         <div class="eachScholar">
           <el-card class="box-card" style="">
             <div v-for="o in unitList" class="item">
-              <a :href="'/homepage/'+listQuery.schoolDomain+'/'+o.domain_name" class="text">{{o.unit_name}}</a>
+              <a :href="'/homepage/'+listQuery.schoolDomain+'/'+o.domain_name" class="text">
+<!--                {{o.unit_name}}-->
+                <img class="bgImg" :src="getBgImgUrl(o.background_url)" :onerror="imgErrorFun(this)">
+              </a>
             </div>
           </el-card>
         </div>
@@ -220,8 +226,11 @@
           } else if (imgName.indexOf("resources") != "-1") {
             return "https://faculty.scholat.com/mainSite/" + imgName;
           } else {
-            return "https://faculty.scholat.com:2333/public/images/avatar/" + imgName;
+            return "http://faculty.scholat.com:2333/public/images/avatar/" + imgName;
           }
+        },
+        getBgImgUrl(imgName){
+          return "http://faculty.scholat.com:2333/public/images/background/" + imgName;
         },
         imgErrorFun(e) {
           let img = e;
@@ -351,10 +360,11 @@
   }
 
   .contentTitle {
-    height: 40px;
-    line-height: 40px;
+    height: 24px;
+    line-height: 24px;
     width: 100%;
     border-bottom: 2px solid #399;
+    display: flex;
   }
   .eachScholar {
     width: 960px;
@@ -387,6 +397,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     letter-spacing: 8px;
+    cursor: pointer;
   }
   .titleandunit {
     height: 22px;
@@ -418,6 +429,12 @@
     width: 60px;
     margin: 0 15px 0 0;
   }
+  .bgImg{
+    cursor: pointer;
+    height: 72px;
+    width: 420px;
+    margin: 0 15px 0 0;
+  }
   .recnametitle {
     float: left;
     margin-left: 10px;
@@ -429,6 +446,7 @@
     color: #333;
     font-weight: bold;
     font-size: 16px;
+
   }
   .chTitle1 {
     border-left: 2px solid #399;
@@ -439,6 +457,12 @@
     font-size: 16px;
     margin-left: 5px;
     font-family: "Microsoft YaHei";
+  }
+  .line{
+    display: inline-block;
+    flex: 1;
+    height: 12px;
+    border-bottom: 1px solid #ccc ;
   }
   .more, .ccf_more, .ccfmore, .noticemore {
     float: right;
