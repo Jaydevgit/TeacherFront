@@ -1,18 +1,18 @@
 <template>
-  <div class="login-container">
+  <div class="login-container" >
     <el-form autoComplete="on" :model="loginForm" :rules="loginRules" ref="loginForm" label-position="left"
              label-width="0px"
              class="card-box login-form"
              style="padding: 35px;">
       <h3 class="title">scholat教师主页管理系统</h3>
-      <el-form-item prop="username">
-        <span class="svg-container svg-container_login">
+      <el-form-item prop="username" style="width: 100%">
+        <span class="svg-container svg-container_login" style="width: 15%">
           <svg-icon icon-class="user"/>
         </span>
         <el-input v-model="loginForm.username" autoComplete="on"/>
       </el-form-item>
-      <el-form-item prop="password">
-        <span class="svg-container">
+      <el-form-item prop="password" style="width: 100%">
+        <span class="svg-container" style="width: 15%">
           <svg-icon icon-class="password"></svg-icon>
         </span>
         <el-input type="password" @keyup.enter.native="handleLogin" v-model="loginForm.password"
@@ -93,13 +93,15 @@
       border-radius: 0px;
       padding: 12px 5px 12px 15px;
       color: $bg;
-      height: 47px;
+      height: 51px;
     }
 
     .el-input {
       display: inline-block;
-      height: 47px;
+      height: 51px;
       width: 85%;
+      float: right;
+      position: relative;
     }
 
     .tips {
