@@ -10,10 +10,11 @@
             class="el-menu-vertical-demo"
             :mode="displayMode"
             style="overflow: hidden">
-            <!--<el-menu-item index="0" >
-              <span slot="title" class="parentCatalogue">推荐教师</span>
-            </el-menu-item>-->
+            <el-menu-item index="0" >
+              <span slot="title" @click="getAllTeacher()" class="parentCatalogue">所有教师</span>
+            </el-menu-item>
             <el-menu-item v-for="(item, flag) in unitList" :key="'cId'+item.id" :index="item.id+''">
+
               <div slot="title" @click="uIdSend(item.id,item.domain_name)">
                 <!--<i class="el-icon-menu"></i>-->
                 <span class="parentCatalogue">{{item.unit_name}}</span>
@@ -63,6 +64,13 @@
           }).catch(error => {
             console.log("QAQ........没有找到学校信息")
           })
+        },
+        getAllTeacher(){
+          this.$router.push(
+            { name:'home',
+              params: {
+                schoolDomain:this.schoolDomain
+          }})
         },
         uIdSend: function (uId,unitDomain) {
           this.currentCat=uId;

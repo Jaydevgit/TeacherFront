@@ -6,10 +6,10 @@
       </div>
 
       <div class="middle">
-        <el-card class="box-card">
+<!--        <el-card class="box-card">-->
           <teacher-list :unitId="unitId" :currentDomainName="currentDomainName" v-show="isDisplay" v-if="isRouterAlive">
           </teacher-list>
-        </el-card>
+<!--        </el-card>-->
       </div>
 
       <!--最近更新教师主页-->

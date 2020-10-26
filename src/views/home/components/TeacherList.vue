@@ -9,7 +9,7 @@
     float: left;
     margin: 8px 0;
     width: 154.8px;height:25px;display: flex;justify-content: center">
-            <span style="font-size: 16px;color: #0099CC;letter-spacing: 3px;text-overflow: ellipsis;
+            <span style="font-size: 16px;letter-spacing: 3px;text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;" class="teacherLi3">
               {{teacher.tName}}
@@ -35,8 +35,10 @@
             schoolDomain:'',
             unitDomain:'',
             cId: '',
-            key: '',  //搜索的关键字
-            letter: ''
+            key: '',  //排序，搜索的关键字
+            letter: '',
+            sort:'', //升降序标记
+            state:1 ,//在岗状态
           },
           teacherListAll:[],
           totalCount: 0, //分页组件--数据总条数
@@ -64,33 +66,56 @@
       },
       methods:{
         getListAll() {
-          console.log("执行了TeacherList的created中的getListAll方法")
-          this.currentCat = 0
           if (this.$route.path.split('/')[3]!=null){
-            this.listQuery.unitDomain = this.$route.path.split('/')[3];
-          }else{
-            this.listQuery.unitDomain = this.currentDomainName
+            console.log("执行了TeacherList的created中的getListAll方法")
+            this.currentCat = 0
+            if (this.$route.path.split('/')[3]!=null){
+              this.listQuery.unitDomain = this.$route.path.split('/')[3];
+            }else{
+              console.log("currentDomainName="+this.currentDomainName);
+              this.listQuery.unitDomain = this.currentDomainName
+            }
+
+            this.listQuery.schoolDomain = this.$route.path.split('/')[2];
+            // this.listLoading = true;
+            console.log("传入参数为:"+JSON.stringify(this.listQuery))
+            this.api({
+              url: "/home/listTeacherByUnitDomain",
+              method: "get",
+              params: this.listQuery
+            }).then(data => {
+              console.log("查询所有教师信息为:" + JSON.stringify(data))
+              console.log("=================getListAll===============")
+              console.log("data.list="+data.list)
+              console.log("this.listQuery="+this.listQuery)
+              // this.listLoading = false;
+              this.teacherListAll = data.list;
+              //console.log(this.teacherListAll);
+              this.totalCount = data.totalCount;
+            }).catch(error => {
+              console.log("QAQ........没有找到教师列表")
+            })
+          }else {
+            this.listQuery.schoolDomain = this.$route.path.split('/')[2];
+            console.log('schoolDomain==' + JSON.stringify(this.listQuery));
+            this.listLoading = true;
+            console.log("### 开始查询教师成员列表")
+            this.api({
+              url: "/school/listAllTeacher",
+              method: "get",
+              params: this.listQuery
+            }).then(data => {
+              console.log("查询教师信息为:")
+              console.log("=================展示学校教师列表信息===============")
+              this.listLoading = false;
+              this.teacherListAll = data.list;
+              console.log(data);
+              this.totalCount = data.totalCount;
+            }).catch(error => {
+              console.log("QAQ........没有找到教师列表")
+            })
           }
 
-          this.listQuery.schoolDomain = this.$route.path.split('/')[2];
-          // this.listLoading = true;
-          console.log("传入参数为:"+JSON.stringify(this.listQuery))
-          this.api({
-            url: "/home/listTeacherByUnitDomain",
-            method: "get",
-            params: this.listQuery
-          }).then(data => {
-            console.log("查询所有教师信息为:" + JSON.stringify(data))
-            console.log("=================getListAll===============")
-            console.log("data.list="+data.list)
-            console.log("this.listQuery="+this.listQuery)
-            // this.listLoading = false;
-            this.teacherListAll = data.list;
-            //console.log(this.teacherListAll);
-            this.totalCount = data.totalCount;
-          }).catch(error => {
-            console.log("QAQ........没有找到教师列表")
-          })
         },
         routerTo(teacher) {
           console.log("teacher.tDomain_name="+teacher.tDomain_name)
