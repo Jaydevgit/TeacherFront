@@ -67,20 +67,21 @@
             <!--假如有子列表-->
             <el-submenu v-for="(item, flag) in catalogueList" v-if="Object.keys(item.subCatalogueList).length!=0"
                         :key="'cId'+item.id" :index="flag +'1'">
-              <div slot="title" @click="addTeacherVisible=false" style="">
+              <div slot="title" @click="addTeacherVisible=false">
                 <el-checkbox v-if="sortVisualable" :label="item.id">&nbsp</el-checkbox>
                 <span :id="'seq'+item.id" style="display: none" v-if="sortVisualable" class="seq"></span>
                 <i class="el-icon-menu"></i>
                 <span class="catalogueName" style="margin-right: 20px;margin-left: 8px;font-size: 16px">{{item.name}}</span>
+                <div class="operatebox">
                 <el-button type="success" class="threeButton" @click="showAddSub(item.id)">添加子栏</el-button>
                 <!--<el-button type="success" class="threeButton" size="small"    @click="topCatalogue(item.id)" >置顶</el-button>-->
-                <el-button type="warning" class="threeButton"  @click="showEdit(item.id,item.name)">修改
-                </el-button>
-                <div style="display: inline-block;float: right;margin-top: 20px;margin-right: 20px"><el-button type="danger" class="threeButton" @click="showDelete(item.id)">删除</el-button></div>
+                <el-button type="warning" class="threeButton"  @click="showEdit(item.id,item.name)">修改</el-button>
+                <el-button type="danger" class="threeButton" @click="showDelete(item.id)">删除</el-button>
 
                 <!--<i class="el-icon-school" v-if="item.state == 0"></i>
                 <i class="el-icon-reading" v-else-if="item.state == 1"></i>
                 <i class="el-icon-menu" v-else></i>-->
+                </div>
               </div>
 
               <el-menu-item-group>
@@ -92,7 +93,7 @@
                   <el-checkbox v-if="sortSubVisualable" style="padding-right: 15px;" :label="sub.id">&nbsp</el-checkbox>
                   <span :id="'seq_child'+sub.id" style="display: none" v-if="sortSubVisualable" class="seq"></span>
                   <span style="margin-right: 20px;margin-left: 8px;font-size: 16px">{{sub.name}}</span>
-                  <div style="display: flex">
+                  <div style="float: right" >
                     <el-button type="warning" class="threeButton"  @click="showEdit(sub.id,sub.name)">修改
                     </el-button>
                     <el-button type="danger" class="threeButton"  @click="showDelete(sub.id)">删除</el-button>
@@ -109,13 +110,14 @@
                 <span :id="'seq'+item.id" style="display: none" v-if="sortVisualable" class="seq"></span>
                 <i class="el-icon-menu"></i>
                 <span class="catalogueName" style="margin-right: 20px;margin-left: 8px;font-size: 16px">{{item.name}}</span>
+                <div class="operatebox">
                 <el-button type="success" class="threeButton"  @click="showAddSub(item.id)">添加子栏</el-button>
                 <!--<el-button type="success" class="threeButton" size="small"    @click="topCatalogue(item.id)" >置顶</el-button>-->
                 <el-button type="warning" class="threeButton" @click="showEdit(item.id,item.name)">修改
                 </el-button>
                 <el-button type="danger" class="threeButton"  @click="showDelete(item.id)">删除</el-button>
 <!--                <div style="display: inline-block;float: right;margin-top: 20px;margin-right: 10px"> <el-button type="danger" class="threeButton"  @click="showDelete(item.id)">删除</el-button></div>-->
-
+              </div>
               </div>
             </el-menu-item>
           </el-checkbox-group>
@@ -689,7 +691,6 @@
   }
 
   .threeButton {
-    float: right;
     margin: 4% 4% 2% 1%;
     padding: 2px 6px 3px 6px;
   }
@@ -705,6 +706,10 @@
     float: left;
     padding: 20px 30px 15px 5px;
 
+  }
+  .operatebox {
+    float: right;
+    margin-right: 5%;
   }
 
   .bigText {
