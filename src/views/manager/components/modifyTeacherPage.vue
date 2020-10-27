@@ -207,7 +207,7 @@
                 <el-form-item label="职称" prop="post">
 <!--                  显示更新提示-->
                   <el-tooltip placement="top" v-if="showUpdateInfo.postScholat">
-                    <div slot="content" style="font-size: 16px">
+                    <div slot="content" style="font-size: 16px" @click="ruleForm.post=get_dom_data(showUpdateInfo.postScholat)">
                       <span v-html="showUpdateInfo.post"></span>
                       &nbsp;➡️&nbsp;
                       <span v-html="showUpdateInfo.postScholat"></span>
@@ -222,7 +222,7 @@
               <el-col :span="10"><div class="grid-content bg-purple">
                 <el-form-item label="职务" prop="duty" >
                   <el-tooltip placement="top" v-if="showUpdateInfo.dutyScholat">
-                    <div slot="content" style="font-size: 16px">
+                    <div slot="content" style="font-size: 16px" @click="ruleForm.duty=showUpdateInfo.dutyScholat">
                       <span v-html="showUpdateInfo.duty"></span>
                       &nbsp;➡️&nbsp;
                       <span v-html="showUpdateInfo.dutyScholat"></span>
@@ -250,7 +250,7 @@
                      <el-option label="专科" value="专科"></el-option>
                    </el-select>-->
                   <el-tooltip placement="top" v-if="showUpdateInfo.degreeScholat">
-                    <div slot="content" style="font-size: 16px">
+                    <div slot="content" style="font-size: 16px" @click="ruleForm.degree=get_dom_data(showUpdateInfo.degreeScholat)">
                       <span v-html="showUpdateInfo.degree"></span>
                       &nbsp;➡️&nbsp;
                       <span v-html="showUpdateInfo.degreeScholat"></span>
@@ -272,7 +272,7 @@
               <el-col :span="10"><div class="grid-content bg-purple">
                 <el-form-item label="头衔" prop="label">
                   <el-tooltip placement="top" v-if="showUpdateInfo.labelScholat">
-                    <div slot="content" style="font-size: 16px">
+                    <div slot="content" style="font-size: 16px" @click="ruleForm.label=get_dom_data(showUpdateInfo.labelScholat)">
                       <span v-html="showUpdateInfo.label"></span>
                       &nbsp;➡️&nbsp;
                       <span v-html="showUpdateInfo.labelScholat"></span>
@@ -299,8 +299,8 @@
             <el-row>
               <el-col :span="10"><div class="grid-content bg-purple">
                 <el-form-item label="所在部门" prop="department_name">
-                  <el-tooltip placement="top" v-if="showUpdateInfo.department_nameScholat">
-                    <div slot="content" style="font-size: 16px">
+                  <el-tooltip placement="top" v-if="showUpdateInfo.department_nameScholat" >
+                    <div slot="content" style="font-size: 16px" @click="ruleForm.department_name=get_dom_data(showUpdateInfo.department_nameScholat)">
                       <span v-html="showUpdateInfo.department_name"></span>
                       &nbsp;➡️&nbsp;
                       <span v-html="showUpdateInfo.department_nameScholat"></span>
@@ -314,8 +314,8 @@
               </div></el-col>
               <el-col :span="10"><div class="grid-content bg-purple">
                 <el-form-item label="办公地点">
-                  <el-tooltip placement="top" v-if="showUpdateInfo.work_placeScholat">
-                    <div slot="content" style="font-size: 16px">
+                  <el-tooltip placement="top" v-if="showUpdateInfo.work_placeScholat" >
+                    <div slot="content" style="font-size: 16px" @click="ruleForm.work_place=get_dom_data(showUpdateInfo.work_placeScholat)">
                       <span v-html="showUpdateInfo.work_place"></span>
                       &nbsp;➡️&nbsp;
                       <span v-html="showUpdateInfo.work_placeScholat"></span>
@@ -331,7 +331,7 @@
               <el-col :span="10"><div class="grid-content bg-purple">
                 <el-form-item label="邮箱" prop="email" >
                   <el-tooltip placement="top" v-if="showUpdateInfo.emailScholat">
-                    <div slot="content" style="font-size: 16px">
+                    <div slot="content" @click="ruleForm.email=get_dom_data(showUpdateInfo.emailScholat)" style="font-size: 16px" >
                       <span v-html="showUpdateInfo.email"></span>
                       &nbsp;➡️&nbsp;
                       <span v-html="showUpdateInfo.emailScholat"></span>
@@ -346,7 +346,7 @@
               <el-col :span="10"><div class="grid-content bg-purple">
                 <el-form-item label="办公电话" prop="phone">
                   <el-tooltip placement="top" v-if="showUpdateInfo.phoneScholat">
-                    <div slot="content" style="font-size: 16px">
+                    <div slot="content" style="font-size: 16px" @click="ruleForm.phone=get_dom_data(showUpdateInfo.phoneScholat)">
                       <span v-html="showUpdateInfo.phone"></span>
                       &nbsp;➡️&nbsp;
                       <span v-html="showUpdateInfo.phoneScholat"></span>
@@ -1177,7 +1177,13 @@
             }
         },
         methods: {
-
+          //将字符串转化为html元素，并获取html元素里的文本
+          get_dom_data(val)
+          {
+            var test = document.createElement("test");
+            test.innerHTML = "<div>"+val+"</div>";
+            return(test.innerText)
+          },
           uploadFun(param){
             let name='avatar'
             console.log(this.ruleForm.avatar + "========this.name==" +name)
