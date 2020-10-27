@@ -15,7 +15,9 @@
                 </el-button>
                 <el-dropdown-menu slot="dropdown">
                   <el-dropdown-item @click.native="teacherStateChange(1)">在岗</el-dropdown-item>
-                  <el-dropdown-item @click.native="teacherStateChange(2)">其他</el-dropdown-item>
+                  <el-dropdown-item @click.native="teacherStateChange(2)">兼职</el-dropdown-item>
+                  <el-dropdown-item @click.native="teacherStateChange(3)">调离</el-dropdown-item>
+                  <el-dropdown-item @click.native="teacherStateChange(4)">已退休</el-dropdown-item>
                 </el-dropdown-menu>
               </el-dropdown>
              <!-- <el-card style="display: inline-block;margin-left: 15px;padding: 3px 0;height: 36px;line-height: 32px;min-width: 240px" shadow="never">
@@ -57,7 +59,7 @@
               </el-button>
               <el-dropdown placement="bottom-end" style="padding: 0 5px">
                 <el-button type="primary" size="small">
-                  教师信息管理<i class="el-icon-arrow-down el-icon--right"></i>
+                  Excel信息采集<i class="el-icon-arrow-down el-icon--right"></i>
                 </el-button>
                 <el-dropdown-menu slot="dropdown">
                   <el-dropdown-item @click.native="exportInfo">导出教师信息</el-dropdown-item>
