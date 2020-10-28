@@ -58,11 +58,13 @@
       </div>
     </nav>
     <article style="text-align: center">
+<!--      text-align: center-->
       <div class="page1">
-        <div class="title_1">SCHOLAT+师资，现代化的学院师资管理展示平台</div>
-        <div class="title_2">
-          <div>提供高度自定义化的栏目列表，一键采集教师信息更新。</div>
-          <div>助力学院师资管理展示现代化。</div>
+        <div style="text-align: center" class="title_1">SCHOLAT+师资，现代化的学院师资管理展示平台</div>
+        <div  class="title_2" >
+            <div>高度自定义化栏目列表，一键采集信息更新</div>
+            <div>智能学术档案采集管理，科研信息导入导出</div>
+            <div>助力学院师资管理展示现代化</div>
         </div>
         <a href="/unitApply"><div class="button_1" ><div class="b_name">立即申请使用</div></div></a>
       </div>
@@ -274,8 +276,10 @@
 </template>
 
 <script>
+    import SchoolPassword from "../user/SchoolPassword";
     export default {
-        name: "entry"
+        name: "entry",
+      components: {SchoolPassword}
     }
 </script>
 <style lang="scss">
@@ -401,7 +405,7 @@
   .title_1{
     color: #000000;
     font-size: 36px;
-   padding-top: 100px;
+    padding-top: 100px;
     line-height: 46px;
     letter-spacing:1.8px;
   }

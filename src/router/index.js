@@ -360,9 +360,9 @@ export const asyncRouterMap = [
     children: [
       {
         path: 'researchCollect',
-        name: '科研采集',
+        name: '科研档案',
         component: _import('research/researchCollect'),
-        meta: {title: '科研采集', icon: 'user'},
+        meta: {title: '科研档案', icon: 'user'},
         menu: 'user'
       },
       {
