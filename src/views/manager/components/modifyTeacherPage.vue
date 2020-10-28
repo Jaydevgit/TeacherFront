@@ -776,18 +776,33 @@
                     </div>
                   </el-col>
                 </el-row>
+                <el-row style="border-radius: 5px;">
+                <el-col :span="24" v-if="shcholatReviewArea">
+                  <div style="display: flex;justify-content: space-between">
+                    <div style="padding: 5px 0; color: #ccc">学者网个人简历展示区域</div>
+                  </div>
+                  <div class="grid-content ">
+                    <div v-html="scholatReview"
+                         style="height: 270px;overflow: auto;"></div>
+                  </div>
+                </el-col>
+                </el-row>
                 <el-row>
                   <el-col :span="24">
                     <div class="grid-content" style="">
                       <div style="display: flex;justify-content: space-between;">
                         <!--<div style="color: rgb(245, 108, 108);font-weight: 800;">▶编辑个人简介</div>-->
-                        <div style="font-family: 微软雅黑;font-weight: bold;margin-bottom: 10px;font-size: 24px">编辑个人简介</div>
+                        <div style="font-family: 微软雅黑;font-weight: bold;margin-bottom: 10px;font-size: 24px;float: right">编辑个人简介</div>
+
                         <div v-if="ruleForm.scholat_username" style="margin-top:5px;color: rgb(245, 108, 108);font-weight: 800;cursor: pointer;flex: 2;text-align: right;margin-right: 15px"
                              @click="showDifferent(scholatProfile)">信息对比</div>
+                        <div v-if="ruleForm.scholat_username" style="margin-top:5px;color: rgb(245, 108, 108);font-weight: 800;cursor: pointer;text-align: right;margin-right: 15px"
+                        @click="showScholatReview(ruleForm.scholat_username)">学者网简历预览</div>
                         <!--<div style="color: rgb(245, 108, 108);font-weight: 800;cursor: pointer;margin-right: 15px" @click="saveTeacher()">保存简介</div>-->
 <!--                        <div v-else style="color: rgb(245, 108, 108);font-weight: 800;cursor: pointer;flex: 2;text-align: right;margin-right: 15px"@click="ifShow">{{this.showTag}}</div>-->
                         <div style="margin-top:5px;color: rgb(245, 108, 108);font-weight: 800;cursor: pointer" @click="clearIntro()">清空简介
                         </div>
+
                       </div>
                       <div  id="editor" class="editor" style="height: 360px;background-color: #e5e9f2;padding-top: 10px;"
                            v-model="ruleForm.intro"></div>
@@ -1034,6 +1049,8 @@
             return {
                 defaultAvatar:defaultAvatar,
                 scholatProfile:'',
+                scholatReview:'',
+                shcholatReviewArea:false,//初始时不预览
                 secondPage:false,
                 routePage: '',
                 editorArea: 24, // 真实的编辑区域宽度
@@ -1554,6 +1571,11 @@
               this.showUpdateInfo.label=data.teacher.label;
               this.showUpdateInfo.labelScholat=data.scholat.label;
             },
+          // 根据传入的数据比较不同
+          showScholatReview(username) {
+              this.getScholatReviewByUserName(username)
+              this.shcholatReviewArea=true
+          },
             // 根据传入的数据比较不同
             showDifferent(scholat) {
                 this.$message.success("查找更新成功，黄色区域表示更新区域")
@@ -1571,11 +1593,14 @@
                   console.log("getScholatUpdateInfo的data="+data);
                   // 设置获取到的更新信息
                   this.getScholatUpdateInfo(data);
+                  //个人简历预览
+                 this.getScholatReviewByUserName(this.ruleForm.scholat_username)
                   // 设置编辑区域宽度显示
                 if(this.ruleForm.scholat_username){
                   if(  this.compareArea === 0){
                     this.compareArea = 12;
                   }else{
+                    this.shcholatReviewArea=false
                     this.compareArea = 0;
                   }
                 }else {
@@ -1693,6 +1718,15 @@
                 }).catch(err => {
                 })
             },
+          getScholatReviewByUserName(username){
+            this.axios.post('/api/manager/getScholatReviewProfileByUserName', {
+              username: username,
+            }).then(res => {
+              console.log("res="+JSON.stringify(res));
+              this.scholatReview = res.data.info.intro;
+            }).catch(err => {
+            })
+          },
             // 本页面最开始的会调用的函数,获取教师信息
             getTeacherInfoById(teacherId) {
                 if (teacherId !== null) {
