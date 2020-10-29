@@ -1573,8 +1573,16 @@
             },
           // 根据传入的数据比较不同
           showScholatReview(username) {
-              this.getScholatReviewByUserName(username)
-              this.shcholatReviewArea=true
+              if (this.shcholatReviewArea==true)
+              {
+                this.shcholatReviewArea=false
+              }else
+              {
+                if(this.scholatReview=="")
+                this.getScholatReviewByUserName(username);
+                this.shcholatReviewArea=true
+              }
+
           },
             // 根据传入的数据比较不同
             showDifferent(scholat) {
