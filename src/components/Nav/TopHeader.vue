@@ -34,7 +34,7 @@
       </div>
       <a class="college-link" :href="unit.collegeUrl" v-if="dataDone && this.$route.path.indexOf('teacher')===-1">
         <el-button type="text" style=" font-size: 13px;
-    font-weight: bold;position: relative;transform: translateX(-40px);color: #3399CC;" @click="">学院首页</el-button>
+        font-weight: bold;position: relative;transform: translateX(-40px);color: #3399CC;" @click="">学院首页</el-button>
       </a>
 
     </div>
@@ -176,17 +176,9 @@
             师资队伍
         </span>
         </td>
-        <td>
-          <a style="" class="collegeHomePage" :href="unit.collegeUrl" v-if="dataDone && this.$route.path.indexOf('teacher')===-1"  >
-            学院首页
-          </a>
-        </td>
-        <td>
-        <td>
-        </td>
       </table>
       <div class="search bar6" v-if="dataDone && this.$route.path.indexOf('teacher')===-1">
-        <div class="formDiv" style="">
+        <div class="formDiv" style="margin-right: 7%">
           <input @keyup.enter="keySend" type="text" v-model="searchKey" placeholder="请输入您要搜索的教师" name="cname"
                  style="color: gray;background-color: white;">
           <!--<button @click="keySend"></button>-->
@@ -550,15 +542,6 @@
       color: steelblue;
       white-space: nowrap;
     }
-    .collegeHomePage{
-      margin-left: 20px;
-      font-size: 26px;
-      font-weight: bold;
-      letter-spacing: 3.5px;
-      line-height: 60px;
-      color: steelblue;
-      white-space: nowrap;
-    }
   }
   @media screen and (min-width: 768px) and (max-width: 1024px){
     .top-container {
@@ -650,15 +633,6 @@
       max-width:180px;transform: translateX(10px)
     }
     .teacherTeam{
-      margin-left: 20px;
-      font-size: 26px;
-      font-weight: bold;
-      letter-spacing: 3.5px;
-      line-height: 60px;
-      color: steelblue;
-      white-space: nowrap;
-    }
-    .collegeHomePage{
       margin-left: 20px;
       font-size: 26px;
       font-weight: bold;
