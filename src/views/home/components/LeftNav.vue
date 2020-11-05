@@ -10,12 +10,12 @@
             class="el-menu-vertical-demo"
             :mode="displayMode"
             style="overflow: hidden">
-            <el-menu-item index="0" >
-              <span slot="title" @click="getAllTeacher()" class="parentCatalogue">所有教师</span>
+            <el-menu-item index="0" @click="getAllTeacher()">
+              <span slot="title" class="parentCatalogue">所有教师</span>
             </el-menu-item>
-            <el-menu-item v-for="(item, flag) in unitList" :key="'cId'+item.id" :index="item.id+''">
+            <el-menu-item v-for="(item, flag) in unitList" :key="'cId'+item.id" :index="item.id+''" @click="uIdSend(item.id,item.domain_name)">
 
-              <div slot="title" @click="uIdSend(item.id,item.domain_name)">
+              <div slot="title" >
                 <!--<i class="el-icon-menu"></i>-->
                 <span class="parentCatalogue">{{item.unit_name}}</span>
               </div>
