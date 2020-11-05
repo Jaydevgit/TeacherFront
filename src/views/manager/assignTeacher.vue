@@ -161,7 +161,7 @@
               <div style="margin: 0;display: flex;justify-content: space-between; ">
                 <el-button size="small"
                            type="success"
-                           @click="">添加选中
+                           @click="addMultTeacher">添加选中
                 </el-button>
                 <!--<el-button type="success" @click="addCatalogueTeacher" size="small">确 定</el-button>-->
                 <el-button type="primary" @click="dialogFormVisible = false" size="small" style="margin-right: 10px">取消</el-button>
@@ -456,6 +456,50 @@
         console.log(this.teacherRemoveMult_id)
         this.teacherSort = val // 返回的是选中的列的数组集合
 
+      },
+      /*批量添加教师*/
+      addMultTeacher()
+      {
+        var addArrayValues=''
+        var cid=this.currentCat
+        var arrayId=this.teacherAddMul_id
+        for (var i=0;i<arrayId.length-1;i++)
+        {
+          addArrayValues+='('+arrayId[i]+','+cid+'),'
+        }
+        addArrayValues+='('+arrayId[arrayId.length-1]+','+cid+')'
+        console.log(addArrayValues)
+        console.log("currentCat="+this.currentCat);
+        this.api({
+          url: "/catalogue/addMultTeacher",
+          method: "post",
+          data: {"addArrayValues": addArrayValues}
+        }).then(data => {
+          this.$message.success('添加成功');
+          this.getTeacherByCatalogue(this.currentCat);
+          /*this.dialogFormVisible = false;*/
+        }).catch(error => {
+          console.log("QAQ........添加失败");
+          this.$message.warning('请勾选要添加的教师');
+        });
+        this.api({
+          url: "/catalogue/listTeacherAll",
+          method: "get",
+          params: {unitId: this.$store.getters.unitId}
+        }).then(data => {
+          console.log(JSON.stringify(data.list))
+          setTimeout(()=>{
+            this.searchList = data.list.filter((item)=>{
+              console.log("item.tId="+item.tId);
+              return this.checkTeacherList(item.tId) != false;
+            });
+          },500)
+
+          console.log(JSON.stringify(this.searchList))
+          this.dialogFormVisible = true;
+        }).catch(error => {
+          console.log("QAQ........添加学科失败")
+        })
       },
       /*添加单个教师*/
       addSingleTeacher(tId){
