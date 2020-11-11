@@ -100,12 +100,12 @@
       layout="total, sizes, prev, pager, next, jumper">
     </el-pagination>
 
-    <el-dialog title="请勾选教师导出论文" :visible.sync="dialogFormVisible" style="margin-bottom: 18px;" width="520px">
+    <el-dialog title="请勾选教师导出论文" :visible.sync="dialogFormVisible" style="margin-top: -20px; margin-bottom: 18px;" width="520px">
       <div style="margin-bottom: 14px;display: flex;justify-content: space-between;">
         <el-button type="success" @click="tIdsExport">确定导出Excel</el-button>
         <el-button type="primary" @click="dialogFormVisible = false">取 消</el-button>
       </div>
-      <el-table :data="teacherList" @selection-change="changeFun">
+      <el-table :data="teacherList" @selection-change="changeFun" style="overflow-y: auto;height: 510px">
 
         <el-table-column
           type="selection"
@@ -129,7 +129,7 @@
             <span></span>
           </template>
         </el-table-column>
-        <el-table-column align="center" label="职称" width="180">
+        <el-table-column align="center" label="职称" width="175">
           <template slot-scope="scope">
             <span class="teacher-homepage" style="cursor:pointer;">{{scope.row.tPost}}</span>
             <span></span>
