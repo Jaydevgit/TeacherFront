@@ -134,7 +134,7 @@
         applyRules: {
           schoolUrl: [
             {required: true, message: "学校主页链接不能为空"},
-            {required: true, message: "注意：学校链接以‘http’或‘http’开头", pattern: /(http|http):\/\/([\w.]+\/?)\S*/　}
+            {required: true, message: "注意：学校链接以‘http’或‘https’开头", pattern: /(http|https):\/\/([\w.]+\/?)\S*/　}
           ], //学校連接
           collegeLogo: [{required: true, message: "学院图标不能为空", trigger: 'change'}],   //學院图标
           backSelect: [{required: true, message: "背景模式不能为空", trigger: 'change'}]    //背景模式
