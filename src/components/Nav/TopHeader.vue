@@ -90,7 +90,7 @@
           <img :src="'http://www.scholat.com/images/uni_logo/'+this.unitList[0].school_name+'.png'" :onerror="defaultLogo"
                style="height: 100%;width: auto;bottom: 0;"/>
         </div>
-        <div style="height: 100%;max-width: 900px;display: flex;justify-content: center;align-items: center;margin-left: 20px">
+        <div style="height: 100%;max-width: 900px;display: flex;justify-content: center;align-items: center;margin-left: 20px" v-if="this.unitList.school_name">
           <div class="font-jsgrzy" style="display: inline-block;">
             <span style="">{{this.unitList[0].school_name}}</span>
           </div>
