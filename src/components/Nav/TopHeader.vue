@@ -90,8 +90,8 @@
           <img :src="'http://www.scholat.com/images/uni_logo/'+this.unitList[0].school_name+'.png'" :onerror="defaultLogo"
                style="height: 100%;width: auto;bottom: 0;"/>
         </div>
-        <div style="height: 100%;max-width: 900px;display: flex;justify-content: center;align-items: center;margin-left: 20px" v-if="this.unitList.school_name">
-          <div class="font-jsgrzy" style="display: inline-block;">
+        <div style="height: 100%;max-width: 900px;display: flex;justify-content: center;align-items: center;margin-left: 20px" >
+          <div class="font-jsgrzy" style="display: inline-block;" v-if="this.unitList[0]">
             <span style="">{{this.unitList[0].school_name}}</span>
           </div>
           <div class="font-jsgrzy" style="display: inline-block;">
@@ -249,16 +249,17 @@
                 dataDone: false,
                 schoolDomain:'',
                 unitList:[],
+
             }
         },
-      props:{
-        titleFlag:'',
-      },
-      watch:{
-        $route(){
-          this.getUnitInfo();
-        }
-      },
+        props:{
+          titleFlag:'',
+        },
+        watch:{
+          $route(){
+            this.getUnitInfo();
+          }
+        },
         created() {
             this.getUnitInfo();
             this.initDisplay();
