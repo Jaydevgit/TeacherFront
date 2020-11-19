@@ -1,5 +1,6 @@
 <template>
-  <div class="home-body">
+  <div class="home-body" :style="(backgroundHome!=undefined)?'background-image:' +'url('+'http://faculty.scholat.com:2333/public/images/background/'+backgroundHome+')':
+'background-image:' +'url('+'http://faculty.scholat.com:2333/public/images/background/'+backgroundHomeDefault+')'" >
     <div class="middle-container">
       <div class="left">
         <left-nav @toList="toList"></left-nav>
@@ -140,6 +141,8 @@
           recentUpdateTeacherList:[],
           isDisplay:false,
           isRouterAlive:true,
+          backgroundHome:'',
+          backgroundHomeDefault:'backgroundHomeDefault.jpg',
         }
       },
       watch:{
@@ -188,6 +191,7 @@
             console.log("================================")
             this.listLoading = false;
             this.unitList = data;
+            this.backgroundHome=data.backgroundHome;
             console.log("data[0].id="+data[0].id)
             this.isDisplay=true;
             this.unitId = data[0].id;
@@ -267,10 +271,21 @@
       width: 100%;
       /*display: flex;*/
       min-height: calc(100vh - 120px);
-    }
 
+    }
+    .home-body {
+      background-color: #1f2d3d;
+      background: no-repeat;
+      background-size:cover;
+      width: 100%;
+      min-width: 1000px;
+      height: 100%;
+      min-height: calc(100vh - 60px);
+    }
     .left {
       margin: 0 auto;
+      transform: translateY(32px);
+
     }
 
     .middle {
@@ -351,12 +366,14 @@
     min-height: 200px;
     overflow: hidden;
     margin: 0 auto;
+    background: white;
   }
   .recomScholar {
     width: 960px;
     min-height: 300px;
     overflow: hidden;
     margin: 0 auto;
+    background: white;
   }
 
   .contentTitle {

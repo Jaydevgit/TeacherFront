@@ -1,6 +1,6 @@
 <template>
   <div class="left-container">
-    <div style="padding-top: 32px;width: 100%;min-width: 184px;">
+    <div style="width: 100%;min-width: 184px;">
       <el-row style="width: 100%;float: left;border-radius: 10px;">
         <el-col>
           <el-menu
