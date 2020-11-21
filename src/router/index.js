@@ -12,7 +12,7 @@ import index from '../views/index/index'
 import scholatLogin from "../views/scholat/login/login"
 import fa from "element-ui/src/locale/lang/fa";
 import researchManagement from "../views/research/researchManagement";
-
+import teacherPersonInfoPage from '../views/teacher/teacherPersonInfoPage'
 const _import = require('./_import_' + process.env.NODE_ENV)
 Vue.use(Router)
 export const constantRouterMap = [
@@ -106,7 +106,11 @@ export const constantRouterMap = [
       keepAlive: true
     },
   },
-
+  {
+    path: '/teacher/teacherPersonInfoPage',
+    component: _import('teacher/teacherPersonInfoPage'),
+    name: 'teacherPersonInfoPage',
+  },
   {
     path: '/login',
     name: "main-color",
