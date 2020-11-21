@@ -49,10 +49,15 @@
       <el-table-column align="center" label="学院教师主页地址"  prop="pinyin">
         <template slot-scope="scope">
           <span class="teacher-homepage" style="cursor:pointer;">
-            <a :href="'https://faculty.scholat.com/homepage/'+listQuery.schoolDomain+'/'+scope.row.domainName">
-              {{scope.row.domainName}}
+            <a :href="'http://faculty.scholat.com/homepage/'+listQuery.schoolDomain+'/'+scope.row.domainName">
+              http://faculty.scholat.com/homepage/{{listQuery.schoolDomain}}/{{scope.row.domainName}}
             </a>
           </span>
+        </template>
+      </el-table-column>
+      <el-table-column align="center" label="学院域名"  sortable='custom' prop="pinyin">
+        <template slot-scope="scope">
+          <span class="teacher-homepage" @click="routerTo(scope.row)" style="cursor:pointer;">{{scope.row.domainName}}</span>
           <span></span>
         </template>
       </el-table-column>

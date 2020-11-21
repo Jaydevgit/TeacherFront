@@ -468,7 +468,7 @@
           this.listQuery.schoolDomain = this.$store.state.schoolUser.schoolDomain;
           console.log('schoolDomain==' + JSON.stringify(this.listQuery));
           this.listLoading = true;
-          console.log("### 开始查询教师成员列表")
+          console.log("### 开始查询教师成员列表");
           this.api({
             url: "/school/listTeacher",
             method: "get",
@@ -491,7 +491,6 @@
           }).catch(error => {
             console.log("QAQ........没有找到教师列表")
           })
-
         },
         getUnitList(){
           this.listLoading = true;
