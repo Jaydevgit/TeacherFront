@@ -9,11 +9,31 @@
     float: left;
     margin: 8px 0;
     width: 154.8px;height:25px;display: flex;justify-content: center">
-            <span style="font-size: 16px;letter-spacing: 3px;text-overflow: ellipsis;
+
+              <el-popover
+                popper-class="popoverBackB"
+                placement="bottom"
+                width="350"
+                trigger="hover">
+                <el-row>
+                  <el-col :span="3"><div class="grid-content bg-purple">
+                    <img class="imgAvatar" :src="getImgUrl(teacher.tAvatar)" :onerror="imgErrorFun(this)"/>
+                  </div></el-col>
+                  <el-col :span="16"><div class="grid-content bg-purple-light">
+                    <el-table-column width="150" label="职称"><span style="color:#fff;">职称：{{teacher.tPost}}</span></el-table-column>
+                    <el-table-column width="150" label="职务"><span style="color:#fff;">职务：{{teacher.tDuty}}</span></el-table-column>
+                    <el-table-column width="150" label="邮箱"><span style="color:#fff;">邮箱：{{teacher.tEmail}}</span></el-table-column>
+                    <el-table-column width="150" label="部门"><span style="color:#fff;">部门：{{teacher.tDepartmentName}}</span></el-table-column>
+                  </div></el-col>
+                </el-row>
+                <span style="font-size: 16px;letter-spacing: 3px;text-overflow: ellipsis;
     overflow: hidden;
-    white-space: nowrap;" class="teacherLi3">
+    white-space: nowrap;" class="teacherLi3" slot="reference">
               {{teacher.tName}}
-            </span>
+                </span>
+                <!--<el-button slot="reference">hover 激活</el-button>-->
+              </el-popover>
+
       </li>
     </ul>
   </div>
@@ -42,6 +62,7 @@
           },
           teacherListAll:[],
           totalCount: 0, //分页组件--数据总条数
+          visible: false,
         }
 
       },
@@ -144,11 +165,29 @@
             console.log("QAQ........获取教师失败")
           })
         },
+        getImgUrl(imgName) {
+          if (imgName == null) {
+            return this.defaultAvatar;
+          } else if(imgName=="default.png"){
+            return this.defaultAvatar
+          } else if (imgName.indexOf("resources") != "-1") {
+            return "http://www.scholat.com/" + imgName;
+          } else {
+            return "http://faculty.scholat.com:2333/public/images/avatar/" + imgName;
+          }
+        },
+        imgErrorFun(e) {
+          /*let img = e;
+          img.onerror = null;
+          console.log("执行了imgErrorFun函数，onerror=" + img.onerror + "，img.src=" + img.src);
+          return 'this.src="http://faculty.scholat.com:2333/public/images/avatar/default.png"';*/
+          return 'this.src="defaultAvatar"';
+        },
       }
     }
 </script>
 
-<style rel="stylesheet/scss" scoped>
+<style rel="stylesheet/scss" >
   @import '../../../styles/catalogueVariables.scss';
 
   el-menu-item {
@@ -158,7 +197,16 @@
   el-menu-item:hover {
     background-color: white;
   }
-
+  .popoverBackB{
+    /* #303133是el-tooltip的背景色 */
+    background: #303133 !important;
+    min-width: 300px;
+    width: auto;
+  }
+  .popoverBackB .popper__arrow::after {
+    /* 注意：placement位置不同，下面的属性不同 */
+    border-bottom-color: #303133 !important;
+  }
   .newsLi {
     height: 76px;
     padding: 5px 5px 5px 0px;
@@ -202,7 +250,9 @@
     width: 100%;
     background: #fff;
   }
-
+  .imgAvatar{
+    display: inline-block;vertical-align: top;width: 75px;height: 75px;
+  }
 
   .header-navs {
     position: relative;
