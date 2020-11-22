@@ -1,16 +1,18 @@
 <template>
-  <div class="home-body" :style="(backgroundHome!=undefined)?'background-image:' +'url('+'http://faculty.scholat.com:2333/public/images/background/'+backgroundHome+')':
-'background-image:' +'url('+'http://faculty.scholat.com:2333/public/images/background/'+backgroundHomeDefault+')'" >
+  <div class="home-body" >
     <div class="middle-container">
+      <div class="imgDiv">
+        <img class="imgLogo" :src="SchoolBg" :onerror="SchoolBg" style=" "/>
+      </div>
       <div class="left">
         <left-nav @toList="toList"></left-nav>
       </div>
-
+      <div class="search">
+        <search :recentTeacherCount="recentTeacherCount"></search>
+      </div>
       <div class="middle">
-<!--        <el-card class="box-card">-->
-          <teacher-list :unitId="unitId" :currentDomainName="currentDomainName" v-show="isDisplay" v-if="isRouterAlive">
-          </teacher-list>
-<!--        </el-card>-->
+        <!--<teacher-list :unitId="unitId" :currentDomainName="currentDomainName" v-show="isDisplay" v-if="isRouterAlive">
+        </teacher-list>-->
       </div>
 
       <!--最近更新教师主页-->
@@ -36,9 +38,6 @@
           </ul>
         </div>
       </div>
-
-
-
       <!--推荐教师模块-->
       <div class="recomScholar">
         <div class="contentTitle" style="border: 0;">
@@ -63,7 +62,7 @@
         </div>
       </div>
       <!--学院列表模块-->
-      <div class="recomScholar">
+      <!--<div class="recomScholar">
         <div class="contentTitle" style="border: 0;">
           <span class="chTitle chTitle1">学院列表</span>
           <span class="engTitle">List of colleges</span>
@@ -73,21 +72,19 @@
           <el-card class="box-card" style="">
             <div v-for="o in unitList" class="item">
               <a :href="'/homepage/'+listQuery.schoolDomain+'/'+o.domain_name" class="text">
-<!--                {{o.unit_name}}-->
+&lt;!&ndash;                {{o.unit_name}}&ndash;&gt;
                 <img class="bgImg" :src="getBgImgUrl(o.background_url)" :onerror="imgErrorFun(this)">
               </a>
             </div>
           </el-card>
         </div>
-      </div>
-
-
+      </div>-->
     </div>
 
-
+    <FooterNav></FooterNav>
 
     <footer style="">
-      <div class="Info" style="margin-top: 10px">
+      <div class="Info">
         <div  style="">
           <div style="margin-bottom: 5px">
             <a href="/login" >管理员登录</a> |
@@ -112,7 +109,10 @@
     import TopHeader from "../../components/Nav/TopHeader";
     import LeftNav from "./components/LeftNav";
     import TeacherList from "./components/TeacherList";
-    import defaultAvatar from '@/assets/default1.png'
+    import defaultAvatar from '@/assets/default1.png';
+    import FooterNav from "./components/FooterNav";
+    import Search from "./components/Search";
+    import SchoolBg from '@/assets/img/schoolBg2.jpg'
 
     export default {
       name: "Home",
@@ -124,13 +124,16 @@
       components:{
         'top-header':TopHeader,
         'LeftNav':LeftNav,
-        'TeacherList':TeacherList
+        'TeacherList':TeacherList,
+        'FooterNav':FooterNav,
+        'Search':Search,
       },
       data(){
         return{
           defaultAvatar:defaultAvatar,
           unitId:'',
           currentDomainName:'',
+          recentTeacherCount:'',
           listQuery:{
             unitId: '',
             schoolDomain:'',
@@ -143,6 +146,7 @@
           isRouterAlive:true,
           backgroundHome:'',
           backgroundHomeDefault:'backgroundHomeDefault.jpg',
+          SchoolBg:SchoolBg,
         }
       },
       watch:{
@@ -209,9 +213,10 @@
             params: this.listQuery
           }).then(data => {
             console.log("查询最近更新教师信息为:" + JSON.stringify(data))
-            console.log("================================")
+            console.log("================================totalCount="+data.totalCount)
+            this.recentTeacherCount=data.totalCount;
             this.listLoading = false;
-            this.recentUpdateTeacherList = data;
+            this.recentUpdateTeacherList = data.list;
           }).catch(error => {
             console.log("QAQ........没有找到学校信息")
           })
@@ -274,7 +279,7 @@
 
     }
     .home-body {
-      background-color: #1f2d3d;
+      background-color: #f5f4f4;
       background: no-repeat;
       background-size:cover;
       width: 100%;
@@ -284,7 +289,7 @@
     }
     .left {
       margin: 0 auto;
-      transform: translateY(32px);
+      /*transform: translateY(32px);*/
 
     }
 
@@ -353,6 +358,26 @@
     /*底部栏样式结束*/
   }
 
+  .search{
+    margin-top: 150px;
+  }
+  .imgLogo{
+    /*opacity: 0.2;*/
+    position:absolute;z-index:-2;width:100%;height:400px;
+    left: 0;
+    top: 0;
+    flex-flow: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    height: 400px;
+    margin: 0 auto;
+    width: 100%;
+    /*background: #f5f4f4;*/
+    background: #002d54;
+    color: white;
+
+  }
   div {
     margin: 0;
     padding: 0;
