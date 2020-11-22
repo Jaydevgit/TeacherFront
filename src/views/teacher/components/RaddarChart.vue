@@ -27,13 +27,25 @@ export default {
   },
   data() {
     return {
-      chart: null
+      chart: null,
+      countScholatPaper:0,
+      countScholatPatent:0,
+      countScholatProject:0,
+      countScholatPublication:0
     }
   },
-  mounted() {
-    this.$nextTick(() => {
+  created() {
+    this.AcademicRaddar()
+  },
+  // mounted() {
+  //   this.$nextTick(() => {
+  //     this.initChart()
+  //   })
+  // },
+  watch: {
+    countScholatPaper(val) {
       this.initChart()
-    })
+    }
   },
   beforeDestroy() {
     if (!this.chart) {
@@ -43,6 +55,25 @@ export default {
     this.chart = null
   },
   methods: {
+    AcademicRaddar(){
+      let scholatUsername = this.$route.params.scholatUsername
+      this.api({
+        url: "/academic/Raddar/" + scholatUsername,
+        method: "get"
+      }).then(data => {
+        console.log("学术雷达值为:"+data.countScholatPaper)
+         this.countScholatPaper = data.countScholatPaper;
+        this.countScholatPatent = data.countScholatPatent;
+        this.countScholatProject = data.countScholatProject;
+        this.countScholatPublication = data.countScholatPublication;
+        if(this.countScholatPaper>300){this.countScholatPaper=290}
+        if(this.countScholatPatent>200){this.countScholatPatent=190}
+        if(this.countScholatProject>200){this.countScholatProject=190}
+        if(this.countScholatPublication>150){this.countScholatPublication=140}
+      }).catch(error => {
+        console.log("QAQ........没有找到教师信息")
+      })
+    },
     initChart() {
       this.chart = echarts.init(this.$el, 'macarons')
 
@@ -68,12 +99,12 @@ export default {
             }
           },
           indicator: [
-            { name: 'Sales', max: 10000 },
-            { name: 'Administration', max: 20000 },
-            { name: 'Information Technology', max: 20000 },
-            { name: 'Customer Support', max: 20000 },
-            { name: 'Development', max: 20000 },
-            { name: 'Marketing', max: 20000 }
+            { name: 'paper', max: 300 },
+            { name: 'Patent', max: 200 },
+            { name: 'Project', max: 200 },
+            { name: 'Publication', max: 150 },
+            { name: 'Development', max: 50 },
+            { name: 'Marketing', max: 50 }
           ]
         },
         legend: {
@@ -95,17 +126,17 @@ export default {
           },
           data: [
             {
-              value: [5000, 7000, 12000, 11000, 15000, 14000],
+              value: [this.countScholatPaper,this.countScholatPatent,this.countScholatProject,this.countScholatPublication,20,20],
               name: 'Allocated Budget'
             },
-            {
-              value: [4000, 9000, 15000, 15000, 13000, 11000],
-              name: 'Expected Spending'
-            },
-            {
-              value: [5500, 11000, 12000, 15000, 12000, 12000],
-              name: 'Actual Spending'
-            }
+            // {
+            //   value: [4000, 9000, 15000, 15000, 13000, 11000],
+            //   name: 'Expected Spending'
+            // },
+            // {
+            //   value: [5500, 11000, 12000, 15000, 12000, 12000],
+            //   name: 'Actual Spending'
+            // }
           ],
           animationDuration: animationDuration
         }]

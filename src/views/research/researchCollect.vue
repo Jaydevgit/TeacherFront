@@ -83,15 +83,16 @@
         <div style="margin-top: 7px;"><el-tag v-if="scope.row.editName" type="success" effect="plain" >编辑者:{{ scope.row.editName }} </el-tag></div>
       </template>
     </el-table-column>
-
-
-    <el-table-column fixed="right" align="center" label="学术档案" width="90">
+    <el-table-column  align="center" label="学术档案" width="90">
       <template slot-scope="scope">
         <el-button v-if="scope.row.scholat_username!==''" type="success" icon="el-icon-info" circle @click="showAcademic(scope.row.scholat_username)"></el-button>
       </template>
     </el-table-column>
-
-
+      <el-table-column fixed="right" align="center" label="学术主页" width="90">
+        <template slot-scope="scope">
+          <el-button v-if="scope.row.scholat_username!==''" type="success" icon="el-icon-star-on" circle @click="routerAcademicHome(scope.row.scholat_username)"></el-button>
+        </template>
+      </el-table-column>
   </el-table>
   <el-pagination
     @size-change="handleSizeChange"
@@ -353,6 +354,14 @@ import defaultAvatar from '@/assets/default1.png'
           name: 'personAcademic',
           params: {
             scholat_username: scholat_username
+          }
+        })
+      },
+      routerAcademicHome(scholat_username) {
+        this.$router.push({
+          name: 'teacherPersonInfoPage',
+          params: {
+            scholatUsername: scholat_username,
           }
         })
       },

@@ -99,6 +99,8 @@ name: "teacherPersonInfoPage",
   components: {
     RaddarChart,
   },
+
+
 }
 
 //设置宽度

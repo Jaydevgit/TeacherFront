@@ -107,7 +107,7 @@ export const constantRouterMap = [
     },
   },
   {
-    path: '/teacher/teacherPersonInfoPage',
+    path: '/researchHome/:scholatUsername',
     component: _import('teacher/teacherPersonInfoPage'),
     name: 'teacherPersonInfoPage',
   },
