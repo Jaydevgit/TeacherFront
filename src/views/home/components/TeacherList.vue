@@ -10,7 +10,7 @@
     margin: 8px 0;
     width: 154.8px;height:25px;display: flex;justify-content: center">
 
-              <el-popover
+              <!--<el-popover
                 popper-class="popoverBackB"
                 placement="bottom"
                 width="350"
@@ -25,14 +25,13 @@
                     <el-table-column width="150" label="邮箱"><span style="color:#fff;">邮箱：{{teacher.tEmail}}</span></el-table-column>
                     <el-table-column width="150" label="部门"><span style="color:#fff;">部门：{{teacher.tDepartmentName}}</span></el-table-column>
                   </div></el-col>
-                </el-row>
+                </el-row>-->
                 <span style="font-size: 16px;letter-spacing: 3px;text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;" class="teacherLi3" slot="reference">
               {{teacher.tName}}
                 </span>
-                <!--<el-button slot="reference">hover 激活</el-button>-->
-              </el-popover>
+              <!--</el-popover>-->
 
       </li>
     </ul>
