@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="71a291f0-678b-461d-aa71-8c90961134bb" name="Default Changelist" comment="顶部bar显示修改">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="71a291f0-678b-461d-aa71-8c90961134bb" name="Default Changelist" comment="修改了在编辑老师基本信息页面提示邮箱已存在2.0">
+      <change afterPath="$PROJECT_DIR$/src/views/teacher/teacherPersonInfoPage.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/homePage/components/teacherList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/homePage/components/teacherList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/debug.log" beforeDir="false" afterPath="$PROJECT_DIR$/debug.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/router/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/teacher/components/BaseInfo.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/teacher/components/BaseInfo.vue" afterDir="false" />
     </list>
+    <list id="1283b936-455c-414a-b098-a8840877a53b" name="修改了在编辑老师基本信息页面提示邮箱已存在" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DefaultGradleProjectSettings">
+    <option name="isMigrated" value="true" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -20,23 +26,27 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="UPDATE_TYPE" value="MERGE" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="ProjectId" id="1QNPiXoGOydSCUROl716gvJNVRk" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
     <property name="editor.config.ad.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../kg0319/front" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="prettierjs.PrettierConfiguration.Package" value="C:\teacherHome\teacherHome-front\node_modules\prettier" />
     <property name="settings.editor.selected.configurable" value="settings.github" />
@@ -93,6 +103,7 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration" cleanupOnStartRun="true">
     <configuration>C:\Users\Admin\AppData\Roaming\Subversion</configuration>
     <supportedVersion>125</supportedVersion>
@@ -148,6 +159,25 @@
       <workItem from="1586427110440" duration="4578000" />
       <workItem from="1586497666492" duration="6856000" />
       <workItem from="1586505489343" duration="15805000" />
+      <workItem from="1603693985702" duration="2746000" />
+      <workItem from="1603793142015" duration="10739000" />
+      <workItem from="1603872779031" duration="3541000" />
+      <workItem from="1603879541023" duration="457000" />
+      <workItem from="1603880389522" duration="2772000" />
+      <workItem from="1603953522488" duration="9004000" />
+      <workItem from="1604042446361" duration="6633000" />
+      <workItem from="1604127173413" duration="990000" />
+      <workItem from="1604128487471" duration="5223000" />
+      <workItem from="1604223355487" duration="1949000" />
+      <workItem from="1604300000576" duration="1611000" />
+      <workItem from="1604303017170" duration="664000" />
+      <workItem from="1604476432772" duration="4444000" />
+      <workItem from="1604558578193" duration="2920000" />
+      <workItem from="1604646252256" duration="1498000" />
+      <workItem from="1604728623076" duration="642000" />
+      <workItem from="1605256207919" duration="649000" />
+      <workItem from="1605699699848" duration="20000" />
+      <workItem from="1605963091969" duration="1003000" />
     </task>
     <task id="LOCAL-00001" summary="学者用户画像">
       <created>1578725260047</created>
@@ -198,11 +228,70 @@
       <option name="project" value="LOCAL" />
       <updated>1586572437729</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="homeset的师资栏目设置的适配问题">
+      <created>1603695582593</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1603695582593</updated>
+    </task>
+    <task id="LOCAL-00009" summary="修改教师可以根据学者网的数据自动填充数据">
+      <created>1603804151171</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1603804151171</updated>
+    </task>
+    <task id="LOCAL-00010" summary="增加了学者网个人简历的预览">
+      <created>1603883059186</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1603883059186</updated>
+    </task>
+    <task id="LOCAL-00011" summary="修改了在编辑老师基本信息页面提示邮箱已存在2.0">
+      <created>1603954343869</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1603954343869</updated>
+    </task>
+    <task id="LOCAL-00012" summary="移除选中">
+      <created>1604481577935</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1604481577935</updated>
+    </task>
+    <task id="LOCAL-00013" summary="添加选中">
+      <created>1604561469907</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1604561469907</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list />
+          </value>
+        </entry>
+        <entry key="User">
+          <value>
+            <list />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="连善淳第一次提交服务器版本:2019年9月5日09:47:58&#10;" />
@@ -214,61 +303,47 @@
     <MESSAGE value="样式修改" />
     <MESSAGE value="顶部bar显示修改" />
     <MESSAGE value="学院主页样式修改" />
-    <option name="LAST_COMMIT_MESSAGE" value="学院主页样式修改" />
+    <MESSAGE value="homeset的师资栏目设置的适配问题" />
+    <MESSAGE value="修改教师可以根据学者网的数据自动填充数据" />
+    <MESSAGE value="增加了学者网个人简历的预览" />
+    <MESSAGE value="修改了在编辑老师基本信息页面提示邮箱已存在2.0" />
+    <MESSAGE value="移除选中" />
+    <MESSAGE value="添加选中" />
+    <option name="LAST_COMMIT_MESSAGE" value="添加选中" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="2299" y="209" key="CommitChangelistDialog2" timestamp="1586595268521">
-      <screen x="1920" y="209" width="1366" height="728" />
+    <state x="302" y="0" key="CommitChangelistDialog2" timestamp="1604561468057">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="533" y="112" key="CommitChangelistDialog2/1920.209.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1586505677881" />
-    <state x="2299" y="209" key="CommitChangelistDialog2/1920.209.1366.728/0.0.1920.1040@1920.209.1366.728" timestamp="1586595268521" />
-    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1586504863167">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="302" y="0" key="CommitChangelistDialog2/0.0.1536.824/1920.0.1600.860@0.0.1536.824" timestamp="1604561468057" />
+    <state width="1515" height="142" key="GridCell.Tab.0.bottom" timestamp="1604717622031">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="740" y="275" key="FileChooserDialogImpl/1920.209.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1586504863167" />
-    <state width="1345" height="50" key="GridCell.Tab.0.bottom" timestamp="1586595204142">
-      <screen x="1920" y="209" width="1366" height="728" />
+    <state width="1515" height="142" key="GridCell.Tab.0.bottom/0.0.1536.824/1920.0.1600.860@0.0.1536.824" timestamp="1604717622031" />
+    <state width="1515" height="142" key="GridCell.Tab.0.center" timestamp="1604717622031">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1345" height="188" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1586491187392" />
-    <state width="1899" height="172" key="GridCell.Tab.0.bottom/1920.209.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1586505461914" />
-    <state width="1345" height="50" key="GridCell.Tab.0.bottom/1920.209.1366.728/0.0.1920.1040@1920.209.1366.728" timestamp="1586595204142" />
-    <state width="1345" height="50" key="GridCell.Tab.0.center" timestamp="1586595204141">
-      <screen x="1920" y="209" width="1366" height="728" />
+    <state width="1515" height="142" key="GridCell.Tab.0.center/0.0.1536.824/1920.0.1600.860@0.0.1536.824" timestamp="1604717622031" />
+    <state width="1515" height="142" key="GridCell.Tab.0.left" timestamp="1604717622031">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1345" height="188" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1586491187391" />
-    <state width="1899" height="172" key="GridCell.Tab.0.center/1920.209.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1586505461914" />
-    <state width="1345" height="50" key="GridCell.Tab.0.center/1920.209.1366.728/0.0.1920.1040@1920.209.1366.728" timestamp="1586595204141" />
-    <state width="1345" height="50" key="GridCell.Tab.0.left" timestamp="1586595204141">
-      <screen x="1920" y="209" width="1366" height="728" />
+    <state width="1515" height="142" key="GridCell.Tab.0.left/0.0.1536.824/1920.0.1600.860@0.0.1536.824" timestamp="1604717622031" />
+    <state width="1515" height="142" key="GridCell.Tab.0.right" timestamp="1604717622031">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1345" height="188" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1586491187391" />
-    <state width="1899" height="172" key="GridCell.Tab.0.left/1920.209.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1586505461913" />
-    <state width="1345" height="50" key="GridCell.Tab.0.left/1920.209.1366.728/0.0.1920.1040@1920.209.1366.728" timestamp="1586595204141" />
-    <state width="1345" height="50" key="GridCell.Tab.0.right" timestamp="1586595204141">
-      <screen x="1920" y="209" width="1366" height="728" />
+    <state width="1515" height="142" key="GridCell.Tab.0.right/0.0.1536.824/1920.0.1600.860@0.0.1536.824" timestamp="1604717622031" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1604561495612">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1345" height="188" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1586491187391" />
-    <state width="1899" height="172" key="GridCell.Tab.0.right/1920.209.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1586505461914" />
-    <state width="1345" height="50" key="GridCell.Tab.0.right/1920.209.1366.728/0.0.1920.1040@1920.209.1366.728" timestamp="1586595204141" />
-    <state x="461" y="162" key="SettingsEditor" timestamp="1586505449516">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824/1920.0.1600.860@0.0.1536.824" timestamp="1604561495612" />
+    <state x="574" y="325" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1604561473231">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="461" y="162" key="SettingsEditor/1920.209.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1586505449516" />
-    <state x="2313" y="386" key="Vcs.Push.Dialog.v2" timestamp="1586572440337">
-      <screen x="1920" y="209" width="1366" height="728" />
+    <state x="574" y="325" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824/1920.0.1600.860@0.0.1536.824" timestamp="1604561473231" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1604224900206">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2/1920.209.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1586505690910" />
-    <state x="2313" y="386" key="Vcs.Push.Dialog.v2/1920.209.1366.728/0.0.1920.1040@1920.209.1366.728" timestamp="1586572440337" />
-    <state x="2416" y="414" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1586595172988">
-      <screen x="1920" y="209" width="1366" height="728" />
-    </state>
-    <state x="496" y="205" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1366.728@0.0.1366.728" timestamp="1586489747299" />
-    <state x="697" y="293" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/1920.209.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1586504901516" />
-    <state x="2416" y="414" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/1920.209.1366.728/0.0.1920.1040@1920.209.1366.728" timestamp="1586595172988" />
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1586498122705">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/1920.209.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1586498122705" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824/1920.0.1600.860@0.0.1536.824" timestamp="1604224900206" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
