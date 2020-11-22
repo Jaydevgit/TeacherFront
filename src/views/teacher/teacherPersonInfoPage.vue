@@ -36,7 +36,9 @@
         </el-col>
         <el-col :span="8" class="scholar_info_col">
           <el-tabs class="label-fade-enter">
-            <el-tab-pane label="网络关系">用户管理</el-tab-pane>
+            <el-tab-pane label="网络关系">用户管理
+
+           </el-tab-pane>
             <el-tab-pane label="D-core">配置管理</el-tab-pane>
           </el-tabs>
         </el-col>
@@ -52,7 +54,8 @@
         </el-col>
         <el-col :span="8" class="scholar_info_col">
           <div class="tabhead">
-            作者统计
+            科研统计
+            <div><RaddarChart/> </div>
           </div>
           <div class="tabbody">
 
@@ -89,8 +92,13 @@
 </template>
 
 <script>
+  import RaddarChart from './components/RaddarChart'
+
 export default {
-name: "teacherPersonInfoPage"
+name: "teacherPersonInfoPage",
+  components: {
+    RaddarChart,
+  },
 }
 
 //设置宽度
@@ -201,12 +209,11 @@ screen_height()
 <style scoped>
 .el-row {
   margin-bottom: 20px;
-&
-:last-child {
+}
+.last-child {
   margin-bottom: 0;
-}
+  }
 
-}
 .el-col {
   border-radius: 4px;
 }
