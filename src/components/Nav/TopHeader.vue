@@ -98,13 +98,13 @@
             &nbsp教师个人主页
           </div>
         </div>
-        <div class="search bar6">
+        <!--<div class="search bar6">
           <div class="formDiv" style="">
             <input @keyup.enter="keySend" type="text" v-model="searchKey" placeholder="请输入您要搜索的教师" name="cname"
                    style="color: gray;background-color: white;">
             <img src="@/assets/img/search.png" @click="keySend" style="cursor: pointer;">
           </div>
-        </div>
+        </div>-->
 
       </div>
 
@@ -444,7 +444,13 @@
     /* placeholder颜色  */
     color: white;
   }
-
+  .header-home{
+    display: flex;
+    align-items: center;
+    height:60px;
+    width: 960px;
+    margin: 0 auto;
+  }
 
   @media screen and (min-width: 1025px){
     .top-container {

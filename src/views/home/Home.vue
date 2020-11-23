@@ -1,12 +1,13 @@
 <template>
   <div class="home-body" >
+    <div class="left">
+      <left-nav @toList="toList"></left-nav>
+    </div>
     <div class="middle-container">
       <div class="imgDiv">
         <img class="imgLogo" :src="SchoolBg" :onerror="SchoolBg" style=" "/>
       </div>
-      <div class="left">
-        <left-nav @toList="toList"></left-nav>
-      </div>
+
       <div class="search">
         <search :recentTeacherCount="recentTeacherCount"></search>
       </div>
@@ -288,9 +289,8 @@
       min-height: calc(100vh - 60px);
     }
     .left {
-      margin: 0 auto;
+      /*margin: 0 auto;*/
       /*transform: translateY(32px);*/
-
     }
 
     .middle {
@@ -358,6 +358,10 @@
     /*底部栏样式结束*/
   }
 
+  .top-header{
+    height: 60px;
+    z-index: 2;
+  }
   .search{
     margin-top: 150px;
   }

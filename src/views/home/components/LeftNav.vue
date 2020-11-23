@@ -1,29 +1,51 @@
 <template>
   <div class="left-container">
-    <div style="width: 100%;min-width: 184px;">
-      <el-row style="width: 100%;float: left;border-radius: 10px;">
-        <el-col>
-          <el-menu
-            background-color="#545c64"
-            text-color="#fff"
-            active-text-color="#ffd04b"
-            class="el-menu-vertical-demo"
-            :mode="displayMode"
-            style="overflow: hidden">
-            <el-menu-item index="0" @click="getAllTeacher()">
-              <span slot="title" class="parentCatalogue">所有教师</span>
-            </el-menu-item>
-            <el-menu-item v-for="(item, flag) in unitList" :key="'cId'+item.id" :index="item.id+''" @click="uIdSend(item.id,item.domain_name)">
+    <div class="left-content">
+      <div class="wp">
+        <div class="wp-left">
+          <div class="wp-left-img" v-if="this.unitList[0]">
+            <img :src="'http://www.scholat.com/images/uni_logo/'+this.unitList[0].school_name+'.png'"
+                 :onerror="defaultLogo"
+                  height="100px"/>
+          </div>
+          <div class="wp-left-content">
+            <div v-if="this.unitList[0]">
+              <span>{{this.unitList[0].school_name}}</span>
+            </div>
+            <div class="line"></div>
+            <div>
+              教师个人主页
+            </div>
+          </div>
+        </div>
+        <div class="wp-right"></div>
+      </div>
+      <div class="ul-nav">
+        <el-row>
+          <el-col>
+            <el-menu
+              background-color="#002d54"
+              text-color="#fff"
+              active-text-color="#ffd04b"
+              class="el-menu-vertical-demo"
+              :mode="displayMode"
+              style="overflow: hidden">
+              <el-menu-item index="0" @click="getAllTeacher()">
+                <span slot="title" class="parentCatalogue">所有教师</span>
+              </el-menu-item>
+              <el-menu-item v-for="(item, flag) in unitList" :key="'cId'+item.id" :index="item.id+''" @click="uIdSend(item.id,item.domain_name)">
 
-              <div slot="title" >
-                <!--<i class="el-icon-menu"></i>-->
-                <span class="parentCatalogue">{{item.unit_name}}</span>
-              </div>
-            </el-menu-item>
-          </el-menu>
-        </el-col>
-      </el-row>
+                <div slot="title" >
+                  <!--<i class="el-icon-menu"></i>-->
+                  <span class="parentCatalogue">{{item.unit_name}}</span>
+                </div>
+              </el-menu-item>
+            </el-menu>
+          </el-col>
+        </el-row>
+      </div>
     </div>
+
   </div>
 </template>
 
@@ -37,6 +59,7 @@
           listLoading: false,//数据加载等待动画
           schoolDomain:'',
           currentCat:'',
+          defaultLogo: 'this.src="http://www.scholat.com/images/uni_logo/nologo.png"',
         }
       },
       created() {
@@ -104,23 +127,62 @@
     }
 
     .el-menu {
-      box-shadow: 0px 2px 10px 0px rgba(0, 81, 193, 0.3), 0px 1px 0px 0px rgba(255, 255, 255, 0.5);
-      border-radius: 10px;
-      border-right: none !important;
+      background-color:rgba(0,45,84,0.5);
     }
 
     .el-menu-item {
-      background-color: white;
+      /*background-color: white;
       height: 50px;
-      line-height: 50px;
+      line-height: 50px;*/
     }
   }
   .left-container {
-    display: flex;
+    /*display: flex;
     align-items: center;
+    width: 100%;*/
+    position: relative;
+    flex-flow: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    height: 200px;
+    margin: 0 auto;
+    width: 100%;
+    background-color:rgba(0,45,84,0.5);
+    color: white;
+    padding-top: 20px;
+  }
+  .left-content{
+    max-width: 960px;
+    margin: 0 auto;
+  }
+  .wp{
+    height: 120px;
+    border-bottom: 1px solid gray;
+    line-height: 120px;
 
   }
+  .wp-left{
+    display: flex;
+  }
+  .wp-left-content{
+    display: flex;
+    font-size: 34px;
+    margin-left: 20px;
+    font-family: 楷体;
+  }
+  .line{
+    background:#E7E7E7;/*背景色为浅灰色*/
+    width:0.6px;/*设置宽高*/
+    height:40px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 40px;
+  }
 
+  .ul-nav{
+
+  }
 
 
 </style>
