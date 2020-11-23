@@ -19,14 +19,14 @@
               <!--          <el-button type="primary" plain @click="componentName = 'tree'">学术谱系</el-button>-->
               <el-button type="primary" plain @click="componentName = 'statistics'" v-if="!loadingEchartsFlag">统计信息</el-button>
             </div>
-            <div style="font-size: 14px;
-    color: gray;
-    font-weight: bold;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    margin-left: 10px;">
-              数据来源:学者网大数据---数据日期: 2019-09-03
-            </div>
+<!--            <div style="font-size: 14px;-->
+<!--    color: gray;-->
+<!--    font-weight: bold;-->
+<!--    text-overflow: ellipsis;-->
+<!--    overflow: hidden;-->
+<!--    margin-left: 10px;">-->
+<!--              数据来源:学者网大数据-&#45;&#45;数据日期: 2019-09-03-->
+<!--            </div>-->
           </div>
         </div>
 
