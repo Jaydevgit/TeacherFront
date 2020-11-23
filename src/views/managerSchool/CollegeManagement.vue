@@ -190,7 +190,7 @@
         dialogTableVisible: false,
         dialogImportVisible: false,
         fileList:[],
-        unitList:'',
+        unitList:[],
         changeType:''
       }
     },
