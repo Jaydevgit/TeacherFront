@@ -130,6 +130,7 @@
               this.listLoading = false;
               this.teacherListAll = data.list;
               console.log(data);
+              console.log("totalCount="+data.totalCount)
               this.totalCount = data.totalCount;
             }).catch(error => {
               console.log("QAQ........没有找到教师列表")

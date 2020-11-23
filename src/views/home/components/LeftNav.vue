@@ -150,7 +150,7 @@
     width: 100%;
     background-color:rgba(0,45,84,0.5);
     color: white;
-    padding-top: 20px;
+    padding-top: 5px;
   }
   .left-content{
     max-width: 960px;

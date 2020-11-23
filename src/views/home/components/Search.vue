@@ -94,7 +94,6 @@ export default {
           console.log("currentDomainName="+this.currentDomainName);
           this.listQuery.unitDomain = this.currentDomainName
         }
-
         this.listQuery.schoolDomain = this.$route.path.split('/')[2];
         // this.listLoading = true;
         console.log("传入参数为:"+JSON.stringify(this.listQuery))
@@ -110,6 +109,7 @@ export default {
           // this.listLoading = false;
           this.teacherListAll = data.list;
           //console.log(this.teacherListAll);
+          console.log("已开通教师主页人数="+data.totalCount)
           this.totalCount = data.totalCount;
         }).catch(error => {
           console.log("QAQ........没有找到教师列表")
@@ -129,7 +129,7 @@ export default {
           this.listLoading = false;
           this.teacherListAll = data.list;
           console.log(data);
-          console.log("totalCount="+data.totalCount)
+          console.log("已开通教师主页人数="+data.totalCount)
           this.totalCount = data.totalCount;
         }).catch(error => {
           console.log("QAQ........没有找到教师列表")

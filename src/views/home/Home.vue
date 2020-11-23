@@ -11,10 +11,19 @@
       <div class="search">
         <search :recentTeacherCount="recentTeacherCount"></search>
       </div>
-      <div class="middle">
-        <!--<teacher-list :unitId="unitId" :currentDomainName="currentDomainName" v-show="isDisplay" v-if="isRouterAlive">
-        </teacher-list>-->
+      <div>
+        <div class="contentTitle" style="border: 0;margin-top: 20px">
+          <span class="chTitle chTitle1">教师列表</span>
+          <span class="engTitle">Teacher List</span>
+          <span class="line"></span>
+        </div>
+        <!--<div class="middle">-->
+          <teacher-list :unitId="unitId" :currentDomainName="currentDomainName" v-show="isDisplay" v-if="isRouterAlive">
+          </teacher-list>
+        <!--</div>-->
       </div>
+
+
 
       <!--最近更新教师主页-->
       <div class="recentTeacher">
@@ -298,10 +307,10 @@
       width: 100%;
       height: auto;
       /*min-height: 400px;*/
-      background: green;
+      /*
       box-shadow: 0px 2px 10px 0px rgba(0, 81, 193, 0.3), 0px 1px 0px 0px rgba(255, 255, 255, 0.5);
       border-radius: 10px;
-      border-right: none !important;
+      border-right: none !important;*/
     }
 
     .middle-nav {
