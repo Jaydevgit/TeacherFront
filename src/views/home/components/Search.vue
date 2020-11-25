@@ -2,18 +2,19 @@
   <div class="search-container">
     <el-row>
       <el-col :span="12"><div class="grid-content bg-purple">
-        <el-form :inline="true" class="demo-form-inline">
+        <el-form :inline="true" class="demo-form-inline" @submit.native.prevent>
           <span class="title">教师查询</span>
           <el-form-item>
             <el-input v-model="searchKey"
                       placeholder="请输入教师名"
                       prefix-icon="el-icon-search"
                       class=""
+                      @keyup.enter.native="keySend()"
                       clearable>
             </el-input>
           </el-form-item>
           <el-form-item>
-            <el-button type="primary">查找</el-button>
+            <el-button type="primary" @click="keySend()">查找</el-button>
           </el-form-item>
         </el-form>
       </div></el-col>
@@ -51,6 +52,7 @@
 <script>
 import TeacherImg from '@/assets/img/teacher.png'
 import TimeImg from '@/assets/img/time.png'
+import bus from '@/utils/eventBus'
 export default {
   name: "Search",
   data(){
@@ -135,7 +137,21 @@ export default {
           console.log("QAQ........没有找到教师列表")
         })
       }
-
+    },
+    keySend: function () {
+      console.log("send++++" + this.searchKey + this.listQuery.unitId)
+      if (this.searchKey&&this.$route.path.indexOf('homepage')!==-1){
+        bus.$emit("changePageList", this.searchKey);
+      }
+      if (this.searchKey&&this.$route.path.indexOf('teacher')!==-1){
+        bus.$emit("changePageList2", this.searchKey,this.listQuery.unitId);
+      }
+      if (this.searchKey&&this.$route.path.split('/')[1]==='home'){
+        bus.$emit("changePageList3", this.searchKey);
+      }
+      // this.$nextTick(function () {
+      //     bus.$emit("key", this.searchKey);
+      // })
     },
   }
 }
