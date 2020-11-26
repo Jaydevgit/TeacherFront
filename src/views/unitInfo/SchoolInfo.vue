@@ -13,87 +13,21 @@
       <el-form-item label="学校链接：" placeholder="注意链接形式以'http'开头" prop="schoolUrl">
         <el-input v-model="applyForm.schoolUrl" style="width: 50%"></el-input>
       </el-form-item>
-      <!--<el-form-item label="学校域名：">
-        <el-input v-model="applyForm.domainName" disabled="" style="width: 50%"></el-input>
-      </el-form-item>-->
-      <!--<el-form-item label="学院名称：">
-        <el-input v-model="applyForm.unitName" disabled="" style="width: 50%"></el-input>
-      </el-form-item>-->
-      <!--<el-form-item label="学院英文名称：">
-        <el-input v-model="applyForm.unitEng" style="width: 50%"></el-input>
-      </el-form-item>
-      <el-form-item label="学院链接：" placeholder="注意链接形式以'http'开头" prop="collegeUrl">
-        <el-input v-model="applyForm.collegeUrl" style="width: 50%"></el-input>
-      </el-form-item>-->
-      <!--<el-form-item label="学院图标：">
-        <div style="display: flex">
-          <div style="margin-left: 15px;">
-            &lt;!&ndash;提交完后显示这个&ndash;&gt;
-            <img :src="showLogo"
-                 :onerror="defaultLogo" v-if="this.showLogo" style="width: 120px;"/>
-            <img v-else src="http://www.scholat.com/images/uni_logo/华南师范大学.png"
-                 :onerror="defaultLogo" style="width: 120px;"/>
-          </div>
-          <div style="margin-left: 50px">
-            <div style="color: red;margin-top: 10px">提示：如左图显示的不是贵校的图标，可点击下方按钮自行上传图标</div>
-            <div style="margin-top: 40px">
-              <el-button @click="uploadImage('unit')" size="mini" type="primary" style="margin-top:7px;float: left">上传学校LOGO</el-button>
-              <el-button @click="restoreImage(1)" size="mini"  style="margin-left: 35px;">恢复系统默认</el-button>
-            </div>
-          </div>
-        </div>
-
-
-      </el-form-item>-->
-
-      <!--<el-form-item label="主页顶栏背景模式：" >
-        <el-radio-group v-model="applyForm.state" >
-          <el-radio :label="0">logo+文字模式</el-radio>
-          <el-radio :label="1">自定义图片模式</el-radio>
-        </el-radio-group>
-      </el-form-item>-->
-      <!--<el-form-item v-if="applyForm.state === 1" label="">
-        <div style="" v-if="showBack.indexOf('http://faculty.scholat.com:2333/public/images/background/')!=-1">
+      <el-form-item label="主页背景设置：">
+        <div style="" v-if="showBack.indexOf('http://faculty.scholat.com:2333/public/images/schoolBackground/')!=-1">
           &lt;!&ndash;提交完后显示这个&ndash;&gt;
           <img :src="showBack"
-               :onerror="defaultBack" style="width: 420px; height: 72px;"/>
+               :onerror="SchoolBg" style="width: 420px; height: 72px;"/>
         </div>
         <div style="color: red">提示：点击下方按钮自行上传背景图片</div>
         <div>
-          <el-button @click="uploadImage('background',1)" size="mini" type="primary" style="margin-top:7px;float: left">
+          <el-button @click="uploadImage('schoolBackground',1)" size="mini" type="primary" style="margin-top:7px;float: left">
             上传
           </el-button>
           <el-button @click="restoreImage(0)" size="mini" style="margin-left: 35px;">取消</el-button>
         </div>
       </el-form-item>
-      <el-form-item label="主页正文背景设置：" style="width: 580px">
-        &lt;!&ndash;        <img :src="showBackHome"&ndash;&gt;
-        &lt;!&ndash;             :onerror="defaultBackHome" style="width: 160px; height: 120px;"/>&ndash;&gt;
-        &lt;!&ndash;        <div>&ndash;&gt;
-        &lt;!&ndash;          <el-button @click="uploadImage('backgroundHome',2)" size="mini" type="primary" style="margin-top:7px;float: left">&ndash;&gt;
-        &lt;!&ndash;            上传&ndash;&gt;
-        &lt;!&ndash;          </el-button>&ndash;&gt;
-        &lt;!&ndash;        </div>&ndash;&gt;
-        &lt;!&ndash;      </el-form-item>&ndash;&gt;
-        <el-upload
-          class="upload-demo"
-          action="/api/attach/upload/certificate"
-          name="backgroundHome.png"
-          :http-request="uploadFun"
-          :on-preview="handlePreview"
-          :on-remove="handleRemove"
-          :before-remove="beforeRemove"
-          :before-upload="handleUpload"
-          :limit="1"
-          :file-list="fileList"
-          :on-exceed="handleExceed"
-          list-type="picture">
-          <el-button size="small" type="primary">点击上传</el-button>
-          <div slot="tip" class="el-upload__tip">只能上传jpg/jpeg/png/gif/bmp文件，且不超过600kb
-            <span v-if="applyForm.backgroundHome!==undefined" style="color: #E6A23C">&nbsp;上传请前先移除下方图片</span><div>建议上传图片像素为1600px*1200px</div></div>
-        </el-upload>
-      </el-form-item>
-      <crop-image ref="cropImage" @crop-url-callback="cropImageCallback"></crop-image>-->
+      <crop-image ref="cropImage" @crop-url-callback="cropImageCallback"></crop-image>
       <el-form-item label="操作：">
         <el-button type="success" size="mini" class="finish-button" @click="handleApply('applyForm')">
           确定提交
@@ -106,6 +40,7 @@
 <script>
 
   import cropImage from '../unitApply/utils/cropImage'
+  import SchoolBg from '@/assets/img/schoolBg2.jpg'
 
   export default {
     data() {
@@ -126,7 +61,8 @@
           backgroundUrl: '',
           backgroundHome: '',
           schoolDomain:'',
-          domainName: ''
+          domainName: '',
+          schoolBackground:'',
         },
         showLogo: '',
         showBack: '',
@@ -139,7 +75,8 @@
           collegeLogo: [{required: true, message: "学院图标不能为空", trigger: 'change'}],   //學院图标
           backSelect: [{required: true, message: "背景模式不能为空", trigger: 'change'}]    //背景模式
         },
-        fileList: []
+        fileList: [],
+        SchoolBg:SchoolBg,
       }
     },
     created() {
@@ -244,6 +181,13 @@
             this.showLogo = 'http://faculty.scholat.com:2333/public/images/unit_logo/' + data.logoUrl
           else
             this.showLogo = data.logoUrl;
+          if (data.backgroundUrl != undefined
+            &&data.backgroundUrl != ''
+            && data.backgroundUrl != null) {
+            this.showBack = 'http://faculty.scholat.com:2333/public/images/schoolBackground/' + data.backgroundUrl;
+          } else {
+            this.showBack = ''
+          }
           /*if (data.backgroundUrl != undefined &&
             data.backgroundUrl != ''
             && data.backgroundUrl != null) {
@@ -284,11 +228,16 @@
           console.log("显示的图片路径为：" + this.showBackHome)
           this.applyForm.backgroundHome = imageName
         }
+        if (msg.indexOf('schoolBackground') !== -1) {
+          this.showBackHome = this.$refs.cropImage.attach.laterUrl;
+          console.log("显示的图片路径为：" + this.showBackHome)
+          this.applyForm.schoolBackground = imageName
+        }
         this.applyForm.state = 1;
         this.applyForm.unitId = this.$store.getters.unitId
         console.log(this.applyForm)
         this.api({
-          url: '/unit/updateUnitInfo',
+          url: '/school/updateSchoolInfo',
           method: 'post',
           data: this.applyForm
         }).then(data => {

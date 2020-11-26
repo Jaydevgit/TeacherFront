@@ -5,7 +5,8 @@
     </div>
     <div class="middle-container">
       <div class="imgDiv">
-        <img class="imgLogo" :src="SchoolBg" :onerror="SchoolBg" style=" "/>
+        <img class="imgLogo" :src="getSchoolBackground(this.schoolBackground)" :onerror="SchoolBg" style=" "/>
+
       </div>
 
       <div class="search">
@@ -97,7 +98,7 @@
       <div class="Info">
         <div  style="">
           <div style="margin-bottom: 5px">
-            <a href="/login" >管理员登录</a> |
+            <a href="/schoolLogin" >管理员登录</a> |
             <a href="http://www.scholat.com/">学者网</a>
           </div>
           <div style="margin-bottom: 5px">
@@ -122,7 +123,7 @@
     import defaultAvatar from '@/assets/default1.png';
     import FooterNav from "./components/FooterNav";
     import Search from "./components/Search";
-    import SchoolBg from '@/assets/img/schoolBg2.jpg'
+    import SchoolBg from '@/assets/img/schoolBg2.jpg';
 
     export default {
       name: "Home",
@@ -145,6 +146,7 @@
           currentDomainName:'',
           recentTeacherCount:'',
           listQuery:{
+            schoolId:'',
             unitId: '',
             schoolDomain:'',
             unitDomain:'',
@@ -157,6 +159,7 @@
           backgroundHome:'',
           backgroundHomeDefault:'backgroundHomeDefault.jpg',
           SchoolBg:SchoolBg,
+          schoolBackground:'',
         }
       },
       watch:{
@@ -205,13 +208,28 @@
             console.log("================================")
             this.listLoading = false;
             this.unitList = data;
-            this.backgroundHome=data.backgroundHome;
-            console.log("data[0].id="+data[0].id)
+            /*console.log("schoolBackground="+data[0].backgroundUrl)
+            this.schoolBackground=data[0].backgroundUrl;*/
+            console.log("data[0].id="+data[0].id);
             this.isDisplay=true;
             this.unitId = data[0].id;
             this.currentDomainName=data[0].domain_name;
+            this.reload();
+          }).catch(error => {
+            console.log("QAQ........没有找到学校信息")
+          })
+          this.listQuery.schoolDomain=this.$route.path.split('/')[2];
+          this.api({
+            url: "/school/getSchoolInfo2",
+            method: "get",
+            params:this.listQuery
+          }).then(data => {
+            console.log("查询学校背景图片信息为:" + JSON.stringify(data))
+            console.log("================================")
+            this.listLoading = false;
+            console.log("schoolBackground="+data.backgroundUrl)
+            this.schoolBackground=data.backgroundUrl;
             this.reload()
-
           }).catch(error => {
             console.log("QAQ........没有找到学校信息")
           })
@@ -246,6 +264,14 @@
             return "http://www.scholat.com/" + imgName;
           } else {
             return "http://faculty.scholat.com:2333/public/images/avatar/" + imgName;
+          }
+        },
+        getSchoolBackground(imgName){
+          console.log("imgName="+imgName)
+          if (this.schoolBackground){
+            return "http://faculty.scholat.com:2333/public/images/schoolBackground/" + imgName;
+          }else {
+            return this.SchoolBg;
           }
         },
         getBgImgUrl(imgName){

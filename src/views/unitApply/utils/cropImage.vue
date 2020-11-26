@@ -137,6 +137,12 @@
             this.options.autoCropHeight = 600
             break;
           }
+          case 'schoolBackground':{
+            this.titleName = '更换学校主页背景'
+            this.options.autoCropWidth = 1900
+            this.options.autoCropHeight = 400
+            break;
+          }
           }
       },
       //控制弹出层关闭
