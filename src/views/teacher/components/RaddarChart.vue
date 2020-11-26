@@ -66,7 +66,7 @@ export default {
         this.countScholatPatent = data.countScholatPatent;
         this.countScholatProject = data.countScholatProject;
         this.countScholatPublication = data.countScholatPublication;
-        if(this.countScholatPaper>300){this.countScholatPaper=290}
+        if(this.countScholatPaper>250){this.countScholatPaper=240}
         if(this.countScholatPatent>200){this.countScholatPatent=190}
         if(this.countScholatProject>200){this.countScholatProject=190}
         if(this.countScholatPublication>150){this.countScholatPublication=140}
@@ -99,10 +99,10 @@ export default {
             }
           },
           indicator: [
-            { name: 'paper', max: 300 },
-            { name: 'Patent', max: 200 },
-            { name: 'Project', max: 200 },
-            { name: 'Publication', max: 150 },
+            { name: 'Papers', max: 250 },
+            { name: 'Patents', max: 200 },
+            { name: 'Projects', max: 200 },
+            { name: 'Publications', max: 150 },
             { name: 'Development', max: 50 },
             { name: 'Marketing', max: 50 }
           ]
@@ -127,7 +127,7 @@ export default {
           data: [
             {
               value: [this.countScholatPaper,this.countScholatPatent,this.countScholatProject,this.countScholatPublication,20,20],
-              name: 'Allocated Budget'
+              name: 'Academic Radar'
             },
             // {
             //   value: [4000, 9000, 15000, 15000, 13000, 11000],
