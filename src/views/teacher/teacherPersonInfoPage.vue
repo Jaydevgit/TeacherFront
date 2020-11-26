@@ -1,5 +1,16 @@
 <template>
   <div id="app" style="width: 100%;">
+    <header class="top-container">
+      <a href="http://faculty.scholat.com/index" style="margin: 10px 0 0 200px;">首页</a>
+      <div class="search bar6">
+        <div class="formDiv" style="">
+          <input @keyup.enter="keySend" type="text" v-model="searchKey" placeholder="搜索" name="cname"
+                 style="color: gray;background-color: white;">
+          <!--<button @click="keySend"></button>-->
+          <img src="@/assets/img/search.png" @click="keySend" style="cursor: pointer;">
+        </div>
+      </div>
+    </header>
     <div style="width: 80%;height: 100%" class="center">
       <el-row :gutter="10" class="scholar_info">
         <el-col :span="16" class="scholar_info_col">
@@ -115,10 +126,60 @@ screen_height()
 <style>
 /*my style*/
 /*div对齐*/
+.top-container {
+  height: 50px;
+  font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+  font-size: 24px;
+  color: #595959;
+  background-color: #d3dce6;
+}
+.bar6 input {
+  border: 1px solid white;
+  border-radius: 20px;
+  /*background: transparent;*/
+  top: 0;
+  right: 0;
+  box-shadow:2px 2px 10px #909090;
+}
+
+.bar6 button {
+  background: white;
+  border-radius: 0 46px 46px 0;
+  width: 50px;
+  top: 0;
+  right: 50px;
+  background-image: url("../../assets/search.png");
+  background-size:50% 70%;
+  background-repeat:no-repeat;
+  background-position:center center;
+}
+
+.bar6 img{
+  width: 32px;
+  height: 32px;
+  position: absolute;
+  top: 2px;
+  left: 220px;
+}
+.bar6 button:before {
+  /*content: "搜索";*/
+  font-size: 13px;
+  font-weight: bold;
+  color: #3399CC;
+
+}
+.formDiv {
+  position: relative;
+  width: 250px;
+  margin: 0 auto;
+  max-width:150px;
+  transform: translateY(-25px)
+}
+
 .center {
   margin: auto;
   position: absolute;
-  top: 0;
+  top: 100px;
   left: 0;
   bottom: 0;
   right: 0;
