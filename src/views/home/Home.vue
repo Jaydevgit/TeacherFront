@@ -98,7 +98,7 @@
       <div class="Info">
         <div  style="">
           <div style="margin-bottom: 5px">
-            <a href="/login" >管理员登录</a> |
+            <a href="/schoolLogin" >管理员登录</a> |
             <a href="http://www.scholat.com/">学者网</a>
           </div>
           <div style="margin-bottom: 5px">
