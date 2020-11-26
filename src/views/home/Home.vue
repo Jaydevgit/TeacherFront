@@ -208,13 +208,13 @@
             console.log("================================")
             this.listLoading = false;
             this.unitList = data;
-            console.log("schoolBackground="+data[0].backgroundUrl)
-            this.schoolBackground=data[0].backgroundUrl;
-            console.log("data[0].id="+data[0].id)
+            /*console.log("schoolBackground="+data[0].backgroundUrl)
+            this.schoolBackground=data[0].backgroundUrl;*/
+            console.log("data[0].id="+data[0].id);
             this.isDisplay=true;
             this.unitId = data[0].id;
             this.currentDomainName=data[0].domain_name;
-            this.reload()
+            this.reload();
           }).catch(error => {
             console.log("QAQ........没有找到学校信息")
           })
@@ -268,7 +268,7 @@
         },
         getSchoolBackground(imgName){
           console.log("imgName="+imgName)
-          if (this.schoolBackground!=undefined){
+          if (this.schoolBackground){
             return "http://faculty.scholat.com:2333/public/images/schoolBackground/" + imgName;
           }else {
             return this.SchoolBg;
