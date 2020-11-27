@@ -2,7 +2,7 @@
   <header class="top-container">
 
     <!--两种模式：模式 1 学校Logo+文字-->
-    <div class="background" v-if="unit.state == 0 && dataDone">
+    <div class="background" v-if="!unit.state && dataDone">
       <div @click="goToCollege" style="display: inline-block;height: 90%;width: auto;min-width: 75px">
         <img :src="'http://www.scholat.com/images/uni_logo/'+this.unit.schoolName+'.png'" :onerror="defaultLogo"
              style="height: 100%;width: auto;bottom: 0;"/>
@@ -16,10 +16,10 @@
        </div>
       </div>
 
-      <div class="font-jsgrzy" style="display: inline-block;" v-if="$route.path.indexOf('homepage')!=-1">
+      <div class="font-jsgrzy" style="display: inline-block;" v-if="$route.path.indexOf('homepage')!==-1">
         师资队伍
       </div>
-      <div class="font-jsgrzy" style="display: inline-block;" v-if="$route.path.indexOf('teacher')!=-1">
+      <div class="font-jsgrzy" style="display: inline-block;" v-if="$route.path.indexOf('teacher')!==-1">
         教师个人主页
       </div>
 
@@ -46,7 +46,7 @@
         <img :src="'http://www.scholat.com/images/uni_logo/'+this.unit.schoolName+'.png'" :onerror="defaultLogo" style="height:100%;width:auto;bottom: 0;"/>
       </div>-->
 
-      <div class="apply-nav" v-if="$route.path.indexOf('unitApply')!=-1">
+      <div class="apply-nav" v-if="$route.path.indexOf('unitApply')!==-1">
         <div style="color: #595959;font-size: 26px;white-space: nowrap;">
           SCHOLAT+ 学院师资信息管理平台
         </div>
@@ -79,7 +79,7 @@
       </div>
 
       <div v-if="titleFlag"></div>
-      <div v-else-if="$route.path.indexOf('login')!==-1||$route.path.indexOf('schoolLogin')!=-1">
+      <div v-else-if="$route.path.indexOf('login')!==-1||$route.path.indexOf('schoolLogin')!==-1">
         <span style="padding-left: 0;color: #595959;font-size: 26px;white-space: nowrap;margin-left: 15px">
           SCHOLAT+ 学院师资信息管理平台
           </span>
@@ -109,12 +109,12 @@
       </div>
 
       <!--若判断为教师信息页，则显示学校logo，学校名称，教师主页，搜索-->
-      <div v-else-if="$route.path.indexOf('teacher')!=-1" style="display: flex;align-items: center;height: 100%;width: 100%">
+      <div v-else-if="$route.path.indexOf('teacher')!==-1" style="display: flex;align-items: center;height: 100%;width: 100%">
         <div @click="goToCollege" style="height: 90%;width: auto;bottom: 0;cursor: pointer">
           <img :src="'http://www.scholat.com/images/uni_logo/'+this.unit.schoolName+'.png'" :onerror="defaultLogo" style="height: 100%;width:auto;"/>
         </div>
         <span style="" class="font-jsgrzy">
-            <span v-if="$route.path.indexOf('login')!=-1">SCHOLAT+学院师资信息管理平台</span>
+            <span v-if="$route.path.indexOf('login')!==-1">SCHOLAT+学院师资信息管理平台</span>
             <span v-else>
               <span style="font-family: 华文新魏;font-size: 38px">{{unit.schoolName}}|</span>
               <span style="font-family: 华文行楷 ;font-size: 34px;margin-left: -10px">教师个人主页</span>
@@ -188,7 +188,7 @@
 
         <div style=" display: flex;
     align-content: center;margin-left: 120px"
-             v-if="$route.path.indexOf('login')!=-1||$route.path.indexOf('schoolLogin')!=-1">
+             v-if="$route.path.indexOf('login')!==-1||$route.path.indexOf('schoolLogin')!==-1">
           <a href="/index" class="title" style="flex: 1;min-width: 40px;color: #595959;font-size: 18px;margin-left: 148px">首页</a>
           <!--<a href="http://www.yuque.com/vd7ii9/dvybyk/na3nsf" class="title" style="min-width: 80px">帮助文档</a>-->
           <el-dropdown style="padding-top: 8px">
@@ -321,6 +321,8 @@
                   }).catch(error => {
                     console.log("QAQ........没有找到学校信息")
                   })
+                }else if (this.$route.path.split('/')[1]==='login'||this.$route.path.split('/')[1]==='schoolLogin'){
+                  //是登录页面
                 }
                 //是主頁
                 else {
