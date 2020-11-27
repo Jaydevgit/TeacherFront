@@ -15,7 +15,7 @@
       </el-form-item>
       <el-form-item label="主页背景设置：">
         <div style="" v-if="showBack.indexOf('http://faculty.scholat.com:2333/public/images/schoolBackground/')!=-1">
-          &lt;!&ndash;提交完后显示这个&ndash;&gt;
+          <!--提交完后显示这个-->
           <img :src="showBack"
                :onerror="SchoolBg" style="width: 420px; height: 72px;"/>
         </div>
