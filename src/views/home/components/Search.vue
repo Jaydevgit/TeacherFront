@@ -39,13 +39,16 @@
         </div>
       </div></el-col>
     </el-row>
-    <!--<div class="letter-container">
-      <div>
+
+    <div class="letter-container">
+      <div >
+        <span style="font-weight: bold;font-size: 15px;
+  margin:0 40px 0 40px;">姓名首字母</span>
         <a class="letterList" v-for="letter in Letters">
-          <span>{{letter}}</span>
+          <span class="letter-item" >{{letter}}</span>
         </a>
       </div>
-    </div>-->
+    </div>
   </div>
 </template>
 
@@ -76,7 +79,6 @@ export default {
         state:1 ,//在岗状态
       },
       Letters: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'],
-
     }
   },
   props: ['recentTeacherCount'],
@@ -160,11 +162,20 @@ export default {
 <style scoped>
 .search-container{
   background-color: #f5f4f4;
-  height: 100px;
-/*  line-height: 100px;*/
+  height: 150px;
 }
 .letter-container{
-  height: 80px;
+  height: 50px;
+  line-height: 50px;
+  background: #EEE;
+}
+
+.letterList {
+  font-size: 14px;
+  letter-spacing: 15px;
+}
+.letter-item{
+  cursor: pointer;
 }
 .title{
   font-weight: bold;
@@ -181,10 +192,14 @@ export default {
 }
 .el-form{
   height: 100px;
+  padding: 0;
+  margin: 0;
 }
 .el-form-item{
-  height: 100px;
-  margin-top: 30px;
+  height: 50px;
+  transform: translateY(30px);
+  padding: 0;
+  margin: 0;
 }
 .txt{
   margin-left: 20px;
@@ -216,8 +231,5 @@ export default {
   height: 50px;
   margin-top: 27px;
 }
-.letterList {
-  font-size: 14px;
-  letter-spacing: 5px;
-}
+
 </style>
