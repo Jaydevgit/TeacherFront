@@ -44,7 +44,7 @@
       <div >
         <span style="font-weight: bold;font-size: 15px;
   margin:0 40px 0 40px;">姓名首字母</span>
-        <a class="letterList" v-for="letter in Letters">
+        <a class="letterList" v-for="letter in Letters" @click="jumper(letter)">
           <span class="letter-item" >{{letter}}</span>
         </a>
       </div>
@@ -140,6 +140,14 @@ export default {
         })
       }
     },
+    jumper(letter) {
+      if (this.$route.path.split('/')[3]) {
+        bus.$emit("changeSchoolUnitTeacherByLetter", letter);
+      } else {
+        bus.$emit("changeSchoolTeacherByLetter", letter);
+      }
+
+    },
     keySend: function () {
       console.log("send++++" + this.searchKey + this.listQuery.unitId)
       if (this.searchKey&&this.$route.path.indexOf('homepage')!==-1){
@@ -151,9 +159,6 @@ export default {
       if (this.searchKey&&this.$route.path.split('/')[1]==='home'){
         bus.$emit("changePageList3", this.searchKey);
       }
-      // this.$nextTick(function () {
-      //     bus.$emit("key", this.searchKey);
-      // })
     },
   }
 }
@@ -174,8 +179,10 @@ export default {
   font-size: 14px;
   letter-spacing: 15px;
 }
-.letter-item{
+.letter-item:hover{
   cursor: pointer;
+  font-weight: bolder;
+  color: red;
 }
 .title{
   font-weight: bold;
