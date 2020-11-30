@@ -1,14 +1,25 @@
 <template>
   <div id="app" style="width: 100%;">
-    <header class="top-container">
-      <a href="http://faculty.scholat.com/index" style="margin: 10px 0 0 200px;">首页</a>
-      <div class="search bar6">
-        <div class="formDiv" style="">
-          <input @keyup.enter="keySend" type="text" v-model="searchKey" placeholder="搜索" name="cname"
-                 style="color: gray;background-color: white;">
-          <!--<button @click="keySend"></button>-->
-          <img src="@/assets/img/search.png" @click="keySend" style="cursor: pointer;">
-        </div>
+    <header class="header">
+      <div class="container">
+        <el-menu
+          :default-active="activeIndex"
+          class="el-menu-researchHome"
+          mode="horizontal"
+          @select="handleSelect"
+        >
+          <el-menu-item index="1">
+            <a href="http://faculty.scholat.com/index" class="router-link-active">首页</a>
+          </el-menu-item>
+          <el-menu-item :disabled="true" id="el-menu-item-placeholder"></el-menu-item>
+          <el-menu-item id="el-menu-item-searchinput-container" :disabled="true">
+            <el-input placeholder="搜索" v-model="input">
+              <i slot="suffix" class="el-input__icon el-icon-search"></i>
+            </el-input>
+          </el-menu-item>
+          <el-menu-item index="2">登录</el-menu-item>
+          <el-menu-item index="3">注册</el-menu-item>
+        </el-menu>
       </div>
     </header>
     <div style="width: 80%;height: 100%" class="center">
@@ -109,9 +120,7 @@ export default {
 name: "teacherPersonInfoPage",
   components: {
     RaddarChart,
-  },
-
-
+  }
 }
 
 //设置宽度
@@ -121,65 +130,50 @@ function screen_height() {
 }
 
 screen_height()
+
+
 </script>
 
 <style>
 /*my style*/
-/*div对齐*/
-.top-container {
-  height: 50px;
+
+.header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-color: #ffffff;
+  color: white;
   font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
-  font-size: 24px;
-  color: #595959;
-  background-color: #d3dce6;
-}
-.bar6 input {
-  border: 1px solid white;
-  border-radius: 20px;
-  /*background: transparent;*/
-  top: 0;
-  right: 0;
-  box-shadow:2px 2px 10px #909090;
 }
 
-.bar6 button {
-  background: white;
-  border-radius: 0 46px 46px 0;
-  width: 50px;
-  top: 0;
-  right: 50px;
-  background-image: url("../../assets/search.png");
-  background-size:50% 70%;
-  background-repeat:no-repeat;
-  background-position:center center;
+.el-menu {
+  min-width: 800px;
+  padding-left: 100px;
 }
-
-.bar6 img{
-  width: 32px;
-  height: 32px;
-  position: absolute;
-  top: 2px;
-  left: 220px;
+#el-menu-item-placeholder {
+  width: 60%;
+  padding-left: 60%;
+  cursor: default;
 }
-.bar6 button:before {
-  /*content: "搜索";*/
-  font-size: 13px;
-  font-weight: bold;
-  color: #3399CC;
+.el-menu > el-menu-item {
+  min-width: 5%;
+  padding: 0 5px;
+  box-sizing: content-box;
+  text-align: center;
 
 }
-.formDiv {
-  position: relative;
-  width: 250px;
-  margin: 0 auto;
-  max-width:150px;
-  transform: translateY(-25px)
+#el-menu-item-searchinput-container {
+  cursor: default;
+  opacity: 1;
+  margin: 0 20px;
 }
 
+/*div对齐*/
 .center {
   margin: auto;
   position: absolute;
-  top: 100px;
+  top: 120px;
   left: 0;
   bottom: 0;
   right: 0;
