@@ -4,13 +4,17 @@
       <el-row>
         <el-col :span="12"><div class="grid-content bg-purple">
           <div class="foot-header">
-            <span class="foot-header-cn">分类浏览</span>
-            <span class="foot-header-en">/CATEGORIES</span>
+            <span class="foot-header-cn">校内单位</span>
+            <span class="foot-header-en">/SCHOOL UNIT</span>
           </div>
-          <div class="foot-content">
-            <div class="foot-div-item"><span class="foot-item">校内单位</span></div>
+          <div class="foot-content" v-for="o in unitList">
+            <div class="foot-div-item"><span class="foot-item">
+              <a :href="'/homepage/'+schoolDomain+'/'+o.domain_name" class="text">
+                {{o.unit_name}}
+              </a>
+            </span></div>
           </div>
-          <div class="foot-content">
+          <!--<div class="foot-content">
             <div class="foot-div-item"><span class="foot-item">学科方向</span></div>
           </div>
           <div class="foot-content">
@@ -19,7 +23,7 @@
           <div class="foot-content">
             <div class="foot-div-item"><span class="foot-item">两院院士
 </span></div>
-          </div>
+          </div>-->
         </div></el-col>
         <el-col :span="12"><div class="grid-content bg-purple-light">
           <div class="foot-header">
@@ -30,7 +34,9 @@
             <div class="foot-div-item"><span class="foot-item">帮助中心</span></div>
           </div>
           <div class="foot-content">
-            <div class="foot-div-item"><span class="foot-item">教师个人主页使用说明</span></div>
+            <div class="foot-div-item"><span class="foot-item">
+              <a target="_blank" href="https://www.yuque.com/vd7ii9/dvybyk/na3nsf">教师个人主页使用说明</a>
+            </span></div>
           </div>
         </div></el-col>
       </el-row>
@@ -40,9 +46,15 @@
 </template>
 
 <script>
-export default {
-name: "FooterNav"
-}
+  export default {
+    name: "FooterNav",
+      data(){
+        return{
+
+        }
+    },
+    props: ['unitList','schoolDomain'],
+  }
 </script>
 
 <style scoped>

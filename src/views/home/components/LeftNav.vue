@@ -6,7 +6,8 @@
           <div class="wp-left-img" v-if="this.unitList[0]">
             <img :src="'http://www.scholat.com/images/uni_logo/'+this.unitList[0].school_name+'.png'"
                  :onerror="defaultLogo"
-                  height="100px"/>
+                  height="100px"
+                  style="margin-top: 10px"/>
           </div>
           <div class="wp-left-content">
             <div v-if="this.unitList[0]">
@@ -120,6 +121,12 @@
 <style scoped>
   @import '../../../styles/catalogueVariables.scss';
 
+  .el-row{
+    /*height: 80px;*/
+    padding: 0;
+    margin-bottom: 0;
+  }
+
   @media screen and (min-width: 1025px){
     .parentCatalogue {
       font-size: 16px;
@@ -140,15 +147,17 @@
     /*display: flex;
     align-items: center;
     width: 100%;*/
-    position: relative;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
     flex-flow: row;
     flex-wrap: nowrap;
     justify-content: flex-start;
     align-items: center;
-    height: 200px;
+    height: 180px;
     margin: 0 auto;
     width: 100%;
-    background-color:rgba(0,45,84,0.5);
+    background-color:rgba(0,45,84,0.8);
     color: white;
     padding-top: 5px;
   }
@@ -157,8 +166,8 @@
     margin: 0 auto;
   }
   .wp{
-    height: 120px;
-    border-bottom: 1px solid gray;
+    height: 100px;
+    /*border-bottom: 1px solid rgb(0,45,84);*/
     line-height: 120px;
 
   }
@@ -171,9 +180,12 @@
     margin-left: 20px;
     font-family: 楷体;
   }
+  。wp-left-img{
+
+  }
   .line{
-    background:#E7E7E7;/*背景色为浅灰色*/
-    width:0.6px;/*设置宽高*/
+    background:#e2e2e2b5;/*背景色为浅灰色*/
+    width:1px;/*设置宽高*/
     height:40px;
     margin-left: 10px;
     margin-right: 10px;
@@ -181,7 +193,7 @@
   }
 
   .ul-nav{
-
+    transform: translateY(15px);
   }
 
 

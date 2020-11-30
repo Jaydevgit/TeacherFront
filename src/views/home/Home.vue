@@ -5,7 +5,8 @@
     </div>
     <div class="middle-container">
       <div class="imgDiv">
-        <img class="imgLogo" :src="getSchoolBackground(this.schoolBackground)" :onerror="SchoolBg" style=" "/>
+        <!--getSchoolBackground(this.schoolBackground)-->
+        <img class="imgLogo" :src="SchoolBg" :onerror="SchoolBg" style=" "/>
 
       </div>
 
@@ -19,7 +20,7 @@
           <span class="line"></span>
         </div>
         <!--<div class="middle">-->
-          <teacher-list :unitId="unitId" :currentDomainName="currentDomainName" v-show="isDisplay" v-if="isRouterAlive">
+          <teacher-list class="teacher-list-container" :unitId="unitId" :currentDomainName="currentDomainName" v-show="isDisplay" v-if="isRouterAlive">
           </teacher-list>
         <!--</div>-->
       </div>
@@ -92,7 +93,7 @@
       </div>-->
     </div>
 
-    <FooterNav></FooterNav>
+    <FooterNav :unitList="unitList" :schoolDomain="listQuery.schoolDomain"></FooterNav>
 
     <footer style="">
       <div class="Info">
@@ -352,11 +353,14 @@
     .letterList {
       font-size: 14px;
       letter-spacing: 5px;
+      margin: 0 auto;
     }
     .letterRed{
       color: red;
     }
-
+    .teacher-list-container{
+      min-height: 200px;
+    }
     .dynamic-page {
       height: auto;
       border-radius: 0 0 8px 8px;
@@ -398,7 +402,7 @@
     z-index: 2;
   }
   .search{
-    margin-top: 150px;
+    margin-top: 350px;
   }
   .imgLogo{
     /*opacity: 0.2;*/

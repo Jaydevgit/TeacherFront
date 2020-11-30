@@ -14,7 +14,7 @@
                 popper-class="popoverBackB"
                 placement="bottom"
                 width="350"
-                trigger="hover">
+                trigger="click">
                 <el-row>
                   <el-col :span="3"><div class="grid-content bg-purple">
                     <img class="imgAvatar" :src="getImgUrl(teacher.tAvatar)" :onerror="imgErrorFun(this)"/>
@@ -82,6 +82,9 @@
         let _self = this;
         bus.$on("changePageList3", function (searchKey) {
           _self._changeSearchTeacher(searchKey)
+        })
+        bus.$on("changeSchoolTeacherByLetter", function (searchKey) {
+          _self._changeSchoolTeacherByLetter(searchKey)
         })
       },
       methods:{
@@ -163,6 +166,24 @@
             this.totalCount = data.totalCount;
           }).catch(error => {
             console.log("QAQ........获取教师失败")
+          })
+        },
+        _changeSchoolTeacherByLetter(letter) {
+          this.listQuery.letter = letter
+          // this.listLoading = true;
+          console.log("### 开始查询教师成员列表")
+          this.api({
+            url: "/home/changeSchoolTeacherByLetter",
+            method: "get",
+            params: this.listQuery
+          }).then(data => {
+            console.log("查询教师信息为:" + JSON.stringify(data))
+            console.log("================changeSchoolTeacherByLetter================")
+            // this.listLoading = false;
+            this.teacherListAll = data.list;
+            /*this.totalCount = data.totalCount;*/
+          }).catch(error => {
+            console.log("QAQ........没有找到教师列表")
           })
         },
         getImgUrl(imgName) {
