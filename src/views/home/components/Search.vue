@@ -193,6 +193,7 @@ export default {
   height: 100px;
   padding: 0;
   padding-left: 50px;
+  margin-bottom: 0;
 }
 .el-col{
   height: 100px;

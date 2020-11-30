@@ -402,7 +402,7 @@
     z-index: 2;
   }
   .search{
-    margin-top: 150px;
+    margin-top: 350px;
   }
   .imgLogo{
     /*opacity: 0.2;*/
