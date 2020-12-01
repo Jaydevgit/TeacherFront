@@ -122,6 +122,11 @@ export default {
   components: {
     RaddarChart,
   },
+  data(){
+    return{
+      teacherList:[]
+    }
+  },
   created() {
     this.esTeacher()
   },
@@ -134,6 +139,8 @@ export default {
           "scholat_username":1,
         }
       }).then(data => {
+        this.teacherList=data;
+        console.log(data);
       })
     }
   }
