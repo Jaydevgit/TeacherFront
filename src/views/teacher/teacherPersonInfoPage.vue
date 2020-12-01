@@ -11,12 +11,13 @@
           <el-menu-item index="1">
             <a href="http://faculty.scholat.com/index" class="router-link-active">首页</a>
           </el-menu-item>
-          <el-menu-item :disabled="true" id="el-menu-item-placeholder"></el-menu-item>
+          <el-menu-item :disabled="true" id="el-menu-item-placeholder1"></el-menu-item>
           <el-menu-item id="el-menu-item-searchinput-container" :disabled="true">
             <el-input placeholder="搜索" v-model="input">
               <i slot="suffix" class="el-input__icon el-icon-search"></i>
             </el-input>
           </el-menu-item>
+          <el-menu-item  :disabled="true" id="el-menu-item-placeholder2"></el-menu-item>
           <el-menu-item index="2">登录</el-menu-item>
           <el-menu-item index="3">注册</el-menu-item>
         </el-menu>
@@ -166,11 +167,23 @@ screen_height()
   min-width: 800px;
   padding-left: 100px;
 }
-#el-menu-item-placeholder {
-  width: 60%;
-  padding-left: 60%;
+
+#el-menu-item-placeholder1 {
+  width: 30%;
+  padding-left: 30%;
   cursor: default;
 }
+
+.el-input {
+  width: 300px;
+}
+
+#el-menu-item-placeholder2 {
+  width: 30%;
+  padding-right: 30%;
+  cursor: default;
+}
+
 .el-menu > el-menu-item {
   min-width: 5%;
   padding: 0 5px;
@@ -181,7 +194,8 @@ screen_height()
 #el-menu-item-searchinput-container {
   cursor: default;
   opacity: 1;
-  margin: 0 20px;
+  margin: 0 -20px;
+
 }
 
 /*div对齐*/
