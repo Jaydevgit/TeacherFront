@@ -117,9 +117,24 @@
   import RaddarChart from './components/RaddarChart'
 
 export default {
-name: "teacherPersonInfoPage",
+  name: "teacherPersonInfoPage",
   components: {
     RaddarChart,
+  },
+  created() {
+    this.esTeacher()
+  },
+  methods:{
+    esTeacher(){
+      this.api({
+        url: "/elasticsearch/esTeacher",
+        method: "post",
+        data: {
+          "scholat_username":1,
+        }
+      }).then(data => {
+      })
+    }
   }
 }
 
