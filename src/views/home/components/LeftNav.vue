@@ -31,8 +31,32 @@
               :mode="displayMode"
               style="overflow: hidden">
               <el-menu-item style="" active- index="0" @click="getAllTeacher()">
-                <span slot="title" class="parentCatalogue">所有教师</span>
+                <span slot="title" class="parentCatalogue">学校首页</span>
               </el-menu-item>
+              <!--<el-submenu index="1">
+                <div slot="title">
+                  <span class="parentCatalogue">校内单位</span>
+                </div>
+                <el-menu-item-group>
+                  <el-menu-item
+                    v-for="(sub, index) in unitList" :key="'subId'+sub.id" :index="sub.id+''"
+                    @click="uIdSend(sub.id,sub.domain_name)">
+                    <span class="subcatalogueName">{{sub.unit_name}}</span>
+                  </el-menu-item>
+                </el-menu-item-group>
+              </el-submenu>
+              <el-submenu index="2">
+                <div slot="title">
+                  <span class="parentCatalogue">学科方向</span>
+                </div>
+                &lt;!&ndash;<el-menu-item-group>
+                  <el-menu-item
+                    v-for="(sub, index) in unitList" :key="'subId'+sub.id" :index="sub.id+''"
+                    @click="uIdSend(sub.id,sub.domain_name)">
+                    <span class="subcatalogueName">{{sub.unit_name}}</span>
+                  </el-menu-item>
+                </el-menu-item-group>&ndash;&gt;
+              </el-submenu>-->
               <el-menu-item v-for="(item, flag) in unitList" :key="'cId'+item.id" :index="item.id+''" @click="uIdSend(item.id,item.domain_name)">
 
                 <div slot="title" >
@@ -140,7 +164,8 @@ export default {
   /*display: flex;
   align-items: center;
   width: 100%;*/
-  position: absolute;
+  position: fixed;
+  z-index: 1000;
   top: 0;
   flex-flow: row;
   flex-wrap: nowrap;
@@ -149,7 +174,7 @@ export default {
   height: 200px;
   margin: 0 auto;
   width: 100%;
-  background-color:rgba(0,45,84,0.5);
+  background-color:rgba(0,45,84,0.7);
   color: white;
   padding-top: 5px;
 }
