@@ -154,6 +154,12 @@ export const constantRouterMap = [
     hidden: true
   },
   {
+    path: '/elasticSearch/esHome',
+    name: 'esHome',
+    component: _import('elasticSearch/esHome'),
+    hidden: true
+  },
+  {
     path: '/scholat',
     redirect: '/scholat/apply/wait',
     name: 'scholat',

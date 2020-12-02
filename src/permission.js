@@ -6,7 +6,7 @@ import {getToken, getScholatToken} from '@/utils/auth'
 import {getSchoolToken} from "./utils/auth"; // 验权
 const whiteList = ['/scholat/login', '/login','/schoolLogin','/index',
   '/404', '/teacher/', '/homepage/', '/home/','/teacherDetail',
-  '/departmentPage', '/unitApply','/applySuccess','/researchHome'] //白名单,不需要登录的路由
+  '/departmentPage', '/unitApply','/applySuccess','/researchHome','/esHome'] //白名单,不需要登录的路由
 router.beforeEach((to, from, next) => {
   NProgress.start()
   console.log("=================================")
