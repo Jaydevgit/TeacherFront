@@ -1,7 +1,8 @@
-<template>
-  <div class="container" style="padding: 20px;min-height: calc(100vh - 50px);height: 100%;display:flex;align-items: center;">
-<!--    <div style="clear: both;width: 480px;">-->
-<!--    </div>-->
+<template xmlns="http://www.w3.org/1999/html">
+  <div class="container"
+       style="padding: 20px;min-height: calc(100vh - 50px);height: 100%;display:flex;align-items: center;">
+    <!--    <div style="clear: both;width: 480px;">-->
+    <!--    </div>-->
     <!--以下注释的要求在帮助文件内提供-->
     <!--<div style="min-height: 600px;width:500px;display: inline-block;margin-left:40px;margin-bottom: 40px">
       <el-card class="box-card" style="width:460px;float: left;margin-right: 20px">
@@ -23,16 +24,16 @@
         </el-carousel-item>
       </el-carousel>
     </div>-->
-    <div style="min-height: 600px;width: 700px;display: inline-block;margin-bottom: 40px">
-      <el-card class="box-card" style="width: 600px;float: left;">
+    <div style="min-height: 600px;width: 500px;display: inline-block;margin-bottom: 40px">
+      <el-card class="box-card" style="width: 500px;float: left;">
         <div style=" height: 50px;text-align: center;margin-top: 40px">
-          <el-button type="primary"  style=""
+          <el-button type="primary" style=""
                      @click="showAdd">添加主栏目
           </el-button>
-          <el-button type="success"  style=""
+          <el-button type="success" style=""
                      @click="sortCat">排序主栏目
           </el-button>
-          <el-button type="warning"  style=""
+          <el-button type="warning" style=""
                      @click="sortSubCat">排序子栏目
           </el-button>
         </div>
@@ -53,7 +54,7 @@
         <el-menu
           default-active="0"
           class="el-menu-vertical-demo"
-          style="width: 600px;float: left"
+          style="width: 500px;float: left"
           background-color="#ffffff"
           @open="handleOpen"
           @close="handleClose">
@@ -71,16 +72,17 @@
                 <el-checkbox v-if="sortVisualable" :label="item.id">&nbsp</el-checkbox>
                 <span :id="'seq'+item.id" style="display: none" v-if="sortVisualable" class="seq"></span>
                 <i class="el-icon-menu"></i>
-                <span class="catalogueName" style="margin-right: 20px;margin-left: 8px;font-size: 16px">{{item.name}}</span>
+                <span class="catalogueName"
+                      style="margin-right: 20px;margin-left: 8px;font-size: 16px">{{ item.name }}</span>
                 <div class="operatebox">
-                <el-button type="success" class="threeButton" @click="showAddSub(item.id)">添加子栏</el-button>
-                <!--<el-button type="success" class="threeButton" size="small"    @click="topCatalogue(item.id)" >置顶</el-button>-->
-                <el-button type="warning" class="threeButton"  @click="showEdit(item.id,item.name)">修改</el-button>
-                <el-button type="danger" class="threeButton" @click="showDelete(item.id)">删除</el-button>
+                  <el-button type="success" class="threeButton" @click="showAddSub(item.id)">添加子栏</el-button>
+                  <!--<el-button type="success" class="threeButton" size="small"    @click="topCatalogue(item.id)" >置顶</el-button>-->
+                  <el-button type="warning" class="threeButton" @click="showEdit(item.id,item.name)">修改</el-button>
+                  <el-button type="danger" class="threeButton" @click="showDelete(item.id)">删除</el-button>
 
-                <!--<i class="el-icon-school" v-if="item.state == 0"></i>
-                <i class="el-icon-reading" v-else-if="item.state == 1"></i>
-                <i class="el-icon-menu" v-else></i>-->
+                  <!--<i class="el-icon-school" v-if="item.state == 0"></i>
+                  <i class="el-icon-reading" v-else-if="item.state == 1"></i>
+                  <i class="el-icon-menu" v-else></i>-->
                 </div>
               </div>
 
@@ -92,11 +94,11 @@
                               @click="getTeacherByCatalogue(sub.id)">
                   <el-checkbox v-if="sortSubVisualable" style="padding-right: 15px;" :label="sub.id">&nbsp</el-checkbox>
                   <span :id="'seq_child'+sub.id" style="display: none" v-if="sortSubVisualable" class="seq"></span>
-                  <span style="margin-right: 20px;margin-left: 8px;font-size: 16px">{{sub.name}}</span>
-                  <div style="float: right" >
-                    <el-button type="warning" class="threeButton"  @click="showEdit(sub.id,sub.name)">修改
+                  <span style="margin-right: 20px;margin-left: 8px;font-size: 16px">{{ sub.name }}</span>
+                  <div style="float: right">
+                    <el-button type="warning" class="threeButton" @click="showEdit(sub.id,sub.name)">修改
                     </el-button>
-                    <el-button type="danger" class="threeButton"  @click="showDelete(sub.id)">删除</el-button>
+                    <el-button type="danger" class="threeButton" @click="showDelete(sub.id)">删除</el-button>
                   </div>
                 </el-menu-item>
 
@@ -109,15 +111,16 @@
                 <el-checkbox v-if="sortVisualable" :label="item.id">&nbsp</el-checkbox>
                 <span :id="'seq'+item.id" style="display: none" v-if="sortVisualable" class="seq"></span>
                 <i class="el-icon-menu"></i>
-                <span class="catalogueName" style="margin-right: 20px;margin-left: 8px;font-size: 16px">{{item.name}}</span>
+                <span class="catalogueName"
+                      style="margin-right: 20px;margin-left: 8px;font-size: 16px">{{ item.name }}</span>
                 <div class="operatebox">
-                <el-button type="success" class="threeButton"  @click="showAddSub(item.id)">添加子栏</el-button>
-                <!--<el-button type="success" class="threeButton" size="small"    @click="topCatalogue(item.id)" >置顶</el-button>-->
-                <el-button type="warning" class="threeButton" @click="showEdit(item.id,item.name)">修改
-                </el-button>
-                <el-button type="danger" class="threeButton"  @click="showDelete(item.id)">删除</el-button>
-<!--                <div style="display: inline-block;float: right;margin-top: 20px;margin-right: 10px"> <el-button type="danger" class="threeButton"  @click="showDelete(item.id)">删除</el-button></div>-->
-              </div>
+                  <el-button type="success" class="threeButton" @click="showAddSub(item.id)">添加子栏</el-button>
+                  <!--<el-button type="success" class="threeButton" size="small"    @click="topCatalogue(item.id)" >置顶</el-button>-->
+                  <el-button type="warning" class="threeButton" @click="showEdit(item.id,item.name)">修改
+                  </el-button>
+                  <el-button type="danger" class="threeButton" @click="showDelete(item.id)">删除</el-button>
+                  <!--                <div style="display: inline-block;float: right;margin-top: 20px;margin-right: 10px"> <el-button type="danger" class="threeButton"  @click="showDelete(item.id)">删除</el-button></div>-->
+                </div>
               </div>
             </el-menu-item>
           </el-checkbox-group>
@@ -125,697 +128,975 @@
       </el-card>
 
     </div>
+    <!--推荐模板弹出层-->
+    <el-dialog title="推荐栏目模板" :visible="true" :modal="false"
+               :close-on-click-modal="false">
+      <el-menu
+        class="el-menu-vertical-demo"
+        default-active="0"
+        style="width: 100%"
+        @open="handleOpen"
+        @close="handleClose">
+        <el-checkbox-group v-model="checkRecommandList">
+          <template v-for="item in recomendCatalogue">
+            <el-checkbox :disabled="item.haveexist"@change="addValInNewList(item.name)" :label="item.name">{{ item.name }}</el-checkbox>
+
+            <div>
+              <template v-for="subitem in item.sub">
+
+                <span style="display:inline-block;margin-left:25px;">
+                <el-checkbox :disabled="subitem.haveexist" @change="addparent(item.name);addValInNewList(item.name+'@子@'+subitem.name)"
+                             :label="item.name+'@子@'+subitem.name">{{ subitem.name }}</el-checkbox>
+                </span>
+              </template>
+            </div>
+            <div style="margin: 15px 0;"></div>
+          </template>
+        </el-checkbox-group>
+
+      </el-menu>
+      <div style="width: 100%;text-align: center" >
+        <el-button type="primary" @click="useRecommand" plain>使用选中模板</el-button>
+      </div>
+
+    </el-dialog>
 
   </div>
-
 
 </template>
 
 <script>
-    export default {
-        data() {
-            return {
-                //变量
-                defaultImage: 'this.src="../src/assets/img/defaultAvatar.png"',
-                isActive: '',
-                sourceUrl: 'http://47.106.132.95:2333/',
-                listName: '最新更新',
-                totalCount: 0, //分页组件--数据总条数
-                totalUpdate: 0,// 学者网更新总数
-                listLoading: false,//数据加载等待动画
-                listQuery: {
-                    unitId: '',
-                    catalogue: ''
-                },
-                checkList: [],
-                searchKey: '',
-                addTeacherVisible: false,
-                currentCat: '',//当前栏目
-                currentName: '',
-                searchList: [],
-                catalogueList: [],
-                multipleSelection: [],
-                teacherSort: [],
-                teacherSort_id: [],
-                teacherList: [],
-                dialogFormVisible: false,
-                sortVisualable: false,
-                teacherVisualable: false,
-                unitVisualable: false,
-                sortSubVisualable: false,
-                form: {
-                    tId: [],
-                    cId: ''
-                },
-                seq_main: [],
-                seq_child: [],
-                seq_teacher: [],
-                formLabelWidth: '120px'
 
-            }
+export default {
+  data() {
+    return {
+      //变量
+      defaultImage: 'this.src="../src/assets/img/defaultAvatar.png"',
+      isActive: '',
+      sourceUrl: 'http://47.106.132.95:2333/',
+      listName: '最新更新',
+      totalCount: 0, //分页组件--数据总条数
+      totalUpdate: 0,// 学者网更新总数
+      listLoading: false,//数据加载等待动画
+      listQuery: {
+        unitId: '',
+        catalogue: ''
+      },
+      checkList: [],
+      checkRecommandList: [],//检查推荐的列表
+      initcheckRecommandLength:0,
+      newRecommandAddList:[],
+      searchKey: '',
+      addTeacherVisible: false,
+      currentCat: '',//当前栏目
+      currentName: '',
+      searchList: [],
+      catalogueList: [],
+      multipleSelection: [],
+      teacherSort: [],
+      teacherSort_id: [],
+      teacherList: [],
+      sortVisualable: false,
+      teacherVisualable: false,
+      unitVisualable: false,
+      sortSubVisualable: false,
+      recomendCatalogue: [{
+        'haveSub': true,
+        name: '按教师职称',
+        haveexist: false,
+        sub: [{name: '教授', haveexist: false}, {name: '副教授', haveexist: false}
+          , {name: '讲师', haveexist: false}, {name: '助教', haveexist: false}]
+      },
+        {
+          'haveSub': true,
+          name: '按教学单位',
+          haveexist: false,
+          sub: [{name: '计算机科学系', haveexist: false}, {name: '计算机软件系', haveexist: false}
+            , {name: '计算机网络系', haveexist: false}, {name: '计算机应用系', haveexist: false}, {name: '人工智能系', haveexist: false}]
         },
-        created() {
-            this.getCatalogues();
-
-        },
-        ready() {
-        }
-        ,
-        computed: {},
-        methods: {
-            teacher_check(e){
-                alert("hhh")
-            },
-            sortCat() {
-                if(this.teacherVisualable===true){
-                    this.teacherVisualable=false;
-                }
-                this.sortVisualable = !this.sortVisualable;
-                this.sortSubVisualable = false;
-                this.checkList=[];
-            },
-            sortSubCat() {
-                if(this.teacherVisualable===true){
-                    this.teacherVisualable=false;
-                }
-
-                this.sortSubVisualable = !this.sortSubVisualable;
-                this.sortVisualable = false;
-                this.checkList=[];
-            },
-            sortTeacher() {
-                if(this.sortVisualable===true||this.sortSubVisualable===true){
-                    this.sortVisualable=false;
-                    this.sortSubVisualable=false;
-                }
-                this.teacherVisualable = !this.teacherVisualable;
-                this.teacherSort=[];
-                this.teacherSort_id=[];
-            },
-            sortSubmit() {
-                //排序目录
-                this.seq_main = [];
-                this.seq_child = [];
-                this.seq_teacher = [];
-                console.log(JSON.stringify(this.checkList))
-                this.api({
-                    url: "/catalogue/sortCatalogue",
-                    method: "post",
-                    data: {
-                        "cIds": this.checkList,
-                        "unitId": this.$store.getters.unitId
-                    }
-                }).then(data => {
-                    this.$message.success('排序成功');
-                    this.getCatalogues()
-                    this.sortVisualable = false;
-                    this.checkList = []
-                }).catch(error => {
-                    console.log("QAQ........添加失败")
-                })
-
-            },
-            sortSubmitSub() {
-                //排序目录
-                console.log(JSON.stringify(this.checkList))
-                this.api({
-                    url: "/catalogue/sortCatalogue",
-                    method: "post",
-                    data: {
-                        "cIds": this.checkList,
-                        "unitId": this.$store.getters.unitId
-                    }
-                }).then(data => {
-                    this.$message.success('排序成功');
-                    this.getCatalogues()
-                    this.sortVisualable = false;
-                    this.checkList = []
-                }).catch(error => {
-                    console.log("QAQ........添加失败")
-                })
-
-            },
-            sortTeacherSubmit(state) {
-                //state参数0，即为目录教师排序
-                if (!state) {
-                    let ctIds = [];
-                    //检查已选择教师的ID
-                    console.log(JSON.stringify(this.teacherSort))
-                    //把ID存到数组
-                    for (let i = 0; i < this.teacherSort.length; i++) {
-
-                        ctIds.push(this.teacherSort[i].ctId)
-                    }
-                    this.api({
-                        url: "/catalogue/sortTeacher",
-                        method: "post",
-                        data: {
-                            "ctIds": ctIds,
-                            "id": this.currentCat
-                        }
-                    }).then(data => {
-                        this.$message.success('排序成功');
-                        this.getTeacherByCatalogue(this.currentCat)
-                        this.teacherVisualable = false;
-                        this.teacherSort = []
-                    }).catch(error => {
-                        console.log("QAQ........排序失败")
-                    })
-                }
-                //否则，是整个学院教师排序
-                else {
-                    let tIds = [];
-                    //检查已选择教师的ID
-                    console.log(JSON.stringify(this.teacherSort))
-                    for (let i = 0; i < this.teacherSort.length; i++) {
-
-                        tIds.push(this.teacherSort[i].tId)
-                    }
-                    this.api({
-                        url: "/catalogue/sortUnitTeacher",
-                        method: "post",
-                        data: {
-                            "tIds": tIds,
-                            "unitId": this.$store.getters.unitId
-                        }
-                    }).then(data => {
-                        this.$message.success('排序成功');
-                        this.getList()
-                        this.unitVisualable = false;
-                        this.teacherVisualable = false;
-                        this.teacherSort = []
-                    }).catch(error => {
-                        console.log("QAQ........排序失败")
-                    })
-                }
-            },
-            changeFun(val) {
-                this.multipleSelection = val // 返回的是选中的列的数组集合
-                console.log(JSON.stringify(this.multipleSelection))
-            },
-            teacherChange(val) {
-                this.teacherSort_id=[];
-                val.forEach((val,index,arr)=>{
-                   this.teacherSort_id.push(val.tId);
-                });
-                console.log(this.teacherSort_id);
-                this.teacherList.forEach((v,k)=>{
-                    let d = document.getElementById('seq_teacher'+v.tId);
-                    d.style.display='none';
-                });
-                this.teacherSort_id.forEach((v,k)=>{
-                   let d = document.getElementById('seq_teacher'+v);
-                   d.style.display='inline';
-                   d.innerText = k+1;
-                });
-                this.teacherSort = val // 返回的是选中的列的数组集合
-                console.log(JSON.stringify(this.teacherSort))
-            },
-            showAdd() {
-                if(this.teacherVisualable===true){
-                    this.teacherVisualable=false;
-                }
-                this.$prompt('', '请输入主栏目名称', {
-                    confirmButtonText: '确定',
-                    cancelButtonText: '取消',
-                }).then(({value}) => {
-                    if (this.checkName(value)) {
-                        this.api({
-                            url: "/catalogue/addCatalogue",
-                            method: "post",
-                            data: {
-                                "unitId": this.$store.state.user.unitId,
-                                "catalogue": value
-                            }
-                        }).then(data => {
-                            this.getCatalogues()
-                        }).catch(error => {
-                            console.log("QAQ........添加栏目失败")
-                        })
-                    } else
-                        this.$message({
-                            type: 'warning',
-                            message: '该栏目已经存在，请重新输入'
-                        });
-                }).catch(() => {
-                    this.$message({
-                        type: 'info',
-                        message: '取消操作'
-                    });
-                });
-            },
-            column_check(val){
-              if(this.sortVisualable){
-                  // 代表在排主栏目
-                  this.catalogueList_id=[];
-                  val.forEach((v,index,arr)=>{
-                      this.catalogueList_id.push(v);
-                  });
-                  this.catalogueList.forEach((v,k)=>{
-                      let d = document.getElementById('seq'+v.id);
-                      d.style.display='none';
-                  });
-                  this.catalogueList_id.forEach((v,k)=>{
-                      let d = document.getElementById('seq'+v);
-                      d.style.display='inline';
-                      d.innerText = k+1;
-                  });
-              }else if(this.sortSubVisualable){
-                  // 代表在排子栏目
-                  this.catalogueList_id=[];
-                  val.forEach((v,index,arr)=>{
-                      this.catalogueList_id.push(v);
-                  });
-                  console.log(this.catalogueList_id)
-                  console.log(this.catalogueList)
-                  this.catalogueList.forEach((v,k)=>{
-                     v.subCatalogueList.forEach((vv,kk)=>{
-                         let d = document.getElementById('seq_child'+vv.id);
-                         d.style.display='none';
-                     });
-                  });
-                  this.catalogueList_id.forEach((v,k)=>{
-                      let d = document.getElementById('seq_child'+v);
-                      d.style.display='inline';
-                      d.innerText = k+1;
-                  });
-              }
-            },
-            showAddSub(cId) {
-
-                //先查询该主目录有没有教师，如果有，返回失败；没有，则可以添加子目录
-                this.api({
-                    url: "/catalogue/getTeacherByCatalogue",
-                    method: "get",
-                    params: {id: cId}
-                }).then(data => {
-                    console.log("dataList....." + JSON.stringify(data));
-                    if (Object.keys(data.list).length != 0) {
-                        this.$message({
-                            type: 'error',
-                            message: '该主栏目已存在教师，添加子栏目失败！'
-                        });
-                        return
-                    } else {
-                        this.$prompt('', '请输入子栏目名称', {
-                            confirmButtonText: '确定',
-                            cancelButtonText: '取消',
-                        }).then(({value}) => {
-                            if (this.checkName(value)) {
-                                this.api({
-                                    url: "/catalogue/addSubCatalogue",
-                                    method: "post",
-                                    data: {
-                                        "unitId": this.$store.state.user.unitId,
-                                        "catalogue": value,
-                                        "parentId": cId
-                                    }
-                                }).then(data => {
-                                    this.getCatalogues()
-                                }).catch(error => {
-                                    console.log("QAQ........添加栏目失败")
-                                })
-                            } else
-                                this.$message({
-                                    type: 'warning',
-                                    message: '该栏目已经存在，请重新输入'
-                                });
-                        }).catch(() => {
-                            this.$message({
-                                type: 'info',
-                                message: '取消操作'
-                            });
-                        });
-                    }
-
-                }).catch(error => {
-                    console.log("QAQ........查询教师失败")
-                })
-            },
-            showDelete(cId) {
-                this.$confirm('', '确定删除该栏目？', {
-                    confirmButtonText: '确定',
-                    cancelButtonText: '取消',
-                }).then(() => {
-
-                        this.api({
-                            url: "/catalogue/deleteCatalogue",
-                            method: "post",
-                            data: {"cId": cId}
-                        }).then(data => {
-                            this.getCatalogues()
-                        }).catch(error => {
-                            console.log("QAQ........删除失败")
-                        })
-                    }
-                ).catch(() => {
-                    this.$message({
-                        type: 'info',
-                        message: '取消操作'
-                    });
-                });
-            },
-            showEdit(cId, name) {
-                this.$prompt('', '请修改栏目名称', {
-                    confirmButtonText: '修改',
-                    cancelButtonText: '取消',
-                    inputValue: name
-                }).then(({value}) => {
-                    if (this.checkName(value)) {
-                        this.api({
-                            url: "/catalogue/updateCatalogue",
-                            method: "post",
-                            data: {"cId": cId, newName: value}
-                        }).then(data => {
-                            this.getCatalogues()
-                        }).catch(error => {
-                            console.log("QAQ........添加学科失败")
-                        })
-                    } else
-                        this.$message({
-                            type: 'warning',
-                            message: '该学科已经存在，请重新输入'
-                        });
-                }).catch(() => {
-                    this.$message({
-                        type: 'info',
-                        message: '取消操作'
-                    });
-                });
-            },
-            routerTo(tId) {
-                this.$router.push({
-                    name: 'teacherPersonlHomePage',
-                    params: {
-                        id: tId
-                    }
-                })
-            },
-            checkName(value) {
-                for (let a = 0; a < this.catalogueList.length; a++) {
-                    if (this.catalogueList[a].name == value) {
-                        return false
-                    }
-                }
-                this.currentName = value
-                return true
-            },
-            checkTeacherList(value) {
-                for (let a = 0; a < this.teacherList.length; a++) {
-                    if (this.teacherList[a].tId == value) {
-                        return false
-                    }
-                }
-                return true
-            },
-            hasTeacher(cId) {
-
-                this.api({
-                    url: "/catalogue/getTeacherByCatalogue",
-                    method: "get",
-                    params: {id: cId}
-                }).then(data => {
-                    console.log("dataList....." + JSON.stringify(data));
-                    console.log(Object.keys(data.list).length);
-                    if (Object.keys(data.list).length != 0)
-                        return true
-                    else
-                        return false
-                }).catch(error => {
-                    console.log("QAQ........查询教师失败")
-                })
-
-            },
-            getCatalogues() {
-
-                this.listQuery.unitId = this.$store.state.user.unitId
-                this.api({
-                    url: "/catalogue/getCatalogues",
-                    method: "get",
-                    params: this.listQuery
-                }).then(data => {
-                    console.log(JSON.stringify(data))
-                    this.catalogueList = data.list;
-
-                }).catch(error => {
-                    console.log("QAQ........没有找到栏目信息")
-                })
-            },
-
-            getTeacherByCatalogue(cId, state) {
-                console.log("state++++" + state);
-                this.api({
-                    url: "/catalogue/getTeacherByCatalogue",
-                    method: "get",
-                    params: {id: cId}
-                }).then(data => {
-                    console.log("CatalogueTeachers+++++" + JSON.stringify(data));
-                    this.teacherList = data.list;
-                    this.currentCat = cId;
-                    this.unitVisualable = false;
-                    //如果是部门、学科则不能增加教师，只能添加子目录，再添加教师
-                    if (state != 0 && state != 1)
-                        this.addTeacherVisible = true;
-                    else
-                        this.addTeacherVisible = false;
-                }).catch(error => {
-                    console.log("QAQ........没有找到教师")
-                })
-            },
-            //添加教师
-            addCatalogueTeacher() {
-                let tIds = [];
-                //检查已选择教师的ID
-                console.log(JSON.stringify(this.multipleSelection))
-                //检查教师是否已经加入该栏目
-                for (let i = 0; i < this.multipleSelection.length; i++) {
-
-                    if (!this.checkTeacherList(this.multipleSelection[i].tId)) {
-                        this.$message({
-                            type: 'warning',
-                            message: '该教师已经存在在此栏目，请重新选择！'
-                        });
-                        return false;
-
-                    } else tIds.push(this.multipleSelection[i].tId)
-                }
-                console.log("tIds===++++" + tIds);
-                this.api({
-                    url: "/catalogue/addCatalogueTeacher",
-                    method: "post",
-                    data: {"tIds": tIds, "cId": this.currentCat}
-                }).then(data => {
-                    this.$message.success('添加成功');
-                    this.getTeacherByCatalogue(this.currentCat);
-                    this.dialogFormVisible = false;
-                }).catch(error => {
-                    console.log("QAQ........添加失败");
-                    this.$message.warning('请勾选要添加的教师');
-                })
-            },
-            topTeacher(ctId) {
-                this.$confirm('是否要在该栏目置顶该教师?', '提示', {
-                    confirmButtonText: '确定',
-                    cancelButtonText: '取消',
-                    type: 'warning'
-                }).then(() => {
-                    this.api({
-                        url: "/catalogue/topTeacher",
-                        method: "post",
-                        data: {
-                            "ctId": ctId,
-                            "tSeq": 1
-                        }
-                    }).then(data => {
-                        this.getTeacherByCatalogue(this.currentCat);
-                    }).catch(error => {
-                        console.log("QAQ........删除失败")
-                    })
-                }).catch(() => {
-                    this.$message({
-                        type: 'info',
-                        message: '已取消置顶'
-                    });
-                });
-
-            },
-            untopTeacher(ctId) {
-                this.$confirm('是否要在该栏目置顶该教师?', '提示', {
-                    confirmButtonText: '确定',
-                    cancelButtonText: '取消',
-                    type: 'warning'
-                }).then(() => {
-                    this.api({
-                        url: "/catalogue/topTeacher",
-                        method: "post",
-                        data: {
-                            "ctId": ctId,
-                            "tSeq": 0
-                        }
-                    }).then(data => {
-                        this.getTeacherByCatalogue(this.currentCat);
-                    }).catch(error => {
-                        console.log("QAQ........删除失败")
-                    })
-                }).catch(() => {
-                    this.$message({
-                        type: 'info',
-                        message: '已取消置顶'
-                    });
-                });
-
-            },
-            handleOpen(key, keyPath) {
-                console.log(key, keyPath);
-            },
-            handleClose(key, keyPath) {
-                console.log(key, keyPath);
-            }
-        },
-        components: {}
+        {
+          'haveSub': true,
+          name: '优秀教研团队',
+          haveexist: false,
+          sub: [{name: '学者网团队', haveexist: false}, {name: '人工智能研究中心', haveexist: false},
+            {name: '游戏化学习研究与开发', haveexist: false}]
+        }],
+      form: {
+        tId: [],
+        cId: ''
+      },
+      seq_main: [],
+      seq_child: [],
+      seq_teacher: [],
     }
-</script>
+  },
+  created() {
+    this.getCatalogues();
+  },
+  ready() {
 
+  }
+  ,
+  computed: {},
+  methods: {
+
+    addparent(val){
+
+      if (this.checkRecommandList.indexOf(val) === -1) {
+        this.checkRecommandList.push(val)
+        this.newRecommandAddList.push(val)
+      }
+    },
+    remove_array(array,val)
+    {
+      for(var i=0;i<array.length;i++)
+      {
+        if(array[i]===val)
+        {
+          array.splice(i,1)
+          return
+        }
+      }
+    }
+
+    ,
+    addValInNewList(val)
+    {
+
+      var locate=this.newRecommandAddList.indexOf(val)
+      if ( locate=== -1) {
+        this.newRecommandAddList.push(val)
+      }else{
+        //如果移除的是父 则将子的选中都去掉 是子的话就直接
+        var pattern = /@子@/
+        var str = val;
+        var value = ''
+        if (pattern.test(str)) {
+          this.newRecommandAddList.splice(locate,1)
+        }
+        else
+        {
+          pattern=new RegExp(val)
+          for(var i=0;i<this.newRecommandAddList.length;i++)
+          {
+            if(pattern.test(this.newRecommandAddList[i]))
+            {
+              this.remove_array(this.checkRecommandList,this.newRecommandAddList[i])
+              this.newRecommandAddList.splice(i,1)
+              i--
+            }
+          }
+        }
+
+      }
+    },
+    useRecommand()//使用推荐模板
+    {
+      if(this.checkRecommandList.length===this.initcheckRecommandLength)
+      {
+        this.$message({
+          type: 'warning',
+          message: '请先选则模板'
+        });
+        return
+      }
+      this.$confirm('', '确定选定推荐栏目模板？', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+      }).then(() => {
+          //先将父添加
+          var fathertemp=[]
+          for(var i=0;i<this.newRecommandAddList.length;i++)
+          {
+            var pattern = /@子@/
+
+            if(!pattern.test(this.newRecommandAddList[i]))
+            {
+              fathertemp.push(this.newRecommandAddList[i])
+              this.newRecommandAddList.splice(i,1)
+            }
+          }
+          if(fathertemp.length!==0)
+          {
+            this.api({
+              url: "/catalogue/addMulCatalogue",
+              method: "post",
+              data: {
+                "unitId": this.$store.state.user.unitId,
+                "list": fathertemp
+              }
+            }).then(data => {
+              this.addChildeCatalogue(data.list)
+            }).catch(error => {
+              console.log("QAQ........添加栏目失败")
+            })
+          }else{
+            this.addChildeCatalogue(this.catalogueList)
+          }
+
+
+        }
+      ).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '取消操作'
+        });
+      });
+    },
+    addChildeCatalogue(datalist){
+      function getCId(parent = '', child = '',list) {
+        for (var i = 0; i < list.length; i++) {
+          if (parent === list[i].name) {
+            console.log(list[i])
+            return list[i].id
+          }
+        }
+        return ''
+      }
+      //类似目录 [name:'职称'，：id:123]
+      var newlist=[]
+      for(var i=0;i<this.newRecommandAddList.length;i++) {
+        var parent = ''
+        var child = ''
+        var str=this.newRecommandAddList[i]
+        //正则表达式将val提取其父和子
+        var pattern = /(?<=@子@).+/
+        child = pattern.exec(str)[0]
+        pattern = /.+(?=@子@)/
+        parent = pattern.exec(str)[0]
+        var cId = getCId(parent, '',datalist)
+        newlist.push(cId+'@加@'+child)
+      }
+      if(newlist.length===0)
+        return
+      this.api({
+        url: "/catalogue/addSMulubCatalogue",
+        method: "post",
+        data: {
+          "unitId": this.$store.state.user.unitId,
+          "list": newlist,
+        }
+      }).then(data => {
+        this.getCatalogues()
+      }).catch(error => {
+        console.log("QAQ........添加栏目失败")
+      })
+      this.newRecommandAddList=[]
+    },
+    //判断recommand的是否在catalogue里面
+    checkIsIncatalogue() {
+      var templist = this.catalogueList
+      var templength = templist.length
+      var tempsub = []
+
+      function stringinlist(list = [], string) {
+        var len = list.length
+        for (var i = 0; i < len; i++) {
+          if (string === list[i].name)
+            return i
+        }
+        return -1
+      }
+
+      for (var i = 0; i < templength; i++) {
+        var subCatalogueListlen = templist[i].subCatalogueList.length
+        if (subCatalogueListlen > 0) {
+          var tempchild = []
+          for (var j = 0; j < subCatalogueListlen; j++) {
+            tempchild.push(templist[i].subCatalogueList[j].name)
+          }
+          tempsub.push({name: templist[i].name, havechild: true, subchild: tempchild})
+        } else {
+          tempsub.push({name: templist[i].name, havechild: false, subchild: []})
+        }
+      }
+      var temprecommand = this.recomendCatalogue
+      var temprecommandlen = this.recomendCatalogue.length
+      for (var i = 0; i < temprecommandlen; i++) {
+        var temprecommandname = temprecommand[i].name
+        var tempindx = stringinlist(tempsub, temprecommandname)
+        temprecommand[i].haveexist = false
+        if (tempindx > -1) {
+          var temparray = tempsub[tempindx].subchild
+          temprecommand[i].haveexist = true
+          var checkname = temprecommand[i].name
+          this.checkRecommandList.push(checkname)
+          if (temprecommand[i].haveSub) {
+            var tempsubrecommand = temprecommand[i].sub
+            var tempsubrecommandlen = tempsubrecommand.length
+            for (var j = 0; j < tempsubrecommandlen; j++) {
+              temprecommand[i].sub[j].haveexist = false
+              if (temparray.indexOf(tempsubrecommand[j].name) > -1) {
+                temprecommand[i].sub[j].haveexist = true
+                this.checkRecommandList.push(checkname + '@子@' + temprecommand[i].sub[j].name)
+              }
+            }
+          }
+        }
+
+      }
+      this.recomendCatalogue = temprecommand
+      this.initcheckRecommandLength=this.checkRecommandList.length
+    },
+    teacher_check(e) {
+      alert("hhh")
+    },
+    sortCat() {
+      if (this.teacherVisualable === true) {
+        this.teacherVisualable = false;
+      }
+      this.sortVisualable = !this.sortVisualable;
+      this.sortSubVisualable = false;
+      this.checkList = [];
+    },
+    sortSubCat() {
+      if (this.teacherVisualable === true) {
+        this.teacherVisualable = false;
+      }
+
+      this.sortSubVisualable = !this.sortSubVisualable;
+      this.sortVisualable = false;
+      this.checkList = [];
+    },
+    sortTeacher() {
+      if (this.sortVisualable === true || this.sortSubVisualable === true) {
+        this.sortVisualable = false;
+        this.sortSubVisualable = false;
+      }
+      this.teacherVisualable = !this.teacherVisualable;
+      this.teacherSort = [];
+      this.teacherSort_id = [];
+    },
+    sortSubmit() {
+      //排序目录
+      this.seq_main = [];
+      this.seq_child = [];
+      this.seq_teacher = [];
+      console.log(JSON.stringify(this.checkList))
+      this.api({
+        url: "/catalogue/sortCatalogue",
+        method: "post",
+        data: {
+          "cIds": this.checkList,
+          "unitId": this.$store.getters.unitId
+        }
+      }).then(data => {
+        this.$message.success('排序成功');
+        this.getCatalogues()
+        this.sortVisualable = false;
+        this.checkList = []
+      }).catch(error => {
+        console.log("QAQ........添加失败")
+      })
+
+    },
+    sortSubmitSub() {
+      //排序目录
+      console.log(JSON.stringify(this.checkList))
+      this.api({
+        url: "/catalogue/sortCatalogue",
+        method: "post",
+        data: {
+          "cIds": this.checkList,
+          "unitId": this.$store.getters.unitId
+        }
+      }).then(data => {
+        this.$message.success('排序成功');
+        this.getCatalogues()
+        this.sortVisualable = false;
+        this.checkList = []
+      }).catch(error => {
+        console.log("QAQ........添加失败")
+      })
+
+    },
+    sortTeacherSubmit(state) {
+      //state参数0，即为目录教师排序
+      if (!state) {
+        let ctIds = [];
+        //检查已选择教师的ID
+        console.log(JSON.stringify(this.teacherSort))
+        //把ID存到数组
+        for (let i = 0; i < this.teacherSort.length; i++) {
+
+          ctIds.push(this.teacherSort[i].ctId)
+        }
+        this.api({
+          url: "/catalogue/sortTeacher",
+          method: "post",
+          data: {
+            "ctIds": ctIds,
+            "id": this.currentCat
+          }
+        }).then(data => {
+          this.$message.success('排序成功');
+          this.getTeacherByCatalogue(this.currentCat)
+          this.teacherVisualable = false;
+          this.teacherSort = []
+        }).catch(error => {
+          console.log("QAQ........排序失败")
+        })
+      }
+      //否则，是整个学院教师排序
+      else {
+        let tIds = [];
+        //检查已选择教师的ID
+        console.log(JSON.stringify(this.teacherSort))
+        for (let i = 0; i < this.teacherSort.length; i++) {
+
+          tIds.push(this.teacherSort[i].tId)
+        }
+        this.api({
+          url: "/catalogue/sortUnitTeacher",
+          method: "post",
+          data: {
+            "tIds": tIds,
+            "unitId": this.$store.getters.unitId
+          }
+        }).then(data => {
+          this.$message.success('排序成功');
+          this.getList()
+          this.unitVisualable = false;
+          this.teacherVisualable = false;
+          this.teacherSort = []
+        }).catch(error => {
+          console.log("QAQ........排序失败")
+        })
+      }
+    },
+    changeFun(val) {
+      this.multipleSelection = val // 返回的是选中的列的数组集合
+      console.log(JSON.stringify(this.multipleSelection))
+    },
+    teacherChange(val) {
+      this.teacherSort_id = [];
+      val.forEach((val, index, arr) => {
+        this.teacherSort_id.push(val.tId);
+      });
+      console.log(this.teacherSort_id);
+      this.teacherList.forEach((v, k) => {
+        let d = document.getElementById('seq_teacher' + v.tId);
+        d.style.display = 'none';
+      });
+      this.teacherSort_id.forEach((v, k) => {
+        let d = document.getElementById('seq_teacher' + v);
+        d.style.display = 'inline';
+        d.innerText = k + 1;
+      });
+      this.teacherSort = val // 返回的是选中的列的数组集合
+      console.log(JSON.stringify(this.teacherSort))
+    },
+    showAdd() {
+      if (this.teacherVisualable === true) {
+        this.teacherVisualable = false;
+      }
+      this.$prompt('', '请输入主栏目名称', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+      }).then(({value}) => {
+        if (this.checkName(value)) {
+          this.api({
+            url: "/catalogue/addCatalogue",
+            method: "post",
+            data: {
+              "unitId": this.$store.state.user.unitId,
+              "catalogue": value
+            }
+          }).then(data => {
+            this.getCatalogues()
+          }).catch(error => {
+            console.log("QAQ........添加栏目失败")
+          })
+        } else
+          this.$message({
+            type: 'warning',
+            message: '该栏目已经存在，请重新输入'
+          });
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '取消操作'
+        });
+      });
+    }
+    ,
+    column_check(val) {
+      if (this.sortVisualable) {
+        // 代表在排主栏目
+        this.catalogueList_id = [];
+        val.forEach((v, index, arr) => {
+          this.catalogueList_id.push(v);
+        });
+        this.catalogueList.forEach((v, k) => {
+          let d = document.getElementById('seq' + v.id);
+          d.style.display = 'none';
+        });
+        this.catalogueList_id.forEach((v, k) => {
+          let d = document.getElementById('seq' + v);
+          d.style.display = 'inline';
+          d.innerText = k + 1;
+        });
+      } else if (this.sortSubVisualable) {
+        // 代表在排子栏目
+        this.catalogueList_id = [];
+        val.forEach((v, index, arr) => {
+          this.catalogueList_id.push(v);
+        });
+        console.log(this.catalogueList_id)
+        console.log(this.catalogueList)
+        this.catalogueList.forEach((v, k) => {
+          v.subCatalogueList.forEach((vv, kk) => {
+            let d = document.getElementById('seq_child' + vv.id);
+            d.style.display = 'none';
+          });
+        });
+        this.catalogueList_id.forEach((v, k) => {
+          let d = document.getElementById('seq_child' + v);
+          d.style.display = 'inline';
+          d.innerText = k + 1;
+        });
+      }
+    },
+    showAddSub(cId) {
+
+      //先查询该主目录有没有教师，如果有，返回失败；没有，则可以添加子目录
+      this.api({
+        url: "/catalogue/getTeacherByCatalogue",
+        method: "get",
+        params: {id: cId}
+      }).then(data => {
+        console.log("dataList....." + JSON.stringify(data));
+        if (Object.keys(data.list).length != 0) {
+          this.$message({
+            type: 'error',
+            message: '该主栏目已存在教师，添加子栏目失败！'
+          });
+          return
+        } else {
+          this.$prompt('', '请输入子栏目名称', {
+            confirmButtonText: '确定',
+            cancelButtonText: '取消',
+          }).then(({value}) => {
+            if (this.checkName(value)) {
+              this.api({
+                url: "/catalogue/addSubCatalogue",
+                method: "post",
+                data: {
+                  "unitId": this.$store.state.user.unitId,
+                  "catalogue": value,
+                  "parentId": cId
+                }
+              }).then(data => {
+                this.getCatalogues()
+              }).catch(error => {
+                console.log("QAQ........添加栏目失败")
+              })
+            } else
+              this.$message({
+                type: 'warning',
+                message: '该栏目已经存在，请重新输入'
+              });
+          }).catch(() => {
+            this.$message({
+              type: 'info',
+              message: '取消操作'
+            });
+          });
+        }
+
+      }).catch(error => {
+        console.log("QAQ........查询教师失败")
+      })
+    },
+    showDelete(cId) {
+      this.$confirm('', '确定删除该栏目？', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+      }).then(() => {
+          this.api({
+            url: "/catalogue/deleteCatalogue",
+            method: "post",
+            data: {"cId": cId}
+          }).then(data => {
+            this.getCatalogues()
+          }).catch(error => {
+            console.log("QAQ........删除失败")
+          })
+        }
+      ).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '取消操作'
+        });
+      });
+    },
+    showEdit(cId, name) {
+      this.$prompt('', '请修改栏目名称', {
+        confirmButtonText: '修改',
+        cancelButtonText: '取消',
+        inputValue: name
+      }).then(({value}) => {
+        if (this.checkName(value)) {
+          this.api({
+            url: "/catalogue/updateCatalogue",
+            method: "post",
+            data: {"cId": cId, newName: value}
+          }).then(data => {
+            this.getCatalogues()
+          }).catch(error => {
+            console.log("QAQ........添加学科失败")
+          })
+        } else
+          this.$message({
+            type: 'warning',
+            message: '该学科已经存在，请重新输入'
+          });
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '取消操作'
+        });
+      });
+    },
+    routerTo(tId) {
+      this.$router.push({
+        name: 'teacherPersonlHomePage',
+        params: {
+          id: tId
+        }
+      })
+    },
+    checkName(value) {
+      for (let a = 0; a < this.catalogueList.length; a++) {
+        if (this.catalogueList[a].name == value) {
+          return false
+        }
+      }
+      this.currentName = value
+      return true
+    },
+    checkTeacherList(value) {
+      for (let a = 0; a < this.teacherList.length; a++) {
+        if (this.teacherList[a].tId == value) {
+          return false
+        }
+      }
+      return true
+    },
+    hasTeacher(cId) {
+
+      this.api({
+        url: "/catalogue/getTeacherByCatalogue",
+        method: "get",
+        params: {id: cId}
+      }).then(data => {
+        console.log("dataList....." + JSON.stringify(data));
+        console.log(Object.keys(data.list).length);
+        if (Object.keys(data.list).length != 0)
+          return true
+        else
+          return false
+      }).catch(error => {
+        console.log("QAQ........查询教师失败")
+      })
+
+    },
+    getCatalogues() {
+
+      this.listQuery.unitId = this.$store.state.user.unitId
+      this.api({
+        url: "/catalogue/getCatalogues",
+        method: "get",
+        params: this.listQuery
+      }).then(data => {
+        console.log(JSON.stringify(data))
+        this.catalogueList = data.list;
+        this.checkRecommandList=[]
+        this.checkIsIncatalogue()
+        this.newRecommandAddList=[]
+
+      }).catch(error => {
+        console.log("QAQ........没有找到栏目信息")
+      })
+    },
+
+    getTeacherByCatalogue(cId, state) {
+      console.log("state++++" + state);
+      this.api({
+        url: "/catalogue/getTeacherByCatalogue",
+        method: "get",
+        params: {id: cId}
+      }).then(data => {
+        console.log("CatalogueTeachers+++++" + JSON.stringify(data));
+        this.teacherList = data.list;
+        this.currentCat = cId;
+        this.unitVisualable = false;
+        //如果是部门、学科则不能增加教师，只能添加子目录，再添加教师
+        if (state != 0 && state != 1)
+          this.addTeacherVisible = true;
+        else
+          this.addTeacherVisible = false;
+      }).catch(error => {
+        console.log("QAQ........没有找到教师")
+      })
+    },
+    //添加教师
+    addCatalogueTeacher() {
+      let tIds = [];
+      //检查已选择教师的ID
+      console.log(JSON.stringify(this.multipleSelection))
+      //检查教师是否已经加入该栏目
+      for (let i = 0; i < this.multipleSelection.length; i++) {
+
+        if (!this.checkTeacherList(this.multipleSelection[i].tId)) {
+          this.$message({
+            type: 'warning',
+            message: '该教师已经存在在此栏目，请重新选择！'
+          });
+          return false;
+
+        } else tIds.push(this.multipleSelection[i].tId)
+      }
+      console.log("tIds===++++" + tIds);
+      this.api({
+        url: "/catalogue/addCatalogueTeacher",
+        method: "post",
+        data: {"tIds": tIds, "cId": this.currentCat}
+      }).then(data => {
+        this.$message.success('添加成功');
+        this.getTeacherByCatalogue(this.currentCat);
+        this.dialogFormVisible = false;
+      }).catch(error => {
+        console.log("QAQ........添加失败");
+        this.$message.warning('请勾选要添加的教师');
+      })
+    },
+    topTeacher(ctId) {
+      this.$confirm('是否要在该栏目置顶该教师?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        this.api({
+          url: "/catalogue/topTeacher",
+          method: "post",
+          data: {
+            "ctId": ctId,
+            "tSeq": 1
+          }
+        }).then(data => {
+          this.getTeacherByCatalogue(this.currentCat);
+        }).catch(error => {
+          console.log("QAQ........删除失败")
+        })
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '已取消置顶'
+        });
+      });
+
+    },
+    untopTeacher(ctId) {
+      this.$confirm('是否要在该栏目置顶该教师?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        this.api({
+          url: "/catalogue/topTeacher",
+          method: "post",
+          data: {
+            "ctId": ctId,
+            "tSeq": 0
+          }
+        }).then(data => {
+          this.getTeacherByCatalogue(this.currentCat);
+        }).catch(error => {
+          console.log("QAQ........删除失败")
+        })
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '已取消置顶'
+        });
+      });
+
+    },
+    handleOpen(key, keyPath) {
+      console.log(key, keyPath);
+    },
+    handleClose(key, keyPath) {
+      console.log(key, keyPath);
+    }
+  },
+  components: {}
+}
+</script>
+<style>
+/*dialog 撤下遮罩
+注意不可以放在<style rel="stylesheet/scss" lang="scss" scoped>
+需要放在style下
+*/
+.el-dialog {
+  float: right;
+  width: 40%;
+  min-width: 450px;
+  pointer-events: auto;
+  margin-right: 2%;
+  max-height: calc(100% - 30px);
+  max-width: calc(100% - 30px);
+}
+
+.el-dialog__wrapper {
+  pointer-events: none;
+}
+
+</style>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
-  @import '../../../styles/catalogueVariables';
+@import '../../../styles/catalogueVariables';
 
-  .newsLi {
-    height: 76px;
-    padding: 5px 5px 5px 0px;
-  }
+.newsLi {
+  height: 76px;
+  padding: 5px 5px 5px 0px;
+}
 
-  .is-active {
-    background-color: #CCCCCC !important;
-    color: #409EFF;
-  }
+.is-active {
+  background-color: #CCCCCC !important;
+  color: #409EFF;
+}
 
-  .threeButton {
-    margin: 4% 4% 2% 1%;
-    padding: 2px 6px 3px 6px;
-  }
+.threeButton {
+  margin: 4% 4% 2% 1%;
+  padding: 2px 6px 3px 6px;
+}
 
-  .catalogueName {
-    width: 50px;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-  }
+.catalogueName {
+  width: 50px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
 
-  .teacherLi {
-    float: left;
-    padding: 20px 30px 15px 5px;
+.teacherLi {
+  float: left;
+  padding: 20px 30px 15px 5px;
 
-  }
-  .operatebox {
-    float: right;
-    margin-right: 5%;
-  }
+}
 
-  .bigText {
-    font-size: 24px;
-    font-weight: bold;
-    padding: 5px 10px 5px 0px;
-  }
+.operatebox {
+  float: right;
+  margin-right: 5%;
+}
 
-  .smallText {
-    color: #8590a6;
-  }
+.bigText {
+  font-size: 24px;
+  font-weight: bold;
+  padding: 5px 10px 5px 0px;
+}
 
-  .container {
-    position: relative;
-    flex-flow: row;
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    margin: 0 auto;
-    min-width: 960px;
+.smallText {
+  color: #8590a6;
+}
 
-  }
+.container {
+  position: relative;
+  flex-flow: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  min-width: 960px;
 
-
-  .header-navs {
-    position: relative;
-    border: 2px solid #3399CC;
-  }
-
-  .navs {
-    height: 50px;
-    line-height: 50px;
-  }
+}
 
 
-  .nav {
-    float: left;
-    width: 120px;
-    text-align: center;
-    border-right: 2px solid #3399CC;
-  }
+.header-navs {
+  position: relative;
+  border: 2px solid #3399CC;
+}
 
-  .nav-item {
-    display: block;
-    height: 50px;
-    line-height: 50px;
-    font-size: 16px;
-    color: #3399CC;
-  }
+.navs {
+  height: 50px;
+  line-height: 50px;
+}
 
-  .nav-item:hover {
-    color: white;
-    background-color: #3399CC;
 
-  }
+.nav {
+  float: left;
+  width: 120px;
+  text-align: center;
+  border-right: 2px solid #3399CC;
+}
 
-  .nav2 {
-    display: inline-block;
-    width: 30px;
-    text-align: center;
-  }
+.nav-item {
+  display: block;
+  height: 50px;
+  line-height: 50px;
+  font-size: 16px;
+  color: #3399CC;
+}
 
-  .nav-item2 {
-    display: block;
-    height: 50px;
-    line-height: 50px;
-    font-size: 18px;
-    text-decoration: none;
-    color: #3399CC;
-  }
+.nav-item:hover {
+  color: white;
+  background-color: #3399CC;
 
-  .nav-item2:hover {
-    color: white;
-    background-color: #3399CC;
-  }
+}
 
-  .nav-item-active {
-    color: white;
-    background: #3399CC;
-  }
+.nav2 {
+  display: inline-block;
+  width: 30px;
+  text-align: center;
+}
 
-  li {
-    list-style-type: none;
-  }
+.nav-item2 {
+  display: block;
+  height: 50px;
+  line-height: 50px;
+  font-size: 18px;
+  text-decoration: none;
+  color: #3399CC;
+}
 
-  .seq {
-    background: #f56c6c;
-    font-size: 18px;
-    border-radius: 50px;
-    padding: 3px;
-    color: white;
-    height: 55px;
-    text-align: center;
-  }
-  .el-carousel__item:nth-child(2n) {
-    background-image: url(../../../assets/catalogue/ca2.png);
-    background-size: 100% 100%;
-  }
+.nav-item2:hover {
+  color: white;
+  background-color: #3399CC;
+}
 
-  .el-carousel__item:nth-child(2n+1) {
-    background-image: url(../../../assets/catalogue/ca1.png);
-    background-size: 100% 100%;
-  }
-  /*.el-submenu>>>.el-submenu__title *{*/
-  /*  vertical-align: auto;*/
-  /*}*/
+.nav-item-active {
+  color: white;
+  background: #3399CC;
+}
+
+li {
+  list-style-type: none;
+}
+
+.seq {
+  background: #f56c6c;
+  font-size: 18px;
+  border-radius: 50px;
+  padding: 3px;
+  color: white;
+  height: 55px;
+  text-align: center;
+}
+
+.el-carousel__item:nth-child(2n) {
+  background-image: url(../../../assets/catalogue/ca2.png);
+  background-size: 100% 100%;
+}
+
+.el-carousel__item:nth-child(2n+1) {
+  background-image: url(../../../assets/catalogue/ca1.png);
+  background-size: 100% 100%;
+}
+
+
+/*.el-submenu>>>.el-submenu__title *{*/
+/*  vertical-align: auto;*/
+/*}*/
 </style>
