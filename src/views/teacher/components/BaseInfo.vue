@@ -1,7 +1,7 @@
 <template>
   <div style="height:100%; " class="baseInfo-body">
     <div class="personal-info">
-      <div v-if="teacherProfile!=undefined " style="position:relative;">
+      <div v-if="teacherProfile!==undefined " style="position:relative;">
 
         <el-card class="box-card" >
           <div class="imgDiv">
